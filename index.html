@@ -8,11 +8,13 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Calm Harmony -->
-    <!-- Application Structure Plan: The application uses a tab-based navigation for each day (Day 1, 2, 3), which is the most intuitive structure for a travel itinerary. Within each day, a two-column layout is used. The left, sticky column provides a vertical timeline of the day's key events, acting as a quick-glance agenda and a sub-navigation. The right, scrollable column displays detailed information for each event in visually distinct cards. This structure allows users to maintain an overview of the day's schedule while exploring specific details, which is highly usable for a time-sensitive plan. Clicking on timeline items smoothly scrolls the user to the corresponding detail card. This design prioritizes chronological flow and ease of access to specific information over a simple linear document. -->
+    <!-- Application Structure Plan: The application uses a tab-based navigation for each day (Day 1, 2, 3) and a new "観光情報" tab. This tab structure is intuitive for a travel itinerary and for general information. Within daily tabs, a two-column layout is used: a sticky left timeline for quick navigation and a scrollable right column for detailed event cards. The "観光情報" tab uses a single column layout with distinct sections for each attraction, allowing users to explore detailed information without a time constraint. This design prioritizes chronological flow for daily plans and thematic grouping for general information, enhancing user understanding and navigation. Clicking on timeline items or tab buttons dynamically updates content. -->
     <!-- Visualization & Content Choices:
         - Report Info: Day 1 schedule (travel, sightseeing, dining). Goal: Inform/Compare time allocation. Viz/Method: Doughnut Chart. Interaction: Hover tooltips. Justification: Provides a quick visual summary of how time is distributed throughout the day, adding a data-driven insight to the textual plan. Library: Chart.js (Canvas).
         - Report Info: All itinerary items (e.g., Dejima, Mt. Inasa, Gunkanjima). Goal: Organize/Inform. Viz/Method: Themed content cards with structured HTML/CSS and Unicode icons (e.g., 観光, 🍽️, 🌃). Interaction: Clickable timeline links scroll to the corresponding card. Justification: Cards neatly segment information, making the dense schedule easy to digest. Icons provide quick visual cues for activity types. Library: Tailwind CSS, Vanilla JS.
-        - Report Info: Locations. Goal: Provide navigation aid. Viz/Method: HTML `<a>` links to Google Maps. Interaction: Click to open map in a new tab. Justification: More practical and lightweight for a user on the go than an embedded map. Library: Standard HTML. -->
+        - Report Info: Locations. Goal: Provide navigation aid. Viz/Method: HTML `<a>` links to Google Maps. Interaction: Click to open map in a new tab. Justification: More practical and lightweight for a user on the go than an embedded map. Library: Standard HTML.
+        - Report Info: Detailed tourist attraction explanations. Goal: Inform/Educate. Viz/Method: Structured text sections within a dedicated "観光情報" tab. Interaction: Scroll through sections. Justification: Provides in-depth background for key sites, enhancing the user's understanding beyond the itinerary. Library: Tailwind CSS, Vanilla JS.
+        - Report Info: Route maps and attraction images for daily tabs. Goal: Visualize itinerary and attractions. Viz/Method: Placeholder `<img>` tags with descriptive text. Interaction: Passive viewing. Justification: Enhances visual appeal and makes the itinerary easier to grasp at a glance. Library: Standard HTML, Tailwind CSS. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
@@ -52,10 +54,11 @@
             <p class="mt-2 text-slate-600">2025年7月4日〜7月6日</p>
         </header>
 
-        <nav class="flex justify-center border-b border-slate-200 mb-8">
+        <nav class="flex justify-center border-b border-slate-200 mb-8 flex-wrap">
             <button data-day="1" class="day-nav-btn nav-active text-lg font-semibold py-4 px-6 border-b-2">1日目</button>
             <button data-day="2" class="day-nav-btn text-lg font-semibold py-4 px-6 border-b-2 border-transparent text-slate-500 hover:text-teal-600 hover:border-slate-300 transition">2日目</button>
             <button data-day="3" class="day-nav-btn text-lg font-semibold py-4 px-6 border-b-2 border-transparent text-slate-500 hover:text-teal-600 hover:border-slate-300 transition">3日目</button>
+            <button data-day="4" class="day-nav-btn text-lg font-semibold py-4 px-6 border-b-2 border-transparent text-slate-500 hover:text-teal-600 hover:border-slate-300 transition">観光情報</button>
         </nav>
 
         <main id="content-container">
@@ -70,7 +73,7 @@
                 title: "到着・歴史探訪・夜景",
                 timeline: [
                     { id: "arrival", time: "15:25", title: "長崎到着・ホテルへ", icon: "✈️" },
-                    { id: "dejima", time: "16:50", title: "出島観光", icon: "�️" },
+                    { id: "dejima", time: "16:50", title: "出島観光", icon: "🏛️" },
                     { id: "dinner1", time: "18:00", title: "夕食：幸三すし", icon: "🍣" },
                     { id: "nightview", time: "20:35", title: "稲佐山夜景", icon: "🌃" },
                     { id: "bar", time: "22:10", title: "思案橋で一杯", icon: "🍸" },
@@ -79,6 +82,12 @@
                     <p class="mb-6 text-slate-600 text-center">このセクションでは、長崎到着から始まる初日の旅程を詳しく紹介します。歴史的な出島を散策し、地元の寿司に舌鼓を打ち、日本三大夜景の一つである稲佐山からの絶景を楽しみます。夜は思案橋のバーで長崎の夜を満喫しましょう。</p>
                     <div class="chart-container mb-12">
                         <canvas id="day1-chart"></canvas>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
+                        <h3 class="text-xl font-bold mb-2 text-teal-700">1日目のルートマップ</h3>
+                        <img src="https://placehold.co/600x350/E0F2F7/0D9488?text=1日目+ルートマップ" alt="1日目のルートマップ" class="w-full rounded-lg shadow-md mb-4">
+                        <p class="text-sm text-slate-600">長崎空港からホテル、そして出島、夕食、夜景スポットを巡る1日のルートイメージです。</p>
                     </div>
 
                     <div id="arrival" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
@@ -93,12 +102,14 @@
                     <div id="dejima" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
                         <h3 class="text-xl font-bold mb-2 text-teal-700">🏛️ 16:50〜17:40 出島観光</h3>
                         <p class="text-sm text-slate-500 mb-4">日本の鎖国時代における唯一の西洋への窓口</p>
+                        <img src="https://placehold.co/600x350/E0F2F7/0D9488?text=出島" alt="出島のイメージ" class="w-full rounded-lg shadow-md mb-4">
                         <p class="text-slate-700 mb-4">日本の歴史に触れる貴重な場所です。時間の都合上、駆け足での見学になるかもしれませんが、ミニチュア出島などで当時の雰囲気を味わってください。</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=長崎+出島" target="_blank" class="text-teal-600 hover:text-teal-800 font-semibold">地図で場所を確認 →</a>
                     </div>
                     <div id="dinner1" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
                         <h3 class="text-xl font-bold mb-2 text-teal-700">🍣 18:00〜19:30 夕食：幸三すし (予約済み)</h3>
                         <p class="text-sm text-slate-500 mb-4">新鮮な長崎の海の幸を堪能</p>
+                        <img src="https://placehold.co/600x350/E0F2F7/0D9488?text=幸三すし" alt="幸三すしの料理イメージ" class="w-full rounded-lg shadow-md mb-4">
                         <p class="text-slate-700 mb-2"><strong>おすすめメニュー:</strong></p>
                         <ul class="list-disc list-inside space-y-2 text-slate-700">
                             <li>「おまかせにぎり13品」：非常にリーズナブルで美味しいと評判。</li>
@@ -110,6 +121,7 @@
                     <div id="nightview" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
                         <h3 class="text-xl font-bold mb-2 text-teal-700">🌃 20:35〜 稲佐山展望台で夜景観賞</h3>
                         <p class="text-sm text-slate-500 mb-4">日本三大夜景の一つ</p>
+                        <img src="https://placehold.co/600x350/E0F2F7/0D9488?text=稲佐山夜景" alt="稲佐山からの夜景イメージ" class="w-full rounded-lg shadow-md mb-4">
                         <p class="text-slate-700 mb-4">1000万ドルの夜景と称される長崎の美しい夜景を堪能してください。ロープウェイへの無料循環バスは<strong class="text-red-600">完全予約制</strong>です。当日の12時以降に公式サイトで要予約。</p>
                         <ul class="list-disc list-inside space-y-2 text-slate-700">
                             <li><strong>20:00</strong> 無料循環バス乗車 (長崎みなとメディカルセンター前)</li>
@@ -121,6 +133,7 @@
                     <div id="bar" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
                         <h3 class="text-xl font-bold mb-2 text-teal-700">🍸 22:10〜 思案橋周辺のバーで一杯</h3>
                         <p class="text-sm text-slate-500 mb-4">一人旅の醍醐味、カウンターで長崎の夜を楽しむ</p>
+                        <img src="https://placehold.co/600x350/E0F2F7/0D9488?text=思案橋のバー" alt="思案橋のバーのイメージ" class="w-full rounded-lg shadow-md mb-4">
                         <p class="text-slate-700 mb-2"><strong>おすすめバー:</strong></p>
                         <ul class="list-disc list-inside space-y-2 text-slate-700">
                             <li><strong>Bar HOO:</strong> 落ち着いた雰囲気でゆっくり飲める。</li>
@@ -137,20 +150,29 @@
                     { id: "meganebashi", time: "09:25", title: "眼鏡橋", icon: "🌉" },
                     { id: "ryoma", time: "10:10", title: "龍馬ゆかりの地", icon: "🚶" },
                     { id: "lunch2", time: "11:45", title: "昼食：五島うどん", icon: "🍜" },
-                    { id: "peace", time: "13:40", title: "平和学習", icon: "🕊️" },
+                    { id: "peace", time: "13:40", title: "平和学習", icon: "�️" },
                     { id: "dinner2", time: "18:00", title: "夕食：ちゃんぽん", icon: "🍲" },
                 ],
                 content: `
                     <p class="mb-6 text-slate-600 text-center">2日目は長崎の多様な顔に触れる一日です。午前は眼鏡橋や坂本龍馬ゆかりの地を巡り、歴史の息吹を感じます。昼食には名物の五島うどんを。午後は平和公園と原爆資料館を訪れ、平和の尊さを学びます。夜は長崎のソウルフード、ちゃんぽんで締めくくります。</p>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
+                        <h3 class="text-xl font-bold mb-2 text-teal-700">2日目のルートマップ</h3>
+                        <img src="https://placehold.co/600x350/E0F2F7/0D9488?text=2日目+ルートマップ" alt="2日目のルートマップ" class="w-full rounded-lg shadow-md mb-4">
+                        <p class="text-sm text-slate-600">眼鏡橋から龍馬ゆかりの地、平和学習、そして長崎グルメを巡る2日目のルートイメージです。</p>
+                    </div>
+
                     <div id="meganebashi" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
                         <h3 class="text-xl font-bold mb-2 text-teal-700">🌉 09:25〜09:55 眼鏡橋 観光</h3>
                         <p class="text-sm text-slate-500 mb-4">日本最古のアーチ型石橋</p>
+                        <img src="https://placehold.co/600x350/E0F2F7/0D9488?text=眼鏡橋" alt="眼鏡橋のイメージ" class="w-full rounded-lg shadow-md mb-4">
                         <p class="text-slate-700 mb-4">水面に映る姿が眼鏡のように見えることから名付けられました。ハートストーンを見つけるのも楽しみの一つです。</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=長崎+眼鏡橋" target="_blank" class="text-teal-600 hover:text-teal-800 font-semibold">地図で場所を確認 →</a>
                     </div>
                      <div id="ryoma" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
                         <h3 class="text-xl font-bold mb-2 text-teal-700">🚶 10:10〜11:30 亀山社中記念館、龍馬通り 散策</h3>
                         <p class="text-sm text-slate-500 mb-4">坂本龍馬が見た長崎の街に思いを馳せる</p>
+                        <img src="https://placehold.co/600x350/E0F2F7/0D9488?text=亀山社中記念館" alt="亀山社中記念館のイメージ" class="w-full rounded-lg shadow-md mb-4">
                         <p class="text-slate-700 mb-2">日本初の商社「亀山社中」の跡地や、龍馬ゆかりの地を巡ります。<strong class="text-red-600">坂道が多いので歩きやすい靴が必須です。</strong></p>
                         <ul class="list-disc list-inside space-y-2 text-slate-700">
                            <li>亀山社中記念館</li>
@@ -163,18 +185,21 @@
                      <div id="lunch2" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
                         <h3 class="text-xl font-bold mb-2 text-teal-700">🍜 11:45〜13:00 昼食：だしぼんず</h3>
                         <p class="text-sm text-slate-500 mb-4">日本三大うどんの一つ、五島うどんを堪能</p>
+                        <img src="https://placehold.co/600x350/E0F2F7/0D9488?text=五島うどん" alt="五島うどんのイメージ" class="w-full rounded-lg shadow-md mb-4">
                         <p class="text-slate-700 mb-4">細麺でありながらコシが強く、つるりとした喉ごしが特徴。あご（トビウオ）だしの優しいスープとの相性は抜群です。</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=長崎+だしぼんず" target="_blank" class="text-teal-600 hover:text-teal-800 font-semibold">地図で場所を確認 →</a>
                     </div>
                     <div id="peace" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
                         <h3 class="text-xl font-bold mb-2 text-teal-700">🕊️ 13:40〜16:00 長崎原爆資料館、平和公園 見学</h3>
                         <p class="text-sm text-slate-500 mb-4">長崎の歴史を深く知る</p>
+                        <img src="https://placehold.co/600x350/E0F2F7/0D9488?text=平和公園" alt="平和公園のイメージ" class="w-full rounded-lg shadow-md mb-4">
                         <p class="text-slate-700 mb-4">長崎を訪れる上で欠かせない場所です。平和への祈りが込められた空間で、静かに歴史と向き合う時間を取りましょう。</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=長崎原爆資料館" target="_blank" class="text-teal-600 hover:text-teal-800 font-semibold">地図で場所を確認 →</a>
                     </div>
                     <div id="dinner2" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
                         <h3 class="text-xl font-bold mb-2 text-teal-700">🍲 18:00〜19:30 夕食：亜妙 本店 (予約済み)</h3>
                         <p class="text-sm text-slate-500 mb-4">長崎のソウルフード、ちゃんぽんを居酒屋スタイルで</p>
+                        <img src="https://placehold.co/600x350/E0F2F7/0D9488?text=長崎ちゃんぽん" alt="長崎ちゃんぽんのイメージ" class="w-full rounded-lg shadow-md mb-4">
                         <p class="text-slate-700 mb-2"><strong>おすすめメニュー:</strong></p>
                          <ul class="list-disc list-inside space-y-2 text-slate-700">
                             <li>「お刺身盛り」：寿司屋レベルと高評価。</li>
@@ -195,20 +220,30 @@
                 ],
                 content: `
                     <p class="mb-6 text-slate-600 text-center">最終日は、世界遺産・軍艦島への上陸ツアーからスタートします。廃墟となった島の迫力と歴史の重みを感じてください。ツアー後は、長崎港周辺で最後の食事とお土産探しを楽しみ、旅の思い出を胸に帰路につきます。</p>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
+                        <h3 class="text-xl font-bold mb-2 text-teal-700">3日目のルートマップ</h3>
+                        <img src="https://placehold.co/600x350/E0F2F7/0D9488?text=3日目+ルートマップ" alt="3日目のルートマップ" class="w-full rounded-lg shadow-md mb-4">
+                        <p class="text-sm text-slate-600">長崎港から軍艦島ツアー、お土産探し、そして空港への最終日のルートイメージです。</p>
+                    </div>
+
                     <div id="gunkanjima" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
                         <h3 class="text-xl font-bold mb-2 text-teal-700">🚢 09:00〜11:30 軍艦島ツアー (予約済み)</h3>
                         <p class="text-sm text-slate-500 mb-4">世界文化遺産「端島炭坑」</p>
+                        <img src="https://placehold.co/600x350/E0F2F7/0D9488?text=軍艦島" alt="軍艦島のイメージ" class="w-full rounded-lg shadow-md mb-4">
                         <p class="text-slate-700 mb-4">かつて炭鉱で栄えた島の歴史を感じてください。上陸ツアーは天候に左右されるため、晴れることを祈りましょう。</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=長崎港ターミナル+大波止" target="_blank" class="text-teal-600 hover:text-teal-800 font-semibold">長崎港ターミナルの地図 →</a>
                     </div>
                      <div id="lunch3" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
                         <h3 class="text-xl font-bold mb-2 text-teal-700">🍽️ 11:45〜12:45 昼食</h3>
                         <p class="text-sm text-slate-500 mb-4">長崎港ターミナル周辺</p>
+                        <img src="https://placehold.co/600x350/E0F2F7/0D9488?text=長崎グルメ" alt="長崎グルメのイメージ" class="w-full rounded-lg shadow-md mb-4">
                         <p class="text-slate-700 mb-4">まだ食べていない長崎グルメを試す最後のチャンス。出島ワーフで海を見ながらのランチもおすすめです。</p>
                     </div>
                      <div id="souvenir" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
                         <h3 class="text-xl font-bold mb-2 text-teal-700">🛍️ 12:45〜13:30 お土産購入</h3>
                         <p class="text-sm text-slate-500 mb-4">長崎の思い出を持ち帰る</p>
+                        <img src="https://placehold.co/600x350/E0F2F7/0D9488?text=長崎カステラ" alt="長崎カステラのイメージ" class="w-full rounded-lg shadow-md mb-4">
                         <p class="text-slate-700 mb-2"><strong>定番のお土産:</strong></p>
                          <ul class="list-disc list-inside space-y-2 text-slate-700">
                             <li>カステラ (文明堂総本店, 福砂屋, 松翁軒)</li>
@@ -235,12 +270,133 @@
                         <p class="mt-4 text-slate-700">お疲れ様でした！</p>
                     </div>
                 `
+            },
+            4: {
+                title: "長崎主要観光地の詳細解説",
+                timeline: [], // No timeline for this tab
+                content: `
+                    <p class="mb-6 text-slate-600 text-center">このセクションでは、長崎の主要な観光地について、その概要、見どころ、歴史的意義などを詳しく解説します。各スポットの背景にある物語や、知られざるうんちくを知ることで、旅がより一層深まるでしょう。</p>
+
+                    <div id="dejima-detail" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
+                        <h3 class="text-xl font-bold mb-2 text-teal-700">🏛️ 出島 (Dejima)</h3>
+                        <p class="text-sm text-slate-500 mb-4">17世紀に江戸幕府の鎖国政策下で、唯一西洋との貿易を許された人工島です。ポルトガル人、後にオランダ商館が置かれ、日本の西洋文化の窓口として重要な役割を果たしました。</p>
+                        <p class="text-slate-700 mb-2"><strong>見どころ:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li>当時の建物が忠実に復元されており、商館長の部屋、料理部屋、番所などを見学できます。</li>
+                            <li>当時の人々の生活や貿易の様子が再現されており、タイムスリップしたかのような体験ができます。</li>
+                            <li>ミニチュアの出島や、当時の貿易品なども展示されています。</li>
+                        </ul>
+                        <p class="text-slate-700 mt-2"><strong>歴史的意義:</strong> 日本の近代化に大きな影響を与えた場所であり、異文化交流の歴史を肌で感じることができます。</p>
+                        <p class="text-slate-700 mt-4 mb-2"><strong>裏話・うんちく・逸話:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li><strong>扇形の秘密:</strong> 出島が扇形をしているのは、元々ポルトガル人を収容するために造られた人工島だからです。限られた空間で効率的に貿易を行うための工夫でした。</li>
+                            <li><strong>豪華な江戸参府:</strong> オランダ商館長は毎年（後に数年に一度）、将軍に謁見するため江戸へ向かいました。この「江戸参府」の行列は非常に豪華で、沿道の人々にとっては異国の文化に触れる貴重な機会でした。象や珍しい動物が連れて行かれることもあったそうです。</li>
+                            <li><strong>日本初が盛りだくさん:</strong> コーヒー、ビール、チョコレート、アスパラガス、キャベツなど、多くの西洋文化や品々がこの出島を通じて日本に初めてもたらされました。まさに日本の「西洋文化の入り口」だったのです。</li>
+                        </ul>
+                    </div>
+
+                    <div id="inasayama-detail" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
+                        <h3 class="text-xl font-bold mb-2 text-teal-700">🌃 稲佐山展望台 (Mt. Inasa Observation Deck)</h3>
+                        <p class="text-sm text-slate-500 mb-4">長崎市街の西側に位置する標高333mの山で、山頂にある展望台からは「1000万ドルの夜景」と称される長崎の夜景を一望できます。モナコ、香港と並び「世界新三大夜景」にも認定されています。</p>
+                        <p class="text-slate-700 mb-2"><strong>見どころ:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li>昼間は長崎港や市街地、遠くは雲仙岳まで見渡せる絶景スポット。</li>
+                            <li>特に夜景は圧巻で、すり鉢状の地形に広がる光の絨毯は、訪れる人々を魅了します。</li>
+                        </ul>
+                        <p class="text-slate-700 mt-2"><strong>アクセス:</strong> 長崎ロープウェイを利用するのが一般的です。無料の循環バスも運行していますが、事前の予約が必要です。</p>
+                        <p class="text-slate-700 mt-4 mb-2"><strong>裏話・うんちく・逸話:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li><strong>「1000万ドル」の由来:</strong> この表現は、1950年代に長崎の夜景を上空から見た電力会社の社員が、当時の長崎市内の電気代を合計して「これだけの電気代がかかっているのだから、1000万ドルの価値がある」と言ったのが始まりとされています。現在の価値に換算すると、さらに高額になるでしょう。</li>
+                            <li><strong>光の絨毯の秘密:</strong> 長崎の夜景が美しいのは、市街地が山々に囲まれたすり鉢状の地形にあり、光が立体的に広がるためです。港の湾曲に沿って光が連なり、独特の景観を作り出しています。</li>
+                            <li><strong>展望台の隠れた魅力:</strong> 展望台の床には、長崎の夜空に見える星座が描かれていたり、ハートの形をした石が埋め込まれていたりします。夜景だけでなく、足元にも注目してみると新たな発見があるかもしれません。</li>
+                        </ul>
+                    </div>
+
+                    <div id="meganebashi-detail" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
+                        <h3 class="text-xl font-bold mb-2 text-teal-700">🌉 眼鏡橋 (Meganebashi Bridge)</h3>
+                        <p class="text-sm text-slate-500 mb-4">中島川にかかる日本最古のアーチ型石橋で、1634年に興福寺の黙子如定禅師によって架けられました。水面に映る橋の姿が眼鏡のように見えることからこの名が付きました。</p>
+                        <p class="text-slate-700 mb-2"><strong>見どころ:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li>その美しいアーチと、川面に映る「眼鏡」の姿は、長崎のシンボルの一つです。</li>
+                            <li>橋の周辺には、ハートの形をした石「ハートストーン」がいくつか隠されており、見つけると幸せになれると言われています。</li>
+                        </ul>
+                        <p class="text-slate-700 mt-2"><strong>周辺:</strong> 中島川沿いには多くの石橋や寺院が点在し、風情ある街並みを散策できます。</p>
+                        <p class="text-slate-700 mt-4 mb-2"><strong>裏話・うんちく・逸話:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li><strong>奇跡の復旧:</strong> 1982年の長崎大水害で、眼鏡橋は一部が流失するという甚大な被害を受けました。しかし、市民の熱い要望と努力により、流された石材を回収し、元の姿に忠実に復元されました。これは、長崎市民の郷土愛と復興への強い意志を象徴するエピソードとして語り継がれています。</li>
+                            <li><strong>ハートストーンの秘密:</strong> 眼鏡橋の周辺の護岸には、石の中に偶然ハートの形になった「ハートストーン」がいくつか埋め込まれています。これを見つけると恋愛成就や幸運が訪れるというジンクスがあり、特にカップルに人気のスポットです。</li>
+                            <li><strong>日本初の石造りアーチ橋:</strong> 眼鏡橋は、日本で初めて本格的な石造りアーチ橋として架けられた橋の一つとされており、その技術的な価値も高く評価されています。</li>
+                        </ul>
+                    </div>
+
+                    <div id="kameyama-detail" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
+                        <h3 class="text-xl font-bold mb-2 text-teal-700">🚶 亀山社中記念館 (Kameyama Shachu Memorial Museum)</h3>
+                        <p class="text-sm text-slate-500 mb-4">幕末の志士、坂本龍馬が結成した日本初の商社「亀山社中」の跡地です。海援隊の前身にあたり、貿易や航海術の習得、倒幕運動の拠点となりました。</p>
+                        <p class="text-slate-700 mb-2"><strong>見どころ:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li>当時の建物を復元・整備し、記念館として公開されています。</li>
+                            <li>龍馬が使用したとされるブーツのレプリカや、当時の資料、写真などが展示されており、幕末の志士たちの息遣いを感じることができます。</li>
+                        </ul>
+                        <p class="text-slate-700 mt-2 mb-2"><strong>周辺 (龍馬ゆかりの地):</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li><strong>龍馬のぶーつ像:</strong> 龍馬通りの中腹にある、坂本龍馬が履いていたとされるブーツを模した像です。この像に足を入れて写真を撮ることができ、龍馬の気分を味わえると人気のフォトスポットになっています。</li>
+                            <li><strong>若宮稲荷神社:</strong> 坂本龍馬が信仰していたとされる神社で、亀山社中の設立にも関わったと言われています。境内には、風頭公園にある「坂本龍馬之像」の原型が移設されており、龍馬との縁を感じられる場所です。</li>
+                            <li><strong>風頭公園の坂本龍馬之像:</strong> 龍馬通りをさらに登った先にある風頭公園に建立されています。長崎港を見下ろすように立つ龍馬の像は、長崎の街のシンボルの一つであり、龍馬が見たであろう景色を共有できる絶景スポットでもあります。公園からは長崎市街や長崎港を一望でき、特に夕暮れ時は美しい景色が広がります。</li>
+                        </ul>
+                        <p class="text-slate-700 mt-4 mb-2"><strong>裏話・うんちく・逸話:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li><strong>ブーツと近代化の象徴:</strong> 龍馬がブーツを履いていたことは、当時の日本人としては非常に珍しく、彼の先進性や国際的な視野を象徴しています。これは、日本の近代化への強い意志を表すものでもありました。</li>
+                            <li><strong>密貿易の側面:</strong> 亀山社中は、表向きは貿易会社でしたが、薩摩藩や長州藩との武器取引など、幕府に隠れて行われる「密貿易」の拠点でもありました。これは、倒幕のための資金調達という重要な役割を担っていました。</li>
+                            <li><strong>日本初の株式会社構想:</strong> 龍馬は、この亀山社中で日本初の株式会社のような組織を構想し、後の世の経済活動にも大きな影響を与えました。彼の先見の明がうかがえるエピソードです。</li>
+                            <li><strong>風頭公園の龍馬像の視線:</strong> 風頭公園の龍馬像は、常に長崎港と市街地を見下ろしています。これは、彼が日本の未来、特に海外との交流を重視し、新しい時代を見据えていたことを象徴していると言われています。</li>
+                        </ul>
+                    </div>
+
+                    <div id="peace-park-detail" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
+                        <h3 class="text-xl font-bold mb-2 text-teal-700">🕊️ 長崎原爆資料館・平和公園 (Nagasaki Atomic Bomb Museum / Peace Park)</h3>
+                        <p class="text-sm text-slate-500 mb-4">1945年8月9日に投下された原子爆弾の悲劇と、平和への願いを伝えるための施設と公園です。</p>
+                        <p class="text-slate-700 mb-2"><strong>長崎原爆資料館:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li>原爆投下直後の長崎の様子、被爆者の遺品、原爆のメカニズムなどが展示されており、戦争の悲惨さと平和の尊さを深く学ぶことができます。</li>
+                        </ul>
+                        <p class="text-slate-700 mt-2 mb-2"><strong>平和公園:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li>原爆投下中心地に近い場所にあり、平和祈念像や平和の泉、世界各国から贈られた平和のモニュメントなどが設置されています。</li>
+                            <li>毎年8月9日には平和祈念式典が開催されます。</li>
+                        </ul>
+                        <p class="text-slate-700 mt-2"><strong>意義:</strong> 長崎の歴史を理解する上で非常に重要な場所であり、平和について深く考える機会を与えてくれます。</p>
+                        <p class="text-slate-700 mt-4 mb-2"><strong>裏話・うんちく・逸話:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li><strong>浦上天主堂の悲劇:</strong> 原爆の爆心地からわずか500mほどの距離にあった浦上天主堂は、当時東洋一の規模を誇るカトリック教会でしたが、原爆により壊滅的な被害を受けました。その残骸の一部は、資料館や平和公園に残され、原爆の威力を今に伝えています。</li>
+                            <li><strong>平和祈念像に込められた意味:</strong> 平和祈念像の右手は天を指し、原爆の脅威を表し、水平に伸ばされた左手は平和を、顔は神の愛を表していると言われています。また、軽く閉じられた目は犠牲者の冥福を祈る姿、たくましい体は平和を築く人間の力強さを象徴しています。</li>
+                            <li><strong>被爆者の声の重み:</strong> 資料館では、多くの被爆者の生の声や手記が展示されています。これらは、単なる歴史的事実としてだけでなく、一人ひとりの人生に刻まれた深い悲しみと、それでもなお平和を願う強いメッセージとして、訪れる人々の心に深く響きます。</li>
+                        </ul>
+                    </div>
+
+                    <div id="gunkanjima-detail" class="scroll-mt-24 bg-white p-6 rounded-xl shadow-md mb-6 ring-1 ring-slate-900/5">
+                        <h3 class="text-xl font-bold mb-2 text-teal-700">🚢 軍艦島 (Hashima Island / Battleship Island)</h3>
+                        <p class="text-sm text-slate-500 mb-4">正式名称は端島。かつて海底炭鉱で栄え、最盛期には人口5,000人以上が暮らした島です。高層アパートが立ち並ぶ独特の景観から、軍艦に似ているとして「軍艦島」と呼ばれるようになりました。2015年に「明治日本の産業革命遺産」として世界文化遺産に登録されました。</p>
+                        <p class="text-slate-700 mb-2"><strong>見どころ:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li>炭鉱閉鎖後は無人島となり、廃墟となった建物群が残されています。</li>
+                            <li>その独特の雰囲気は多くの人々を惹きつけ、ツアーに参加することで間近で見学することができます（上陸は天候に左右されます）。</li>
+                        </ul>
+                        <p class="text-slate-700 mt-2"><strong>歴史的意義:</strong> 日本の近代化を支えた石炭産業の歴史と、そこで暮らした人々の生活を物語る貴重な遺産です。</p>
+                        <p class="text-slate-700 mt-4 mb-2"><strong>裏話・うんちく・逸話:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li><strong>世界一の人口密度:</strong> 最盛期の1959年には、小さな島に約5,267人もの人々が暮らしており、当時の東京都の人口密度の9倍以上という、世界でも類を見ない高密度な都市でした。島内には学校、病院、映画館、パチンコ店なども存在し、一つの独立した都市機能を持っていました。</li>
+                            <li><strong>廃墟の美学と「ラピュタ」:</strong> 閉山後、無人となった軍艦島は、風雨にさらされ、建物が朽ちていく姿が「廃墟の美学」として注目を集めました。その独特の景観は、スタジオジブリのアニメ映画『天空の城ラピュタ』の世界観に似ているとも言われ、ファンにとっても聖地のような存在になっています。</li>
+                            <li><strong>生活を支えたインフラ:</strong> 狭い島で多くの人が暮らすため、生活インフラは非常に発達していました。特に、水不足が深刻だったため、日本で初めて海水淡水化装置が導入されるなど、当時の最先端技術が投入されていました。</li>
+                            <li><strong>炭鉱夫たちの生活:</strong> 島での生活は過酷な炭鉱労働と隣り合わせでしたが、同時に共同体の絆も非常に強かったと言われています。島民は、狭いながらも豊かな生活を築き、独自の文化を育んでいました。</li>
+                        </ul>
+                    </div>
+                `
             }
         };
 
         const contentContainer = document.getElementById('content-container');
         const navButtons = document.querySelectorAll('.day-nav-btn');
-        let currentDay = 1;
+        let currentDay = 1; // Default to Day 1
         let activeTimelineLink = null;
         let day1Chart = null;
 
@@ -248,43 +404,65 @@
             const data = travelData[day];
             if (!data) return;
 
-            const timelineHtml = data.timeline.map(item => `
+            // Only render timeline for daily tabs (1, 2, 3)
+            const isDailyTab = (day >= 1 && day <= 3);
+            const timelineHtml = isDailyTab ? data.timeline.map(item => `
                 <li class="mb-4">
                     <a href="#${item.id}" data-id="${item.id}" class="timeline-link flex items-center text-slate-600 hover:text-teal-600 transition">
                         <span class="font-semibold w-16">${item.time}</span>
                         <span class="ml-4">${item.title}</span>
                     </a>
                 </li>
-            `).join('');
+            `).join('') : '';
 
             contentContainer.innerHTML = `
-                <div class="md:grid md:grid-cols-4 md:gap-8">
+                <div class="md:grid ${isDailyTab ? 'md:grid-cols-4' : 'md:grid-cols-1'} md:gap-8">
+                    ${isDailyTab ? `
                     <aside class="md:col-span-1 md:sticky md:top-8 h-full mb-8 md:mb-0">
                         <h2 class="text-2xl font-bold mb-4 text-teal-700">${data.title}</h2>
                         <ul id="timeline-nav">
                             ${timelineHtml}
                         </ul>
                     </aside>
-                    <div id="right-panel" class="md:col-span-3">
+                    ` : ''}
+                    <div id="right-panel" class="${isDailyTab ? 'md:col-span-3' : 'md:col-span-1'}">
                         ${data.content}
                     </div>
                 </div>
             `;
 
+            // Only render chart for Day 1
             if (day == 1) {
                 renderDay1Chart();
+            } else {
+                if (day1Chart) {
+                    day1Chart.destroy(); // Destroy chart if not on Day 1
+                    day1Chart = null;
+                }
             }
 
-            addTimelineListeners();
-            setupIntersectionObserver();
+            // Only add timeline listeners and observer for daily tabs
+            if (isDailyTab) {
+                addTimelineListeners();
+                setupIntersectionObserver();
+            } else {
+                // Reset active timeline link for non-daily tabs
+                if(activeTimelineLink) {
+                    activeTimelineLink.classList.remove('timeline-active');
+                    activeTimelineLink = null;
+                }
+            }
         }
 
         function renderDay1Chart() {
-            const ctx = document.getElementById('day1-chart').getContext('2d');
+            const ctx = document.getElementById('day1-chart');
+            if (!ctx) return; // Ensure canvas exists for Day 1
+
+            const chartContext = ctx.getContext('2d');
             if(day1Chart) {
                 day1Chart.destroy();
             }
-            day1Chart = new Chart(ctx, {
+            day1Chart = new Chart(chartContext, {
                 type: 'doughnut',
                 data: {
                     labels: ['移動', '観光・散策', '食事', '夜景・バー'],
@@ -364,27 +542,30 @@
             const rightPanel = document.getElementById('right-panel');
             if(!rightPanel) return;
 
-            const contentSections = rightPanel.children;
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const id = entry.target.id;
-                        const timelineLink = document.querySelector(`.timeline-link[data-id="${id}"]`);
+            // Only observe if it's a daily tab (has timeline)
+            if (currentDay >= 1 && currentDay <= 3) {
+                const contentSections = rightPanel.children;
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.id;
+                            const timelineLink = document.querySelector(`.timeline-link[data-id="${id}"]`);
 
-                        if (timelineLink && timelineLink !== activeTimelineLink) {
-                            if(activeTimelineLink) {
-                                activeTimelineLink.classList.remove('timeline-active');
+                            if (timelineLink && timelineLink !== activeTimelineLink) {
+                                if(activeTimelineLink) {
+                                    activeTimelineLink.classList.remove('timeline-active');
+                                }
+                                timelineLink.classList.add('timeline-active');
+                                activeTimelineLink = timelineLink;
                             }
-                            timelineLink.classList.add('timeline-active');
-                            activeTimelineLink = timelineLink;
                         }
-                    }
-                });
-            }, { rootMargin: "-50% 0px -50% 0px", threshold: 0 });
+                    });
+                }, { rootMargin: "-50% 0px -50% 0px", threshold: 0 });
 
-            Array.from(contentSections).forEach(section => {
-                 if(section.id) observer.observe(section);
-            });
+                Array.from(contentSections).forEach(section => {
+                     if(section.id) observer.observe(section);
+                });
+            }
         }
 
         navButtons.forEach(button => button.addEventListener('click', handleNavClick));
@@ -393,4 +574,5 @@
     </script>
 </body>
 </html>
-�
+
+
