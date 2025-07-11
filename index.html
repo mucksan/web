@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Index</title>
+    <style>
+        /* --- Reset & Base Styles --- */
+        :root {
+            --bg-color: #1a1a1a;
+            --card-bg-color: #2c2c2c;
+            --text-color: #e0e0e0;
+            --primary-color: #00aaff;
+            --shadow-color: rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        /* --- Container --- */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        /* --- Header --- */
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-top: 0;
+            margin-bottom: 3rem;
+        }
+
+        /* --- Link List --- */
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .link-list li {
+            background-color: var(--card-bg-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .link-list li:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px var(--shadow-color);
+        }
+
+        .link-list a {
+            display: block;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .link-list a:hover {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Project Index</h1>
+            <p>A collection of web pages in this project.</p>
+        </header>
+
+        <ul class="link-list">
+            <!-- このリストに web/ ディレクトリ内のHTMLファイルへのリンクを追加してください -->
+            <li><a href="web/IDE調査Info.html" target="_blank" rel="noopener noreferrer">IDE調査Info</a></li>
+            <li><a href="web/IDE調査Web.html" target="_blank" rel="noopener noreferrer">IDE調査Web</a></li>
+            <!-- <li><a href="web/another-page.html" target="_blank" rel="noopener noreferrer">Another Page</a></li> -->
+        </ul>
+    </div>
+
+</body>
+</html>
+

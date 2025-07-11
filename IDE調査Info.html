@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024年版 Java IDE市場シェア インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F8F9FA;
+            color: #212529;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #004AAD, #4A90E2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-[#D4E6F1]">
+
+    <header class="text-center p-8 md:p-12 bg-white shadow-lg">
+        <h1 class="text-3xl md:text-5xl font-bold text-[#004AAD]">2024年版 Java IDE市場シェア</h1>
+        <p class="text-lg md:text-xl mt-4 text-[#0062CC]">日本の開発チームのためのデータ主導インフォグラフィック</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="global-share" class="mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#004AAD]">グローバル市場のスナップショット</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">
+                    Java開発に特化した市場と、開発者コミュニティ全体とでは、人気のIDEが大きく異なります。VS Codeが汎用ツールとして圧倒的な人気を誇る一方、プロのJava開発現場ではIntelliJ IDEAが依然として王座に君臨しています。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-xl font-bold text-center mb-2 text-[#0062CC]">Java開発者の利用シェア</h3>
+                        <p class="text-sm text-center text-gray-500 mb-4">(JRebel 2024)</p>
+                        <div class="chart-container">
+                            <canvas id="javaDevsChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-center mb-2 text-[#0062CC]">全開発者の利用シェア</h3>
+                        <p class="text-sm text-center text-gray-500 mb-4">(Stack Overflow 2024)</p>
+                        <div class="chart-container">
+                            <canvas id="allDevsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="japan-market" class="mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#004AAD]">日本独自の開発エコシステム</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">
+                    グローバルとは対照的に、日本ではEclipseが特に大企業やSIerで強力な地位を維持しています。これは、コスト、歴史的経緯、そして豊富な日本語リソースという複合的な要因によるものです。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+                    <div class="md:col-span-2">
+                        <h3 class="text-xl font-bold text-center mb-2 text-[#0062CC]">国内エンタープライズ市場シェア (概念図)</h3>
+                        <div class="chart-container h-[300px] max-h-[350px]">
+                            <canvas id="japanMarketChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="md:col-span-3">
+                         <h3 class="text-xl font-bold text-center mb-6 text-[#0062CC]">Eclipseの牙城を支える要因</h3>
+                         <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="bg-[#4A90E2] text-white rounded-full h-12 w-12 flex items-center justify-center font-bold text-xl shadow">1</div>
+                                <div class="ml-4 p-4 bg-blue-50 rounded-lg border-l-4 border-[#4A90E2] w-full">
+                                    <h4 class="font-bold">無償＆オープンソース</h4>
+                                    <p class="text-sm text-gray-600">複雑な予算申請や調達プロセスを回避でき、組織にとって導入障壁が低い。</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-center h-8">
+                                <div class="w-px bg-[#4A90E2]"></div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-[#4A90E2] text-white rounded-full h-12 w-12 flex items-center justify-center font-bold text-xl shadow">2</div>
+                                <div class="ml-4 p-4 bg-blue-50 rounded-lg border-l-4 border-[#4A90E2] w-full">
+                                    <h4 class="font-bold">SIer文化とレガシー</h4>
+                                    <p class="text-sm text-gray-600">長年の標準環境として、開発プロセスや社内ノウハウが蓄積されている。</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-center h-8">
+                                <div class="w-px bg-[#4A90E2]"></div>
+                            </div>
+                             <div class="flex items-center">
+                                <div class="bg-[#4A90E2] text-white rounded-full h-12 w-12 flex items-center justify-center font-bold text-xl shadow">3</div>
+                                <div class="ml-4 p-4 bg-blue-50 rounded-lg border-l-4 border-[#4A90E2] w-full">
+                                    <h4 class="font-bold">豊富な日本語リソース</h4>
+                                    <p class="text-sm text-gray-600">書籍、ブログ、Pleiades All in One等の存在が学習コストを大幅に低減。</p>
+                                </div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="mb-12">
+             <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#004AAD]">三大IDE直接対決：哲学と特徴</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="border border-gray-200 rounded-lg p-6 text-center hover:shadow-xl transition-shadow">
+                        <h3 class="text-2xl font-bold text-[#0062CC] mb-4">IntelliJ IDEA</h3>
+                        <p class="font-bold text-gray-700 mb-2">コア哲学</p>
+                        <p class="mb-4 text-sm">開発者の生産性を最大化する「賢いパートナー」</p>
+                        <p class="font-bold text-gray-700 mb-2">最大の強み</p>
+                        <p class="mb-4 text-sm">🤖 比類なきコード分析と強力なリファクタリング</p>
+                        <p class="font-bold text-gray-700 mb-2">最大の弱み</p>
+                        <p class="mb-4 text-sm">💰 高機能版は有償、リソース消費が大きい</p>
+                         <p class="font-bold text-gray-700 mb-2">最適なユーザー</p>
+                        <p class="text-sm">プロのJava開発者、生産性を最優先するチーム</p>
+                    </div>
+                     <div class="border border-gray-200 rounded-lg p-6 text-center hover:shadow-xl transition-shadow">
+                        <h3 class="text-2xl font-bold text-[#0062CC] mb-4">Eclipse</h3>
+                        <p class="font-bold text-gray-700 mb-2">コア哲学</p>
+                        <p class="mb-4 text-sm">オープンで拡張可能な「カスタマイズプラットフォーム」</p>
+                        <p class="font-bold text-gray-700 mb-2">最大の強み</p>
+                        <p class="mb-4 text-sm">🔌 膨大なプラグインと比類なきカスタマイズ性</p>
+                        <p class="font-bold text-gray-700 mb-2">最大の弱み</p>
+                        <p class="mb-4 text-sm">🐢 古風なUI、多くのプラグインで動作が重くなる</p>
+                        <p class="font-bold text-gray-700 mb-2">最適なユーザー</p>
+                        <p class="text-sm">大企業/SIer、コストを重視する組織、学生</p>
+                    </div>
+                     <div class="border border-gray-200 rounded-lg p-6 text-center hover:shadow-xl transition-shadow">
+                        <h3 class="text-2xl font-bold text-[#0062CC] mb-4">VS Code</h3>
+                        <p class="font-bold text-gray-700 mb-2">コア哲学</p>
+                        <p class="mb-4 text-sm">高速・軽量・汎用的な「開発ハブ」</p>
+                        <p class="font-bold text-gray-700 mb-2">最大の強み</p>
+                        <p class="mb-4 text-sm">⚡ 軽快な動作とクラス最高の多言語サポート</p>
+                        <p class="font-bold text-gray-700 mb-2">最大の弱み</p>
+                        <p class="mb-4 text-sm">🧩 Java専用機能はIntelliJに及ばない</p>
+                        <p class="font-bold text-gray-700 mb-2">最適なユーザー</p>
+                        <p class="text-sm">多言語開発者、Web/クラウドネイティブ開発者</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="secondary-ide" class="mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#004AAD]">新たな常識：「セカンダリIDE」という選択</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">
+                   開発者は一つのツールに固執しません。重量級のJava開発にはIntelliJを、フロントエンドやスクリプトのような軽量タスクにはVS Codeをと、タスクに応じてツールを使い分けるのが現代的なスタイルです。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center">
+                        <p class="gradient-text text-8xl md:text-9xl font-bold">84%</p>
+                        <p class="text-xl md:text-2xl font-bold mt-4 text-[#0062CC]">のIntelliJユーザーは<br>他のIDEを併用</p>
+                        <p class="text-sm text-gray-500 mt-2">(JRebel 2024)</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-center mb-2 text-[#0062CC]">併用されるIDEで最も人気なのは？</h3>
+                         <div class="chart-container h-[300px] max-h-[350px]">
+                            <canvas id="secondaryIdeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="decision-framework">
+             <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#004AAD]">戦略的IDE選択フレームワーク</h2>
+                <div class="w-full max-w-4xl mx-auto">
+                    <div class="text-center p-4 bg-blue-100 border-2 border-dashed border-[#4A90E2] rounded-lg">
+                        <h3 class="font-bold text-xl text-[#004AAD]">あなたのプロジェクトは？</h3>
+                    </div>
+
+                    <div class="flex justify-center my-4">
+                       <div class="w-px h-12 bg-[#4A90E2]"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        
+                        <div class="flex flex-col items-center text-center">
+                           <div class="w-full p-3 bg-blue-200 rounded-md font-bold text-[#004AAD]">大規模SIer / レガシー保守</div>
+                           <div class="h-6 w-px bg-[#4A90E2] my-2"></div>
+                           <div class="w-full p-4 bg-green-100 border-2 border-green-500 rounded-lg shadow">
+                               <h4 class="font-bold text-lg text-green-800">Eclipse</h4>
+                               <p class="text-sm text-gray-600 mt-1">既存プロセスとノウハウを尊重し、リスクを最小化。安定性が最優先。</p>
+                           </div>
+                        </div>
+                        
+                        <div class="flex flex-col items-center text-center">
+                           <div class="w-full p-3 bg-blue-200 rounded-md font-bold text-[#004AAD]">クラウドネイティブ / 新規開発</div>
+                           <div class="h-6 w-px bg-[#4A90E2] my-2"></div>
+                           <div class="w-full p-4 bg-green-100 border-2 border-green-500 rounded-lg shadow">
+                               <h4 class="font-bold text-lg text-green-800">IntelliJ IDEA</h4>
+                               <p class="text-sm text-gray-600 mt-1">Spring Boot等との強力な連携で生産性を最大化。開発者体験を重視。</p>
+                           </div>
+                        </div>
+                        
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-full p-3 bg-blue-200 rounded-md font-bold text-[#004AAD]">スタートアップ / 多言語環境</div>
+                            <div class="h-6 w-px bg-[#4A90E2] my-2"></div>
+                            <div class="w-full p-4 bg-green-100 border-2 border-green-500 rounded-lg shadow">
+                               <h4 class="font-bold text-lg text-green-800">VS Code</h4>
+                               <p class="text-sm text-gray-600 mt-1">軽量・高速で柔軟性が高い。フロントエンドも扱うフルスタック開発に最適。</p>
+                           </div>
+                        </div>
+
+                        <div class="flex flex-col items-center text-center">
+                           <div class="w-full p-3 bg-blue-200 rounded-md font-bold text-[#004AAD]">個人学習 / 教育</div>
+                           <div class="h-6 w-px bg-[#4A90E2] my-2"></div>
+                           <div class="w-full p-4 bg-green-100 border-2 border-green-500 rounded-lg shadow">
+                               <h4 class="font-bold text-lg text-green-800">VS Code → IntelliJ</h4>
+                               <p class="text-sm text-gray-600 mt-1">導入が容易なVS Codeで始め、次に本格的なIntelliJ Community版へ移行。</p>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-6 mt-8 bg-white">
+        <p class="text-gray-600 text-sm">データ出典: JRebel 2024 Java Developer Productivity Report, Stack Overflow Developer Survey 2024, PYPL Index</p>
+        <p class="text-gray-500 text-xs mt-2">このインフォグラフィックは提供された分析レポートに基づき作成されました。</p>
+    </footer>
+
+    <script>
+        const colorPalette = {
+            primary: '#0062CC',
+            secondary: '#4A90E2',
+            tertiary: '#90C2F3',
+            dark: '#004AAD',
+            light: '#D4E6F1',
+            text: '#212529',
+            textLight: '#6c757d'
+        };
+
+        const chartDefaultOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: colorPalette.text,
+                        padding: 20,
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleFont: {
+                        size: 14,
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        size: 12
+                    },
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: colorPalette.textLight },
+                    grid: { display: false }
+                },
+                y: {
+                    ticks: { color: colorPalette.textLight },
+                    grid: { color: '#e9ecef' }
+                }
+            }
+        };
+
+        function wrapLabel(label, maxLength = 16) {
+            if (label.length <= maxLength) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        }
+
+        new Chart(document.getElementById('javaDevsChart'), {
+            type: 'bar',
+            data: {
+                labels: ['IntelliJ IDEA', 'Eclipse', wrapLabel('Visual Studio Code'), 'その他'],
+                datasets: [{
+                    label: '利用シェア (%)',
+                    data: [41, 23, 19, 17],
+                    backgroundColor: [colorPalette.primary, colorPalette.secondary, colorPalette.tertiary, colorPalette.light],
+                    borderColor: [colorPalette.dark, colorPalette.primary, colorPalette.secondary, colorPalette.tertiary],
+                    borderWidth: 1
+                }]
+            },
+            options: { ...chartDefaultOptions, indexAxis: 'y' }
+        });
+
+        new Chart(document.getElementById('allDevsChart'), {
+            type: 'bar',
+            data: {
+                labels: [wrapLabel('Visual Studio Code'), 'IntelliJ IDEA', 'Eclipse'],
+                datasets: [{
+                    label: '利用シェア (%)',
+                    data: [73.6, 26.8, 9.4],
+                    backgroundColor: [colorPalette.tertiary, colorPalette.primary, colorPalette.secondary],
+                    borderColor: [colorPalette.secondary, colorPalette.dark, colorPalette.primary],
+                    borderWidth: 1
+                }]
+            },
+            options: { ...chartDefaultOptions, indexAxis: 'y' }
+        });
+        
+        const doughnutOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+             plugins: {
+                legend: {
+                    position: 'right',
+                     labels: {
+                        color: colorPalette.text,
+                        padding: 15,
+                        font: {
+                            size: 12
+                        },
+                        boxWidth: 20
+                    }
+                },
+                tooltip: chartDefaultOptions.plugins.tooltip
+            }
+        };
+
+        new Chart(document.getElementById('japanMarketChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Eclipse', 'IntelliJ IDEA', wrapLabel('Visual Studio Code'), 'その他'],
+                datasets: [{
+                    label: '国内シェア(概念)',
+                    data: [55, 25, 15, 5],
+                    backgroundColor: [colorPalette.secondary, colorPalette.primary, colorPalette.tertiary, colorPalette.light],
+                    borderColor: '#fff',
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            },
+            options: doughnutOptions
+        });
+        
+        new Chart(document.getElementById('secondaryIdeChart'), {
+            type: 'doughnut',
+            data: {
+                labels: [wrapLabel('Visual Studio Code'), '他のエディタ', 'Eclipse'],
+                datasets: [{
+                    label: '併用IDE(概念)',
+                    data: [65, 25, 10],
+                    backgroundColor: [colorPalette.tertiary, colorPalette.light, colorPalette.secondary],
+                    borderColor: '#fff',
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            },
+            options: doughnutOptions
+        });
+
+    </script>
+</body>
+</html>
