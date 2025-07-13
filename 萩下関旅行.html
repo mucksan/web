@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【決定版】プランA：萩・下関 幕末美食ツアー</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals (Stone, Amber, Teal) -->
+    <!-- Application Structure Plan: このSPAは、ユーザーが決定した「プランA」の詳細な旅のしおりとして機能するよう再設計されています。比較機能を廃し、単一プランの情報を直線的に深く掘り下げる構成です。上から順に「旅のコンセプト」「旅のハイライト」「費用内訳」「詳細行程」と物語を語るように情報を配置しました。これにより、ユーザーは旅の全体像から詳細までをスムーズに把握できます。下部には共通の補足情報（美食・史跡）を配置し、旅への期待感を高めます。 -->
+    <!-- Visualization & Content Choices: 
+        - 費用内訳 -> Goal: 決定プランの費用構成を明確にする -> Viz: ドーナツチャート (Chart.js) -> Interaction: なし（静的表示） -> Justification: 費用の割合を視覚的に示し、予算計画の透明性を高めるため。
+        - 行程表 -> Goal: 各日のスケジュールを詳細に確認する -> Presentation: HTMLテーブル (Tailwind) -> Interaction: なし -> Justification: 時系列情報を整理して提示する最も標準的で効果的な方法だから。
+        - 旅のハイライト -> Goal: プランの魅力を端的に伝える -> Presentation: アイコン付きカードリスト (HTML/CSS/Tailwind) -> Interaction: なし -> Justification: 視覚的なアイコンを用いて、旅の体験価値を直感的に伝達するため。
+        - 美食・史跡 -> Goal: 旅の背景知識を深める -> Presentation: カード型レイアウト (HTML/CSS/Tailwind) -> Interaction: なし -> Justification: テキスト情報を視覚的に分割し、読みやすさと関心を高めるため。
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #fdfcf9; }
+        .content-card { background-color: white; border: 1px solid #e7e5e4; border-radius: 0.75rem; padding: 1.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+        .chart-container { position: relative; width: 100%; max-width: 400px; margin-left: auto; margin-right: auto; height: 320px; max-height: 320px; }
+        .table-cell { padding: 0.75rem; text-align: left; vertical-align: top; border-bottom: 1px solid #e7e5e4; }
+        .highlight-icon { font-size: 2.5rem; color: #0d9488; line-height: 1; }
+    </style>
+</head>
+<body class="text-stone-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-5xl">
+        
+        <header class="text-center mb-10">
+            <h1 class="text-3xl sm:text-4xl font-bold text-teal-800 mb-2">幕末の志士を訪ね、口福を味わう旅</h1>
+            <p class="text-lg text-teal-700 font-semibold">【決定プラン】自由を愉しむレンタカーの旅</p>
+        </header>
+
+        <main id="plan-details" class="space-y-10">
+            
+            <section id="plan-concept" class="content-card">
+                <h2 class="text-2xl font-bold text-teal-700 mb-4">旅のコンセプト</h2>
+                <p class="text-stone-700 leading-relaxed">
+                    この旅は、萩の歴史探訪と下関の美食、両方を妥協なく満喫するための決定版プランです。移動の自由度と快適性を最優先し、3日間の価値を最大限に高めます。萩から下関への移動は約1時間半。仲間との会話を楽しみながらの快適なドライブは、乗り換えの多い公共交通機関より旅の質を格段に向上させ、50代の我々の旅にふさわしいゆとりと発見をもたらしてくれるでしょう。
+                </p>
+            </section>
+
+            <section id="plan-highlights" class="content-card">
+                <h2 class="text-2xl font-bold text-teal-700 mb-6 text-center">旅のハイライト</h2>
+                <div id="highlights-container" class="grid sm:grid-cols-3 gap-6 text-center">
+                </div>
+            </section>
+
+            <section id="plan-cost" class="content-card">
+                <h2 class="text-2xl font-bold text-teal-700 mb-4 text-center">費用内訳（1人あたり概算）</h2>
+                 <p class="text-center text-stone-600 mb-2">総額：<strong id="total-cost" class="text-2xl text-teal-800"></strong></p>
+                <div class="chart-container">
+                    <canvas id="costDoughnutChart"></canvas>
+                </div>
+            </section>
+
+            <section id="plan-itinerary" class="content-card">
+                <h2 class="text-2xl font-bold text-teal-700 mb-4">詳細行程</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm sm:text-base">
+                        <thead class="bg-stone-50">
+                            <tr>
+                                <th class="table-cell font-semibold">日程</th>
+                                <th class="table-cell font-semibold">時間</th>
+                                <th class="table-cell font-semibold w-1/3">行動</th>
+                                <th class="table-cell font-semibold w-1/2">詳細</th>
+                            </tr>
+                        </thead>
+                        <tbody id="itinerary-body">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="mt-12 space-y-10">
+            <section id="gourmet" class="content-card">
+                 <h2 class="text-2xl font-bold text-teal-700 mb-4 text-center">旅を彩る美食探訪</h2>
+                 <p class="text-center text-stone-600 mb-6">山口は食の宝庫。ふぐはもちろん、新鮮な地魚や個性豊かな地酒が旅の喜びを深めます。</p>
+                 <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 border-b-2 border-teal-500 pb-2">萩・下関の地魚</h3>
+                        <ul class="space-y-3 text-stone-700">
+                           <li><strong class="text-teal-800">とらふぐ（下関）：</strong>「ふぐの王様」。芸術的なてっさ（刺身）、旨味凝縮のふぐちり（鍋）は冬の味覚の頂点。</li>
+                           <li><strong class="text-teal-800">真ふぐ（萩）：</strong>「ふぐの女王」。とらふぐに劣らぬ深い旨味を持つ天然真ふぐは、萩が日本有数の水揚げ量を誇る。</li>
+                           <li><strong class="text-teal-800">瀬つきあじ：</strong>回遊せず、瀬に居つくことで脂がのった萩の名物。刺身でも塩焼きでも絶品。</li>
+                           <li><strong class="text-teal-800">剣先イカ：</strong>透き通るような身と強い甘みが特徴。「イカの女王」とも呼ばれる。</li>
+                           <li><strong class="text-teal-800">あんこう：</strong>下関の冬の味覚のもう一つの代表格。あんこう鍋は体を芯から温める。</li>
+                        </ul>
+                    </div>
+                    <div>
+                         <h3 class="text-xl font-semibold mb-4 border-b-2 border-teal-500 pb-2">山口を代表する地酒</h3>
+                        <ul class="space-y-3 text-stone-700">
+                            <li><strong class="text-teal-800">獺祭 (Dassai)：</strong>華やかでフルーティーな香りが特徴。世界的に有名な、山口を代表する銘酒。</li>
+                            <li><strong class="text-teal-800">東洋美人 (Toyo Bijin)：</strong>萩の地酒。透明感のある、きれいで上品な米の甘みが魅力。魚料理との相性抜群。</li>
+                            <li><strong class="text-teal-800">貴 (Taka)：</strong>米の旨味をしっかり感じさせる骨太な味わい。食中酒としての評価が非常に高い。</li>
+                             <li><strong class="text-teal-800">雁木 (Gangi)：</strong>無濾過生原酒ならではの力強い米の風味と、飲みごたえのある味わいが特徴。</li>
+                        </ul>
+                    </div>
+                 </div>
+            </section>
+            
+            <section id="spots" class="content-card">
+                 <h2 class="text-2xl font-bold text-teal-700 mb-6 text-center">維新の息吹を感じる史跡巡り</h2>
+                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-stone-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-lg text-teal-800">松下村塾</h3>
+                        <p class="text-sm text-stone-600">吉田松陰が主宰し、高杉晋作や伊藤博文など多くの逸材を輩出した学び舎。驚くほど小さな建物から日本の近代化が始まりました。（世界遺産）</p>
+                    </div>
+                     <div class="bg-stone-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-lg text-teal-800">萩城下町</h3>
+                        <p class="text-sm text-stone-600">江戸時代の地図がそのまま使えると言われる美しい町並み。白壁となまこ壁が続く菊屋横丁は必見。高杉晋作誕生地なども点在します。</p>
+                    </div>
+                     <div class="bg-stone-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-lg text-teal-800">赤間神宮</h3>
+                        <p class="text-sm text-stone-600">壇ノ浦の戦いで亡くなった安徳天皇を祀る神社。竜宮城を模したと言われる朱色の水天門が印象的。「耳なし芳一」の舞台でもあります。</p>
+                    </div>
+                 </div>
+            </section>
+        </footer>
+
+    </div>
+
+    <script>
+        const planData = {
+            title: "【最推奨】プランA：自由を愉しむレンタカーの旅",
+            philosophy: "萩の歴史探訪と下関の美食、両方を妥協なく満喫するための決定版プランです。移動の自由度と快適性を最優先し、3日間の価値を最大限に高めます。萩から下関への移動は約1時間半。仲間との会話を楽しみながらの快適なドライブは、乗り換えの多い公共交通機関より旅の質を格段に向上させます。",
+            costs: { "宿泊費": 32000, "交通費": 8500, "食費": 28000, "観光・雑費": 2500 },
+            totalCost: 71000,
+            highlights: [
+                { icon: '🐡', title: '本場の下関でとらふぐ', description: '歴史ある名店で、旬を迎えた「とらふぐ」のフルコースを心ゆくまで堪能します。' },
+                { icon: '🚗', title: '快適なレンタカー移動', description: '時間や荷物を気にせず、自分たちのペースで萩・下関間を移動できます。' },
+                { icon: '⛩️', title: '壇ノ浦の歴史に触れる', description: '下関で赤間神宮や関門海峡を訪れ、源平合戦や幕末の歴史を感じます。' },
+            ],
+            itinerary: [
+                { day: '1日目', time: '10:35', action: '萩・石見空港 着', details: '到着後、予約制乗合タクシーで萩市内へ（約70分）。' },
+                { day: '1日目', time: '12:45', action: '昼食：道の駅「萩しーまーと」', details: '新鮮な地魚の海鮮丼を堪能。' },
+                { day: '1日目', time: '14:00', action: '歴史探訪①：松陰神社エリア', details: '松下村塾、吉田松陰幽囚ノ旧宅など維新の原点を巡る。' },
+                { day: '1日目', time: '18:30', action: '夕食：宿泊旅館にて', details: '萩の旬の会席料理と地酒で乾杯。' },
+                { day: '2日目', time: '09:30', action: 'レンタカー借受・歴史探訪②', details: '萩城下町（高杉晋作誕生地など）を散策。' },
+                { day: '2日目', time: '14:00', action: '萩 → 下関へ移動', details: 'レンタカーで出発。約1時間半の快適なドライブ。' },
+                { day: '2日目', time: '18:30', action: '夕食：下関でふぐフルコース', details: '「春帆楼」や「旬楽館」などの名店で、本場の味を体験。' },
+                { day: '3日目', time: '10:00', action: '唐戸エリア散策', details: '唐戸市場の活気を感じ、関門海峡の景色を望む。' },
+                { day: '3日目', time: '14:00', action: '下関 → 萩・石見空港へ', details: '時間に余裕を持って空港へ。途中、お土産購入も。' },
+                { day: '3日目', time: '18:15', action: '萩・石見空港 発', details: '帰路へ。' }
+            ]
+        };
+
+        let doughnutChart = null;
+
+        function displayPlan(plan) {
+            document.getElementById('total-cost').textContent = `¥${plan.totalCost.toLocaleString()}`;
+            
+            const highlightsContainer = document.getElementById('highlights-container');
+            highlightsContainer.innerHTML = '';
+            plan.highlights.forEach(h => {
+                const div = document.createElement('div');
+                div.className = 'flex flex-col items-center p-4 bg-teal-50/50 rounded-lg';
+                div.innerHTML = `
+                    <div class="highlight-icon mb-3">${h.icon}</div>
+                    <h3 class="font-bold text-lg text-teal-800 mb-1">${h.title}</h3>
+                    <p class="text-sm text-stone-600">${h.description}</p>
+                `;
+                highlightsContainer.appendChild(div);
+            });
+
+            const itineraryBody = document.getElementById('itinerary-body');
+            itineraryBody.innerHTML = '';
+            let currentDay = '';
+            plan.itinerary.forEach(item => {
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-stone-50';
+                let dayCell = `<td class="table-cell font-semibold">${item.day}</td>`;
+                if (item.day === currentDay) {
+                    dayCell = `<td class="table-cell border-t-0"></td>`;
+                } else {
+                    currentDay = item.day;
+                    row.className += ' border-t-2 border-stone-200';
+                }
+                
+                row.innerHTML = `
+                    ${dayCell}
+                    <td class="table-cell">${item.time}</td>
+                    <td class="table-cell font-medium text-teal-900">${item.action}</td>
+                    <td class="table-cell">${item.details}</td>
+                `;
+                itineraryBody.appendChild(row);
+            });
+            
+            const ctx = document.getElementById('costDoughnutChart').getContext('2d');
+            if (doughnutChart) {
+                doughnutChart.destroy();
+            }
+            doughnutChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(plan.costs),
+                    datasets: [{
+                        data: Object.values(plan.costs),
+                        backgroundColor: ['#0f766e', '#14b8a6', '#5eead4', '#99f6e4'],
+                        borderColor: '#fdfcf9',
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                font: {
+                                    size: 14,
+                                    family: "'Noto Sans JP', sans-serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(context.parsed);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '60%'
+                }
+            });
+        }
+
+        window.onload = function() {
+            displayPlan(planData);
+        };
+    </script>
+
+</body>
+</html>
