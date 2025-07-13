@@ -17,7 +17,7 @@
     -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
-        body { font-family: 'Noto Sans JP', sans-serif; background-color: #fdfcf9; }
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #f8f9fa; }
         .content-card { background-color: white; border: 1px solid #e7e5e4; border-radius: 0.75rem; padding: 1.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
         .table-cell { padding: 0.75rem; text-align: left; vertical-align: top; border-bottom: 1px solid #e7e5e4; }
         .highlight-icon { font-size: 2.5rem; color: #0d9488; line-height: 1; }
@@ -30,120 +30,100 @@
             color: #14b8a6;
             text-decoration: underline;
         }
+        .tab-button { transition: all 0.3s ease; border-bottom: 3px solid transparent; }
+        .tab-button.active { border-bottom-color: #0d9488; color: #0d9488; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .list-card { background-color: #ffffff; border-radius: 0.5rem; padding: 1rem; transition: box-shadow 0.3s ease; }
+        .list-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body class="text-stone-800">
 
-    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-5xl">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-7xl">
         
         <header class="text-center mb-10">
-            <h1 class="text-3xl sm:text-4xl font-bold text-teal-800 mb-2">幕末の志士を訪ね、口福を味わう旅</h1>
-            <p class="text-lg text-teal-700 font-semibold">【決定プラン】自由を愉しむレンタカーの旅</p>
+            <h1 class="text-3xl sm:text-4xl font-bold text-teal-800 mb-2">幕末の志士を訪ね、美食を味わう旅</h1>
+            <p class="text-lg text-stone-600">旅のしおり＆山口県 おすすめスポットリスト</p>
         </header>
 
-        <main id="plan-details" class="space-y-10">
-            
-            <section id="plan-concept" class="content-card">
-                <h2 class="text-2xl font-bold text-teal-700 mb-4">旅のコンセプト</h2>
-                <p class="text-stone-700 leading-relaxed">
-                    この旅は、萩の歴史探訪と下関の美食、両方を妥協なく満喫するための決定版プランです。移動の自由度と快適性を最優先し、3日間の価値を最大限に高めます。萩から下関への移動は約1時間半。仲間との会話を楽しみながらの快適なドライブは、乗り換えの多い公共交通機関より旅の質を格段に向上させ、50代の我々の旅にふさわしいゆとりと発見をもたらしてくれるでしょう。
-                </p>
-            </section>
+        <!-- Tab Navigation -->
+        <div class="mb-8 border-b border-stone-300">
+            <nav class="flex flex-wrap -mb-px space-x-6">
+                <button class="tab-button active text-lg font-semibold py-3 px-2" data-tab="tab-itinerary">旅のしおり</button>
+                <button class="tab-button text-lg font-semibold py-3 px-2" data-tab="tab-hotels">ホテル候補</button>
+                <button class="tab-button text-lg font-semibold py-3 px-2" data-tab="tab-restaurants">レストラン候補</button>
+                <button class="tab-button text-lg font-semibold py-3 px-2" data-tab="tab-spots">観光スポット</button>
+            </nav>
+        </div>
 
-            <section id="plan-highlights" class="content-card">
-                <h2 class="text-2xl font-bold text-teal-700 mb-6 text-center">旅のハイライト</h2>
-                <div id="highlights-container" class="grid sm:grid-cols-3 gap-6 text-center">
-                </div>
-            </section>
-
-            <section id="plan-itinerary" class="content-card">
-                <h2 class="text-2xl font-bold text-teal-700 mb-4">詳細行程</h2>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm sm:text-base">
-                        <thead class="bg-stone-50">
-                            <tr>
-                                <th class="table-cell font-semibold">日程</th>
-                                <th class="table-cell font-semibold">時間</th>
-                                <th class="table-cell font-semibold w-1/3">行動</th>
-                                <th class="table-cell font-semibold w-1/2">詳細</th>
-                            </tr>
-                        </thead>
-                        <tbody id="itinerary-body">
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-        </main>
-
-        <footer class="mt-12 space-y-10">
-            <section id="spots" class="content-card">
-                 <h2 class="text-2xl font-bold text-teal-700 mb-6 text-center">主要訪問スポット詳細</h2>
-                 <div class="grid md:grid-cols-2 gap-8">
-                    
-                    <div class="bg-stone-50 p-6 rounded-lg">
-                        <h3 class="font-bold text-xl text-teal-800 mb-2">
-                            <a href="http://seamart.axis.or.jp/" target="_blank" class="spot-link">道の駅「萩しーまーと」</a>
-                        </h3>
-                        <p class="text-sm text-stone-700 leading-relaxed">萩漁港に隣接する、新鮮な魚介類が自慢の道の駅。館内には鮮魚店や土産物店はもちろん、地元の食材を活かしたレストランが複数入っています。特に、水揚げされたばかりの魚を使った海鮮丼や定食は絶品。旅の始まりの腹ごしらえに最適な場所です。</p>
+        <!-- Tab Content -->
+        <div id="tab-itinerary" class="tab-content active">
+            <main class="space-y-10">
+                <section id="plan-concept" class="content-card">
+                    <h2 class="text-2xl font-bold text-teal-700 mb-4">旅のコンセプト</h2>
+                    <p class="text-stone-700 leading-relaxed">
+                        この旅は、萩の歴史探訪と下関の美食、両方を妥協なく満喫するための決定版プランです。移動の自由度と快適性を最優先し、3日間の価値を最大限に高めます。萩から下関への移動は約1時間半。仲間との会話を楽しみながらの快適なドライブは、乗り換えの多い公共交通機関より旅の質を格段に向上させ、50代の我々の旅にふさわしいゆとりと発見をもたらしてくれるでしょう。
+                    </p>
+                </section>
+                <section id="plan-highlights" class="content-card">
+                    <h2 class="text-2xl font-bold text-teal-700 mb-6 text-center">旅のハイライト</h2>
+                    <div id="highlights-container" class="grid sm:grid-cols-3 gap-6 text-center"></div>
+                </section>
+                <section id="plan-itinerary" class="content-card">
+                    <h2 class="text-2xl font-bold text-teal-700 mb-4">詳細行程</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm sm:text-base">
+                            <thead class="bg-stone-50">
+                                <tr>
+                                    <th class="table-cell font-semibold">日程</th>
+                                    <th class="table-cell font-semibold">時間</th>
+                                    <th class="table-cell font-semibold w-1/3">行動</th>
+                                    <th class="table-cell font-semibold w-1/2">詳細</th>
+                                </tr>
+                            </thead>
+                            <tbody id="itinerary-body"></tbody>
+                        </table>
                     </div>
+                </section>
+                <footer class="mt-12 space-y-10">
+                    <section id="spots" class="content-card">
+                         <h2 class="text-2xl font-bold text-teal-700 mb-6 text-center">主要訪問スポット詳細</h2>
+                         <div id="spots-container-main" class="grid md:grid-cols-2 gap-8"></div>
+                    </section>
+                </footer>
+            </main>
+        </div>
 
-                    <div class="bg-stone-50 p-6 rounded-lg">
-                        <h3 class="font-bold text-xl text-teal-800 mb-2">
-                            <a href="https://www.hagishi.com/search/detail.php?d=100009" target="_blank" class="spot-link">松下村塾・松陰神社</a>
-                        </h3>
-                        <p class="text-sm text-stone-700 leading-relaxed">日本の近代化を思想的に牽引した吉田松陰が主宰した私塾。高杉晋作や伊藤博文など、幕末から明治にかけて活躍した多くの逸材を輩出しました。驚くほど小さな塾の建物（世界遺産）は、日本の未来が熱く語られた歴史の凝縮点です。隣接する松陰神社は松陰を祀り、その遺品などを収める宝物殿も併設されています。</p>
-                    </div>
+        <div id="tab-hotels" class="tab-content">
+            <div class="content-card">
+                <h2 class="text-2xl font-bold text-teal-700 mb-6">ホテル・旅館候補リスト（萩・下関）</h2>
+                <div id="hotels-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            </div>
+        </div>
 
-                    <div class="bg-stone-50 p-6 rounded-lg">
-                        <h3 class="font-bold text-xl text-teal-800 mb-2">
-                            <a href="https://yamaguchi-tourism.jp/spot/detail_13972.html" target="_blank" class="spot-link">高杉晋作誕生地</a>
-                        </h3>
-                        <p class="text-sm text-stone-700 leading-relaxed">奇兵隊の創設者として知られる幕末の風雲児、高杉晋作が生まれ育った家。城下町の菊屋横丁からほど近い場所にあり、当時の武家屋敷の面影を今に伝えています。晋作が作ったとされる句碑や産湯に使ったとされる井戸が残されており、彼の短いながらも激しい生涯の原点を感じることができます。</p>
-                    </div>
+        <div id="tab-restaurants" class="tab-content">
+            <div class="content-card">
+                <h2 class="text-2xl font-bold text-teal-700 mb-6">レストラン候補リスト（萩・下関）</h2>
+                <div id="restaurants-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            </div>
+        </div>
 
-                    <div class="bg-stone-50 p-6 rounded-lg">
-                        <h3 class="font-bold text-xl text-teal-800 mb-2">
-                            <a href="https://yamaguchi-tourism.jp/spot/detail_14028.html" target="_blank" class="spot-link">木戸孝允旧宅</a>
-                        </h3>
-                        <p class="text-sm text-stone-700 leading-relaxed">「維新の三傑」の一人、木戸孝允（桂小五郎）が生まれ育った家。萩城下の江戸屋横丁に位置し、質素ながらも武士の暮らしを偲ばせる佇まいです。若き日の木戸がここで何を学び、何を夢見たのか。歴史の重要人物の息遣いを間近に感じられる貴重な史跡です。</p>
-                    </div>
-
-                    <div class="bg-stone-50 p-6 rounded-lg">
-                        <h3 class="font-bold text-xl text-teal-800 mb-2">
-                            <a href="https://akama-jingu.com/" target="_blank" class="spot-link">赤間神宮</a>
-                        </h3>
-                        <p class="text-sm text-stone-700 leading-relaxed">源平最後の合戦「壇ノ浦の戦い」で、わずか8歳で入水した安徳天皇を祀る神社。竜宮城を模したと言われる朱塗りの水天門が印象的です。境内には平家一門の墓である七盛塚や、怪談「耳なし芳一」の木像が安置された芳一堂もあり、平家物語の悲哀とロマンが色濃く漂う場所です。</p>
-                    </div>
-
-                    <div class="bg-stone-50 p-6 rounded-lg">
-                        <h3 class="font-bold text-xl text-teal-800 mb-2">
-                            <a href="https://www.karatoichiba.com/" target="_blank" class="spot-link">唐戸市場</a>
-                        </h3>
-                        <p class="text-sm text-stone-700 leading-relaxed">下関の台所として知られる活気あふれる市場。ふぐの市場としてはもちろん、近海で獲れたタイやハマチなども取引されます。特に週末に開催される「活きいき馬関街」は、多くの寿司屋台が軒を連ね、新鮮なネタの握り寿司やふぐ汁などを一貫から気軽に楽しむことができ、観光客で賑わいます。</p>
-                    </div>
-                    
-                    <div class="bg-stone-50 p-6 rounded-lg">
-                        <h3 class="font-bold text-xl text-teal-800 mb-2">
-                            <a href="https://yamaguchi-tourism.jp/spot/detail_10485.html" target="_blank" class="spot-link">日清講和記念館</a>
-                        </h3>
-                        <p class="text-sm text-stone-700 leading-relaxed">1895年（明治28年）に、日清戦争の講和条約（下関条約）が締結された場所、春帆楼の隣に建てられた記念館です。館内には、伊藤博文や李鴻章が使用した椅子やテーブル、調度品などが当時のままに再現・展示されており、日本の近代史における重要な一場面をリアルに体感することができます。</p>
-                    </div>
-
-                 </div>
-            </section>
-        </footer>
+        <div id="tab-spots" class="tab-content">
+            <div class="content-card">
+                <h2 class="text-2xl font-bold text-teal-700 mb-6">山口県 観光スポットリスト</h2>
+                <div id="tourist-spots-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            </div>
+        </div>
 
     </div>
 
     <script>
         const planData = {
-            title: "【最推奨】プランA：自由を愉しむレンタカーの旅",
-            philosophy: "萩の歴史探訪と下関の美食、両方を妥協なく満喫するための決定版プランです。移動の自由度と快適性を最優先し、3日間の価値を最大限に高めます。萩から下関への移動は約1時間半。仲間との会話を楽しみながらの快適なドライブは、乗り換えの多い公共交通機関より旅の質を格段に向上させます。",
             highlights: [
                 { icon: '🐡', title: '本場の下関でとらふぐ', description: '歴史ある名店で、旬を迎えた「とらふぐ」のフルコースを心ゆくまで堪能します。' },
                 { icon: '🚗', title: '快適なレンタカー移動', description: '時間や荷物を気にせず、自分たちのペースで萩・下関間を移動できます。' },
-                { icon: '⛩️', title: '壇ノ浦の歴史に触れる', description: '下関で赤間神宮や関門海峡を訪れ、源平合戦や幕末の歴史を感じます。' },
+                { icon: '⚔️', title: '壇ノ浦の激闘に想いを馳せる', description: '源平合戦の古戦場に立ち、歴史の大きな転換点を感じます。' },
             ],
             itinerary: [
                 { day: '1日目', time: '10:35', action: '萩・石見空港 到着', details: '手荷物を受け取り、旅の始まりです。' },
@@ -162,17 +142,112 @@
                 { day: '2日目', time: '12:30', action: '昼食：萩市内', details: '城下町周辺の食事処で。' },
                 { day: '2日目', time: '14:00', action: '移動：萩 → 下関', details: 'レンタカーで出発。約1時間半の快適なドライブ。' },
                 { day: '2日目', time: '15:30', action: 'ホテル到着・チェックイン', details: '下関のホテルに到着。' },
-                { day: '2日目', time: '16:30', action: '見学：赤間神宮', details: '竜宮城のような水天門が目印。安徳天皇を祀る。' },
                 { day: '2日目', time: '18:30', action: '夕食：下関でふぐフルコース', details: '「春帆楼」や「旬楽館」などの名店で本場の味を体験。' },
                 { day: '3日目', time: '10:00', action: 'チェックアウト・散策開始', details: 'ホテルをチェックアウトし、唐戸エリアへ。' },
                 { day: '3日目', time: '10:30', action: '散策：唐戸市場', details: '市場の活気を感じ、新鮮な海の幸を見る。' },
                 { day: '3日目', time: '11:30', action: '昼食：唐戸市場周辺', details: '新鮮な寿司や海鮮丼を味わう。' },
-                { day: '3日目', time: '12:30', action: '見学：日清講和記念館', details: '日清講和条約の舞台となった歴史的な場所を見学。' },
-                { day: '3日目', time: '14:00', action: '移動：下関 → 萩・石見空港', details: '時間に余裕を持って空港へ。途中、お土産購入も。' },
+                { day: '3日目', time: '12:30', action: '見学：みもすそ川公園', details: '壇ノ浦古戦場跡。源義経・平知盛の像を見る。' },
+                { day: '3日目', time: '13:00', action: '見学：赤間神宮', details: '壇ノ浦で亡くなった安徳天皇を祀る神社を参拝。' },
+                { day: '3日目', time: '13:30', action: '見学：日清講和記念館', details: '日清講和条約の舞台となった歴史的な場所を見学。' },
+                { day: '3日目', time: '14:30', action: '移動：下関 → 萩・石見空港', details: '時間に余裕を持って空港へ。途中、お土産購入も。' },
                 { day: '3日目', time: '16:30', action: '行動：レンタカー返却', details: '空港近くの営業所で返却後、空港へ。' },
                 { day: '3日目', time: '18:15', action: '萩・石見空港 出発', details: '楽しかった旅も終わり。帰路へ。' }
+            ],
+            mainSpots: [
+                { name: '道の駅「萩しーまーと」', url: 'http://seamart.axis.or.jp/', description: '萩漁港に隣接する、新鮮な魚介類が自慢の道の駅。館内には鮮魚店や土産物店はもちろん、地元の食材を活かしたレストランが複数入っています。特に、水揚げされたばかりの魚を使った海鮮丼や定食は絶品。旅の始まりの腹ごしらえに最適な場所です。' },
+                { name: '松下村塾・松陰神社', url: 'https://www.hagishi.com/search/detail.php?d=100009', description: '日本の近代化を思想的に牽引した吉田松陰が主宰した私塾。高杉晋作や伊藤博文など、幕末から明治にかけて活躍した多くの逸材を輩出しました。驚くほど小さな塾の建物（世界遺産）は、日本の未来が熱く語られた歴史の凝縮点です。隣接する松陰神社は松陰を祀り、その遺品などを収める宝物殿も併設されています。' },
+                { name: '高杉晋作誕生地', url: 'https://yamaguchi-tourism.jp/spot/detail_13972.html', description: '奇兵隊の創設者として知られる幕末の風雲児、高杉晋作が生まれ育った家。城下町の菊屋横丁からほど近い場所にあり、当時の武家屋敷の面影を今に伝えています。晋作が作ったとされる句碑や産湯に使ったとされる井戸が残されており、彼の短いながらも激しい生涯の原点を感じることができます。' },
+                { name: '木戸孝允旧宅', url: 'https://yamaguchi-tourism.jp/spot/detail_14028.html', description: '「維新の三傑」の一人、木戸孝允（桂小五郎）が生まれ育った家。萩城下の江戸屋横丁に位置し、質素ながらも武士の暮らしを偲ばせる佇まいです。若き日の木戸がここで何を学び、何を夢見たのか。歴史の重要人物の息遣いを間近に感じられる貴重な史跡です。' },
+                { name: 'みもすそ川公園（壇ノ浦古戦場跡）', url: 'https://www.kanmon.gr.jp/spot/mimosusogawa-park/', description: '源平最後の合戦、壇ノ浦の戦いのまさにその場所。関門海峡の激しい潮流を前に、源氏の大将・源義経の「八艘飛び」と、平家の大将・平知盛の「碇潜」の勇壮な像が対峙しています。幕末の攘夷戦争で使われた長州砲のレプリカもあり、時代を超えた歴史の交差点となっています。' },
+                { name: '赤間神宮', url: 'https://akama-jingu.com/', description: '壇ノ浦の戦いで、わずか8歳で入水した安徳天皇を祀る神社。竜宮城を模したと言われる朱塗りの水天門が印象的です。境内には平家一門の墓である七盛塚や、怪談「耳なし芳一」の木像が安置された芳一堂もあり、平家物語の悲哀とロマンが色濃く漂う場所です。' },
+                { name: '唐戸市場', url: 'https://www.karatoichiba.com/', description: '下関の台所として知られる活気あふれる市場。ふぐの市場としてはもちろん、近海で獲れたタイやハマチなども取引されます。特に週末に開催される「活きいき馬関街」は、多くの寿司屋台が軒を連ね、新鮮なネタの握り寿司やふぐ汁などを一貫から気軽に楽しむことができ、観光客で賑わいます。' },
+                { name: '日清講和記念館', url: 'https://yamaguchi-tourism.jp/spot/detail_10485.html', description: '1895年（明治28年）に、日清戦争の講和条約（下関条約）が締結された場所、春帆楼の隣に建てられた記念館です。館内には、伊藤博文や李鴻章が使用した椅子やテーブル、調度品などが当時のままに再現・展示されており、日本の近代史における重要な一場面をリアルに体感することができます。' }
             ]
         };
+
+        const recommendationData = {
+            hotels: [
+                { name: '宵待ちの宿 萩一輪', area: '萩市', rating: '4.4', description: '菊ヶ浜に面した絶景の温泉旅館。海に沈む夕日を眺めながら寛げる。', budget: '1泊2食付: ¥25,000～' },
+                { name: '源泉の宿 萩本陣', area: '萩市', rating: '4.2', description: '14種類の湯めぐりが楽しめる大規模な温泉施設が自慢。', budget: '1泊2食付: ¥20,000～' },
+                { name: '萩の宿 常茂恵', area: '萩市', rating: '4.4', description: '手入れの行き届いた日本庭園が美しい、格式ある老舗旅館。', budget: '1泊2食付: ¥30,000～' },
+                { name: 'リゾートホテル美萩', area: '萩市', rating: '4.0', description: '全室オーシャンビュー。開放的なリゾートステイが楽しめる。', budget: '1泊2食付: ¥18,000～' },
+                { name: '萩・城下の宿 沖千鳥', area: '萩市', rating: '4.3', description: '萩城三の丸、白壁の武家屋敷が並ぶ堀内地区にある宿。', budget: '1泊2食付: ¥17,000～' },
+                { name: '萩の御宿 朋味', area: '萩市', rating: '4.6', description: '全8室の小さな宿。心のこもった料理とサービスに定評がある。', budget: '1泊2食付: ¥28,000～' },
+                { name: '下関グランドホテル', area: '下関市', rating: '4.0', description: '関門海峡を一望。唐戸市場や赤間神宮へのアクセスが抜群。', budget: '1泊朝食付: ¥12,000～' },
+                { name: '春帆楼', area: '下関市', rating: '4.3', description: 'ふぐ料理公許第一号。歴史と格式を誇る、泊まれる料亭。', budget: '1泊2食(ふぐ会席)付: ¥40,000～' },
+                { name: 'HOTEL 西長門リゾート', area: '下関市', rating: '4.2', description: '角島大橋を望む絶景リゾート。温泉と海の幸が魅力。', budget: '1泊2食付: ¥22,000～' },
+                { name: 'ヴィアイン下関', area: '下関市', rating: '4.0', description: '下関駅直結でアクセス至便。ビジネス・観光の拠点に最適。', budget: '1泊朝食付: ¥8,000～' },
+                { name: 'ドーミーインPREMIUM下関', area: '下関市', rating: '4.3', description: '天然温泉大浴場と名物「夜鳴きそば」が人気のホテル。', budget: '1泊朝食付: ¥10,000～' },
+                { name: '関門の宿 源平荘', area: '下関市', rating: '4.1', description: '関門海峡を望む高台に建つ宿。展望露天風呂が自慢。', budget: '1泊2食付: ¥19,000～' }
+            ],
+            restaurants: [
+                { name: '割烹 千代', area: '萩市', rating: '4.4', description: '萩の天然真ふぐを味わえる名店。繊細かつ濃厚な旨みが絶品。', budget: '夕食: ¥10,000～¥15,000' },
+                { name: '萩心', area: '萩市', rating: '4.5', description: '地元の魚介を使った創作和食が人気。見た目も美しい料理の数々。', budget: '夕食: ¥8,000～¥12,000' },
+                { name: 'MARU', area: '萩市', rating: '4.4', description: '地元の若者にも人気のモダンな居酒屋。新鮮な地魚と地酒が豊富。', budget: '夕食: ¥6,000～¥8,000' },
+                { name: '浜料理 がんがん', area: '萩市', rating: '4.1', description: '萩しーまーと内の人気店。漁師直営ならではの新鮮さと豪快さ。', budget: '昼食: ¥2,000～¥4,000' },
+                { name: '三見シーサイドレストラン', area: '萩市', rating: '4.2', description: '日本海を望む絶景レストラン。新鮮な魚介を使った洋食が人気。', budget: '昼食/夕食: ¥3,000～¥6,000' },
+                { name: '萩・網焼きレストラン 見蘭', area: '萩市', rating: '4.3', description: '見島牛の血を引く見蘭牛のステーキやハンバーグが名物。', budget: '昼食/夕食: ¥4,000～¥10,000' },
+                { name: '居酒屋 雑魚', area: '萩市', rating: '4.3', description: 'その日に獲れた新鮮な地魚をリーズナブルに提供。地元客で賑わう。', budget: '夕食: ¥5,000～¥7,000' },
+                { name: '旬楽館', area: '下関市', rating: '4.4', description: '落ち着いた雰囲気で質の高いふぐ料理を楽しめる。独創的な一品も。', budget: '夕食: ¥15,000～¥25,000' },
+                { name: 'おかもと鮮魚店', area: '下関市', rating: '4.3', description: '市場のような店内で新鮮な魚介を。海鮮丼が特に人気。', budget: '昼食/夕食: ¥3,000～¥7,000' },
+                { name: 'ふくの関', area: '下関市', rating: '4.1', description: '唐戸市場近く。手頃な価格でふぐ料理や海鮮丼が楽しめる。', budget: '昼食/夕食: ¥2,500～¥8,000' },
+                { name: '市場食堂よし', area: '下関市', rating: '4.2', description: '唐戸市場の場内にある食堂。新鮮なネタの寿司や定食が人気。', budget: '昼食: ¥1,500～¥3,000' },
+                { name: '魚正本陣', area: '下関市', rating: '4.2', description: '下関駅近くの海鮮居酒屋。地元の魚介を存分に楽しめる。', budget: '夕食: ¥6,000～¥9,000' },
+                { name: '寿司割烹 江戸銀', area: '下関市', rating: '4.4', description: '下関で長年愛される寿司の名店。新鮮な地魚の握りは絶品。', budget: '夕食: ¥12,000～¥20,000' },
+                { name: 'からと屋', area: '下関市', rating: '4.2', description: '唐戸市場の目の前。ふぐ料理や瓦そばなど、下関名物を楽しめる。', budget: '昼食/夕食: ¥2,000～¥5,000' },
+                { name: '海転からと市場寿司', area: '下関市', rating: '4.0', description: '唐戸市場2階の回転寿司。市場直送の新鮮なネタが手軽に味わえる。', budget: '昼食/夕食: ¥2,000～¥4,000' }
+            ],
+            touristSpots: [
+                { name: '角島大橋', area: '下関市', rating: '4.6', description: 'エメラルドグリーンの海に架かる絶景の橋。数々のCMや映画のロケ地にも。' },
+                { name: '元乃隅神社', area: '長門市', rating: '4.4', description: '断崖に並ぶ123基の赤い鳥居が圧巻。日本で最も入れにくいと言われる賽銭箱も。' },
+                { name: '錦帯橋', area: '岩国市', rating: '4.5', description: '5連の木造アーチが美しい日本三名橋の一つ。四季折々の景観が楽しめる。' },
+                { name: '秋芳洞', area: '美祢市', rating: '4.5', description: '日本最大級の鍾乳洞。広大な地下空間に広がる自然の造形美は圧巻。' },
+                { name: '秋吉台国定公園', area: '美祢市', rating: '4.4', description: '無数の石灰岩が点在する日本最大のカルスト台地。壮大な景観が広がる。' },
+                { name: '瑠璃光寺 五重塔', area: '山口市', rating: '4.5', description: '室町時代に建てられた国宝。日本三名塔の一つに数えられる優美な姿。' },
+                { name: '萩城下町', area: '萩市', rating: '4.3', description: '江戸時代の地図がそのまま使えると言われる美しい町並み。白壁やなまこ壁が続く。' },
+                { name: 'SL「やまぐち」号', area: '山口市・津和野町', rating: '4.5', description: '新山口駅から津和野駅までを走る蒸気機関車。レトロな客車で旅情を味わえる。' },
+                { name: '防府天満宮', area: '防府市', rating: '4.4', description: '日本で最初に創建された天満宮。学問の神様・菅原道真を祀る。' },
+                { name: '毛利氏庭園', area: '防府市', rating: '4.3', description: '旧長州藩主毛利家の本邸。広大な庭園と歴史的建造物が見事。' },
+                { name: '金子みすゞ記念館', area: '長門市', rating: '4.4', description: '童謡詩人・金子みすゞの生涯と作品を紹介。彼女が過ごした書店を復元。' },
+                { name: '岩国城', area: '岩国市', rating: '4.2', description: '山頂に建つ天守閣からの眺めは絶景。錦帯橋とのセット観光が定番。' },
+                { name: '海響館', area: '下関市', rating: '4.3', description: '関門海峡の潮流を再現した水槽や、100種類以上のフグの展示が特徴の水族館。' },
+                { name: '火の山公園', area: '下関市', rating: '4.3', description: '関門海峡や下関市街を一望できる展望スポット。夜景の名所としても知られる。' },
+                { name: '別府弁天池', area: '美祢市', rating: '4.4', description: 'コバルトブルーの湧水池。その透明度と神秘的な美しさで知られるパワースポット。' },
+                { name: '東後畑棚田', area: '長門市', rating: '4.4', description: '日本海に面して広がる棚田。特に夕暮れ時、漁火が灯る風景は幻想的。' },
+                { name: '周南市徳山動物園', area: '周南市', rating: '4.3', description: '動物の生態を活かしたユニークな展示方法で人気の動物園。' },
+                { name: '功山寺', area: '下関市', rating: '4.3', description: '高杉晋作が挙兵した場所として知られる国宝の仏殿がある古刹。紅葉の名所。' },
+                { name: '龍宮の潮吹', area: '長門市', rating: '4.2', description: '元乃隅神社の近く。岩穴に打ち寄せた波が、音を立てて天に吹き上げる自然現象。' },
+                { name: '千畳敷', area: '長門市', rating: '4.4', description: '標高333mの高台に広がる草原。日本海を見渡す360度のパノラマが楽しめる。' },
+                { name: '須佐ホルンフェルス', area: '萩市', rating: '4.4', description: '白と黒の縞模様が美しい、約14kmにわたる断崖。国の天然記念物。' },
+                { name: '川棚のクスの森', area: '下関市', rating: '4.3', description: '樹齢1000年を超えると言われる巨大なクスノキ。国の天然記念物。' },
+                { name: '福徳稲荷神社', area: '下関市', rating: '4.3', description: '響灘に面した崖の上に建つ神社。千本鳥居と海のコントラストが美しい。' },
+                { name: '長府庭園', area: '下関市', rating: '4.1', description: '長府毛利藩の家老格であった西運長の屋敷跡。池泉回遊式の日本庭園。' }
+            ]
+        };
+
+        function populateList(containerId, data) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            data.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'list-card border border-stone-200';
+                const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + " " + item.area)}`;
+                let budgetInfo = '';
+                if (item.budget) {
+                    budgetInfo = `<p class="text-sm text-teal-700 font-semibold mt-2">予算目安: ${item.budget}</p>`;
+                }
+
+                div.innerHTML = `
+                    <h3 class="font-bold text-lg text-teal-800 mb-2">
+                        <a href="${googleMapsUrl}" target="_blank" class="spot-link">${item.name}</a>
+                    </h3>
+                    <p class="text-sm font-semibold text-stone-600 mb-2">${item.area} <span class="text-amber-500 ml-2">★ ${item.rating}</span></p>
+                    <p class="text-sm text-stone-700">${item.description}</p>
+                    ${budgetInfo}
+                `;
+                container.appendChild(div);
+            });
+        }
 
         function displayPlan(plan) {
             const highlightsContainer = document.getElementById('highlights-container');
@@ -210,10 +285,43 @@
                 `;
                 itineraryBody.appendChild(row);
             });
+
+            const spotsContainer = document.getElementById('spots-container-main');
+            spotsContainer.innerHTML = '';
+            plan.mainSpots.forEach(spot => {
+                const div = document.createElement('div');
+                div.className = 'bg-stone-50 p-6 rounded-lg';
+                div.innerHTML = `
+                    <h3 class="font-bold text-xl text-teal-800 mb-2">
+                        <a href="${spot.url}" target="_blank" class="spot-link">${spot.name}</a>
+                    </h3>
+                    <p class="text-sm text-stone-700 leading-relaxed">${spot.description}</p>
+                `;
+                spotsContainer.appendChild(div);
+            });
+        }
+
+        function setupTabs() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    document.getElementById(button.dataset.tab).classList.add('active');
+                });
+            });
         }
 
         window.onload = function() {
             displayPlan(planData);
+            populateList('hotels-list', recommendationData.hotels);
+            populateList('restaurants-list', recommendationData.restaurants);
+            populateList('tourist-spots-list', recommendationData.touristSpots);
+            setupTabs();
         };
     </script>
 
