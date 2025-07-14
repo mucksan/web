@@ -8,14 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutrals (Stone, Amber, Teal) -->
-    <!-- Application Structure Plan: このSPAは、ユーザーが決定した「プランA」の詳細な旅のしおりとして機能するよう再設計されています。比較機能を廃し、単一プランの情報を直線的に深く掘り下げる構成です。上から順に「旅のコンセプト」「旅のハイライト」「詳細行程」と物語を語るように情報を配置しました。これにより、ユーザーは旅の全体像から詳細までをスムーズに把握できます。下部には共通の補足情報（美食・史跡）を配置し、旅への期待感を高めます。 -->
-    <!-- Visualization & Content Choices: 
-        - 行程表 -> Goal: 各日のスケジュールを詳細に確認する -> Presentation: HTMLテーブル (Tailwind) -> Interaction: なし -> Justification: 時系列情報を整理して提示する最も標準的で効果的な方法だから。
-        - 旅のハイライト -> Goal: プランの魅力を端的に伝える -> Presentation: アイコン付きカードリスト (HTML/CSS/Tailwind) -> Interaction: なし -> Justification: 視覚的なアイコンを用いて、旅の体験価値を直感的に伝達するため。
-        - 美食・史跡 -> Goal: 旅の背景知識を深める -> Presentation: カード型レイアウト (HTML/CSS/Tailwind) -> Interaction: なし -> Justification: テキスト情報を視覚的に分割し、読みやすさと関心を高めるため。
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body { font-family: 'Noto Sans JP', sans-serif; background-color: #f8f9fa; }
         .content-card { background-color: white; border: 1px solid #e7e5e4; border-radius: 0.75rem; padding: 1.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
@@ -106,7 +98,7 @@
 
                 <!-- Itinerary Day 2 -->
                 <section class="content-card">
-                    <h2 class="text-2xl font-bold text-teal-700 mb-4">2日目：萩から下関へ、美食の探求</h2>
+                    <h2 class="text-2xl font-bold text-teal-700 mb-4">2日目：萩・秋吉台を経て下関へ</h2>
                     <div class="overflow-x-auto mb-6">
                         <table class="w-full text-sm sm:text-base">
                             <thead class="bg-stone-50">
@@ -120,7 +112,7 @@
                         </table>
                     </div>
                      <div class="text-center">
-                        <a href="https://maps.app.goo.gl/xiEVaRJfaMXCB8oeA" target="_blank" class="map-button">2日目の経路を地図で見る</a>
+                        <a href="https://www.google.com/maps/dir/%E8%90%A9%E5%B8%82/%E7%A7%8B%E5%90%89%E5%8F%B0/%E4%B8%8B%E9%96%A2%E5%B8%82/" target="_blank" class="map-button">2日目の経路を地図で見る</a>
                     </div>
                 </section>
 
@@ -179,9 +171,9 @@
     <script>
         const planData = {
             highlights: [
+                { icon: '⛰️', title: '秋吉台の絶景', description: '日本最大級のカルスト台地の壮大な景色と、地下に広がる秋芳洞の神秘を探検します。' },
                 { icon: '🐡', title: '本場の下関でとらふぐ', description: '歴史ある名店で、旬を迎えた「とらふぐ」のフルコースを心ゆくまで堪能します。' },
-                { icon: '🚗', title: '快適なレンタカー移動', description: '時間や荷物を気にせず、自分たちのペースで萩・下関間を移動できます。' },
-                { icon: '⚔️', title: '壇ノ浦の激闘に想いを馳せる', description: '源平合戦の古戦場に立ち、歴史の大きな転換点を感じます。' },
+                { icon: '⚔️', title: '萩の歴史散策', description: '松下村塾など、幕末の志士たちが駆け抜けた歴史の舞台を自分の足で巡ります。' },
             ],
             itinerary: {
                 day1: [
@@ -196,14 +188,15 @@
                     { time: '18:30', action: '夕食：宿泊旅館にて', details: '萩の旬の会席料理と地酒で乾杯。' }
                 ],
                 day2: [
-                    { time: '09:30', action: '行動：レンタカー借受', details: '市内の営業所で手続き。ドライブ開始。' },
-                    { time: '10:00', action: '散策：萩城下町', details: '白壁となまこ壁が美しい菊屋横丁などを散策。' },
-                    { time: '10:45', action: '見学：高杉晋作誕生地', details: '奇兵隊を創設した風雲児の生家を訪ねる。' },
-                    { time: '11:30', action: '見学：木戸孝允旧宅', details: '維新三傑の一人、木戸孝允（桂小五郎）の旧宅を見学。' },
-                    { time: '12:30', action: '昼食：萩市内', details: '城下町周辺の食事処で。' },
-                    { time: '14:00', action: '移動：萩 → 下関', details: 'レンタカーで出発。約1時間半の快適なドライブ。' },
-                    { time: '15:30', action: 'ホテル到着・チェックイン', details: '下関のホテルに到着。' },
-                    { time: '18:30', action: '夕食：下関でふぐフルコース', details: '「春帆楼」や「旬楽館」などの名店で本場の味を体験。' }
+                    { time: '09:00', action: '行動：レンタカー借受', details: '市内の営業所で手続き。ドライブ開始。' },
+                    { time: '09:30', action: '散策：萩城下町', details: '白壁となまこ壁が美しい菊屋横丁などを散策。' },
+                    { time: '11:00', action: '移動：萩 → 秋吉台', details: '景色の良いドライブを楽しみながら移動（約60分）。' },
+                    { time: '12:00', action: '昼食：秋吉台周辺', details: '秋吉台のレストランで名物料理を味わう。' },
+                    { time: '13:00', action: '見学：秋芳洞', details: '日本最大級の鍾乳洞を探検。百枚皿や黄金柱は必見。' },
+                    { time: '15:00', action: '散策：秋吉台カルスト台地', details: '展望台からの絶景や、遊歩道の散策を楽しむ。' },
+                    { time: '16:30', action: '移動：秋吉台 → 下関', details: '下関市内のホテルへ移動（約50分）。' },
+                    { time: '17:30', action: 'ホテル到着・チェックイン', details: '下関のホテルに到着。' },
+                    { time: '19:00', action: '夕食：下関でふぐフルコース', details: '「春帆楼」や「旬楽館」などの名店で本場の味を体験。' }
                 ],
                 day3: [
                     { time: '10:00', action: 'チェックアウト・散策開始', details: 'ホテルをチェックアウトし、唐戸エリアへ。' },
@@ -218,10 +211,8 @@
                 ]
             },
             mainSpots: [
-                { name: '道の駅「萩しーまーと」', url: 'http://seamart.axis.or.jp/', description: '萩漁港に隣接する、新鮮な魚介類が自慢の道の駅。館内には鮮魚店や土産物店はもちろん、地元の食材を活かしたレストランが複数入っています。特に、水揚げされたばかりの魚を使った海鮮丼や定食は絶品。旅の始まりの腹ごしらえに最適な場所です。'},
                 { name: '松下村塾・松陰神社', url: 'https://www.hagishi.com/search/detail.php?d=100009', description: '日本の近代化を思想的に牽引した吉田松陰が主宰した私塾。高杉晋作や伊藤博文など、幕末から明治にかけて活躍した多くの逸材を輩出しました。驚くほど小さな塾の建物（世界遺産）は、日本の未来が熱く語られた歴史の凝縮点です。隣接する松陰神社は松陰を祀り、その遺品などを収める宝物殿も併設されています。'},
-                { name: '高杉晋作誕生地', url: 'https://yamaguchi-tourism.jp/spot/detail_13972.html', description: '奇兵隊の創設者として知られる幕末の風雲児、高杉晋作が生まれ育った家。城下町の菊屋横丁からほど近い場所にあり、当時の武家屋敷の面影を今に伝えています。晋作が作ったとされる句碑や産湯に使ったとされる井戸が残されており、彼の短いながらも激しい生涯の原点を感じることができます。'},
-                { name: '木戸孝允旧宅', url: 'https://yamaguchi-tourism.jp/spot/detail_14028.html', description: '「維新の三傑」の一人、木戸孝允（桂小五郎）が生まれ育った家。萩城下の江戸屋横丁に位置し、質素ながらも武士の暮らしを偲ばせる佇まいです。若き日の木戸がここで何を学び、何を夢見たのか。歴史の重要人物の息遣いを間近に感じられる貴重な史跡です。'},
+                { name: '秋吉台・秋芳洞', url: 'https://karusuto.com/', description: '日本最大級のカルスト台地「秋吉台」とその地下に広がる巨大な鍾乳洞「秋芳洞」。広大な草原に白い石灰岩が点在するユニークな景観と、長い年月をかけて自然が創り出した神秘的な地下宮殿は、まさに圧巻の一言。自然の雄大さと不思議さを体感できる山口県随一の景勝地です。'},
                 { name: 'みもすそ川公園（壇ノ浦古戦場跡）', url: 'https://www.kanmon.gr.jp/spot/mimosusogawa-park/', description: '源平最後の合戦、壇ノ浦の戦いのまさにその場所。関門海峡の激しい潮流を前に、源氏の大将・源義経の「八艘飛び」と、平家の大将・平知盛の「碇潜」の勇壮な像が対峙しています。幕末の攘夷戦争で使われた長州砲のレプリカもあり、時代を超えた歴史の交差点となっています。'},
                 { name: '赤間神宮', url: 'https://akama-jingu.com/', description: '壇ノ浦の戦いで、わずか8歳で入水した安徳天皇を祀る神社。竜宮城を模したと言われる朱塗りの水天門が印象的です。境内には平家一門の墓である七盛塚や、怪談「耳なし芳一」の木像が安置された芳一堂もあり、平家物語の悲哀とロマンが色濃く漂う場所です。'},
                 { name: '唐戸市場', url: 'https://www.karatoichiba.com/', description: '下関の台所として知られる活気あふれる市場。ふぐの市場としてはもちろん、近海で獲れたタイやハマチなども取引されます。特に週末に開催される「活きいき馬関街」は、多くの寿司屋台が軒を連ね、新鮮なネタの握り寿司やふぐ汁などを一貫から気軽に楽しむことができ、観光客で賑わいます。'},
