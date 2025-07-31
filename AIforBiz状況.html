@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：日本企業の生成AI導入の現状と未来</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #001736;
+            color: #FFFFFF;
+        }
+        .chart-container {
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            width: 100%;
+            max-width: 600px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .card {
+            background-color: rgba(0, 121, 255, 0.1);
+            border: 1px solid #0079FF;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(93, 224, 230, 0.2);
+        }
+        .flow-arrow {
+            color: #5DE0E6;
+            font-size: 2.5rem;
+            line-height: 1;
+            text-align: center;
+        }
+        .kpi-value {
+            font-weight: 900;
+            color: #5DE0E6;
+            text-shadow: 0 0 8px rgba(93, 224, 230, 0.7);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center my-8 md:my-12">
+            <h1 class="text-4xl md:text-6xl font-black text-white leading-tight">生成AI導入の岐路</h1>
+            <p class="text-lg md:text-2xl text-[#5DE0E6] mt-4">日本企業はなぜ遅れるのか？ そして、いかにして主導者となるか？</p>
+        </header>
+
+        <main>
+            <section id="gap" class="my-12 md:my-20">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">世界から取り残される「試用」の段階</h2>
+                    <p class="text-base md:text-lg text-gray-300 mb-8">
+                        生成AIの導入は世界的に加速していますが、日本企業は基本的な活用においてさえ、主要国から大きく遅れをとっています。この「試用から変革へのギャップ」が、将来の競争力を脅かす最大の課題です。
+                    </p>
+                </div>
+                <div class="bg-white/5 p-6 rounded-2xl shadow-2xl">
+                    <h3 class="text-xl md:text-2xl font-bold text-center mb-2 text-[#5DE0E6]">補助的業務における生成AI利用率の国際比較</h3>
+                    <p class="text-sm text-center text-gray-400 mb-6">メール作成・議事録要約など、リスクの低い業務での活用状況</p>
+                    <div class="chart-container">
+                        <canvas id="usageGapChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="roi" class="my-12 md:my-20">
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="order-2 md:order-1">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">投資対効果（ROI）の壁</h2>
+                        <p class="text-base md:text-lg text-gray-300 mb-6">
+                            日本の多くの企業は生成AIを導入しているものの、その成果を十分に実感できていません。「期待を上回る成果」を得た企業はわずか13%。これは、AIが単なる補助ツールとして扱われ、業務変革にまで至っていないことを示唆しています。
+                        </p>
+                        <div class="bg-[#004AAD] p-6 rounded-lg">
+                            <p class="text-lg font-bold">この「ROIの壁」を越えなければ、本格的な投資は進まず、PoC（実証実験）を繰り返すだけで終わってしまいます。</p>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2 bg-white/5 p-6 rounded-2xl shadow-2xl">
+                        <h3 class="text-xl md:text-2xl font-bold text-center mb-2 text-[#5DE0E6]">生成AI導入で「期待を上回る成果」を得た企業</h3>
+                         <div class="chart-container h-64 md:h-80">
+                            <canvas id="roiChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="causes" class="my-12 md:my-20">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">なぜ進まないのか？ 導入を阻む「負のスパイラル」</h2>
+                    <p class="text-base md:text-lg text-gray-300 mb-12">
+                        日本の遅れは単一の原因ではなく、戦略・組織・人材の課題が相互に絡み合った「負のフィードバックループ」によって引き起こされています。この構造を断ち切らない限り、真の変革は始まりません。
+                    </p>
+                </div>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0">
+                    <div class="card p-6 rounded-lg text-center w-full md:w-64">
+                        <h4 class="text-xl font-bold text-[#5DE0E6]">戦略の欠如</h4>
+                        <p class="mt-2 text-sm">経営層のビジョンがなくAIを「ツール」として導入</p>
+                    </div>
+                    <div class="flow-arrow hidden md:block mx-4">→</div>
+                    <div class="flow-arrow block md:hidden">↓</div>
+                    <div class="card p-6 rounded-lg text-center w-full md:w-64">
+                        <h4 class="text-xl font-bold text-[#5DE0E6]">限定的な成果</h4>
+                        <p class="mt-2 text-sm">断片的な試みで低いROIしか得られない</p>
+                    </div>
+                    <div class="flow-arrow hidden md:block mx-4">→</div>
+                     <div class="flow-arrow block md:hidden">↓</div>
+                    <div class="card p-6 rounded-lg text-center w-full md:w-64">
+                        <h4 class="text-xl font-bold text-[#5DE0E6]">投資の躊躇</h4>
+                        <p class="mt-2 text-sm">「費用対効果が悪い」という認識が経営層で強化される</p>
+                    </div>
+                    <div class="flow-arrow hidden md:block mx-4">→</div>
+                     <div class="flow-arrow block md:hidden">↓</div>
+                    <div class="card p-6 rounded-lg text-center w-full md:w-64">
+                        <h4 class="text-xl font-bold text-[#5DE0E6]">組織・人材の停滞</h4>
+                        <p class="mt-2 text-sm">リスク回避文化と人材不足が挑戦を阻む</p>
+                    </div>
+                </div>
+                 <div class="text-center mt-8 text-2xl text-[#5DE0E6]">⟲</div>
+            </section>
+
+            <section id="roadmap" class="my-12 md:my-20">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">未来への処方箋：変革の黄金三角形</h2>
+                    <p class="text-base md:text-lg text-gray-300 mb-12">
+                        この悪循環を断ち切るには、3つの要素を同時に推進する統合的アプローチが不可欠です。
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card p-8 rounded-xl text-center">
+                        <div class="text-5xl mb-4">👑</div>
+                        <h3 class="text-2xl font-bold text-[#5DE0E6] mb-4">リーダーシップ</h3>
+                        <p class="text-gray-300">CEO自らが変革の旗振り役となり、全社的なビジョンを提示。部門横断の専門組織(CoE)を設置し、ガバナンスを確立する。</p>
+                    </div>
+                    <div class="card p-8 rounded-xl text-center">
+                        <div class="text-5xl mb-4">🚀</div>
+                        <h3 class="text-2xl font-bold text-[#5DE0E6] mb-4">実行フレームワーク</h3>
+                        <p class="text-gray-300">「PoC死」を脱し、「パイロット→普及→習熟」の3段階で推進。明確なKPIとROIで価値を証明し、全社展開へ繋げる。</p>
+                    </div>
+                    <div class="card p-8 rounded-xl text-center">
+                        <div class="text-5xl mb-4">🧠</div>
+                        <h3 class="text-2xl font-bold text-[#5DE0E6] mb-4">人的資本</h3>
+                        <p class="text-gray-300">全社員のAIリテラシーを向上させ、スキルベースの人事制度へ移行。学びが評価と報酬に直結する文化を醸成する。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="tech" class="my-12 md:my-20">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">技術的障壁の終焉：国産LLMという切り札</h2>
+                    <p class="text-base md:text-lg text-gray-300 mb-12">
+                        「セキュリティ」や「コスト」は、もはや導入しない言い訳にはなりません。日本語に特化し、安全な環境で利用できる国産大規模言語モデル（LLM）が、日本企業に新たな戦略的選択肢をもたらします。
+                    </p>
+                </div>
+                <div class="overflow-x-auto bg-white/5 p-4 rounded-xl">
+                    <table class="w-full min-w-max text-left text-sm">
+                        <thead class="border-b border-[#0079FF]">
+                            <tr>
+                                <th class="p-4 font-bold text-[#5DE0E6]">モデル名</th>
+                                <th class="p-4 font-bold text-[#5DE0E6]">開発元</th>
+                                <th class="p-4 font-bold text-[#5DE0E6]">主要な強み</th>
+                                <th class="p-4 font-bold text-[#5DE0E6]">最適なユースケース</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-blue-900/50">
+                            <tr>
+                                <td class="p-4 font-bold">tsuzumi</td>
+                                <td class="p-4">NTT</td>
+                                <td class="p-4">軽量・低コスト、高セキュリティ（オンプレミス）、柔軟なカスタマイズ</td>
+                                <td class="p-4">金融・医療・公共機関など機密情報を扱う業務</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold">cotomi</td>
+                                <td class="p-4">NEC</td>
+                                <td class="p-4">世界トップクラスの日本語性能、超長文処理能力（最大30万字）</td>
+                                <td class="p-4">契約書や論文、技術マニュアルの読解・要約</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold">Japanese Stable LM</td>
+                                <td class="p-4">Stability AI Japan</td>
+                                <td class="p-4">オープンソースで高い自由度、商用利用可能</td>
+                                <td class="p-4">自社での独自モデル開発、ベンダーロックインの回避</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="pioneers" class="my-12 md:my-20">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">変革の先駆者たち</h2>
+                    <p class="text-base md:text-lg text-gray-300 mb-12">
+                        既に多くの日本企業が生成AIを活用し、目覚ましい成果を上げています。
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card p-8 rounded-xl text-center">
+                        <h3 class="text-xl font-bold text-white mb-2">パナソニック コネクト</h3>
+                        <p class="kpi-value text-5xl">1,860万</p>
+                        <p class="text-lg font-bold text-white">時間</p>
+                        <p class="mt-2 text-gray-300">の労働時間を1年間で削減</p>
+                    </div>
+                    <div class="card p-8 rounded-xl text-center">
+                        <h3 class="text-xl font-bold text-white mb-2">セブン-イレブン・ジャパン</h3>
+                        <p class="kpi-value text-5xl">1/10</p>
+                        <p class="text-lg font-bold text-white">に短縮</p>
+                        <p class="mt-2 text-gray-300">商品企画のサイクルを最大で</p>
+                    </div>
+                    <div class="card p-8 rounded-xl text-center md:col-span-2 lg:col-span-1">
+                        <h3 class="text-xl font-bold text-white mb-2">DeNA</h3>
+                        <p class="kpi-value text-4xl leading-tight">AIオールイン</p>
+                        <p class="text-lg font-bold text-white">戦略</p>
+                        <p class="mt-2 text-gray-300">「第二の創業」と位置づけ、全社的な業務再設計を断行</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center my-12 md:my-20 border-t border-[#0079FF] pt-8">
+            <p class="text-xl font-bold">もはや躊躇している時間はない。</p>
+            <p class="mt-2 text-gray-400">追随者から主導者へ。変革の時は、今。</p>
+            <p class="text-xs text-gray-600 mt-8">
+                データ出典：総務省「令和6年版情報通信白書」、PwC「Global AI Jobs Barometer 2025」、帝国データバンク、MM総研等の公開情報を基に作成。
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label) => {
+            if (typeof label === 'string' && label.length > 16) {
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > 16) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            }
+            return label;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const brilliantBlues = {
+            primary: '#0079FF',
+            accent: '#5DE0E6',
+            dark: '#004AAD',
+            text: '#FFFFFF'
+        };
+
+        const chartDefaultOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: brilliantBlues.text,
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { color: brilliantBlues.text, beginAtZero: true },
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                },
+                x: {
+                    ticks: { color: brilliantBlues.text },
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                }
+            }
+        };
+
+        const ctxUsage = document.getElementById('usageGapChart').getContext('2d');
+        new Chart(ctxUsage, {
+            type: 'bar',
+            data: {
+                labels: ['日本', '米国', 'ドイツ', '中国'],
+                datasets: [{
+                    label: '補助的業務での利用率 (%)',
+                    data: [46.8, 90, 90, 90],
+                    backgroundColor: [brilliantBlues.accent, brilliantBlues.primary, brilliantBlues.primary, brilliantBlues.primary],
+                    borderColor: [brilliantBlues.accent, brilliantBlues.primary, brilliantBlues.primary, brilliantBlues.primary],
+                    borderWidth: 1
+                }]
+            },
+            options: { ...chartDefaultOptions }
+        });
+
+        const ctxRoi = document.getElementById('roiChart').getContext('2d');
+        new Chart(ctxRoi, {
+            type: 'doughnut',
+            data: {
+                labels: ['期待を上回る成果', '期待以下/同等'],
+                datasets: [{
+                    data: [13, 87],
+                    backgroundColor: [brilliantBlues.accent, 'rgba(255, 255, 255, 0.2)'],
+                    borderColor: [brilliantBlues.accent, '#001736'],
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: brilliantBlues.text,
+                            font: { size: 14 }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                },
+                cutout: '60%'
+            }
+        });
+    </script>
+</body>
+</html>
