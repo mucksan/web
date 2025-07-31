@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Chosen Palette: Calm Harmony -->
+    <!-- Application Structure Plan: The SPA is designed as an interactive briefing for a tech leader. It follows a narrative flow: 1. The 'Hook' (a powerful statistic). 2. The 'What' (defining Agentic Thinking). 3. The 'Who' (an interactive tool comparison dashboard). 4. The 'Why' (exploring the core strategic dilemma of Control vs. Autonomy). 5. The 'How' (mapping tools to the SDLC). 6. The 'Next Steps' (actionable recommendations). This thematic, task-oriented structure is more intuitive and engaging for a decision-maker than a linear report, allowing them to explore areas of interest dynamically. -->
+    <!-- Visualization & Content Choices: 
+        - Agentic Thinking Cycle: Goal: Organize. Method: HTML/CSS diagram. Justification: A simple, clear visual flow is more effective than text alone.
+        - Tool Comparison: Goal: Compare. Method: JS-powered tabs with dynamic Chart.js Bar Charts. Justification: Allows direct, interactive comparison of tools on key metrics, which is more engaging than a static table. The bar chart is clearer for comparing individual attributes than a complex radar chart.
+        - SWE-bench Score: Goal: Inform. Method: Chart.js Doughnut Chart. Justification: Highlights a single, impactful part-to-whole statistic effectively.
+        - SDLC Mapping: Goal: Organize. Method: Interactive HTML/CSS timeline. Justification: Visually connects abstract tools to a concrete, familiar workflow for developers and managers.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インタラクティブ・レポート：AI開発エージェントシフト</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F8F7F4; /* Warm Neutral Background */
+            color: #333333;
+        }
+        .section-title {
+            color: #003366; /* Deep Blue Accent */
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        .tab-button.active {
+            border-bottom-color: #4A90E2; /* Bright Blue Accent */
+            color: #4A90E2;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 350px;
+        }
+        .sdlc-item.active .sdlc-dot {
+            background-color: #4A90E2;
+            transform: scale(1.2);
+        }
+        .sdlc-item.active .sdlc-title {
+            color: #4A90E2;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-4 sm:p-6 md:p-8">
+
+        <header class="text-center py-12">
+            <h1 class="text-4xl md:text-5xl font-bold section-title mb-4">エージェントシフト</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">ソフトウェア開発の未来を再定義する、AIエージェント活用の戦略的分析</p>
+        </header>
+
+        <main class="space-y-16 md:space-y-24">
+
+            <section id="introduction" class="text-center">
+                <div class="card p-8 max-w-4xl mx-auto">
+                    <p class="text-gray-500 text-lg">Gartner予測</p>
+                    <p class="text-7xl md:text-8xl font-bold my-4" style="color: #4A90E2;">75%</p>
+                    <p class="text-lg text-gray-700">2028年までに、企業のソフトウェアエンジニアの75%がAI開発支援ツールを活用するようになります。これは単なるトレンドではなく、開発のあり方を根本から変える地殻変動です。本レポートは、この「エージェントシフト」の最前線を読み解き、次の一手を考えるための羅針盤です。</p>
+                </div>
+            </section>
+            
+            <section id="agent-thinking">
+                <h2 class="text-3xl font-bold text-center section-title mb-2">「Agent思考」とは何か？</h2>
+                <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">AIはもはや単なる指示待ちの道具ではありません。自ら思考し、行動する「エージェント」へと進化しています。その中核をなすのが、この4段階の自律的サイクルです。</p>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                    <div class="card p-6">
+                        <div class="text-4xl mb-3">📡</div>
+                        <h3 class="text-xl font-bold mb-2">1. 認識</h3>
+                        <p class="text-gray-600">コード、API、ドキュメントなど、環境から情報を収集し、タスクの文脈を把握します。</p>
+                    </div>
+                    <div class="card p-6">
+                        <div class="text-4xl mb-3">🧠</div>
+                        <h3 class="text-xl font-bold mb-2">2. 判断</h3>
+                        <p class="text-gray-600">目標達成のための計画を立案し、タスクを具体的なステップに分解します。</p>
+                    </div>
+                    <div class="card p-6">
+                        <div class="text-4xl mb-3">⚙️</div>
+                        <h3 class="text-xl font-bold mb-2">3. 実行</h3>
+                        <p class="text-gray-600">計画に基づき、コード生成、コマンド実行、ファイル操作などを行います。</p>
+                    </div>
+                    <div class="card p-6">
+                        <div class="text-4xl mb-3">📈</div>
+                        <h3 class="text-xl font-bold mb-2">4. 学習</h3>
+                        <p class="text-gray-600">実行結果からフィードバックを得て、次の行動を自己改善します。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tool-comparison">
+                <h2 class="text-3xl font-bold text-center section-title mb-2">主要AIエージェント比較</h2>
+                <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">市場を牽引する主要ツール群。それぞれの思想、強み、そして最適な用途は異なります。下のタブをクリックして、各ツールの特性を比較してください。</p>
+                <div class="card p-6 md:p-8">
+                    <div class="border-b border-gray-200 mb-6">
+                        <nav class="flex flex-wrap -mb-px" id="tool-tabs">
+                            <button data-tool="copilot" class="tab-button active text-lg font-semibold p-4">GitHub Copilot</button>
+                            <button data-tool="devin" class="tab-button text-lg font-semibold p-4">Cognition Devin</button>
+                            <button data-tool="cursor" class="tab-button text-lg font-semibold p-4">Cursor</button>
+                            <button data-tool="kiro" class="tab-button text-lg font-semibold p-4">AWS Kiro</button>
+                            <button data-tool="cli" class="tab-button text-lg font-semibold p-4">CLI Agents</button>
+                        </nav>
+                    </div>
+                    <div id="tool-content" class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                        <div id="tool-description">
+                            <!-- JS will populate this -->
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="tool-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="dilemma">
+                <h2 class="text-3xl font-bold text-center section-title mb-2">核心的対立：制御か、自律か</h2>
+                <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">AIエージェントの導入は、単なるツール選定以上の戦略的決断を迫ります。それは「開発プロセスをどこまでAIに委ねるか」という組織の哲学そのものを問うものです。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card p-8">
+                        <h3 class="text-2xl font-bold text-center mb-4">🕹️ 操縦可能な制御</h3>
+                        <p class="text-gray-600 mb-6">人間がAIの「計画」を検証・修正し、主導権を握るアプローチ。予測可能性と監査可能性を重視し、エンタープライズ環境での安定稼働を目指します。</p>
+                        <ul class="space-y-2">
+                            <li class="font-semibold">代表例: GitHub Copilot Workspace, AWS Kiro</li>
+                            <li class="text-green-600"><strong>利点:</strong> 品質管理、セキュリティ、既存ワークフローとの親和性</li>
+                            <li class="text-red-600"><strong>課題:</strong> 人間による監督コスト、導入の複雑さ</li>
+                        </ul>
+                    </div>
+                    <div class="card p-8">
+                        <h3 class="text-2xl font-bold text-center mb-4">🚀 ブラックボックス的自律性</h3>
+                        <p class="text-gray-600 mb-6">タスク実行の大部分をAIに委譲し、人間の介入を最小限に抑えるアプローチ。開発速度の最大化と、人間の認知負荷の抜本的削減を目指します。</p>
+                         <ul class="space-y-2">
+                            <li class="font-semibold">代表例: Cognition Devin</li>
+                            <li class="text-green-600"><strong>利点:</strong> 圧倒的な開発速度、プロトタイピングの迅速化</li>
+                            <li class="text-red-600"><strong>課題:</strong> 意図しない挙動、コスト超過のリスク、品質のばらつき</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sdlc-mapping">
+                <h2 class="text-3xl font-bold text-center section-title mb-2">開発ライフサイクルへの適用</h2>
+                <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">万能なツールは存在しません。開発プロセスの各フェーズで、最も輝くツールは異なります。フェーズをクリックして、関連ツールを確認してください。</p>
+                <div class="card p-8">
+                    <div id="sdlc-container" class="space-y-8">
+                        <!-- SDLC items will be populated by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <section id="recommendations">
+                <h2 class="text-3xl font-bold text-center section-title mb-12">エンタープライズ導入への戦略的提言</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card p-8 text-center">
+                        <div class="text-5xl mb-4">🛡️</div>
+                        <h3 class="text-xl font-bold mb-2">セキュリティとガバナンス</h3>
+                        <p class="text-gray-600">サンドボックス環境の義務化、プロンプトインジェクション対策、IP・プライバシー保護ポリシーの策定が急務です。</p>
+                    </div>
+                    <div class="card p-8 text-center">
+                        <div class="text-5xl mb-4">🧠</div>
+                        <h3 class="text-xl font-bold mb-2">スキルの進化</h3>
+                        <p class="text-gray-600">開発者は「AIオーケストレーター」へ。タスク分解、プロンプト技術、そしてAI生成物の批判的評価能力に投資すべきです。</p>
+                    </div>
+                    <div class="card p-8 text-center">
+                        <div class="text-5xl mb-4">🚀</div>
+                        <h3 class="text-xl font-bold mb-2">段階的導入</h3>
+                        <p class="text-gray-600">低リスク領域からパイロット導入を開始し、効果を測定。社内に専門組織（CoE）を設立し、ベストプラクティスを確立しましょう。</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-24 py-8 border-t border-gray-200">
+            <p class="text-gray-500">本レポートは「エージェントシフト：現代のソフトウェア開発におけるAIツールの比較分析」を基に作成されました。</p>
+            <p class="text-sm text-gray-400 mt-2">最終更新: 2025年7月31日</p>
+        </footer>
+    </div>
+
+<script>
+const toolData = {
+    copilot: {
+        name: 'GitHub Copilot',
+        description: '世界で最も普及しているAIペアプログラマー。IDE内でシームレスに動作し、コード補完からチャット、そして「Workspace」によるタスクベースの自律的な開発支援まで、多層的な機能を提供します。',
+        features: ['操縦可能な自律性（計画の編集）', 'GitHubエコシステムとの深い統合', 'エンタープライズ向けの強力なセキュリティ'],
+        stats: { 'インターフェース': 'IDE / Web', '能力レベル': '中〜高', '価格/月': '$10~' },
+        chartData: {
+            labels: ['自律性', '制御性', '文脈理解', 'IDE統合'],
+            values: [7, 9, 7, 10]
+        }
+    },
+    devin: {
+        name: 'Cognition Devin',
+        description: '「世界初の完全自律型AIソフトウェアエンジニア」として登場。独自のサンドボックス環境で、計画から実装、デバッグまでをエンドツーエンドで完遂することを目指します。',
+        features: ['エンドツーエンドのタスク自動化', '自己デバッグ・自己修正能力', 'SWE-benchで証明された高い性能'],
+        stats: { 'インターフェース': 'Web', '能力レベル': '高', '価格/月': '従量課金' },
+        chartData: {
+            labels: ['自律性', '制御性', '文脈理解', 'IDE統合'],
+            values: [10, 3, 6, 2]
+        }
+    },
+    cursor: {
+        name: 'Cursor',
+        description: 'AI機能を中核に据えて設計されたVS CodeベースのIDE。プロジェクト全体のコードベースをインデックス化し、深い文脈理解に基づいたリファクタリングやコード生成を得意とします。',
+        features: ['コードベース全体の文脈理解', '大規模リファクタリング支援', '複数AIモデルの切り替え可能'],
+        stats: { 'インターフェース': 'IDE', '能力レベル': '中', '価格/月': '$20~' },
+        chartData: {
+            labels: ['自律性', '制御性', '文脈理解', 'IDE統合'],
+            values: [5, 6, 10, 9]
+        }
+    },
+    kiro: {
+        name: 'AWS Kiro (Amazon Q)',
+        description: '「仕様駆動開発」を思想の中核に置く、エンタープライズ向けのAIエージェント。コーディングの前に要件定義書や設計書を生成し、コードとドキュメントの一貫性を保ちます。',
+        features: ['仕様駆動開発アプローチ', '要件定義書・設計書の自動生成', 'AWSのセキュリティ・エコシステムと統合'],
+        stats: { 'インターフェース': 'IDE', '能力レベル': '中〜高', '価格/月': '$19~' },
+        chartData: {
+            labels: ['自律性', '制御性', '文脈理解', 'IDE統合'],
+            values: [7, 10, 6, 8]
+        }
+    },
+    cli: {
+        name: 'CLI Agents (Gemini/Claude)',
+        description: 'ターミナルから直接AIの能力を呼び出す、パワーユーザー向けのツール群。スクリプト化やローカルシステムとの連携に優れ、複雑なワークフローの自動化を可能にします。',
+        features: ['ターミナル内で完結するワークフロー', 'ローカルファイル・コマンドとの連携', '高いスクリプト性と柔軟性'],
+        stats: { 'インターフェース': 'CLI', '能力レベル': '中', '価格/月': '様々' },
+        chartData: {
+            labels: ['自律性', '制御性', '文脈理解', 'IDE統合'],
+            values: [6, 4, 5, 1]
+        }
+    }
+};
+
+const sdlcData = [
+    { name: '計画・要件定義', tools: ['kiro', 'copilot'] },
+    { name: 'アーキテクチャ・設計', tools: ['kiro', 'cursor'] },
+    { name: 'コーディング・実装', tools: ['copilot', 'cursor', 'devin'] },
+    { name: 'テスト・デバッグ', tools: ['devin', 'cursor', 'cli'] },
+    { name: 'ドキュメント・保守', tools: ['kiro', 'cursor'] }
+];
+
+let toolChart;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toolTabsContainer = document.getElementById('tool-tabs');
+    const toolDescriptionEl = document.getElementById('tool-description');
+    const toolChartCanvas = document.getElementById('tool-chart').getContext('2d');
+
+    function updateToolContent(toolKey) {
+        const data = toolData[toolKey];
+        
+        let featuresHtml = data.features.map(feature => `<li class="flex items-start"><span class="text-green-500 mr-2 mt-1">✓</span><span>${feature}</span></li>`).join('');
+        let statsHtml = Object.entries(data.stats).map(([key, value]) => `<div class="text-sm"><span class="font-semibold text-gray-500">${key}:</span> <span class="font-bold">${value}</span></div>`).join('');
+
+        toolDescriptionEl.innerHTML = `
+            <h3 class="text-3xl font-bold mb-4 section-title">${data.name}</h3>
+            <p class="text-gray-700 mb-6">${data.description}</p>
+            <ul class="space-y-2 mb-6">${featuresHtml}</ul>
+            <div class="flex flex-wrap gap-x-6 gap-y-2 p-4 bg-gray-50 rounded-lg">${statsHtml}</div>
+        `;
+
+        if (toolChart) {
+            toolChart.destroy();
+        }
+        toolChart = new Chart(toolChartCanvas, {
+            type: 'bar',
+            data: {
+                labels: data.chartData.labels,
+                datasets: [{
+                    label: '能力スコア',
+                    data: data.chartData.values,
+                    backgroundColor: 'rgba(74, 144, 226, 0.6)',
+                    borderColor: 'rgba(74, 144, 226, 1)',
+                    borderWidth: 1,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 10,
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                         grid: {
+                            color: '#E5E7EB'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        enabled: true,
+                        backgroundColor: '#333333',
+                        titleFont: { weight: 'bold' },
+                        bodyFont: { size: 14 },
+                        callbacks: {
+                             title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    toolTabsContainer.addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            const toolKey = e.target.dataset.tool;
+            
+            // Update active tab
+            toolTabsContainer.querySelector('.active').classList.remove('active');
+            e.target.classList.add('active');
+
+            updateToolContent(toolKey);
+        }
+    });
+
+    updateToolContent('copilot');
+
+    const sdlcContainer = document.getElementById('sdlc-container');
+    sdlcData.forEach((item, index) => {
+        const toolsHtml = item.tools.map(toolKey => `<span class="tool-tag text-xs font-semibold mr-2 mb-2 px-2 py-1 rounded-full bg-gray-200 text-gray-700" data-tool="${toolKey}">${toolData[toolKey].name}</span>`).join('');
+        
+        const element = document.createElement('div');
+        element.className = 'sdlc-item flex items-start space-x-4 cursor-pointer p-2 rounded-lg hover:bg-gray-50';
+        element.dataset.phase = index;
+        element.innerHTML = `
+            <div class="flex flex-col items-center mt-1">
+                <div class="sdlc-dot w-6 h-6 rounded-full bg-gray-300 transition-all"></div>
+                ${index < sdlcData.length - 1 ? '<div class="w-0.5 h-24 bg-gray-300"></div>' : ''}
+            </div>
+            <div>
+                <h3 class="sdlc-title text-xl font-semibold text-gray-800 transition-colors">${item.name}</h3>
+                <div class="mt-2 flex flex-wrap">${toolsHtml}</div>
+            </div>
+        `;
+        sdlcContainer.appendChild(element);
+    });
+
+    sdlcContainer.addEventListener('click', (e) => {
+        const item = e.target.closest('.sdlc-item');
+        if (item) {
+            document.querySelectorAll('.sdlc-item').forEach(el => el.classList.remove('active'));
+            item.classList.add('active');
+        }
+    });
+});
+</script>
+</body>
+</html>
