@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JALマイル価値最大化 インタラクティブガイド</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: このSPAは、レポートの線形な構造を再設計し、ユーザーが能動的に情報を探索できるテーマ別のセクションからなるダッシュボード形式を採用します。最初に「マイル価値(YPM)」の基本概念をインタラクティブな計算機で学び、次に「特典タイプ」と「燃油サーチャージ」の重要性を視覚的な比較表で理解します。中心機能として、路線とクラスを選択すると最適な交換オプションをチャートとカードで比較表示する「戦略シミュレーター」を配置。最後に「上級戦略」と「最終提言」を具体的なレシピカードやアコーディオン形式で提示し、複雑な情報を消化しやすくします。この非線形な構造により、ユーザーは自身の知識レベルや興味に応じて必要な情報に直接アクセスでき、レポートの核心である「価値最大化」の思考プロセスを直感的に体験できます。 -->
+    <!-- Visualization & Content Choices: レポートの情報をインタラクティブに変換するため、以下の手法を選択しました。1.【マイル単価の理解】Goal: Inform -> Viz: HTMLフォームによるインタラクティブ計算機。Interaction: ユーザーが数値を入力するとリアルタイムでYPMが計算される。Justification: ユーザーが能動的に操作することで、マイル単価の概念を深く理解できる。Library: Vanilla JS。 2.【特典比較】Goal: Compare -> Viz: Chart.jsによる動的バーチャートとHTMLカード。Interaction: ユーザーが路線やクラスを選択すると、チャートとカードの内容が更新され、YPMやコストを視覚的に比較できる。Justification: 静的な表よりも直感的に選択肢の優劣を把握できる。Library: Chart.js, Vanilla JS。 3.【複雑な旅程の提示】Goal: Organize -> Viz: Tailwind CSSでスタイリングされた「レシピカード」。Interaction: クリックやホバーなしの静的表示だが、情報を整理して提示。Justification: 複雑な周遊ルートを、消化しやすい単位に分割して見せるため。Library: Tailwind CSS。これらの選択は、SVGやMermaid JSを使用せず、レポートの核心的なデータをユーザーが能動的に探索・比較できるようにするという設計思想に基づいています。 -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #FDFBF7;
+            color: #333;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .tab-button.active {
+            border-color: #1E40AF;
+            background-color: #DBEAFE;
+            color: #1E40AF;
+            font-weight: 700;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .strategy-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .section-title {
+            border-bottom: 2px solid #D1D5DB;
+            padding-bottom: 0.5rem;
+        }
+        .table-fixed-layout {
+            table-layout: fixed;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-900">
+                ✈️ JALマイル価値最大化ガイド
+            </div>
+            <div class="hidden md:flex space-x-4">
+                <a href="#concepts" class="text-gray-600 hover:text-blue-800">基本概念</a>
+                <a href="#simulator" class="text-gray-600 hover:text-blue-800">戦略シミュレーター</a>
+                <a href="#advanced" class="text-gray-600 hover:text-blue-800">上級戦略</a>
+                <a href="#conclusion" class="text-gray-600 hover:text-blue-800">最終提言</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="hero" class="text-center py-12 bg-blue-50 rounded-xl mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4">JALマイルの真価を解き放つ</h1>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                あなたのJALマイルは、単なる割引券ではありません。正しい知識と戦略があれば、1マイルの価値を5円、10円、あるいはそれ以上に高めることが可能です。このガイドで、あなたのマイルを究極の旅行体験に変える方法を探求しましょう。
+            </p>
+        </section>
+
+        <section id="concepts" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold mb-6 text-center section-title">Part 1: 価値最大化の基本概念</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-4xl mx-auto">マイルの価値を最大化する旅は、まず3つの重要な概念を理解することから始まります。「マイル単価」という客観的な指標、3種類の「特典航空券」、そして価値を大きく左右する「燃油サーチャージ」です。これらをマスターすることが、賢い選択への第一歩となります。</p>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4 text-blue-800">① マイル単価(YPM)を計算する</h3>
+                    <p class="mb-4 text-gray-600">1マイルあたりの価値を「円」で示す指標です。これが高いほど、お得な交換と言えます。下の計算機で、あなたのフライトの価値を確かめてみましょう。</p>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="cashPrice" class="block text-sm font-medium text-gray-700">有償航空券の価格 (円)</label>
+                            <input type="number" id="cashPrice" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="例: 300000">
+                        </div>
+                        <div>
+                            <label for="surcharges" class="block text-sm font-medium text-gray-700">燃油サーチャージ＋税金 (円)</label>
+                            <input type="number" id="surcharges" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="例: 28000">
+                        </div>
+                        <div>
+                            <label for="miles" class="block text-sm font-medium text-gray-700">必要なマイル数</label>
+                            <input type="number" id="miles" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="例: 60000">
+                        </div>
+                        <button id="calculateYpm" class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 transition">計算する</button>
+                    </div>
+                    <div id="ypmResult" class="mt-4 text-center bg-blue-50 p-4 rounded-lg hidden">
+                        <p class="text-lg text-gray-800">あなたのマイル単価は...</p>
+                        <p class="text-4xl font-extrabold text-blue-800"><span id="ypmValue">0.00</span> 円/マイル</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4 text-blue-800">② 3つの特典航空券を理解する</h3>
+                    <p class="mb-4 text-gray-600">JALマイルは3種類の特典に交換できます。それぞれルールが異なり、戦略的な使い分けが重要です。</p>
+                    <div class="space-y-4">
+                        <div class="p-4 border rounded-lg bg-gray-50">
+                            <h4 class="font-bold text-lg">JAL国際線特典</h4>
+                            <p class="text-sm text-gray-600">JAL便限定。マイル数は変動制(PLUS)で高騰リスクあり。燃油サーチャージも高額な傾向。</p>
+                        </div>
+                        <div class="p-4 border rounded-lg bg-green-50">
+                            <h4 class="font-bold text-lg">JMB提携航空会社特典</h4>
+                            <p class="text-sm text-gray-600">提携社1社を利用。距離制でマイル数が固定。燃油サーチャージ無料の会社があり、価値最大化の鍵。</p>
+                        </div>
+                        <div class="p-4 border rounded-lg bg-yellow-50">
+                            <h4 class="font-bold text-lg">ワンワールド特典</h4>
+                            <p class="text-sm text-gray-600">加盟2社以上を組み合わせ。距離制。複数都市周遊など、複雑な旅程で真価を発揮。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold mb-4 text-center text-red-800">③ 燃油サーチャージの影響を制する</h3>
+                <p class="text-center text-gray-600 mb-6 max-w-4xl mx-auto">マイル価値を損なう最大の要因は現金支出、特に燃油サーチャージです。しかし、JMB提携航空会社の中には、これを課さない、あるいは低額に抑えている「神エアライン」が存在します。以下の表で、どの航空会社がどの都市へのゲートウェイとなるかを確認し、賢く選択しましょう。</p>
+                <div class="overflow-x-auto">
+                    <div class="mb-8">
+                        <h4 class="text-xl font-bold text-green-700 mb-2">👑 カテゴリー1：サーチャージ無料（最高価値）</h4>
+                        <table class="min-w-full divide-y divide-gray-200 table-fixed-layout">
+                            <thead class="bg-green-50">
+                                <tr>
+                                    <th class="w-1/5 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">航空会社</th>
+                                    <th class="w-1/5 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">東京発 直行便ハブ</th>
+                                    <th class="w-1/5 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">TYO-ハブ (片道マイル)</th>
+                                    <th class="w-1/5 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">ハブ-BKK (片道マイル)</th>
+                                    <th class="w-1/5 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">戦略的用途</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr><td class="px-4 py-3 font-bold">カタール航空 (QR)</td><td class="px-4 py-3">ドーハ (DOH)</td><td class="px-4 py-3">約 5,140</td><td class="px-4 py-3">約 3,280</td><td class="px-4 py-3 text-sm">欧州・中東・アフリカ方面の最有力候補。</td></tr>
+                                <tr><td class="px-4 py-3 font-bold">アメリカン航空 (AA)</td><td class="px-4 py-3">ダラス (DFW)</td><td class="px-4 py-3">約 6,450</td><td class="px-4 py-3">不可</td><td class="px-4 py-3 text-sm">北米・中南米路線の鉄板。</td></tr>
+                                <tr><td class="px-4 py-3 font-bold">ハワイアン航空 (HA)</td><td class="px-4 py-3">ホノルル (HNL)</td><td class="px-4 py-3">約 3,830</td><td class="px-4 py-3">不可</td><td class="px-4 py-3 text-sm">ハワイ路線の絶対的最適解。</td></tr>
+                                <tr><td class="px-4 py-3 font-bold">スリランカ航空 (UL)</td><td class="px-4 py-3">コロンボ (CMB)</td><td class="px-4 py-3">約 4,270</td><td class="px-4 py-3">約 1,485</td><td class="px-4 py-3 text-sm">南アジア・モルディブ方面に。</td></tr>
+                                <tr><td class="px-4 py-3 font-bold">大韓航空 (KE)</td><td class="px-4 py-3">ソウル (ICN)</td><td class="px-4 py-3">約 760</td><td class="px-4 py-3">不可</td><td class="px-4 py-3 text-sm">日韓路線限定。バンコク行きには使えない。</td></tr>
+                                <tr><td class="px-4 py-3 font-bold">LATAM航空 (LA)</td><td class="px-4 py-3">直行便なし</td><td class="px-4 py-3">-</td><td class="px-4 py-3">不可</td><td class="px-4 py-3 text-sm">南米へのゲートウェイ。</td></tr>
+                                <tr><td class="px-4 py-3 font-bold">ジェットブルー (B6)</td><td class="px-4 py-3">直行便なし</td><td class="px-4 py-3">-</td><td class="px-4 py-3">不可</td><td class="px-4 py-3 text-sm">北米内での乗り継ぎに。</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mb-8">
+                        <h4 class="text-xl font-bold text-yellow-700 mb-2">👍 カテゴリー2：サーチャージ有料（低額/要注意）</h4>
+                         <table class="min-w-full divide-y divide-gray-200 table-fixed-layout">
+                            <thead class="bg-yellow-50">
+                                <tr>
+                                    <th class="w-1/5 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">航空会社</th>
+                                    <th class="w-1/5 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">東京発 直行便ハブ</th>
+                                    <th class="w-1/5 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">TYO-ハブ (片道マイル)</th>
+                                    <th class="w-1/5 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">ハブ-BKK (片道マイル)</th>
+                                    <th class="w-1/5 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">戦略的用途</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr><td class="px-4 py-3 font-bold">マレーシア航空 (MH)</td><td class="px-4 py-3">クアラルンプール (KUL)</td><td class="px-4 py-3">約 3,360</td><td class="px-4 py-3">約 760</td><td class="px-4 py-3 text-sm">東南アジア方面で高価値。JALより低額。</td></tr>
+                                <tr><td class="px-4 py-3 font-bold">カンタス航空 (QF)</td><td class="px-4 py-3">シドニー (SYD)</td><td class="px-4 py-3">約 4,860</td><td class="px-4 py-3">約 4,670</td><td class="px-4 py-3 text-sm">オセアニア路線の主要選択肢。</td></tr>
+                                <tr><td class="px-4 py-3 font-bold">中国東方航空 (MU)</td><td class="px-4 py-3">上海 (PVG)</td><td class="px-4 py-3">約 1,100</td><td class="px-4 py-3">約 1,800</td><td class="px-4 py-3 text-sm">中国国内へのアクセスに。</td></tr>
+                                <tr><td class="px-4 py-3 font-bold">バンコク・エアウェイズ (PG)</td><td class="px-4 py-3">直行便なし</td><td class="px-4 py-3">-</td><td class="px-4 py-3">-</td><td class="px-4 py-3 text-sm">タイ国内線や周辺国への乗り継ぎに。</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-red-700 mb-2">💸 カテゴリー3：サーチャージ高額</h4>
+                         <table class="min-w-full divide-y divide-gray-200 table-fixed-layout">
+                            <thead class="bg-red-50">
+                                <tr>
+                                    <th class="w-1/5 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">航空会社</th>
+                                    <th class="w-1/5 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">東京発 直行便ハブ</th>
+                                    <th class="w-1/5 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">TYO-ハブ (片道マイル)</th>
+                                    <th class="w-1/5 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">ハブ-BKK (片道マイル)</th>
+                                    <th class="w-1/5 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">戦略的用途</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr><td class="px-4 py-3 font-bold">JAL (JL) / キャセイ (CX)</td><td class="px-4 py-3">台北 (TPE)</td><td class="px-4 py-3">約 1,330</td><td class="px-4 py-3">約 1,555</td><td class="px-4 py-3 text-sm">アジア内の中継点として重要。ストップオーバーで台湾観光も可能。</td></tr>
+                                <tr><td class="px-4 py-3 font-bold">キャセイパシフィック (CX)</td><td class="px-4 py-3">香港 (HKG)</td><td class="px-4 py-3">約 1,820</td><td class="px-4 py-3">約 1,050</td><td class="px-4 py-3 text-sm">アジアのハブ。利便性は高いが要注意。</td></tr>
+                                <tr><td class="px-4 py-3 font-bold">ブリティッシュ・エアウェイズ (BA)</td><td class="px-4 py-3">ロンドン (LHR)</td><td class="px-4 py-3">約 6,215</td><td class="px-4 py-3">不可</td><td class="px-4 py-3 text-sm">欧州路線。特に英国発の税金が高い。</td></tr>
+                                <tr><td class="px-4 py-3 font-bold">フィンエアー (AY)</td><td class="px-4 py-3">ヘルシンキ (HEL)</td><td class="px-4 py-3">約 4,870</td><td class="px-4 py-3">不可</td><td class="px-4 py-3 text-sm">欧州への最短ルートだが負担大。</td></tr>
+                                <tr><td class="px-4 py-3 font-bold">エミレーツ航空 (EK)</td><td class="px-4 py-3">ドバイ (DXB)</td><td class="px-4 py-3">約 4,970</td><td class="px-4 py-3">約 3,020</td><td class="px-4 py-3 text-sm">豪華だがサーチャージも超高額。</td></tr>
+                                <tr><td class="px-4 py-3 font-bold">エールフランス航空 (AF)</td><td class="px-4 py-3">パリ (CDG)</td><td class="px-4 py-3">約 6,190</td><td class="px-4 py-3">不可</td><td class="px-4 py-3 text-sm">パリ直行便は魅力的だが高負担。</td></tr>
+                                <tr><td class="px-4 py-3 font-bold">イベリア航空 (IB)</td><td class="px-4 py-3">マドリード (MAD)</td><td class="px-4 py-3">約 6,700</td><td class="px-4 py-3">不可</td><td class="px-4 py-3 text-sm">スペイン方面へのアクセス。</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="simulator" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold mb-6 text-center section-title">Part 2: 戦略シミュレーター</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-4xl mx-auto">理論を実践に移しましょう。目的地と搭乗クラスを選ぶだけで、どの航空会社・ルートが最もマイル価値が高いかを瞬時に比較できます。直行便が常に最良の選択とは限らないことが、一目でわかります。</p>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="flex flex-col md:flex-row gap-4 mb-6">
+                    <div class="flex-1">
+                        <label for="routeSelector" class="block text-sm font-medium text-gray-700">路線を選択</label>
+                        <select id="routeSelector" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <option value="TYO-BKK">東京 - バンコク</option>
+                            <option value="TYO-NYC">東京 - ニューヨーク</option>
+                            <option value="TYO-LHR">東京 - ロンドン</option>
+                        </select>
+                    </div>
+                    <div class="flex-1">
+                        <label for="classSelector" class="block text-sm font-medium text-gray-700">クラスを選択</label>
+                        <select id="classSelector" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <option value="Business">ビジネス</option>
+                            <option value="Economy">エコノミー</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="chart-container mb-8">
+                    <canvas id="ypmChart"></canvas>
+                </div>
+
+                <div id="comparisonCards" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
+            </div>
+        </section>
+
+        <section id="advanced" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold mb-6 text-center section-title">Part 3: 上級者向け最大化戦略</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-4xl mx-auto">基本をマスターしたら、次は応用です。JMBのルールを深く理解すれば、1回のマイル交換で複数の都市を巡ったり、マイル単価を極限まで高める旅程を組むことが可能です。ここではその代表的な戦略を紹介します。</p>
+            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg strategy-card">
+                    <h3 class="text-2xl font-bold mb-3 text-blue-800">① 距離制チャートの「上限ギリギリ」を狙う</h3>
+                    <p class="mb-4 text-gray-600">提携社特典は飛行距離で必要マイルが決まります。マイル数が切り替わる上限ギリギリまで飛ぶことで、実質「無料」でフライトを追加できます。</p>
+                    <div class="p-4 rounded-lg bg-blue-50">
+                        <p class="font-bold">例：アジア3都市周遊</p>
+                        <p class="text-sm text-gray-700">東京-バンコク往復（約5,738マイル）はビジネスで65,000マイル。ここにクアラルンプール立ち寄りを加えても総距離が8,000マイル以内なら、同じ80,000マイルで3都市を楽しめます。</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg strategy-card">
+                    <h3 class="text-2xl font-bold mb-3 text-blue-800">② ストップオーバーで複数の旅行を統合</h3>
+                    <p class="mb-4 text-gray-600">ワンワールド特典では最大7回の途中降機（24時間以上の滞在）が可能。これを利用して、数ヶ月にわたる複数の旅行を1回の発券にまとめられます。</p>
+                    <div class="p-4 rounded-lg bg-blue-50">
+                        <p class="font-bold">例：欧州＆アジア旅行</p>
+                        <p class="text-sm text-gray-700">「5月の欧州旅行」と「9月のアジア旅行」を個別に発券せず、「東京→欧州→(ストップオーバー)→アジア→東京」と1つに繋げれば、総マイル数を大幅に節約できます。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold mb-4 text-center">参考：各種特典 必要マイル数チャート</h3>
+                <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-2 text-center">✈️ JMB提携航空会社特典</h4>
+                        <table class="min-w-full divide-y divide-gray-200 border">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="px-2 py-2 text-left text-xs font-medium text-gray-600">総旅程距離 (マイル)</th>
+                                    <th class="px-2 py-2 text-right text-xs font-medium text-gray-600">エコノミー</th>
+                                    <th class="px-2 py-2 text-right text-xs font-medium text-gray-600">ビジネス</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                                <tr><td class="px-2 py-1">1 - 2,000</td><td class="px-2 py-1 text-right">15,000</td><td class="px-2 py-1 text-right">30,000</td></tr>
+                                <tr><td class="px-2 py-1">2,001 - 4,000</td><td class="px-2 py-1 text-right">25,000</td><td class="px-2 py-1 text-right">50,000</td></tr>
+                                <tr><td class="px-2 py-1">4,001 - 6,000</td><td class="px-2 py-1 text-right">37,000</td><td class="px-2 py-1 text-right">65,000</td></tr>
+                                <tr><td class="px-2 py-1">6,001 - 8,000</td><td class="px-2 py-1 text-right">45,000</td><td class="px-2 py-1 text-right">80,000</td></tr>
+                                <tr><td class="px-2 py-1">8,001 - 10,000</td><td class="px-2 py-1 text-right">47,000</td><td class="px-2 py-1 text-right">85,000</td></tr>
+                                <tr><td class="px-2 py-1">10,001 - 12,000</td><td class="px-2 py-1 text-right">50,000</td><td class="px-2 py-1 text-right">100,000</td></tr>
+                                <tr><td class="px-2 py-1">12,001 - 14,000</td><td class="px-2 py-1 text-right">55,000</td><td class="px-2 py-1 text-right">110,000</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-2 text-center">✈️ ワンワールド特典</h4>
+                        <table class="min-w-full divide-y divide-gray-200 border">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="px-2 py-2 text-left text-xs font-medium text-gray-600">総旅程距離 (マイル)</th>
+                                    <th class="px-2 py-2 text-right text-xs font-medium text-gray-600">エコノミー</th>
+                                    <th class="px-2 py-2 text-right text-xs font-medium text-gray-600">ビジネス</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                                <tr><td class="px-2 py-1">1 - 4,000</td><td class="px-2 py-1 text-right">25,000</td><td class="px-2 py-1 text-right">50,000</td></tr>
+                                <tr><td class="px-2 py-1">4,001 - 8,000</td><td class="px-2 py-1 text-right">40,000</td><td class="px-2 py-1 text-right">80,000</td></tr>
+                                <tr><td class="px-2 py-1">8,001 - 10,000</td><td class="px-2 py-1 text-right">50,000</td><td class="px-2 py-1 text-right">85,000</td></tr>
+                                <tr><td class="px-2 py-1">10,001 - 14,000</td><td class="px-2 py-1 text-right">70,000</td><td class="px-2 py-1 text-right">115,000</td></tr>
+                                <tr><td class="px-2 py-1">14,001 - 20,000</td><td class="px-2 py-1 text-right">90,000</td><td class="px-2 py-1 text-right">120,000</td></tr>
+                                <tr><td class="px-2 py-1">20,001 - 25,000</td><td class="px-2 py-1 text-right">100,000</td><td class="px-2 py-1 text-right">140,000</td></tr>
+                                <tr><td class="px-2 py-1">25,001 - 35,000</td><td class="px-2 py-1 text-right">130,000</td><td class="px-2 py-1 text-right">190,000</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-2 text-center">✈️ JAL国際線特典 (参考)</h4>
+                        <table class="min-w-full divide-y divide-gray-200 border">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="px-2 py-2 text-left text-xs font-medium text-gray-600">路線 (ゾーン制)</th>
+                                    <th class="px-2 py-2 text-right text-xs font-medium text-gray-600">エコノミー</th>
+                                    <th class="px-2 py-2 text-right text-xs font-medium text-gray-600">ビジネス</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                                <tr class="bg-blue-50"><td class="px-2 py-1 font-bold">東京-バンコク</td><td class="px-2 py-1 text-right font-bold">54,000</td><td class="px-2 py-1 text-right font-bold">96,000</td></tr>
+                                <tr><td class="px-2 py-1">東京-シンガポール</td><td class="px-2 py-1 text-right">26,000</td><td class="px-2 py-1 text-right">80,000</td></tr>
+                                <tr><td class="px-2 py-1">東京-ニューヨーク</td><td class="px-2 py-1 text-right">54,000</td><td class="px-2 py-1 text-right">110,000</td></tr>
+                                <tr><td class="px-2 py-1">東京-ロンドン</td><td class="px-2 py-1 text-right">54,000</td><td class="px-2 py-1 text-right">114,000</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="text-xs text-gray-500 mt-1">※往復、基本マイル数。PLUS適用で変動します。</p>
+                    </div>
+                </div>
+            </div>
+             <div class="mt-8 bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold mb-4 text-center">旅程パターンサンプル</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">旅程名</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">ルート例</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">ビジネスマイル</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-4 py-2">アジア3都市周遊</td>
+                                <td class="px-4 py-2 text-sm">東京 → 台北 → バンコク → クアラルンプール → 東京</td>
+                                <td class="px-4 py-2 font-bold">80,000</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">アジア＆中東周遊</td>
+                                <td class="px-4 py-2 text-sm">東京 → ドーハ → バンコク → クアラルンプール → 東京</td>
+                                <td class="px-4 py-2 font-bold">115,000</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">南国リゾート巡り</td>
+                                <td class="px-4 py-2 text-sm">東京 → コロンボ → バンコク(経由) → マレ(モルディブ) → 東京</td>
+                                <td class="px-4 py-2 font-bold">110,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="scroll-mt-20">
+            <h2 class="text-3xl font-bold mb-6 text-center section-title">Part 4: 最終提言 - あなたの行動計画</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-4xl mx-auto">これまでの分析を基に、あなたの旅行目標に応じた最適な戦略を提案します。下のタブからあなたの目的に最も近いものを選択してください。それが、あなたのマイル価値を最大化するための具体的な行動計画です。</p>
+            <div class="w-full max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+                <div class="border-b border-gray-200 mb-4">
+                    <nav class="-mb-px flex space-x-4" aria-label="Tabs">
+                        <button class="tab-button active" data-tab="europe">欧州・中東へ</button>
+                        <button class="tab-button" data-tab="na">北米へ</button>
+                        <button class="tab-button" data-tab="sea">東南アジアへ</button>
+                        <button class="tab-button" data-tab="hawaii">ハワイへ</button>
+                        <button class="tab-button" data-tab="first">最高の体験</button>
+                    </nav>
+                </div>
+                <div>
+                    <div id="europe" class="tab-content active">
+                        <h4 class="text-xl font-bold text-blue-800 mb-2">最高の価値で欧州・中東へ</h4>
+                        <p><strong class="text-green-700">推奨戦略：</strong> JMB提携航空会社特典で、<strong class="text-green-700">カタール航空</strong>のビジネスクラスを選択。</p>
+                        <p class="text-gray-600 mt-2"><strong>理由：</strong> 燃油サーチャージが完全に無料で、現金支出を最小限に抑えられます。ドーハでの乗り継ぎは必要ですが、世界最高峰と評されるビジネスクラス「Qsuite」を体験でき、マイル単価は圧倒的に高くなります。これが欧州方面の最善手です。</p>
+                    </div>
+                    <div id="na" class="tab-content">
+                        <h4 class="text-xl font-bold text-blue-800 mb-2">最高の価値で北米へ</h4>
+                        <p><strong class="text-green-700">推奨戦略：</strong> JMB提携航空会社特典で、<strong class="text-green-700">アメリカン航空</strong>のビジネスクラスを選択。</p>
+                        <p class="text-gray-600 mt-2"><strong>理由：</strong> こちらも燃油サーチャージが無料。JAL便と同じマイル数で交換できる場合でも、数万円の現金支出を節約できます。広大な北米ネットワークを持つため、最終目的地へのアクセスも良好です。</p>
+                    </div>
+                    <div id="sea" class="tab-content">
+                        <h4 class="text-xl font-bold text-blue-800 mb-2">経済的に東南アジアへ</h4>
+                        <p><strong class="text-yellow-700">推奨戦略：</strong> JMB提携航空会社特典で、<strong class="text-yellow-700">マレーシア航空</strong>のビジネスクラスを選択。</p>
+                        <p class="text-gray-600 mt-2"><strong>理由：</strong> 燃油サーチャージがJAL便より格段に安く、距離制のため必要マイル数も少ない傾向にあります。クアラルンプール経由の手間を考えても、コストパフォーマンスは抜群です。</p>
+                    </div>
+                    <div id="hawaii" class="tab-content">
+                        <h4 class="text-xl font-bold text-blue-800 mb-2">圧倒的な低コストでハワイへ</h4>
+                        <p><strong class="text-green-700">推奨戦略：</strong> JMB提携航空会社特典で、<strong class="text-green-700">ハワイアン航空</strong>を選択。</p>
+                        <p class="text-gray-600 mt-2"><strong>理由：</strong> JAL便でかかる高額な燃油サーチャージ（往復約7万円）を完全に回避できます。ハワイ路線においては、他の選択肢を検討する余地がないほどの絶対的な最適解です。</p>
+                    </div>
+                    <div id="first" class="tab-content">
+                        <h4 class="text-xl font-bold text-blue-800 mb-2">最高のファーストクラス体験</h4>
+                        <p><strong class="text-blue-700">推奨戦略：</strong> JAL国際線特典で、<strong class="text-blue-700">JAL</strong>のファーストクラスを狙う。</p>
+                        <p class="text-gray-600 mt-2"><strong>理由：</strong> JALが誇る最高品質のサービスを体験できます。PLUS制度の対象外で必要マイル数が固定のため、360日前の予約開始直後を狙えば計画的に予約可能。マイル単価も最高レベルに達します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto p-6 text-center">
+            <p>&copy; 2025 JALマイル価値最大化ガイド. このアプリケーションは提供されたレポートに基づき生成されたものです。</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const ypmData = {
+                'TYO-BKK': {
+                    'Economy': [
+                        { airline: 'JAL (直行)', miles: 54000, surcharge: 28000, cashPrice: 98000 },
+                        { airline: 'キャセイ (香港経由)', miles: 37000, surcharge: 25000, cashPrice: 80000 },
+                        { airline: 'マレーシア (KL経由)', miles: 37000, surcharge: 8000, cashPrice: 80000 }
+                    ],
+                    'Business': [
+                        { airline: 'JAL (直行)', miles: 96000, surcharge: 28000, cashPrice: 300000 },
+                        { airline: 'キャセイ (香港経由)', miles: 60000, surcharge: 25000, cashPrice: 280000 },
+                        { airline: 'マレーシア (KL経由)', miles: 65000, surcharge: 8000, cashPrice: 280000 }
+                    ]
+                },
+                'TYO-NYC': {
+                    'Economy': [
+                        { airline: 'JAL (直行)', miles: 54000, surcharge: 60000, cashPrice: 230000 },
+                        { airline: 'アメリカン (経由)', miles: 55000, surcharge: 20000, cashPrice: 230000 }
+                    ],
+                    'Business': [
+                        { airline: 'JAL (直行)', miles: 110000, surcharge: 60000, cashPrice: 780000 },
+                        { airline: 'アメリカン (経由)', miles: 110000, surcharge: 20000, cashPrice: 780000 }
+                    ]
+                },
+                'TYO-LHR': {
+                     'Economy': [
+                        { airline: 'JAL (直行)', miles: 54000, surcharge: 80000, cashPrice: 200000 },
+                        { airline: 'カタール (ドーハ経由)', miles: 55000, surcharge: 30000, cashPrice: 200000 }
+                    ],
+                    'Business': [
+                        { airline: 'JAL (直行)', miles: 114000, surcharge: 80000, cashPrice: 800000 },
+                        { airline: 'カタール (ドーハ経由)', miles: 130000, surcharge: 30000, cashPrice: 800000 }
+                    ]
+                }
+            };
+
+            function calculateYpm(cash, surcharge, miles) {
+                if (miles > 0) {
+                    return ((cash - surcharge) / miles).toFixed(2);
+                }
+                return 0;
+            }
+
+            const cashPriceInput = document.getElementById('cashPrice');
+            const surchargesInput = document.getElementById('surcharges');
+            const milesInput = document.getElementById('miles');
+            const calculateBtn = document.getElementById('calculateYpm');
+            const ypmResultDiv = document.getElementById('ypmResult');
+            const ypmValueSpan = document.getElementById('ypmValue');
+
+            calculateBtn.addEventListener('click', () => {
+                const cash = parseFloat(cashPriceInput.value) || 0;
+                const surcharge = parseFloat(surchargesInput.value) || 0;
+                const miles = parseFloat(milesInput.value) || 0;
+                const ypm = calculateYpm(cash, surcharge, miles);
+                ypmValueSpan.textContent = ypm;
+                ypmResultDiv.classList.remove('hidden');
+            });
+
+            const routeSelector = document.getElementById('routeSelector');
+            const classSelector = document.getElementById('classSelector');
+            const comparisonCardsContainer = document.getElementById('comparisonCards');
+            const ctx = document.getElementById('ypmChart').getContext('2d');
+            let ypmChart;
+
+            function updateSimulator() {
+                const route = routeSelector.value;
+                const selectedClass = classSelector.value;
+                const data = ypmData[route][selectedClass];
+
+                const labels = data.map(d => d.airline);
+                const ypmValues = data.map(d => parseFloat(calculateYpm(d.cashPrice, d.surcharge, d.miles)));
+
+                if (ypmChart) {
+                    ypmChart.destroy();
+                }
+
+                ypmChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'マイル単価 (円/マイル)',
+                            data: ypmValues,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(75, 192, 192, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(75, 192, 192, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'マイル単価 (YPM)'
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `YPM: ${context.raw} 円`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                comparisonCardsContainer.innerHTML = '';
+                data.forEach(d => {
+                    const ypm = calculateYpm(d.cashPrice, d.surcharge, d.miles);
+                    const card = `
+                        <div class="bg-gray-50 p-4 rounded-lg shadow-md border-l-4 ${ypm > 3 ? 'border-green-500' : (ypm > 2 ? 'border-yellow-500' : 'border-red-500')}">
+                            <h4 class="font-bold text-lg">${d.airline}</h4>
+                            <div class="mt-2 space-y-1 text-sm text-gray-700">
+                                <p><strong>必要マイル:</strong> ${d.miles.toLocaleString()}</p>
+                                <p><strong>現金支出:</strong> ${d.surcharge.toLocaleString()}円</p>
+                                <p class="font-bold text-lg mt-2"><strong>マイル単価: <span class="text-blue-700">${ypm}</span> 円</strong></p>
+                            </div>
+                        </div>
+                    `;
+                    comparisonCardsContainer.innerHTML += card;
+                });
+            }
+
+            routeSelector.addEventListener('change', updateSimulator);
+            classSelector.addEventListener('change', updateSimulator);
+
+            updateSimulator();
+
+            const tabs = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(item => item.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    const target = tab.getAttribute('data-tab');
+                    tabContents.forEach(content => {
+                        if (content.id === target) {
+                            content.classList.add('active');
+                        } else {
+                            content.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
