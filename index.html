@@ -92,7 +92,8 @@
             width: 24px;
             height: 24px;
             margin-right: 1rem;
-            fill: currentColor; /* アイコンの色をテキストカラーに合わせる */
+            flex-shrink: 0; /* アイコンが縮まないようにする */
+            fill: currentColor;
         }
 
         #loading, #error {
@@ -129,68 +130,84 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
             // URLからGitHubのリポジトリ情報を自動的に取得
             const owner = location.hostname.split('.')[0];
             const pathParts = location.pathname.split('/').filter(p => p);
             const repo = pathParts[0];
             const currentDir = pathParts.slice(1, -1).join('/');
 
-            // GitHub APIのURLを構築
             const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${currentDir}`;
-
+            
             const fileList = document.getElementById('file-list');
             const loading = document.getElementById('loading');
             const errorDiv = document.getElementById('error');
             
-            // ファイルアイコンのSVGデータ
             const fileIconSvg = `
                 <svg class="file-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>`;
 
-            fetch(apiUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`リポジトリ情報の取得に失敗しました (Status: ${response.status})。GitHub PagesのURL（xxx.github.io/repo/）から実行しているか確認してください。`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    loading.style.display = 'none';
-                    
-                    const htmlFiles = data.filter(item => 
-                        item.type === 'file' && 
-                        item.name.endsWith('.html') && 
-                        item.name.toLowerCase() !== 'index.html' &&
-                        item.name.toLowerCase() !== '404.html'
-                    );
+            // ----- メインの処理 -----
+            try {
+                // 1. GitHub APIからファイルリストを取得
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error(`リポジトリ情報の取得に失敗 (Status: ${response.status})`);
+                }
+                const data = await response.json();
+                
+                const htmlFiles = data.filter(item => 
+                    item.type === 'file' && 
+                    item.name.endsWith('.html') && 
+                    item.name.toLowerCase() !== 'index.html' &&
+                    item.name.toLowerCase() !== '404.html'
+                );
 
-                    if (htmlFiles.length === 0) {
-                        fileList.innerHTML = '<li>表示できるHTMLファイルがありません。</li>';
-                        return;
-                    }
-
-                    htmlFiles.forEach(file => {
-                        const listItem = document.createElement('li');
-                        const link = document.createElement('a');
-                        link.href = file.name;
-                        
-                        const displayName = file.name.replace(/\.html$/, '');
-                        
-                        link.innerHTML = `${fileIconSvg}<span>${displayName}</span>`;
-                        
-                        listItem.appendChild(link);
-                        fileList.appendChild(listItem);
-                    });
-                })
-                .catch(error => {
+                if (htmlFiles.length === 0) {
                     loading.style.display = 'none';
-                    errorDiv.textContent = `エラー: ${error.message}`;
-                    errorDiv.style.display = 'block';
-                    console.error('Error fetching file list:', error);
+                    fileList.innerHTML = '<li>表示できるHTMLファイルがありません。</li>';
+                    return;
+                }
+
+                // 2. 各HTMLファイルのタイトルを取得（並列処理で高速化）
+                const filePromises = htmlFiles.map(file => 
+                    fetch(file.name)
+                        .then(res => res.text())
+                        .then(htmlText => {
+                            const parser = new DOMParser();
+                            const doc = parser.parseFromString(htmlText, 'text/html');
+                            // titleタグの内容を取得。なければファイル名を代わりに使用
+                            const title = doc.querySelector('title')?.textContent.trim() || file.name.replace(/\.html$/, '');
+                            return { name: file.name, title: title };
+                        })
+                        .catch(() => ({ // 読み込み失敗時のフォールバック
+                            name: file.name, 
+                            title: file.name.replace(/\.html$/, '') 
+                        }))
+                );
+                
+                // 3. 全てのファイルのタイトル取得が終わったらリストを生成
+                const filesWithTitles = await Promise.all(filePromises);
+
+                loading.style.display = 'none';
+                
+                filesWithTitles.forEach(file => {
+                    const listItem = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = file.name;
+                    link.innerHTML = `${fileIconSvg}<span>${file.title}</span>`;
+                    listItem.appendChild(link);
+                    fileList.appendChild(listItem);
                 });
+
+            } catch (error) {
+                loading.style.display = 'none';
+                errorDiv.textContent = `エラー: ${error.message}`;
+                errorDiv.style.display = 'block';
+                console.error('Error:', error);
+            }
         });
     </script>
 
