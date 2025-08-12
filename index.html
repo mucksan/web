@@ -3,105 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Index</title>
+    <title>Index</title>
     <style>
-        /* --- Reset & Base Styles --- */
-        :root {
-            --bg-color: #1a1a1a;
-            --card-bg-color: #2c2c2c;
-            --text-color: #e0e0e0;
-            --primary-color: #00aaff;
-            --shadow-color: rgba(0, 0, 0, 0.4);
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 2rem 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-        }
-
-        /* --- Container --- */
-        .container {
-            width: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
             max-width: 800px;
-            text-align: center;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #f9f9f9;
         }
-
-        /* --- Header --- */
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
+        h1 {
+            color: #111;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
         }
-
-        header p {
-            font-size: 1.1rem;
-            color: var(--text-color);
-            opacity: 0.8;
-            margin-top: 0;
-            margin-bottom: 3rem;
-        }
-
-        /* --- Link List --- */
-        .link-list {
+        ul {
             list-style: none;
             padding: 0;
-            margin: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
         }
-
-        .link-list li {
-            background-color: var(--card-bg-color);
-            border-radius: 12px;
-            box-shadow: 0 4px 15px var(--shadow-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        li {
+            background-color: #fff;
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease-in-out;
         }
-
-        .link-list li:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 25px var(--shadow-color);
+        li:hover {
+            transform: translateY(-2px);
         }
-
-        .link-list a {
+        a {
             display: block;
-            padding: 1.5rem;
+            padding: 1rem 1.5rem;
             text-decoration: none;
-            color: var(--text-color);
-            font-size: 1.2rem;
+            color: #0366d6;
             font-weight: 500;
-            transition: color 0.3s ease;
         }
-
-        .link-list a:hover {
-            color: var(--primary-color);
+        a:hover {
+            text-decoration: underline;
+        }
+        #loading {
+            color: #666;
+        }
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Project Index</h1>
-            <p>A collection of web pages in this project.</p>
-        </header>
+    <h1>ファイル一覧</h1>
+    <div id="loading">読み込み中...</div>
+    <ul id="file-list"></ul>
 
-        <ul class="link-list">
-            <!-- このリストに web/ ディレクトリ内のHTMLファイルへのリンクを追加してください -->
-            <li><a href="web/IDE調査Info.html" target="_blank" rel="noopener noreferrer">IDE調査Info</a></li>
-            <li><a href="web/IDE調査Web.html" target="_blank" rel="noopener noreferrer">IDE調査Web</a></li>
-            <!-- <li><a href="web/another-page.html" target="_blank" rel="noopener noreferrer">Another Page</a></li> -->
-        </ul>
-    </div>
+    <footer>
+        <p>このページはJavaScriptによって自動的に生成されています。</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // URLからGitHubのリポジトリ情報を自動的に取得
+            const owner = location.hostname.split('.')[0];
+            // pages.devのようなカスタムドメインの場合は手動で設定が必要
+            // const owner = "your-github-username"; 
+            
+            const pathParts = location.pathname.split('/').filter(p => p);
+            const repo = pathParts[0];
+            // pages.devのようなルートディレクトリにデプロイしている場合は手動で設定が必要
+            // const repo = "your-repository-name";
+            
+            // 現在のディレクトリパスを取得
+            const currentDir = pathParts.slice(1).join('/');
+
+            // GitHub APIのURLを構築
+            const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${currentDir}`;
+
+            const fileList = document.getElementById('file-list');
+            const loading = document.getElementById('loading');
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('リポジトリ情報の取得に失敗しました。');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    loading.style.display = 'none'; // 読み込みメッセージを非表示
+                    
+                    const htmlFiles = data.filter(item => 
+                        item.type === 'file' && 
+                        item.name.endsWith('.html') && 
+                        item.name !== 'index.html' // このindex.html自身は除外
+                    );
+                    
+                    if (htmlFiles.length === 0) {
+                        fileList.innerHTML = '<li>表示できるHTMLファイルがありません。</li>';
+                        return;
+                    }
+
+                    htmlFiles.forEach(file => {
+                        const listItem = document.createElement('li');
+                        const link = document.createElement('a');
+                        link.href = file.name;
+                        
+                        // .html拡張子を取り除いて表示
+                        const displayName = file.name.replace(/\.html$/, '');
+                        link.textContent = displayName;
+                        
+                        listItem.appendChild(link);
+                        fileList.appendChild(listItem);
+                    });
+                })
+                .catch(error => {
+                    loading.style.display = 'none';
+                    fileList.innerHTML = `<li>エラー: ${error.message}</li>`;
+                    console.error('Error fetching file list:', error);
+                });
+        });
+    </script>
 
 </body>
 </html>
-
