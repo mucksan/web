@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Strategic Planner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f5f5f0; /* Warm neutral background */
+            color: #333;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            height: 350px;
+        }
+        .nav-item.active {
+            border-bottom: 3px solid #d97706; /* Amber-600 */
+            color: #d97706;
+            font-weight: 700;
+        }
+        /* Custom scrollbar for table containers */
+        .table-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        .table-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .table-container::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .table-container::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+    <!-- Chosen Palette: Warm Neutrals & Academic Navy
+         Background: #f5f5f0 (Isabelline/Beige)
+         Text: #333333 (Charcoal)
+         Primary Accent: #1e3a8a (Blue-900/Navy - Trust/Academic)
+         Secondary Accent: #d97706 (Amber-600 - Highlights/Action)
+    -->
+</head>
+<body class="bg-[#f5f5f0] min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold tracking-wide">University Strategy</span>
+                    <span class="ml-4 text-xs bg-amber-600 text-white px-2 py-1 rounded hidden sm:inline-block">Budget: ¥12M Limit</span>
+                </div>
+                <nav class="flex space-x-4 overflow-x-auto">
+                    <button onclick="navigate('dashboard')" id="nav-dashboard" class="nav-item active px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap">Dashboard</button>
+                    <button onclick="navigate('finder')" id="nav-finder" class="nav-item px-3 py-2 text-sm font-medium transition-colors text-gray-300 hover:text-white whitespace-nowrap">University Finder</button>
+                    <button onclick="navigate('comparison')" id="nav-comparison" class="nav-item px-3 py-2 text-sm font-medium transition-colors text-gray-300 hover:text-white whitespace-nowrap">Comparisons</button>
+                    <button onclick="navigate('action')" id="nav-action" class="nav-item px-3 py-2 text-sm font-medium transition-colors text-gray-300 hover:text-white whitespace-nowrap">Action Plan</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+        <!-- Application Structure Plan: 
+             1. Dashboard: Immediate situational awareness. Profile summary vs. Budget. Visualizes the "Reach vs. Safe" spread.
+             2. University Finder: The core interactive tool. Allows filtering the database of universities by region and budget.
+             3. Comparisons: Deep dive into the requested "Malaysia comparison" and "Public vs. Private" cost structures.
+             4. Action Plan: Timeline for tests.
+             
+             Why this structure? The user has complex constraints (Budget + Region + Academic fit). A linear report is hard to cross-reference. 
+             A dashboard + finder approach allows the user to see "What fits my budget?" instantly, then drill down into "Is it a good school?".
+        -->
+
+        <!-- SECTION: DASHBOARD -->
+        <section id="dashboard" class="space-y-8 animate-fade-in">
+            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-amber-600">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2">Strategic Overview</h2>
+                <p class="text-slate-600">
+                    現在のプロファイル（IELTS 6.5, 数学得意）と予算（1200万円）に基づいた戦略分析です。
+                    日本の大学（自宅通学）とマレーシア、ドイツの公立大学が最も予算効率が良い選択肢となります。
+                    オランダは学費が高騰しているため、予算上限ギリギリの「チャレンジ」枠となります。
+                </p>
+            </div>
+
+            <!-- Profile & Targets Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Profile Card -->
+                <div class="card p-5">
+                    <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center">
+                        <span class="bg-blue-100 text-blue-800 p-1 rounded mr-2">👤</span> Student Profile
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li class="flex justify-between border-b pb-2">
+                            <span>School</span> <span class="font-medium">TRAILL (Diploma)</span>
+                        </li>
+                        <li class="flex justify-between border-b pb-2">
+                            <span>Strength</span> <span class="font-medium">Math (Dev ~55)</span>
+                        </li>
+                        <li class="flex justify-between border-b pb-2">
+                            <span>IELTS</span> <span class="font-medium text-amber-600">6.5 (Aim: 7.0)</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>SAT</span> <span class="font-medium text-amber-600">Not Taken (Aim: 1200+)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Budget Viz -->
+                <div class="card p-5 md:col-span-2 flex flex-col">
+                    <h3 class="text-lg font-semibold text-slate-700 mb-2 flex items-center">
+                        <span class="bg-green-100 text-green-800 p-1 rounded mr-2">💰</span> Budget Feasibility (Total 4 Years / 3 Years)
+                    </h3>
+                    <div class="flex-grow flex items-center justify-center">
+                        <div class="chart-container h-64">
+                            <canvas id="budgetChart"></canvas>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2 text-center">
+                        *1200万円の壁（赤線）を超えるエリアは奨学金必須または予算オーバー
+                    </p>
+                </div>
+            </div>
+
+            <!-- Strategy Matrix -->
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold text-slate-700 mb-4">University Portfolio Matrix</h3>
+                <p class="text-sm text-slate-500 mb-4">横軸：入学難易度・学力要件、縦軸：総費用。円の大きさは推奨度を表します。</p>
+                <div class="chart-container h-[400px]">
+                    <canvas id="matrixChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: FINDER -->
+        <section id="finder" class="hidden space-y-6">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-slate-800">University Finder</h2>
+                <p class="text-slate-600 mt-2">条件に合致する大学リストです。SAT1200、IELTS6.5-7.0を前提に選定しています。</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="bg-white p-4 rounded-lg shadow-sm grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Region</label>
+                    <select id="regionFilter" class="w-full border-gray-300 rounded border p-2 text-sm bg-gray-50" onchange="renderUniversityTable()">
+                        <option value="all">All Regions</option>
+                        <option value="Japan">Japan (Domestic)</option>
+                        <option value="Malaysia">Malaysia</option>
+                        <option value="Europe">Europe (Germany/NL/Nordic)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Budget Fit</label>
+                    <select id="budgetFilter" class="w-full border-gray-300 rounded border p-2 text-sm bg-gray-50" onchange="renderUniversityTable()">
+                        <option value="all">Any Budget</option>
+                        <option value="safe">Within 10M (Safe)</option>
+                        <option value="target">10M - 12M (Target)</option>
+                        <option value="reach">Over 12M (Requires Scholarship)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Academic Level</label>
+                    <select id="levelFilter" class="w-full border-gray-300 rounded border p-2 text-sm bg-gray-50" onchange="renderUniversityTable()">
+                        <option value="all">All Levels</option>
+                        <option value="Safety">Safety (Likely)</option>
+                        <option value="Target">Target (Match)</option>
+                        <option value="Challenge">Challenge (Reach)</option>
+                    </select>
+                </div>
+                <div class="flex items-end">
+                    <button onclick="resetFilters()" class="w-full bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium py-2 px-4 rounded transition-colors text-sm">
+                        Reset Filters
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Table -->
+            <div class="card overflow-hidden">
+                <div class="table-container overflow-x-auto">
+                    <table class="min-w-full text-sm text-left text-gray-600">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-100 sticky top-0">
+                            <tr>
+                                <th class="px-6 py-3">University / Program</th>
+                                <th class="px-6 py-3">Country</th>
+                                <th class="px-6 py-3 text-right">Est. Total Cost (¥)</th>
+                                <th class="px-6 py-3 text-center">Duration</th>
+                                <th class="px-6 py-3">Requirements (Est.)</th>
+                                <th class="px-6 py-3 text-center">Verdict</th>
+                            </tr>
+                        </thead>
+                        <tbody id="uniTableBody" class="divide-y divide-gray-200">
+                            <!-- JS will populate this -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="p-4 bg-gray-50 text-xs text-gray-500 text-center border-t">
+                    * Costs are estimates including Tuition + Living (Rent/Food). Exchange rates fluctuate.
+                    <br>Japan costs assume "Home Commuting" for Tokyo, "Living Alone" for others.
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: COMPARISON -->
+        <section id="comparison" class="hidden space-y-8">
+            <h2 class="text-2xl font-bold text-slate-800">Deep Dive Analysis</h2>
+
+            <!-- Malaysia Comparison -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="card p-6">
+                    <h3 class="text-xl font-bold text-indigo-900 mb-4 border-b pb-2">Malaysia: Monash vs. Nottingham</h3>
+                    <p class="text-sm text-gray-600 mb-4">
+                        マレーシアにある英国・豪州の名門大学分校は、3年間で本校と同じ学位が取得でき、学費・生活費も予算内に収まる「ベスト・バリュー」な選択肢です。
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-blue-900">Monash University Malaysia 🇲🇾🇦🇺</h4>
+                            <div class="grid grid-cols-2 gap-2 text-sm mt-2">
+                                <div class="text-gray-500">Focus:</div>
+                                <div class="font-medium">Business / Commerce</div>
+                                <div class="text-gray-500">Strengths:</div>
+                                <div class="font-medium">知名度(世界ランク高い), クアラルンプール近郊(都会)</div>
+                                <div class="text-gray-500">Cost:</div>
+                                <div class="font-medium">Tuition ~140万円/年</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-green-900">University of Nottingham Malaysia 🇲🇾🇬🇧</h4>
+                            <div class="grid grid-cols-2 gap-2 text-sm mt-2">
+                                <div class="text-gray-500">Focus:</div>
+                                <div class="font-medium">Economics (BSc)</div>
+                                <div class="text-gray-500">Strengths:</div>
+                                <div class="font-medium">キャンパスが広大, 経済学に強い, 英国式教育</div>
+                                <div class="text-gray-500">Cost:</div>
+                                <div class="font-medium">Tuition ~120万円/年</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EU Comparison -->
+                <div class="card p-6">
+                    <h3 class="text-xl font-bold text-indigo-900 mb-4 border-b pb-2">Europe: Public vs. Cost Reality</h3>
+                    <p class="text-sm text-gray-600 mb-4">
+                        「学費無料」のイメージが強い欧州ですが、英語プログラムや非EU学生への課金により状況は複雑です。
+                    </p>
+                    <div class="chart-container h-64 mb-4">
+                        <canvas id="euCostChart"></canvas>
+                    </div>
+                    <ul class="text-sm space-y-2 text-gray-700">
+                        <li><span class="font-bold text-red-600">Netherlands 🇳🇱:</span> 非EU学生の学費が高騰 (約160-200万円/年)。生活費も高く、3年総額で1200万円ギリギリか超過のリスクあり。</li>
+                        <li><span class="font-bold text-emerald-600">Germany 🇩🇪:</span> 公立は学費ほぼ無料。生活費のみで済むため総額600万円程度。ただし、英語で学べる経済学部は少なく、入学要件（科目履修歴）が非常に厳格。</li>
+                        <li><span class="font-bold text-blue-600">Nordics 🇸🇪🇫🇮:</span> 非EU学生への学費導入済み。オランダに近いコスト構造。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: ACTION -->
+        <section id="action" class="hidden space-y-6">
+            <h2 class="text-2xl font-bold text-slate-800">Action Plan & Milestones</h2>
+            
+            <div class="card p-8">
+                <div class="relative border-l-4 border-amber-500 ml-3 space-y-10">
+                    <!-- Item 1 -->
+                    <div class="relative pl-8">
+                        <div class="absolute -left-3 top-0 bg-amber-500 h-6 w-6 rounded-full border-4 border-white"></div>
+                        <h4 class="text-lg font-bold text-slate-800">Immediate: SAT & IELTS Prep</h4>
+                        <p class="text-sm text-gray-600 mt-1">
+                            日本の英語学位や欧州・マレーシアの名門を目指すには、<span class="font-bold text-indigo-600">SAT 1200点以上</span>が「パスポート」になります。IELTSは6.5を維持しつつ、Reading/Writingのスコアを安定させてください。
+                        </p>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="relative pl-8">
+                        <div class="absolute -left-3 top-0 bg-slate-300 h-6 w-6 rounded-full border-4 border-white"></div>
+                        <h4 class="text-lg font-bold text-slate-800">Spring: Research & Pre-Check</h4>
+                        <p class="text-sm text-gray-600 mt-1">
+                            ドイツの大学（uni-assist）やオランダの大学へ、現在のDiplomaで出願資格があるか事前問い合わせを推奨します。TRAILLのDiplomaが各国の「大学入学資格」として認められるかの確認が最重要です。
+                        </p>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="relative pl-8">
+                        <div class="absolute -left-3 top-0 bg-slate-300 h-6 w-6 rounded-full border-4 border-white"></div>
+                        <h4 class="text-lg font-bold text-slate-800">Autumn: Application Season Starts</h4>
+                        <p class="text-sm text-gray-600 mt-1">
+                            イギリス・米国・マレーシアの一部は出願が始まります。日本の9月入学プログラム（SILSなど）の出願時期も確認。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-indigo-50 p-6 rounded-lg text-center">
+                <h3 class="text-lg font-bold text-indigo-900">Next Step</h3>
+                <p class="text-gray-700 mt-2 mb-4">
+                    SATの受験予約を行い、模擬試験を受けて現在の実力を把握しましょう。<br>
+                    また、数学の成績（GPA）を維持することが、経済学部出願において強い武器になります。
+                </p>
+                <button onclick="navigate('finder')" class="bg-indigo-600 text-white px-6 py-2 rounded-full hover:bg-indigo-700 transition shadow-md">
+                    Explore Universities
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-100 border-t mt-auto py-6">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-gray-500">
+            <p>Generated for Research Purposes. Data estimates based on 2024-2025 figures.</p>
+            <p>Exchange rates applied: 1 EUR = 160 JPY, 1 MYR = 34 JPY.</p>
+        </div>
+    </footer>
+
+    <!-- Data & Logic -->
+    <script>
+        // --- 1. DATA REPOSITORY ---
+        // Estimates:
+        // Japan: Tuition ~1.5M (Private) / ~0.8M (Public). Living: 0 (Home) / 1.5M (Rent). 4 Years.
+        // Malaysia: Tuition ~1.3M. Living ~0.8M. 3 Years.
+        // Germany: Tuition ~0.1M (Fees). Living ~1.8M. 3 Years.
+        // Netherlands: Tuition ~2.0M (Non-EU). Living ~2.0M. 3 Years.
+        
+        const universities = [
+            // JAPAN (Assumed Living = 0 for Kanto/Home, 1.5M for others)
+            { 
+                name: "Waseda Univ (SILS/PSE)", region: "Japan", country: "JP", 
+                years: 4, tuitionYr: 1.6, livingYr: 0, 
+                sat: 1300, ielts: 7.0, math: "High", 
+                level: "Challenge", note: "Top Tier Private. Commute from home.",
+                link: "Tokyo"
+            },
+            { 
+                name: "Sophia Univ (FLA/SPSF)", region: "Japan", country: "JP", 
+                years: 4, tuitionYr: 1.5, livingYr: 0, 
+                sat: 1250, ielts: 6.5, math: "Med", 
+                level: "Target", note: "Strong Brand. Commute from home.",
+                link: "Tokyo"
+            },
+            { 
+                name: "ICU", region: "Japan", country: "JP", 
+                years: 4, tuitionYr: 1.4, livingYr: 0, 
+                sat: 1280, ielts: 7.0, math: "Med", 
+                level: "Challenge", note: "Liberal Arts. High English req.",
+                link: "Tokyo"
+            },
+            { 
+                name: "Yokohama National (YCCS)", region: "Japan", country: "JP", 
+                years: 4, tuitionYr: 0.85, livingYr: 0, 
+                sat: 1250, ielts: 6.5, math: "High", 
+                level: "Target", note: "National Univ. Cheap. English program.",
+                link: "Yokohama"
+            },
+            { 
+                name: "Ritsumeikan (GLA/ISSE)", region: "Japan", country: "JP", 
+                years: 4, tuitionYr: 2.2, livingYr: 1.2, 
+                sat: 1150, ielts: 6.0, math: "Med", 
+                level: "Safety", note: "Osaka/Kyoto. Living cost applies.",
+                link: "Kansai"
+            },
+            { 
+                name: "Hosei Univ (GBP/SCOPE)", region: "Japan", country: "JP", 
+                years: 4, tuitionYr: 1.3, livingYr: 0, 
+                sat: 1100, ielts: 6.0, math: "Med", 
+                level: "Safety", note: "MARCH. Commute from home.",
+                link: "Tokyo"
+            },
+            { 
+                name: "Akita Int'l Univ (AIU)", region: "Japan", country: "JP", 
+                years: 4, tuitionYr: 0.7, livingYr: 1.0, 
+                sat: 1200, ielts: 6.5, math: "Med", 
+                level: "Target", note: "Public. Remote location but top quality.",
+                link: "Akita"
+            },
+
+            // MALAYSIA (3 Years usually)
+            { 
+                name: "Monash Malaysia", region: "Malaysia", country: "MY", 
+                years: 3, tuitionYr: 1.5, livingYr: 0.9, 
+                sat: 1150, ielts: 6.5, math: "Med", 
+                level: "Target", note: "Top 50 World Rank (Aus). Urban campus.",
+                link: "KL"
+            },
+            { 
+                name: "Nottingham Malaysia", region: "Malaysia", country: "MY", 
+                years: 3, tuitionYr: 1.2, livingYr: 0.8, 
+                sat: 1150, ielts: 6.0, math: "Med", 
+                level: "Safety", note: "UK Degree. Campus life. Affordable.",
+                link: "Semenyih"
+            },
+
+            // EUROPE (3 Years usually)
+            { 
+                name: "Public Univ (Rhine-Waal)", region: "Europe", country: "DE", 
+                years: 3, tuitionYr: 0.1, livingYr: 1.8, 
+                sat: 0, ielts: 6.0, math: "High", 
+                level: "Target", note: "Cheap. Need specific HS courses.",
+                link: "Germany"
+            },
+            { 
+                name: "Erasmus Univ Rotterdam", region: "Europe", country: "NL", 
+                years: 3, tuitionYr: 1.8, livingYr: 2.0, 
+                sat: 1300, ielts: 7.0, math: "Very High", 
+                level: "Challenge", note: "Top Econ school. Expensive Non-EU tuition.",
+                link: "Netherlands"
+            },
+            { 
+                name: "Maastricht University", region: "Europe", country: "NL", 
+                years: 3, tuitionYr: 1.6, livingYr: 1.8, 
+                sat: 1250, ielts: 6.5, math: "High", 
+                level: "Target", note: "PBL method. Expensive.",
+                link: "Netherlands"
+            },
+            { 
+                name: "Lund University", region: "Europe", country: "SE", 
+                years: 3, tuitionYr: 1.7, livingYr: 1.8, 
+                sat: 1250, ielts: 6.5, math: "High", 
+                level: "Target", note: "Sweden. Tuition for Non-EU.",
+                link: "Sweden"
+            }
+        ];
+
+        // Process data to calculate Total Cost
+        universities.forEach(uni => {
+            uni.totalCost = Math.round((uni.tuitionYr + uni.livingYr) * uni.years * 10) / 10;
+        });
+
+        // --- 2. STATE & NAV ---
+        let currentRegion = 'all';
+        let currentBudget = 'all';
+        let currentLevel = 'all';
+
+        function navigate(sectionId) {
+            // Update UI
+            document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active', 'text-amber-600', 'border-b-2'));
+            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.add('text-gray-300'));
+            
+            const activeBtn = document.getElementById(`nav-${sectionId}`);
+            activeBtn.classList.add('active');
+            activeBtn.classList.remove('text-gray-300');
+
+            // Trigger charts if first load
+            if (sectionId === 'dashboard') {
+                updateDashboardCharts();
+            } else if (sectionId === 'finder') {
+                renderUniversityTable();
+            } else if (sectionId === 'comparison') {
+                renderEUChart();
+            }
+        }
+
+        // --- 3. CHARTS (CHART.JS) ---
+        
+        let budgetChartInstance = null;
+        let matrixChartInstance = null;
+        let euChartInstance = null;
+
+        function updateDashboardCharts() {
+            if (budgetChartInstance) return; // Already rendered
+
+            // Chart 1: Budget Breakdown
+            const ctxBudget = document.getElementById('budgetChart').getContext('2d');
+            budgetChartInstance = new Chart(ctxBudget, {
+                type: 'bar',
+                data: {
+                    labels: ['JP Private (Home)', 'JP National (Home)', 'Malaysia (Monash)', 'Germany (Public)', 'Netherlands (Non-EU)'],
+                    datasets: [
+                        {
+                            label: 'Tuition Total',
+                            data: [1.6*4, 0.85*4, 1.5*3, 0.1*3, 1.8*3],
+                            backgroundColor: '#1e3a8a', // Navy
+                        },
+                        {
+                            label: 'Living Total',
+                            data: [0, 0, 0.9*3, 1.8*3, 2.0*3],
+                            backgroundColor: '#d97706', // Amber
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { stacked: true },
+                        y: { 
+                            stacked: true,
+                            title: { display: true, text: 'Total Cost (Million JPY)' },
+                            max: 16,
+                            grid: { color: '#e2e8f0' }
+                        }
+                    },
+                    plugins: {
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    yMin: 12,
+                                    yMax: 12,
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    borderWidth: 2,
+                                    label: { content: '12M Limit', enabled: true }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Chart 2: Matrix (Cost vs Difficulty)
+            const ctxMatrix = document.getElementById('matrixChart').getContext('2d');
+            
+            const scatterData = universities.map(uni => ({
+                x: uni.sat === 0 ? 1000 : uni.sat, // 0 for DE implies weird scale, map to low for viz
+                y: uni.totalCost,
+                r: uni.level === 'Target' ? 12 : 8,
+                uniName: uni.name,
+                country: uni.country
+            }));
+
+            matrixChartInstance = new Chart(ctxMatrix, {
+                type: 'bubble',
+                data: {
+                    datasets: [{
+                        label: 'Universities',
+                        data: scatterData,
+                        backgroundColor: (ctx) => {
+                            const val = ctx.raw?.y;
+                            if (val > 12) return 'rgba(239, 68, 68, 0.7)'; // Red (Over budget)
+                            if (val < 7) return 'rgba(16, 185, 129, 0.7)'; // Green (Cheap)
+                            return 'rgba(59, 130, 246, 0.7)'; // Blue (Ok)
+                        }
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.raw.uniName} (${context.raw.country}): ¥${context.raw.y}M, SAT~${context.raw.x}`;
+                                }
+                            }
+                        },
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'SAT / Academic Difficulty Score' },
+                            min: 1000,
+                            max: 1400
+                        },
+                        y: {
+                            title: { display: true, text: 'Total Cost (Million JPY)' },
+                            min: 0,
+                            max: 15
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderEUChart() {
+            if (euChartInstance) return;
+            const ctxEU = document.getElementById('euCostChart').getContext('2d');
+            euChartInstance = new Chart(ctxEU, {
+                type: 'bar',
+                data: {
+                    labels: ['Tuition (Yearly)', 'Living (Yearly)', '3-Year Total'],
+                    datasets: [
+                        {
+                            label: 'Germany (Public)',
+                            data: [0.1, 1.8, 5.7],
+                            backgroundColor: '#10b981',
+                            borderColor: '#047857',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Netherlands (Research Uni)',
+                            data: [1.8, 2.0, 11.4],
+                            backgroundColor: '#ef4444',
+                            borderColor: '#b91c1c',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Japan Private (Home)',
+                            data: [1.5, 0.2, 6.8], // 4 years normally, normalized here for yearly comp
+                            backgroundColor: '#3b82f6',
+                            borderColor: '#1d4ed8',
+                            borderWidth: 1,
+                            hidden: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Cost Structure Comparison (Million JPY)' }
+                    }
+                }
+            });
+        }
+
+        // --- 4. TABLE LOGIC ---
+        function renderUniversityTable() {
+            const tbody = document.getElementById('uniTableBody');
+            tbody.innerHTML = '';
+
+            const region = document.getElementById('regionFilter').value;
+            const budget = document.getElementById('budgetFilter').value;
+            const level = document.getElementById('levelFilter').value;
+
+            const filtered = universities.filter(uni => {
+                const rMatch = region === 'all' || (region === 'Europe' ? ['DE','NL','SE'].includes(uni.country) : uni.region === region);
+                
+                let bMatch = true;
+                if (budget === 'safe') bMatch = uni.totalCost <= 10;
+                if (budget === 'target') bMatch = uni.totalCost > 10 && uni.totalCost <= 12;
+                if (budget === 'reach') bMatch = uni.totalCost > 12;
+
+                const lMatch = level === 'all' || uni.level === level;
+
+                return rMatch && bMatch && lMatch;
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="px-6 py-4 text-center text-gray-500">No universities match these filters.</td></tr>';
+                return;
+            }
+
+            filtered.sort((a,b) => a.totalCost - b.totalCost);
+
+            filtered.forEach(uni => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-gray-50 transition-colors border-b';
+                
+                // Color code verdict
+                let verdictColor = 'bg-gray-100 text-gray-800';
+                if (uni.level === 'Safety') verdictColor = 'bg-green-100 text-green-800';
+                if (uni.level === 'Target') verdictColor = 'bg-blue-100 text-blue-800';
+                if (uni.level === 'Challenge') verdictColor = 'bg-orange-100 text-orange-800';
+
+                // Cost formatting
+                const costClass = uni.totalCost > 12 ? 'text-red-600 font-bold' : 'text-gray-900';
+
+                tr.innerHTML = `
+                    <td class="px-6 py-4 font-medium text-gray-900">
+                        ${uni.name}
+                        <div class="text-xs text-gray-500 font-normal">${uni.note}</div>
+                    </td>
+                    <td class="px-6 py-4 flex items-center">
+                        <span class="mr-2">${getFlag(uni.country)}</span> ${uni.country}
+                    </td>
+                    <td class="px-6 py-4 text-right ${costClass}">
+                        ¥${uni.totalCost.toFixed(1)}M
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        ${uni.years} Yrs
+                    </td>
+                    <td class="px-6 py-4 text-xs">
+                        <div class="font-semibold">SAT: ${uni.sat > 0 ? uni.sat : 'N/A'}</div>
+                        <div>IELTS: ${uni.ielts}</div>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        <span class="${verdictColor} px-2 py-1 rounded-full text-xs font-semibold">${uni.level}</span>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function getFlag(code) {
+            const flags = { 'JP': '🇯🇵', 'MY': '🇲🇾', 'DE': '🇩🇪', 'NL': '🇳🇱', 'SE': '🇸🇪' };
+            return flags[code] || '🌐';
+        }
+
+        function resetFilters() {
+            document.getElementById('regionFilter').value = 'all';
+            document.getElementById('budgetFilter').value = 'all';
+            document.getElementById('levelFilter').value = 'all';
+            renderUniversityTable();
+        }
+
+        // Initialize Dashboard
+        window.onload = function() {
+            updateDashboardCharts();
+            renderUniversityTable(); // Pre-load table data in background
+        };
+
+    </script>
+    
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- Visualization & Content Choices: 
+         - Dashboard Matrix: Bubble chart to show 3 dimensions (Cost, Difficulty, Recommendation) efficiently.
+         - Budget Chart: Stacked Bar to clearly differentiate "Tuition" vs "Living", helping user see where the money goes (Japan = Tuition heavy, Germany = Living heavy).
+         - Table: Simple, filterable HTML table for the detailed list. No complex grid libraries needed.
+         - Comparisons: Side-by-side flex cards for Monash vs Nottingham.
+    -->
+</body>
+</html>
