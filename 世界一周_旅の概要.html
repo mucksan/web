@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WORLD TOUR 2026 — 世界一周の旅 計画概要＆タイムチャート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #090d16;
+    --card-bg: #111827;
+    --card-border: #1f2937;
+    --card-hover: #1e293b;
+    --text: #f3f4f6;
+    --text-muted: #9ca3af;
+    --text-dim: #6b7280;
+    --gold: #f59e0b;
+    --gold-light: #fbbf24;
+    --gold-dim: rgba(245, 158, 11, 0.12);
+    --cyan: #06b6d4;
+    --cyan-dim: rgba(6, 182, 212, 0.12);
+    --blue: #3b82f6;
+    --blue-dim: rgba(59, 130, 246, 0.12);
+    --emerald: #10b981;
+    --emerald-dim: rgba(16, 185, 129, 0.12);
+    --purple: #a855f7;
+    --purple-dim: rgba(168, 85, 247, 0.12);
+    --radius: 12px;
+    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans JP', 'Outfit', -apple-system, sans-serif;
+    line-height: 1.65;
+    padding-bottom: 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Hero Section */
+  .hero {
+    position: relative;
+    background: radial-gradient(circle at 50% 20%, #1e293b 0%, #090d16 80%);
+    border-bottom: 1px solid var(--card-border);
+    padding: 60px 0 50px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+      radial-gradient(rgba(245, 158, 11, 0.08) 1px, transparent 1px),
+      radial-gradient(rgba(59, 130, 246, 0.08) 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-position: 0 0, 16px 16px;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    color: var(--gold-light);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: 'Outfit', 'Cinzel', sans-serif;
+    font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.25;
+    color: #ffffff;
+    margin-bottom: 12px;
+  }
+  .hero h1 span.highlight {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p.lead {
+    font-size: clamp(15px, 2vw, 17px);
+    color: #cbd5e1;
+    max-width: 720px;
+    margin: 0 auto 32px;
+  }
+
+  /* Metric KPI Cards */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+    text-align: left;
+  }
+  .metric-card {
+    background: rgba(17, 24, 39, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .metric-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(245, 158, 11, 0.4);
+  }
+  .metric-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .metric-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    font-weight: 700;
+  }
+  .metric-value {
+    font-family: 'Outfit', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-top: 2px;
+  }
+  .metric-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* Section Title */
+  .section-header {
+    text-align: center;
+    margin: 56px 0 32px;
+  }
+  .section-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 800;
+    color: #ffffff;
+  }
+  .section-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 8px auto 0;
+  }
+
+  /* Highlights Cards */
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .highlight-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+  .highlight-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--card-accent, var(--blue));
+  }
+  .highlight-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.15);
+    background: var(--card-hover);
+  }
+  .hl-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .hl-emoji {
+    font-size: 28px;
+    line-height: 1;
+  }
+  .hl-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .hl-place {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .hl-body {
+    font-size: 13.5px;
+    color: #cbd5e1;
+    line-height: 1.6;
+  }
+  .hl-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .hl-tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #cbd5e1;
+  }
+
+  /* Stage Visual Flow */
+  .stages-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .stage-bar {
+    display: grid;
+    grid-template-columns: 140px 1fr auto;
+    align-items: center;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    gap: 16px;
+    transition: all 0.2s;
+  }
+  .stage-bar:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: var(--card-hover);
+  }
+  .stage-meta {
+    font-family: 'Outfit', sans-serif;
+  }
+  .stage-num {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .stage-dates {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .stage-content h4 {
+    font-size: 15px;
+    color: #ffffff;
+    margin-bottom: 3px;
+  }
+  .stage-route {
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+  .stage-badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  /* Interactive Filter for Timeline */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 24px 0 28px;
+  }
+  .filter-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-muted);
+    padding: 8px 16px;
+    border-radius: 9999px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .filter-btn:hover {
+    color: #ffffff;
+    border-color: #4b5563;
+  }
+  .filter-btn.active {
+    background: var(--gold);
+    color: #000000;
+    border-color: var(--gold);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.35);
+  }
+
+  /* Simplified Timeline */
+  .timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .tl-row {
+    display: grid;
+    grid-template-columns: 100px 160px 1fr 180px;
+    align-items: center;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 12px 18px;
+    gap: 16px;
+    font-size: 13.5px;
+    transition: all 0.15s;
+  }
+  .tl-row:hover {
+    background: var(--card-hover);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  .tl-row.flight-row {
+    border-left: 3px solid var(--cyan);
+  }
+  .tl-row.special-row {
+    border-left: 3px solid var(--gold);
+    background: rgba(245, 158, 11, 0.04);
+  }
+  .tl-row.goal-row {
+    border: 2px solid var(--emerald);
+    background: rgba(16, 185, 129, 0.08);
+  }
+  .tl-date {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 14px;
+  }
+  .tl-date .weekday {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-left: 4px;
+  }
+  .tl-loc {
+    font-weight: 700;
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tl-main {
+    color: #cbd5e1;
+  }
+  .tl-main strong {
+    color: #ffffff;
+  }
+  .tl-flight {
+    font-family: 'Outfit', monospace;
+    font-size: 12px;
+    color: var(--cyan);
+    background: var(--cyan-dim);
+    padding: 4px 8px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 600;
+    border: 1px solid rgba(6, 182, 212, 0.2);
+  }
+
+  /* Flights Table */
+  .flight-table-wrapper {
+    overflow-x: auto;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    margin-top: 24px;
+  }
+  table.flight-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    text-align: left;
+  }
+  table.flight-table th {
+    background: #1e293b;
+    color: #94a3b8;
+    padding: 12px 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 11px;
+    border-bottom: 1px solid var(--card-border);
+  }
+  table.flight-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(31, 41, 55, 0.7);
+    color: #cbd5e1;
+  }
+  table.flight-table tr:last-child td {
+    border-bottom: none;
+  }
+  table.flight-table tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .flight-code {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    color: #ffffff;
+  }
+  .airline-name {
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .cabin-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+
+  /* Summary Footnote */
+  .footer-note {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--card-border);
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 860px) {
+    .tl-row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+      padding: 14px;
+    }
+    .stage-bar {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- HERO HEADER -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-tag">
+        <span>✈️ World Tour 2026</span>
+        <span>•</span>
+        <span>Eastbound Odyssey</span>
+      </div>
+      <h1>世界一周の旅 2026 <span class="highlight">計画概要＆タイムチャート</span></h1>
+      <p class="lead">
+        東京・成田を出発し、北米・中南米・イベリア・地中海・中東・東アフリカを経てバンコクへ。<br>
+        地球を東回りに駆け巡る、5大陸・10カ国・全36日間の壮大な冒険旅行プランです。
+      </p>
+
+      <!-- KEY METRICS -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon">🗓️</div>
+          <div class="metric-title">旅行期間</div>
+          <div class="metric-value">36 Days</div>
+          <div class="metric-sub">2026/10/28(水) 〜 12/02(水)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">🌍</div>
+          <div class="metric-title">訪問国数</div>
+          <div class="metric-value">10 Countries</div>
+          <div class="metric-sub">5大陸（北米・南米・欧州・中東・アフリカ）</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">🛫</div>
+          <div class="metric-title">総飛行距離</div>
+          <div class="metric-value">31,308 Miles</div>
+          <div class="metric-sub">地球約1.25周分・全13フライト</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">💺</div>
+          <div class="metric-title">搭乗クラス</div>
+          <div class="metric-value">Business Class</div>
+          <div class="metric-sub">スターアライアンス世界一周航空券</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- HIGHLIGHTS SECTION -->
+    <section>
+      <div class="section-header">
+        <div class="section-badge">Journey Highlights</div>
+        <h2 class="section-title">この旅の7大テーマ＆見どころ</h2>
+        <p class="section-desc">世界各地の歴史的遺産、地球の絶景、美食、そして本場のスポーツ熱気を凝縮した珠玉のハイライト。</p>
+      </div>
+
+      <div class="highlights-grid">
+        <!-- HL 1 -->
+        <div class="highlight-card" style="--card-accent: #f59e0b;">
+          <div class="hl-header">
+            <div class="hl-emoji">🏛️</div>
+            <div>
+              <div class="hl-title">空中都市マチュピチュ＆インカ帝国</div>
+              <div class="hl-place">🇵🇪 ペルー（クスコ・マチュピチュ村）</div>
+            </div>
+          </div>
+          <div class="hl-body">
+            アンデス山脈の霧深き峰にそびえるインカの失われた空中都市マチュピチュ。展望列車ペルーレイルに乗車し、石造建築の奇跡と聖なる谷を体感します。
+          </div>
+          <div class="hl-tags">
+            <span class="hl-tag">世界遺産</span>
+            <span class="hl-tag">展望パノラマ列車</span>
+            <span class="hl-tag">インカ文明</span>
+          </div>
+        </div>
+
+        <!-- HL 2 -->
+        <div class="highlight-card" style="--card-accent: #06b6d4;">
+          <div class="hl-header">
+            <div class="hl-emoji">🌊</div>
+            <div>
+              <div class="hl-title">世界最大の瀑布 イグアスの滝</div>
+              <div class="hl-place">🇧🇷 ブラジル / 🇦🇷 アルゼンチン国境</div>
+            </div>
+          </div>
+          <div class="hl-body">
+            ナイアガラを遥かに凌ぐ世界最大の瀑布群。「悪魔の喉笛」展望遊歩道、豪快に滝壺へ突入するスピードボート、空からのヘリコプター遊覧で大自然の轟音に包まれます。
+          </div>
+          <div class="hl-tags">
+            <span class="hl-tag">世界三大瀑布</span>
+            <span class="hl-tag">悪魔の喉笛</span>
+            <span class="hl-tag">ボート冒険</span>
+          </div>
+        </div>
+
+        <!-- HL 3 -->
+        <div class="highlight-card" style="--card-accent: #a855f7;">
+          <div class="hl-header">
+            <div class="hl-emoji">🎈</div>
+            <div>
+              <div class="hl-title">カッパドキアの奇岩群＆熱気球フライト</div>
+              <div class="hl-place">🇹🇷 トルコ（ギョレメ）</div>
+            </div>
+          </div>
+          <div class="hl-body">
+            朝焼けの空に無数の気球が舞い上がる奇跡の絶景。数千年にわたる火山灰と風化が生んだ奇岩地帯を熱気球から見下ろし、本物の洞窟ホテルに滞在します。
+          </div>
+          <div class="hl-tags">
+            <span class="hl-tag">気球フライト</span>
+            <span class="hl-tag">洞窟ホテル</span>
+            <span class="hl-tag">地下都市</span>
+          </div>
+        </div>
+
+        <!-- HL 4 -->
+        <div class="highlight-card" style="--card-accent: #eab308;">
+          <div class="hl-header">
+            <div class="hl-emoji">🔺</div>
+            <div>
+              <div class="hl-title">古代エジプト ギザの三大ピラミッド</div>
+              <div class="hl-place">🇪🇬 エジプト（カイロ・ギザ）</div>
+            </div>
+          </div>
+          <div class="hl-body">
+            古代世界の七不思議で唯一現存するクフ王の大ピラミッド（内部見学）、堂々たるスフィンクス、そして最新の大エジプト博物館（GEM）でツタンカーメンの秘宝を堪能。
+          </div>
+          <div class="hl-tags">
+            <span class="hl-tag">クフ王ピラミッド内部</span>
+            <span class="hl-tag">スフィンクス</span>
+            <span class="hl-tag">GEM大エジプト博物館</span>
+          </div>
+        </div>
+
+        <!-- HL 5 -->
+        <div class="highlight-card" style="--card-accent: #10b981;">
+          <div class="hl-header">
+            <div class="hl-emoji">🦁</div>
+            <div>
+              <div class="hl-title">アンボセリ国立公園 野生動物サファリ</div>
+              <div class="hl-place">🇰🇪 ケニア（アンボセリ）</div>
+            </div>
+          </div>
+          <div class="hl-body">
+            名峰キリマンジャロ山を背景に、ゾウの大群、キリン、ライオンなどの野生動物が闊歩するアフリカの真髄。本格的なサファリロッジに連泊してゲームドライブを敢行。
+          </div>
+          <div class="hl-tags">
+            <span class="hl-tag">キリマンジャロ展望</span>
+            <span class="hl-tag">象の大群</span>
+            <span class="hl-tag">専用4x4サファリ</span>
+          </div>
+        </div>
+
+        <!-- HL 6 -->
+        <div class="highlight-card" style="--card-accent: #3b82f6;">
+          <div class="hl-header">
+            <div class="hl-emoji">🎨</div>
+            <div>
+              <div class="hl-title">欧州の芸術・建築＆本場サッカー熱戦</div>
+              <div class="hl-place">🇪🇸 スペイン / 🇮🇹 イタリア / 🇬🇷 ギリシャ</div>
+            </div>
+          </div>
+          <div class="hl-body">
+            サグラダ・ファミリア（バルセロナ）、プラド美術館（マドリード）、コロッセオとトスカーナのワイナリー（ローマ）、パルテノン神殿（アテネ）に加え、ラ・リーガまたはUEFAチャンピオンズリーグの熱狂を生観戦。
+          </div>
+          <div class="hl-tags">
+            <span class="hl-tag">ガウディ建築</span>
+            <span class="hl-tag">トスカーナワイン</span>
+            <span class="hl-tag">サッカー観戦</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROUTE PHASES SECTION -->
+    <section>
+      <div class="section-header">
+        <div class="section-badge">Route & Itinerary</div>
+        <h2 class="section-title">全5ステージの旅路</h2>
+        <p class="section-desc">日付変更線を越えて大西洋、地中海、インド洋へと東回りに地球を一周する航路です。</p>
+      </div>
+
+      <div class="stages-flow">
+        <div class="stage-bar">
+          <div class="stage-meta">
+            <div class="stage-num">Stage 1</div>
+            <div class="stage-dates">10/28 - 11/08</div>
+          </div>
+          <div class="stage-content">
+            <h4>北米＆中南米大陸の驚異</h4>
+            <div class="stage-route">東京/成田 ➔ サンフランシスコ ➔ メキシコシティ ➔ リマ ➔ マチュピチュ ➔ イグアスの滝 ➔ サンパウロ</div>
+          </div>
+          <div class="stage-badge" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa;">12 Days</div>
+        </div>
+
+        <div class="stage-bar">
+          <div class="stage-meta">
+            <div class="stage-num">Stage 2</div>
+            <div class="stage-dates">11/09 - 11/15</div>
+          </div>
+          <div class="stage-content">
+            <h4>大西洋横断＆イベリア半島</h4>
+            <div class="stage-route">サンパウロ ➔（大西洋横断夜行便）➔ リスボン（シントラ・ロカ岬）➔ バルセロナ ➔ マドリード</div>
+          </div>
+          <div class="stage-badge" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24;">7 Days</div>
+        </div>
+
+        <div class="stage-bar">
+          <div class="stage-meta">
+            <div class="stage-num">Stage 3</div>
+            <div class="stage-dates">11/16 - 11/20</div>
+          </div>
+          <div class="stage-content">
+            <h4>古代ローマ＆ギリシャ文明</h4>
+            <div class="stage-route">バルセロナ ➔ ローマ（トスカーナワイナリー巡り）➔ アテネ（アクロポリス・パルテノン神殿）</div>
+          </div>
+          <div class="stage-badge" style="background: rgba(168, 85, 247, 0.15); color: #c084fc;">5 Days</div>
+        </div>
+
+        <div class="stage-bar">
+          <div class="stage-meta">
+            <div class="stage-num">Stage 4</div>
+            <div class="stage-dates">11/21 - 11/27</div>
+          </div>
+          <div class="stage-content">
+            <h4>オリエントの神秘＆ギザのピラミッド</h4>
+            <div class="stage-route">アテネ ➔ カッパドキア（奇岩＆熱気球）➔ イスタンブール（UCL観戦）➔ カイロ（三大ピラミッド）</div>
+          </div>
+          <div class="stage-badge" style="background: rgba(234, 179, 8, 0.15); color: #facc15;">7 Days</div>
+        </div>
+
+        <div class="stage-bar">
+          <div class="stage-meta">
+            <div class="stage-num">Stage 5</div>
+            <div class="stage-dates">11/28 - 12/02</div>
+          </div>
+          <div class="stage-content">
+            <h4>東アフリカ野生のサファリ＆帰還</h4>
+            <div class="stage-route">カイロ ➔ ナイロビ ➔ アンボセリ国立公園（サファリ）➔ アディスアベバ経由 ➔ バンコク帰着！</div>
+          </div>
+          <div class="stage-badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">5 Days</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIMPLIFIED TIME CHART -->
+    <section>
+      <div class="section-header">
+        <div class="section-badge">Time Chart</div>
+        <h2 class="section-title">簡易タイムチャート（日程表）</h2>
+        <p class="section-desc">いつ、どの国・都市に滞在し、どのようなフライトで移動するかの全日程一覧です。</p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterTimeline('all')">全日程 (36日間)</button>
+        <button class="filter-btn" onclick="filterTimeline('s1')">第1章: 北米・中南米</button>
+        <button class="filter-btn" onclick="filterTimeline('s2')">第2章: イベリア半島</button>
+        <button class="filter-btn" onclick="filterTimeline('s3')">第3章: ローマ・ギリシャ</button>
+        <button class="filter-btn" onclick="filterTimeline('s4')">第4章: トルコ・エジプト</button>
+        <button class="filter-btn" onclick="filterTimeline('s5')">第5章: ケニア・帰還</button>
+      </div>
+
+      <!-- TIMELINE ENTRIES -->
+      <div class="timeline" id="timelineList">
+
+        <!-- STAGE 1 -->
+        <div class="tl-row flight-row" data-stage="s1">
+          <div class="tl-date">10/28<span class="weekday">(水)</span></div>
+          <div class="tl-loc">🇯🇵 ➔ 🇺🇸 SFO</div>
+          <div class="tl-main"><strong>日本出発！</strong> 日付変更線を越えて同日午前にサンフランシスコ到着。市内散策・休養。</div>
+          <div class="tl-flight">✈️ NH8 成田➔SFO</div>
+        </div>
+
+        <div class="tl-row flight-row" data-stage="s1">
+          <div class="tl-date">10/29<span class="weekday">(木)</span></div>
+          <div class="tl-loc">🇲🇽 メキシコシティ</div>
+          <div class="tl-main">サンフランシスコからメキシコシティへ南下。夕方チェックイン、名物タコスディナー。</div>
+          <div class="tl-flight">✈️ UA1271 SFO➔MEX</div>
+        </div>
+
+        <div class="tl-row special-row" data-stage="s1">
+          <div class="tl-date">10/30<span class="weekday">(金)</span></div>
+          <div class="tl-loc">🇲🇽 メキシコシティ</div>
+          <div class="tl-main">★巨大な「テオティワカン遺跡（太陽・月のピラミッド）」見学＆国立人類学博物館。</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">市内滞在</div>
+        </div>
+
+        <div class="tl-row flight-row" data-stage="s1">
+          <div class="tl-date">10/31<span class="weekday">(土)</span></div>
+          <div class="tl-loc">🇵🇪 リマ (ペルー)</div>
+          <div class="tl-main">パナマ経由で南米ペルーのリマへ。夜22:45に無事到着し空港直結ホテルへ。</div>
+          <div class="tl-flight">✈️ CM121/CM489</div>
+        </div>
+
+        <div class="tl-row special-row" data-stage="s1">
+          <div class="tl-date">11/01<span class="weekday">(日)</span></div>
+          <div class="tl-loc">🇵🇪 マチュピチュ村</div>
+          <div class="tl-main">朝のリマ国内線でクスコへ。展望パノラマ列車（ペルーレイル）で標高の低いマチュピチュ村へ直行。</div>
+          <div class="tl-flight">🚂 展望パノラマ列車</div>
+        </div>
+
+        <div class="tl-row special-row" data-stage="s1">
+          <div class="tl-date">11/02<span class="weekday">(月)</span></div>
+          <div class="tl-loc">🇵🇪 マチュピチュ/クスコ</div>
+          <div class="tl-main">★【世界遺産マチュピチュ空中都市】午前入場＆ワイナピチュ峰！夕方列車でインカの古都クスコへ。</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">古代遺跡探訪</div>
+        </div>
+
+        <div class="tl-row" data-stage="s1">
+          <div class="tl-date">11/03<span class="weekday">(火)</span></div>
+          <div class="tl-loc">🇵🇪 クスコ</div>
+          <div class="tl-main">インカ帝国の古都クスコ観光（12角の石、サクサイワマン城塞、アルマス広場）。高地順応。</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">市内滞在</div>
+        </div>
+
+        <div class="tl-row special-row" data-stage="s1">
+          <div class="tl-date">11/04<span class="weekday">(水)</span></div>
+          <div class="tl-loc">🇵🇪 リマ</div>
+          <div class="tl-main">国内線でリマへ戻る。★世界屈指の美食都市リマで名店「Central」または「Maido」のモダンペルー料理。</div>
+          <div class="tl-flight">✈️ 国内線 CUZ➔LIM</div>
+        </div>
+
+        <div class="tl-row flight-row" data-stage="s1">
+          <div class="tl-date">11/05<span class="weekday">(木)</span></div>
+          <div class="tl-loc">🇧🇷 イグアス</div>
+          <div class="tl-main">リマから南米大陸内を移動して世界遺産イグアスの滝へ。国立公園近くのホテルへチェックイン。</div>
+          <div class="tl-flight">✈️ 南米内陸移動</div>
+        </div>
+
+        <div class="tl-row special-row" data-stage="s1">
+          <div class="tl-date">11/06<span class="weekday">(金)</span></div>
+          <div class="tl-loc">🇦🇷 イグアス(アルゼンチン)</div>
+          <div class="tl-main">★アルゼンチン側イグアス国立公園：名物トロッコ列車と展望橋から大迫力「悪魔の喉笛」を真上から体感！</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">国立公園探訪</div>
+        </div>
+
+        <div class="tl-row special-row" data-stage="s1">
+          <div class="tl-date">11/07<span class="weekday">(土)</span></div>
+          <div class="tl-loc">🇧🇷 イグアス(ブラジル)</div>
+          <div class="tl-main">★ブラジル側パノラマ遊歩道 ＋ 豪快な「マクコ・サファリ」スピードボートで滝壺へ突入！</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">ボート冒険</div>
+        </div>
+
+        <div class="tl-row flight-row" data-stage="s1">
+          <div class="tl-date">11/08<span class="weekday">(日)</span></div>
+          <div class="tl-loc">🇧🇷 サンパウロ</div>
+          <div class="tl-main">朝便でブラジル最大のメガシティ・サンパウロへ移動。パウリスタ通り散策と本場シュラスコ名店ディナー。</div>
+          <div class="tl-flight">✈️ 国内線 IGU➔GRU</div>
+        </div>
+
+        <!-- STAGE 2 -->
+        <div class="tl-row flight-row special-row" data-stage="s2">
+          <div class="tl-date">11/09<span class="weekday">(月)</span></div>
+          <div class="tl-loc">🇧🇷 ➔ 🇵🇹 【機中泊】</div>
+          <div class="tl-main">★【大西洋横断フライト】夕方便TP88（A330neo ビジネスクラス）でポルトガル・リスボンへ夜行横断！</div>
+          <div class="tl-flight">✈️ TP88 GRU➔LIS</div>
+        </div>
+
+        <div class="tl-row" data-stage="s2">
+          <div class="tl-date">11/10<span class="weekday">(火)</span></div>
+          <div class="tl-loc">🇵🇹 リスボン</div>
+          <div class="tl-main">早朝リスボン到着。大航海時代の栄華を伝えるベレンの塔、ジェロニモス修道院、元祖パステル・デ・ナタ。</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">ヨーロッパ到着</div>
+        </div>
+
+        <div class="tl-row special-row" data-stage="s2">
+          <div class="tl-date">11/11<span class="weekday">(水)</span></div>
+          <div class="tl-loc">🇵🇹 シントラ/ロカ岬</div>
+          <div class="tl-main">★世界遺産の王宮の街シントラ（ペーナ宮殿）＆ユーラシア大陸最西端ロカ岬「ここに地果て海始まる」。</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">日帰り探訪</div>
+        </div>
+
+        <div class="tl-row flight-row" data-stage="s2">
+          <div class="tl-date">11/12<span class="weekday">(木)</span></div>
+          <div class="tl-loc">🇪🇸 バルセロナ</div>
+          <div class="tl-main">TAPポルトガル航空でスペイン・バルセロナへ。夕方カタルーニャ広場周辺のバルで名物タパス。</div>
+          <div class="tl-flight">✈️ TP1030 LIS➔BCN</div>
+        </div>
+
+        <div class="tl-row special-row" data-stage="s2">
+          <div class="tl-date">11/13<span class="weekday">(金)</span></div>
+          <div class="tl-loc">🇪🇸 バルセロナ</div>
+          <div class="tl-main">★ガウディ建築三昧：奇跡の教会「サグラダ・ファミリア」、グエル公園、カサ・バトリョ。</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">ガウディ建築</div>
+        </div>
+
+        <div class="tl-row special-row" data-stage="s2">
+          <div class="tl-date">11/14<span class="weekday">(土)</span></div>
+          <div class="tl-loc">🇪🇸 マドリード</div>
+          <div class="tl-main">高速鉄道AVEで首都マドリードへ移動。★夜：本場ラ・リーガ（レアル・マドリード戦など）サッカー生観戦！</div>
+          <div class="tl-flight">🚄 高速鉄道 AVE</div>
+        </div>
+
+        <div class="tl-row" data-stage="s2">
+          <div class="tl-date">11/15<span class="weekday">(日)</span></div>
+          <div class="tl-loc">🇪🇸 マドリード</div>
+          <div class="tl-main">世界三大美術館のひとつプラド美術館、マドリード王宮、サン・ミゲル市場でイベリコ豚生ハムとワイン。</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">市内滞在</div>
+        </div>
+
+        <!-- STAGE 3 -->
+        <div class="tl-row flight-row" data-stage="s3">
+          <div class="tl-date">11/16<span class="weekday">(月)</span></div>
+          <div class="tl-loc">🇮🇹 ローマ</div>
+          <div class="tl-main">午前AVEでバルセロナ空港へ移動し、夕方便AZ79でイタリア・ローマへ。本場パスタディナー。</div>
+          <div class="tl-flight">✈️ AZ79 BCN➔FCO</div>
+        </div>
+
+        <div class="tl-row special-row" data-stage="s3">
+          <div class="tl-date">11/17<span class="weekday">(火)</span></div>
+          <div class="tl-loc">🇮🇹 ローマ・ヴァチカン</div>
+          <div class="tl-main">古代ローマ遺跡コロッセオ、フォロ・ロマーノ、トレビの泉、ヴァチカン市国（サン・ピエトロ大聖堂）。</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">世界遺産巡り</div>
+        </div>
+
+        <div class="tl-row special-row" data-stage="s3">
+          <div class="tl-date">11/18<span class="weekday">(水)</span></div>
+          <div class="tl-loc">🇮🇹 トスカーナ地方</div>
+          <div class="tl-main">★専用車で美しいオルチャ渓谷と名門ワイナリーへ日帰りツアー。トスカーナ料理と名醸ワインを堪能。</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">名門ワイナリー</div>
+        </div>
+
+        <div class="tl-row flight-row" data-stage="s3">
+          <div class="tl-date">11/19<span class="weekday">(木)</span></div>
+          <div class="tl-loc">🇬🇷 アテネ</div>
+          <div class="tl-main">エーゲ航空でギリシャ・アテネへ。午後プラカ地区散策、パルテノン神殿を望む丘でディナー。</div>
+          <div class="tl-flight">✈️ A3651 FCO➔ATH</div>
+        </div>
+
+        <div class="tl-row special-row" data-stage="s3">
+          <div class="tl-date">11/20<span class="weekday">(金)</span></div>
+          <div class="tl-loc">🇬🇷 アテネ</div>
+          <div class="tl-main">★人類史の至宝：世界遺産アクロポリスの丘（パルテノン神殿）、新アクロポリス博物館。</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">古代ギリシャ</div>
+        </div>
+
+        <!-- STAGE 4 -->
+        <div class="tl-row flight-row" data-stage="s4">
+          <div class="tl-date">11/21<span class="weekday">(土)</span></div>
+          <div class="tl-loc">🇹🇷 カッパドキア</div>
+          <div class="tl-main">ターキッシュ エアラインズでイスタンブール経由、奇岩の地カッパドキアへ。幻想的な洞窟ホテル泊。</div>
+          <div class="tl-flight">✈️ TK1840 ATH➔IST</div>
+        </div>
+
+        <div class="tl-row special-row" data-stage="s4">
+          <div class="tl-date">11/22<span class="weekday">(日)</span></div>
+          <div class="tl-loc">🇹🇷 カッパドキア</div>
+          <div class="tl-main">★早朝：数千の気球とともに朝日を浴びる【熱気球フライト】！奇岩群と地下都市カイマクルを見学。</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">熱気球フライト</div>
+        </div>
+
+        <div class="tl-row" data-stage="s4">
+          <div class="tl-date">11/23<span class="weekday">(月)</span></div>
+          <div class="tl-loc">🇹🇷 イスタンブール</div>
+          <div class="tl-main">朝便でイスタンブールへ。ブルーモスク、アヤソフィア、歴史あるグランドバザール散策。</div>
+          <div class="tl-flight">✈️ 国内線 NAV➔IST</div>
+        </div>
+
+        <div class="tl-row special-row" data-stage="s4">
+          <div class="tl-date">11/24<span class="weekday">(火)</span></div>
+          <div class="tl-loc">🇹🇷 イスタンブール</div>
+          <div class="tl-main">ボスポラス海峡クルーズ ＋ ★夜：UEFAチャンピオンズリーグ【ガラタサライ戦】の超熱狂を生観戦！</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">UCLサッカー観戦</div>
+        </div>
+
+        <div class="tl-row flight-row" data-stage="s4">
+          <div class="tl-date">11/25<span class="weekday">(水)</span></div>
+          <div class="tl-loc">🇪🇬 カイロ (エジプト)</div>
+          <div class="tl-main">エジプト航空でカイロへ。ナイル川を渡り、ピラミッドが間近に見えるギザ地区のホテルに滞在。</div>
+          <div class="tl-flight">✈️ MS738 IST➔CAI</div>
+        </div>
+
+        <div class="tl-row special-row" data-stage="s4">
+          <div class="tl-date">11/26<span class="weekday">(木)</span></div>
+          <div class="tl-loc">🇪🇬 ギザ (ピラミッド)</div>
+          <div class="tl-main">★世界七不思議：ギザの三大ピラミッド（クフ王大ピラミッドの玄室内部見学）＆スフィンクス！</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">世界最古の七不思議</div>
+        </div>
+
+        <div class="tl-row flight-row special-row" data-stage="s4">
+          <div class="tl-date">11/27<span class="weekday">(金)</span></div>
+          <div class="tl-loc">🇪🇬 ➔ 🇰🇪 【機中泊】</div>
+          <div class="tl-main">新設された大エジプト博物館（GEM）見学後、深夜便MS849（B787）で赤道を越えケニア・ナイロビへ。</div>
+          <div class="tl-flight">✈️ MS849 CAI➔NBO</div>
+        </div>
+
+        <!-- STAGE 5 -->
+        <div class="tl-row special-row" data-stage="s5">
+          <div class="tl-date">11/28<span class="weekday">(土)</span></div>
+          <div class="tl-loc">🇰🇪 アンボセリ国立公園</div>
+          <div class="tl-main">早朝ナイロビ着後、専用4x4サファリカーでアンボセリへ。夕方ゲームドライブでキリマンジャロと野生動物！</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">サファリロッジ泊</div>
+        </div>
+
+        <div class="tl-row special-row" data-stage="s5">
+          <div class="tl-date">11/29<span class="weekday">(日)</span></div>
+          <div class="tl-loc">🇰🇪 アンボセリ国立公園</div>
+          <div class="tl-main">★終日サファリ：アフリカ最高峰キリマンジャロを背に、象の大群、キリン、チーター、ライオンを追跡！</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">本格サファリ</div>
+        </div>
+
+        <div class="tl-row" data-stage="s5">
+          <div class="tl-date">11/30<span class="weekday">(月)</span></div>
+          <div class="tl-loc">🇰🇪 ナイロビ</div>
+          <div class="tl-main">早朝サファリ後ナイロビへ。ジラフセンターで絶滅危惧種のキリンと触れ合い。空港近くのホテルで休養。</div>
+          <div class="tl-flight" style="background:transparent; border:none; color:var(--text-dim);">ナイロビ滞在</div>
+        </div>
+
+        <div class="tl-row flight-row special-row" data-stage="s5">
+          <div class="tl-date">12/01<span class="weekday">(火)</span></div>
+          <div class="tl-loc">🇰🇪 ➔ 🇪🇹 【機中泊】</div>
+          <div class="tl-main">夕方便でエチオピア・アディスアベバへ。深夜ET608便（B787 ビジネスクラス・フルフラット）で帰還飛行！</div>
+          <div class="tl-flight">✈️ ET319/ET608</div>
+        </div>
+
+        <div class="tl-row goal-row" data-stage="s5">
+          <div class="tl-date">12/02<span class="weekday">(水)</span></div>
+          <div class="tl-loc" style="color:var(--emerald);">🇹🇭 バンコク到着！</div>
+          <div class="tl-main" style="color:#ffffff; font-weight:700;">
+            🎉 お昼12:30 バンコク・スワンナプーム国際空港に無事到着！東回り世界一周36日間の壮大な旅を完結！
+          </div>
+          <div class="tl-flight" style="background:var(--emerald-dim); color:var(--emerald); border-color:rgba(16,185,129,0.3);">🎉 GOAL (12:30着)</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FLIGHT LIST SUMMARY -->
+    <section>
+      <div class="section-header">
+        <div class="section-badge">Flight Summary</div>
+        <h2 class="section-title">世界一周フライト一覧（全13区間）</h2>
+        <p class="section-desc">世界一周航空券（スターアライアンス）のビジネスクラスを活用した東回りフライトスケジュール。</p>
+      </div>
+
+      <div class="flight-table-wrapper">
+        <table class="flight-table">
+          <thead>
+            <tr>
+              <th>区間</th>
+              <th>搭乗日</th>
+              <th>便名</th>
+              <th>航空会社</th>
+              <th>出発地 ➔ 到着地</th>
+              <th>出発 - 到着時刻</th>
+              <th>クラス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>#01</strong></td>
+              <td>10/28(水)</td>
+              <td><span class="flight-code">NH8</span></td>
+              <td>全日本空輸 (ANA)</td>
+              <td>東京/成田 (NRT) ➔ サンフランシスコ (SFO)</td>
+              <td>17:00 - 10:20</td>
+              <td><span class="cabin-badge">Business (Z)</span></td>
+            </tr>
+            <tr>
+              <td><strong>#02</strong></td>
+              <td>10/29(木)</td>
+              <td><span class="flight-code">UA1271</span></td>
+              <td>ユナイテッド航空</td>
+              <td>サンフランシスコ (SFO) ➔ メキシコシティ (MEX)</td>
+              <td>10:45 - 16:05</td>
+              <td><span class="cabin-badge" style="background:rgba(148,163,184,0.15); color:#94a3b8; border-color:#64748b;">Economy</span></td>
+            </tr>
+            <tr>
+              <td><strong>#03</strong></td>
+              <td>10/31(土)</td>
+              <td><span class="flight-code">CM121</span></td>
+              <td>コパ航空</td>
+              <td>メキシコシティ (MEX) ➔ パナマシティ (PTY)</td>
+              <td>13:10 - 17:54</td>
+              <td><span class="cabin-badge">Business (Z)</span></td>
+            </tr>
+            <tr>
+              <td><strong>#04</strong></td>
+              <td>10/31(土)</td>
+              <td><span class="flight-code">CM489</span></td>
+              <td>コパ航空</td>
+              <td>パナマシティ (PTY) ➔ リマ (LIM)</td>
+              <td>19:09 - 22:45</td>
+              <td><span class="cabin-badge">Business (Z)</span></td>
+            </tr>
+            <tr style="background: rgba(245, 158, 11, 0.03);">
+              <td><strong>陸路</strong></td>
+              <td>11/05-08</td>
+              <td><span class="flight-code">-</span></td>
+              <td>南米内陸移動</td>
+              <td>リマ ➔ クスコ ➔ イグアス ➔ サンパウロ</td>
+              <td>現地個別手配</td>
+              <td><span class="cabin-badge" style="background:rgba(245,158,11,0.15); color:#fbbf24; border-color:rgba(245,158,11,0.3);">Surface</span></td>
+            </tr>
+            <tr>
+              <td><strong>#05</strong></td>
+              <td>11/09(月)</td>
+              <td><span class="flight-code">TP88</span></td>
+              <td>TAPポルトガル航空</td>
+              <td>サンパウロ (GRU) ➔ リスボン (LIS)</td>
+              <td>17:50 - 06:55+1</td>
+              <td><span class="cabin-badge">Business (Z)</span></td>
+            </tr>
+            <tr>
+              <td><strong>#06</strong></td>
+              <td>11/12(木)</td>
+              <td><span class="flight-code">TP1030</span></td>
+              <td>TAPポルトガル航空</td>
+              <td>リスボン (LIS) ➔ バルセロナ (BCN)</td>
+              <td>14:00 - 16:55</td>
+              <td><span class="cabin-badge">Business (Z)</span></td>
+            </tr>
+            <tr>
+              <td><strong>#07</strong></td>
+              <td>11/16(月)</td>
+              <td><span class="flight-code">AZ79</span></td>
+              <td>ITAエアウェイズ</td>
+              <td>バルセロナ (BCN) ➔ ローマ (FCO)</td>
+              <td>16:50 - 18:35</td>
+              <td><span class="cabin-badge">Business (Z)</span></td>
+            </tr>
+            <tr>
+              <td><strong>#08</strong></td>
+              <td>11/19(木)</td>
+              <td><span class="flight-code">A3651</span></td>
+              <td>エーゲ航空</td>
+              <td>ローマ (FCO) ➔ アテネ (ATH)</td>
+              <td>10:35 - 13:35</td>
+              <td><span class="cabin-badge">Business (Z)</span></td>
+            </tr>
+            <tr>
+              <td><strong>#09</strong></td>
+              <td>11/21(土)</td>
+              <td><span class="flight-code">TK1840</span></td>
+              <td>ターキッシュ エアラインズ</td>
+              <td>アテネ (ATH) ➔ イスタンブール (IST)</td>
+              <td>11:50 - 14:30</td>
+              <td><span class="cabin-badge">Business (Z)</span></td>
+            </tr>
+            <tr>
+              <td><strong>#10</strong></td>
+              <td>11/25(水)</td>
+              <td><span class="flight-code">MS738</span></td>
+              <td>エジプト航空</td>
+              <td>イスタンブール (IST) ➔ カイロ (CAI)</td>
+              <td>14:00 - 15:15</td>
+              <td><span class="cabin-badge">Business (Z)</span></td>
+            </tr>
+            <tr>
+              <td><strong>#11</strong></td>
+              <td>11/27(金)</td>
+              <td><span class="flight-code">MS849</span></td>
+              <td>エジプト航空</td>
+              <td>カイロ (CAI) ➔ ナイロビ (NBO)</td>
+              <td>21:35 - 03:30+1</td>
+              <td><span class="cabin-badge">Business (Z)</span></td>
+            </tr>
+            <tr>
+              <td><strong>#12</strong></td>
+              <td>12/01(火)</td>
+              <td><span class="flight-code">ET319</span></td>
+              <td>エチオピア航空</td>
+              <td>ナイロビ (NBO) ➔ アディスアベバ (ADD)</td>
+              <td>17:30 - 19:30</td>
+              <td><span class="cabin-badge">Business (Z)</span></td>
+            </tr>
+            <tr>
+              <td><strong>#13</strong></td>
+              <td>12/01(火)</td>
+              <td><span class="flight-code">ET608</span></td>
+              <td>エチオピア航空</td>
+              <td>アディスアベバ (ADD) ➔ バンコク (BKK)</td>
+              <td>23:55 - 12:30+1</td>
+              <td><span class="cabin-badge">Business (Z)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FOOTNOTE -->
+    <div class="footer-note">
+      <p>World Tour 2026 Odyssey Plan | Oct 28 - Dec 02, 2026</p>
+      <p style="margin-top: 4px; font-size: 11px;">※時刻・スケジュールは発券済み公式予約記録に基づきます。</p>
+    </div>
+
+  </div>
+
+  <script>
+    function filterTimeline(stage) {
+      const rows = document.querySelectorAll('#timelineList .tl-row');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      rows.forEach(row => {
+        if (stage === 'all') {
+          row.style.display = 'grid';
+        } else {
+          if (row.getAttribute('data-stage') === stage) {
+            row.style.display = 'grid';
+          } else {
+            row.style.display = 'none';
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
