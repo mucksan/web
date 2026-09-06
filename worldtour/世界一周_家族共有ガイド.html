@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>世界一周旅行 2026-2027 家族共有ガイド＆タイムチャート</title>
+<title>世界一周旅行 2026 家族共有ガイド＆タイムチャート (バンコク時間ベース)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -40,7 +40,7 @@
   header {
     background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #1e40af 100%);
     color: #ffffff;
-    padding: 36px 20px 24px;
+    padding: 34px 20px 24px;
     box-shadow: var(--shadow-md);
   }
   .header-inner {
@@ -75,15 +75,20 @@
     color: #fff;
     border-color: #f59e0b;
   }
+  .badge.bkk {
+    background: #4f46e5;
+    color: #fff;
+    border-color: #818cf8;
+  }
   h1 {
     font-family: 'Outfit', 'Noto Sans JP', sans-serif;
-    font-size: 26px;
+    font-size: 25px;
     font-weight: 800;
     letter-spacing: -0.5px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .subtitle {
-    font-size: 14px;
+    font-size: 13.5px;
     color: #cbd5e1;
     margin-bottom: 16px;
   }
@@ -205,11 +210,7 @@
     margin-bottom: 20px;
     font-size: 13.5px;
   }
-  .notice-box.warning {
-    background: #fffbeb;
-    border-left-color: var(--accent);
-  }
-  .notice-box.info {
+  .notice-box.bkk-info {
     background: #eff6ff;
     border-left-color: var(--primary-light);
   }
@@ -274,8 +275,9 @@
     border-color: #d97706;
     background: #fef3c7;
   }
-  .tl-day.rest-day .tl-dot {
+  .tl-day.goal-day .tl-dot {
     border-color: #059669;
+    background: #d1fae5;
   }
   .tl-card {
     background: #fff;
@@ -315,10 +317,11 @@
   }
   .tl-timezone {
     font-size: 11.5px;
-    color: var(--text-muted);
-    background: #f1f5f9;
-    padding: 2px 6px;
+    color: #4338ca;
+    background: #e0e7ff;
+    padding: 2px 7px;
     border-radius: 4px;
+    font-weight: 600;
   }
   .tl-activity {
     font-size: 13.5px;
@@ -364,13 +367,25 @@
     border-bottom: 2px solid var(--border);
     white-space: nowrap;
   }
+  th.bkk-col {
+    background: #e0e7ff;
+    color: #3730a3;
+  }
   td {
     padding: 12px;
     border-bottom: 1px solid var(--border);
     vertical-align: top;
   }
+  td.bkk-col {
+    background: #f5f7ff;
+    font-weight: 700;
+    color: #1e1b4b;
+  }
   tr:hover td {
     background: #f8fafc;
+  }
+  tr:hover td.bkk-col {
+    background: #eef2ff;
   }
   .carrier-tag {
     display: inline-block;
@@ -393,7 +408,7 @@
   /* Timezone Converter Widget */
   .tz-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 14px;
     margin-top: 12px;
   }
@@ -414,8 +429,8 @@
   .tz-diff {
     font-size: 12px;
     font-weight: 700;
-    color: #b45309;
-    background: #fef3c7;
+    color: #3730a3;
+    background: #e0e7ff;
     padding: 2px 6px;
     border-radius: 4px;
   }
@@ -472,34 +487,6 @@
     font-weight: 700;
   }
 
-  /* Rule Checklist */
-  .rule-list {
-    list-style: none;
-    margin-top: 10px;
-  }
-  .rule-list li {
-    position: relative;
-    padding-left: 28px;
-    margin-bottom: 12px;
-    font-size: 14px;
-  }
-  .rule-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 20px;
-    height: 20px;
-    background: #d1fae5;
-    color: #059669;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 900;
-  }
-
   /* Footer */
   footer {
     max-width: 1080px;
@@ -534,29 +521,30 @@
 <header>
   <div class="header-inner">
     <div class="badge-row">
-      <span class="badge success">✅ 2026年9月6日 全16便 発券完了</span>
+      <span class="badge success">✅ 2026年9月6日 発券完了</span>
+      <span class="badge bkk">🇹🇭 バンコク時間（UTC+7）基準</span>
       <span class="badge gold">✈️ スターアライアンス世界一周（東回り）</span>
       <span class="badge">ANA予約番号: <strong>EANRV5</strong></span>
     </div>
-    <h1>世界一周旅行 2026-2027 家族共有ガイド</h1>
-    <div class="subtitle">旅程スケジュール・フライト日本時間・現在地タイムチャート・緊急連絡先・時差早見表</div>
+    <h1>世界一周旅行 2026 家族共有ガイド＆タイムチャート</h1>
+    <div class="subtitle">10/28 成田発 〜 12/2 バンコク帰宅（全日程・バンコク時間フライト一覧・連絡先）</div>
 
     <div class="header-summary-grid">
       <div class="summary-stat">
         <div class="label">旅行期間</div>
-        <div class="val">2026/10/28 〜 2027/3/3</div>
+        <div class="val">2026/10/28(水) 〜 12/2(水)</div>
       </div>
       <div class="summary-stat">
-        <div class="label">世界一周区間</div>
-        <div class="val">10/28(成田発) 〜 12/2(BKK着)</div>
+        <div class="label">バンコク帰宅予定</div>
+        <div class="val">12/2(水) 12:30 BKK着</div>
       </div>
       <div class="summary-stat">
         <div class="label">訪問国・地域</div>
-        <div class="val">11カ国・14都市</div>
+        <div class="val">10カ国・13都市</div>
       </div>
       <div class="summary-stat">
         <div class="label">航空券（ビジネスクラス）</div>
-        <div class="val">15便中 14便がフルフラット寝台</div>
+        <div class="val">13フライト中 12便フルフラット</div>
       </div>
     </div>
   </div>
@@ -565,10 +553,9 @@
 <div class="nav-tabs-wrapper">
   <div class="nav-tabs">
     <button class="tab-btn active" onclick="switchTab('timeline', event)">📅 いつどこにいる？（日程表）</button>
-    <button class="tab-btn" onclick="switchTab('flights', event)">✈️ フライト一覧（日本時間付き）</button>
+    <button class="tab-btn" onclick="switchTab('flights', event)">✈️ フライト一覧（バンコク時間付き）</button>
     <button class="tab-btn" onclick="switchTab('contacts', event)">📞 緊急連絡先・大使館</button>
     <button class="tab-btn" onclick="switchTab('timezone', event)">⏰ 時差早見表＆連絡ベストタイム</button>
-    <button class="tab-btn" onclick="switchTab('safety', event)">🛡️ 安全管理と安心ルール</button>
     <button class="tab-btn" onclick="switchTab('docs', event)">📂 詳細資料リンク</button>
   </div>
 </div>
@@ -577,16 +564,15 @@
 
   <!-- ================= TAB 1: TIMELINE ================= -->
   <div id="tab-timeline" class="tab-pane active">
-    <div class="notice-box">
-      💡 <strong>家族へのメッセージ:</strong> 「いまどこにいるか」が一目でわかる簡易タイムチャートです。日付ごとに滞在都市、その日の予定、日本との時差、宿泊場所を記載しています。
+    <div class="notice-box bkk-info">
+      💡 <strong>バンコクのご家族へ:</strong> 10/28に日本を出発し、12/2にバンコクの自宅へ戻るまでの全日程です。時差はすべて<strong>「バンコク基準（バンコクより○時間遅れ）」</strong>で表記しています。
     </div>
 
     <div class="filter-bar">
-      <button class="filter-btn active" onclick="filterTimeline('all', event)">すべて表示 (全行程)</button>
+      <button class="filter-btn active" onclick="filterTimeline('all', event)">すべて表示 (全行程 10/28〜12/2)</button>
       <button class="filter-btn" onclick="filterTimeline('p1', event)">第1部: 北米・中南米 (10/28〜11/10)</button>
       <button class="filter-btn" onclick="filterTimeline('p2', event)">第2部: ヨーロッパ (11/11〜11/21)</button>
-      <button class="filter-btn" onclick="filterTimeline('p3', event)">第3部: 中東・アフリカ (11/21〜12/2)</button>
-      <button class="filter-btn" onclick="filterTimeline('p4', event)">第4部: タイ滞在・帰国 (12/2〜3/3)</button>
+      <button class="filter-btn" onclick="filterTimeline('p3', event)">第3部: 中東・アフリカ〜バンコク帰還 (11/21〜12/2)</button>
     </div>
 
     <div class="timeline">
@@ -598,9 +584,9 @@
           <div class="tl-card-header">
             <span class="tl-date">10/28(水)</span>
             <span class="tl-city">🇺🇸 サンフランシスコ</span>
-            <span class="tl-timezone">時差: -16時間（日本より16時間遅れ）</span>
+            <span class="tl-timezone">バンコクより -14時間</span>
           </div>
-          <div class="tl-flight-tag">✈️ 【区間1】NH8 成田 17:00発 → SFO 10:20着 (ANAビジネス THE Room)</div>
+          <div class="tl-flight-tag">✈️ 【区間1】NH8 成田 17:00発（BKK 15:00発）→ SFO 10:20着（BKK 10/29 00:20着）</div>
           <div class="tl-activity">日本出発！日付変更線を越えて同日午前にサンフランシスコ到着。市内散策・休養。</div>
           <div class="tl-stay">🏨 宿泊: サンフランシスコ市内ホテル（1泊目）</div>
         </div>
@@ -612,10 +598,10 @@
           <div class="tl-card-header">
             <span class="tl-date">10/29(木)</span>
             <span class="tl-city">🇲🇽 メキシコシティ</span>
-            <span class="tl-timezone">時差: -15時間</span>
+            <span class="tl-timezone">バンコクより -13時間</span>
           </div>
-          <div class="tl-flight-tag">✈️ 【区間2】UA1271 SFO 10:45発 → MEX 16:05着 (ユナイテッド航空)</div>
-          <div class="tl-activity">サンフランシスコからメキシコシティへ移動。夕方ホテルチェックイン、タコス等夕食。</div>
+          <div class="tl-flight-tag">✈️ 【区間2】UA1271 SFO 10:45発（BKK 10/30 00:45発）→ MEX 16:05着（BKK 10/30 05:05着）</div>
+          <div class="tl-activity">サンフランシスコからメキシコシティへ移動。夕方ホテルチェックイン、タコスディナー。</div>
           <div class="tl-stay">🏨 宿泊: メキシコシティ市内ホテル（1泊目）</div>
         </div>
       </div>
@@ -626,7 +612,7 @@
           <div class="tl-card-header">
             <span class="tl-date">10/30(金)</span>
             <span class="tl-city">🇲🇽 メキシコシティ</span>
-            <span class="tl-timezone">時差: -15時間</span>
+            <span class="tl-timezone">バンコクより -13時間</span>
           </div>
           <div class="tl-activity">終日観光：巨大な「テオティワカン遺跡（太陽・月のピラミッド）」見学＆国立人類学博物館。</div>
           <div class="tl-stay">🏨 宿泊: メキシコシティ市内ホテル（2泊目）</div>
@@ -639,10 +625,10 @@
           <div class="tl-card-header">
             <span class="tl-date">10/31(土)</span>
             <span class="tl-city">🇵🇪 リマ (ペルー)</span>
-            <span class="tl-timezone">時差: -14時間</span>
+            <span class="tl-timezone">バンコクより -12時間 (昼夜逆転)</span>
           </div>
-          <div class="tl-flight-tag">✈️ 【区間3・4】CM121 MEX 13:10発 → PTY 17:54着／CM489 PTY 19:09発 → LIM 22:45着</div>
-          <div class="tl-activity">パナマ経由で南米ペルーのリマへ。夜22:45に無事到着し空港ホテルへ直行（深夜着を解消！）。</div>
+          <div class="tl-flight-tag">✈️ 【区間3・4】CM121 MEX 13:10発 → PTY 17:54着／CM489 PTY 19:09発 → LIM 22:45着（BKK 11/01 10:45着）</div>
+          <div class="tl-activity">パナマ経由で南米ペルーのリマへ。夜22:45に無事到着し空港ホテルへ直行。</div>
           <div class="tl-stay">🏨 宿泊: リマ空港直結ホテル（1泊目）</div>
         </div>
       </div>
@@ -652,10 +638,10 @@
         <div class="tl-card">
           <div class="tl-card-header">
             <span class="tl-date">11/01(日)</span>
-            <span class="tl-city">🇵🇪 マチュピチュ村 (アグアスカリエンテス)</span>
-            <span class="tl-timezone">時差: -14時間</span>
+            <span class="tl-city">🇵🇪 マチュピチュ村</span>
+            <span class="tl-timezone">バンコクより -12時間</span>
           </div>
-          <div class="tl-activity">朝のリマ国内線でクスコへ飛び、展望パノラマ列車（ペルーレイル）で標高の低いマチュピチュ村へ直行（高山病予防）。</div>
+          <div class="tl-activity">朝のリマ国内線でクスコへ飛び、展望パノラマ列車（ペルーレイル）で標高の低いマチュピチュ村へ直行。</div>
           <div class="tl-stay">🏨 宿泊: マチュピチュ村ホテル（1泊目）</div>
         </div>
       </div>
@@ -666,7 +652,7 @@
           <div class="tl-card-header">
             <span class="tl-date">11/02(月)</span>
             <span class="tl-city">🇵🇪 マチュピチュ遺跡</span>
-            <span class="tl-timezone">時差: -14時間</span>
+            <span class="tl-timezone">バンコクより -12時間</span>
           </div>
           <div class="tl-activity">★旅のハイライト：空中都市マチュピチュ遺跡をじっくり終日見学。絶景を満喫。</div>
           <div class="tl-stay">🏨 宿泊: マチュピチュ村ホテル（2泊目）</div>
@@ -679,7 +665,7 @@
           <div class="tl-card-header">
             <span class="tl-date">11/03(火)</span>
             <span class="tl-city">🇵🇪 クスコ</span>
-            <span class="tl-timezone">時差: -14時間</span>
+            <span class="tl-timezone">バンコクより -12時間</span>
           </div>
           <div class="tl-activity">午前中に列車でクスコへ移動。インカ帝国の古都クスコ市内観光（12角の石、太陽の神殿）。</div>
           <div class="tl-stay">🏨 宿泊: クスコ市内ホテル（1泊目）</div>
@@ -692,7 +678,7 @@
           <div class="tl-card-header">
             <span class="tl-date">11/04(水)</span>
             <span class="tl-city">🇵🇪 クスコ</span>
-            <span class="tl-timezone">時差: -14時間</span>
+            <span class="tl-timezone">バンコクより -12時間</span>
           </div>
           <div class="tl-activity">クスコ周辺観光（サクサイワマン等）、カフェや民芸品マーケット散策でゆったり過ごす。</div>
           <div class="tl-stay">🏨 宿泊: クスコ市内ホテル（2泊目）</div>
@@ -705,10 +691,10 @@
           <div class="tl-card-header">
             <span class="tl-date">11/05(木)</span>
             <span class="tl-city">🇧🇷 イグアス (ブラジル側)</span>
-            <span class="tl-timezone">時差: -12時間</span>
+            <span class="tl-timezone">バンコクより -10時間</span>
           </div>
           <div class="tl-activity">クスコ → リマ → フォス・ド・イグアスへ航空便で大移動。世界三大瀑布イグアスへ到着。</div>
-          <div class="tl-stay">🏨 宿泊: イグアス国立公園内または近郊ホテル（1泊目）</div>
+          <div class="tl-stay">🏨 宿泊: イグアス国立公園近郊ホテル（1泊目）</div>
         </div>
       </div>
 
@@ -718,7 +704,7 @@
           <div class="tl-card-header">
             <span class="tl-date">11/06(金)</span>
             <span class="tl-city">🇧🇷 イグアスの滝 (ブラジル側)</span>
-            <span class="tl-timezone">時差: -12時間</span>
+            <span class="tl-timezone">バンコクより -10時間</span>
           </div>
           <div class="tl-activity">★ブラジル側イグアスの滝パノラマ遊歩道見学＆ヘリコプター遊覧飛行で上空から瀑布を眺望。</div>
           <div class="tl-stay">🏨 宿泊: イグアスホテル（2泊目）</div>
@@ -731,7 +717,7 @@
           <div class="tl-card-header">
             <span class="tl-date">11/07(土)</span>
             <span class="tl-city">🇦🇷 イグアスの滝 (アルゼンチン側)</span>
-            <span class="tl-timezone">時差: -12時間</span>
+            <span class="tl-timezone">バンコクより -10時間</span>
           </div>
           <div class="tl-activity">★国境を渡りアルゼンチン側へ。「悪魔の喉笛」を真上から体感＆大迫力ボートツアー。</div>
           <div class="tl-stay">🏨 宿泊: イグアスホテル（3泊目）</div>
@@ -744,7 +730,7 @@
           <div class="tl-card-header">
             <span class="tl-date">11/08(日)</span>
             <span class="tl-city">🇧🇷 サンパウロ</span>
-            <span class="tl-timezone">時差: -12時間</span>
+            <span class="tl-timezone">バンコクより -10時間</span>
           </div>
           <div class="tl-activity">国内線でサンパウロへ移動。南米最大の都市にチェックイン、シュラスコディナー。</div>
           <div class="tl-stay">🏨 宿泊: サンパウロ市内ホテル（1泊目）</div>
@@ -757,7 +743,7 @@
           <div class="tl-card-header">
             <span class="tl-date">11/09(月)</span>
             <span class="tl-city">🇧🇷 サンパウロ</span>
-            <span class="tl-timezone">時差: -12時間</span>
+            <span class="tl-timezone">バンコクより -10時間</span>
           </div>
           <div class="tl-activity">大西洋横断フライト前にゆったり休息、パウリスタ通り散策や東洋人街（リベルダーデ）。</div>
           <div class="tl-stay">🏨 宿泊: サンパウロ市内ホテル（2泊目）</div>
@@ -770,10 +756,10 @@
           <div class="tl-card-header">
             <span class="tl-date">11/10(火)</span>
             <span class="tl-city">🛫 サンパウロ → 【機中泊】</span>
-            <span class="tl-timezone">時差: -12時間</span>
+            <span class="tl-timezone">バンコクより -10時間</span>
           </div>
-          <div class="tl-flight-tag">✈️ 【区間5】TP88 サンパウロ(GRU) 23:15発 → リスボン 12:10着(+1) (TAPポルトガル・ビジネス)</div>
-          <div class="tl-activity">深夜便で大西洋を横断！フルフラットベッドシートで睡眠をしっかり確保。</div>
+          <div class="tl-flight-tag">✈️ 【区間5】TP88 サンパウロ 23:15発（BKK 11/11 09:15発）→ リスボン 12:10着（BKK 11/11 19:10着）</div>
+          <div class="tl-activity">深夜便で大西洋を横断！TAPポルトガル航空ビジネスクラス（フルフラットベッド）で就寝。</div>
           <div class="tl-stay">✈️ 宿泊: 機中泊（ビジネスクラス・ベッド）</div>
         </div>
       </div>
@@ -785,9 +771,9 @@
           <div class="tl-card-header">
             <span class="tl-date">11/11(水)</span>
             <span class="tl-city">🇵🇹 リスボン (ポルトガル)</span>
-            <span class="tl-timezone">時差: -9時間</span>
+            <span class="tl-timezone">バンコクより -7時間</span>
           </div>
-          <div class="tl-activity">お昼12:10にリスボン到着。午後からベレンの塔、ジェロニモス修道院、エッグタルト。</div>
+          <div class="tl-activity">お昼12:10（BKK 19:10）にリスボン到着。午後からベレンの塔、ジェロニモス修道院。</div>
           <div class="tl-stay">🏨 宿泊: リスボン市内ホテル（1泊目）</div>
         </div>
       </div>
@@ -798,9 +784,9 @@
           <div class="tl-card-header">
             <span class="tl-date">11/12(木)</span>
             <span class="tl-city">🇪🇸 バルセロナ (スペイン)</span>
-            <span class="tl-timezone">時差: -8時間</span>
+            <span class="tl-timezone">バンコクより -6時間</span>
           </div>
-          <div class="tl-flight-tag">✈️ 【区間6】TP1030 リスボン 07:10発 → バルセロナ 10:05着 (TAPポルトガル)</div>
+          <div class="tl-flight-tag">✈️ 【区間6】TP1030 リスボン 07:10発（BKK 14:10発）→ バルセロナ 10:05着（BKK 16:05着）</div>
           <div class="tl-activity">スペイン・バルセロナへ移動。午後サグラダ・ファミリア外観やゴシック地区散策。</div>
           <div class="tl-stay">🏨 宿泊: バルセロナ市内ホテル（1泊目）</div>
         </div>
@@ -812,7 +798,7 @@
           <div class="tl-card-header">
             <span class="tl-date">11/13(金)</span>
             <span class="tl-city">🇪🇸 バルセロナ</span>
-            <span class="tl-timezone">時差: -8時間</span>
+            <span class="tl-timezone">バンコクより -6時間</span>
           </div>
           <div class="tl-activity">終日観光：ガウディ建築（サグラダ・ファミリア入場、グエル公園、カサ・バトリョ）。</div>
           <div class="tl-stay">🏨 宿泊: バルセロナ市内ホテル（2泊目）</div>
@@ -825,7 +811,7 @@
           <div class="tl-card-header">
             <span class="tl-date">11/14(土)</span>
             <span class="tl-city">🇪🇸 マドリード</span>
-            <span class="tl-timezone">時差: -8時間</span>
+            <span class="tl-timezone">バンコクより -6時間</span>
           </div>
           <div class="tl-activity">高速鉄道AVEで首都マドリードへ移動（約2.5時間）。プラド美術館やプエルタ・デル・ソル。</div>
           <div class="tl-stay">🏨 宿泊: マドリード市内ホテル（1泊目）</div>
@@ -838,9 +824,9 @@
           <div class="tl-card-header">
             <span class="tl-date">11/15(日)</span>
             <span class="tl-city">🇪🇸 マドリード</span>
-            <span class="tl-timezone">時差: -8時間</span>
+            <span class="tl-timezone">バンコクより -6時間</span>
           </div>
-          <div class="tl-activity">王宮散策 ＋ ★夜20:45 UEFAネーションズリーグ ビッグマッチ【スペイン代表 vs イングランド代表】スタジアム観戦！</div>
+          <div class="tl-activity">王宮散策 ＋ ★夜20:45（BKK 翌02:45）UEFAネーションズリーグ ビッグマッチ【スペイン代表 vs イングランド代表】観戦！</div>
           <div class="tl-stay">🏨 宿泊: マドリード市内ホテル（2泊目）</div>
         </div>
       </div>
@@ -851,10 +837,10 @@
           <div class="tl-card-header">
             <span class="tl-date">11/16(月)</span>
             <span class="tl-city">🇮🇹 ローマ (イタリア)</span>
-            <span class="tl-timezone">時差: -8時間</span>
+            <span class="tl-timezone">バンコクより -6時間</span>
           </div>
-          <div class="tl-flight-tag">✈️ 【区間7】AZ79 バルセロナ 16:50発 → ローマ(FCO) 18:35着 (ITAエアウェイズ)</div>
-          <div class="tl-activity">午前中AVEでバルセロナへ戻り、夕方便でイタリア・ローマへ。夜美味しいパスタディナー。</div>
+          <div class="tl-flight-tag">✈️ 【区間7】AZ79 バルセロナ 16:50発（BKK 22:50発）→ ローマ 18:35着（BKK 11/17 00:35着）</div>
+          <div class="tl-activity">午前中AVEでバルセロナへ戻り、夕方便でイタリア・ローマへ。夜パスタディナー。</div>
           <div class="tl-stay">🏨 宿泊: ローマ市内ホテル（1泊目）</div>
         </div>
       </div>
@@ -865,9 +851,9 @@
           <div class="tl-card-header">
             <span class="tl-date">11/17(火)</span>
             <span class="tl-city">🇮🇹 ローマ・ヴァチカン</span>
-            <span class="tl-timezone">時差: -8時間</span>
+            <span class="tl-timezone">バンコクより -6時間</span>
           </div>
-          <div class="tl-activity">終日観光：古代ローマ遺跡コロッセオ、フォロ・ロマーノ、トレビの泉、ヴァチカン市国（サン・ピエトロ大聖堂）。</div>
+          <div class="tl-activity">終日観光：古代ローマ遺跡コロッセオ、フォロ・ロマーノ、トレビの泉、サン・ピエトロ大聖堂。</div>
           <div class="tl-stay">🏨 宿泊: ローマ市内ホテル（2泊目）</div>
         </div>
       </div>
@@ -877,10 +863,10 @@
         <div class="tl-card">
           <div class="tl-card-header">
             <span class="tl-date">11/18(水)</span>
-            <span class="tl-city">🇮🇹 トスカーナ地方 (ワイナリー日帰り)</span>
-            <span class="tl-timezone">時差: -8時間</span>
+            <span class="tl-city">🇮🇹 トスカーナ地方 (日帰り)</span>
+            <span class="tl-timezone">バンコクより -6時間</span>
           </div>
-          <div class="tl-activity">★専用車で美しいオルチャ渓谷と名門ワイナリーへ。トスカーナ料理と極上ワインを堪能。</div>
+          <div class="tl-activity">★専用車で美しいオルチャ渓谷と名門ワイナリーへ。トスカーナ料理とワインを堪能。</div>
           <div class="tl-stay">🏨 宿泊: ローマ市内ホテル（3泊目）</div>
         </div>
       </div>
@@ -891,9 +877,9 @@
           <div class="tl-card-header">
             <span class="tl-date">11/19(木)</span>
             <span class="tl-city">🇬🇷 アテネ (ギリシャ)</span>
-            <span class="tl-timezone">時差: -7時間（冬時間）</span>
+            <span class="tl-timezone">バンコクより -5時間</span>
           </div>
-          <div class="tl-flight-tag">✈️ 【区間8】A3651 ローマ 10:35発 → アテネ 13:35着 (エーゲ航空ビジネス)</div>
+          <div class="tl-flight-tag">✈️ 【区間8】A3651 ローマ 10:35発（BKK 16:35発）→ アテネ 13:35着（BKK 18:35着）</div>
           <div class="tl-activity">エーゲ航空でギリシャ・アテネへ。午後プラカ地区散策、ギリシャ料理ディナー。</div>
           <div class="tl-stay">🏨 宿泊: アテネ市内ホテル（1泊目）</div>
         </div>
@@ -905,23 +891,23 @@
           <div class="tl-card-header">
             <span class="tl-date">11/20(金)</span>
             <span class="tl-city">🇬🇷 アテネ</span>
-            <span class="tl-timezone">時差: -7時間</span>
+            <span class="tl-timezone">バンコクより -5時間</span>
           </div>
           <div class="tl-activity">終日観光：世界遺産アクロポリスの丘（パルテノン神殿）、新アクロポリス博物館。</div>
           <div class="tl-stay">🏨 宿泊: アテネ市内ホテル（2泊目）</div>
         </div>
       </div>
 
-      <!-- P3: 中東・アフリカ -->
+      <!-- P3: 中東・アフリカ〜バンコク帰還 -->
       <div class="tl-day flight-day" data-phase="p3">
         <div class="tl-dot"></div>
         <div class="tl-card">
           <div class="tl-card-header">
             <span class="tl-date">11/21(土)</span>
             <span class="tl-city">🇹🇷 カッパドキア (トルコ)</span>
-            <span class="tl-timezone">時差: -6時間</span>
+            <span class="tl-timezone">バンコクより -4時間</span>
           </div>
-          <div class="tl-flight-tag">✈️ 【区間9】TK1840 アテネ 11:50発 → イスタンブール 14:30着 → 夕方便でカッパドキアへ</div>
+          <div class="tl-flight-tag">✈️ 【区間9】TK1840 アテネ 11:50発（BKK 16:50発）→ イスタンブール 14:30着 → 夕方便でカッパドキアへ</div>
           <div class="tl-activity">イスタンブール経由で奇岩の地カッパドキアへ移動。幻想的な洞窟ホテルに宿泊。</div>
           <div class="tl-stay">🏨 宿泊: カッパドキア洞窟ホテル（1泊目）</div>
         </div>
@@ -933,7 +919,7 @@
           <div class="tl-card-header">
             <span class="tl-date">11/22(日)</span>
             <span class="tl-city">🇹🇷 カッパドキア</span>
-            <span class="tl-timezone">時差: -6時間</span>
+            <span class="tl-timezone">バンコクより -4時間</span>
           </div>
           <div class="tl-activity">★早朝：数千の気球とともに朝日を浴びる【熱気球フライト】！奇岩群や地下都市を観光。</div>
           <div class="tl-stay">🏨 宿泊: カッパドキア洞窟ホテル（2泊目）</div>
@@ -946,9 +932,9 @@
           <div class="tl-card-header">
             <span class="tl-date">11/23(月)</span>
             <span class="tl-city">🇹🇷 イスタンブール</span>
-            <span class="tl-timezone">時差: -6時間</span>
+            <span class="tl-timezone">バンコクより -4時間</span>
           </div>
-          <div class="tl-activity">朝便でイスタンブールへ。ブルーモスク（スルタンアフメト・モスク）、アヤソフィア、グランドバザール。</div>
+          <div class="tl-activity">朝便でイスタンブールへ。ブルーモスク、アヤソフィア、グランドバザール。</div>
           <div class="tl-stay">🏨 宿泊: イスタンブール市内ホテル（1泊目）</div>
         </div>
       </div>
@@ -959,9 +945,9 @@
           <div class="tl-card-header">
             <span class="tl-date">11/24(火)</span>
             <span class="tl-city">🇹🇷 イスタンブール</span>
-            <span class="tl-timezone">時差: -6時間</span>
+            <span class="tl-timezone">バンコクより -4時間</span>
           </div>
-          <div class="tl-activity">トプカプ宮殿、ボスポラス海峡クルーズ ＋ ★夜18:45 UEFAチャンピオンズリーグ観戦【ガラタサライ戦】！</div>
+          <div class="tl-activity">トプカプ宮殿、ボスポラス海峡クルーズ ＋ ★夜18:45（BKK 22:45）UEFAチャンピオンズリーグ【ガラタサライ戦】観戦！</div>
           <div class="tl-stay">🏨 宿泊: イスタンブール市内ホテル（2泊目）</div>
         </div>
       </div>
@@ -972,10 +958,10 @@
           <div class="tl-card-header">
             <span class="tl-date">11/25(水)</span>
             <span class="tl-city">🇪🇬 カイロ (エジプト)</span>
-            <span class="tl-timezone">時差: -7時間</span>
+            <span class="tl-timezone">バンコクより -5時間</span>
           </div>
-          <div class="tl-flight-tag">✈️ 【区間10】MS738 イスタンブール 14:00発 → カイロ 15:15着 (エジプト航空ビジネス)</div>
-          <div class="tl-activity">サッカー観戦の翌朝はゆっくり起床。昼過ぎ便でエジプト・カイロへ。ホテルチェックイン。</div>
+          <div class="tl-flight-tag">✈️ 【区間10】MS738 イスタンブール 14:00発（BKK 18:00発）→ カイロ 15:15着（BKK 20:15着）</div>
+          <div class="tl-activity">昼過ぎ便でエジプト・カイロへ。ギザ地区ホテルにチェックイン。</div>
           <div class="tl-stay">🏨 宿泊: カイロ（ギザ地区）ホテル（1泊目）</div>
         </div>
       </div>
@@ -986,7 +972,7 @@
           <div class="tl-card-header">
             <span class="tl-date">11/26(木)</span>
             <span class="tl-city">🇪🇬 カイロ・ギザ</span>
-            <span class="tl-timezone">時差: -7時間</span>
+            <span class="tl-timezone">バンコクより -5時間</span>
           </div>
           <div class="tl-activity">★世界最古の七不思議：ギザの三大ピラミッド（クフ王ピラミッド内部見学）＆スフィンクス！</div>
           <div class="tl-stay">🏨 宿泊: カイロ（ギザ地区）ホテル（2泊目）</div>
@@ -999,10 +985,10 @@
           <div class="tl-card-header">
             <span class="tl-date">11/27(金)</span>
             <span class="tl-city">🇪🇬 カイロ → 【機中泊】</span>
-            <span class="tl-timezone">時差: -7時間</span>
+            <span class="tl-timezone">バンコクより -5時間</span>
           </div>
-          <div class="tl-flight-tag">✈️ 【区間11】MS849 カイロ 21:35発 → ナイロビ 03:30着(+1) (エジプト航空ビジネス)</div>
-          <div class="tl-activity">グランド・エジプト博物館（GEM）見学。夜の飛行機でケニア・ナイロビへ。</div>
+          <div class="tl-flight-tag">✈️ 【区間11】MS849 カイロ 21:35発（BKK 11/28 02:35発）→ ナイロビ 03:30着（BKK 11/28 07:30着）</div>
+          <div class="tl-activity">大エジプト博物館（GEM）見学。夜便でケニア・ナイロビへ。</div>
           <div class="tl-stay">✈️ 宿泊: 機中泊（ビジネスクラス）</div>
         </div>
       </div>
@@ -1013,9 +999,9 @@
           <div class="tl-card-header">
             <span class="tl-date">11/28(土)</span>
             <span class="tl-city">🇰🇪 アンボセリ国立公園 (ケニア)</span>
-            <span class="tl-timezone">時差: -6時間</span>
+            <span class="tl-timezone">バンコクより -4時間</span>
           </div>
-          <div class="tl-activity">早朝03:30ナイロビ着後、空港ホテルで仮眠・シャワー。午前中専用4x4サファリカーでアンボセリへ。夕方サファリ！</div>
+          <div class="tl-activity">早朝03:30ナイロビ着後、空港ホテルで仮眠。専用4x4サファリカーでアンボセリへ。夕方サファリ！</div>
           <div class="tl-stay">🏨 宿泊: アンボセリ国立公園内サファリロッジ（1泊目）</div>
         </div>
       </div>
@@ -1026,9 +1012,9 @@
           <div class="tl-card-header">
             <span class="tl-date">11/29(日)</span>
             <span class="tl-city">🇰🇪 アンボセリ国立公園</span>
-            <span class="tl-timezone">時差: -6時間</span>
+            <span class="tl-timezone">バンコクより -4時間</span>
           </div>
-          <div class="tl-activity">★終日ゲームドライブ：アフリカ最高峰キリマンジャロ山を背景に、野生の象の大群やキリン、ライオンを観察！</div>
+          <div class="tl-activity">★終日サファリ：キリマンジャロ山を背景に、野生の象の大群やキリン、ライオンを観察！</div>
           <div class="tl-stay">🏨 宿泊: アンボセリ国立公園内サファリロッジ（2泊目）</div>
         </div>
       </div>
@@ -1039,9 +1025,9 @@
           <div class="tl-card-header">
             <span class="tl-date">11/30(月)</span>
             <span class="tl-city">🇰🇪 ナイロビ</span>
-            <span class="tl-timezone">時差: -6時間</span>
+            <span class="tl-timezone">バンコクより -4時間</span>
           </div>
-          <div class="tl-activity">早朝サファリ後、ナイロビへ移動。ジラフセンターでキリンと触れ合い。空港近くのホテルで休養。</div>
+          <div class="tl-activity">早朝サファリ後、ナイロビへ移動。ジラフセンター（キリン餌やり）。空港近くのホテルで休養。</div>
           <div class="tl-stay">🏨 宿泊: ナイロビ空港近郊ホテル（1泊目）</div>
         </div>
       </div>
@@ -1051,80 +1037,28 @@
         <div class="tl-card">
           <div class="tl-card-header">
             <span class="tl-date">12/01(火)</span>
-            <span class="tl-city">🛫 ナイロビ → エチオピア経由 → 【機中泊】</span>
-            <span class="tl-timezone">時差: -6時間</span>
+            <span class="tl-city">🛫 ナイロビ → アディスアベバ経由 → 【機中泊】</span>
+            <span class="tl-timezone">バンコクより -4時間</span>
           </div>
-          <div class="tl-flight-tag">✈️ 【区間12・13】ET319 NBO 17:30発 → ADD 19:30着／ET608 ADD 23:55発 → BKK 12:30着(+1)</div>
-          <div class="tl-activity">エチオピア航空ビジネスクラス（フルフラット）でアジア・バンコクへ帰還フライト！</div>
+          <div class="tl-flight-tag">✈️ 【区間12・13】ET319 NBO 17:30発（BKK 21:30発）→ ADD 19:30着／ET608 ADD 23:55発（BKK 12/2 03:55発）</div>
+          <div class="tl-activity">エチオピア航空ビジネスクラス（フルフラット）でバンコクへの帰還フライト！機内泊。</div>
           <div class="tl-stay">✈️ 宿泊: 機中泊（ビジネスクラス・ベッド）</div>
         </div>
       </div>
 
-      <!-- P4: タイ滞在・帰国 -->
-      <div class="tl-day" data-phase="p4">
+      <div class="tl-day goal-day" data-phase="p3">
         <div class="tl-dot"></div>
-        <div class="tl-card" style="border-left: 4px solid var(--success);">
+        <div class="tl-card" style="border: 2px solid var(--success); background: #f0fdf4;">
           <div class="tl-card-header">
-            <span class="tl-date">12/02(水)</span>
-            <span class="tl-city">🇹🇭 バンコク (タイ)</span>
-            <span class="tl-timezone">時差: -2時間</span>
+            <span class="tl-date" style="color: #065f46;">12/02(水)</span>
+            <span class="tl-city" style="background: #d1fae5; color: #065f46;">🇹🇭 バンコク到着・帰宅！</span>
+            <span class="tl-timezone" style="background: #bbf7d0; color: #14532d;">バンコク時間（時差なし）</span>
           </div>
-          <div class="tl-activity">🎉 <strong>お昼12:30 バンコク到着！世界一周本編の主要区間を無事完結！</strong></div>
-          <div class="tl-stay">🏠 滞在: バンコク自宅・生活拠点</div>
-        </div>
-      </div>
-
-      <div class="tl-day rest-day" data-phase="p4">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <div class="tl-card-header">
-            <span class="tl-date">12/03 〜 2027/2/28</span>
-            <span class="tl-city">🇹🇭 タイ・バンコク滞在</span>
-            <span class="tl-timezone">時差: -2時間</span>
+          <div class="tl-flight-tag" style="background: #d1fae5; color: #065f46;">✈️ ET608 12:30 スワンナプーム国際空港（BKK）到着！</div>
+          <div class="tl-activity" style="font-weight: 700; color: #065f46; font-size: 15px;">
+            🎉 お昼12:30にバンコクへ到着！世界一周旅行を無事完結して帰宅します！
           </div>
-          <div class="tl-activity">タイ・バンコクにて約3ヶ月間の日常生活・ワーケーション滞在。</div>
-          <div class="tl-stay">🏠 滞在: バンコク</div>
-        </div>
-      </div>
-
-      <div class="tl-day flight-day" data-phase="p4">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <div class="tl-card-header">
-            <span class="tl-date">2027/03/01(月)</span>
-            <span class="tl-city">🇸🇬 シンガポール</span>
-            <span class="tl-timezone">時差: -1時間</span>
-          </div>
-          <div class="tl-flight-tag">✈️ 【区間14】SQ705 BKK 09:40発 → SIN 13:10着 (シンガポール航空ビジネス)</div>
-          <div class="tl-activity">帰省ルート第1弾。シンガポール航空でシンガポールへ。マリーナベイ・サンズや植物園。</div>
-          <div class="tl-stay">🏨 宿泊: シンガポール市内ホテル（1泊目）</div>
-        </div>
-      </div>
-
-      <div class="tl-day" data-phase="p4">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <div class="tl-card-header">
-            <span class="tl-date">2027/03/02(火)</span>
-            <span class="tl-city">🇸🇬 シンガポール</span>
-            <span class="tl-timezone">時差: -1時間</span>
-          </div>
-          <div class="tl-activity">終日シンガポール市内観光・ショッピング・名物チキンライス等。</div>
-          <div class="tl-stay">🏨 宿泊: シンガポール市内ホテル（2泊目）</div>
-        </div>
-      </div>
-
-      <div class="tl-day flight-day" data-phase="p4">
-        <div class="tl-dot"></div>
-        <div class="tl-card" style="border-left: 4px solid var(--primary-light);">
-          <div class="tl-card-header">
-            <span class="tl-date">2027/03/03(水)</span>
-            <span class="tl-city">🇯🇵 東京・羽田空港</span>
-            <span class="tl-timezone">日本時間</span>
-          </div>
-          <div class="tl-flight-tag">✈️ 【区間15】NH842 SIN 10:45発 → 羽田 18:25着 (ANAビジネスクラス)</div>
-          <div class="tl-activity">🎉 <strong>ANAビジネスクラスで羽田空港へ帰国！世界一周旅行の全行程が無事終了！</strong></div>
-          <div class="tl-stay">🏠 帰国: 東京到着</div>
+          <div class="tl-stay" style="color: #047857;">🏠 帰宅: バンコク自宅（14時頃到着予定）</div>
         </div>
       </div>
 
@@ -1133,8 +1067,8 @@
 
   <!-- ================= TAB 2: FLIGHTS ================= -->
   <div id="tab-flights" class="tab-pane">
-    <div class="notice-box">
-      ✈️ <strong>家族のためのフライト確認シート:</strong> 「現地時間」に加えて<strong>「日本時間」</strong>を併記しています。日本時間の何時から何時まで飛行機に乗っているか（連絡がつかない時間）がすぐにわかります。
+    <div class="notice-box bkk-info">
+      ✈️ <strong>バンコク時間つきフライト確認表:</strong> 各便の出発・到着を<strong>「バンコク時間（タイ時間）」</strong>で併記しています。タイ時間の何時から何時まで飛行機に乗っているか（連絡がつかない時間）が直感的にわかります。
     </div>
 
     <div class="card">
@@ -1144,11 +1078,11 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>日付(曜)</th>
+              <th>搭乗日</th>
               <th>便名</th>
               <th>区間</th>
               <th>現地時刻 (発 → 着)</th>
-              <th>日本時間 (発 → 着)</th>
+              <th class="bkk-col">🇹🇭 バンコク時間 (発 → 着)</th>
               <th>所要</th>
               <th>クラス</th>
             </tr>
@@ -1160,7 +1094,7 @@
               <td><span class="carrier-tag">ANA</span> NH 8</td>
               <td>成田 → サンフランシスコ</td>
               <td>17:00 → 10:20 (同日)</td>
-              <td>17:00 → 10/29 02:20</td>
+              <td class="bkk-col">10/28 15:00 → 10/29 00:20</td>
               <td>9h20m</td>
               <td><span class="class-badge biz">ビジネス Z</span></td>
             </tr>
@@ -1170,7 +1104,7 @@
               <td><span class="carrier-tag">UA</span> UA 1271</td>
               <td>サンフランシスコ → メキシコシティ</td>
               <td>10:45 → 16:05</td>
-              <td>10/30 02:45 → 07:05</td>
+              <td class="bkk-col">10/30 00:45 → 10/30 05:05</td>
               <td>4h20m</td>
               <td><span class="class-badge eco">エコノミー B</span></td>
             </tr>
@@ -1180,7 +1114,7 @@
               <td><span class="carrier-tag">コパ</span> CM 121</td>
               <td>メキシコシティ → パナマシティ</td>
               <td>13:10 → 17:54</td>
-              <td>11/01 04:10 → 07:54</td>
+              <td class="bkk-col">11/01 02:10 → 11/01 05:54</td>
               <td>3h44m</td>
               <td><span class="class-badge biz">ビジネス D</span></td>
             </tr>
@@ -1190,7 +1124,7 @@
               <td><span class="carrier-tag">コパ</span> CM 489</td>
               <td>パナマシティ → リマ (ペルー)</td>
               <td>19:09 → 22:45</td>
-              <td>11/01 09:09 → 12:45</td>
+              <td class="bkk-col">11/01 07:09 → 11/01 10:45</td>
               <td>3h36m</td>
               <td><span class="class-badge biz">ビジネス D</span></td>
             </tr>
@@ -1207,7 +1141,7 @@
               <td><span class="carrier-tag">TAP</span> TP 88</td>
               <td>サンパウロ(GRU) → リスボン</td>
               <td>23:15 → 12:10 (+1)</td>
-              <td>11/11 11:15 → 21:10</td>
+              <td class="bkk-col">11/11 09:15 → 11/11 19:10</td>
               <td>9h55m</td>
               <td><span class="class-badge biz">ビジネス Z</span></td>
             </tr>
@@ -1217,7 +1151,7 @@
               <td><span class="carrier-tag">TAP</span> TP 1030</td>
               <td>リスボン → バルセロナ</td>
               <td>07:10 → 10:05</td>
-              <td>11/12 16:10 → 18:05</td>
+              <td class="bkk-col">11/12 14:10 → 11/12 16:05</td>
               <td>1h55m</td>
               <td><span class="class-badge biz">ビジネス Z</span></td>
             </tr>
@@ -1227,7 +1161,7 @@
               <td><span class="carrier-tag">ITA</span> AZ 79</td>
               <td>バルセロナ → ローマ(FCO)</td>
               <td>16:50 → 18:35</td>
-              <td>11/17 00:50 → 02:35</td>
+              <td class="bkk-col">11/16 22:50 → 11/17 00:35</td>
               <td>1h45m</td>
               <td><span class="class-badge biz">ビジネス Z</span></td>
             </tr>
@@ -1237,7 +1171,7 @@
               <td><span class="carrier-tag">エーゲ</span> A3 651</td>
               <td>ローマ(FCO) → アテネ</td>
               <td>10:35 → 13:35</td>
-              <td>11/19 18:35 → 20:35</td>
+              <td class="bkk-col">11/19 16:35 → 11/19 18:35</td>
               <td>2h00m</td>
               <td><span class="class-badge biz">ビジネス D</span></td>
             </tr>
@@ -1247,7 +1181,7 @@
               <td><span class="carrier-tag">TK</span> TK 1840</td>
               <td>アテネ → イスタンブール</td>
               <td>11:50 → 14:30</td>
-              <td>11/21 18:50 → 20:30</td>
+              <td class="bkk-col">11/21 16:50 → 11/21 18:30</td>
               <td>1h40m</td>
               <td><span class="class-badge biz">ビジネス D</span></td>
             </tr>
@@ -1257,7 +1191,7 @@
               <td><span class="carrier-tag">エジプト</span> MS 738</td>
               <td>イスタンブール → カイロ</td>
               <td>14:00 → 15:15</td>
-              <td>11/25 20:00 → 22:15</td>
+              <td class="bkk-col">11/25 18:00 → 11/25 20:15</td>
               <td>2h15m</td>
               <td><span class="class-badge biz">ビジネス D</span></td>
             </tr>
@@ -1267,7 +1201,7 @@
               <td><span class="carrier-tag">エジプト</span> MS 849</td>
               <td>カイロ → ナイロビ (ケニア)</td>
               <td>21:35 → 03:30 (+1)</td>
-              <td>11/28 04:35 → 09:30</td>
+              <td class="bkk-col">11/28 02:35 → 11/28 07:30</td>
               <td>4h55m</td>
               <td><span class="class-badge biz">ビジネス D</span></td>
             </tr>
@@ -1277,7 +1211,7 @@
               <td><span class="carrier-tag">エチオピア</span> ET 319</td>
               <td>ナイロビ → アディスアベバ</td>
               <td>17:30 → 19:30</td>
-              <td>12/01 23:30 → 12/02 01:30</td>
+              <td class="bkk-col">12/01 21:30 → 12/01 23:30</td>
               <td>2h00m</td>
               <td><span class="class-badge biz">ビジネス D</span></td>
             </tr>
@@ -1285,31 +1219,11 @@
               <td>⑬</td>
               <td><strong>12/01(火)</strong></td>
               <td><span class="carrier-tag">エチオピア</span> ET 608</td>
-              <td>アディスアベバ → バンコク</td>
+              <td>アディスアベバ → バンコク (BKK)</td>
               <td>23:55 → 12:30 (+1)</td>
-              <td>12/02 05:55 → 14:30</td>
+              <td class="bkk-col">12/02 03:55 → 12/02 12:30</td>
               <td>8h35m</td>
               <td><span class="class-badge biz">ビジネス D</span></td>
-            </tr>
-            <tr>
-              <td>⑭</td>
-              <td><strong>2027/3/1(月)</strong></td>
-              <td><span class="carrier-tag">SQ</span> SQ 705</td>
-              <td>バンコク → シンガポール</td>
-              <td>09:40 → 13:10</td>
-              <td>03/01 11:40 → 14:10</td>
-              <td>2h30m</td>
-              <td><span class="class-badge biz">ビジネス D</span></td>
-            </tr>
-            <tr>
-              <td>⑮</td>
-              <td><strong>2027/3/3(水)</strong></td>
-              <td><span class="carrier-tag">ANA</span> NH 842</td>
-              <td>シンガポール → 東京・羽田</td>
-              <td>10:45 → 18:25</td>
-              <td>03/03 11:45 → 18:25</td>
-              <td>6h40m</td>
-              <td><span class="class-badge biz">ビジネス Z</span></td>
             </tr>
           </tbody>
         </table>
@@ -1319,7 +1233,7 @@
     <div class="card">
       <div class="card-title">予約照会コード一覧</div>
       <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:10px;">
-        万が一、各航空会社のWebサイトやカウンターでフライト状況を確認する必要が生じた場合は、以下の予約コードを使用できます。
+        各航空会社のWebサイトやアプリで運航状況を確認したい場合は、以下の予約コードを使用できます。
       </p>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:10px; font-size:13px;">
         <div style="background:#f8fafc; padding:10px; border-radius:6px;">ANA予約番号: <strong>EANRV5</strong></div>
@@ -1327,14 +1241,14 @@
         <div style="background:#f8fafc; padding:10px; border-radius:6px;">コパ航空: <strong>AXY1HV</strong></div>
         <div style="background:#f8fafc; padding:10px; border-radius:6px;">ターキッシュ: <strong>VZV2V2</strong></div>
         <div style="background:#f8fafc; padding:10px; border-radius:6px;">エチオピア航空: <strong>QTVTQV</strong></div>
-        <div style="background:#f8fafc; padding:10px; border-radius:6px;">TAP/ITA/エーゲ/エジプト/SQ: <strong>EANRV5</strong></div>
+        <div style="background:#f8fafc; padding:10px; border-radius:6px;">TAP/ITA/エーゲ/エジプト: <strong>EANRV5</strong></div>
       </div>
     </div>
   </div>
 
   <!-- ================= TAB 3: CONTACTS ================= -->
   <div id="tab-contacts" class="tab-pane">
-    <div class="notice-box info">
+    <div class="notice-box bkk-info">
       📞 <strong>緊急時の連絡体制:</strong> 海外旅行中もスマートフォンのLINE（通話・メッセージ）が常に最優先の連絡手段となります。万が一本人と直接連絡が取れない緊急事態に備え、現地日本大使館・領事館の緊急連絡先をリストアップしています。
     </div>
 
@@ -1349,7 +1263,7 @@
         </div>
         <div class="contact-item">
           <span class="k">連絡頻度:</span>
-          <span class="v">毎朝ホテル出発前と、毎晩ホテル帰着時にLINEで一言安否連絡を入れます</span>
+          <span class="v">毎朝ホテル出発前と、毎晩ホテル帰着時にLINEで一言連絡を入れます</span>
         </div>
         <div class="contact-item">
           <span class="k">航空会社:</span>
@@ -1437,112 +1351,112 @@
 
   <!-- ================= TAB 4: TIMEZONE ================= -->
   <div id="tab-timezone" class="tab-pane">
-    <div class="notice-box">
-      ⏰ <strong>家族との連絡ゴールデンタイム:</strong> 日本との時差が大きいため、「日本が夜のとき、現地は朝または昼」になります。お互いの生活リズムを考慮したおすすめの通話時間帯をまとめました。
+    <div class="notice-box bkk-info">
+      ⏰ <strong>バンコクとの時差＆連絡おすすめ時間帯:</strong> バンコクのご家族の生活時間（朝〜夜）に合わせた各滞在先との時差対照表です。
     </div>
 
     <div class="card">
-      <div class="card-title">地域別の時差と連絡おすすめ時間帯</div>
+      <div class="card-title">バンコク（タイ）基準の時差と連絡おすすめ時間</div>
       <div class="tz-grid">
 
         <div class="tz-card">
           <div class="tz-card-city">
             <span>🇺🇸 サンフランシスコ</span>
-            <span class="tz-diff">-16時間</span>
+            <span class="tz-diff">-14時間</span>
           </div>
-          <p style="font-size:12px; color:var(--text-muted);">日本より16時間遅れ</p>
+          <p style="font-size:12px; color:var(--text-muted);">バンコクより14時間遅れ</p>
           <div class="tz-calc-example">
             📞 <strong>おすすめ連絡時間:</strong><br>
-            ・日本 21:00 〜 23:00 ＝ 現地 午前 05:00 〜 07:00 (起床時)<br>
-            ・日本 10:00 〜 13:00 ＝ 現地 夕方 18:00 〜 21:00 (夕食時)
+            ・BKK 21:00 〜 23:00 ＝ 現地 朝 07:00 〜 09:00 (起床時)<br>
+            ・BKK 11:00 〜 13:00 ＝ 現地 夜 21:00 〜 23:00 (就寝前)
           </div>
         </div>
 
         <div class="tz-card">
           <div class="tz-card-city">
             <span>🇲🇽 メキシコシティ</span>
-            <span class="tz-diff">-15時間</span>
+            <span class="tz-diff">-13時間</span>
           </div>
-          <p style="font-size:12px; color:var(--text-muted);">日本より15時間遅れ</p>
+          <p style="font-size:12px; color:var(--text-muted);">バンコクより13時間遅れ</p>
           <div class="tz-calc-example">
             📞 <strong>おすすめ連絡時間:</strong><br>
-            ・日本 21:00 〜 23:00 ＝ 現地 朝 06:00 〜 08:00<br>
-            ・日本 11:00 〜 13:00 ＝ 現地 夜 20:00 〜 22:00
+            ・BKK 21:00 〜 23:00 ＝ 現地 朝 08:00 〜 10:00<br>
+            ・BKK 11:00 〜 13:00 ＝ 現地 夜 22:00 〜 24:00
           </div>
         </div>
 
         <div class="tz-card">
           <div class="tz-card-city">
             <span>🇵🇪 ペルー (マチュピチュ)</span>
-            <span class="tz-diff">-14時間</span>
+            <span class="tz-diff">-12時間</span>
           </div>
-          <p style="font-size:12px; color:var(--text-muted);">日本より14時間遅れ</p>
+          <p style="font-size:12px; color:var(--text-muted);">バンコクとちょうど昼夜逆転</p>
           <div class="tz-calc-example">
             📞 <strong>おすすめ連絡時間:</strong><br>
-            ・日本 21:00 〜 23:00 ＝ 現地 朝 07:00 〜 09:00<br>
-            ・日本 10:00 〜 13:00 ＝ 現地 夜 20:00 〜 23:00
+            ・BKK 20:00 〜 22:00 ＝ 現地 朝 08:00 〜 10:00 (活動開始)<br>
+            ・BKK 08:00 〜 10:00 ＝ 現地 夜 20:00 〜 22:00 (ホテル帰着)
           </div>
         </div>
 
         <div class="tz-card">
           <div class="tz-card-city">
             <span>🇧🇷 ブラジル (イグアス)</span>
-            <span class="tz-diff">-12時間</span>
+            <span class="tz-diff">-10時間</span>
           </div>
-          <p style="font-size:12px; color:var(--text-muted);">日本とちょうど昼夜逆転</p>
+          <p style="font-size:12px; color:var(--text-muted);">バンコクより10時間遅れ</p>
           <div class="tz-calc-example">
             📞 <strong>おすすめ連絡時間:</strong><br>
-            ・日本 20:00 〜 22:00 ＝ 現地 朝 08:00 〜 10:00<br>
-            ・日本 08:00 〜 10:00 ＝ 現地 夜 20:00 〜 22:00
+            ・BKK 19:00 〜 22:00 ＝ 現地 午前 09:00 〜 12:00<br>
+            ・BKK 08:00 〜 10:00 ＝ 現地 夜 22:00 〜 24:00
           </div>
         </div>
 
         <div class="tz-card">
           <div class="tz-card-city">
-            <span>🇵🇹 リスボン</span>
-            <span class="tz-diff">-9時間</span>
+            <span>🇵🇹 リスボン (ポルトガル)</span>
+            <span class="tz-diff">-7時間</span>
           </div>
-          <p style="font-size:12px; color:var(--text-muted);">日本より9時間遅れ</p>
+          <p style="font-size:12px; color:var(--text-muted);">バンコクより7時間遅れ</p>
           <div class="tz-calc-example">
             📞 <strong>おすすめ連絡時間:</strong><br>
-            ・日本 17:00 〜 23:00 ＝ 現地 朝 08:00 〜 14:00<br>
-            ※夕方〜夜の連絡が非常に取りやすいです
+            ・BKK 16:00 〜 23:00 ＝ 現地 朝 09:00 〜 16:00<br>
+            ※夕方〜夜の連絡がとてもスムーズです
           </div>
         </div>
 
         <div class="tz-card">
           <div class="tz-card-city">
             <span>🇪🇸 スペイン / 🇮🇹 イタリア</span>
-            <span class="tz-diff">-8時間</span>
+            <span class="tz-diff">-6時間</span>
           </div>
-          <p style="font-size:12px; color:var(--text-muted);">日本より8時間遅れ</p>
+          <p style="font-size:12px; color:var(--text-muted);">バンコクより6時間遅れ</p>
           <div class="tz-calc-example">
             📞 <strong>おすすめ連絡時間:</strong><br>
-            ・日本 17:00 〜 23:00 ＝ 現地 午前 09:00 〜 15:00
+            ・BKK 16:00 〜 23:00 ＝ 現地 午前 10:00 〜 夕方 17:00
+          </div>
+        </div>
+
+        <div class="tz-card">
+          <div class="tz-card-city">
+            <span>🇬🇷 ギリシャ / 🇪🇬 エジプト</span>
+            <span class="tz-diff">-5時間</span>
+          </div>
+          <p style="font-size:12px; color:var(--text-muted);">バンコクより5時間遅れ</p>
+          <div class="tz-calc-example">
+            📞 <strong>おすすめ連絡時間:</strong><br>
+            ・BKK 17:00 〜 23:00 ＝ 現地 お昼 12:00 〜 18:00
           </div>
         </div>
 
         <div class="tz-card">
           <div class="tz-card-city">
             <span>🇹🇷 トルコ / 🇰🇪 ケニア</span>
-            <span class="tz-diff">-6時間</span>
+            <span class="tz-diff">-4時間</span>
           </div>
-          <p style="font-size:12px; color:var(--text-muted);">日本より6時間遅れ</p>
+          <p style="font-size:12px; color:var(--text-muted);">バンコクより4時間遅れ</p>
           <div class="tz-calc-example">
             📞 <strong>おすすめ連絡時間:</strong><br>
-            ・日本 18:00 〜 23:00 ＝ 現地 お昼 12:00 〜 17:00
-          </div>
-        </div>
-
-        <div class="tz-card">
-          <div class="tz-card-city">
-            <span>🇹🇭 タイ (バンコク)</span>
-            <span class="tz-diff">-2時間</span>
-          </div>
-          <p style="font-size:12px; color:var(--text-muted);">時差わずか2時間</p>
-          <div class="tz-calc-example">
-            📞 <strong>おすすめ連絡時間:</strong><br>
-            ・終日いつでも気軽に日本と同じ感覚で通話可能
+            ・BKK 16:00 〜 23:00 ＝ 現地 お昼 12:00 〜 19:00
           </div>
         </div>
 
@@ -1550,44 +1464,7 @@
     </div>
   </div>
 
-  <!-- ================= TAB 5: SAFETY ================= -->
-  <div id="tab-safety" class="tab-pane">
-    <div class="card">
-      <div class="card-title">家族を安心させる 6つの安全＆健康ルール</div>
-      <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:16px;">
-        本旅行は綿密な睡眠監査・治安リスク分析を経て計画されています。家族の皆様が安心して過ごせるよう、以下のルールを徹底して運用します。
-      </p>
-
-      <ul class="rule-list">
-        <li>
-          <strong>毎日の「朝・晩LINE報告」の徹底:</strong><br>
-          毎朝のホテル出発前と、毎晩ホテルに戻った際に、必ずLINEで現在地や体調を一言報告します。
-        </li>
-        <li>
-          <strong>移動の安全対策（深夜外出禁止＆公認送迎のみ利用）:</strong><br>
-          流しのタクシーには一切乗らず、すべて空港直結ホテル、信頼できる事前手配の専用送迎車、またはUber等アプリ配車のみを利用します。深夜の街歩きは一切行いません。
-        </li>
-        <li>
-          <strong>全フライトのほぼ完全ビジネスクラス化（体力維持）:</strong><br>
-          全15区間のうち14区間がビジネスクラス（フルフラット寝台ベッド）。長距離の大西洋横断やアフリカ便でも横になってしっかり眠れるため、疲労を蓄積させません。
-        </li>
-        <li>
-          <strong>高山病への万全の配慮（ペルー）:</strong><br>
-          標高3,400mのクスコには到着直後滞在せず、初日に標高2,400mのマチュピチュ村へ直行して体を順応させる「低地先行ルート」を採用しています。
-        </li>
-        <li>
-          <strong>常時接続の通信環境（eSIM + ローミング）:</strong><br>
-          各国の高速データ通信eSIMを事前準備し、空港到着直後から常時インターネットに接続できる状態を維持します。
-        </li>
-        <li>
-          <strong>充実の海外旅行傷害保険:</strong><br>
-          最高水準の疾病治療・救援者費用・手荷物損害をカバーする海外旅行保険を付帯しています。万が一の病気や怪我でも24時間日本語デスクで病院手配が可能です。
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- ================= TAB 6: DOCS ================= -->
+  <!-- ================= TAB 5: DOCS ================= -->
   <div id="tab-docs" class="tab-pane">
     <div class="card">
       <div class="card-title">旅程の詳細資料・手配リンク集</div>
@@ -1658,7 +1535,7 @@
 </div>
 
 <footer>
-  <p>世界一周旅行 2026-2027 家族共有用ポータルサイト | 発行日: 2026年9月6日</p>
+  <p>世界一周旅行 2026 家族共有用ポータルサイト (バンコク時間ベース) | 発行日: 2026年9月6日</p>
   <p style="margin-top:4px; font-size:11px;">※本ページのデータはANA公式eチケット（予約番号: EANRV5 / 航空券番号: 205-2443136675〜678）に基づいて作成されています。</p>
 </footer>
 
