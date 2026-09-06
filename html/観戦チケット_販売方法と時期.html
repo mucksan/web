@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>観戦チケット：過去の販売方法と時期（調査） - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🐘 サファリ・象孤児院</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="観戦チケット_販売方法と時期.html">🎫 観戦チケット 販売方法と時期</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../観戦チケット_販売方法と時期.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="_1">観戦チケット：過去の販売方法と時期（調査）</h1>
+<blockquote>
+<p><strong>親文書:</strong> <a href="東回り_サッカー観戦候補.md"><code>東回り_サッカー観戦候補.md</code></a><br />
+<strong>調査日:</strong> 2026年9月6日<br />
+<strong>目的:</strong> 2試合のチケットについて、<strong>過去に「どう売られたか」「いつ売られたか」を実データで確認し、今回の発売時期を予測する。</strong></p>
+<h2 id="_2">🔴 この文書の読み方</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">表記</th>
+<th style="text-align: left;">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔵 <strong>実績</strong></td>
+<td style="text-align: left;">過去の販売の<strong>実際の日付・手順</strong>。一次情報で確認したもの</td>
+</tr>
+<tr>
+<td style="text-align: left;">🟢 <strong>予測</strong></td>
+<td style="text-align: left;">実績の規則性から導いた<strong>今回の見込み</strong>。確定ではない</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>未確認</strong></td>
+<td style="text-align: left;">調べたが確証が取れなかったもの</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<hr />
+<h2 id="0">0. 結論 — いつ何をするか</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">時期</th>
+<th style="text-align: left;">やること</th>
+<th style="text-align: left;">根拠</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>9月中</strong></td>
+<td style="text-align: left;"><strong>Passo Taraftar カードを申請する</strong>（GSロゴ入り）</td>
+<td style="text-align: left;">発行に数日かかり、<strong>カードが有効になるまでチケットを買えない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>9月中旬〜</strong></td>
+<td style="text-align: left;"><strong>RFEF のスペイン戦の発売告知を待つ</strong>（tickets.rfef.es）</td>
+<td style="text-align: left;">RFEF が「9月から情報公開」と告知済み</td>
+</tr>
+<tr>
+<td style="text-align: left;">🟢 <strong>10月上旬（見込み）</strong></td>
+<td style="text-align: left;"><strong>スペイン戦を購入</strong></td>
+<td style="text-align: left;">🔵 直近の実績で<strong>一般販売は試合の約40日前</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>11/20（金）14:00 トルコ時間</strong></td>
+<td style="text-align: left;"><strong>ガラタサライ戦を購入</strong></td>
+<td style="text-align: left;">🔵 <strong>過去3試合すべてで「試合直前の金曜14:00」に一般販売</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔴 <strong>最大の懸念はガラタサライ戦。</strong>一般販売は試合のわずか<strong>4日前</strong>で、<br />
+<strong>その前日（木曜）の優先販売で売り切れる可能性がある</strong>（→ §2.5）。</p>
+</blockquote>
+<h3 id="_3">🔴 発売日が旅程のどこに当たるか</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">時期</th>
+<th style="text-align: left;">滞在地</th>
+<th style="text-align: left;">購入できるか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">〜10/25</td>
+<td style="text-align: left;">バンコク</td>
+<td style="text-align: left;">✅ 問題なし</td>
+</tr>
+<tr>
+<td style="text-align: left;">10/26〜10/30</td>
+<td style="text-align: left;">東京 → SFO → メキシコシティ</td>
+<td style="text-align: left;">✅ 問題なし</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/1〜11/2</strong></td>
+<td style="text-align: left;">🔴 <strong>マチュピチュ村（標高2,040m・山中）</strong></td>
+<td style="text-align: left;">🔴 <strong>接続が悪い。事実上対応できない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">11/3〜11/9</td>
+<td style="text-align: left;">クスコ／イグアス／サンパウロ</td>
+<td style="text-align: left;">⚠️ ホテルのWi-Fi頼み</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/11〜11/15</td>
+<td style="text-align: left;">リスボン／バルセロナ／マドリード</td>
+<td style="text-align: left;">✅ 問題なし</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/20</strong></td>
+<td style="text-align: left;"><strong>アテネ</strong>（14:00 トルコ時間＝<strong>13:00 アテネ時間</strong>）</td>
+<td style="text-align: left;">✅ <strong>ガラタサライ戦の購入日。滞在中で問題なし</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🟢 <strong>スペイン戦が10月上旬に発売されれば、バンコク滞在中なので安全。</strong><br />
+⚠️ <strong>万一11月にずれ込むと、マチュピチュと重なる危険がある。</strong>9月中から告知を見ておく。</p>
+</blockquote>
+<hr />
+<h2 id="1-1-vs-1115-rfef">1. ① スペイン vs イングランド（11/15・マドリード）— RFEF</h2>
+<h3 id="11">1.1 販売の仕組み</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>販売元</strong></td>
+<td style="text-align: left;">🔴 <strong><code>tickets.rfef.es</code> のみ</strong>（RFEF公式）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>記名式</strong></td>
+<td style="text-align: left;">🔴 <strong>完全記名式。</strong>購入時に<strong>観戦者全員の氏名・身分証番号</strong>を入力する</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>全員分が必要</strong></td>
+<td style="text-align: left;"><strong>乳幼児・子どもも年齢を問わず1人1枚</strong>必要</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>1回の購入上限</strong></td>
+<td style="text-align: left;"><strong>6枚</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>受け取り</strong></td>
+<td style="text-align: left;"><strong>RFEF TICKETS アプリ</strong>（ブロックチェーン基盤）。<strong>ダウンロード・印刷は不可</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>転送</strong></td>
+<td style="text-align: left;">アプリ上で<strong>1回だけ</strong>他人に渡せる</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>転売</strong></td>
+<td style="text-align: left;"><strong>禁止。</strong>違反が判明すると<strong>当該者のチケットを全て取消・返金なし</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>不正対策</strong></td>
+<td style="text-align: left;">RFEF は<strong>グアルディア・シビル（治安警察）と連携</strong>して偽チケット販売サイトを摘発している</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-20268">1.2 🔵 実績：直近の販売（2026年8月）</h3>
+<p><strong>対象:</strong> 9/29 スペイン vs クロアチア（セビージャ／ラモン・サンチェス・ピスファン）<br />
+　　　　 10/3 スペイン vs チェコ（オビエド／ヌエボ・カルロス・タルティエレ）</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">段階</th>
+<th style="text-align: left;">日時</th>
+<th style="text-align: left;">対象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>① 先行販売</strong></td>
+<td style="text-align: left;"><strong>8/19 12:00 〜 8/20 11:59</strong></td>
+<td style="text-align: left;"><strong>開催クラブのソシオ</strong>（会員）※売切次第終了</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>② 一般販売</strong></td>
+<td style="text-align: left;"><strong>8/20 12:00 〜</strong></td>
+<td style="text-align: left;">誰でも</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔵 <strong>2試合ぶんを1回の告知でまとめて売り出している。</strong><br />
+🔵 <strong>一般販売の開始は、最初の試合（9/29）の約40日前。</strong><br />
+🔵 <strong>先行と一般の間隔はわずか24時間。</strong></p>
+</blockquote>
+<h3 id="13-1115-vs">1.3 🟢 予測：11/15 スペイン vs イングランド</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔵 <strong>RFEF の公式告知</strong></td>
+<td style="text-align: left;">「<strong>チケット情報は9月から公開する</strong>」</td>
+</tr>
+<tr>
+<td style="text-align: left;">🟢 <strong>一般販売の見込み</strong></td>
+<td style="text-align: left;"><strong>2026年10月上旬</strong>（11/15 の約40日前＝<strong>10月6日前後</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🟢 <strong>先行販売の対象</strong></td>
+<td style="text-align: left;"><strong>アトレティコ・マドリードのソシオ</strong>と見られる<br>（過去はいずれも「開催クラブの会員」が先行。会場が同クラブの本拠地のため）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🟢 <strong>先行と一般の間隔</strong></td>
+<td style="text-align: left;"><strong>24時間程度</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>11月の代表ウィンドウ（11/9〜11/17）のホーム戦がこの1試合だけなので、<br />
+8月のように「2試合まとめて」ではなく単独で売り出される可能性が高い。</strong><br />
+その場合でもリードタイムの傾向は変わらないと見る。</p>
+</blockquote>
+<h3 id="14">1.4 やること</h3>
+<ol>
+<li><strong>9月中旬から <code>tickets.rfef.es</code> の「España – Inglaterra」イベントページを定期的に見る</strong></li>
+<li><strong>RFEF TICKETS アプリを事前にインストールし、アカウントを作っておく</strong></li>
+<li>🔴 <strong>購入時の氏名は必ずパスポート表記（<code>TAKAMUKU TAKESHI</code>）で入力する</strong></li>
+<li>🔴 <strong>転売サイトでは絶対に買わない</strong>（記名式・入場時に本人確認）</li>
+</ol>
+<hr />
+<h2 id="2-2-vs-1124-passo">2. ② ガラタサライ vs アストン・ヴィラ（11/24・イスタンブール）— Passo</h2>
+<h3 id="21-2">2.1 販売の仕組み — <strong>2段階</strong></h3>
+<p>ガラタサライのホーム戦は、<strong>必ず次の2段階</strong>で売り出される。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">段階</th>
+<th style="text-align: left;">対象</th>
+<th style="text-align: left;">開始</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>① 優先販売</strong></td>
+<td style="text-align: left;"><strong>GSPlus Premium 会員</strong> ＋ <strong>GSPara クレジット／デビットカード保有者</strong></td>
+<td style="text-align: left;"><strong>木曜 14:00</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>② 一般販売</strong></td>
+<td style="text-align: left;">🔴 <strong>GSロゴ入り Passo Taraftar カード保有者</strong>（＝ここが外国人の入口）</td>
+<td style="text-align: left;"><strong>金曜 14:00</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>購入のルール</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>カード必須</strong></td>
+<td style="text-align: left;"><strong>GSロゴ入りの Passo Taraftar カード</strong>がないと<strong>購入も入場もできない</strong>（トルコ法律第6222号）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>1アカウント1枚</strong></td>
+<td style="text-align: left;">「Passo Taraftar カード保有者は<strong>1枚</strong>を購入する権利を持つ」</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>名義一致</strong></td>
+<td style="text-align: left;"><strong>Passo アカウントの名義＝チケットの名義でなければならない。他人名義での購入は不可</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>販売チャネル</strong></td>
+<td style="text-align: left;"><strong>Passo アプリ／<code>passo.com.tr</code></strong>（英語対応・海外発行クレジットカード可）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>在庫の出どころ</strong></td>
+<td style="text-align: left;">シーズンチケット保有者が<strong>行けない試合の座席をクラブに返却</strong>した分が単券として売られる</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>子ども</strong></td>
+<td style="text-align: left;">0〜6歳は無料</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-3">2.2 🔵 実績：過去3試合の販売日（一次情報）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">試合</th>
+<th style="text-align: left;">試合日</th>
+<th style="text-align: left;">① 優先販売</th>
+<th style="text-align: left;">② 一般販売</th>
+<th style="text-align: left;">一般販売は試合の</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>UCLリーグフェーズ第3節</strong><br>vs ボドー/グリムト</td>
+<td style="text-align: left;"><strong>2025/10/22（水）</strong> 19:45</td>
+<td style="text-align: left;"><strong>10/16（木）14:00</strong><br>〜10/17 13:00</td>
+<td style="text-align: left;">🔴 <strong>10/17（金）14:00</strong></td>
+<td style="text-align: left;"><strong>5日前</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">vs ユヴェントス</td>
+<td style="text-align: left;"><strong>2026/2/17（火）</strong> 20:45</td>
+<td style="text-align: left;"><strong>2/12（木）14:00</strong></td>
+<td style="text-align: left;">🔴 <strong>2/13（金）14:00</strong></td>
+<td style="text-align: left;"><strong>4日前</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">vs リヴァプール</td>
+<td style="text-align: left;"><strong>2026/3/10（火）</strong> 20:45</td>
+<td style="text-align: left;"><strong>3/5（木）14:00</strong><br>〜3/6 13:00</td>
+<td style="text-align: left;">🔴 <strong>3/6（金）14:00</strong></td>
+<td style="text-align: left;"><strong>4日前</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔵 <strong>3試合すべてで規則性が完全に一致している。</strong><br />
+<strong>「試合の直前の金曜 14:00（トルコ時間）に一般販売開始。その前日の木曜 14:00 に優先販売」</strong><br />
+🔵 <strong>優先販売は翌日13:00で締め切られ、その1時間後に一般販売が始まる。</strong></p>
+</blockquote>
+<h3 id="23-1124-vs">2.3 🟢 予測：11/24 ガラタサライ vs アストン・ヴィラ</h3>
+<p><strong>試合日は 2026年11月24日（火）18:45。直前の金曜日は 11月20日。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">段階</th>
+<th style="text-align: left;">🟢 予測日時（トルコ時間）</th>
+<th style="text-align: left;">そのときの滞在地・現地時刻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">① 優先販売</td>
+<td style="text-align: left;"><strong>11/19（木）14:00</strong></td>
+<td style="text-align: left;">アテネ（<strong>13:00</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 ② <strong>一般販売</strong></td>
+<td style="text-align: left;">🔴 <strong>11/20（金）14:00</strong></td>
+<td style="text-align: left;"><strong>アテネ（13:00）</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>✅ <strong>11/20 はアテネ滞在の中日で、移動がない。</strong>購入に支障はない。<br />
+⚠️ <strong>トルコはギリシャより1時間進んでいる</strong>（トルコ UTC+3／ギリシャ冬時間 UTC+2）。<br />
+<strong>アテネ時間 13:00 にアクセスすること。</strong></p>
+</blockquote>
+<h3 id="24">2.4 🔴 外国人がカードを取るまで</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">手順</th>
+<th style="text-align: left;">備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: left;"><strong><code>passotaraftar.com.tr</code> でカードを申請</strong></td>
+<td style="text-align: left;">⚠️ <strong>親文書には <code>passo.com.tr</code> と書いていたが、カード申請は <code>passotaraftar.com.tr</code>。</strong><code>passo.com.tr</code> はチケット販売側</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: left;">必要なもの：<strong>パスポート情報・電話番号・顔写真</strong></td>
+<td style="text-align: left;">英語対応</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: left;">🔴 <strong>外国人は「Passo Taraftar Wallet（プリペイド）」一択</strong></td>
+<td style="text-align: left;">トルコの銀行口座は不要</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: left;">🔴 <strong>GSロゴ入りのカードであること</strong></td>
+<td style="text-align: left;">汎用カードでは GS 戦を買えない。<strong>同じパスポート番号で GS ロゴ入りを申請する</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: left;"><strong>発行に数日かかる。カードが有効になるまで購入できない</strong></td>
+<td style="text-align: left;">🔴 <strong>だから9月中に申請する</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>6</strong></td>
+<td style="text-align: left;">受け取り：<strong>RAMS Park のチケット窓口</strong>で当日受け取り可</td>
+<td style="text-align: left;">アカウントが有効なら<strong>アプリでのデジタル入場</strong>も可能</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>7</strong></td>
+<td style="text-align: left;">🔴 <strong>入場時はパスポートも必要</strong>（カードの名義と照合される）</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="25">2.5 🔴 最大のリスク：一般販売まで在庫が残らない可能性</h3>
+<blockquote>
+<p><strong>「ダービーや欧州のノックアウト戦は、会員先行の段階で売り切れる」</strong>と現地ガイドが指摘している。<br />
+<strong>一般販売（金曜）に辿り着く前に、木曜の優先販売で消える</strong>という構造。</p>
+</blockquote>
+<p><strong>アストン・ヴィラ戦の位置づけ:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">要素</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">ダービー（フェネルバフチェ戦など）ではない</td>
+<td style="text-align: left;">🔵 有利</td>
+</tr>
+<tr>
+<td style="text-align: left;">UCL <strong>ノックアウトではなくリーグフェーズ</strong>第5節</td>
+<td style="text-align: left;">🔵 有利</td>
+</tr>
+<tr>
+<td style="text-align: left;">ただし相手はプレミアリーグのクラブで、UCLホーム戦自体が人気</td>
+<td style="text-align: left;">⚠️ 不利</td>
+</tr>
+</tbody>
+</table>
+<p><strong>打てる手:</strong></p>
+<ol>
+<li>🔴 <strong>11/20 の 13:00（アテネ時間）ちょうどにアクセスできるよう、前日までに準備を完了させる</strong></li>
+<li>Passo アカウントのログイン確認・支払い方法の登録・カードの有効化</li>
+<li><strong>11/19（木）の優先販売の売れ行きを見る</strong>（早々に「売切」表示になるなら覚悟する）</li>
+<li><strong>公式ホスピタリティ</strong>の有無を確認する（一般席が取れない場合の正規ルート）</li>
+<li><strong>代替案：同週のスュペル・リグ戦</strong>（11/23 または 11/25 に GS／フェネルバフチェ／ベシクタシュのホーム戦があるか要確認）</li>
+<li>🔴 <strong>転売サイトは使わない。</strong>名義照合で入場できず全損になる</li>
+</ol>
+<hr />
+<h2 id="3-3-vs-1114">3. ③ ポルトガル vs デンマーク（11/14）— 🔴 <strong>観戦不可能と判明</strong></h2>
+<h3 id="31">3.1 会場が確定した</h3>
+<p>🔵 <strong>2026年11月14日・エスタディオ・ダ・ルス（リスボン）</strong> で開催される。<br />
+親文書で「会場未確認」としていた点は<strong>リスボン開催で確定</strong>。</p>
+<h3 id="32">3.2 🔴 しかし行程が合わない</h3>
+<p><strong>親文書の「リスボン滞在は 11/11〜11/14」という記述は、第1版当時のもので現在は誤り。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">実際の行程（発券済み）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">11/11</td>
+<td style="text-align: left;">リスボン泊①（12:10 着・午後のみ観光）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/12</strong></td>
+<td style="text-align: left;">🔴 <strong>TP1030 07:10 発でバルセロナへ移動</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">11/13</td>
+<td style="text-align: left;">バルセロナ泊②</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/14</strong></td>
+<td style="text-align: left;">🔴 <strong>AVE でマドリードへ移動</strong>（スペイン戦の前日入り）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔴 <strong>11/14 にはリスボンにいない。この試合は観戦できない。</strong><br />
+<strong>親文書 §4 の「優先度低（リスボン滞在中なら）」という記述を撤回する。</strong></p>
+</blockquote>
+<h3 id="33-fpf">3.3 参考：FPF の販売方法（記録用）</h3>
+<ul>
+<li>公式: <strong><code>bilheteira.fpf.pt</code></strong></li>
+<li>🔵 <strong>提携小売「Continente」（スーパーマーケット）でも販売する</strong>という、他国にない販路がある</li>
+<li>価格と発売日は<strong>試合ごとに個別設定</strong></li>
+<li>⚠️ <strong>「FPF 窓口分は完売」との報道があるが、対象試合の特定に確証が取れなかった</strong></li>
+</ul>
+<hr />
+<h2 id="4-2">4. 2試合の比較 — 難易度と対処</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">① スペイン vs イングランド</th>
+<th style="text-align: left;">② ガラタサライ vs アストン・ヴィラ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>事前準備</strong></td>
+<td style="text-align: left;">アプリのインストールとアカウント作成のみ</td>
+<td style="text-align: left;">🔴 <strong>Passo カードの申請（数日かかる）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>発売時期</strong></td>
+<td style="text-align: left;">🟢 <strong>10月上旬（見込み）・試合の約40日前</strong></td>
+<td style="text-align: left;">🔴 <strong>11/20（金）14:00・試合の4日前</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>リードタイム</strong></td>
+<td style="text-align: left;">長い。落ち着いて買える</td>
+<td style="text-align: left;">🔴 <strong>短い。1回のアクセスで決まる</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>売切リスク</strong></td>
+<td style="text-align: left;">中（代表戦・7万人収容）</td>
+<td style="text-align: left;">🔴 <strong>高い。前日の優先販売で消える可能性</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>購入時の滞在地</strong></td>
+<td style="text-align: left;">バンコク（見込み）</td>
+<td style="text-align: left;"><strong>アテネ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>失敗したときの代替</strong></td>
+<td style="text-align: left;">なし（この日程での代表戦は1試合のみ）</td>
+<td style="text-align: left;">スュペル・リグ戦への振替が一応可能</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>総合難易度</strong></td>
+<td style="text-align: left;"><strong>中</strong></td>
+<td style="text-align: left;">🔴 <strong>高</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5">5. 共通の注意</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: left;">🔴 <strong>両試合とも記名式・本人確認あり。転売サイトは使わない</strong>（入場拒否＝全損）</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: left;">🔴 <strong>購入時の氏名はパスポート表記に完全一致させる</strong>（<code>TAKAMUKU TAKESHI</code>）<br>⚠️ マチュピチュ券で氏名の綴り違いが起きているので、特に注意する</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: left;"><strong>両試合ともデジタルチケット。</strong>スマートフォンの充電とデータ通信を当日確保する</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: left;">RFEF は<strong>試合48時間前</strong>に配信、<strong>4時間前</strong>からアクティベート可能とされる（⚠️ 情報源により表現が異なる。当日慌てないよう前日に確認）</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: left;">🔴 <strong>日程・キックオフ時刻・会場は変更され得る。</strong>渡航直前に公式で再確認する</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-202696">6. 出典（2026年9月6日 確認）</h2>
+<p><strong>スペイン（RFEF）</strong></p>
+<ul>
+<li><a href="https://tickets.rfef.es/">Tickets RFEF 公式</a>／<a href="https://tickets.rfef.es/evento/espana-inglaterra-uefa-nations-league/">España – Inglaterra イベントページ</a></li>
+<li><a href="https://www.elpespunte.es/articulo/deportes/entradas-ver-espana-sevilla-oviedo-salen-venta-fechas-horarios-como-comprarlas/20260818163229146204.html">Las entradas para ver a España en Sevilla y Oviedo salen a la venta: fechas, horarios y cómo comprarlas — El Pespunte</a></li>
+<li><a href="https://www.cope.es/emisoras/asturias/asturias-provincia/deportes-cope-asturias/noticias/rfef-fija-fecha-venta-entradas-oviedo-20260818_3421357.html">La RFEF fija la fecha para la venta de entradas en Oviedo — COPE</a></li>
+<li><a href="https://rfef.es/es/noticias/la-rfef-y-la-guardia-civil-trabajan-de-la-mano-para-denunciar-portales-fraudulentos-de">La RFEF y la Guardia Civil… portales fraudulentos — RFEF</a></li>
+<li><a href="https://rfef.es/es/noticias/la-rfef-estrena-una-aplicacion-movil-para-su-servicio-de-ticketing-basada-en-tecnologia">La RFEF estrena una aplicación móvil para su servicio de Ticketing — RFEF</a></li>
+</ul>
+<p><strong>ガラタサライ（Passo）</strong></p>
+<ul>
+<li><a href="https://www.galatasaray.org/haber/futbol/sampiyonlar-ligi/bod-glimt-maci-biletleri-satista/58636">Bodø/Glimt maçı biletleri satışta! — Galatasaray 公式</a></li>
+<li><a href="https://www.galatasaray.org/haber/ali-sami-yen-spor-kompleksi-rams-park/juventus-maci-biletleri-satisa-sunuldu/59607">Juventus maçı biletleri satışa sunuldu — Galatasaray 公式</a></li>
+<li><a href="https://www.galatasaray.org/haber/ali-sami-yen-spor-kompleksi-rams-park/liverpool-maci-biletleri-satisa-cikti/59801">Liverpool maçı biletleri satışa çıktı! — Galatasaray 公式</a></li>
+<li><a href="https://passotaraftar.com.tr/en/card-application">Kart Başvuru — Passo Taraftar 公式</a></li>
+<li><a href="https://www.matchdayguide.com/teams/galatasaray">How to Buy Galatasaray SK Tickets (2026/27 Guide) — Matchday Guide</a></li>
+<li><a href="https://www.turkiyetoday.com/sports/how-foreign-visitors-can-attend-football-matches-in-turkiye-step-by-step-guide-3204050">How foreign visitors can attend football matches in Türkiye — Türkiye Today</a></li>
+</ul>
+<p><strong>ポルトガル（FPF）</strong></p>
+<ul>
+<li><a href="https://bilheteira.fpf.pt/">FPF Bilheteira 公式</a></li>
+<li><a href="https://www.fpf.pt/pt/News/Todas-as-not%C3%ADcias/Not%C3%ADcia/news/47845">Portugal-Dinamarca esgotado na bilheteira FPF — FPF</a></li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>
