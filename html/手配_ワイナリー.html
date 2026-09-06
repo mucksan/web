@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個別手配資料 ④ ワイナリー（ローマ発 トスカーナ日帰り） - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🐘 サファリ・象孤児院</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_ワイナリー.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="4">個別手配資料 ④ ワイナリー（ローマ発 トスカーナ日帰り）</h1>
+<p><strong>対象日程:</strong> 2026年11月18日(水)<br />
+<strong>調査日:</strong> 2026年9月4日（初版）／<strong>9月5日（Klook以外へ調査範囲を拡大）</strong><br />
+<strong>関連:</strong> <a href="東回り_要件定義書.md"><code>東回り_要件定義書.md</code></a> §4・§6</p>
+<blockquote>
+<p><strong>調査範囲:</strong> Klook に加え、<strong>公式・直販サイト、現地事業者（スペイン語／ポルトガル語／イタリア語／トルコ語圏）、<br />
+英語 OTA（Viator・GetYourGuide・Expedia・TripAdvisor）、日本語事業者（VELTRA・道祖神・たびチョク・HIS）</strong>を横断。</p>
+<p>⚠️ <strong>Klook の商品ページは bot 検知（HTTP 403）で直接開けませんでした</strong>（WebFetch・実ブラウザとも）。<br />
+Klook の商品名・URLは検索インデックス経由です。<strong>すべての価格・催行日は未検証</strong>なので、<br />
+発注前にご自身のブラウザで開いて確認してください。</p>
+</blockquote>
+<hr />
+<h2 id="0">0. 結論</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">論点</th>
+<th style="text-align: left;">判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>11/18（水）にトスカーナを置いた現行設計</strong></td>
+<td style="text-align: left;">✅ <strong>正しい。</strong>動かすと<strong>ヴァチカンが水曜に当たって不利になる</strong>（後述）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Klook で手配できるか</strong></td>
+<td style="text-align: left;">✅ <strong>できる。</strong>ローマ発トスカーナの直球商品がある。<strong>5テーマ中、Klook適合度が最も高い</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>翌朝 11/19 は 07:15 ホテル発</strong></td>
+<td style="text-align: left;">⚠️ <strong>ツアー帰着 20:00〜21:00 の後に荷造り。</strong>タイトだが成立する</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>単独利用のコスト</strong></td>
+<td style="text-align: left;"><strong>グループ €150〜250／人 に対し、プライベートは €590〜（4名まで同額）</strong><br>→ <strong>単独ならグループ一択</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>訪問先の食い違い</strong></td>
+<td style="text-align: left;">⚠️ <strong>Vino Nobile（モンテプルチャーノ）と Brunello（モンタルチーノ）は別の町。</strong><br>商品によって行き先が違う。<strong>要指定</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<span id="schedule"></span><h2 id="1">1. 現行タイムチャート（該当部分）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">行程</th>
+<th style="text-align: left;">宿泊</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>11/16(月)</strong></td>
+<td style="text-align: left;">BCN 16:50 → <strong>FCO 18:35着</strong>。夜景散策</td>
+<td style="text-align: left;">ローマ①</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/17(火)</strong></td>
+<td style="text-align: left;">ローマ終日観光：コロッセオ、フォロ・ロマーノ、真実の口、<strong>ヴァチカン市国</strong></td>
+<td style="text-align: left;">ローマ②</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/18(水)</strong></td>
+<td style="text-align: left;">⬜ ★<strong>ローマ発 トスカーナ日帰りワイナリーツアー</strong><br>モンテプルチャーノ地下セラー＆Vino Nobile試飲、ワイナリーランチ、オルチャ渓谷、ピエンツァ</td>
+<td style="text-align: left;">ローマ③</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/19(木)</strong></td>
+<td style="text-align: left;">🔴 <strong>07:15 ホテル発</strong>（レオナルドEXP 32分）→ FCO 10:35 A3651 → ATH 13:35</td>
+<td style="text-align: left;">アテネ①</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ローマ3連泊で荷物はホテルに置いたまま。</strong>ここは良い設計です。</p>
+<hr />
+<span id="tuscany"></span><h2 id="2-1118">2. 🔴 なぜ 11/18（水）で正しいのか — 動かしてはいけない理由</h2>
+<p>一見すると「疲れる日帰りツアーを出発前日（11/18）に置くのは不利。11/17 と入れ替えては？」<br />
+と思えます。<strong>しかし入れ替えると別の問題が起きます。</strong></p>
+<blockquote>
+<p>🔴 <strong>ヴァチカンは水曜午前が「一般謁見（General Audience）」の日。</strong><br />
+サン・ピエトロ広場と大聖堂は午前中アクセスが制限されます。</p>
+</blockquote>
+<ul>
+<li>現行：<strong>11/17（火）にヴァチカン</strong> → ✅ 謁見日を回避できている</li>
+<li>入替案：<strong>11/18（水）にヴァチカン</strong> → ❌ <strong>午前が潰れる</strong></li>
+</ul>
+<p><strong>したがって現行の並び（火＝ローマ市内／水＝トスカーナ）が最適解です。</strong><br />
+疲労は別の方法で吸収します（§5）。</p>
+<blockquote>
+<p>⚠️ <strong>要確認：</strong>2026年11月の一般謁見スケジュールは教皇の日程により変動します。<br />
+ヴァチカン公式で 11/18 の実施有無を確認してください。</p>
+</blockquote>
+<hr />
+<h2 id="3-1119">3. 所要時間と 11/19 への影響</h2>
+<h3 id="_1">標準的なローマ発トスカーナ日帰りの実像</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">実測レンジ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">集合・出発</td>
+<td style="text-align: left;"><strong>06:45〜07:30</strong>（ローマ中心部）</td>
+</tr>
+<tr>
+<td style="text-align: left;">ローマ → ヴァル・ドルチャ</td>
+<td style="text-align: left;"><strong>片道 2時間30分〜3時間</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">現地滞在</td>
+<td style="text-align: left;">5〜6時間（町2つ＋ワイナリー1軒＋ランチ）</td>
+</tr>
+<tr>
+<td style="text-align: left;">帰着</td>
+<td style="text-align: left;"><strong>19:30〜21:00</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>総所要</strong></td>
+<td style="text-align: left;"><strong>約 11〜13時間</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="1119">11/19 朝への影響</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: left;">行動</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">20:00-21:00</td>
+<td style="text-align: left;">ツアー帰着</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">21:00-22:30</td>
+<td style="text-align: left;"><strong>荷造り</strong>（ローマ3連泊分を畳む）</td>
+<td style="text-align: left;">⚠️ <strong>ここが唯一の作業時間</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">23:00</td>
+<td style="text-align: left;">就寝</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>06:15</strong></td>
+<td style="text-align: left;">起床</td>
+<td style="text-align: left;">睡眠 約7時間</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>07:15</strong></td>
+<td style="text-align: left;">ホテル発</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">07:50</td>
+<td style="text-align: left;">テルミニ → レオナルドEXP（32分）</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">08:30</td>
+<td style="text-align: left;">FCO 着（出発 10:35 の2時間前）</td>
+<td style="text-align: left;">✅ 余裕あり</td>
+</tr>
+</tbody>
+</table>
+<p><strong>成立します。</strong>ただし 🔴 <strong>荷造りは 11/17 の夜に済ませておくこと。</strong><br />
+11/18 の夜に「試飲後の状態で3連泊分をまとめる」のは現実的ではありません。</p>
+<hr />
+<h2 id="4-klook-ota">4. 手配方法の比較（Klook / 英語OTA / イタリア現地 / 日本語）</h2>
+<h3 id="41-klook">4.1 Klook — ✅ ローマ発の直球商品がある</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">商品</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">適合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <a href="https://www.klook.com/activity/18001-tuscany-tour-lunch-wine-rome/"><strong>Tuscany Tour from Rome with 3-Course Lunch and Wine Tasting</strong></a></td>
+<td style="text-align: left;"><strong>ローマ発</strong>・3コースランチ＋試飲</td>
+<td style="text-align: left;">✅ <strong>本命。行き先の詳細を要確認</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.klook.com/en-US/destination/c316-tuscany/1001-tours/">Toscana ツアー一覧</a>／<a href="https://www.klook.com/en-US/destination/c316-tuscany/1002-day-trips/">日帰り一覧</a></td>
+<td style="text-align: left;">一覧</td>
+<td style="text-align: left;">在庫確認用</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.klook.com/en-GB/activity/106353-val-dorcia-montepulciano-pienza-wine-tour-florence/">Val d'Orcia, Montepulciano, Pienza Wine Tour <strong>from Florence</strong></a></td>
+<td style="text-align: left;">フィレンツェ発</td>
+<td style="text-align: left;">❌ 出発地が違う</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.klook.com/en-US/activity/172842-val-d-orcia-wine-cheese-tasting-experience-from-florence/">Val d'Orcia wine &amp; cheese <strong>from Florence</strong></a></td>
+<td style="text-align: left;">フィレンツェ発</td>
+<td style="text-align: left;">❌ 同上</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.klook.com/activity/87097-tuscan-food-and-wine-tour-of-val-d-orcia-from-siena/">Tuscan Food and Wine Tour <strong>from Siena</strong></a></td>
+<td style="text-align: left;">シエナ発</td>
+<td style="text-align: left;">❌ 同上</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>Klook のヴァル・ドルチャ商品は「フィレンツェ発」「シエナ発」が主流</strong>で、<br />
+<strong>ローマ発は 18001 が中心</strong>です。この1本の内容が要件に合うかが分かれ目になります。</p>
+<hr />
+<h3 id="42-ota">4.2 🔴 英語 OTA — モンテプルチャーノの地下セラーに入る商品が特定できた</h3>
+<p><strong>調査の結果、ローマ発日帰りで実際に入る地下セラーの名前が判明しました。</strong></p>
+<blockquote>
+<p>🔴 <strong>Cantina Talosa</strong> — 16世紀に凝灰岩（tuff）を掘って造られた歴史的地下セラー。<br />
+ローマ発ツアーの複数商品が<strong>ここで3〜4種の試飲</strong>を行っています。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">取扱先</th>
+<th style="text-align: left;">商品</th>
+<th style="text-align: left;">特徴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>Viator</strong></td>
+<td style="text-align: left;"><a href="https://www.viator.com/tours/Rome/Montalcino-Val-DOrcia-with-Montepulciano-or-Pienza-Fullday-from-Rome/d511-21340P3"><strong>Montalcino, Val d'Orcia with Montepulciano or Pienza</strong></a></td>
+<td style="text-align: left;">🔴 <strong>モンテプルチャーノを選べる。要件に最も近い</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Viator</td>
+<td style="text-align: left;"><a href="https://www.viator.com/tours/Rome/Tuscany-in-One-Day-Sightseeing-Tour-from-Rome/d511-3731TUSCANY">Tuscany Val d'Orcia: Day Trip With Wine and Lunch From Rome</a></td>
+<td style="text-align: left;">定番。大型バス</td>
+</tr>
+<tr>
+<td style="text-align: left;">Viator</td>
+<td style="text-align: left;"><a href="https://www.viator.com/Rome/Montepulciano/day-trips-d511-d27742">ローマ発 モンテプルチャーノ日帰り 一覧</a></td>
+<td style="text-align: left;">横断比較用</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>Winedering</strong></td>
+<td style="text-align: left;"><a href="https://www.winedering.com/discovering-val-dorcia-montepulciano-pienza-with-wine-and-cheese-tastings-from-rome_d9468_travel"><strong>Discovering Val d'Orcia: Montepulciano &amp; Pienza with Wine and Cheese Tastings from Rome</strong></a></td>
+<td style="text-align: left;">🔴 <strong>ワイン専門プラットフォーム。</strong><br>モンテプルチャーノ＋ピエンツァを明示</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Keys of Italy</strong></td>
+<td style="text-align: left;"><a href="https://keysofitaly.com/en/experiences/experiences/from-rome-val-dorcia-wine-tour">From Rome Val d'Orcia wine tour</a></td>
+<td style="text-align: left;">イタリア現地事業者</td>
+</tr>
+<tr>
+<td style="text-align: left;">TripAdvisor</td>
+<td style="text-align: left;"><a href="https://www.tripadvisor.com/AttractionProductReview-g187791-d11449805-Rome_Tuscany_Montepulciano_Day_Trip_with_Lunch_Wine_Tasting-Rome_Lazio.html">Rome: Tuscany &amp; Montepulciano Day Trip with Lunch &amp; Wine Tasting</a></td>
+<td style="text-align: left;">口コミ確認用</td>
+</tr>
+<tr>
+<td style="text-align: left;">Expedia</td>
+<td style="text-align: left;"><a href="https://www.expedia.com/things-to-do/from-rome-tuscany-montepulciano-day-trip-including-lunch-wine-tasting.a166552.activity-details">From Rome: Tuscany &amp; Montepulciano Day Trip</a></td>
+<td style="text-align: left;">モンテプルチャーノ明記</td>
+</tr>
+<tr>
+<td style="text-align: left;">GetYourGuide</td>
+<td style="text-align: left;"><a href="https://www.getyourguide.com/rome-l33/day-tour-of-tuscany-from-rome-t69946/">Private: Tuscany from Rome, Wine, Pienza &amp; Val d'Orcia</a></td>
+<td style="text-align: left;">プライベート</td>
+</tr>
+</tbody>
+</table>
+<h4 id="11">🔴 11月は「季節外」の商品に注意</h4>
+<p>一部の商品には <strong>「ピエンツァでの眺望ランチは 4月〜10月のみ」</strong> という季節限定条件があります。<br />
+<strong>11/18 はこの期間外</strong>なので、<strong>同じ商品名でも内容が変わる</strong>可能性があります。<strong>予約時に要確認。</strong></p>
+<h4 id="_2">少人数（セミプライベート）という選択肢</h4>
+<p><strong>8名限定・プレミアムミニバン・英語ドライバー</strong>という中間グレードの商品があり、<br />
+モンテプルチャーノ・モンタルチーノ・ピエンツァを1日で回れます。<br />
+大型バスの巡回ロスがなく、<strong>単独参加でもプライベートほど高くない</strong>ため、費用対効果が良い選択肢です。</p>
+<hr />
+<h3 id="43">4.3 🔴 イタリア現地：セラーを直接予約する</h3>
+<p><strong>ツアーを使わず、モンテプルチャーノの造り手に直接予約する</strong>という手もあります。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">セラー</th>
+<th style="text-align: left;">特徴</th>
+<th style="text-align: left;">予約</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>Cantina Talosa</strong></td>
+<td style="text-align: left;">16世紀・凝灰岩の地下セラー。<strong>ローマ発ツアーの定番訪問先</strong></td>
+<td style="text-align: left;">直接予約可</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cantine Contucci</strong></td>
+<td style="text-align: left;"><strong>1700年から</strong>続く歴史的セラー。<br>ヴィーノ・ノービレを世に知らしめた「産みの親」の一族<br>🔴 <strong>平日・祝日とも見学と試飲が可能</strong></td>
+<td style="text-align: left;">現地窓口／公式</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>De' Ricci Cantine Storiche</strong></td>
+<td style="text-align: left;"><strong>1300年代</strong>の歴史的セラー。エトルリア期に遡る洞窟状の空間<br>「ヴィーノ・ノービレの地下大聖堂」と呼ばれる<br>🔴 <strong>要事前予約（当日飛び込みは不可の場合あり）</strong></td>
+<td style="text-align: left;"><a href="https://www.italia.it/en/tuscany/siena/cantina-de-ricci">italia.it 紹介</a>／<a href="https://www.tripadvisor.com/Attraction_Review-g194833-d3482526-Reviews-De_Ricci_Cantine_Storiche-Montepulciano_Tuscany.html">TripAdvisor</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cantina Gattavecchi</strong></td>
+<td style="text-align: left;">4代続く家族経営。<strong>古い修道院の地下</strong>で熟成<br>ワインとチーズなど地元産品の試飲付きガイドツアー</td>
+<td style="text-align: left;"><a href="https://www.tripadvisor.com/Attraction_Review-g194833-d2343966-Reviews-Gattavecchi_Winery-Montepulciano_Tuscany.html">TripAdvisor</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cantina Ercolani</strong></td>
+<td style="text-align: left;"><a href="https://www.ercolanimontepulciano.it/en/visita-guidata-della-cantina-con-degustazione/"><strong>セラー＋地下都市のガイドツアー＋試飲／軽食</strong></a></td>
+<td style="text-align: left;">公式サイトで予約</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参考:</strong><br />
+<a href="https://www.montepulcianotoscana.it/it/articles/32/le-cantine-sotterranee-di-montepulciano.html">モンテプルチャーノの地下セラー群（公式観光サイト・伊語）</a>／<br />
+<a href="https://www.italysfinestwines.it/migliori-cantine-montepulciano/">Migliori Cantine da Visitare a Montepulciano 2026（伊語）</a>／<br />
+<a href="https://www.ilpatriarca.it/en/surroundings/montepulciano-and-the-underground-cellars/">Montepulciano and the underground cellars（英語）</a></p>
+<blockquote>
+<p>⚠️ <strong>入場自体は無料のセラーが多く、ガイド付き見学＋試飲が有料</strong>という運用です。<br />
+ただし <strong>ローマからモンテプルチャーノまでの足を自分で確保する必要</strong>があります<br />
+（公共交通は乗り継ぎが多く、日帰りには現実的でない）。<br />
+🔴 <strong>直接予約はプライベート送迎とセットでないと成立しません。</strong></p>
+</blockquote>
+<hr />
+<h3 id="44">4.4 プライベート専用車（イタリア現地）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">事業者</th>
+<th style="text-align: left;">料金</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="https://www.stefanorometours.com/tours/montepulciano-and-pienza/">Stefano Rome Tours — Montepulciano and Pienza</a></td>
+<td style="text-align: left;"><strong>€590（4名まで）／€630（6名）／€680（8名）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.romecabs.com/tours/montepulciano-and-pienza-tuscany-tour/">RomeCabs — Montepulciano and Pienza Private Tuscany Tour</a></td>
+<td style="text-align: left;">要見積</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>単独では €590 を1人で負担することになります。</strong><br />
+セラー直接予約と組み合わせれば理想的な内容になりますが、<strong>費用が3〜4倍</strong>です。</p>
+<hr />
+<h3 id="45">4.5 日本語での手配</h3>
+<p>⚠️ <strong>VELTRA で「ローマ発トスカーナ」の商品は確認できませんでした。</strong><br />
+VELTRA のイタリアはローマ市内・フィレンツェ発が中心のようです。</p>
+<p>→ <strong>本テーマは日本語商品が手薄</strong>です。英語 OTA（Viator / Winedering）が現実的な選択肢になります。<br />
+幸い、<strong>内容が定型化しているジャンルなので英語でも難易度は低い</strong>分野です。</p>
+<hr />
+<h3 id="46">4.6 🔴 単独利用のコスト比較</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">形態</th>
+<th style="text-align: left;">費用</th>
+<th style="text-align: left;">単独での実額</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>大型バス グループ</strong></td>
+<td style="text-align: left;">€150〜250 / 人</td>
+<td style="text-align: left;"><strong>€150〜250</strong></td>
+<td style="text-align: left;">✅ <strong>最安。巡回ロスあり</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>セミプライベート（8名限定ミニバン）</strong></td>
+<td style="text-align: left;">要見積</td>
+<td style="text-align: left;">中間</td>
+<td style="text-align: left;">🔴 <strong>費用対効果が最良の可能性</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">プライベート専用車</td>
+<td style="text-align: left;">€590〜680 / <strong>台</strong></td>
+<td style="text-align: left;">🔴 <strong>€590 全額</strong></td>
+<td style="text-align: left;">❌ 単独では割高</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="47">4.7 推奨する手配の内訳</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">対象</th>
+<th style="text-align: left;">🔴 推奨手配先</th>
+<th style="text-align: left;">言語</th>
+<th style="text-align: right;">概算</th>
+<th style="text-align: left;">期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">🔴 <strong>11/18 トスカーナ日帰り</strong></td>
+<td style="text-align: left;">🔴 <strong>Viator d511-21340P3</strong>（モンテプルチャーノ選択可）<br>または Klook 18001 / Winedering</td>
+<td style="text-align: left;">英</td>
+<td style="text-align: right;">€150〜250</td>
+<td style="text-align: left;">10月下旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">（代替）セミプライベート8名限定</td>
+<td style="text-align: left;">Viator / GetYourGuide</td>
+<td style="text-align: left;">英</td>
+<td style="text-align: right;">要見積</td>
+<td style="text-align: left;">10月下旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">（上位案）専用車＋セラー直接予約</td>
+<td style="text-align: left;">Stefano Rome Tours ＋ Talosa/De' Ricci</td>
+<td style="text-align: left;">英/伊</td>
+<td style="text-align: right;">€590〜</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">ヴァチカン（11/17）</td>
+<td style="text-align: left;">公式（<strong>日時指定予約必須</strong>）</td>
+<td style="text-align: left;">英</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: left;">10月下旬</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. タイムチャート変更の選択肢</h2>
+<h3 id="1_1">変更案①（推奨）：日程は変えず、<strong>帰着の早い商品を選ぶ</strong></h3>
+<p>同じ「ローマ発トスカーナ」でも帰着時刻に <strong>19:30〜21:00 の幅</strong>があります。<br />
+<strong>19:30 帰着の商品を選べば、11/18 夜に1時間半の余裕が生まれます。</strong><br />
+→ <strong>予約時に「帰着予定時刻」を確認するのが、最も安上がりな改善です。</strong></p>
+<h3 id="2">変更案②：トスカーナをやめ、<strong>ローマ近郊のワイン産地</strong>にする</h3>
+<p>「ワイナリー体験」が目的で「トスカーナ」が目的でないなら、近場で半日にできます。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">候補</th>
+<th style="text-align: left;">ローマからの距離</th>
+<th style="text-align: left;">ワイン</th>
+<th style="text-align: left;">所要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>フラスカーティ／カステッリ・ロマーニ</strong></td>
+<td style="text-align: left;"><strong>約30分</strong></td>
+<td style="text-align: left;">Frascati（白）</td>
+<td style="text-align: left;"><strong>半日（4〜5h）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>オルヴィエート</strong>（ウンブリア）</td>
+<td style="text-align: left;">約1時間15分</td>
+<td style="text-align: left;">Orvieto Classico（白）</td>
+<td style="text-align: left;">3/4日（7〜8h）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>✅ <strong>11/18 の午後が空き、荷造りと休養に充てられる</strong></li>
+<li>✅ 費用も大幅に下がる</li>
+<li>❌ <strong>オルチャ渓谷の絶景（世界遺産）は得られない</strong></li>
+<li>❌ Vino Nobile / Brunello という「格」のあるワインではない</li>
+</ul>
+<p>→ <strong>「絶景 ＋ 名酒」が目的ならトスカーナ維持。「ワイナリー体験」が目的なら近郊で十分。</strong></p>
+<h3 id="31117-1118">変更案③：11/17 と 11/18 を入れ替える — ❌ 非推奨</h3>
+<p>§2 のとおり <strong>ヴァチカンが水曜（一般謁見日）に当たる</strong>ため不利になります。</p>
+<h3 id="41">変更案④：ローマ滞在を1日延ばす — ❌ 不可</h3>
+<p>🔴 <strong>11/19 FCO 10:35 A3651（予約済み）</strong>を動かす必要があり、<br />
+その先のアテネ〜イスタンブール〜11/24 の観戦（絶対条件）まで連鎖します。<strong>現実的でありません。</strong></p>
+<hr />
+<h2 id="6">6. 🔴 アクションリスト</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">優先</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: left;">🔴 <strong>行き先の方針決定</strong>（トスカーナ維持 or ローマ近郊に変更）</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: left;">🔴 <strong>Klook 18001 の内容確認</strong>：①モンテプルチャーノに行くか ②地下セラーに入るか ③帰着時刻</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">条件が合わなければ Viator <a href="https://www.viator.com/tours/Rome/Montalcino-Val-DOrcia-with-Montepulciano-or-Pienza-Fullday-from-Rome/d511-21340P3">d511-21340P3</a> を検討</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;"><strong>グループ（混載）で予約</strong>。プライベートは単独では割高</td>
+<td style="text-align: left;">10月下旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">ヴァチカン公式で <strong>11/18 の一般謁見有無</strong>を確認</td>
+<td style="text-align: left;">10月下旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">🔴 <strong>11/17 の夜に荷造りを済ませる</strong>（行程メモに記載）</td>
+<td style="text-align: left;">現地</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>⚠️ 未確認事項:</strong> Klook 18001 の<strong>具体的な訪問先・帰着時刻・催行曜日</strong>。<br />
+bot 検知で商品ページを読めなかったため、<strong>11/18（水）に催行があるかも未確認</strong>です。</p>
+</blockquote>
+<hr />
+<h2 id="_3">出典</h2>
+<ul>
+<li><a href="https://www.klook.com/activity/18001-tuscany-tour-lunch-wine-rome/">Klook: Tuscany Tour from Rome with 3-Course Lunch and Wine Tasting</a></li>
+<li><a href="https://www.klook.com/en-US/destination/c316-tuscany/1001-tours/">Klook: Toscana ツアー一覧</a></li>
+<li><a href="https://www.viator.com/tours/Rome/Tuscany-in-One-Day-Sightseeing-Tour-from-Rome/d511-3731TUSCANY">Viator: Tuscany Val d'Orcia Day Trip With Wine and Lunch From Rome</a></li>
+<li><a href="https://www.viator.com/tours/Rome/Montalcino-Val-DOrcia-with-Montepulciano-or-Pienza-Fullday-from-Rome/d511-21340P3">Viator: Montalcino, Val d'Orcia with Montepulciano or Pienza</a></li>
+<li><a href="https://www.expedia.com/things-to-do/from-rome-tuscany-montepulciano-day-trip-including-lunch-wine-tasting.a166552.activity-details">Expedia: From Rome: Tuscany &amp; Montepulciano Day Trip</a></li>
+<li><a href="https://www.getyourguide.com/rome-l33/day-tour-of-tuscany-from-rome-t69946/">GetYourGuide: Private Tuscany from Rome, Wine, Pienza &amp; Val d'Orcia</a></li>
+<li><a href="https://www.stefanorometours.com/tours/montepulciano-and-pienza/">Stefano Rome Tours: Montepulciano and Pienza</a></li>
+<li><a href="https://www.romecabs.com/tours/montepulciano-and-pienza-tuscany-tour/">RomeCabs: Montepulciano and Pienza Private Tuscany Tour</a></li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

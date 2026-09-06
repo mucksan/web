@@ -1,0 +1,2749 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>東回り RTW 発券済み資料（**発券完了・継続ウォッチ用**／第11版） - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🐘 サファリ・象孤児院</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../東回り_発券用資料.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="rtw-11">東回り RTW 発券済み資料（<strong>発券完了・継続ウォッチ用</strong>／第11版）</h1>
+<blockquote>
+<p><strong>正本:</strong> <code>東回り_要件定義書.md</code> に従属する派生文書。齟齬がある場合は正本を優先する。<br />
+<strong>改定日:</strong> 2026年9月6日 第11版（<strong>§10「座席指定」を新設。全15区間の座席を評価</strong>）<br />
+<strong>前版:</strong> 2026年9月6日 第10版（発券完了。PNR・航空券番号・予約クラス・手荷物・金額をeチケット券面で確定）<br />
+<strong>前版:</strong> 2026年9月6日 第9版（発券前・全15区間の第1〜第3希望）</p>
+<h2 id="_1">✅ 発券が完了しました</h2>
+<ul>
+<li><strong>2026年9月6日、東京発券・日本円建てで全16クーポンを発券。</strong></li>
+<li>🔴 <strong>予約番号は <code>EANRV5</code></strong>（発券に伴い DM4H3V から変更）。</li>
+<li><strong>発券前のキャンセルリスクは消滅した。</strong>以後は「空きが出たら変更する」ウォッチのみ（§0.2）。</li>
+<li><strong>eチケット原本:</strong> <code>tickets/RTW/eチケット世界一周航空券1.pdf</code></li>
+<li>💺 <strong>座席指定の状況は §10。</strong>指定済み11区間は基準に適合、残り4区間（Copa2便・AZ79・A3651・MS849）が未処理。</li>
+</ul>
+</blockquote>
+<h2 id="0-202696">0. ✅ 発券完了（2026年9月6日）</h2>
+<blockquote>
+<p>✅ <strong>2026年9月6日、東京発券・日本円建てで全16クーポンの発券が完了した。</strong><br />
+🔴 <strong>予約番号が <code>DM4H3V</code> から <code>EANRV5</code> に変わっている。以後はこちらを使う。</strong><br />
+本節以降は「発券前の確認シート」ではなく、<strong>発券実績と、発券後も続けるウォッチの記録</strong>である。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>予約番号（PNR）</strong></td>
+<td style="text-align: left;">✅ <strong>EANRV5</strong>（旧 DM4H3V は失効）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>航空券番号</strong></td>
+<td style="text-align: left;">✅ <strong>205-2443136675 〜 678</strong>（4枚）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>搭乗者名</strong></td>
+<td style="text-align: left;"><strong>TAKAMUKU/TAKESHI MR</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>発行日</strong></td>
+<td style="text-align: left;"><strong>2026年9月6日</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>発行所</strong></td>
+<td style="text-align: left;">JAPAN - ANA CTCC JPN J（店舗コード 16391340）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>担当</strong></td>
+<td style="text-align: left;">村岡さん</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>支払</strong></td>
+<td style="text-align: left;">VISA（末尾 9210）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>制限事項（券面）</strong></td>
+<td style="text-align: left;"><code>/C1-16 VLD STAR ALLIANCE ONLY REFUND RESTRICTED</code><br>＝ <strong>クーポン1〜16はスターアライアンスでのみ有効・払戻制限あり</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>クーポン数</strong></td>
+<td style="text-align: left;"><strong>飛行15枚 ＋ 地上1枚 ＝ 16枚</strong>（上限ちょうど）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>総マイル</strong></td>
+<td style="text-align: left;"><strong>31,308／34,000</strong>（変更なし。余裕 約2,692）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>eチケット原本</strong></td>
+<td style="text-align: left;"><code>tickets/RTW/eチケット世界一周航空券1.pdf</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>通話メモ</strong></td>
+<td style="text-align: left;"><code>ANA予約0906(東回り＆日本発券）.txt</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="00">0.0 ✅ 確定した金額</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">内訳</th>
+<th style="text-align: right;">金額</th>
+<th style="text-align: left;">事前の見込み</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">運賃</td>
+<td style="text-align: right;"><strong>¥822,000</strong></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;">税金・料金等</td>
+<td style="text-align: right;"><strong>¥383,660</strong></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;">（小計）</td>
+<td style="text-align: right;">¥1,205,660</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;">発券手数料（東京）</td>
+<td style="text-align: right;"><strong>¥5,500</strong></td>
+<td style="text-align: left;">¥5,500</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>総額</strong></td>
+<td style="text-align: right;">✅ <strong>¥1,211,160</strong></td>
+<td style="text-align: left;">タイ発券見込み ฿257,820 ≒ <strong>¥1,218,000</strong> ＋ 外貨事務手数料 ¥2〜2.7万</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>✅ <strong>東京発券・JPY建てにした判断で、約¥2.7〜3.4万を節約できた。</strong><br />
+券面差額 約¥6,800 に加え、<strong>カードの外貨事務手数料（約¥2〜2.7万）が丸ごと不要</strong>になったため。</p>
+</blockquote>
+<h3 id="001">0.0.1 🔴 取消・変更の条件（発券後）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>取消手数料</strong></td>
+<td style="text-align: left;">🔴 <strong>出発前 US$150</strong>（通話メモ）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>払戻</strong></td>
+<td style="text-align: left;">券面に <code>REFUND RESTRICTED</code> の記載あり。<strong>実際の払戻可否と金額は要照会</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>変更（同一区間の便）</strong></td>
+<td style="text-align: left;">手数料なし（W-2）。<strong>搭乗24時間前まで（W-5）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>経路変更</strong></td>
+<td style="text-align: left;">US$125（W-3）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="002">0.0.2 ⚠️ 手荷物許容量 — 券面とメモが食い違っている</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">区間</th>
+<th style="text-align: left;">券面の記載</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>①〜⑪ と ⑮</strong>（12区間）</td>
+<td style="text-align: left;"><strong>2PC</strong>（2個）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>⑫ ET319・⑬ ET608</strong></td>
+<td style="text-align: left;">⚠️ <strong>3PC</strong>（3個）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>⑭ SQ705</strong></td>
+<td style="text-align: left;">⚠️ <strong>40K</strong>（重量制 40kg）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>通話メモには「荷物は全部共通で2つで合計30kg以内」とあるが、券面は個数制（PC制）で区間ごとに異なる。</strong><br />
+<strong>2PC は通常「1個あたり23kg または 32kg × 2個」</strong>を意味し、「2個で合計30kg」とは大きく違う。<br />
+🔴 <strong>1個あたりの重量上限を ANA に確認すること。</strong>4か月の旅程で 30kg と 64kg では準備がまったく変わる。</p>
+</blockquote>
+<hr />
+<h3 id="01">0.1 ✅ 発券時に依頼した変更の結果</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID</th>
+<th style="text-align: left;">依頼内容</th>
+<th style="text-align: left;">結果</th>
+<th style="text-align: left;">券面の確定内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>A-1</strong></td>
+<td style="text-align: left;">10/31 MEX→LIM を CM121→CM489 へ</td>
+<td style="text-align: left;">✅ <strong>成功</strong></td>
+<td style="text-align: left;"><strong>CM121 13:10 → PTY 17:54／CM489 19:09 → LIM 22:45（当日着）</strong><br>予約クラス <strong>D</strong>・乗継75分</td>
+</tr>
+<tr>
+<td style="text-align: left;">🚨 <strong>ET</strong></td>
+<td style="text-align: left;">ET319・ET608 のキャンセル復旧</td>
+<td style="text-align: left;">✅ <strong>成功</strong></td>
+<td style="text-align: left;"><strong>同一便で再確保。ET319 17:30→19:30／ET608 23:55→12:30(+1)</strong><br>予約クラス <strong>D</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>S-1</strong></td>
+<td style="text-align: left;">10/29 SFO→MEX のビジネス化</td>
+<td style="text-align: left;">❌ <strong>空きなし</strong></td>
+<td style="text-align: left;"><strong>UA1271 は予約クラス <code>B</code>＝エコノミーで確定</strong>（→ §0.2 で継続ウォッチ）</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>B-3</strong></td>
+<td style="text-align: left;">11/12 LIS→BCN を TP1032 へ</td>
+<td style="text-align: left;">❌ <strong>不可</strong></td>
+<td style="text-align: left;">TP1032 は空きなし。<strong>TP1034 には空きがあったが、TP88 とセットで予約されているため単独では動かせない。</strong><br>🔴 <strong>TP88 に空きが出れば TP1034 へ変更できる</strong>（→ §0.2）</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>A-4</strong></td>
+<td style="text-align: left;">11/21 ATH→IST を TK1844 へ</td>
+<td style="text-align: left;">❌ <strong>空きなし</strong></td>
+<td style="text-align: left;">TK1840 のまま（予約クラス <strong>D</strong>）（→ §0.2 で継続ウォッチ）</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>NH8</strong></td>
+<td style="text-align: left;">「THE Room アップグレード可」表示</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><strong>券面は <code>Z(C)</code>＝ビジネスZで確定。</strong>表示の意味は未確認（→ §0.3）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>✅ <strong>A-1 の成功により、リマ深夜00:55着が消えた。</strong><br />
+10/31 は 22:45 リマ着 → ホテル 23:45 → 就寝 00:15、起床 09:30 で <strong>約9時間</strong>。<br />
+<strong>§5-1（リマ空港ホテルの深夜チェックイン）は不要になり、§5-2 の「13:00前後発」の縛りも緩んだ。</strong></p>
+</blockquote>
+<hr />
+<h3 id="02-3">0.2 🔭 発券後も続けるウォッチ（3件）</h3>
+<blockquote>
+<p><strong>変更は搭乗の24時間前まで可能（W-5）。同一区間の便変更は手数料なし（W-2）。</strong><br />
+<strong>空きが出れば変更する。出なければ現行のまま。</strong><br />
+🔭 見方・ツールの運用は <code>東回り_空席ウォッチ運用.md</code>。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">優先</th>
+<th style="text-align: left;">ID</th>
+<th style="text-align: left;">現行</th>
+<th style="text-align: left;">狙う便</th>
+<th style="text-align: left;">ウォッチする対象</th>
+<th style="text-align: left;">変更期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">🔴 <strong>1</strong></td>
+<td style="text-align: left;"><strong>S-1</strong></td>
+<td style="text-align: left;">② 10/29 SFO→MEX<br><strong>UA1271 クラス <code>B</code>（エコノミー）</strong></td>
+<td style="text-align: left;"><strong>UA1271 のビジネス</strong>（RTW適用クラス）</td>
+<td style="text-align: left;">🔴 <strong>UA1271 本便の D／Z 在庫。</strong><br>同区間のスター系ビジネスは UA1271 と UA412（22:48発）のみだが、<strong>UA412 はメキシコ着が翌日04:05で行程が崩れるため実質 UA1271 一択</strong></td>
+<td style="text-align: left;"><strong>10/28</strong>（10/29 発の24時間前）</td>
+</tr>
+<tr>
+<td style="text-align: center;">⚠️ <strong>2</strong></td>
+<td style="text-align: left;"><strong>B-3</strong></td>
+<td style="text-align: left;">⑥ 11/12 LIS→BCN<br><strong>TP1030 07:10発</strong>（04:40 ホテル発）</td>
+<td style="text-align: left;"><strong>TP1034 10:50 → 13:45</strong><br>（TP1032 は空きなし）</td>
+<td style="text-align: left;">🔴 <strong>狙うのは TP1034 ではなく <code>TP88</code> の在庫。</strong><br>TP88（⑥の前区間）と TP1030 がセットで予約されているため、<strong>TP88 に空きが出ない限り TP1034 へ動かせない</strong></td>
+<td style="text-align: left;"><strong>11/11</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">⚠️ <strong>3</strong></td>
+<td style="text-align: left;"><strong>A-4</strong></td>
+<td style="text-align: left;">⑨ 11/21 ATH→IST<br><strong>TK1840 11:50発</strong></td>
+<td style="text-align: left;"><strong>TK1844 10:10 → 12:50</strong></td>
+<td style="text-align: left;">TK1844 の D／Z 在庫</td>
+<td style="text-align: left;"><strong>11/20</strong><br>🔴 実質は <strong>IST→NAV 便と気球ツアーを予約する前＝10月中</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="b-3-tp1034">🔴 B-3 の制約は「TP1034 の空き」ではない</h4>
+<p>窓口の回答は <strong>「TP1034 には空きがあるが、TP88 とセットで予約しているため変更できない。TP88 に空きができたら変更可能」</strong>だった。<br />
+つまり <strong>TP88（11/10 GRU→LIS）と TP1030（11/12 LIS→BCN）が同一運送人の連続区間として1つの予約単位になっている</strong>ため、<br />
+TP1030 だけを差し替えると <strong>TP88 も取り直しになり、その TP88 の在庫が現時点で無い</strong>、という構造。</p>
+<blockquote>
+<p>🔭 <strong>したがって B-3 のウォッチ対象は <code>TP88</code>。</strong> TP1034 の空席だけを見ても意味がない。<br />
+<strong>TP88 に空きが出た日が、B-3 を動かせる唯一のタイミング。</strong></p>
+</blockquote>
+<h4 id="_2">ウォッチしなくてよくなったもの</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID</th>
+<th style="text-align: left;">理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>A-1</strong></td>
+<td style="text-align: left;">✅ 発券時に CM121→CM489 へ変更成立。<strong>完了</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>A-2</strong></td>
+<td style="text-align: left;">❌ 代替便が存在しない（9/6 確認）。ナイロビ 03:30 着は確定</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>A-3</strong>（⑤ GRU→LIS）</td>
+<td style="text-align: left;">現行 TP88 のまま確定。<strong>ただし B-3 の前提として TP88 の在庫は見る</strong>（上記）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>⑫⑬ ET</strong></td>
+<td style="text-align: left;">✅ 同一便で再確保済み</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>その他11区間</strong></td>
+<td style="text-align: left;">✅ 発券済み・行程上の問題なし</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="03-nh8-the-room">0.3 ⚠️ NH8 の「THE Room アップグレード可」表示（未決着）</h3>
+<blockquote>
+<p><strong>券面は <code>Z(C)</code> ＝ ビジネスクラス Z で確定している。</strong><br />
+ただし <strong>ANAアプリの旅程に出ている「THE Room アップグレード可」の意味は、発券時に確認できていない。</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">確認すべきこと</th>
+<th style="text-align: left;">判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">NH8 の機材とビジネスの座席タイプ。<strong>全席 THE Room か</strong></td>
+<td style="text-align: left;">🔴 <strong>これが最重要。</strong>THE Room でないなら SFO 経由を選んだ理由が失われる</td>
+</tr>
+<tr>
+<td style="text-align: left;">「アップグレード可」は上位クラス（ファースト／THE Suite）への案内か</td>
+<td style="text-align: left;">費用・マイルの要否、<strong>RTW運賃でも対象か</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">手続きのタイミング</td>
+<td style="text-align: left;">発券は済んだので、<strong>今なら手続きできるはず</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">座席の事前指定</td>
+<td style="text-align: left;">いつから可能か。NH8・NH842 とも</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>発券は完了しているため、これは行程を左右する問題ではない。</strong><br />
+<strong>座席指定の開始時期にあわせて ANA に照会すれば足りる。</strong></p>
+</blockquote>
+<hr />
+<h2 id="1-pnr-eanrv5e">1. ✅ 発券済み全区間（PNR: EANRV5・eチケット券面）</h2>
+<blockquote>
+<p><strong>時刻はすべて現地時間。クラス・手荷物・ターミナルは eチケット券面の記載。</strong><br />
+⚠️ <strong>券面注記：ターミナルは変更されることがあるため、搭乗日当日に自分で確認すること。</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: center;">券</th>
+<th style="text-align: left;">搭乗日（曜）</th>
+<th style="text-align: left;">区間</th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">発 → 着</th>
+<th style="text-align: left;">所要</th>
+<th style="text-align: center;">クラス</th>
+<th style="text-align: center;">手荷物</th>
+<th style="text-align: left;">運航会社</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">①</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><strong>10/28(水)</strong></td>
+<td style="text-align: left;"><strong>NRT → SFO</strong></td>
+<td style="text-align: left;"><strong>NH 8</strong></td>
+<td style="text-align: left;"><strong>17:00 → 10:20</strong></td>
+<td style="text-align: left;">9h20m</td>
+<td style="text-align: center;">✅ <strong>Z(C)</strong></td>
+<td style="text-align: center;">2PC</td>
+<td style="text-align: left;">ANA</td>
+</tr>
+<tr>
+<td style="text-align: center;">②</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"><strong>10/29(木)</strong></td>
+<td style="text-align: left;"><strong>SFO → MEX</strong></td>
+<td style="text-align: left;"><strong>UA 1271</strong></td>
+<td style="text-align: left;"><strong>10:45 → 16:05</strong></td>
+<td style="text-align: left;">4h20m</td>
+<td style="text-align: center;">🔴 <strong>B</strong>（エコノミー）</td>
+<td style="text-align: center;">2PC</td>
+<td style="text-align: left;">ユナイテッド</td>
+</tr>
+<tr>
+<td style="text-align: center;">③</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;"><strong>10/31(土)</strong></td>
+<td style="text-align: left;"><strong>MEX → PTY</strong></td>
+<td style="text-align: left;">✅ <strong>CM 121</strong></td>
+<td style="text-align: left;">✅ <strong>13:10 → 17:54</strong></td>
+<td style="text-align: left;">3h44m</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: center;">2PC</td>
+<td style="text-align: left;">コパ航空</td>
+</tr>
+<tr>
+<td style="text-align: center;">④</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;"><strong>10/31(土)</strong></td>
+<td style="text-align: left;"><strong>PTY → LIM</strong></td>
+<td style="text-align: left;">✅ <strong>CM 489</strong></td>
+<td style="text-align: left;">✅ <strong>19:09 → 22:45</strong></td>
+<td style="text-align: left;">3h36m</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: center;">2PC</td>
+<td style="text-align: left;">コパ航空</td>
+</tr>
+<tr>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: left;">11/05〜09</td>
+<td style="text-align: left;"><strong>LIM ⇢ GRU</strong></td>
+<td style="text-align: left;"><strong>地上区間（SURFACE）</strong></td>
+<td style="text-align: left;">搭乗なし</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑤</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;"><strong>11/10(火)</strong></td>
+<td style="text-align: left;"><strong>GRU → LIS</strong></td>
+<td style="text-align: left;"><strong>TP 88</strong></td>
+<td style="text-align: left;"><strong>23:15 → 12:10(+1)</strong></td>
+<td style="text-align: left;">9h55m</td>
+<td style="text-align: center;"><strong>Z</strong></td>
+<td style="text-align: center;">2PC</td>
+<td style="text-align: left;">TAPポルトガル</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑥</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: left;"><strong>11/12(木)</strong></td>
+<td style="text-align: left;"><strong>LIS → BCN</strong></td>
+<td style="text-align: left;"><strong>TP 1030</strong></td>
+<td style="text-align: left;"><strong>07:10 → 10:05</strong></td>
+<td style="text-align: left;">1h55m</td>
+<td style="text-align: center;"><strong>Z</strong></td>
+<td style="text-align: center;">2PC</td>
+<td style="text-align: left;"><strong>ポルトゥガリア</strong>（TAP Express）</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑦</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: left;"><strong>11/16(月)</strong></td>
+<td style="text-align: left;"><strong>BCN → FCO</strong></td>
+<td style="text-align: left;"><strong>AZ 79</strong></td>
+<td style="text-align: left;"><strong>16:50 → 18:35</strong></td>
+<td style="text-align: left;">1h45m</td>
+<td style="text-align: center;"><strong>Z</strong></td>
+<td style="text-align: center;">2PC</td>
+<td style="text-align: left;">ITAエアウェイズ</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑧</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: left;"><strong>11/19(木)</strong></td>
+<td style="text-align: left;"><strong>FCO → ATH</strong></td>
+<td style="text-align: left;"><strong>A3 651</strong></td>
+<td style="text-align: left;"><strong>10:35 → 13:35</strong></td>
+<td style="text-align: left;">2h00m</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: center;">2PC</td>
+<td style="text-align: left;">エーゲ航空</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑨</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: left;"><strong>11/21(土)</strong></td>
+<td style="text-align: left;"><strong>ATH → IST</strong></td>
+<td style="text-align: left;"><strong>TK 1840</strong></td>
+<td style="text-align: left;"><strong>11:50 → 14:30</strong></td>
+<td style="text-align: left;">1h40m</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: center;">2PC</td>
+<td style="text-align: left;">ターキッシュ</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑩</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: left;"><strong>11/25(水)</strong></td>
+<td style="text-align: left;"><strong>IST → CAI</strong></td>
+<td style="text-align: left;"><strong>MS 738</strong></td>
+<td style="text-align: left;"><strong>14:00 → 15:15</strong></td>
+<td style="text-align: left;">2h15m</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: center;">2PC</td>
+<td style="text-align: left;">エジプト航空</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑪</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: left;"><strong>11/27(金)</strong></td>
+<td style="text-align: left;"><strong>CAI → NBO</strong></td>
+<td style="text-align: left;"><strong>MS 849</strong></td>
+<td style="text-align: left;"><strong>21:35 → 03:30(+1)</strong></td>
+<td style="text-align: left;">4h55m</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: center;">2PC</td>
+<td style="text-align: left;">エジプト航空</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑫</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: left;"><strong>12/01(火)</strong></td>
+<td style="text-align: left;"><strong>NBO → ADD</strong></td>
+<td style="text-align: left;">✅ <strong>ET 319</strong></td>
+<td style="text-align: left;"><strong>17:30 → 19:30</strong></td>
+<td style="text-align: left;">2h00m</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: center;">⚠️ <strong>3PC</strong></td>
+<td style="text-align: left;">エチオピア航空</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑬</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: left;"><strong>12/01(火)</strong></td>
+<td style="text-align: left;"><strong>ADD → BKK</strong></td>
+<td style="text-align: left;">✅ <strong>ET 608</strong></td>
+<td style="text-align: left;"><strong>23:55 → 12:30(+1)</strong></td>
+<td style="text-align: left;">8h35m</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: center;">⚠️ <strong>3PC</strong></td>
+<td style="text-align: left;">エチオピア航空</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑭</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: left;"><strong>2027/3/1(月)</strong></td>
+<td style="text-align: left;"><strong>BKK → SIN</strong></td>
+<td style="text-align: left;"><strong>SQ 705</strong></td>
+<td style="text-align: left;"><strong>09:40 → 13:10</strong></td>
+<td style="text-align: left;">2h30m</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: center;">⚠️ <strong>40K</strong></td>
+<td style="text-align: left;">シンガポール航空</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑮</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: left;"><strong>2027/3/3(水)</strong></td>
+<td style="text-align: left;"><strong>SIN → HND</strong></td>
+<td style="text-align: left;"><strong>NH 842</strong></td>
+<td style="text-align: left;"><strong>10:45 → 18:25</strong></td>
+<td style="text-align: left;">6h40m</td>
+<td style="text-align: center;">✅ <strong>Z(C)</strong></td>
+<td style="text-align: center;">2PC</td>
+<td style="text-align: left;"><strong>ANA</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>集計:</strong> 飛行 15枚 ＋ 地上 1枚 ＝ <strong>16枚（上限ちょうど）</strong> ／ 総マイル <strong>31,308</strong>（34,000枠）</p>
+<blockquote>
+<p>✅ = 発券時に確定・変更したもの（③④＝A-1 成功／⑫⑬＝キャンセルから同一便で復旧）<br />
+🔴 = 継続ウォッチ対象（§0.2）</p>
+</blockquote>
+<h3 id="11-fare-calculation">1.1 券面の運賃計算式（FARE CALCULATION）</h3>
+<pre><code>TYO NH SFO UA MEX CM X/PTY CM LIM//SAO TP X/LIS TP BCN AZ ROM A3 ATH
+TK IST MS CAI MS NBO ET X/ADD ET BKK SQ SIN NH TYO
+5215.71NUC  ENDROE157.600495  XF SFO4.5
+</code></pre>
+<p><strong>読み方と、そこから分かること：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">記号</th>
+<th style="text-align: left;">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>X/PTY</code>・<code>X/LIS</code>・<code>X/ADD</code></td>
+<td style="text-align: left;"><strong>乗継（トランジット）扱い。ストップオーバーとして数えていない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>//SAO</code></td>
+<td style="text-align: left;"><strong>地上区間</strong>（LIM ⇢ SAO＝サンパウロ）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>5215.71NUC</code></td>
+<td style="text-align: left;">運賃計算単位。ROE 157.600495 で円換算</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔵 <strong>リスボンが <code>X/LIS</code>＝乗継扱いになっている。</strong><br />
+TP88 が 11/11 12:10 着、TP1030 が 11/12 07:10 発で <strong>滞在19時間＝24時間未満</strong>のため。<br />
+<strong>ストップオーバーは12都市</strong>（SFO・MEX・LIM・SAO・BCN・ROM・ATH・IST・CAI・NBO・BKK・SIN）で上限15以内。<br />
+⚠️ <strong>B-3 で TP1034（11/12 10:50発）に変更すると滞在は22時間40分。まだ24時間未満なので乗継のまま</strong>で、規則上の影響はない。</p>
+</blockquote>
+<hr />
+<h2 id="2-rbd-e">2. ✅ 予約クラス（RBD）確定表 — eチケット券面より</h2>
+<blockquote>
+<p><strong>§0-2 で「全便ビジネス」とアプリで確認していたが、券面で予約クラスまで確定した。</strong><br />
+🔴 <strong>UA1271 だけが <code>B</code>（エコノミー）。</strong>他の14区間はすべてビジネス（Z または D）。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">区間</th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: center;">予約クラス</th>
+<th style="text-align: left;">判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">①</td>
+<td style="text-align: left;">NRT → SFO</td>
+<td style="text-align: left;">NH 8</td>
+<td style="text-align: center;"><strong>Z(C)</strong></td>
+<td style="text-align: left;">✅ ビジネス</td>
+</tr>
+<tr>
+<td style="text-align: center;">②</td>
+<td style="text-align: left;">SFO → MEX</td>
+<td style="text-align: left;">UA 1271</td>
+<td style="text-align: center;">🔴 <strong>B</strong></td>
+<td style="text-align: left;">🔴 <strong>エコノミー</strong>（→ §0.2 S-1 で継続ウォッチ）</td>
+</tr>
+<tr>
+<td style="text-align: center;">③</td>
+<td style="text-align: left;">MEX → PTY</td>
+<td style="text-align: left;">CM 121</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: left;">✅ ビジネス</td>
+</tr>
+<tr>
+<td style="text-align: center;">④</td>
+<td style="text-align: left;">PTY → LIM</td>
+<td style="text-align: left;">CM 489</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: left;">✅ ビジネス</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑤</td>
+<td style="text-align: left;">GRU → LIS</td>
+<td style="text-align: left;">TP 88</td>
+<td style="text-align: center;"><strong>Z</strong></td>
+<td style="text-align: left;">✅ ビジネス</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑥</td>
+<td style="text-align: left;">LIS → BCN</td>
+<td style="text-align: left;">TP 1030</td>
+<td style="text-align: center;"><strong>Z</strong></td>
+<td style="text-align: left;">✅ ビジネス</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑦</td>
+<td style="text-align: left;">BCN → FCO</td>
+<td style="text-align: left;">AZ 79</td>
+<td style="text-align: center;"><strong>Z</strong></td>
+<td style="text-align: left;">✅ ビジネス</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑧</td>
+<td style="text-align: left;">FCO → ATH</td>
+<td style="text-align: left;">A3 651</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: left;">✅ ビジネス</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑨</td>
+<td style="text-align: left;">ATH → IST</td>
+<td style="text-align: left;">TK 1840</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: left;">✅ ビジネス</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑩</td>
+<td style="text-align: left;">IST → CAI</td>
+<td style="text-align: left;">MS 738</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: left;">✅ ビジネス</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑪</td>
+<td style="text-align: left;">CAI → NBO</td>
+<td style="text-align: left;">MS 849</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: left;">✅ ビジネス</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑫</td>
+<td style="text-align: left;">NBO → ADD</td>
+<td style="text-align: left;">ET 319</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: left;">✅ ビジネス</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑬</td>
+<td style="text-align: left;">ADD → BKK</td>
+<td style="text-align: left;">ET 608</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: left;">✅ ビジネス</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑭</td>
+<td style="text-align: left;">BKK → SIN</td>
+<td style="text-align: left;">SQ 705</td>
+<td style="text-align: center;"><strong>D</strong></td>
+<td style="text-align: left;">✅ ビジネス</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑮</td>
+<td style="text-align: left;">SIN → HND</td>
+<td style="text-align: left;">NH 842</td>
+<td style="text-align: center;"><strong>Z(C)</strong></td>
+<td style="text-align: left;">✅ ビジネス</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔵 <strong>これで「RTWビジネスがどの予約クラスに入るか」が実データで確定した。</strong><br />
+<strong>ANA系＝<code>Z</code>／その他スターアライアンス各社＝<code>D</code></strong>（TP・AZ は Z）。<br />
+🔭 <strong>ウォッチで見るべきクラスは <code>D</code> と <code>Z</code> の2つ</strong>であり、<br />
+従来「Z 一本に絞れる」としていた前提は<strong>誤りだった</strong>（<code>東回り_空席ウォッチ運用.md</code> に反映済み）。</p>
+</blockquote>
+<hr />
+<h2 id="3">3. ✅ 運賃・支払い（確定）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">内訳</th>
+<th style="text-align: right;">金額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">運賃（FARE）</td>
+<td style="text-align: right;"><strong>¥822,000</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">税金・料金等（TAXES/FEES/CHARGES）</td>
+<td style="text-align: right;"><strong>¥383,660</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">小計</td>
+<td style="text-align: right;">¥1,205,660</td>
+</tr>
+<tr>
+<td style="text-align: left;">航空会社手数料（発券手数料・東京）</td>
+<td style="text-align: right;"><strong>¥5,500</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>総額</strong></td>
+<td style="text-align: right;">✅ <strong>¥1,211,160</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>支払:</strong> VISA（末尾 9210）／JPY建て・外貨事務手数料なし</p>
+<h3 id="31">3.1 ✅ 発券国の判断結果</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">タイ発券（見込み）</th>
+<th style="text-align: left;">✅ 東京発券（実際）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">券面総額</td>
+<td style="text-align: left;">฿257,820 ≒ 約 ¥1,218,000</td>
+<td style="text-align: left;">✅ <strong>¥1,211,160</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">カード外貨事務手数料</td>
+<td style="text-align: left;">🔴 約 ¥20,000〜27,000</td>
+<td style="text-align: left;">✅ <strong>なし</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>実質差</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">✅ <strong>約 ¥2.7〜3.4万 有利</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="32">3.2 税金・料金等の主な内訳（券面）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">コード</th>
+<th style="text-align: right;">金額</th>
+<th style="text-align: left;">備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">YQ</td>
+<td style="text-align: right;">¥88,970 ＋ ¥94,620</td>
+<td style="text-align: left;">燃油サーチャージ（2件）</td>
+</tr>
+<tr>
+<td style="text-align: left;">YR</td>
+<td style="text-align: right;">¥3,450 ＋ ¥107,510</td>
+<td style="text-align: left;">発券・運送諸費用（2件）</td>
+</tr>
+<tr>
+<td style="text-align: left;">UK</td>
+<td style="text-align: right;">¥9,000</td>
+<td style="text-align: left;">英国関連</td>
+</tr>
+<tr>
+<td style="text-align: left;">XD</td>
+<td style="text-align: right;">¥10,240</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;">その他</td>
+<td style="text-align: right;">¥700 OI／¥2,460 SW／¥3,000 TK／¥880 AY／¥610 XA／¥1,100 XY／¥1,160 YC／¥2,130 S1／¥200 AH／¥2,350 DY／¥2,110 BR／¥370 J9／¥650 PT／¥3,120 YP／¥2,550 JD／¥120 OG／¥730 QV／¥400 EX／¥1,460 HB</td>
+<td style="text-align: left;">各国の空港税・出国税など</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔵 <strong>税金の6割弱（¥183,590）が燃油サーチャージ（YQ）。</strong>16区間ぶんなので相応。</p>
+</blockquote>
+<hr />
+<h2 id="4">4. ✅ 変更・取消のルール（発券後・確定）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">出所</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>変更可能期限</strong></td>
+<td style="text-align: left;">搭乗の<strong>24時間以上前</strong>まで</td>
+<td style="text-align: left;">W-5</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>同一区間での便・航空会社変更</strong></td>
+<td style="text-align: left;">✅ <strong>手数料なし</strong></td>
+<td style="text-align: left;">W-2</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>路線（区間）そのものの変更</strong></td>
+<td style="text-align: left;"><strong>US$125</strong></td>
+<td style="text-align: left;">W-3</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>取消手数料</strong></td>
+<td style="text-align: left;">🔴 <strong>出発前 US$150</strong></td>
+<td style="text-align: left;">2026/9/6 通話メモ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>払戻</strong></td>
+<td style="text-align: left;">券面に <code>REFUND RESTRICTED</code></td>
+<td style="text-align: left;">eチケット券面</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>有効なアライアンス</strong></td>
+<td style="text-align: left;"><code>VLD STAR ALLIANCE ONLY</code>（クーポン1〜16）</td>
+<td style="text-align: left;">eチケット券面</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>クーポン使用順</strong></td>
+<td style="text-align: left;"><strong>券面の順序どおりに使用すること</strong>（券面注記）</td>
+<td style="text-align: left;">eチケット券面</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>手荷物</strong></td>
+<td style="text-align: left;">⚠️ <strong>区間により 2PC／3PC／40K</strong>。1個あたりの重量上限は<strong>未確認</strong></td>
+<td style="text-align: left;">→ §0.0.2</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>座席指定</strong></td>
+<td style="text-align: left;">⚠️ <strong>開始時期を未確認</strong>（NH8・NH842 は特に確認したい）</td>
+<td style="text-align: left;">→ §0.3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="41-2">4.1 🔴 未確認のまま残っている2点</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">影響</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: left;">🔴 <strong>手荷物1個あたりの重量上限</strong>（通話メモ「2個で合計30kg」と券面「2PC」が食い違う）</td>
+<td style="text-align: left;">4か月の荷造り計画が変わる。<strong>早めに照会</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: left;">⚠️ NH8 の「THE Room アップグレード可」表示の意味</td>
+<td style="text-align: left;">行程には影響しない（§0.3）</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: left;">🔴 <strong>Copa 2便の座席属性が未選択／MS849 が座席未指定</strong></td>
+<td style="text-align: left;">→ <strong>§10.3</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-rtw">5. 🔴 発券後すぐ着手すべき別手配（RTW外・すべて未手配）</h2>
+<blockquote>
+<p><strong>RTW側の時刻が確定したことで、以下は「この時刻に合わせる」制約が確定しています。</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">優先</th>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">手配内容</th>
+<th style="text-align: left;">制約条件</th>
+<th style="text-align: right;">概算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">🟡 <strong>1</strong></td>
+<td style="text-align: left;"><strong>10/31</strong></td>
+<td style="text-align: left;"><strong>リマ空港近郊ホテル</strong>（Wyndham Costa del Sol 等）</td>
+<td style="text-align: left;">✅ <strong>A-1 成立により条件が緩和。</strong>10/31 <strong>22:45 着 → 23:45頃チェックイン</strong>。深夜1:30着ではなくなった</td>
+<td style="text-align: right;">$150〜200</td>
+</tr>
+<tr>
+<td style="text-align: center;">🔴 <strong>2</strong></td>
+<td style="text-align: left;"><strong>11/01</strong></td>
+<td style="text-align: left;"><strong>LIM → CUZ 航空券</strong></td>
+<td style="text-align: left;">✅ <strong>A-1 成立により「13:00前後発」の縛りが消えた。</strong>リマで一泊するため<strong>朝便も選べる</strong>。早い便にすれば列車も早められる</td>
+<td style="text-align: right;">$80〜150</td>
+</tr>
+<tr>
+<td style="text-align: center;">🔴 <strong>3</strong></td>
+<td style="text-align: left;"><strong>11/01</strong></td>
+<td style="text-align: left;"><strong>クスコ空港 → オリャンタイタンボ 専用送迎</strong></td>
+<td style="text-align: left;">約1h45m。CUZ着に合わせる</td>
+<td style="text-align: right;">$50〜80</td>
+</tr>
+<tr>
+<td style="text-align: center;">🔴 <strong>4</strong></td>
+<td style="text-align: left;"><strong>11/01</strong></td>
+<td style="text-align: left;"><strong>オリャンタイタンボ → マチュピチュ村 列車</strong></td>
+<td style="text-align: left;">✅ <strong>A-1 成立により早い便を選べる。</strong>朝の CUZ 便と組めば<strong>明るいうちにマチュピチュ村へ着ける</strong>。座席事前予約必須</td>
+<td style="text-align: right;">$75〜125</td>
+</tr>
+<tr>
+<td style="text-align: center;">🔴 <strong>5</strong></td>
+<td style="text-align: left;"><strong>11/28</strong></td>
+<td style="text-align: left;"><strong>ナイロビ空港ホテル デイユース</strong></td>
+<td style="text-align: left;"><strong>04:30〜08:30</strong>（クラウンプラザ ナイロビ空港等）<br>🔴 <strong>必須で確定。</strong>代替便が存在せず、MS849 の 03:30 着は動かせない</td>
+<td style="text-align: right;">$80〜120</td>
+</tr>
+<tr>
+<td style="text-align: center;">🔴 <strong>6</strong></td>
+<td style="text-align: left;"><strong>11/28〜30</strong></td>
+<td style="text-align: left;"><strong>アンボセリ・サファリ（2泊3日）＋ナイロビ名所</strong></td>
+<td style="text-align: left;"><strong>11/28 09:00 ナイロビ発／11/30 13:30 ナイロビ戻り</strong></td>
+<td style="text-align: right;">要見積</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>7</strong></td>
+<td style="text-align: left;"><strong>10/26</strong></td>
+<td style="text-align: left;"><strong>BKK → 東京</strong>（ポジショニング・エコノミー）</td>
+<td style="text-align: left;">家族旅行（10/23〜25）の翌日</td>
+<td style="text-align: right;">¥3〜5万</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>8</strong></td>
+<td style="text-align: left;"><strong>11/02</strong></td>
+<td style="text-align: left;"><strong>マチュピチュ入場券</strong>（日付指定・変更不可）</td>
+<td style="text-align: left;">11/2 のワイナピチュ枠</td>
+<td style="text-align: right;">$50〜75</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>9</strong></td>
+<td style="text-align: left;"><strong>11/03</strong></td>
+<td style="text-align: left;">マチュピチュ村 → クスコ 列車</td>
+<td style="text-align: left;">午前〜昼発</td>
+<td style="text-align: right;">$75〜125</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>10</strong></td>
+<td style="text-align: left;"><strong>11/05</strong></td>
+<td style="text-align: left;">LIM → IGU（イグアス）</td>
+<td style="text-align: left;">クスコ発リマ経由</td>
+<td style="text-align: right;">要見積</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>11</strong></td>
+<td style="text-align: left;"><strong>11/06</strong></td>
+<td style="text-align: left;">イグアス（アルゼンチン側）Gran Aventura</td>
+<td style="text-align: left;">滝壺ボート＆ジャングルトラック</td>
+<td style="text-align: right;">$80〜100</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>12</strong></td>
+<td style="text-align: left;"><strong>11/07</strong></td>
+<td style="text-align: left;">イグアス（ブラジル側）ヘリコプター遊覧（Helisul）</td>
+<td style="text-align: left;">約10分</td>
+<td style="text-align: right;">$130〜150</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>13</strong></td>
+<td style="text-align: left;"><strong>11/08</strong></td>
+<td style="text-align: left;">IGU → GRU（サンパウロ）</td>
+<td style="text-align: left;">午前便</td>
+<td style="text-align: right;">要見積</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>14</strong></td>
+<td style="text-align: left;"><strong>11/14・16</strong></td>
+<td style="text-align: left;">バルセロナ ⇄ マドリード AVE</td>
+<td style="text-align: left;"><strong>11/16 は 09:30頃発</strong>（16:50 AZ79 に間に合わせる）</td>
+<td style="text-align: right;">€120〜200</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>15</strong></td>
+<td style="text-align: left;"><strong>11/18</strong></td>
+<td style="text-align: left;">ローマ発 トスカーナ日帰りワイナリーツアー</td>
+<td style="text-align: left;">約11〜12h</td>
+<td style="text-align: right;">€150〜250</td>
+</tr>
+<tr>
+<td style="text-align: center;">🔴 <strong>16</strong></td>
+<td style="text-align: left;"><strong>11/21・23</strong></td>
+<td style="text-align: left;">IST ⇄ NAV（カッパドキア）</td>
+<td style="text-align: left;"><strong>11/21 は IST 14:30着の直後の便</strong>（16:30〜17:00発）<br>🔴 <strong>A-4 は空きなしで不成立。</strong>翌朝 04:00 の気球ピックアップまで実質4.5時間のまま。<strong>11/22 は気球後の仮眠を前提に組む</strong>（ギョレメ野外博物館は午後へ）<br>⚠️ <strong>TK1844 に空きが出れば IST 着が12:50に前倒せる（§0.2）。NAV便を予約する前に一度確認する</strong></td>
+<td style="text-align: right;">要見積</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6">6. 🔴 タイトな接続・要注意ポイント一覧</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">リスク</th>
+<th style="text-align: left;">対策</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>10/31</strong></td>
+<td style="text-align: left;"><strong>PTY 乗継 1h05m</strong>（CM135 20:14着 → CM337 21:19発）</td>
+<td style="text-align: left;">MEX発が遅れるとリマ着が翌日以降へずれる</td>
+<td style="text-align: left;">同社便のため乗継保護あり。<strong>ペルー国内線・列車は変更可能運賃で手配</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>10/31</strong></td>
+<td style="text-align: left;">~~リマ 00:55 着~~ → ✅ <strong>A-1 成立で 22:45 着に。</strong>就寝00:15・起床09:30 で<strong>約9時間</strong></td>
+<td style="text-align: left;">✅ <strong>解消。</strong>3日連続の睡眠不足はなくなった</td>
+<td style="text-align: left;">✅ <strong>発券時に CM121→CM489 へ変更済み。</strong>11/1 は朝の CUZ 便＋早い列車に組み替える</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/11</strong></td>
+<td style="text-align: left;"><strong>リスボン 12:10 着</strong>（観光は午後のみ）</td>
+<td style="text-align: left;">見どころを回りきれない</td>
+<td style="text-align: left;">ベレン地区（塔・修道院）に絞り、アルファマは夕景で</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>11/12</strong></td>
+<td style="text-align: left;"><strong>LIS 07:10 発</strong>（04:40 ホテル発）<br><strong>直前が機中泊（TP88）＝2晩連続で削られる／実質睡眠 約6時間20分</strong></td>
+<td style="text-align: left;">寝坊・空港アクセス・疲労の蓄積</td>
+<td style="text-align: left;">🔴 <strong>B-3 は不成立（TP88 とセット予約のため）。当面は現行のまま。</strong><br><strong>TP88 に空きが出れば TP1034（10:50発）へ変更できる（§0.2）。</strong>それまでは前夜早寝＋送迎を事前手配</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/16</strong></td>
+<td style="text-align: left;"><strong>マドリード → バルセロナ AVE → BCN 16:50発</strong></td>
+<td style="text-align: left;">AVE遅延で搭乗不可</td>
+<td style="text-align: left;"><strong>09:30頃発のAVE</strong>を選び、BCN空港に14:30着を目標に</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>11/21〜22</strong></td>
+<td style="text-align: left;">🔴 <strong>カッパドキア着 21:30 → 気球ピックアップ 04:00</strong><br><strong>実質睡眠 約4.5時間（行程中で最短・未解決）</strong></td>
+<td style="text-align: left;">アテネ08:30発の移動日の夜に、翌朝の気球が重なっている</td>
+<td style="text-align: left;">🔴 <strong>A-4（TK1844）は空きなしで不成立。</strong><br>①<strong>IST→NAV を IST 14:30着の直後の便</strong>にして到着を前倒し<br>②<strong>11/22 は気球後の仮眠を前提</strong>に組む（§5-16）<br>③<strong>TK1844 に空きが出れば IST 着が12:50になる（§0.2）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/27</strong></td>
+<td style="text-align: left;"><strong>GEM見学を15:00で切り上げ、21:35発に乗る</strong></td>
+<td style="text-align: left;">大エジプト博物館は広大</td>
+<td style="text-align: left;">見学順路を事前に決める。荷物はホテル預けで16:00回収</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/28</strong></td>
+<td style="text-align: left;"><strong>ナイロビ 03:30 着</strong><br>機内2.5〜3時間＋仮眠3時間＝<strong>分断された約5時間</strong>の後に、4時間の陸路とサンセットサファリ</td>
+<td style="text-align: left;">深夜入国・ドライバー合流・疲労</td>
+<td style="text-align: left;">🔴 <strong>代替便が存在せず、RTW側では直せない（9/6確認）。空港ホテルのデイユース（04:30〜08:30）を必ず確保する</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>12/02</strong></td>
+<td style="text-align: left;"><strong>BKK 12:30 着 → 帰宅14時頃</strong></td>
+<td style="text-align: left;">当初「正午帰宅」から後ろ倒し</td>
+<td style="text-align: left;">12/2中の帰宅という要件は達成。実害なし</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2027/3/3</strong></td>
+<td style="text-align: left;"><strong>SIN 10:45 発</strong>（最終日は観光不可）</td>
+<td style="text-align: left;">シンガポール滞在の実質観光日は 3/2 のみ</td>
+<td style="text-align: left;">3/1 午後 ＋ 3/2 終日 に見どころを集約</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-202696">7. ✅ 発券時の照会（2026/9/6・完了）</h2>
+<blockquote>
+<p>✅ <strong>発券が完了したため本節は役目を終えた。</strong>結果は <strong>§0.1</strong> に集約している。<br />
+発券後に残った照会事項は <strong>§0.2（ウォッチ3件）</strong>・<strong>§0.3（THE Room 表示）</strong>・<strong>§4.1（手荷物・座席指定）</strong>。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">照会項目</th>
+<th style="text-align: left;">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">ET319・ET608 のキャンセル復旧</td>
+<td style="text-align: left;">✅ <strong>同一便で再確保成功</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">全16クーポンの生存確認</td>
+<td style="text-align: left;">✅ <strong>発券完了により確定</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">発券国・決済通貨</td>
+<td style="text-align: left;">✅ <strong>東京発券・JPY建て</strong>（約¥2.7〜3.4万の節約）</td>
+</tr>
+<tr>
+<td style="text-align: left;">A-1（MEX→LIM の振替）</td>
+<td style="text-align: left;">✅ <strong>CM121→CM489 で成立</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">S-1（UA1271 のビジネス化）</td>
+<td style="text-align: left;">❌ 空きなし → 継続ウォッチ</td>
+</tr>
+<tr>
+<td style="text-align: left;">B-3（LIS→BCN の後ろ倒し）</td>
+<td style="text-align: left;">❌ TP88 とセット予約のため不可 → <strong>TP88 の在庫を継続ウォッチ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">A-4（ATH→IST の前倒し）</td>
+<td style="text-align: left;">❌ 空きなし → 継続ウォッチ</td>
+</tr>
+<tr>
+<td style="text-align: left;">取消手数料</td>
+<td style="text-align: left;">✅ <strong>出発前 US$150</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">手荷物</td>
+<td style="text-align: left;">⚠️ メモと券面が食い違い（§0.0.2）。<strong>要再照会</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-rtw">8. RTW規則の適合状況（発券時の照合用）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: right;">実績</th>
+<th style="text-align: left;">上限・規則</th>
+<th style="text-align: left;">判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">合計クーポン</td>
+<td style="text-align: right;"><strong>16枚</strong>（飛行15＋地上1）</td>
+<td style="text-align: left;">16枚</td>
+<td style="text-align: left;">✅ <strong>上限ちょうど</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">地上区間</td>
+<td style="text-align: right;">1本（LIM⇢GRU）</td>
+<td style="text-align: left;">最大5本</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">総マイル</td>
+<td style="text-align: right;"><strong>31,308</strong></td>
+<td style="text-align: left;">34,000枠</td>
+<td style="text-align: left;">✅ 余裕 約2,692</td>
+</tr>
+<tr>
+<td style="text-align: left;">ストップオーバー</td>
+<td style="text-align: right;">12都市</td>
+<td style="text-align: left;">最大15</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">1か国あたり都市数</td>
+<td style="text-align: right;">各国1都市</td>
+<td style="text-align: left;">最大3（米国5）</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">太平洋横断</td>
+<td style="text-align: right;">1回（NRT→SFO）</td>
+<td style="text-align: left;">1回</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">大西洋横断</td>
+<td style="text-align: right;">1回（GRU→LIS）</td>
+<td style="text-align: left;">1回</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">エリア2⇔3横断</td>
+<td style="text-align: right;">1回（ADD→BKK）</td>
+<td style="text-align: left;">1回</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">起点・終点</td>
+<td style="text-align: right;">日本発（NRT）・日本着（HND）</td>
+<td style="text-align: left;">同一国</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">有効期間</td>
+<td style="text-align: right;">2026/10/28〜2027/03/03（約4か月）</td>
+<td style="text-align: left;">12か月以内</td>
+<td style="text-align: left;">✅</td>
+</tr>
+</tbody>
+</table>
+<p>---## 9. 🔭 各区間の代替便候補（発券後の変更用）</p>
+<blockquote>
+<p>✅ <strong>発券は完了した。本節はもう「発券時に指定する第1〜第3希望」ではない。</strong><br />
+<strong>発券後も同一区間の便変更は手数料なしで、搭乗24時間前まで可能（W-2／W-5）。</strong><br />
+<strong>空きが出たときに何へ動かせるかの一覧として残している。</strong></p>
+<p>🔭 <strong>実際にウォッチするのは §0.2 の3件（S-1／B-3／A-4）だけ。</strong><br />
+他の12区間は行程上の問題がなく、積極的に動かす理由がない。</p>
+<p><strong>データの出所:</strong> 2026/9/6 に Google Flights のビジネス在庫を全区間で取得（<code>tools/flightwatch</code>）。<br />
+⚠️ <strong>Google Flights は予約クラスを持たない。</strong>券面で確定した <strong><code>D</code>／<code>Z</code></strong> の在庫があるかは窓口でしか分からない。</p>
+</blockquote>
+<h3 id="90">9.0 発券結果と、いま見ている対象</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">区間</th>
+<th style="text-align: left;">✅ 発券された便</th>
+<th style="text-align: left;">ウォッチ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">①</td>
+<td style="text-align: left;">10/28</td>
+<td style="text-align: left;">NRT→SFO</td>
+<td style="text-align: left;"><strong>NH8 17:00→10:20（Z）</strong></td>
+<td style="text-align: left;">— ※座席タイプは §0.3</td>
+</tr>
+<tr>
+<td style="text-align: center;">②</td>
+<td style="text-align: left;">10/29</td>
+<td style="text-align: left;">SFO→MEX</td>
+<td style="text-align: left;">🔴 <strong>UA1271 10:45→16:05（B＝エコノミー）</strong></td>
+<td style="text-align: left;">🔴 <strong>S-1：ビジネス化を継続ウォッチ</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">③④</td>
+<td style="text-align: left;">10/31</td>
+<td style="text-align: left;">MEX→PTY→LIM</td>
+<td style="text-align: left;">✅ <strong>CM121 13:10 → CM489 → LIM 22:45（D）</strong></td>
+<td style="text-align: left;">✅ 完了（A-1 成立）</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑤</td>
+<td style="text-align: left;">11/10</td>
+<td style="text-align: left;">GRU→LIS</td>
+<td style="text-align: left;"><strong>TP88 23:15→12:10(+1)（Z）</strong></td>
+<td style="text-align: left;">⚠️ <strong>B-3 の前提として在庫を見る</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">⑥</td>
+<td style="text-align: left;">11/12</td>
+<td style="text-align: left;">LIS→BCN</td>
+<td style="text-align: left;"><strong>TP1030 07:10→10:05（Z）</strong></td>
+<td style="text-align: left;">⚠️ <strong>B-3：TP1034 へ動かしたい</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">⑦</td>
+<td style="text-align: left;">11/16</td>
+<td style="text-align: left;">BCN→FCO</td>
+<td style="text-align: left;"><strong>AZ79 16:50→18:35（Z）</strong></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑧</td>
+<td style="text-align: left;">11/19</td>
+<td style="text-align: left;">FCO→ATH</td>
+<td style="text-align: left;"><strong>A3651 10:35→13:35（D）</strong></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑨</td>
+<td style="text-align: left;">11/21</td>
+<td style="text-align: left;">ATH→IST</td>
+<td style="text-align: left;"><strong>TK1840 11:50→14:30（D）</strong></td>
+<td style="text-align: left;">⚠️ <strong>A-4：TK1844 へ動かしたい</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">⑩</td>
+<td style="text-align: left;">11/25</td>
+<td style="text-align: left;">IST→CAI</td>
+<td style="text-align: left;"><strong>MS738 14:00→15:15（D）</strong></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑪</td>
+<td style="text-align: left;">11/27</td>
+<td style="text-align: left;">CAI→NBO</td>
+<td style="text-align: left;"><strong>MS849 21:35→03:30(+1)（D）</strong></td>
+<td style="text-align: left;">— 代替なし</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑫</td>
+<td style="text-align: left;">12/01</td>
+<td style="text-align: left;">NBO→ADD</td>
+<td style="text-align: left;">✅ <strong>ET319 17:30→19:30（D）</strong></td>
+<td style="text-align: left;">✅ 復旧済み</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑬</td>
+<td style="text-align: left;">12/01</td>
+<td style="text-align: left;">ADD→BKK</td>
+<td style="text-align: left;">✅ <strong>ET608 23:55→12:30(+1)（D）</strong></td>
+<td style="text-align: left;">✅ 復旧済み</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑭</td>
+<td style="text-align: left;">2027/3/1</td>
+<td style="text-align: left;">BKK→SIN</td>
+<td style="text-align: left;"><strong>SQ705 09:40→13:10（D）</strong></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑮</td>
+<td style="text-align: left;">2027/3/3</td>
+<td style="text-align: left;">SIN→HND</td>
+<td style="text-align: left;"><strong>NH842 10:45→18:25（Z）</strong></td>
+<td style="text-align: left;">—</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="91">9.1 候補を検討するときの制約（🔴 必読）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">前提</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>W-1</strong></td>
+<td style="text-align: left;">🔴 <strong>一般販売の「ビジネス空席あり」と、RTW運賃で発券できる予約クラスの在庫は別物。</strong> RTWビジネスは特定クラス（<strong>D／Z／C など</strong>）にしか入らないため、各社サイトで空席が見えても振替できるとは限らない。<strong>最終判断は必ずANA窓口。</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>W-2</strong></td>
+<td style="text-align: left;">✅ <strong>同一区間であれば、航空会社を変更しても手数料はかからない。</strong> → <strong>同一都市ペア内での便・航空会社の乗り換えが、コストゼロで使える唯一の手段。</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>W-3</strong></td>
+<td style="text-align: left;">🔴 <strong>区間（路線）そのものの変更には US$125 が必要。</strong>（例：MEX→PTY→LIM を MEX→BOG→LIM へ）→ 経由地が変わる候補はこのコストを織り込む。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>W-4</strong></td>
+<td style="text-align: left;">🔴 <strong>クーポンは16枚で上限ちょうど・予備0枚。区間の「本数」を増やす変更は一切できない。</strong> 2本を2本に置き換えるのは可、2本を3本にするのは不可。<strong>＝直行便を経由便に替えることはできない。</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>W-5</strong></td>
+<td style="text-align: left;"><strong>変更は搭乗の24時間以上前まで可能。</strong> 発券後も直前まで候補を持っておく意味がある。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>W-6</strong></td>
+<td style="text-align: left;">🔴 <strong>総マイルは31,308／34,000枠（余裕 約2,692マイル）。</strong> 経路を変更するとマイルが増減する。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>W-7</strong></td>
+<td style="text-align: left;">🔴 <strong>発券までは毎日1回、予約確認ページで全16区間が生存しているかを見る。</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="92-13">9.2 区間別 第1〜第3希望</h3>
+<blockquote>
+<p><strong>凡例:</strong> 🥇第1希望／🥈第2希望／🥉第3希望／<strong>現</strong> = 現在の予約<br />
+時刻はすべて現地時間。<strong>（9/6確認）</strong> は 2026/9/6 にビジネス在庫を実データで確認したもの。<br />
+<strong>所要</strong>＝ブロックタイム（時差込み）。<strong>③④ の経由便のみ乗継時間を含んだ総所要</strong>を記載している。</p>
+</blockquote>
+<h4 id="1-1028nrt-sfo">① 10/28（水）NRT → SFO</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">発 → 着</th>
+<th style="text-align: center;">所要</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🥇 <strong>現</strong></td>
+<td style="text-align: left;"><strong>NH8</strong></td>
+<td style="text-align: left;"><strong>17:00 → 10:20</strong></td>
+<td style="text-align: center;"><strong>9h20m</strong></td>
+<td style="text-align: left;">✅ <strong>THE Room 確定・ビジネスZ確定。</strong>本旅程で SFO 経由を選んだ理由そのもの</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥈</td>
+<td style="text-align: left;">UA838</td>
+<td style="text-align: left;">16:55 → 10:30</td>
+<td style="text-align: center;">9h35m</td>
+<td style="text-align: left;">（9/6確認）<strong>現行とほぼ同時刻</strong>で行程への影響ゼロ。ただし機材は UA の 777／787 で THE Room ではない</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥉</td>
+<td style="text-align: left;">NH108</td>
+<td style="text-align: left;"><strong>HND</strong> 22:55 → 16:30</td>
+<td style="text-align: center;">9h35m</td>
+<td style="text-align: left;">（9/6確認）🔴 <strong>羽田発・SFO夕方着でサンフランシスコの午後が消える。</strong>成田発の要件も外れる。<strong>最終手段</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>JL58（17:40→10:55）は <strong>oneworld のため RTW に載せられない。</strong></p>
+</blockquote>
+<hr />
+<h4 id="2-1029sfo-mex-b">② 10/29（木）SFO → MEX ｜ 🔴 エコノミー（B）で発券・継続ウォッチ</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">発 → 着</th>
+<th style="text-align: center;">所要</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🥇 <strong>現</strong></td>
+<td style="text-align: left;"><strong>UA1271</strong></td>
+<td style="text-align: left;"><strong>10:45 → 16:05</strong></td>
+<td style="text-align: center;"><strong>4h20m</strong></td>
+<td style="text-align: left;">🔴 <strong>エコノミーで予約中。本便のビジネス化が第一希望</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🥈</td>
+<td style="text-align: left;">UA412</td>
+<td style="text-align: left;">22:48 → <strong>04:05(+1)</strong></td>
+<td style="text-align: center;">4h17m</td>
+<td style="text-align: left;">（9/6確認）ビジネス販売あり。🔴 <strong>ただしメキシコ着が10/30未明。10/29夕方の市内観光が消え、10/30のテオティワカンが睡眠不足の状態になる</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🥉</td>
+<td style="text-align: left;"><strong>なし</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;">🔴 <strong>同区間のスターアライアンス系ビジネスはこの2便のみ。</strong>AM665（アエロメヒコ）は SkyTeam で不可</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔴 <strong>この区間は逃げ場がない。</strong>ビジネス化できなければ、<strong>UA1271 にエコノミーで乗るか、運賃の減額交渉をするかの二択。</strong><br />
+9/4 の ITA Matrix では同日 UA 全便で <strong>Z クラスがゼロ</strong>。出発直前（10/25〜10/28）の再確認が最後のチャンス。</p>
+</blockquote>
+<hr />
+<h4 id="34-1031mex-pty-lim-a-1">③④ 10/31（土）MEX → PTY → LIM ｜ ✅ A-1 成立・発券済み</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">MEX発 → LIM着</th>
+<th style="text-align: center;">乗継</th>
+<th style="text-align: center;">所要</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🥇</td>
+<td style="text-align: left;">🔴 <strong>CM121 → CM489</strong></td>
+<td style="text-align: left;"><strong>13:10 → 22:45（当日着）</strong></td>
+<td style="text-align: center;"><strong>75分</strong></td>
+<td style="text-align: center;"><strong>8h35m</strong></td>
+<td style="text-align: left;">（9/6確認）<strong>リマ深夜着が消える。</strong>就寝00:15・起床09:30で<strong>約9時間</strong>。メキシコ午前は3時間残る。<strong>乗継も現行65分→75分で改善</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🥈</td>
+<td style="text-align: left;"><strong>CM195 → CM131</strong></td>
+<td style="text-align: left;">05:55 → 15:40（当日着）</td>
+<td style="text-align: center;">79分</td>
+<td style="text-align: center;">⚠️ 未確認</td>
+<td style="text-align: left;">⚠️ <strong>9/4 の記録にあるが 9/6 の再取得では出てこなかった。まず存在確認。</strong>取れれば最善（10/31・11/1 の両夜が約8時間）。代償はホテル03:30発</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥉 <strong>現</strong></td>
+<td style="text-align: left;">CM135 → CM337</td>
+<td style="text-align: left;">15:30 → <strong>00:55(+1)</strong></td>
+<td style="text-align: center;">65分</td>
+<td style="text-align: center;">8h25m</td>
+<td style="text-align: left;">現行。メキシコ午前観光は最大だが、<strong>リマ深夜着＋ペルー初日圧縮＋綱渡り手配3件</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">予備</td>
+<td style="text-align: left;">CM536 → CM761</td>
+<td style="text-align: left;">03:25 → 12:25（当日着）</td>
+<td style="text-align: center;"><strong>44分</strong></td>
+<td style="text-align: center;">8h00m</td>
+<td style="text-align: left;">（9/6確認）⚠️ <strong>乗継44分は現行より短くリスクが高い。</strong>ホテル01:30発</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>参考（経路変更＝US$125／W-3）:</strong> アビアンカのボゴタ経由でも同日着が可能。<br />
+<strong>AV45 05:05→BOG→AV53→LIM 16:50</strong>（乗継185分）、<strong>AV187 00:30→BOG→AV49→LIM 10:40</strong>（乗継90分）。<br />
+マイルは MEX→BOG→LIM 約2,780 で現行 約2,980 より少なく<strong>枠には収まる</strong>が、<strong>US$125 を払ってまで CM121 より良くはならない。</strong></p>
+</blockquote>
+<hr />
+<h4 id="5-1110gru-lis">⑤ 11/10（火）GRU → LIS</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">発 → 着</th>
+<th style="text-align: center;">所要</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🥇 <strong>現</strong></td>
+<td style="text-align: left;"><strong>TP88</strong></td>
+<td style="text-align: left;"><strong>23:15 → 12:10(+1)</strong></td>
+<td style="text-align: center;"><strong>9h55m</strong></td>
+<td style="text-align: left;">（9/6確認）機中泊。<strong>サンパウロを丸1日使えて、リスボン観光は午後のみ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🥈</td>
+<td style="text-align: left;">TP82</td>
+<td style="text-align: left;">16:20 → 05:15(+1)</td>
+<td style="text-align: center;">9h55m</td>
+<td style="text-align: left;">（9/6確認）<strong>リスボン観光が丸1日に増える。</strong>⚠️ サンパウロ最終日が約7時間短くなり、<strong>05:15着は早朝すぎてホテルに入れない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🥉</td>
+<td style="text-align: left;">TP84</td>
+<td style="text-align: left;">01:30 → 14:25</td>
+<td style="text-align: center;">9h55m</td>
+<td style="text-align: left;">（9/6確認）🔴 <strong>11/10 未明発＝実質 11/9 夜に出発。サンパウロ2泊目が無駄になる</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>LA8146／LA8148（LATAM）は <strong>oneworld のため不可。</strong><br />
+⚠️ 旧記載の「TP82 18:05発→07:55着」は<strong>誤り。</strong>9/4 と 9/6 の実測はいずれも <strong>16:20→05:15</strong>。</p>
+</blockquote>
+<hr />
+<h4 id="6-1112lis-bcn-b-3-tp88">⑥ 11/12（木）LIS → BCN ｜ ⚠️ B-3 継続ウォッチ（TP88 の在庫待ち）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">発 → 着</th>
+<th style="text-align: center;">所要</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🥇</td>
+<td style="text-align: left;">⚠️ <strong>TP1032</strong></td>
+<td style="text-align: left;"><strong>08:50 → 11:45</strong></td>
+<td style="text-align: center;"><strong>1h55m</strong></td>
+<td style="text-align: left;">（9/6確認）<strong>起床 03:50 → 05:20。</strong>直前が機中泊なので2晩連続で削られるのを緩和。午前観光は消えるが午後は丸々使える</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥈 <strong>現</strong></td>
+<td style="text-align: left;">TP1030</td>
+<td style="text-align: left;">07:10 → 10:05</td>
+<td style="text-align: center;">1h55m</td>
+<td style="text-align: left;">現行。<strong>04:40 ホテル発</strong>だが、バルセロナで<strong>午前から観光できる</strong>点は優秀</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥉</td>
+<td style="text-align: left;">TP1034</td>
+<td style="text-align: left;">10:50 → 13:45</td>
+<td style="text-align: center;">1h55m</td>
+<td style="text-align: left;">（9/6確認）<strong>最も寝られる（起床07:20）</strong>が、バルセロナ着が午後になり初日の観光が半日だけになる</td>
+</tr>
+<tr>
+<td style="text-align: left;">予備</td>
+<td style="text-align: left;">TP1036／TP1038／TP1040</td>
+<td style="text-align: left;">14:20／17:25／20:50発</td>
+<td style="text-align: center;">1h55m</td>
+<td style="text-align: left;">（9/6確認）<strong>いずれも遅すぎてバルセロナ初日が消える。</strong>発券時に上位3便が全滅した場合のみ</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="7-1116bcn-fco">⑦ 11/16（月）BCN → FCO ｜ 🔴 代替が事実上ない</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">発 → 着</th>
+<th style="text-align: center;">所要</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🥇 <strong>現</strong></td>
+<td style="text-align: left;"><strong>AZ79</strong></td>
+<td style="text-align: left;"><strong>16:50 → 18:35</strong></td>
+<td style="text-align: center;"><strong>1h45m</strong></td>
+<td style="text-align: left;">🔴 <strong>マドリード09:30発のAVE（BCN着12:30頃）に接続できる唯一の便。</strong>これを軸に 11/16 が組まれている</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥈</td>
+<td style="text-align: left;">AZ77</td>
+<td style="text-align: left;">11:40 → 13:25</td>
+<td style="text-align: center;">1h45m</td>
+<td style="text-align: left;">（9/6確認）🔴 <strong>AVE を 06:00頃発に前倒ししないと間に合わない。</strong>11/15 の試合が 20:45 終了（ホテル着00:30）なので、<strong>04:30起床になり現実的でない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🥉</td>
+<td style="text-align: left;">AZ75</td>
+<td style="text-align: left;">06:20 → 08:05</td>
+<td style="text-align: center;">1h45m</td>
+<td style="text-align: left;">（9/6確認）🔴 <strong>前日にバルセロナ入りが必要＝マドリード泊が1泊減る。不可</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔴 <strong>AZ79 が押さえられないと 11/16 の行程が成立しない。発券時に最優先で確保する。</strong><br />
+⚠️ この区間の運航は <strong>ITA エアウェイズ 3便のみ</strong>（9/6 時点）。スターアライアンス系の他社便は存在しない。</p>
+</blockquote>
+<hr />
+<h4 id="8-1119fco-ath">⑧ 11/19（木）FCO → ATH</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">発 → 着</th>
+<th style="text-align: center;">所要</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🥇 <strong>現</strong></td>
+<td style="text-align: left;"><strong>A3651</strong></td>
+<td style="text-align: left;"><strong>10:35 → 13:35</strong></td>
+<td style="text-align: center;"><strong>2h00m</strong></td>
+<td style="text-align: left;">07:15 ホテル発。<strong>アテネの午後（プラカ）が使える</strong>バランス案</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥈</td>
+<td style="text-align: left;">AZ718</td>
+<td style="text-align: left;">15:35 → 18:35</td>
+<td style="text-align: center;">2h00m</td>
+<td style="text-align: left;">（9/6確認）<strong>体力優先案。</strong>前日のトスカーナ日帰りツアー（帰着19:30〜21:00）の翌朝をゆっくりできる。⚠️ アテネの午後観光は消える</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥉</td>
+<td style="text-align: left;">AZ720</td>
+<td style="text-align: left;">08:55 → 11:55</td>
+<td style="text-align: center;">2h00m</td>
+<td style="text-align: left;">（9/6確認）<strong>観光優先案。</strong>アテネ着が1時間40分早い。⚠️ <strong>ローマのホテルを05:45に出る必要があり、ツアー翌朝としては厳しい</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>A3655（18:30発）・AZ722（21:50発）は<strong>アテネ着が夜になり初日が消える</strong>ため候補外。<br />
+GQ821（スカイエクスプレス）は<strong>アライアンス外で不可。</strong></p>
+</blockquote>
+<hr />
+<h4 id="9-1121ath-ist-a-4">⑨ 11/21（土）ATH → IST ｜ ⚠️ A-4 継続ウォッチ（カッパドキアの睡眠に直結）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">発 → 着</th>
+<th style="text-align: center;">所要</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🥇</td>
+<td style="text-align: left;">⚠️ <strong>TK1844</strong></td>
+<td style="text-align: left;"><strong>10:10 → 12:50</strong></td>
+<td style="text-align: center;"><strong>1h40m</strong></td>
+<td style="text-align: left;">（9/6確認）🔴 <strong>IST着が1時間40分早まる。</strong>IST→NAV を早い便にでき、<strong>ギョレメ着が前倒し＝11/21→22の夜（実質4.5時間）が延びる。</strong>アテネのホテル発は 07:40</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥈 <strong>現</strong></td>
+<td style="text-align: left;">TK1840</td>
+<td style="text-align: left;">11:50 → 14:30</td>
+<td style="text-align: center;">1h40m</td>
+<td style="text-align: left;">現行。08:30 ホテル発。NAV便への乗継には余裕があるが、<strong>ギョレメ着が21:30頃になり気球まで5時間しかない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🥉</td>
+<td style="text-align: left;">A3990</td>
+<td style="text-align: left;">08:00 → 10:35</td>
+<td style="text-align: center;">1h35m</td>
+<td style="text-align: left;">（9/6確認）<strong>最速のIST着</strong>だが、<strong>アテネのホテルを05:30に出る必要があり、前夜が削れて本末転倒。</strong>アテネ2泊目を犠牲にする覚悟があるときだけ</td>
+</tr>
+<tr>
+<td style="text-align: left;">予備</td>
+<td style="text-align: left;">A3992／TK1848／TK1850</td>
+<td style="text-align: left;">13:10／13:05／15:45発</td>
+<td style="text-align: center;">1h35m〜1h40m</td>
+<td style="text-align: left;">（9/6確認）いずれも<strong>現行より遅く、カッパドキア着がさらに遅れる。</strong>上位3便が全滅した場合のみ</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="10-1125ist-cai-18452045">⑩ 11/25（水）IST → CAI ｜ 前日夜がガラタサライ戦（18:45〜20:45）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">発 → 着</th>
+<th style="text-align: center;">所要</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🥇 <strong>現</strong></td>
+<td style="text-align: left;"><strong>MS738</strong></td>
+<td style="text-align: left;"><strong>14:00 → 15:15</strong></td>
+<td style="text-align: center;"><strong>2h15m</strong></td>
+<td style="text-align: left;">✅ <strong>試合翌朝ゆっくり起床できて、カイロ着後にハン・ハリーリの夕方が使える。</strong>バランスが最も良い</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥈</td>
+<td style="text-align: left;">TK694</td>
+<td style="text-align: left;">18:20 → 19:50</td>
+<td style="text-align: center;">2h30m</td>
+<td style="text-align: left;">（9/6確認）<strong>朝がさらにゆっくりできる。</strong>⚠️ カイロ着が20:00近くなり初日の夕方が消える</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥉</td>
+<td style="text-align: left;">MS736</td>
+<td style="text-align: left;">18:50 → 20:05</td>
+<td style="text-align: center;">2h15m</td>
+<td style="text-align: left;">（9/6確認）TK694 とほぼ同条件。<strong>MS で揃えたい場合はこちら</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">予備</td>
+<td style="text-align: left;">TK690</td>
+<td style="text-align: left;">07:55 → 09:20</td>
+<td style="text-align: center;">2h25m</td>
+<td style="text-align: left;">（9/6確認）<strong>カイロを丸1日使える</strong>が、<strong>試合翌朝05:00起床。体力的に非推奨</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>TK686（22:25発）・TK692（02:15発）・MS746（03:50発）は<strong>深夜帯で不可。</strong></p>
+</blockquote>
+<hr />
+<h4 id="11-1127cai-nbo">⑪ 11/27（金）CAI → NBO ｜ 🔴 <strong>代替なし</strong></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">発 → 着</th>
+<th style="text-align: center;">所要</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🥇 <strong>現</strong></td>
+<td style="text-align: left;"><strong>MS849</strong></td>
+<td style="text-align: left;"><strong>21:35 → 03:30(+1)</strong></td>
+<td style="text-align: center;"><strong>4h55m</strong></td>
+<td style="text-align: left;">🔴 <strong>当日の CAI→NBO 直行便はこの1便のみ。</strong>（9/6 に<strong>全クラスで再検索して確認</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥈</td>
+<td style="text-align: left;"><strong>存在しない</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;">🔴 旧調査の「23:55発→06:10着」は<strong>現在のダイヤに存在しない。A-2 は取り下げ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🥉</td>
+<td style="text-align: left;"><strong>存在しない</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;">ケニア航空（KQ）は <strong>SkyTeam で対象外</strong>／ET経由（CAI→ADD→NBO）は<strong>クーポン2枚必要で W-4 抵触・不可</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔴 <strong>ナイロビ 03:30 着は構造的に動かせない。§5-5 の空港ホテル デイユース（04:30〜08:30）は必須。</strong><br />
+🔴 <strong>この区間が取れないと、サファリを含む 11/28〜30 が丸ごと崩れる。発券時に最優先で確保する。</strong></p>
+</blockquote>
+<hr />
+<h4 id="12-1201nbo-add">⑫ 12/01（火）NBO → ADD ｜ ✅ 同一便で復旧済み</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">発 → 着</th>
+<th style="text-align: center;">所要</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>確定</strong></td>
+<td style="text-align: left;"><strong>ET319</strong></td>
+<td style="text-align: left;"><strong>17:30 → 19:30</strong></td>
+<td style="text-align: center;"><strong>2h00m</strong></td>
+<td style="text-align: left;">✅ <strong>2026/9/6 にキャンセル連絡を受けたが、同一便で再確保して発券済み（クラス D）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🥈</td>
+<td style="text-align: left;">ET309</td>
+<td style="text-align: left;">02:55 → 05:10</td>
+<td style="text-align: center;">2h15m</td>
+<td style="text-align: left;">（9/6確認）<strong>NBO→ADD の唯一の代替。</strong>🔴 12/1 01:00 ホテル発、ADD で約18時間待ち</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥉</td>
+<td style="text-align: left;"><strong>なし</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;">KQ402（16:45発）は <strong>SkyTeam で不可</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🚨 <strong>⑫⑬ をまとめた代替は §0.2 を参照。</strong></p>
+</blockquote>
+<hr />
+<h4 id="13-1201add-bkk">⑬ 12/01（火）ADD → BKK ｜ ✅ 同一便で復旧済み</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">発 → 着</th>
+<th style="text-align: center;">所要</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>確定</strong></td>
+<td style="text-align: left;"><strong>ET608</strong></td>
+<td style="text-align: left;"><strong>23:55 → 12:30(+1)</strong></td>
+<td style="text-align: center;"><strong>8h35m</strong></td>
+<td style="text-align: left;">✅ <strong>2026/9/6 にキャンセル連絡を受けたが、同一便で再確保して発券済み（クラス D）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🥈</td>
+<td style="text-align: left;"><strong>ET628</strong></td>
+<td style="text-align: left;">23:55 → 12:30(+1)</td>
+<td style="text-align: center;">8h35m</td>
+<td style="text-align: left;">（9/6確認）<strong>ET608 と同時刻帯の別便名。</strong>⚠️ <strong>12/1 に飛ぶかは要確認</strong>（データ上は 12/2 発の可能性。12/2 発だと BKK 着が 12/3 になり要件を外れる）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥉</td>
+<td style="text-align: left;"><strong>なし</strong>（直行では）</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;">🔴 ADD→BKK の単独検索は Google 未収録で 0件。<strong>ET 以外の運航は確認できない</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔴 <strong>⑫⑬ の両方が組めない場合の唯一のスターアライアンス代替は<br />
+TK608（NBO 04:30）→ TK58（IST 15:15）→ BKK 12/2 04:30 だが、<br />
+マイルが +2,732 で 34,000 枠を約40マイル超過する見込み。詳細は §0.2.3。</strong></p>
+</blockquote>
+<hr />
+<h4 id="14-202731bkk-sin">⑭ 2027/3/1（月）BKK → SIN ｜ 選択肢は潤沢</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">発 → 着</th>
+<th style="text-align: center;">所要</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🥇 <strong>現</strong></td>
+<td style="text-align: left;"><strong>SQ705</strong></td>
+<td style="text-align: left;"><strong>09:40 → 13:10</strong></td>
+<td style="text-align: center;"><strong>2h30m</strong></td>
+<td style="text-align: left;">✅ <strong>午後からシンガポール市内観光ができる。</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🥈</td>
+<td style="text-align: left;">TG403</td>
+<td style="text-align: left;">07:45 → 11:15</td>
+<td style="text-align: center;">2h30m</td>
+<td style="text-align: left;">（9/6確認）<strong>観光時間がさらに約2時間増える。</strong>⚠️ バンコクのホテルを 05:45 に出る必要がある</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥉</td>
+<td style="text-align: left;">SQ707</td>
+<td style="text-align: left;">12:00 → 15:35</td>
+<td style="text-align: center;">2h35m</td>
+<td style="text-align: left;">（9/6確認）<strong>朝がゆっくりできる。</strong>午後の観光は短くなる</td>
+</tr>
+<tr>
+<td style="text-align: left;">予備</td>
+<td style="text-align: left;">SQ721／TG413／TG407／SQ709</td>
+<td style="text-align: left;">13:35／11:10／14:40／15:45発</td>
+<td style="text-align: center;">2h20m〜2h40m</td>
+<td style="text-align: left;">（9/6確認）<strong>SQ・TG 合わせて1日11便あり、この区間で詰まる心配はほぼない</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="15-202733sin-hnd-33">⑮ 2027/3/3（水）SIN → HND ｜ 🔴 3/3 中に羽田着が必須</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">発 → 着</th>
+<th style="text-align: center;">所要</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🥇 <strong>現</strong></td>
+<td style="text-align: left;"><strong>NH842</strong></td>
+<td style="text-align: left;"><strong>10:45 → 18:25</strong></td>
+<td style="text-align: center;"><strong>6h40m</strong></td>
+<td style="text-align: left;">✅ <strong>ビジネスZ確定・日中便。世界一周の締めくくり。</strong>（B-2 で決着済み）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥈</td>
+<td style="text-align: left;">SQ632</td>
+<td style="text-align: left;">08:05 → 15:35</td>
+<td style="text-align: center;">6h30m</td>
+<td style="text-align: left;">（9/6確認）<strong>羽田着が約3時間早い。</strong>⚠️ シンガポールのホテルを 05:30 に出る必要がある</td>
+</tr>
+<tr>
+<td style="text-align: left;">🥉</td>
+<td style="text-align: left;">SQ634</td>
+<td style="text-align: left;">14:05 → 21:40</td>
+<td style="text-align: center;">6h35m</td>
+<td style="text-align: left;">（9/6確認）<strong>シンガポールの午前が使える。</strong>⚠️ 羽田着 21:40 で帰宅が深夜になる</td>
+</tr>
+<tr>
+<td style="text-align: left;">✕</td>
+<td style="text-align: left;">NH844／SQ636</td>
+<td style="text-align: left;">22:20／22:55発 → <strong>翌朝着</strong></td>
+<td style="text-align: center;">6h25m〜6h35m</td>
+<td style="text-align: left;">🔴 <strong>3/4 着になり「3/3 帰着」の要件を外れる。不可</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>JL36／JL38（日本航空）は <strong>oneworld のため不可。</strong></p>
+</blockquote>
+<hr />
+<h3 id="93">9.3 ✅ 決着済み（候補探索を終了した項目）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID</th>
+<th style="text-align: left;">対象</th>
+<th style="text-align: left;">決着日</th>
+<th style="text-align: left;">結論</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>B-1</strong></td>
+<td style="text-align: left;">NH8 の THE Room 機材確認</td>
+<td style="text-align: left;">2026/9/4</td>
+<td style="text-align: left;">✅ <strong>確認済み。THE Room で確定</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>B-2</strong></td>
+<td style="text-align: left;">2027/3/3 SIN→HND の夜行便振替</td>
+<td style="text-align: left;">2026/9/4</td>
+<td style="text-align: left;">✅ <strong>不要。NH842（日中便・ビジネスZ確定）のままとする</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>B-4</strong></td>
+<td style="text-align: left;">12/1 ADD→BKK のより早い便</td>
+<td style="text-align: left;">2026/9/4</td>
+<td style="text-align: left;">✅ <strong>不要。ET608（12:30 BKK着）のままとする</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>A-2</strong></td>
+<td style="text-align: left;">11/27 CAI→NBO のより遅い便</td>
+<td style="text-align: left;"><strong>2026/9/6</strong></td>
+<td style="text-align: left;">❌ <strong>取り下げ。当日の直行便は MS849 の1便のみで、代替が存在しない</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="94-3">9.4 🔭 ウォッチ3件の変更期限</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID</th>
+<th style="text-align: left;">対象</th>
+<th style="text-align: left;">変更期限（W-5：搭乗24時間前）</th>
+<th style="text-align: left;">🔴 実質的な期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>S-1</strong></td>
+<td style="text-align: left;">② UA1271 のビジネス化</td>
+<td style="text-align: left;"><strong>10/28</strong></td>
+<td style="text-align: left;">同左。<strong>出発直前まで粘る価値がある</strong>（団体席の返却でDが開くことがある）</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>B-3</strong></td>
+<td style="text-align: left;">⑥ TP1030 → TP1034<br>（<strong>TP88 の在庫待ち</strong>）</td>
+<td style="text-align: left;"><strong>11/11</strong></td>
+<td style="text-align: left;">リスボン・バルセロナのホテルを取る前に見ておく</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>A-4</strong></td>
+<td style="text-align: left;">⑨ TK1840 → TK1844</td>
+<td style="text-align: left;"><strong>11/20</strong></td>
+<td style="text-align: left;">🔴 <strong>IST→NAV 便と気球ツアーを予約する前＝10月中</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>✅ <strong>発券が済んだので、これ以上「予約が消える」心配はない。</strong><br />
+<strong>3件とも「取れたら儲けもの」の位置づけ。取れなくても行程は成立する。</strong></p>
+</blockquote>
+<hr />
+<h2 id="10-202696">10. 💺 座席指定（2026/9/6 時点）</h2>
+<blockquote>
+<p><strong>原本:</strong> <code>tickets/RTW/seatmap/</code>（ANAサイトのシートマップPDF・全15区間）</p>
+<h3 id="_3">選定の基準</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">区分</th>
+<th style="text-align: left;">優先するもの</th>
+<th style="text-align: left;">具体的な条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>長距離</strong></td>
+<td style="text-align: left;"><strong>トイレへのアクセス</strong></td>
+<td style="text-align: left;">🔴 <strong>人をまたがずに出られること。</strong>トイレまでの物理的な距離はこだわらない</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>それ以外</strong></td>
+<td style="text-align: left;"><strong>景色</strong></td>
+<td style="text-align: left;">窓側</td>
+</tr>
+</tbody>
+</table>
+<p>🔵 <strong>重要な前提：座席配置が 1-2-1 なら「窓側」と「またがない」は両立する。</strong><br />
+長距離4本のうち NH8・TP88・NH842 と、SQ705 がこれに当たる。<br />
+<strong>2-2 や 2-2-2、3-3 では両立できない</strong>ため、そこだけ基準の適用が要る。</p>
+</blockquote>
+<h3 id="101">10.1 確定した座席一覧</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">便</th>
+<th style="text-align: left;">所要</th>
+<th style="text-align: left;">機材</th>
+<th style="text-align: left;">配置</th>
+<th style="text-align: left;">💺 座席</th>
+<th style="text-align: left;">属性</th>
+<th style="text-align: center;">判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">①</td>
+<td style="text-align: left;"><strong>NH8</strong> NRT→SFO</td>
+<td style="text-align: left;">9h20m</td>
+<td style="text-align: left;">77W（THE Room）</td>
+<td style="text-align: left;"><strong>1-2-1</strong></td>
+<td style="text-align: left;"><strong>5A</strong></td>
+<td style="text-align: left;">窓側 ＋ <strong>通路直結</strong></td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">②</td>
+<td style="text-align: left;"><strong>UA1271</strong> SFO→MEX</td>
+<td style="text-align: left;">4h20m</td>
+<td style="text-align: left;">7M8（エコノミー）</td>
+<td style="text-align: left;"><strong>3-3</strong></td>
+<td style="text-align: left;"><strong>36D</strong></td>
+<td style="text-align: left;"><strong>通路側</strong></td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">③</td>
+<td style="text-align: left;"><strong>CM121</strong> MEX→PTY</td>
+<td style="text-align: left;">3h44m</td>
+<td style="text-align: left;">7M8</td>
+<td style="text-align: left;">2-2</td>
+<td style="text-align: left;">⚠️ <strong>属性未選択</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">🔴</td>
+</tr>
+<tr>
+<td style="text-align: center;">④</td>
+<td style="text-align: left;"><strong>CM489</strong> PTY→LIM</td>
+<td style="text-align: left;">3h36m</td>
+<td style="text-align: left;">7M8</td>
+<td style="text-align: left;">2-2</td>
+<td style="text-align: left;">⚠️ <strong>属性未選択</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">🔴</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑤</td>
+<td style="text-align: left;"><strong>TP88</strong> GRU→LIS</td>
+<td style="text-align: left;">9h55m</td>
+<td style="text-align: left;">A330-900neo</td>
+<td style="text-align: left;"><strong>1-2-1</strong></td>
+<td style="text-align: left;"><strong>5K</strong></td>
+<td style="text-align: left;">窓側 ＋ <strong>通路直結</strong></td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑥</td>
+<td style="text-align: left;"><strong>TP1030</strong> LIS→BCN</td>
+<td style="text-align: left;">1h55m</td>
+<td style="text-align: left;">E195（ポルトゥガリア）</td>
+<td style="text-align: left;">2-2</td>
+<td style="text-align: left;"><strong>1D</strong></td>
+<td style="text-align: left;">窓側（右）・最前列</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑦</td>
+<td style="text-align: left;"><strong>AZ79</strong> BCN→FCO</td>
+<td style="text-align: left;">1h45m</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">⚠️ <strong>事前指定不可</strong></td>
+<td style="text-align: left;">当日空港</td>
+<td style="text-align: center;">⚠️</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑧</td>
+<td style="text-align: left;"><strong>A3651</strong> FCO→ATH</td>
+<td style="text-align: left;">2h00m</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">⚠️ <strong>事前指定不可</strong></td>
+<td style="text-align: left;">当日空港</td>
+<td style="text-align: center;">⚠️</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑨</td>
+<td style="text-align: left;"><strong>TK1840</strong> ATH→IST</td>
+<td style="text-align: left;">1h40m</td>
+<td style="text-align: left;">A321neo</td>
+<td style="text-align: left;">2-2</td>
+<td style="text-align: left;"><strong>2A</strong></td>
+<td style="text-align: left;">窓側（左）</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑩</td>
+<td style="text-align: left;"><strong>MS738</strong> IST→CAI</td>
+<td style="text-align: left;">2h15m</td>
+<td style="text-align: left;">A320neo</td>
+<td style="text-align: left;">2-2</td>
+<td style="text-align: left;"><strong>11A</strong></td>
+<td style="text-align: left;">窓側（左）・ビジネス最後列</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑪</td>
+<td style="text-align: left;"><strong>MS849</strong> CAI→NBO</td>
+<td style="text-align: left;">4h55m</td>
+<td style="text-align: left;">737-800</td>
+<td style="text-align: left;">2-2</td>
+<td style="text-align: left;">🔴 <strong>未指定</strong></td>
+<td style="text-align: left;">当日空港</td>
+<td style="text-align: center;">🔴</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑫</td>
+<td style="text-align: left;"><strong>ET319</strong> NBO→ADD</td>
+<td style="text-align: left;">2h00m</td>
+<td style="text-align: left;">77W</td>
+<td style="text-align: left;"><strong>2-3-2</strong></td>
+<td style="text-align: left;"><strong>1A</strong></td>
+<td style="text-align: left;">窓側（左）・最前列</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑬</td>
+<td style="text-align: left;"><strong>ET608</strong> ADD→BKK</td>
+<td style="text-align: left;">8h35m</td>
+<td style="text-align: left;">787-9</td>
+<td style="text-align: left;"><strong>2-2-2</strong></td>
+<td style="text-align: left;"><strong>2C</strong></td>
+<td style="text-align: left;"><strong>通路側</strong></td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑭</td>
+<td style="text-align: left;"><strong>SQ705</strong> BKK→SIN</td>
+<td style="text-align: left;">2h30m</td>
+<td style="text-align: left;">A350-900</td>
+<td style="text-align: left;"><strong>1-2-1</strong></td>
+<td style="text-align: left;"><strong>20A</strong></td>
+<td style="text-align: left;">窓側 ＋ <strong>通路直結</strong></td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑮</td>
+<td style="text-align: left;"><strong>NH842</strong> SIN→HND</td>
+<td style="text-align: left;">6h40m</td>
+<td style="text-align: left;">787-9</td>
+<td style="text-align: left;"><strong>1-2-1</strong></td>
+<td style="text-align: left;"><strong>2K</strong></td>
+<td style="text-align: left;">窓側寄り ＋ <strong>通路直結</strong></td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>指定済み11区間はすべて基準に適合。</strong> 残る4区間（③④⑦⑧⑪）は下記 §10.3 で対応する。</p>
+<h3 id="102">10.2 判断の根拠（個別）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">座席</th>
+<th style="text-align: left;">なぜこれでよいか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">①</td>
+<td style="text-align: left;"><strong>5A</strong></td>
+<td style="text-align: left;">THE Room は 1-2-1 で<strong>全席が通路直結</strong>。窓側を取っても誰もまたがない。トイレはビジネス6列目の直後にあり2列先。<strong>行程で最も条件のよい座席</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">②</td>
+<td style="text-align: left;"><strong>36D</strong></td>
+<td style="text-align: left;">🔴 <strong>当初 32F（窓側）だったが、3-3 のエコノミーでは D・E の2人をまたぐ</strong>ため 36D（通路側）へ変更した。<strong>後方トイレまで2列</strong>。4時間20分をまたがずに過ごせる</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑤</td>
+<td style="text-align: left;"><strong>5K</strong></td>
+<td style="text-align: left;">A330-900neo のビジネスは 1-2-1。<strong>窓側で通路直結</strong>。9時間55分の夜行便として理想</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑥</td>
+<td style="text-align: left;"><strong>1D</strong></td>
+<td style="text-align: left;">1時間55分の短距離なので景色優先。<strong>右側の窓側・最前列</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">⑨</td>
+<td style="text-align: left;"><strong>2A</strong></td>
+<td style="text-align: left;">1時間40分。<strong>左側の窓側</strong>でエーゲ海側</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑩</td>
+<td style="text-align: left;"><strong>11A</strong></td>
+<td style="text-align: left;">2時間15分。<strong>左側の窓側</strong>。ビジネス最後列だが後ろは仕切りで問題なし</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑫</td>
+<td style="text-align: left;"><strong>1A</strong></td>
+<td style="text-align: left;">2時間。<strong>左側の窓側・最前列。</strong>ナイロビ→アディスアベバは大地溝帯の上を北上するため、<strong>西側（A）は湖群が見える側</strong>（12/1 17:30発なので日没まで約1時間）</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑬</td>
+<td style="text-align: left;"><strong>2C</strong></td>
+<td style="text-align: left;">🔴 <strong>2-2-2 では窓側と通路側が両立しない。</strong>8時間35分の夜行（ADD 23:55発）で景色はほぼ得られないため、<strong>通路側を取ったのは正しい</strong>。⚠️ 裏返しとして、<strong>窓側（2A）の人が出入りする際に起こされる可能性</strong>はある</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑭</td>
+<td style="text-align: left;"><strong>20A</strong></td>
+<td style="text-align: left;">2時間30分。A350 のビジネスは 1-2-1 なので<strong>窓側で通路直結</strong>。トイレは18列目の直後で2列先</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑮</td>
+<td style="text-align: left;"><strong>2K</strong></td>
+<td style="text-align: left;">787-9 の千鳥配置（1-2-1）。<strong>K は窓寄りの位置</strong>で、コンソールが通路側にくるため<strong>窓に近く独立性が高い</strong>。トイレは最前列の直前で1列先</td>
+</tr>
+</tbody>
+</table>
+<h3 id="103-4">10.3 🔴 未処理の4区間</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">便</th>
+<th style="text-align: left;">状況</th>
+<th style="text-align: left;">やること</th>
+<th style="text-align: left;">期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">🔴 <strong>③</strong></td>
+<td style="text-align: left;"><strong>CM121</strong> MEX→PTY<br>3h44m・<strong>日中</strong></td>
+<td style="text-align: left;">シートマップ非表示。<strong>「窓側／通路側」の属性指定のみ</strong>で、<strong>どちらも未選択のまま</strong></td>
+<td style="text-align: left;"><strong>属性を登録する。</strong>日中便なので窓側でもよいが、2-2 で窓側は1人またぐ</td>
+<td style="text-align: left;">早めに</td>
+</tr>
+<tr>
+<td style="text-align: center;">🔴 <strong>④</strong></td>
+<td style="text-align: left;"><strong>CM489</strong> PTY→LIM<br>3h36m・<strong>夜間</strong></td>
+<td style="text-align: left;">同上</td>
+<td style="text-align: left;">🔴 <strong>通路側を登録する。</strong>19:09発で景色はゼロ、またぐ意味がない</td>
+<td style="text-align: left;">早めに</td>
+</tr>
+<tr>
+<td style="text-align: center;">⚠️ <strong>⑦</strong></td>
+<td style="text-align: left;"><strong>AZ79</strong> BCN→FCO</td>
+<td style="text-align: left;">事前指定不可</td>
+<td style="text-align: left;">当日 or オンラインチェックインで<strong>窓側</strong>を狙う（1h45m）</td>
+<td style="text-align: left;">11/16</td>
+</tr>
+<tr>
+<td style="text-align: center;">⚠️ <strong>⑧</strong></td>
+<td style="text-align: left;"><strong>A3651</strong> FCO→ATH</td>
+<td style="text-align: left;">事前指定不可</td>
+<td style="text-align: left;">同上（2h00m）</td>
+<td style="text-align: left;">11/19</td>
+</tr>
+<tr>
+<td style="text-align: center;">🔴 <strong>⑪</strong></td>
+<td style="text-align: left;"><strong>MS849</strong> CAI→NBO<br><strong>4h55m・深夜便</strong></td>
+<td style="text-align: left;">🔴 <strong>「事前座席指定できる席がありません。当日空港でチェックインを行ってください」</strong></td>
+<td style="text-align: left;">🔴 <strong>カイロ空港で <code>C</code> または <code>H</code>（通路側）をリクエストする。</strong><br>737-800 の 2-2 で、<strong>行程中で最も通路側が要る便のひとつ</strong>（21:35発→03:30着）</td>
+<td style="text-align: left;"><strong>11/27</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="104">10.4 ⚠️ 全区間に共通する注意</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>座席が勝手に変わりうる</strong></td>
+<td style="text-align: left;"><strong>13区間に「他社運航便のため、指定した座席が連絡なく変更される場合があります」の警告が出ている。</strong>自社運航で安定しているのは <strong>NH8 と NH842 の2便だけ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>24時間前に必ず再確認</strong></td>
+<td style="text-align: left;"><strong>各区間のオンラインチェックイン時に座席を確認する。</strong>機材変更で配置ごと変わることがある</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>資料の不備</strong></td>
+<td style="text-align: left;"><strong><code>CM489(PTY-LIM)</code> の PDF は中身が <code>CM121</code> と完全に同一</strong>（MD5 一致）。CM489 の画面は未取得のため撮り直しが要る</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>ファイル名の誤り</strong></td>
+<td style="text-align: left;"><code>ET608(NBO-ADD)</code> → 実際は <strong>ADD-BKK</strong>／<code>TK1840(AHT-IST)</code> → <strong>ATH</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個別手配資料 ① マチュピチュ（ペルー） - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🐘 サファリ・象孤児院</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_マチュピチュ.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="1">個別手配資料 ① マチュピチュ（ペルー）</h1>
+<p><strong>対象日程:</strong> 2026年11月1日(日)〜11月5日(木)<br />
+<strong>調査日:</strong> 2026年9月4日（初版）／<strong>9月5日（Klook以外へ調査範囲を拡大）</strong><br />
+<strong>関連:</strong> <a href="東回り_要件定義書.md"><code>東回り_要件定義書.md</code></a> §4・§6</p>
+<blockquote>
+<p><strong>調査範囲:</strong> Klook に加え、<strong>公式・直販サイト、現地事業者（スペイン語／ポルトガル語／イタリア語／トルコ語圏）、<br />
+英語 OTA（Viator・GetYourGuide・Expedia・TripAdvisor）、日本語事業者（VELTRA・道祖神・たびチョク・HIS）</strong>を横断。</p>
+<p>⚠️ <strong>Klook の商品ページは bot 検知（HTTP 403）で直接開けませんでした</strong>（WebFetch・実ブラウザとも）。<br />
+Klook の商品名・URLは検索インデックス経由です。<strong>すべての価格・催行日は未検証</strong>なので、<br />
+発注前にご自身のブラウザで開いて確認してください。</p>
+</blockquote>
+<hr />
+<span id="huayna"></span><span id="machupicchu"></span><h2 id="0">0. 結論</h2>
+<blockquote>
+<p>✅ <strong>2026/9/5 入場券を購入完了。</strong>明細は<br />
+<a href="tickets/マチュピチュ/費用明細.md"><code>tickets/マチュピチュ/費用明細.md</code></a>。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">論点</th>
+<th style="text-align: left;">判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>入場券</strong></td>
+<td style="text-align: left;">✅ <strong>購入済み（2026/9/5）。11/2 の2枚を確保</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>① ワイナピチュ</strong></td>
+<td style="text-align: left;"><strong>Ruta 3-A ／ 07:00 ／ Puerta Baja ／ S/209.84</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>② 上段テラス</strong></td>
+<td style="text-align: left;"><strong>Ruta 1-B ／ 13:00 ／ Puerta Principal ／ S/159.48</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>合計</strong></td>
+<td style="text-align: left;"><strong>S/ 369.32（約 ¥17,000）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>要対応</strong></td>
+<td style="text-align: left;">🔴 <strong>② の券の氏名が <code>TAKAMUU</code>（K欠落）。</strong>tuboleto へ照会（費用明細 §3.1）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>当日の制約</strong></td>
+<td style="text-align: left;">🔴 <strong>ワイナピチュ登山ゲートは 09:00 締切</strong>／<strong>入場口が2券で異なる</strong>／再入場不可</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/1 の乗り継ぎ</strong></td>
+<td style="text-align: left;">✅ 成立する。<strong>19:04 の列車が本命</strong>（§2）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>次の手配</strong></td>
+<td style="text-align: left;">LIM→CUZ 便・列車・送迎・宿（§6）</td>
+</tr>
+</tbody>
+</table>
+<span id="schedule"></span><h2 id="1_1">1. 現行タイムチャート（該当部分）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">行程</th>
+<th style="text-align: left;">宿泊</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>11/01(日)</strong></td>
+<td style="text-align: left;">00:55 リマ着 → 空港近郊ホテルで仮眠（〜午前）<br>午後 <strong>LIM → CUZ</strong> → 専用車でオリャンタイタンボ<br>夕方の列車で<strong>マチュピチュ村（2,040m）へ直行</strong></td>
+<td style="text-align: left;">マチュピチュ村①</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/02(月)</strong></td>
+<td style="text-align: left;"><strong>マチュピチュ遺跡 終日観光</strong>（ワイナピチュ・インティプンク）</td>
+<td style="text-align: left;">マチュピチュ村②</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/03(火)</strong></td>
+<td style="text-align: left;">午前 村散策 → 鉄道でクスコ（3,400m）</td>
+<td style="text-align: left;">クスコ①</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/04(水)</strong></td>
+<td style="text-align: left;">クスコ市内・近郊遺跡（サクサイワマン、12角の石）</td>
+<td style="text-align: left;">クスコ②</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/05(木)</strong></td>
+<td style="text-align: left;">クスコ → リマ → イグアス</td>
+<td style="text-align: left;">機中/イグアス</td>
+</tr>
+</tbody>
+</table>
+<p><strong>高山病回避の設計意図（維持すべき）:</strong> 初日にクスコ（3,400m）へ泊まらず、<br />
+標高2,040mのマチュピチュ村で2泊してから3日目にクスコへ上がる。<strong>この順序は正しい。</strong></p>
+<hr />
+<span id="train"></span><h2 id="2-111">2. 🔴 適合評価：11/1 の連鎖は成立する</h2>
+<p>PeruRail の公式時刻表（オリャンタイタンボ → マチュピチュ村）で確認しました。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">発</th>
+<th style="text-align: left;">着</th>
+<th style="text-align: left;">種別</th>
+<th style="text-align: left;">本行程での評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">15:37</td>
+<td style="text-align: left;">17:02</td>
+<td style="text-align: left;">Expedition / Vistadome Observatory</td>
+<td style="text-align: left;">⚠️ リマ発が早ければ可。<strong>綱渡り</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>19:04</strong></td>
+<td style="text-align: left;"><strong>20:45</strong></td>
+<td style="text-align: left;">Expedition</td>
+<td style="text-align: left;">✅ <strong>本命。</strong>余裕がある</td>
+</tr>
+<tr>
+<td style="text-align: left;">21:00</td>
+<td style="text-align: left;">22:45</td>
+<td style="text-align: left;">Expedition / Vistadome</td>
+<td style="text-align: left;">🛟 <strong>保険。</strong>遅延時のバックアップ</td>
+</tr>
+</tbody>
+</table>
+<p><strong>15:37 の次が 19:04 で、3時間半の空白がある。</strong>ここが設計上の分かれ目です。</p>
+<h3 id="1904">逆算タイムライン（19:04 の列車に乗る場合）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: left;">行動</th>
+<th style="text-align: left;">所要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">〜11:00</td>
+<td style="text-align: left;">リマ空港近郊ホテルで仮眠・チェックアウト</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;">11:30</td>
+<td style="text-align: left;">LIM 国内線ターミナルへ</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>13:00頃</strong></td>
+<td style="text-align: left;"><strong>LIM → CUZ 出発</strong>（LATAM / Sky / JetSMART、1日23便）</td>
+<td style="text-align: left;">1h25m</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>14:25頃</strong></td>
+<td style="text-align: left;"><strong>CUZ 着</strong></td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;">15:00</td>
+<td style="text-align: left;">専用車でオリャンタイタンボへ</td>
+<td style="text-align: left;">約1h45m</td>
+</tr>
+<tr>
+<td style="text-align: left;">16:45</td>
+<td style="text-align: left;">オリャンタイタンボ着・夕食</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>19:04</strong></td>
+<td style="text-align: left;"><strong>列車発</strong></td>
+<td style="text-align: left;">1h41m</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>20:45</strong></td>
+<td style="text-align: left;"><strong>マチュピチュ村着</strong> → 徒歩でホテルへ</td>
+<td style="text-align: left;">—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>LIM→CUZ は 12:00〜14:00 発を押さえること。</strong> 15:37 の列車を狙うなら<br />
+CUZ 着 12:30 が必要で、リマの仮眠時間がほぼ消えるため<strong>推奨しません</strong>。</p>
+<blockquote>
+<p>⚠️ <strong>クスコ空港（CUZ）は午後に風の影響で遅延・欠航が出やすい。</strong><br />
+19:04 を本命にしておけば、1〜2時間の遅延を吸収できます。21:00 便が最終保険。</p>
+</blockquote>
+<hr />
+<h2 id="3-112">3. 🔴 最大の論点：11/2 のサーキット選択</h2>
+<p><strong>2024年6月以降、マチュピチュは「3サーキット・10ルート」制です。</strong><br />
+現行タイムチャートに書かれた「ワイナピチュ・インティプンク」は、<strong>制度上そもそも同じ券で回れません。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">見たいもの</th>
+<th style="text-align: left;">ルート</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">定員・所要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>ワイナピチュ</strong>（背後の尖峰に登る）</td>
+<td style="text-align: left;"><strong>サーキット 3-A</strong></td>
+<td style="text-align: left;">遺跡下部＋ワイナピチュ登山</td>
+<td style="text-align: left;">🔴 <strong>1日400人限定</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>インティプンク</strong>（太陽の門・インカ道の終点）</td>
+<td style="text-align: left;"><strong>サーキット 1-C</strong></td>
+<td style="text-align: left;">上部テラス＋インティプンク往復</td>
+<td style="text-align: left;">見学3h30m／最大4h</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>定番の全景写真＋遺跡内部</strong></td>
+<td style="text-align: left;"><strong>サーキット 2-A/2-B（クラシコ）</strong></td>
+<td style="text-align: left;">いわゆる「ザ・マチュピチュ」</td>
+<td style="text-align: left;">最も人気・最も売り切れる</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_1">選択肢</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">案</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">長所</th>
+<th style="text-align: left;">短所</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>A（推奨）</strong></td>
+<td style="text-align: left;"><strong>3-A（ワイナピチュ）1本</strong></td>
+<td style="text-align: left;">唯一無二の体験。<strong>予約難度が最も高い＝取れたら勝ち</strong></td>
+<td style="text-align: left;">定番の全景アングルが弱い</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>B</strong></td>
+<td style="text-align: left;"><strong>2-A/2-B（クラシコ）1本</strong></td>
+<td style="text-align: left;">定番写真と遺跡内部を確実に押さえる</td>
+<td style="text-align: left;">登山なし</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>C</strong></td>
+<td style="text-align: left;"><strong>同日2枚</strong>（午前 3-A ＋ 午後 1-C or 2）</td>
+<td style="text-align: left;">全部見られる</td>
+<td style="text-align: left;">🔴 <strong>制度上の可否が公式に明示されていない。要確認</strong><br>体力消耗大（標高2,430m）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>推奨は A または C。</strong> 11/2 は丸1日空いており、体力的には C も射程内です。<br />
+ただし <strong>C は必ず事前に公式へ可否を確認</strong>してください（券は日時・氏名・パスポート紐付け、再入場不可が原則）。</p>
+<h3 id="_2">🔴 定員の落とし穴</h3>
+<ul>
+<li>ペルー文化省は <strong>2026年の1日上限を、繁忙期（1/1、4/2-5、</strong>6/19〜11/2<strong>、12/30-31）は 5,600人</strong>、それ以外は 4,500人に設定</li>
+<li><strong>11/2 は繁忙期の最終日</strong>（＝枠が多い側）。<strong>11/3 は 4,500人に減る</strong></li>
+<li>現行日程が 11/2 に遺跡日を置いているのは<strong>結果的に有利</strong></li>
+</ul>
+<h2 id="34">3.4 🔴 実地調査の経緯と最終結果</h2>
+<h3 id="_3">何を間違えたか</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">回</th>
+<th style="text-align: left;">報告内容</th>
+<th style="text-align: left;">判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1回目</td>
+<td style="text-align: left;">「2026年9月〜2027年4月の8か月すべてで選択可能日ゼロ」</td>
+<td style="text-align: left;">❌ <strong>誤り</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">2回目</td>
+<td style="text-align: left;">「対面販売の朝6時整理券に頼るしかない」</td>
+<td style="text-align: left;">❌ <strong>前提が誤り</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">🔴 <strong>3回目（確定）</strong></td>
+<td style="text-align: left;">🔴 <strong>「11/2 に5ルートの在庫あり。公式サイトで買える」</strong></td>
+<td style="text-align: left;">✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>原因:</strong> 公式サイトはルート選択後に在庫を<strong>非同期で取得</strong>します。<br />
+自動操作がその完了を待たずにカレンダーを読んでいたため、全日が「選択不可」に見えていました。<br />
+<strong>待機を3.5秒に延ばしたところ、在庫が正しく表示されました。</strong></p>
+<p>⚠️ ただし <strong>サーキット2 が完売という測定結果は、待機を延ばしても変わりませんでした。</strong><br />
+現地体験談の「サーキット2の午後枠は完売」とも一致するため、こちらは事実です。</p>
+<h3 id="112">🔴 11月2日（月）の実測在庫</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ルート</th>
+<th style="text-align: right;">合計</th>
+<th style="text-align: left;">時間帯別</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>1-B</strong> 上段テラス</td>
+<td style="text-align: right;">🔴 <strong>544枚</strong></td>
+<td style="text-align: left;">06:00→59／07:00→74／08:00→47／09:00→36／10:00→32<br>11:00→43／12:00→69／13:00→62／14:00→65／15:00→57</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>1-A</strong> マチュピチュ山</td>
+<td style="text-align: right;"><strong>252枚</strong></td>
+<td style="text-align: left;">07:00→120／09:00→132</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>3-A ワイナピチュ</strong></td>
+<td style="text-align: right;"><strong>169枚</strong></td>
+<td style="text-align: left;">🔴 <strong>07:00→117／10:00→52</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>1-D</strong> インカ橋</td>
+<td style="text-align: right;">65枚</td>
+<td style="text-align: left;">08:00→16／09:00→13／10:00→16／11:00→20</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3-C</strong> 大洞窟</td>
+<td style="text-align: right;">33枚</td>
+<td style="text-align: left;">08:00→25／09:00→8</td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ 1-C / 2-A / 2-B / 3-B / 3-D</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: left;"><strong>11/2 は購入不可</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>→ 全10ルートの内容比較と推奨は <a href="手配_マチュピチュ_ルート比較.md"><code>手配_マチュピチュ_ルート比較.md</code></a> を参照。</strong></p>
+<hr />
+<h2 id="35">3.5 対面販売（整理券）— 使わずに済む見込み</h2>
+<p>オンラインで買えるため<strong>この経路は不要</strong>ですが、万一売り切れた場合の参考として残します。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>整理券配布開始</strong></td>
+<td style="text-align: left;">🔴 <strong>朝 06:00</strong>（<a href="https://tuboleto.cultura.pe/disponibilidad/llaqta_machupicchu">公式リアルタイムページ</a>に <code>Inicia: 06:00 AM</code> と表示）</td>
+</tr>
+<tr>
+<td style="text-align: left;">枚数</td>
+<td style="text-align: left;">1日 1,000（<code>Disponibles</code> / <code>Entregados</code> がリアルタイム表示）</td>
+</tr>
+<tr>
+<td style="text-align: left;">購入</td>
+<td style="text-align: left;">整理券を持って午後〜夜に再訪。<strong>現金のみ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">場所</td>
+<td style="text-align: left;">Centro Cultural del Mincul（Av. Pachacutec s/n・アルマス広場すぐ）</td>
+</tr>
+<tr>
+<td style="text-align: left;">必要書類</td>
+<td style="text-align: left;"><strong>パスポート現物。代理購入不可</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>実例:</strong> 2025/7 は4:50到着で大行列・6時配布で631番。2026/5/4 は<strong>8:30完売・前日16時から徹夜・22時に300人超</strong>。<br />
+🔴 <strong>11/1 20:45 着では当日の配布に間に合わないため、この経路は現行行程では使えません。</strong></p>
+<hr />
+<h2 id="36">3.6 🔴 いま取るべき行動</h2>
+<p><strong>現行タイムチャート（11/1 20:45 村着 → 11/2 遺跡終日 → 11/3 クスコへ）は成立します。</strong><br />
+前回「成立しない」と書いたのは撤回します。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">優先</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">🔴 <strong>1</strong></td>
+<td style="text-align: left;">🔴 <strong>公式サイトで 11/2 の券を今すぐ購入する。</strong>在庫は日々動く</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">ルート選択は <a href="手配_マチュピチュ_ルート比較.md"><code>ルート比較.md</code></a> §5 を参照<br>（推奨：<strong>3-A 07:00</strong> または <strong>1-B 08:00〜09:00</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">業者照会（<a href="手配_マチュピチュ_業者照会テンプレート.md"><code>業者照会テンプレート.md</code></a>）は<strong>保険として残す</strong>が、優先度は下がった</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-klook">4. 手配方法の比較（Klook / 日本語 / 現地・英語スペイン語）</h2>
+<h3 id="41-klook">4.1 Klook — ❌ 本行程には合わない</h3>
+<p>Klook のマチュピチュ商品は確認できた範囲で<strong>すべて「クスコ発着の日帰り／複数日パッケージ」</strong>です。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">商品</th>
+<th style="text-align: left;">形態</th>
+<th style="text-align: left;">適合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="https://www.klook.com/en-US/activity/96925-machu-picchu-day-trip-cusco/">Machu Picchu Day Trip from Cusco</a></td>
+<td style="text-align: left;">クスコ発日帰り</td>
+<td style="text-align: left;">❌ 村2泊しない</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.klook.com/en-US/activity/96699-machu-picchu-tour-full-day/">Machu Picchu Tour Full Day</a></td>
+<td style="text-align: left;">クスコ発日帰り</td>
+<td style="text-align: left;">❌ 同上</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.klook.com/en-US/activity/142492-machu-picchu-tour-by-vistadome-observatory-train-from-cusco/">Vistadome Observatory Train Tour</a></td>
+<td style="text-align: left;">クスコ発・列車込み</td>
+<td style="text-align: left;">❌ 同上</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.klook.com/en-US/activity/106381-machu-picchu-tour-package-5-days/">5-Day Tour Package</a></td>
+<td style="text-align: left;">5日パッケージ</td>
+<td style="text-align: left;">❌ 日程固定</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.klook.com/en-US/activity/113266-cusco-city-tour-machu-picchu-and-sacred-valley-4-days/">Cusco + Machu Picchu + Sacred Valley 4 Days</a></td>
+<td style="text-align: left;">4日パッケージ</td>
+<td style="text-align: left;">❌ 同上</td>
+</tr>
+</tbody>
+</table>
+<p>さらに Klook の日帰り商品には次の注意書きがあります：</p>
+<blockquote>
+<p>チケットの割当はペルー文化省公式サイトの空き状況次第。<strong>サーキット2が取れない場合、<br />
+サーキット1または3が割り当てられることがある</strong></p>
+</blockquote>
+<p>→ <strong>サーキットを指定したい本件では、この不確定性は許容できません。</strong></p>
+<hr />
+<h3 id="42-veltra">4.2 🔴 日本語で手配できる先 — VELTRA に「探していたピース」がある</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">事業者</th>
+<th style="text-align: left;">商品</th>
+<th style="text-align: left;">適合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>VELTRA</strong></td>
+<td style="text-align: left;"><a href="https://www.veltra.com/jp/latin_america/peru/a/184253"><strong>【駅送迎】オリャンタイタンボ駅 ⇔ クスコ市内中心部 ＜貸切／スペイン語ドライバー＞</strong></a></td>
+<td style="text-align: left;">🔴 <strong>11/1 と 11/3 の送迎そのもの。</strong><br>本テーマで最も見つけにくかった要素が日本語で予約できる</td>
+</tr>
+<tr>
+<td style="text-align: left;">VELTRA</td>
+<td style="text-align: left;"><a href="https://www.veltra.com/jp/latin_america/peru/ctg/6770:6770/">クスコ発観光ツアー 一覧</a></td>
+<td style="text-align: left;">11/4 クスコ市内観光の候補</td>
+</tr>
+<tr>
+<td style="text-align: left;">VELTRA</td>
+<td style="text-align: left;"><a href="https://www.veltra.com/jp/latin_america/peru/ctg/181646:Machu_Picchu/">マチュピチュ遺跡 カテゴリ</a></td>
+<td style="text-align: left;">在庫確認用</td>
+</tr>
+<tr>
+<td style="text-align: left;">VELTRA</td>
+<td style="text-align: left;"><a href="https://www.veltra.com/jp/latin_america/peru/a/189027">聖なる谷＆マチュピチュ 1泊2日（日本語ガイド／クスコ発着）</a></td>
+<td style="text-align: left;">⚠️ 本行程は2泊なので形が違うが、<strong>内容の参考になる</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>たびチョク</strong></td>
+<td style="text-align: left;"><a href="https://tabi-choku.com/plan/detail/1420/">クスコ発 日本語ガイドと行く マチュピチュ遺跡1日観光</a></td>
+<td style="text-align: left;">⚠️ クスコ発。<strong>11/2 のガイドだけ切り出せるか要相談</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">たびチョク</td>
+<td style="text-align: left;"><a href="https://tabi-choku.com/plan/detail/896/">クスコ・マチュピチュ 2泊3日</a></td>
+<td style="text-align: left;">⚠️ 形は近い。<strong>現地コーディネーターに個別相談可</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>HIS</strong></td>
+<td style="text-align: left;"><a href="https://activities.his-j.com/CityTop/CUZ/">クスコ オプショナルツアー</a></td>
+<td style="text-align: left;">比較用</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ホットホリデー</strong></td>
+<td style="text-align: left;"><a href="https://www.hotholiday.jp/peru/cusco/tour">クスコ 現地ツアー一覧</a></td>
+<td style="text-align: left;">比較用</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>VELTRA の駅送迎（a/184253）は本テーマの最重要発見です。</strong><br />
+「クスコ空港 → オリャンタイタンボ駅」は現地手配が必要で英語サイトでも探しにくい部分でしたが、<br />
+<strong>貸切で日本語予約できます。</strong>11/3 の復路（オリャンタイタンボ駅 → クスコ市内）にも同じ商品が使えます。</p>
+<hr />
+<h3 id="43-perurail-inca-rail">4.3 🔴 列車：PeruRail と Inca Rail の使い分け</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">事業者</th>
+<th style="text-align: left;">車両クラス</th>
+<th style="text-align: left;">11/1 夕方便の有無</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong><a href="https://www.perurail.com/">PeruRail</a></strong></td>
+<td style="text-align: left;">Expedition（普通）／Vistadome（展望）／Vistadome Observatory／Hiram Bingham（豪華）</td>
+<td style="text-align: left;">🔴 <strong>19:04・21:00 を公式時刻表で確認済み</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://incarail.com/">Inca Rail</a></td>
+<td style="text-align: left;">The Voyager（$60〜）／The 360／First Class／The Prime／The Private</td>
+<td style="text-align: left;">⚠️ <strong>同等の夜便があるか未確認</strong></td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>11/1 は PeruRail を第一候補にしてください。</strong><br />
+夕方〜夜の便（19:04／21:00）を<strong>時刻表で実際に確認できたのは PeruRail だけ</strong>です。<br />
+Inca Rail は The Voyager が $60〜と安いものの、確認できた便は朝発（06:40）が中心でした。</p>
+<p><strong>11/3 の復路</strong>は昼便が両社とも豊富なので、どちらでも構いません。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">比較の参考</th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="https://turismoliberty.pe/tren-machu-picchu-perurail-vs-inca-rail-2026/">Tren a Machu Picchu 2026: PeruRail vs Inca Rail — precios y cuál elegir</a></td>
+<td style="text-align: left;">スペイン語。料金比較</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.boletomachupicchu.com/servicio-tren-machu-picchu-inca-rail/">Boleto Machu Picchu: Inca Rail 予約</a></td>
+<td style="text-align: left;">スペイン語</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://inkatimetours.com/es/horarios-de-tren-inca-rail-guia-completa/">Horarios de Tren Inca Rail: Guía Completa</a></td>
+<td style="text-align: left;">スペイン語。Inca Rail 時刻</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="44">4.4 入場券は公式一択</h3>
+<p><strong><a href="https://tuboleto.cultura.pe/">tuboleto.cultura.pe</a>（ペルー文化省）以外は転売か非正規です。</strong><br />
+サーキットを自分で選べるのも公式だけ。<strong>ここは絶対に代理店を挟まないこと。</strong></p>
+<p>参考（購入手順の解説）:<br />
+- <a href="https://www.theonlyperuguide.com/research/how-to-get-machu-picchu-tickets-official-site-explained-steps-circuits-sold-out-plan/">How To Get Machu Picchu Tickets in 2026: Official Site Explained</a><br />
+- <a href="https://www.peru-explorer.com/how-to-buy-machu-picchu-tickets-2026-a-step-by-step-guide.htm">How to Buy Machu Picchu Tickets 2026: A Step-by-Step Guide</a></p>
+<hr />
+<h3 id="45">4.5 推奨する個別手配の内訳（更新版）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">手配対象</th>
+<th style="text-align: left;">🔴 推奨手配先</th>
+<th style="text-align: left;">言語</th>
+<th style="text-align: right;">概算</th>
+<th style="text-align: left;">期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">🔴 <strong>遺跡入場券</strong>（サーキット指定）</td>
+<td style="text-align: left;"><strong>公式 tuboleto.cultura.pe</strong></td>
+<td style="text-align: left;">西/英</td>
+<td style="text-align: right;">$45〜70</td>
+<td style="text-align: left;">🔴 <strong>即</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"><strong>列車 往路 11/1 19:04</strong></td>
+<td style="text-align: left;">🔴 <strong>PeruRail 公式</strong></td>
+<td style="text-align: left;">英</td>
+<td style="text-align: right;">$80〜150</td>
+<td style="text-align: left;">9月中</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;"><strong>列車 復路 11/3 昼</strong></td>
+<td style="text-align: left;">PeruRail / Inca Rail 公式</td>
+<td style="text-align: left;">英</td>
+<td style="text-align: right;">$70〜120</td>
+<td style="text-align: left;">9月中</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">LIM → CUZ（11/1 午後）</td>
+<td style="text-align: left;">LATAM / Sky / JetSMART 直販</td>
+<td style="text-align: left;">英</td>
+<td style="text-align: right;">$80〜150</td>
+<td style="text-align: left;">9月中</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">🔴 <strong>CUZ空港 → オリャンタイタンボ駅 送迎</strong></td>
+<td style="text-align: left;">🔴 <strong>VELTRA a/184253（貸切）</strong></td>
+<td style="text-align: left;"><strong>日本語</strong></td>
+<td style="text-align: right;">要確認</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;"><strong>オリャンタイタンボ駅 → クスコ 送迎（11/3）</strong></td>
+<td style="text-align: left;">同上</td>
+<td style="text-align: left;"><strong>日本語</strong></td>
+<td style="text-align: right;">要確認</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: left;">村 ⇄ 遺跡 シャトルバス</td>
+<td style="text-align: left;">Consettur（現地窓口・当日可）</td>
+<td style="text-align: left;">西/英</td>
+<td style="text-align: right;">往復 $24前後</td>
+<td style="text-align: left;">当日可</td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: left;">遺跡の公認ガイド</td>
+<td style="text-align: left;">現地／VELTRA・たびチョクで日本語ガイド手配も可</td>
+<td style="text-align: left;">日/英</td>
+<td style="text-align: right;">$30〜60</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td style="text-align: left;">リマ空港近郊ホテル（11/1 深夜IN）</td>
+<td style="text-align: left;">Booking 等</td>
+<td style="text-align: left;">日</td>
+<td style="text-align: right;">$150〜200</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td style="text-align: left;">マチュピチュ村ホテル2泊／クスコ2泊</td>
+<td style="text-align: left;">Booking 等</td>
+<td style="text-align: left;">日</td>
+<td style="text-align: right;">要見積</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. タイムチャート変更の選択肢</h2>
+<p>現行日程は<strong>基本的に良くできており、大きな変更は不要</strong>です。検討に値するのは次の2点のみ。</p>
+<h3 id="1112-2">変更案①（推奨しない）：11/2 を2枚体制にする</h3>
+<p>日程は変えず、入場券を午前3-A＋午後1-C の2枚にする。<strong>日程変更ではなく券の買い方の問題。</strong><br />
+可否は公式確認が必要。</p>
+<h3 id="2113-2">変更案②（余裕を作りたい場合）：11/3 の朝に遺跡2回目</h3>
+<p>11/3 は「午前 村散策 → 鉄道でクスコ」。<strong>村散策をやめて遺跡2回目に充てる</strong>と、<br />
+11/2 にワイナピチュ、11/3 早朝にインティプンク（またはクラシコ）が可能。</p>
+<ul>
+<li>11/3 の列車は 12:46 発（オリャンタイタンボ 14:19着）または 13:37 発（15:04着）</li>
+<li>遺跡は 06:00 開門。早朝入場 → 10:30 に村へ戻れば 12:46 に間に合う</li>
+<li><strong>クスコ着が 16:00〜17:00 になり、11/3 のクスコ観光は消えるが、11/4 が丸1日ある</strong></li>
+</ul>
+<p>→ <strong>「ワイナピチュもインティプンクも諦めたくない」なら、案②が最も確実。</strong></p>
+<h3 id="_4">変更しないほうがよい点</h3>
+<ul>
+<li>🔴 <strong>マチュピチュ村2泊は維持。</strong>クスコ直行泊は高山病リスクが跳ね上がる</li>
+<li>🔴 <strong>11/2 を遺跡日にしたまま維持。</strong>繁忙期最終日で定員が5,600人と多い</li>
+</ul>
+<hr />
+<h2 id="6-95">6. 🔴 アクションリスト（9/5 購入完了を反映）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">優先</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">✅</td>
+<td style="text-align: left;">~~入場券の購入~~</td>
+<td style="text-align: left;"><strong>完了（9/5）</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">🔴 <strong>1</strong></td>
+<td style="text-align: left;">🔴 <strong>② 1-B 券の氏名スペル（<code>TAKAMUU</code>）を tuboleto へ照会</strong><br>予約コード <code>021126C6D8BA4C</code>／tuboleto@cultura.gob.pe</td>
+<td style="text-align: left;"><strong>9月中</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: left;"><strong>11/1 の列車を 19:04 で確保</strong>（PeruRail 公式）</td>
+<td style="text-align: left;">9月中</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: left;">LIM→CUZ（11/1・12:00〜14:00発）を確保</td>
+<td style="text-align: left;">9月中</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: left;">CUZ→オリャンタイタンボ送迎（<a href="https://www.veltra.com/jp/latin_america/peru/a/184253">VELTRA a/184253</a>）</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: left;">11/3 の復路列車（オリャンタイタンボ行き 12:46 等）</td>
+<td style="text-align: left;">9月中</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>6</strong></td>
+<td style="text-align: left;">マチュピチュ村2泊・クスコ2泊・リマ空港近郊1泊</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>7</strong></td>
+<td style="text-align: left;">🔴 <strong>券2枚を印刷して携行</strong>（氏名スペル問題の保険）</td>
+<td style="text-align: left;">出発前</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>8</strong></td>
+<td style="text-align: left;">村⇄遺跡のシャトルバス（Consettur・当日可）</td>
+<td style="text-align: left;">現地</td>
+</tr>
+<tr>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;">~~業者照会テンプレート~~</td>
+<td style="text-align: left;"><strong>不要になった</strong>（保険として保存）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">出典</h2>
+<p><strong>9/5 実地調査:</strong> <a href="https://tuboleto.cultura.pe/llaqta_machupicchu">tuboleto.cultura.pe</a>（Playwright で操作・カレンダーのDOM状態を検証）</p>
+<ul>
+<li><a href="https://www.fertur-travel.com/blog/2025/machu-picchu-2026-tickets-first-five-days-sell-out-in-12-minutes/20782/">Machu Picchu 2026 tickets: first five days sell out in 12 minutes（Fertur Travel）</a></li>
+<li><a href="https://www.yapaexplorers.com/travel-guides/machu-picchu-tickets-sold-out-your-best-backup-options-ranked/">Machu Picchu Tickets Sold Out in 2026: Backup Options Ranked（Yapa Explorers）</a></li>
+<li><a href="https://www.boletomachupicchu.com/boletos-machu-picchu-en-aguas-calientes/">Boletos a Machu Picchu en Aguas Calientes 2026（西語）</a></li>
+<li><a href="https://www.boletomachupicchu.com/como-comprar-entrada-aguas-calientes/">Machu Picchu: ¿Cómo comprar la entrada en Aguas Calientes?（西語）</a></li>
+<li><a href="https://larepublica.pe/sociedad/2026/05/07/vas-a-visitar-machu-picchu-conoce-la-nueva-y-excepcional-disposicion-para-comprar-boletos-presenciales-632233">La República: 対面販売の新規定（2026/5/7〜3日前まで購入可）</a></li>
+<li><a href="https://gestion.pe/peru/ventas-de-boletos-a-machu-picchu-cambia-en-aguas-calientes-desde-cuando-y-en-que-horario-cusco-machu-picchu-pueblo-tramites-noticia/">Gestión: アグアス・カリエンテスの販売時間変更</a></li>
+<li><a href="https://www.adiosadventuretravel.com/blog/2025/10/2026-machu-picchu-tickets-and-inca-trail-hiking-permits-its-complicated/">2026 Machu Picchu Tickets and Inca Trail Permits — It's Complicated</a></li>
+<li><a href="https://www.perurail.com/train-schedules-and-frequencies/">PeruRail 列車時刻表</a></li>
+<li><a href="https://www.perurail.com/ja/perurail-machu-picchu-trains/">PeruRail マチュピチュ行き列車</a></li>
+<li><a href="https://incarail.com/en/trains/train-schedules">Inca Rail 時刻表</a></li>
+<li><a href="https://bushop.com/peru/guides/machu-picchu-tickets-circuits-entry-times-prices-and-rookie-mistakes-to-avoid/">Machu Picchu Tickets in 2026: Circuits, Entry Times, Prices</a></li>
+<li><a href="https://www.theonlyperuguide.com/research/how-to-get-machu-picchu-tickets-official-site-explained-steps-circuits-sold-out-plan/">How To Get Machu Picchu Tickets in 2026: Official Site Explained</a></li>
+<li><a href="https://www.theonlyperuguide.com/research/machu-picchu-circuits-which-circuit-should-you-choose-and-explained/">Machu Picchu Circuits 2026: Which Circuit Should You Choose?</a></li>
+<li><a href="https://www.inkayniperutours.com/blog/inti-punku-at-machu-picchu">Inti Punku at Machu Picchu 2026</a></li>
+<li><a href="https://x-tremetourbulencia.com/machu-picchu-entrance-tickets-2026-complete-guide">Machu Picchu Entrance Tickets 2026: Complete Guide</a></li>
+<li><a href="https://www.theonlyperuguide.com/research/lima-to-cusco-by-plane-airlines-typical-prices-best-flight-times-and-delay-tips/">Lima to Cusco by Plane in 2026</a></li>
+<li><a href="https://www.klook.com/en-US/activity/96925-machu-picchu-day-trip-cusco/">Klook: Machu Picchu Day Trip from Cusco</a></li>
+<li><a href="https://www.klook.com/en-US/activity/96699-machu-picchu-tour-full-day/">Klook: Machu Picchu Tour Full Day</a></li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

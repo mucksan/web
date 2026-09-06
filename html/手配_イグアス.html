@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個別手配資料 ② イグアスの滝（アルゼンチン／ブラジル） - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🐘 サファリ・象孤児院</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_イグアス.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="2">個別手配資料 ② イグアスの滝（アルゼンチン／ブラジル）</h1>
+<p><strong>対象日程:</strong> 2026年11月5日(木)〜11月8日(日)<br />
+<strong>調査日:</strong> 2026年9月4日（初版）／<strong>9月5日（Klook以外へ調査範囲を拡大）</strong><br />
+<strong>関連:</strong> <a href="東回り_要件定義書.md"><code>東回り_要件定義書.md</code></a> §4・§6</p>
+<blockquote>
+<p><strong>調査範囲:</strong> Klook に加え、<strong>公式・直販サイト、現地事業者（スペイン語／ポルトガル語／イタリア語／トルコ語圏）、<br />
+英語 OTA（Viator・GetYourGuide・Expedia・TripAdvisor）、日本語事業者（VELTRA・道祖神・たびチョク・HIS）</strong>を横断。</p>
+<p>⚠️ <strong>Klook の商品ページは bot 検知（HTTP 403）で直接開けませんでした</strong>（WebFetch・実ブラウザとも）。<br />
+Klook の商品名・URLは検索インデックス経由です。<strong>すべての価格・催行日は未検証</strong>なので、<br />
+発注前にご自身のブラウザで開いて確認してください。</p>
+</blockquote>
+<hr />
+<h2 id="0">0. 結論</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">論点</th>
+<th style="text-align: left;">判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>2日構成（ア側1日＋ブ側1日）</strong></td>
+<td style="text-align: left;">✅ <strong>正しい。</strong>1日に詰め込む商品もあるが、本行程は余裕がある側で正解</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/6 アルゼンチン側の詰め込み</strong></td>
+<td style="text-align: left;">⚠️ <strong>順序を間違えると悪魔の喉笛に間に合わない。</strong>下記の時刻設計が必須</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/7 ブラジル側＋ヘリ＋鳥類園</strong></td>
+<td style="text-align: left;">✅ <strong>成立する。</strong>3施設が徒歩圏に固まっている</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Klook で完結するか</strong></td>
+<td style="text-align: left;">⚠️ <strong>半分。</strong>ブラジル側と両国ツアーはあるが、<strong>Gran Aventura は他社が主力</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>最大のリスク</strong></td>
+<td style="text-align: left;">🔴 <strong>国境越えの所要時間</strong>（週末・繁忙期は1時間超もあり）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<span id="schedule"></span><h2 id="1">1. 現行タイムチャート（該当部分）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">行程</th>
+<th style="text-align: left;">宿泊</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>11/05(木)</strong></td>
+<td style="text-align: left;">クスコ → リマ → <strong>イグアス（IGU）</strong></td>
+<td style="text-align: left;">イグアス①</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/06(金)</strong></td>
+<td style="text-align: left;"><strong>【アルゼンチン側】終日</strong><br>悪魔の喉笛、上・下トレイル、滝壺ボート（Gran Aventura）</td>
+<td style="text-align: left;">イグアス②</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/07(土)</strong></td>
+<td style="text-align: left;"><strong>【ブラジル側】終日</strong><br>大パノラマ遊歩道 ＆ ヘリコプター遊覧（Helisul）＆ 鳥類園</td>
+<td style="text-align: left;">イグアス③</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/08(日)</strong></td>
+<td style="text-align: left;">午前 IGU → サンパウロ（GRU）</td>
+<td style="text-align: left;">サンパウロ①</td>
+</tr>
+</tbody>
+</table>
+<p><strong>宿泊地の前提:</strong> 発着が <strong>IGU（フォス・ド・イグアス／ブラジル側）</strong> なので、<br />
+<strong>ブラジル側3連泊</strong>が動線として自然です。11/6 のみ国境を越えてアルゼンチンへ日帰り。</p>
+<p><strong>時差:</strong> アルゼンチンもブラジル（フォス）も <strong>UTC-3 で同一</strong>。<br />
+ブラジルは2019年に夏時間を廃止しているため、11月でもズレません。</p>
+<hr />
+<span id="argentina"></span><h2 id="2-116">2. 🔴 11/6 アルゼンチン側：順序を間違えると破綻する</h2>
+<h3 id="2026">制約（2026年の公式情報）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">時刻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">アルゼンチン側国立公園 開園</td>
+<td style="text-align: left;"><strong>08:00</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">同 閉園</td>
+<td style="text-align: left;"><strong>18:00</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>最終入園</strong></td>
+<td style="text-align: left;"><strong>16:30</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>悪魔の喉笛行きエコトレイン 最終</strong>（往路）</td>
+<td style="text-align: left;"><strong>約 15:30</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">悪魔の喉笛からの最終復路列車</td>
+<td style="text-align: left;">約 16:00〜16:30</td>
+</tr>
+<tr>
+<td style="text-align: left;">悪魔の喉笛 往復所要</td>
+<td style="text-align: left;"><strong>約 1時間30分〜2時間</strong>（列車待ち込み・往復2.2km）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>つまり「悪魔の喉笛は15:30までに列車に乗る」が絶対条件です。</strong><br />
+Gran Aventura（ボート＋ジャングル4WD）は所要が読みにくく、<strong>午後に回すと喉笛を落とします。</strong></p>
+<h3 id="116">推奨タイムライン（11/6）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: left;">行動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">06:45</td>
+<td style="text-align: left;">ホテル発（フォス・ド・イグアス）</td>
+</tr>
+<tr>
+<td style="text-align: left;">07:00-08:00</td>
+<td style="text-align: left;">🔴 <strong>国境越え</strong>（出国＝ブラジル／入国＝アルゼンチン）。<strong>パスポート必携</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>08:00-08:30</strong></td>
+<td style="text-align: left;">公園着・入園（開園直後を狙う＝人が最も少ない）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>08:30-10:30</strong></td>
+<td style="text-align: left;">🔴 <strong>悪魔の喉笛を最初に</strong>（エコトレイン→遊歩道）</td>
+</tr>
+<tr>
+<td style="text-align: left;">10:45-12:30</td>
+<td style="text-align: left;">上部トレイル（Circuito Superior）</td>
+</tr>
+<tr>
+<td style="text-align: left;">12:30-13:15</td>
+<td style="text-align: left;">昼食</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>13:30-16:00</strong></td>
+<td style="text-align: left;">🔴 <strong>Gran Aventura</strong>（ジャングル4WD＋滝壺ボート）</td>
+</tr>
+<tr>
+<td style="text-align: left;">16:00-17:15</td>
+<td style="text-align: left;">下部トレイル（Circuito Inferior）※濡れた服のまま歩ける</td>
+</tr>
+<tr>
+<td style="text-align: left;">17:30</td>
+<td style="text-align: left;">退園 → 国境越え → ホテル</td>
+</tr>
+</tbody>
+</table>
+<p><strong>設計の要点：</strong><br />
+1. <strong>悪魔の喉笛を朝イチ</strong>にする（最終列車リスクを完全に排除）<br />
+2. <strong>Gran Aventura は午後</strong>（びしょ濡れになるので、あとの行程を圧迫しない）<br />
+3. <strong>下部トレイルを最後</strong>（ボート乗り場が下部トレイル側にあり動線が良い）</p>
+<blockquote>
+<p>🔴 <strong>現行タイムチャートの記載順（悪魔の喉笛→上下トレイル→Gran Aventura）は<br />
+概ね正しい。</strong>ただし「上・下トレイル」を連続でやると Gran Aventura が押します。<br />
+<strong>下部トレイルを最後尾に回す</strong>のが上記の修正点です。</p>
+</blockquote>
+<h3 id="_1">国境越えの注意</h3>
+<ul>
+<li>ブラジル→アルゼンチンでは <strong>プエルト・イグアスで環境税（eco-tourist tax）</strong> の支払いあり。<br />
+<strong>領収書を保管</strong>しないと二重請求されることがある</li>
+<li>送迎付きツアーを使う場合、<strong>バスは国境で全員を降ろして待つ</strong>。同乗者の手続きが遅いと全体が遅れる</li>
+<li><strong>専用車／プライベートツアーだと国境の待ち時間を最小化できる</strong>（後述）</li>
+</ul>
+<hr />
+<span id="brazil"></span><h2 id="3-117-3">3. 11/7 ブラジル側：3施設は徒歩圏。ただし<strong>事前オンライン購入が必須</strong></h2>
+<p>ブラジル側は <strong>国立公園入口・Parque das Aves（鳥類園）・Helisul（ヘリポート）が<br />
+道路を挟んで隣接</strong>しています。Helisul のヘリポートは <strong>Parque das Aves の真向かい</strong>。</p>
+<h3 id="_2">🔴 ブラジル側公園は「オンライン専売・時間指定」</h3>
+<blockquote>
+<p><strong>カタラタス・ド・イグアス（ブラジル側）の入場券は、現在オンライン専売。</strong><br />
+<strong>日付だけでなく入場時刻の予約（agendamento）が必要</strong>です。<br />
+公式: <strong>cataratasdoiguacu.com.br</strong>（クレジットカード・PIX 対応）</p>
+</blockquote>
+<p>🔴 <strong>当日窓口で買う前提だと入れません。</strong>ここは要件定義書 §6 に記載がなかった制約です。</p>
+<h3 id="_3">各施設の営業時間（確認済み）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">施設</th>
+<th style="text-align: left;">営業時間</th>
+<th style="text-align: left;">備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Helisul（ヘリ）</strong></td>
+<td style="text-align: left;"><strong>09:00〜16:30</strong>（毎日）</td>
+<td style="text-align: left;">🔴 <strong>09:00 開始。</strong>受付・計量・ブリーフィングで<strong>45分</strong>見込む</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Parque das Aves</strong></td>
+<td style="text-align: left;"><strong>08:30〜16:30</strong>（2026/5/18〜／毎日）<br>※活動終了 18:30</td>
+<td style="text-align: left;">3〜6月は火〜日 08:30〜17:00</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ブラジル側国立公園</strong></td>
+<td style="text-align: left;">時間指定制</td>
+<td style="text-align: left;">公式サイトで枠を予約</td>
+</tr>
+</tbody>
+</table>
+<h3 id="117">推奨タイムライン（11/7・修正版）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: left;">行動</th>
+<th style="text-align: left;">備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">08:00</td>
+<td style="text-align: left;">ホテル発</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>08:30-09:00</strong></td>
+<td style="text-align: left;"><strong>Parque das Aves（鳥類園）</strong></td>
+<td style="text-align: left;">🔴 <strong>開園08:30。ヘリの前にここへ</strong>（ヘリは09:00開始のため）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>09:15-10:00</strong></td>
+<td style="text-align: left;">★ <strong>Helisul ヘリコプター遊覧（約10分）</strong></td>
+<td style="text-align: left;">🔴 <strong>朝が最も晴天率が高い。</strong>受付含め45分</td>
+</tr>
+<tr>
+<td style="text-align: left;">10:00-10:45</td>
+<td style="text-align: left;">Parque das Aves の残りを回る</td>
+<td style="text-align: left;">ウォークインケージ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11:00-14:30</strong></td>
+<td style="text-align: left;"><strong>ブラジル側国立公園 大パノラマ遊歩道</strong></td>
+<td style="text-align: left;">🔴 <strong>予約した入場時刻に合わせる</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">14:30-15:30</td>
+<td style="text-align: left;">昼食（Porto Canoas など）</td>
+<td style="text-align: left;">滝を見下ろす</td>
+</tr>
+<tr>
+<td style="text-align: left;">16:00</td>
+<td style="text-align: left;">ホテル戻り</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>前版では「08:30 ヘリ」と書きましたが、Helisul は 09:00 開始</strong>でした。訂正します。<br />
+08:30〜09:00 の30分は鳥類園に充て、<strong>ヘリを09:15に置く</strong>のが実際の営業時間に合います。</p>
+</blockquote>
+<h3 id="helisul">Helisul の実勢</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>約10分の遊覧</strong></td>
+<td style="text-align: left;"><strong>R$685／席</strong>（2026年8月時点の公式価格）</td>
+</tr>
+<tr>
+<td style="text-align: left;">30分の遊覧</td>
+<td style="text-align: left;">R$9,350／人（※桁が違うので要確認）</td>
+</tr>
+<tr>
+<td style="text-align: left;">所要</td>
+<td style="text-align: left;"><strong>ヘリポート滞在 約45分</strong>（ブリーフィング・計量・搭乗含む）</td>
+</tr>
+<tr>
+<td style="text-align: left;">場所</td>
+<td style="text-align: left;">Av. das Cataratas、<strong>Parque das Aves の向かい</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">2歳未満</td>
+<td style="text-align: left;">大人の膝上で無料</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-klook">4. 手配方法の比較（Klook / 直販 / 日本語 / 現地ポルトガル語・スペイン語）</h2>
+<h3 id="41">4.1 🔴 まず押さえるべき：公式直販</h3>
+<p><strong>イグアスは「公式直販が最も安く、最も融通が利く」典型例です。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">対象</th>
+<th style="text-align: left;">🔴 公式サイト</th>
+<th style="text-align: left;">言語</th>
+<th style="text-align: left;">備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>Gran Aventura</strong>（ア側ボート）</td>
+<td style="text-align: left;"><strong><a href="https://tickets.iguazujungle.com/reserva/inicio?paseo=1&amp;ln=es">tickets.iguazujungle.com</a></strong></td>
+<td style="text-align: left;">西/英</td>
+<td style="text-align: left;">🔴 <strong>公園内の唯一の公認事業者。</strong>所要<strong>約2時間</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>ア側 国立公園 入場券</strong></td>
+<td style="text-align: left;"><strong><a href="https://iguazuargentina.com/planifica-tu-visita/compra-tus-entradas/">iguazuargentina.com</a></strong></td>
+<td style="text-align: left;">西/英</td>
+<td style="text-align: left;"><strong>Gran Aventura とは別料金</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>ブ側 国立公園 入場券</strong></td>
+<td style="text-align: left;"><strong>cataratasdoiguacu.com.br</strong></td>
+<td style="text-align: left;">葡/英</td>
+<td style="text-align: left;">🔴 <strong>オンライン専売・時間指定必須</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Parque das Aves</strong></td>
+<td style="text-align: left;"><a href="https://ingressos.parquedasaves.com.br/">ingressos.parquedasaves.com.br</a></td>
+<td style="text-align: left;">葡/英</td>
+<td style="text-align: left;">公式直販</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Helisul</strong></td>
+<td style="text-align: left;">現地ヘリポート／下記の代理店</td>
+<td style="text-align: left;">葡</td>
+<td style="text-align: left;">当日枠あり</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>Gran Aventura は「所要2時間」の単体アクティビティです。</strong><br />
+OTA が売っている「所要12時間」の商品は、<strong>送迎と公園観光を丸ごと束ねたパッケージ</strong>。<br />
+<strong>直販なら2時間だけ買えるので、11/6 の組み立てが自由になります。</strong></p>
+<blockquote>
+<p>⚠️ <strong>繁忙期は枠が埋まる</strong>とされています（1月・7月・連休）。11月は比較的空くはずですが、<br />
+<strong>前日ではなく事前に押さえて</strong>ください。</p>
+</blockquote>
+<h3 id="42">4.2 ブラジル側の現地チケット代理店（ポルトガル語）</h3>
+<p>公式が使いにくい場合、<strong>現地の正規代理店</strong>が束ねて売っています。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">代理店</th>
+<th style="text-align: left;">扱い</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="https://www.comboiguassu.com.br/produto/ingresso-voo-de-helicoptero-10-min/">Combo Iguassu</a></td>
+<td style="text-align: left;"><strong>Helisul 10分／30分</strong>の入場券を単体販売</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://tourcataratas.com.br/ingressos/passeio-helicoptero-cataratas/">Tour Cataratas</a></td>
+<td style="text-align: left;">ヘリ・公園・鳥類園のセット</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.passeioscataratas.com.br/voo-de-helicoptero-cataratas-do-iguacu">Passeios Cataratas</a></td>
+<td style="text-align: left;">Helisul 専用ページ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://voppi.com.br/produto/helisul-voo-panoramico-de-helicoptero-pelas-cataratas/">Voppi</a></td>
+<td style="text-align: left;">キャッシュバック付</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://infinityingressos.com.br/produto/ingresso-cataratas-do-iguacu/">Infinity Ingressos</a></td>
+<td style="text-align: left;">公園入場券</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.civitatis.com/en/foz-de-iguacu/parque-das-aves-ticket/">Civitatis（日本語あり）</a></td>
+<td style="text-align: left;">Parque das Aves</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43">4.3 アルゼンチン側の現地代理店（スペイン語）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">代理店</th>
+<th style="text-align: left;">扱い</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="https://www.iguazuviajes.com/excursiones/gran-aventura/gran-aventura-iguazu">Iguazú Viajes — Gran Aventura</a></td>
+<td style="text-align: left;">送迎込みパッケージ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.cataratastransfer.com.ar/blog/excursiones-iguazu-jungle.html">Cataratas Transfer — Iguazú Jungle 料金ガイド 2026</a></td>
+<td style="text-align: left;">🔴 <strong>料金の相場確認に有用</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.welcomeargentina.com/puertoiguazu/adventure-iguazu-jungle.html">Welcome Argentina</a></td>
+<td style="text-align: left;">概要</td>
+</tr>
+</tbody>
+</table>
+<h3 id="44">4.4 日本語で手配する場合</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">事業者</th>
+<th style="text-align: left;">商品</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>VELTRA</strong></td>
+<td style="text-align: left;"><a href="https://www.veltra.com/jp/keyword/%E3%82%A4%E3%82%B0%E3%82%A2%E3%82%B9%E3%80%80%E3%83%98%E3%83%AA%E3%82%B3%E3%83%97%E3%82%BF%E3%83%BC/">イグアス ヘリコプター 検索</a>／<a href="https://www.veltra.com/jp/keyword/%E3%82%A4%E3%82%B0%E3%82%A2%E3%82%B9%E3%80%80%E3%83%98%E3%83%AA%E3%82%B3%E3%83%97%E3%82%BF%E3%83%BC%E3%80%80%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%82%AC%E3%82%A4%E3%83%89%E4%BB%98%E3%81%8D/">日本語ガイド付き</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">VELTRA</td>
+<td style="text-align: left;"><a href="https://www.veltra.com/jp/latin_america/brazil/ctg/8416:8416/">イグアスの滝（ブラジル側）</a>／<a href="https://www.veltra.com/jp/latin_america/argentina/ctg/7749:7749/">アルゼンチン側</a>／<a href="https://www.veltra.com/jp/latin_america/ctg/161491:iguassu_falls/">中南米カテゴリ</a></td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>VELTRA は「日本語ガイド付きヘリ」の検索軸を持っています。</strong><br />
+国境越えを含む 11/6 に日本語サポートを付けたい場合、ここが最有力。</p>
+<h3 id="45-klook-ota">4.5 Klook / 英語 OTA</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">事業者</th>
+<th style="text-align: left;">商品</th>
+<th style="text-align: left;">適合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Klook</td>
+<td style="text-align: left;"><a href="https://www.klook.com/en-PH/activity/120854-brazilian-side-of-the-falls-tour-from-foz-do-iguassu/">Brazilian Side of the Falls tour from Foz</a></td>
+<td style="text-align: left;">✅ 11/7 に使える（送迎込み）</td>
+</tr>
+<tr>
+<td style="text-align: left;">Klook</td>
+<td style="text-align: left;"><a href="https://www.klook.com/en-US/activity/146713-iguazu-falls-brazil-and-argentina-sides-private-day-tour/">両側 <strong>Private</strong> Full-Day</a></td>
+<td style="text-align: left;">⚠️ 1日圧縮。<strong>国境効率化としてのみ検討</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">GetYourGuide</td>
+<td style="text-align: left;"><a href="https://www.getyourguide.com/puerto-iguazu-l538/iguazu-falls-gran-aventura-boat-and-argentinian-falls-tour-t296435/">Gran Aventura Boat and Argentinian Falls Tour</a></td>
+<td style="text-align: left;">⚠️ 所要12時間の束ね商品</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Viator</strong></td>
+<td style="text-align: left;"><a href="https://www.viator.com/tours/Foz-do-Iguacu/Iguassu-Argentinian-Side-of-the-Falls-and-Boat-Tour-Gran-Aventura/d970-21715P38"><strong>Foz発</strong> Argentinian Side + Gran Aventura</a></td>
+<td style="text-align: left;">✅ <strong>ブラジル側宿泊者向け。送迎・国境同行あり</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Viator</td>
+<td style="text-align: left;"><a href="https://www.viator.com/tours/Foz-do-Iguacu/Iguassu-Falls-Argentinian-Side-with-Gran-Aventura/d970-2484P111">Foz発 Argentine Falls with Gran Aventura</a></td>
+<td style="text-align: left;">✅ 同上</td>
+</tr>
+<tr>
+<td style="text-align: left;">Expedia</td>
+<td style="text-align: left;"><a href="https://www.expedia.com.my/things-to-do/gran-aventura-in-iguazu-falls-trekking-4wd-ride-boat-navigation.a2259860.activity-details">Gran Aventura: trekking + 4WD + boat</a></td>
+<td style="text-align: left;">参考</td>
+</tr>
+</tbody>
+</table>
+<h3 id="46-2">4.6 🔴 2つの戦略：どちらを取るか</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">戦略</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">長所</th>
+<th style="text-align: left;">短所</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>① 直販バラ買い</strong></td>
+<td style="text-align: left;">公園券＋Gran Aventura を公式で個別に。移動は自分で</td>
+<td style="text-align: left;"><strong>最安。時間を自分で設計できる</strong>（Gran Aventura は2時間だけ）</td>
+<td style="text-align: left;">🔴 <strong>国境越えを自力でやる。</strong>言語は西/葡</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>② Foz発パッケージ</strong>（推奨）</td>
+<td style="text-align: left;">Viator の「Foz発・Gran Aventura付き」</td>
+<td style="text-align: left;">🔴 <strong>国境越えに同行者がいる。</strong>送迎込み</td>
+<td style="text-align: left;">時間が固定される。割高</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>11/6 は②を推奨します。</strong>理由は国境です。<br />
+ブラジル→アルゼンチンの出入国は、混雑時に1時間以上かかることがあり、<br />
+<strong>単独・自力・スペイン語なしで初回に挑むには不確実性が高すぎます。</strong><br />
+<strong>11/7（ブラジル側）は移動が単純なので①（直販バラ買い）で十分</strong>です。</p>
+<h3 id="47">4.7 推奨する手配の内訳（更新版）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">対象</th>
+<th style="text-align: left;">🔴 推奨手配先</th>
+<th style="text-align: left;">言語</th>
+<th style="text-align: right;">概算</th>
+<th style="text-align: left;">期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">🔴 <strong>11/6 ア側 ＋ Gran Aventura（Foz発・送迎込み）</strong></td>
+<td style="text-align: left;"><strong>Viator d970-21715P38 等</strong></td>
+<td style="text-align: left;">英</td>
+<td style="text-align: right;">$80〜120</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">1'</td>
+<td style="text-align: left;">（代替）Gran Aventura のみ直販</td>
+<td style="text-align: left;"><a href="https://tickets.iguazujungle.com/reserva/inicio?paseo=1&amp;ln=es">tickets.iguazujungle.com</a></td>
+<td style="text-align: left;">西/英</td>
+<td style="text-align: right;">要確認</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">ア側 公園入場券</td>
+<td style="text-align: left;"><a href="https://iguazuargentina.com/planifica-tu-visita/compra-tus-entradas/">iguazuargentina.com</a>（①の場合）</td>
+<td style="text-align: left;">西/英</td>
+<td style="text-align: right;">要確認</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">🔴 <strong>11/7 ブ側 公園入場券（時間指定）</strong></td>
+<td style="text-align: left;">🔴 <strong>cataratasdoiguacu.com.br 公式</strong></td>
+<td style="text-align: left;">葡/英</td>
+<td style="text-align: right;">要確認</td>
+<td style="text-align: left;">🔴 <strong>10月上旬</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;"><strong>11/7 Helisul ヘリ（09:15枠）</strong></td>
+<td style="text-align: left;">Combo Iguassu / Tour Cataratas / 現地</td>
+<td style="text-align: left;">葡</td>
+<td style="text-align: right;"><strong>R$685</strong></td>
+<td style="text-align: left;">前日夜に天候確認</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">11/7 Parque das Aves</td>
+<td style="text-align: left;"><a href="https://ingressos.parquedasaves.com.br/">ingressos.parquedasaves.com.br</a></td>
+<td style="text-align: left;">葡/英</td>
+<td style="text-align: right;">要確認</td>
+<td style="text-align: left;">当日可</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">🔴 <strong>11/5 LIM → IGU（要経由）</strong></td>
+<td style="text-align: left;">LATAM 等直販</td>
+<td style="text-align: left;">英</td>
+<td style="text-align: right;">要見積</td>
+<td style="text-align: left;">🔴 <strong>9月中</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: left;">11/8 IGU → GRU</td>
+<td style="text-align: left;">LATAM / GOL / Azul</td>
+<td style="text-align: left;">英</td>
+<td style="text-align: right;">要見積</td>
+<td style="text-align: left;">9月中</td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: left;">フォス・ド・イグアス ホテル3泊</td>
+<td style="text-align: left;">Booking 等</td>
+<td style="text-align: left;">日</td>
+<td style="text-align: right;">要見積</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. タイムチャート変更の選択肢</h2>
+<h3 id="1116">変更案①：11/6 をプライベートツアー化して国境ロスを削る</h3>
+<p>現行のままでも成立しますが、<strong>国境越えが最大の不確定要素</strong>です。<br />
+Klook のプライベート両国ツアーの「アルゼンチン側のみ・専用車」相当を使えば、<br />
+<strong>待ち時間を30〜60分短縮</strong>できる見込み。浮いた時間を Gran Aventura の余裕に回せます。</p>
+<ul>
+<li>費用は混載より高い（要見積）</li>
+<li><strong>11/6 を確実に回したいなら投資価値あり</strong></li>
+</ul>
+<h3 id="2117-116">変更案②：11/7 のヘリを 11/6 夕方へ移す（非推奨）</h3>
+<p>ブラジル側のヘリはブラジル側にあるため、11/6 の帰路に寄れます。<br />
+ただし<strong>夕方は視程が落ちる</strong>うえ、国境越えの遅延を被ると欠航扱いになるので<strong>推奨しません。</strong></p>
+<h3 id="31">変更案③：日程を1日延ばす（余裕重視）</h3>
+<p>11/5 の到着が遅い場合、11/6 の朝イチ入園が難しくなります。<br />
+<strong>11/8 のサンパウロ入りを1日遅らせて 11/6・11/7 を後ろへずらす</strong>という手もありますが、<br />
+🔴 <strong>11/10 の GRU 23:15 TP88（大西洋横断・予約済み）は動かせない</strong>ため、<br />
+サンパウロ滞在（現行2泊）が1泊に減ります。<strong>サンパウロの優先度次第。</strong></p>
+<h3 id="_4">変更しないほうがよい点</h3>
+<ul>
+<li>✅ <strong>2日構成の維持。</strong>両側を1日に圧縮する商品は存在しますが、<br />
+  滝は「歩く量」がそのまま体験量になるので、本行程の2日構成が正解です</li>
+<li>✅ <strong>ブラジル側3連泊の維持。</strong>IGU 発着なので荷物移動が発生しません</li>
+</ul>
+<hr />
+<h2 id="6">6. 🔴 アクションリスト</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">優先</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: left;">🔴 <strong>11/5 LIM→IGU の経由便を確定</strong>（当日中に着けるか）</td>
+<td style="text-align: left;"><strong>9月中</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: left;">11/8 IGU→GRU を確定</td>
+<td style="text-align: left;">9月中</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Gran Aventura（<strong>フォス発</strong>）を予約</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Klook でブラジル側ツアーを予約</td>
+<td style="text-align: left;">10月下旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">フォス・ド・イグアスのホテル3泊</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">Helisul は<strong>前日夜に天候を見て確定</strong></td>
+<td style="text-align: left;">現地</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>⚠️ 未確認事項:</strong> 悪魔の喉笛の遊歩道は増水時に閉鎖されることがあります。<br />
+11月は雨季の入り口にあたるため、<strong>現地で当日の開通状況を確認</strong>してください。</p>
+</blockquote>
+<hr />
+<h2 id="_5">出典</h2>
+<ul>
+<li><a href="https://iguazufalls-tickets.org/plan-your-visit/opening-hours-of-iguazu-falls/">Iguazu Falls Opening Hours 2026: Argentine &amp; Brazilian Parks</a></li>
+<li><a href="https://iguazufalls-tickets.org/what-to-see/devils-throat-iguazu-falls/">Devil's Throat Iguazu Falls 2026: Complete Guide</a></li>
+<li><a href="https://iguazufalls-tickets.org/plan-your-visit/">Plan Your Visit to Iguazu Falls — Complete 2026 Guide</a></li>
+<li><a href="https://solsalute.com/blog/visit-iguazu-falls-argentina/">A Detailed Guide for Visiting Iguazu Falls, Argentina (2026)</a></li>
+<li><a href="https://www.getyourguide.com/puerto-iguazu-l538/iguazu-falls-gran-aventura-boat-and-argentinian-falls-tour-t296435/">GetYourGuide: Gran Aventura Boat and Argentinian Falls Tour</a></li>
+<li><a href="https://www.viator.com/tours/Foz-do-Iguacu/Iguassu-Argentinian-Side-of-the-Falls-and-Boat-Tour-Gran-Aventura/d970-21715P38">Viator: Argentinian Side of the Falls and Boat Tour</a></li>
+<li><a href="https://www.klook.com/en-PH/activity/120854-brazilian-side-of-the-falls-tour-from-foz-do-iguassu/">Klook: Brazilian Side of the Falls tour from Foz do Iguassu</a></li>
+<li><a href="https://www.klook.com/en-US/activity/146713-iguazu-falls-brazil-and-argentina-sides-private-day-tour/">Klook: Iguazu Falls Brazil &amp; Argentina Private Full-Day Tour</a></li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

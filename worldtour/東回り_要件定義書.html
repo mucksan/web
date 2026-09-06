@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界一周旅行 2026-27：東回り案 要件定義書 - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🐘 サファリ・象孤児院</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../東回り_要件定義書.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="2026-27">世界一周旅行 2026-27：東回り案 要件定義書</h1>
+<p>本ドキュメントは、<strong>東京発着・東回り</strong>の世界一周旅行における要件をまとめた正本である。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>版数</strong></td>
+<td style="text-align: left;"><strong>第8版</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>改定日</strong></td>
+<td style="text-align: left;"><strong>2026年9月6日</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>周回方向</strong></td>
+<td style="text-align: left;"><strong>東回り</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>発着地</strong></td>
+<td style="text-align: left;"><strong>東京（成田発 → 羽田着）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>第8版改定概要</strong></td>
+<td style="text-align: left;">✅ <strong>2026年9月6日、東京発券・日本円建てで全16クーポンの発券が完了した。本版は発券実績（eチケット券面）を正とする。</strong><br>① 🔴 <strong>予約番号が <code>DM4H3V</code> → <code>EANRV5</code> に変更</strong>（発券に伴う）。航空券番号 205-2443136675〜678<br>② ✅ <strong>10/31 MEX→LIM を CM135/CM337 から CM121/CM489 へ変更成立。リマ着が 11/1 00:55（深夜）→ 10/31 22:45（当日）</strong>になり、<strong>ペルー初日の行程を再々設計</strong><br>③ ✅ <strong>12/1 の ET319・ET608 が発券前にキャンセルされたが、同一便で再確保</strong><br>④ ✅ <strong>予約クラスが券面で確定</strong>（ANA系＝Z／他社＝D、<strong>UA1271 のみ B＝エコノミー</strong>）<br>⑤ ✅ <strong>総額 ¥1,211,160</strong>（東京発券・JPY建て。タイ発券見込み比で約¥2.7〜3.4万の節約）<br>⑥ 🔴 <strong>取消手数料 US$150</strong>（出発前）／券面に <code>REFUND RESTRICTED</code><br>⑦ ⚠️ <strong>手荷物は区間により 2PC／3PC／40K</strong>。通話メモの「2個で合計30kg」と食い違い、<strong>要再確認</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>旧案の扱い</strong></td>
+<td style="text-align: left;">バンコク発・西回りの資料一式は <code>西回り案_アーカイブ/</code> へ移動。<strong>参照対象外</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h2 id="_1">🔴 本書全体に適用する大原則</h2>
+<ol>
+<li>✅ <strong>発券済み（PNR: EANRV5）の16クーポンは「確定」として扱う。</strong></li>
+<li>✅ <strong>発券前のキャンセルリスクは消滅した。</strong>以後は「空きが出れば変更する」ウォッチのみ（発券用資料 §0.2）。</li>
+<li>✅ <strong>予約クラスは券面で確定した。</strong>ただし <strong>UA1271 は <code>B</code>＝エコノミー</strong>であり、ビジネス化は継続ウォッチ中。</li>
+<li><strong>同一区間の便変更は手数料なし・搭乗24時間前まで可能。</strong>行程を動かす余地はまだある。</li>
+<li>RTW外の別手配（ペルー国内線・鉄道・南米国内線・トルコ国内線・サファリ・観戦チケット）は<strong>すべて未手配</strong>であり、確定ではない。</li>
+</ol>
+</blockquote>
+<hr />
+<h2 id="0-202696">0. ✅ 発券実績サマリー（2026年9月6日 確定）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>ANA予約番号（PNR）</strong></td>
+<td style="text-align: left;">✅ <strong>EANRV5</strong>（旧 DM4H3V は失効）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>航空券番号</strong></td>
+<td style="text-align: left;">✅ <strong>205-2443136675 〜 678</strong>（4枚）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>搭乗者</strong></td>
+<td style="text-align: left;">TAKAMUKU/TAKESHI MR</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>発券日</strong></td>
+<td style="text-align: left;">✅ <strong>2026年9月6日</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>発券経路</strong></td>
+<td style="text-align: left;">✅ <strong>ANA 日本（東京）発券・日本円建て</strong>（担当：村岡さん）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>確保クーポン数</strong></td>
+<td style="text-align: left;"><strong>飛行15枚 ＋ 地上区間1枚 ＝ 合計16枚（上限ちょうど・予備0枚）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>総マイル数</strong></td>
+<td style="text-align: left;"><strong>31,308マイル（地上区間含む）／ 34,000枠</strong>（余裕 約2,692マイル）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>券面の制限</strong></td>
+<td style="text-align: left;"><code>/C1-16 VLD STAR ALLIANCE ONLY REFUND RESTRICTED</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>eチケット原本</strong></td>
+<td style="text-align: left;"><code>tickets/RTW/eチケット世界一周航空券1.pdf</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>通話メモ</strong></td>
+<td style="text-align: left;"><code>ANA予約0906(東回り＆日本発券）.txt</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="01">0.1 ✅ 運賃実額（確定）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">内訳</th>
+<th style="text-align: right;">金額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">運賃</td>
+<td style="text-align: right;"><strong>¥822,000</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">税金・料金等</td>
+<td style="text-align: right;"><strong>¥383,660</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">小計</td>
+<td style="text-align: right;">¥1,205,660</td>
+</tr>
+<tr>
+<td style="text-align: left;">発券手数料（東京）</td>
+<td style="text-align: right;"><strong>¥5,500</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>総額</strong></td>
+<td style="text-align: right;">✅ <strong>¥1,211,160</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>✅ <strong>東京発券・JPY建てにした判断で約¥2.7〜3.4万を節約できた。</strong><br />
+タイ発券の見込みは ฿257,820 ≒ 約¥1,218,000 で、これに<strong>カードの外貨事務手数料（約¥2〜2.7万）</strong>が上乗せされるはずだった。</p>
+<p><strong>⚠️ 事前見積（Book and Fly 東京発 ¥890,000）との差について</strong><br />
+¥890,000 は<strong>運賃本体のみ</strong>の見積で、実額の運賃 ¥822,000 は<strong>見積を下回った</strong>。<br />
+差額の主因は<strong>税金・料金等 ¥383,660</strong>（うち燃油サーチャージ YQ が ¥183,590）であり、想定の範囲内。</p>
+</blockquote>
+<h3 id="02">0.2 ✅ 発券国の選択（決着）</h3>
+<p><strong>東京発券・JPY建てを選択。</strong> 発券手数料 ¥5,500、外貨事務手数料なし。</p>
+<h3 id="03">0.3 ✅ 変更・取消のルール（発券後・確定）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>変更可能期限</strong></td>
+<td style="text-align: left;"><strong>搭乗の24時間以上前まで</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>同一区間での便・航空会社変更</strong></td>
+<td style="text-align: left;">✅ <strong>手数料なし</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>路線（区間）そのものの変更</strong></td>
+<td style="text-align: left;"><strong>US$125</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>取消手数料</strong></td>
+<td style="text-align: left;">🔴 <strong>出発前 US$150</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>払戻</strong></td>
+<td style="text-align: left;">券面に <code>REFUND RESTRICTED</code>。<strong>実際の可否と金額は要照会</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>クーポン使用順</strong></td>
+<td style="text-align: left;"><strong>券面の順序どおりに使用すること</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>手荷物</strong></td>
+<td style="text-align: left;">⚠️ <strong>区間により 2PC／3PC（ET）／40K（SQ）</strong>。<strong>1個あたりの重量上限は未確認</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="04-3">0.4 🔭 発券後も続けるウォッチ（3件）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID</th>
+<th style="text-align: left;">対象</th>
+<th style="text-align: left;">現状</th>
+<th style="text-align: left;">狙い</th>
+<th style="text-align: left;">期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>S-1</strong></td>
+<td style="text-align: left;">② 10/29 SFO→MEX</td>
+<td style="text-align: left;"><strong>UA1271 クラス <code>B</code>（エコノミー）</strong></td>
+<td style="text-align: left;">ビジネス（D／Z）への振替</td>
+<td style="text-align: left;">10/28</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>B-3</strong></td>
+<td style="text-align: left;">⑥ 11/12 LIS→BCN</td>
+<td style="text-align: left;">TP1030 07:10発（04:40ホテル発）</td>
+<td style="text-align: left;">TP1034 10:50発へ。<strong>TP88 の在庫が開くのが条件</strong></td>
+<td style="text-align: left;">11/11</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>A-4</strong></td>
+<td style="text-align: left;">⑨ 11/21 ATH→IST</td>
+<td style="text-align: left;">TK1840 11:50発</td>
+<td style="text-align: left;">TK1844 10:10発へ。<strong>カッパドキアの睡眠（実質4.5時間）を延ばす</strong></td>
+<td style="text-align: left;">11/20（実質10月中）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>詳細は <code>東回り_発券用資料.md</code> <strong>§0.2</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="1">1. 確定事項</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">確定内容</th>
+<th style="text-align: left;">状態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>E-1</strong></td>
+<td style="text-align: left;"><strong>東京発着の東回り一筆書き。</strong> Star Alliance 世界一周運賃・<strong>ビジネスクラス</strong></td>
+<td style="text-align: left;">✅ 予約済</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E-2</strong></td>
+<td style="text-align: left;"><strong>2026年10月26日（月）にバンコク → 東京</strong>（ポジショニング・<strong>RTW外</strong>・エコノミー自己手配）<br>※家族旅行が 10/23〜25 のため、これが最速</td>
+<td style="text-align: left;">⬜ 未手配</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E-3</strong></td>
+<td style="text-align: left;"><strong>東京滞在は 10/26〜10/27 の2泊</strong>（実家泊・宿泊費0円）</td>
+<td style="text-align: left;">✅ 確定</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E-4</strong></td>
+<td style="text-align: left;">🔴 <strong>プランA（SFO経由）で成立。</strong> 2026年10月28日（水）<strong>NH8 成田17:00発 → SFO 10:20着（ビジネスクラス Z 確定）</strong>、SFO 1泊、10/29 <strong>UA1271 で SFO→MEX</strong></td>
+<td style="text-align: left;">✅ 予約済<br>（UA1271はY）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E-5</strong></td>
+<td style="text-align: left;">🔴 <strong>2026年12月2日（水）に NBO → ADD → BKK（エチオピア航空）で帰宅。主要行程終了</strong><br><strong>実績：12/2 12:30 BKK着 → 14時頃 自宅着</strong>（当初目標「正午帰宅」から約30分後ろ倒し・実質達成）</td>
+<td style="text-align: left;">✅ 予約済</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E-6</strong></td>
+<td style="text-align: left;"><strong>最終区間（帰省便）:</strong><br>・<strong>2027年3月1日（月）BKK 09:40 → SIN 13:10（SQ705）</strong><br>・<strong>2027年3月3日（水）SIN 10:45 → 東京・羽田 18:25（NH842・ANAビジネス Z 確定）</strong><br>※シンガポール2泊。有効期限（出発から12か月以内）に完全適合</td>
+<td style="text-align: left;">✅ 予約済</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E-7</strong></td>
+<td style="text-align: left;"><strong>米国通過:</strong> ANA「THE Room」狙いの SFO 経由が成立したため、<strong>米国（SFO）を通過する。ESTA申請が必須</strong></td>
+<td style="text-align: left;">✅ 確定</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E-8</strong></td>
+<td style="text-align: left;">観戦する試合は <strong>①11/15 スペイン vs イングランド（マドリード）②11/24 ガラタサライ vs アストン・ヴィラ（イスタンブール）</strong> の2試合。マドリードは前日11/14入り</td>
+<td style="text-align: left;">⬜ チケット未入手</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E-9</strong></td>
+<td style="text-align: left;"><strong>訪問地:</strong> 日本／米国（SFO）／メキシコ／パナマ（乗継）／ペルー／ブラジル・アルゼンチン／ポルトガル／スペイン／イタリア／ギリシャ／トルコ／エジプト／ケニア／エチオピア（乗継）／タイ／シンガポール</td>
+<td style="text-align: left;">✅ 確定</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2">2. 未確定事項（<strong>すべて要確認</strong>）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">未確定内容</th>
+<th style="text-align: left;">確認先</th>
+<th style="text-align: left;">期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>U-1</strong></td>
+<td style="text-align: left;">🔴 <strong>UA1271（10/29 SFO→MEX）のビジネスクラス空席。現状エコノミーで予約されている</strong><br>※同一区間なら航空会社変更の手数料は不要 → AM/UA他便への振替も検討</td>
+<td style="text-align: left;">ANA窓口</td>
+<td style="text-align: left;">🔴 <strong>9/6まで</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>U-2</strong></td>
+<td style="text-align: left;">🔴 <strong>UA1271以外の全区間の予約クラス（ビジネス確保の確証）</strong><br>※確認メールでクラス表記があるのは NH8・NH842（ともに Z）のみ</td>
+<td style="text-align: left;">ANA窓口</td>
+<td style="text-align: left;">🔴 <strong>9/6まで</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>U-3</strong></td>
+<td style="text-align: left;">🔴 <strong>発券国の選択（タイ ฿1,500 / 東京 ¥5,500）と決済通貨・カード外貨手数料</strong></td>
+<td style="text-align: left;">ANA窓口</td>
+<td style="text-align: left;">🔴 <strong>9/6まで</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>U-4</strong></td>
+<td style="text-align: left;"><strong>NH8（10/28 NRT→SFO）の機材が B777-300ER「THE Room」仕様か</strong></td>
+<td style="text-align: left;">ANA窓口</td>
+<td style="text-align: left;">発券前</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>U-5</strong></td>
+<td style="text-align: left;"><strong>スペイン戦・ガラタサライ戦のチケット入手</strong></td>
+<td style="text-align: left;">各公式</td>
+<td style="text-align: left;">9〜10月</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>U-6</strong></td>
+<td style="text-align: left;"><strong>ケニアからの帰路（タイ・シンガポール）で黄熱証明書を要求されるか</strong></td>
+<td style="text-align: left;">各国公式</td>
+<td style="text-align: left;">10月</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>U-7</strong></td>
+<td style="text-align: left;"><strong>ペルー初日の LIM→CUZ 便と列車の手配。</strong>✅ A-1 成立で<strong>朝便＋早い列車</strong>に組み替えられる</td>
+<td style="text-align: left;">各社</td>
+<td style="text-align: left;">9〜10月</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>U-8</strong></td>
+<td style="text-align: left;"><strong>ケニア初日（11/28 03:30 ナイロビ着）の空港ホテル・デイユース＋アンボセリ送迎の手配</strong></td>
+<td style="text-align: left;">現地ツアー各社</td>
+<td style="text-align: left;">10月</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>U-9</strong></td>
+<td style="text-align: left;"><strong>ローマ発トスカーナ日帰りワイナリーツアーの手配</strong></td>
+<td style="text-align: left;">現地ツアー各社</td>
+<td style="text-align: left;">10月</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>U-10</strong></td>
+<td style="text-align: left;"><strong>イグアスの滝ヘリコプター遊覧飛行（Helisul）の予約</strong></td>
+<td style="text-align: left;">Helisul公式</td>
+<td style="text-align: left;">10月</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>U-11</strong></td>
+<td style="text-align: left;">総予算（RTW外費用・ツアー・サファリ・観戦費含む）</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">発券後</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-rtw">3. RTW の経路とクーポン</h2>
+<h3 id="31">3.1 経路概要（確定）</h3>
+<pre><code class="language-text">TYO(NRT) → SFO → MEX → PTY → LIM ⇢(地上) GRU → LIS → BCN → FCO → ATH → IST
+    → CAI → NBO → ADD → BKK ‖ BKK → SIN → TYO(HND)（2027年3月）
+</code></pre>
+<p>※スペイン国内（バルセロナ ⇄ マドリード）は高速鉄道（AVE）利用のため、RTWクーポンを消費しない。<br />
+※ローマ発トスカーナ日帰りツアーは専用車利用のため、RTWクーポンを消費しない。</p>
+<h3 id="32-pnr-eanrv5">3.2 確定区間一覧（PNR: EANRV5）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: center;">券</th>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">区間</th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">発 → 着</th>
+<th style="text-align: left;">所要</th>
+<th style="text-align: left;">運航会社</th>
+<th style="text-align: left;">クラス</th>
+<th style="text-align: left;">備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">①</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><strong>10/28(水)</strong></td>
+<td style="text-align: left;">NRT → SFO</td>
+<td style="text-align: left;"><strong>NH 8</strong></td>
+<td style="text-align: left;"><strong>17:00 → 10:20</strong></td>
+<td style="text-align: left;">9h20m</td>
+<td style="text-align: left;">ANA</td>
+<td style="text-align: left;">🔵 <strong>ビジネス Z</strong></td>
+<td style="text-align: left;">出発T1。THE Room機材要確認（U-4）。SFO 1泊</td>
+</tr>
+<tr>
+<td style="text-align: center;">②</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"><strong>10/29(木)</strong></td>
+<td style="text-align: left;">SFO → MEX</td>
+<td style="text-align: left;"><strong>UA 1271</strong></td>
+<td style="text-align: left;"><strong>10:45 → 16:05</strong></td>
+<td style="text-align: left;">4h20m</td>
+<td style="text-align: left;">ユナイテッド</td>
+<td style="text-align: left;">🔴 <strong>エコノミー</strong></td>
+<td style="text-align: left;">出発T-I。🔴 <strong>ビジネス空き要確認（U-1）</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">③</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;"><strong>10/31(土)</strong></td>
+<td style="text-align: left;">MEX → PTY</td>
+<td style="text-align: left;">✅ <strong>CM 121</strong></td>
+<td style="text-align: left;">✅ <strong>13:10 → 17:54</strong></td>
+<td style="text-align: left;">3h44m</td>
+<td style="text-align: left;">コパ航空</td>
+<td style="text-align: left;"><strong>D</strong></td>
+<td style="text-align: left;">出発T1。<strong>メキシコ最終日の午前は3時間ほど観光可能</strong>（ホテル10:30発）</td>
+</tr>
+<tr>
+<td style="text-align: center;">④</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;"><strong>10/31(土)</strong></td>
+<td style="text-align: left;">PTY → LIM</td>
+<td style="text-align: left;">✅ <strong>CM 489</strong></td>
+<td style="text-align: left;">✅ <strong>19:09 → 22:45</strong></td>
+<td style="text-align: left;">3h36m</td>
+<td style="text-align: left;">コパ航空</td>
+<td style="text-align: left;"><strong>D</strong></td>
+<td style="text-align: left;">出発T2。✅ <strong>乗継1h15m／リマ着は10/31 当日</strong>（深夜着を解消）</td>
+</tr>
+<tr>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: left;">11/05〜08</td>
+<td style="text-align: left;"><strong>LIM ⇢ GRU</strong></td>
+<td style="text-align: left;"><strong>地上区間</strong></td>
+<td style="text-align: left;">搭乗なし</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">実移動 LIM→IGU→GRU は別手配</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑤</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;"><strong>11/10(火)</strong></td>
+<td style="text-align: left;">GRU → LIS</td>
+<td style="text-align: left;"><strong>TP 88</strong></td>
+<td style="text-align: left;"><strong>23:15 → 12:10(+1)</strong></td>
+<td style="text-align: left;">9h55m</td>
+<td style="text-align: left;">TAPポルトガル</td>
+<td style="text-align: left;">要確認</td>
+<td style="text-align: left;">出発T3。🔴 <strong>【大西洋横断】11/11 昼にリスボン着</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">⑥</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: left;"><strong>11/12(木)</strong></td>
+<td style="text-align: left;">LIS → BCN</td>
+<td style="text-align: left;"><strong>TP 1030</strong></td>
+<td style="text-align: left;"><strong>07:10 → 10:05</strong></td>
+<td style="text-align: left;">1h55m</td>
+<td style="text-align: left;">TAPポルトガル</td>
+<td style="text-align: left;">要確認</td>
+<td style="text-align: left;">出発T1。🔴 <strong>早朝便（05:10空港着）</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">⑦</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: left;"><strong>11/16(月)</strong></td>
+<td style="text-align: left;">BCN → FCO</td>
+<td style="text-align: left;"><strong>AZ 79</strong></td>
+<td style="text-align: left;"><strong>16:50 → 18:35</strong></td>
+<td style="text-align: left;">1h45m</td>
+<td style="text-align: left;">ITAエアウェイズ</td>
+<td style="text-align: left;">要確認</td>
+<td style="text-align: left;">出発T1。マドリード戦翌日、ローマ入り</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑧</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: left;"><strong>11/19(木)</strong></td>
+<td style="text-align: left;">FCO → ATH</td>
+<td style="text-align: left;"><strong>A3 651</strong></td>
+<td style="text-align: left;"><strong>10:35 → 13:35</strong></td>
+<td style="text-align: left;">2h00m</td>
+<td style="text-align: left;">エーゲ航空</td>
+<td style="text-align: left;">要確認</td>
+<td style="text-align: left;">出発T1。ローマ3連泊後、アテネ2泊へ</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑨</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: left;"><strong>11/21(土)</strong></td>
+<td style="text-align: left;">ATH → IST</td>
+<td style="text-align: left;"><strong>TK 1840</strong></td>
+<td style="text-align: left;"><strong>11:50 → 14:30</strong></td>
+<td style="text-align: left;">1h40m</td>
+<td style="text-align: left;">ターキッシュ</td>
+<td style="text-align: left;">要確認</td>
+<td style="text-align: left;">午前便。夕方のカッパドキア便へ余裕をもって接続</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑩</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: left;"><strong>11/25(水)</strong></td>
+<td style="text-align: left;">IST → CAI</td>
+<td style="text-align: left;"><strong>MS 738</strong></td>
+<td style="text-align: left;"><strong>14:00 → 15:15</strong></td>
+<td style="text-align: left;">2h15m</td>
+<td style="text-align: left;">エジプト航空</td>
+<td style="text-align: left;">要確認</td>
+<td style="text-align: left;">🔴 <strong>試合翌日。昼便のため朝ゆっくり起床可</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">⑪</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: left;"><strong>11/27(金)</strong></td>
+<td style="text-align: left;">CAI → NBO</td>
+<td style="text-align: left;"><strong>MS 849</strong></td>
+<td style="text-align: left;"><strong>21:35 → 03:30(+1)</strong></td>
+<td style="text-align: left;">4h55m</td>
+<td style="text-align: left;">エジプト航空</td>
+<td style="text-align: left;">要確認</td>
+<td style="text-align: left;">出発T3。🔴 <strong>機中泊。11/28 03:30 ナイロビ着（早朝）</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">⑫</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: left;"><strong>12/01(火)</strong></td>
+<td style="text-align: left;">NBO → ADD</td>
+<td style="text-align: left;"><strong>ET 319</strong></td>
+<td style="text-align: left;"><strong>17:30 → 19:30</strong></td>
+<td style="text-align: left;">2h00m</td>
+<td style="text-align: left;">エチオピア航空</td>
+<td style="text-align: left;">要確認</td>
+<td style="text-align: left;">出発T1C。ADD乗継4h25m</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑬</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: left;"><strong>12/01(火)</strong></td>
+<td style="text-align: left;">ADD → BKK</td>
+<td style="text-align: left;"><strong>ET 608</strong></td>
+<td style="text-align: left;"><strong>23:55 → 12:30(+1)</strong></td>
+<td style="text-align: left;">8h35m</td>
+<td style="text-align: left;">エチオピア航空</td>
+<td style="text-align: left;">要確認</td>
+<td style="text-align: left;">出発T2。🔴 <strong>12/2(水) 12:30 BKK着</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">⑭</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: left;"><strong>2027/03/01(月)</strong></td>
+<td style="text-align: left;">BKK → SIN</td>
+<td style="text-align: left;"><strong>SQ 705</strong></td>
+<td style="text-align: left;"><strong>09:40 → 13:10</strong></td>
+<td style="text-align: left;">2h30m</td>
+<td style="text-align: left;">シンガポール航空</td>
+<td style="text-align: left;">要確認</td>
+<td style="text-align: left;">帰省便第1区間</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑮</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: left;"><strong>2027/03/03(水)</strong></td>
+<td style="text-align: left;">SIN → <strong>HND</strong></td>
+<td style="text-align: left;"><strong>NH 842</strong></td>
+<td style="text-align: left;"><strong>10:45 → 18:25</strong></td>
+<td style="text-align: left;">6h40m</td>
+<td style="text-align: left;"><strong>ANA</strong></td>
+<td style="text-align: left;">🔵 <strong>ビジネス Z</strong></td>
+<td style="text-align: left;">出発T2。🔴 <strong>羽田着。日中便で世界一周完結</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>🔵 = 確認メールにクラス表記あり（ビジネス Z）／🔴 = 要対応／「要確認」= 確認メールにクラス表記がなく、ビジネス確保の確証が取れていない区間（U-2）</strong></p>
+</blockquote>
+<h3 id="33">3.3 規則適合判定</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: right;">実績</th>
+<th style="text-align: left;">上限・規則</th>
+<th style="text-align: left;">判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>飛行クーポン</strong></td>
+<td style="text-align: right;">15枚</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>地上区間</strong></td>
+<td style="text-align: right;">1枚（LIM⇢GRU）</td>
+<td style="text-align: left;">最大5本（R-10）</td>
+<td style="text-align: left;">✅ 適合</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>合計クーポン</strong></td>
+<td style="text-align: right;"><strong>16枚</strong></td>
+<td style="text-align: left;"><strong>16枚（R-1）</strong></td>
+<td style="text-align: left;">✅ <strong>適合（上限ちょうど・予備0枚）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>総マイル</strong></td>
+<td style="text-align: right;"><strong>31,308</strong>（地上含む）</td>
+<td style="text-align: left;"><strong>34,000枠</strong></td>
+<td style="text-align: left;">✅ <strong>適合（余裕 約2,692マイル）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ストップオーバー</strong></td>
+<td style="text-align: right;">12都市</td>
+<td style="text-align: left;">最大15（R-4）</td>
+<td style="text-align: left;">✅ 適合</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>1か国あたり都市数</strong></td>
+<td style="text-align: right;">各国1都市（米国1）</td>
+<td style="text-align: left;">最大3（米国5）（R-4）</td>
+<td style="text-align: left;">✅ 適合</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>太平洋横断</strong></td>
+<td style="text-align: right;">1回（NRT→SFO）</td>
+<td style="text-align: left;">1回（R-5）</td>
+<td style="text-align: left;">✅ 適合</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>大西洋横断</strong></td>
+<td style="text-align: right;">1回（GRU→LIS）</td>
+<td style="text-align: left;">1回（R-5）</td>
+<td style="text-align: left;">✅ 適合</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>エリア2⇔3横断</strong></td>
+<td style="text-align: right;">1回（ADD→BKK）</td>
+<td style="text-align: left;">1回（R-6）</td>
+<td style="text-align: left;">✅ 適合</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>起点・終点</strong></td>
+<td style="text-align: right;">日本発（NRT）・日本着（HND）</td>
+<td style="text-align: left;">同一国（R-8）</td>
+<td style="text-align: left;">✅ 適合</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>有効期間</strong></td>
+<td style="text-align: right;">2026/10/28〜2027/03/03（約4か月）</td>
+<td style="text-align: left;">12か月以内（R-9）</td>
+<td style="text-align: left;">✅ 適合</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>クーポンは上限ちょうどの16枚（予備0枚）。</strong> 以後、飛行区間を1本でも追加することはできない。区間の追加が必要になった場合は、既存区間の削除か地上区間化が必須。</p>
+</blockquote>
+<hr />
+<h2 id="4-8">4. 全体日程表（第8版：発券実績反映版）</h2>
+<blockquote>
+<p>🔴 <strong>= 予約済みRTW便</strong>／⬜ = 別手配（未手配）<br />
+📊 <strong>ビジュアルタイムチャート（24時間棒グラフ）：</strong> 各日の移動・アクティビティ・滞在国をひとめで確認できる <a href="file:///C:/dev/claude/worldtour/東回り_タイムチャート.html"><code>東回り_タイムチャート.html</code></a> および <a href="file:///C:/dev/claude/worldtour/東回り_タイムチャート.svg"><code>東回り_タイムチャート.svg</code></a> を参照。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日付</th>
+<th style="text-align: center;">曜</th>
+<th style="text-align: left;">行程・観光内容</th>
+<th style="text-align: left;">宿泊地</th>
+<th style="text-align: left;">備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>10/26</strong></td>
+<td style="text-align: center;">月</td>
+<td style="text-align: left;">⬜ <strong>BKK → 東京</strong>（ポジショニング・自己手配・エコノミー）</td>
+<td style="text-align: left;">東京（実家）</td>
+<td style="text-align: left;">家族旅行翌日に移動</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>10/27</strong></td>
+<td style="text-align: center;">火</td>
+<td style="text-align: left;">東京滞在・パッキング・最終準備</td>
+<td style="text-align: left;">東京（実家）</td>
+<td style="text-align: left;">ESTA取得済みを確認</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>10/28</strong></td>
+<td style="text-align: center;">水</td>
+<td style="text-align: left;">🔴 <strong>成田T1 17:00 NH8 → SFO 10:20着</strong>（同日午前着）<br>午後 サンフランシスコ市内観光（フィッシャーマンズワーフ等）</td>
+<td style="text-align: left;">サンフランシスコ</td>
+<td style="text-align: left;">🔴 <strong>THE Room 満喫</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>10/29</strong></td>
+<td style="text-align: center;">木</td>
+<td style="text-align: left;">🔴 <strong>SFO(T-I) 10:45 UA1271 → MEX 16:05着</strong><br>夕方 メキシコシティ着・ソカロ周辺散策</td>
+<td style="text-align: left;">メキシコシティ①</td>
+<td style="text-align: left;">🔴 <strong>現在エコノミー（U-1）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>10/30</strong></td>
+<td style="text-align: center;">金</td>
+<td style="text-align: left;"><strong>テオティワカン遺跡 ＆ 国立人類学博物館</strong>（終日観光）</td>
+<td style="text-align: left;">メキシコシティ②</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>10/31</strong></td>
+<td style="text-align: center;">土</td>
+<td style="text-align: left;"><strong>午前 メキシコシティ市内観光</strong>（3時間・ホテル10:30発）<br><strong>MEX(T1) 13:10 CM121 → PTY 17:54</strong><br><strong>PTY(T2) 19:09 CM489 → LIM 22:45</strong><br>→ 23:45頃 リマ空港近郊ホテル</td>
+<td style="text-align: left;"><strong>リマ①</strong></td>
+<td style="text-align: left;">✅ <strong>当日着に改善（旧 00:55(+1)）。乗継1h15m</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/01</strong></td>
+<td style="text-align: center;">日</td>
+<td style="text-align: left;">✅ <strong>リマで通常の朝を迎えられる</strong>（就寝00:15・起床は自由）<br>⬜ <strong>LIM → CUZ</strong>（別手配・<strong>朝便も選べる</strong>）→ 専用車でオリャンタイタンボ<br>⬜ <strong>列車で マチュピチュ村（標高2,040m）へ</strong>。朝便と組めば<strong>明るいうちに到着可能</strong></td>
+<td style="text-align: left;">マチュピチュ村①</td>
+<td style="text-align: left;">✅ <strong>A-1 成立により時刻の縛りが消えた。クスコ不泊の高山病回避ルートは維持</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/02</strong></td>
+<td style="text-align: center;">月</td>
+<td style="text-align: left;">🔴 <strong>マチュピチュ遺跡 終日観光（入場券確保済）</strong><br><strong>07:00 ワイナピチュ（3-A・Puerta Baja）／13:00 上段テラス（1-B・Puerta Principal）</strong><br>⚠️ ワイナピチュ登山ゲートは <strong>09:00 締切</strong>。再入場不可のため一度退場して入り直す</td>
+<td style="text-align: left;">マチュピチュ村②</td>
+<td style="text-align: left;">✅ <strong>2026/9/5 購入済み S/369.32</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/03</strong></td>
+<td style="text-align: center;">火</td>
+<td style="text-align: left;">午前 マチュピチュ村散策 → ⬜ 鉄道でクスコへ</td>
+<td style="text-align: left;">クスコ①</td>
+<td style="text-align: left;">標高順応後にクスコ泊</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/04</strong></td>
+<td style="text-align: center;">水</td>
+<td style="text-align: left;"><strong>クスコ市内・近郊遺跡観光</strong>（サクサイワマン、12角の石等）</td>
+<td style="text-align: left;">クスコ②</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/05</strong></td>
+<td style="text-align: center;">木</td>
+<td style="text-align: left;">⬜ クスコ → リマ → <strong>イグアス（IGU）</strong>（RTW外・南米国内線）</td>
+<td style="text-align: left;">イグアス①</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/06</strong></td>
+<td style="text-align: center;">金</td>
+<td style="text-align: left;"><strong>イグアスの滝【アルゼンチン側】終日観光</strong><br>悪魔の喉笛、上・下トレイル、滝壺ボート（Gran Aventura）</td>
+<td style="text-align: left;">イグアス②</td>
+<td style="text-align: left;">★アルゼンチン側丸1日</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/07</strong></td>
+<td style="text-align: center;">土</td>
+<td style="text-align: left;"><strong>イグアスの滝【ブラジル側】終日観光</strong><br>大パノラマ遊歩道 ＆ ★ヘリコプター遊覧（Helisul）＆ 鳥類園</td>
+<td style="text-align: left;">イグアス③</td>
+<td style="text-align: left;">★ブラジル側丸1日＋ヘリ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/08</strong></td>
+<td style="text-align: center;">日</td>
+<td style="text-align: left;">⬜ 午前 IGU → <strong>サンパウロ（GRU）</strong>。午後 市内散策</td>
+<td style="text-align: left;">サンパウロ①</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/09</strong></td>
+<td style="text-align: center;">月</td>
+<td style="text-align: left;"><strong>サンパウロ終日観光</strong>（パウリスタ通り、MASP、リベルダーデ）</td>
+<td style="text-align: left;">サンパウロ②</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/10</strong></td>
+<td style="text-align: center;">火</td>
+<td style="text-align: left;">サンパウロ観光・ショッピング（夕方まで）→ 20:00 GRU空港へ<br>🔴 <strong>GRU(T3) 23:15 TP88 → LIS 12:10(+1)</strong></td>
+<td style="text-align: left;">機中泊</td>
+<td style="text-align: left;">🔴 <strong>【大西洋横断】夜行便</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/11</strong></td>
+<td style="text-align: center;">水</td>
+<td style="text-align: left;">🔴 <strong>12:10 リスボン着</strong>（当初10:55着から後ろ倒し）<br>午後 ベレンの塔・ジェロニモス修道院 → 夕方 アルファマ散策</td>
+<td style="text-align: left;">リスボン①</td>
+<td style="text-align: left;">🔴 <strong>観光は午後のみ。優先順位を絞る</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/12</strong></td>
+<td style="text-align: center;">木</td>
+<td style="text-align: left;">🔴 <strong>04:40 ホテル発 → LIS(T1) 07:10 TP1030 → BCN 10:05</strong><br>午前からバルセロナ観光（ランブラス通り、ゴシック地区）</td>
+<td style="text-align: left;">バルセロナ①</td>
+<td style="text-align: left;">🔴 <strong>早朝便。前夜の早寝が必須</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/13</strong></td>
+<td style="text-align: center;">金</td>
+<td style="text-align: left;"><strong>サグラダ・ファミリア（塔登頂）</strong>、カサ・バトリョ、グエル公園</td>
+<td style="text-align: left;">バルセロナ②</td>
+<td style="text-align: left;">事前日時指定予約必須</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/14</strong></td>
+<td style="text-align: center;">土</td>
+<td style="text-align: left;">午前 カンプノウツアー → ⬜ <strong>午後 AVEでマドリードへ</strong>（約2.5h）<br>マドリード市内散策</td>
+<td style="text-align: left;">マドリード①</td>
+<td style="text-align: left;">★前日入りで移動リスク排除</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/15</strong></td>
+<td style="text-align: center;">日</td>
+<td style="text-align: left;">マドリード市内観光（プラド美術館、レティーロ公園）<br>🔴 <strong>20:45 スペイン vs イングランド（メトロポリターノ）観戦！</strong></td>
+<td style="text-align: left;">マドリード②</td>
+<td style="text-align: left;">🔴 <strong>絶対条件（観戦①）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/16</strong></td>
+<td style="text-align: center;">月</td>
+<td style="text-align: left;">⬜ <strong>09:30頃 AVE でバルセロナへ</strong>（13:00頃 Sants着）→ 空港へ<br>🔴 <strong>BCN(T1) 16:50 AZ79 → FCO 18:35</strong>。夜景散策</td>
+<td style="text-align: left;">ローマ①</td>
+<td style="text-align: left;">ローマ3連泊開始</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/17</strong></td>
+<td style="text-align: center;">火</td>
+<td style="text-align: left;">★<strong>ローマ終日観光</strong><br>コロッセオ、フォロ・ロマーノ、真実の口、ヴァチカン市国</td>
+<td style="text-align: left;">ローマ②</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/18</strong></td>
+<td style="text-align: center;">水</td>
+<td style="text-align: left;">⬜ ★<strong>ローマ発：トスカーナ日帰りワイナリーツアー</strong><br>モンテプルチャーノ地下セラー＆Vino Nobile試飲、ワイナリーランチ、オルチャ渓谷、ピエンツァ</td>
+<td style="text-align: left;">ローマ③</td>
+<td style="text-align: left;">★荷物はホテルに置いたまま</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/19</strong></td>
+<td style="text-align: center;">木</td>
+<td style="text-align: left;">07:15 ホテル発（レオナルドEXPで32分）<br>🔴 <strong>FCO(T1) 10:35 A3651 → ATH 13:35</strong>。午後 プラカ地区・夕景</td>
+<td style="text-align: left;">アテネ①</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/20</strong></td>
+<td style="text-align: center;">金</td>
+<td style="text-align: left;">★<strong>アテネ終日観光</strong><br>アクロポリス（パルテノン神殿）、新アクロポリス博物館、国立考古学博物館、古代アゴラ</td>
+<td style="text-align: left;">アテネ②</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/21</strong></td>
+<td style="text-align: center;">土</td>
+<td style="text-align: left;">08:30 ホテル発 → 🔴 <strong>ATH 11:50 TK1840 → IST 14:30</strong><br>⬜ 夕方 IST → NAV（別手配国内線）でカッパドキアへ</td>
+<td style="text-align: left;">カッパドキア①</td>
+<td style="text-align: left;">🔴 <strong>午前便化で乗継余裕が拡大</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/22</strong></td>
+<td style="text-align: center;">日</td>
+<td style="text-align: left;"><strong>早朝：カッパドキア熱気球ツアー</strong>／日中：ギョレメ野外博物館</td>
+<td style="text-align: left;">カッパドキア②</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/23</strong></td>
+<td style="text-align: center;">月</td>
+<td style="text-align: left;">⬜ 午前 NAV → IST。アヤソフィア、ブルーモスク</td>
+<td style="text-align: left;">イスタンブール①</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/24</strong></td>
+<td style="text-align: center;">火</td>
+<td style="text-align: left;">午前 グランドバザール、ボスポラス海峡クルーズ<br>🔴 <strong>18:45 ガラタサライ vs アストン・ヴィラ（RAMS Park）</strong></td>
+<td style="text-align: left;">イスタンブール②</td>
+<td style="text-align: left;">🔴 <strong>絶対条件（観戦②）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/25</strong></td>
+<td style="text-align: center;">水</td>
+<td style="text-align: left;">試合翌朝はゆっくり起床 → 09:30 ホテル発<br>🔴 <strong>IST 14:00 MS738 → CAI 15:15</strong>。ハン・ハリーリ市場散策</td>
+<td style="text-align: left;">カイロ①</td>
+<td style="text-align: left;">🔴 <strong>昼便確保</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/26</strong></td>
+<td style="text-align: center;">木</td>
+<td style="text-align: left;"><strong>ギザ三大ピラミッド（クフ王ピラミッド内部見学）</strong>、スフィンクス</td>
+<td style="text-align: left;">カイロ②</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/27</strong></td>
+<td style="text-align: center;">金</td>
+<td style="text-align: left;"><strong>大エジプト博物館（GEM）見学</strong>（午前〜15:00）<br>16:00 ホテルで荷物回収 → 17:00 空港へ<br>🔴 <strong>CAI(T3) 21:35 MS849 → NBO 03:30(+1)</strong></td>
+<td style="text-align: left;">機中泊</td>
+<td style="text-align: left;">🔴 <strong>当初より2h20m早発。GEM見学時間を圧縮</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/28</strong></td>
+<td style="text-align: center;">土</td>
+<td style="text-align: left;">🔴 <strong>03:30 ナイロビ着</strong>（当初06:10着から前倒し）<br>⬜ 入国後、空港ホテルのデイユースで<strong>04:30〜08:30 仮眠・朝食</strong><br>⬜ 09:00 専用4x4でアンボセリへ（約4h）→ 13:00 ロッジ着・昼食<br>15:30〜18:30 ★<strong>サンセットサファリ</strong></td>
+<td style="text-align: left;">アンボセリ①</td>
+<td style="text-align: left;">🔴 <strong>深夜着のため仮眠を挟む再設計</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/29</strong></td>
+<td style="text-align: center;">日</td>
+<td style="text-align: left;">★<strong>アンボセリ国立公園 終日サファリ</strong>（キリマンジャロと象の群れ）</td>
+<td style="text-align: left;">アンボセリ②</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/30</strong></td>
+<td style="text-align: center;">月</td>
+<td style="text-align: left;">早朝サファリ後、午前アンボセリ発 → <strong>13:30〜14:00 ナイロビ戻り</strong><br>午後 ★<strong>ジラフ・センター（キリン手渡し餌やり）</strong><br>夕方 空港敷地内ホテルへ</td>
+<td style="text-align: left;">ナイロビ（空港敷地内）</td>
+<td style="text-align: left;">🔴 <strong>前日昼戻りで陸路遅延リスク排除</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>12/01</strong></td>
+<td style="text-align: center;">火</td>
+<td style="text-align: left;">午前 ★<strong>エレファント孤児院（赤ちゃん象ミルクやり・要予約）</strong><br>午後 ホテルで休息 → 15:00 空港へ<br>🔴 <strong>NBO(T1C) 17:30 ET319 → ADD 19:30</strong>（乗継4h25m）<br>🔴 <strong>ADD(T2) 23:55 ET608 → BKK 12:30(+1)</strong></td>
+<td style="text-align: left;">機中泊</td>
+<td style="text-align: left;">🔴 <strong>ADDで夕食・シャワー（Cloud Nine Lounge）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>12/02</strong></td>
+<td style="text-align: center;">水</td>
+<td style="text-align: left;">🔴 <strong>12:30 バンコク着 → 14時頃 自宅帰宅（主要行程完結！）</strong></td>
+<td style="text-align: left;">自宅</td>
+<td style="text-align: left;">🔴 <strong>当初「正午」目標を約30分超過</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">12/3〜2/28</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;">バンコク自宅滞在（年末年始・通常生活）</td>
+<td style="text-align: left;">自宅</td>
+<td style="text-align: left;">約3か月ストップオーバー</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2027/03/01</strong></td>
+<td style="text-align: center;">月</td>
+<td style="text-align: left;">🔴 <strong>BKK 09:40 SQ705 → SIN 13:10</strong>。午後からシンガポール観光</td>
+<td style="text-align: left;">シンガポール①</td>
+<td style="text-align: left;">🔴 <strong>午前便のため初日午後が丸々使える</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2027/03/02</strong></td>
+<td style="text-align: center;">火</td>
+<td style="text-align: left;">シンガポール終日観光（マリーナベイ、ガーデンズ・バイ・ザ・ベイ）</td>
+<td style="text-align: left;">シンガポール②</td>
+<td style="text-align: left;">🔴 <strong>実質唯一の終日観光日</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2027/03/03</strong></td>
+<td style="text-align: center;">水</td>
+<td style="text-align: left;">🔴 <strong>SIN(T2) 10:45 NH842 → 東京・羽田 18:25着</strong></td>
+<td style="text-align: left;">東京</td>
+<td style="text-align: left;">🔴 <strong>世界一周完結！（羽田着）</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5">5. 予約実績に伴う要注意ポイント</h2>
+<h3 id="51-ua1271">5.1 🔴 UA1271 がエコノミーで予約されている（最優先課題）</h3>
+<ul>
+<li><strong>10/29 SFO→MEX（UA1271）のみ、ビジネスクラスが確保できていない。</strong> 所要4h20mの短距離とはいえ、RTWビジネス運賃を支払う以上は改善したい。</li>
+<li><strong>同一区間であれば航空会社を変更しても手数料はかからない</strong>ため、以下を窓口で確認する：</li>
+<li>UA1271 のビジネス（RTW用の予約クラス）の空席待ち・キャンセル待ち</li>
+<li><strong>同日別便（UA817 15:12発 等）のビジネス空席</strong></li>
+<li>SFO→MEX を運航する他のStar Alliance系列便（該当便が限られるため要照会）</li>
+<li><strong>改善できない場合でも、区間として成立しているため予約自体は維持する。</strong></li>
+</ul>
+<h3 id="52-pty-1051031">5.2 🔴 PTY 乗継が 1時間05分（10/31）</h3>
+<ul>
+<li>✅ <strong>A-1 成立により CM121（PTY 17:54着）→ CM489（PTY 19:09発）となり、乗継は1h15m に改善。</strong></li>
+<li>✅ <strong>MEX出発が 13:10 に前倒しされたため、遅延しても同日中にリカバリーできる余地が生まれた。</strong></li>
+<li>同一航空会社（コパ航空）の連続便であるため<strong>乗継保護の対象</strong>となるが、リマ以降のペルー行程（11/1 LIM→CUZ・列車）は<strong>別手配</strong>であり、遅延時の補償対象外。<br />
+  → <strong>ペルー国内線・列車は変更可能な運賃で手配する（U-7）。</strong></li>
+</ul>
+<h3 id="53-202696">5.3 ✅ リマ着の深夜問題（2026/9/6 解消）</h3>
+<p><strong>経緯：</strong> 9/4 の予約では CM135/CM337 で <strong>リマ着が 11/1 00:55（深夜）</strong>となり、ペルー初日を大きく圧縮していた。<br />
+<strong>9/6 の発券時に CM121/CM489 へ振り替えることに成功し、リマ着が 10/31 22:45（当日）に戻った。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">旧（CM135/CM337）</th>
+<th style="text-align: left;">✅ 現（CM121/CM489）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">リマ着</td>
+<td style="text-align: left;">11/1 <strong>00:55</strong>（深夜）</td>
+<td style="text-align: left;">✅ <strong>10/31 22:45</strong>（当日）</td>
+</tr>
+<tr>
+<td style="text-align: left;">ホテル着・就寝</td>
+<td style="text-align: left;">02:00／02:30</td>
+<td style="text-align: left;">✅ 23:45／<strong>00:15</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">10/31 夜の睡眠</td>
+<td style="text-align: left;">約6時間</td>
+<td style="text-align: left;">✅ <strong>約9時間</strong>（起床09:30）</td>
+</tr>
+<tr>
+<td style="text-align: left;">メキシコ最終日の午前</td>
+<td style="text-align: left;">約5時間</td>
+<td style="text-align: left;">約3時間（ホテル10:30発）</td>
+</tr>
+<tr>
+<td style="text-align: left;">PTY 乗継</td>
+<td style="text-align: left;">1h05m</td>
+<td style="text-align: left;">✅ <strong>1h15m</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">LIM→CUZ の制約</td>
+<td style="text-align: left;">🔴 13:00前後発に固定</td>
+<td style="text-align: left;">✅ <strong>縛りなし。朝便も選べる</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>医学的に重要な「クスコ（3,400m）に泊まらずマチュピチュ村（2,040m）へ直行する高山病回避ルート」は維持される。</strong></li>
+<li>✅ <strong>手配上の条件が緩和された（U-7）:</strong></li>
+<li><strong>リマ空港近郊ホテルは 10/31 泊</strong>（23:45頃チェックイン。深夜1:30着ではなくなった）</li>
+<li><strong>LIM→CUZ は朝便を選べる。</strong>早い便にすればオリャンタイタンボ発の列車も早められ、<strong>明るいうちにマチュピチュ村へ着ける</strong></li>
+<li>座席の事前予約が必須なのは従来どおり</li>
+<li><strong>代替案（フォールバック）:</strong> 11/1 をリマ休養日とし、11/2 にマチュピチュ村へ移動する案は、<br />
+<strong>マチュピチュ村2泊が1泊に減るため引き続き非推奨。</strong>A-1 成立により採用の可能性はさらに下がった。</li>
+</ul>
+<h3 id="54-1128-0330">5.4 🔴 ナイロビ着が 11/28 03:30（早朝）</h3>
+<ul>
+<li>MS849 が 21:35発／03:30着となり、当初（23:55発／06:10着）より<strong>約2時間40分早く到着</strong>する。</li>
+<li><strong>11/27（カイロ最終日）:</strong> 大エジプト博物館の見学を<strong>15:00で切り上げ、17:00に空港へ向かう</strong>必要がある。GEMは広大なため、見学順路を事前に決めておく。</li>
+<li><strong>11/28（ケニア初日）:</strong> 03:30着は入国・両替・ドライバー合流に不都合。<br />
+  → <strong>空港ホテル（クラウンプラザ ナイロビ空港等）のデイユースを 04:30〜08:30 で押さえ、仮眠・シャワー・朝食を取ってから 09:00 にアンボセリへ出発する。</strong><br />
+  → これにより<strong>アンボセリ2連泊と初日夕方のサンセットサファリは維持できる。</strong></li>
+</ul>
+<h3 id="55-bkk-122-1230e-5">5.5 🔴 BKK着が 12/2 12:30（E-5「正午帰宅」の扱い）</h3>
+<ul>
+<li>ET608 が 23:55発／12:30着となり、<strong>入国・荷物受取・自宅移動を含めると帰宅は14時前後</strong>となる。</li>
+<li>当初の「正午（12:00）帰宅」からは約2時間の後ろ倒しだが、<strong>12/2(水)中の帰宅という要件の本質は達成</strong>している。</li>
+<li>ADD 乗継は 19:30着→23:55発の <strong>4時間25分</strong>。当初（3h35m）より余裕が増え、接続の安全性はむしろ向上した。</li>
+</ul>
+<h3 id="56">5.6 その他の時刻変更に伴う影響</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">区間</th>
+<th style="text-align: left;">変更内容</th>
+<th style="text-align: left;">影響</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>10/31 MEX発</strong></td>
+<td style="text-align: left;">09:35 → 15:30 → ✅ <strong>13:10</strong>（CM137→CM135→<strong>CM121</strong>）</td>
+<td style="text-align: left;">✅ <strong>午前3時間の観光を残しつつ、リマ当日着を確保</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/10 GRU発</strong></td>
+<td style="text-align: left;">21:05 → <strong>23:15</strong></td>
+<td style="text-align: left;">⚠️ リスボン着が 10:55 → <strong>12:10</strong>。リスボン観光が午後のみに圧縮</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/12 LIS発</strong></td>
+<td style="text-align: left;">08:35 → <strong>07:10</strong></td>
+<td style="text-align: left;">⚠️ 04:40 ホテル発。前夜の早寝が必須／✅ バルセロナ着が早まり午前から観光可</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/16 BCN発</strong></td>
+<td style="text-align: left;">AZ77 16:45 → <strong>AZ79 16:50</strong></td>
+<td style="text-align: left;">✅ 実質同一。マドリード発AVEは09:30頃を推奨</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/21 ATH発</strong></td>
+<td style="text-align: left;">A3992 13:15 → <strong>TK1840 11:50</strong></td>
+<td style="text-align: left;">✅ IST着が 14:30 となり、夕方のカッパドキア便への接続に余裕（改善）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/25 IST発</strong></td>
+<td style="text-align: left;">TK692 12:35 → <strong>MS738 14:00</strong></td>
+<td style="text-align: left;">✅ 出発がさらに遅く、試合翌朝をよりゆっくり過ごせる（改善）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2027/3/1 BKK発</strong></td>
+<td style="text-align: left;">SQ707 12:15 → <strong>SQ705 09:40</strong></td>
+<td style="text-align: left;">✅ SIN着 13:10。初日午後が丸々観光に使える（改善）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2027/3/3 SIN発</strong></td>
+<td style="text-align: left;">SQ638（夜行・成田着） → <strong>NH842（日中便・羽田着）</strong></td>
+<td style="text-align: left;">⚠️ シンガポール最終日は午前出発のため観光不可／✅ ANAビジネス確定・日中便で時差負担が軽い／⚠️ <strong>帰着空港が成田から羽田へ変更</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-rtw">6. RTW に含めない区間（別手配・すべて未手配）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">区間・内容</th>
+<th style="text-align: left;">移動手段</th>
+<th style="text-align: right;">概算</th>
+<th style="text-align: left;">状態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>10/26</strong></td>
+<td style="text-align: left;"><strong>BKK → 東京</strong></td>
+<td style="text-align: left;">航空便（エコノミー）</td>
+<td style="text-align: right;">¥3〜5万</td>
+<td style="text-align: left;">⬜</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/02</strong></td>
+<td style="text-align: left;">✅ <strong>マチュピチュ入場券 2枚</strong>（3-A 07:00 ／ 1-B 13:00）</td>
+<td style="text-align: left;">文化省公式 tuboleto</td>
+<td style="text-align: right;"><strong>S/369.32</strong>（約¥17,000）</td>
+<td style="text-align: left;">✅ <strong>購入済 9/5</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>10/31</strong></td>
+<td style="text-align: left;"><strong>リマ空港近郊ホテル</strong>（23:45頃チェックイン）</td>
+<td style="text-align: left;">空港直結ホテル</td>
+<td style="text-align: right;">$150〜200</td>
+<td style="text-align: left;">⬜</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/01</strong></td>
+<td style="text-align: left;">🔴 <strong>LIM → CUZ（午後便）</strong></td>
+<td style="text-align: left;">ペルー国内線（LATAM等）</td>
+<td style="text-align: right;">$80〜150</td>
+<td style="text-align: left;">⬜</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/01</strong></td>
+<td style="text-align: left;">クスコ空港 → オリャンタイタンボ駅</td>
+<td style="text-align: left;">事前手配専用送迎車（約1h45m）</td>
+<td style="text-align: right;">$50〜80</td>
+<td style="text-align: left;">⬜</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/01・03</strong></td>
+<td style="text-align: left;">オリャンタイタンボ ⇄ マチュピチュ村</td>
+<td style="text-align: left;">展望列車（ペルーレイル/インカレイル）</td>
+<td style="text-align: right;">$150〜250</td>
+<td style="text-align: left;">⬜</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/05</strong></td>
+<td style="text-align: left;">LIM → IGU（イグアス）</td>
+<td style="text-align: left;">南米国内線（LATAM等）</td>
+<td style="text-align: right;">要見積</td>
+<td style="text-align: left;">⬜</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/06</strong></td>
+<td style="text-align: left;">イグアス（アルゼンチン側）Gran Aventura</td>
+<td style="text-align: left;">滝壺ボート＆ジャングルトラック</td>
+<td style="text-align: right;">$80〜100</td>
+<td style="text-align: left;">⬜</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/07</strong></td>
+<td style="text-align: left;">イグアス（ブラジル側）ヘリコプター遊覧</td>
+<td style="text-align: left;">Helisul社（約10分）</td>
+<td style="text-align: right;">$130〜150</td>
+<td style="text-align: left;">⬜</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/08</strong></td>
+<td style="text-align: left;">IGU → GRU（サンパウロ）</td>
+<td style="text-align: left;">南米国内線</td>
+<td style="text-align: right;">要見積</td>
+<td style="text-align: left;">⬜</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/14・16</strong></td>
+<td style="text-align: left;">バルセロナ ⇄ マドリード</td>
+<td style="text-align: left;">AVE（高速鉄道・片道約2h30m）</td>
+<td style="text-align: right;">€120〜200</td>
+<td style="text-align: left;">⬜</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/18</strong></td>
+<td style="text-align: left;">ローマ発 トスカーナ日帰りワイナリーツアー</td>
+<td style="text-align: left;">ツアー催行車（約11〜12h）</td>
+<td style="text-align: right;">€150〜250</td>
+<td style="text-align: left;">⬜</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/21・23</strong></td>
+<td style="text-align: left;">IST ⇄ NAV（カッパドキア）</td>
+<td style="text-align: left;">トルコ国内線</td>
+<td style="text-align: right;">要見積</td>
+<td style="text-align: left;">⬜</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/28</strong></td>
+<td style="text-align: left;">🔴 <strong>ナイロビ空港ホテル デイユース（04:30〜08:30）</strong></td>
+<td style="text-align: left;">空港敷地内ホテル</td>
+<td style="text-align: right;">$80〜120</td>
+<td style="text-align: left;">⬜</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/28〜30</strong></td>
+<td style="text-align: left;">アンボセリ・サファリツアー（2泊3日）＋ナイロビ名所</td>
+<td style="text-align: left;">専用4x4サファリカー</td>
+<td style="text-align: right;">要見積</td>
+<td style="text-align: left;">⬜</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7">7. 健康・防疫・入国手続</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">状況</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>米国 ESTA</strong></td>
+<td style="text-align: left;">SFO 経由が確定したため<strong>必須</strong></td>
+<td style="text-align: left;">🔴 <strong>10月中に申請（出発72時間前まで）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>黄熱ワクチン接種期限</strong></td>
+<td style="text-align: left;">ケニア入国（11/28）の10日前＝<strong>11月18日前後まで</strong></td>
+<td style="text-align: left;">✅ 10月中旬〜11月上旬の接種で間に合う</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>タイ帰着時の黄熱証明書</strong></td>
+<td style="text-align: left;">ケニアからの帰国となるため提示を求められる可能性</td>
+<td style="text-align: left;">🔴 <strong>要確認（U-6）。イエローカード携行必須</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>マチュピチュ高山病対策</strong></td>
+<td style="text-align: left;">クスコ不泊・標高2,040mのマチュピチュ村へ直行</td>
+<td style="text-align: left;">✅ 医学的推奨ルートを維持</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>欧州EES登録</strong></td>
+<td style="text-align: left;">シェンゲン出入国システム</td>
+<td style="text-align: left;">11/11 リスボン入国時に指紋・顔写真登録</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>電子渡航認証</strong></td>
+<td style="text-align: left;">ANAより「事前申請が必要な渡航先あり」と案内あり<br>（米国ESTA・ケニアeTA・トルコ等）</td>
+<td style="text-align: left;">🔴 <strong>各国の要否を10月中に洗い出す</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8">8. 関連ファイル</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ファイル</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>東回り_要件定義書.md</code></strong></td>
+<td style="text-align: left;"><strong>本書（第8版・正本）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>東回り_発券用資料.md</code></strong></td>
+<td style="text-align: left;"><strong>発券済み資料（第10版・eチケット券面反映）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>東回り_タイムチャート.html</code></strong></td>
+<td style="text-align: left;"><strong>24時間ビジュアルタイムチャート（全41日インタラクティブ図）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>東回り_タイムチャート.svg</code></strong></td>
+<td style="text-align: left;"><strong>24時間ビジュアルタイムチャート（高解像度ベクター図）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>東回り_旅のガイド_スライド.html</code></strong></td>
+<td style="text-align: left;"><strong>旅のガイド・プレゼンテーションスライド（全15スライド）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>ANA予約0904(東回り）.txt</code></strong></td>
+<td style="text-align: left;"><strong>予約確認メール原本（PNR: EANRV5）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>手配_マチュピチュ.md</code></strong></td>
+<td style="text-align: left;"><strong>個別手配① ペルー（11/1-11/5）。入場券サーキット選択・列車時刻・Klook不適合の理由</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>tickets/マチュピチュ/費用明細.md</code></strong></td>
+<td style="text-align: left;">✅ <strong>入場券の購入記録・費用明細・券面から判明した当日の制約</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>手配_マチュピチュ_ルート比較.md</code></strong></td>
+<td style="text-align: left;"><strong>全10ルートの公式仕様＋11/2の実測在庫。ルート選択の判断材料</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>手配_マチュピチュ_業者照会テンプレート.md</code></strong></td>
+<td style="text-align: left;"><strong>入場券の業者照会文（日/英/西）＋判定基準＋回答記録シート</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>手配_イグアス.md</code></strong></td>
+<td style="text-align: left;"><strong>個別手配② イグアス（11/5-11/8）。両側の時刻設計・Gran Aventura・ヘリ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>手配_サファリ.md</code></strong></td>
+<td style="text-align: left;"><strong>個別手配③ ケニア（11/28-12/1）。孤児院の予約枠・園内ロッジ・単独コスト</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>手配_ワイナリー.md</code></strong></td>
+<td style="text-align: left;"><strong>個別手配④ ローマ発トスカーナ（11/18）。Klook適合度が最も高い</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>手配_気球ツアー.md</code></strong></td>
+<td style="text-align: left;"><strong>個別手配⑤ カッパドキア（11/21-11/23）。欠航率30-40%への予備日設計</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>東回り_サッカー観戦候補.md</code></td>
+<td style="text-align: left;">観戦2試合の詳細・チケット入手手順</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>RTW運賃規則_クーポンとルール.md</code></td>
+<td style="text-align: left;">スターアライアンス運賃規則・クーポン算定ルール</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>スターアライアンス25社_ビジネスクラス詳細レポート.md</code></td>
+<td style="text-align: left;">加盟航空会社のシート・機材詳細</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>西回り案_アーカイブ/</code></td>
+<td style="text-align: left;">🚫 旧・西回り資料一式（参照対象外）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9">9. 🔴 期限のあるタスク</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">優先</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">🔴 <strong>1</strong></td>
+<td style="text-align: left;">🔴 <strong>RTW の発券（PNR: EANRV5）</strong><br>・UA1271 のビジネス空席確認（U-1）<br>・全区間の予約クラス確認（U-2）<br>・発券国／決済通貨の決定（U-3）<br>・NH8 の THE Room 機材確認（U-4）</td>
+<td style="text-align: left;">🔴 <strong>2026年9月7日（月）00:43 タイ時間</strong><br>（実務上は <strong>9/6中</strong>に決着）</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: left;"><strong>旧仮予約の失効確認</strong>（バンコク発 D6LJA2 等・残存していれば破棄）</td>
+<td style="text-align: left;">9/6</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: left;"><strong>ガラタサライ戦：Passo.com.tr で Passo Taraftar カード申請</strong>（外国人必須）</td>
+<td style="text-align: left;">9月中</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: left;"><strong>スペイン戦：RFEF公式での販売情報確認・アプリ導入</strong></td>
+<td style="text-align: left;">9月中</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: left;">🔴 <strong>ペルー初日の手配（U-7）：リマ空港ホテル（10/31泊）・LIM→CUZ便・列車。</strong>✅ 時刻の縛りは解消済み</td>
+<td style="text-align: left;">9〜10月</td>
+</tr>
+<tr>
+<td style="text-align: center;">~~6~~</td>
+<td style="text-align: left;">~~マチュピチュ入場券手配~~ → ✅ <strong>完了（9/5・S/369.32）</strong><br><strong>残課題：1-B 券の氏名スペル（<code>TAKAMUU</code>）</strong><br>✅ <strong>9/5 tuboleto へ照会メール送信済み・返答待ち</strong></td>
+<td style="text-align: left;">⏳ <strong>9/12 に再送判断</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>7</strong></td>
+<td style="text-align: left;"><strong>米国ESTA申請</strong></td>
+<td style="text-align: left;">10月（出発72時間前まで）</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>8</strong></td>
+<td style="text-align: left;"><strong>黄熱ワクチンの接種予約</strong></td>
+<td style="text-align: left;">10月中旬〜下旬に接種</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>9</strong></td>
+<td style="text-align: left;">🔴 <strong>ケニアの手配（U-8）：ナイロビ空港ホテル デイユース＋アンボセリ2泊3日サファリ</strong></td>
+<td style="text-align: left;">10月</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>10</strong></td>
+<td style="text-align: left;"><strong>ローマ発 トスカーナ日帰りツアー予約（U-9）</strong></td>
+<td style="text-align: left;">10月</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>11</strong></td>
+<td style="text-align: left;"><strong>イグアスの滝ヘリ遊覧・ボートツアー手配（U-10）</strong></td>
+<td style="text-align: left;">10月</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>12</strong></td>
+<td style="text-align: left;"><strong>南米国内線（LIM→IGU、IGU→GRU）・トルコ国内線（IST⇄NAV）の手配</strong></td>
+<td style="text-align: left;">10月</td>
+</tr>
+</tbody>
+</table>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

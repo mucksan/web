@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界一周旅行 2026-2027 家族共有ガイド＆タイムチャート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1e3a8a;
+    --primary-light: #3b82f6;
+    --primary-dark: #0f172a;
+    --accent: #d97706;
+    --accent-light: #fef3c7;
+    --success: #059669;
+    --success-light: #d1fae5;
+    --bg-page: #f8fafc;
+    --bg-card: #ffffff;
+    --border: #e2e8f0;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding-bottom: 60px;
+  }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #1e40af 100%);
+    color: #ffffff;
+    padding: 36px 20px 24px;
+    box-shadow: var(--shadow-md);
+  }
+  .header-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .badge.success {
+    background: #059669;
+    color: #fff;
+    border-color: #10b981;
+  }
+  .badge.gold {
+    background: #d97706;
+    color: #fff;
+    border-color: #f59e0b;
+  }
+  h1 {
+    font-family: 'Outfit', 'Noto Sans JP', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: #cbd5e1;
+    margin-bottom: 16px;
+  }
+  .header-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .summary-stat {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 10px 14px;
+    border-radius: 8px;
+  }
+  .summary-stat .label {
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .summary-stat .val {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 2px;
+  }
+
+  /* Navigation Sticky Tabs */
+  .nav-tabs-wrapper {
+    position: sticky;
+    top: 0;
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+  }
+  .nav-tabs {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0 10px;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 14px 18px;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tab-btn:hover {
+    color: var(--primary);
+  }
+  .tab-btn.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    background: #eff6ff;
+  }
+
+  /* Main Container */
+  .container {
+    max-width: 1080px;
+    margin: 24px auto;
+    padding: 0 16px;
+  }
+
+  /* Tab Content Panes */
+  .tab-pane {
+    display: none;
+  }
+  .tab-pane.active {
+    display: block;
+    animation: fadeIn 0.2s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Card Styles */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .card-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 8px;
+  }
+
+  /* Notice Box */
+  .notice-box {
+    background: #f0fdf4;
+    border-left: 4px solid var(--success);
+    padding: 14px 16px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 20px;
+    font-size: 13.5px;
+  }
+  .notice-box.warning {
+    background: #fffbeb;
+    border-left-color: var(--accent);
+  }
+  .notice-box.info {
+    background: #eff6ff;
+    border-left-color: var(--primary-light);
+  }
+
+  /* Filter Buttons for Timeline */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .filter-btn {
+    padding: 6px 14px;
+    border-radius: 9999px;
+    border: 1px solid var(--border);
+    background: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover {
+    border-color: var(--primary-light);
+    color: var(--primary);
+  }
+  .filter-btn.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+
+  /* Timeline Item */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 10px;
+    width: 2px;
+    background: #cbd5e1;
+  }
+  .tl-day {
+    position: relative;
+    margin-bottom: 16px;
+  }
+  .tl-dot {
+    position: absolute;
+    left: -28px;
+    top: 14px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--primary-light);
+    box-shadow: 0 0 0 2px #fff;
+  }
+  .tl-day.flight-day .tl-dot {
+    border-color: #d97706;
+    background: #fef3c7;
+  }
+  .tl-day.rest-day .tl-dot {
+    border-color: #059669;
+  }
+  .tl-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .tl-card:hover {
+    box-shadow: var(--shadow-md);
+  }
+  .tl-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .tl-date {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--primary-dark);
+  }
+  .tl-city {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--primary);
+    background: #eff6ff;
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+  .tl-timezone {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .tl-activity {
+    font-size: 13.5px;
+    color: var(--text-main);
+    margin: 4px 0 6px;
+  }
+  .tl-flight-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+  }
+  .tl-stay {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* Table Styles */
+  .table-responsive {
+    overflow-x: auto;
+    margin-top: 8px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    text-align: left;
+  }
+  th {
+    background: #f8fafc;
+    color: var(--text-muted);
+    font-weight: 700;
+    padding: 10px 12px;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:hover td {
+    background: #f8fafc;
+  }
+  .carrier-tag {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 11.5px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: #e2e8f0;
+  }
+  .class-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #fff;
+  }
+  .class-badge.biz { background: #2563eb; }
+  .class-badge.eco { background: #64748b; }
+
+  /* Timezone Converter Widget */
+  .tz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+    margin-top: 12px;
+  }
+  .tz-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    background: #fff;
+  }
+  .tz-card-city {
+    font-weight: 800;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .tz-diff {
+    font-size: 12px;
+    font-weight: 700;
+    color: #b45309;
+    background: #fef3c7;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .tz-calc-example {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    background: #f8fafc;
+    padding: 8px;
+    border-radius: 6px;
+    margin-top: 6px;
+  }
+
+  /* Contact List */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .contact-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    background: #fff;
+  }
+  .contact-card h4 {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .contact-item {
+    font-size: 13px;
+    margin-bottom: 6px;
+    display: flex;
+    gap: 8px;
+  }
+  .contact-item .k {
+    color: var(--text-muted);
+    min-width: 75px;
+    font-weight: 600;
+  }
+  .contact-item .v {
+    color: var(--text-main);
+    font-weight: 500;
+    word-break: break-all;
+  }
+  .phone-link {
+    color: var(--primary-light);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  /* Rule Checklist */
+  .rule-list {
+    list-style: none;
+    margin-top: 10px;
+  }
+  .rule-list li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+  .rule-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: #d1fae5;
+    color: #059669;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  /* Footer */
+  footer {
+    max-width: 1080px;
+    margin: 40px auto 0;
+    padding: 20px 16px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+  }
+
+  /* Print Styles */
+  @media print {
+    header { background: #1e3a8a !important; color: #fff !important; -webkit-print-color-adjust: exact; }
+    .nav-tabs-wrapper { display: none; }
+    .tab-pane { display: block !important; margin-bottom: 30px; page-break-inside: avoid; }
+    .filter-bar { display: none; }
+    body { background: #fff; }
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 640px) {
+    h1 { font-size: 21px; }
+    .tab-btn { padding: 12px 14px; font-size: 13px; }
+    .header-summary-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="badge-row">
+      <span class="badge success">✅ 2026年9月6日 全16便 発券完了</span>
+      <span class="badge gold">✈️ スターアライアンス世界一周（東回り）</span>
+      <span class="badge">ANA予約番号: <strong>EANRV5</strong></span>
+    </div>
+    <h1>世界一周旅行 2026-2027 家族共有ガイド</h1>
+    <div class="subtitle">旅程スケジュール・フライト日本時間・現在地タイムチャート・緊急連絡先・時差早見表</div>
+
+    <div class="header-summary-grid">
+      <div class="summary-stat">
+        <div class="label">旅行期間</div>
+        <div class="val">2026/10/28 〜 2027/3/3</div>
+      </div>
+      <div class="summary-stat">
+        <div class="label">世界一周区間</div>
+        <div class="val">10/28(成田発) 〜 12/2(BKK着)</div>
+      </div>
+      <div class="summary-stat">
+        <div class="label">訪問国・地域</div>
+        <div class="val">11カ国・14都市</div>
+      </div>
+      <div class="summary-stat">
+        <div class="label">航空券（ビジネスクラス）</div>
+        <div class="val">15便中 14便がフルフラット寝台</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="nav-tabs-wrapper">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('timeline', event)">📅 いつどこにいる？（日程表）</button>
+    <button class="tab-btn" onclick="switchTab('flights', event)">✈️ フライト一覧（日本時間付き）</button>
+    <button class="tab-btn" onclick="switchTab('contacts', event)">📞 緊急連絡先・大使館</button>
+    <button class="tab-btn" onclick="switchTab('timezone', event)">⏰ 時差早見表＆連絡ベストタイム</button>
+    <button class="tab-btn" onclick="switchTab('safety', event)">🛡️ 安全管理と安心ルール</button>
+    <button class="tab-btn" onclick="switchTab('docs', event)">📂 詳細資料リンク</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ================= TAB 1: TIMELINE ================= -->
+  <div id="tab-timeline" class="tab-pane active">
+    <div class="notice-box">
+      💡 <strong>家族へのメッセージ:</strong> 「いまどこにいるか」が一目でわかる簡易タイムチャートです。日付ごとに滞在都市、その日の予定、日本との時差、宿泊場所を記載しています。
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterTimeline('all', event)">すべて表示 (全行程)</button>
+      <button class="filter-btn" onclick="filterTimeline('p1', event)">第1部: 北米・中南米 (10/28〜11/10)</button>
+      <button class="filter-btn" onclick="filterTimeline('p2', event)">第2部: ヨーロッパ (11/11〜11/21)</button>
+      <button class="filter-btn" onclick="filterTimeline('p3', event)">第3部: 中東・アフリカ (11/21〜12/2)</button>
+      <button class="filter-btn" onclick="filterTimeline('p4', event)">第4部: タイ滞在・帰国 (12/2〜3/3)</button>
+    </div>
+
+    <div class="timeline">
+
+      <!-- P1: 北米・中南米 -->
+      <div class="tl-day flight-day" data-phase="p1">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">10/28(水)</span>
+            <span class="tl-city">🇺🇸 サンフランシスコ</span>
+            <span class="tl-timezone">時差: -16時間（日本より16時間遅れ）</span>
+          </div>
+          <div class="tl-flight-tag">✈️ 【区間1】NH8 成田 17:00発 → SFO 10:20着 (ANAビジネス THE Room)</div>
+          <div class="tl-activity">日本出発！日付変更線を越えて同日午前にサンフランシスコ到着。市内散策・休養。</div>
+          <div class="tl-stay">🏨 宿泊: サンフランシスコ市内ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day flight-day" data-phase="p1">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">10/29(木)</span>
+            <span class="tl-city">🇲🇽 メキシコシティ</span>
+            <span class="tl-timezone">時差: -15時間</span>
+          </div>
+          <div class="tl-flight-tag">✈️ 【区間2】UA1271 SFO 10:45発 → MEX 16:05着 (ユナイテッド航空)</div>
+          <div class="tl-activity">サンフランシスコからメキシコシティへ移動。夕方ホテルチェックイン、タコス等夕食。</div>
+          <div class="tl-stay">🏨 宿泊: メキシコシティ市内ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p1">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">10/30(金)</span>
+            <span class="tl-city">🇲🇽 メキシコシティ</span>
+            <span class="tl-timezone">時差: -15時間</span>
+          </div>
+          <div class="tl-activity">終日観光：巨大な「テオティワカン遺跡（太陽・月のピラミッド）」見学＆国立人類学博物館。</div>
+          <div class="tl-stay">🏨 宿泊: メキシコシティ市内ホテル（2泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day flight-day" data-phase="p1">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">10/31(土)</span>
+            <span class="tl-city">🇵🇪 リマ (ペルー)</span>
+            <span class="tl-timezone">時差: -14時間</span>
+          </div>
+          <div class="tl-flight-tag">✈️ 【区間3・4】CM121 MEX 13:10発 → PTY 17:54着／CM489 PTY 19:09発 → LIM 22:45着</div>
+          <div class="tl-activity">パナマ経由で南米ペルーのリマへ。夜22:45に無事到着し空港ホテルへ直行（深夜着を解消！）。</div>
+          <div class="tl-stay">🏨 宿泊: リマ空港直結ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p1">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/01(日)</span>
+            <span class="tl-city">🇵🇪 マチュピチュ村 (アグアスカリエンテス)</span>
+            <span class="tl-timezone">時差: -14時間</span>
+          </div>
+          <div class="tl-activity">朝のリマ国内線でクスコへ飛び、展望パノラマ列車（ペルーレイル）で標高の低いマチュピチュ村へ直行（高山病予防）。</div>
+          <div class="tl-stay">🏨 宿泊: マチュピチュ村ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p1">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/02(月)</span>
+            <span class="tl-city">🇵🇪 マチュピチュ遺跡</span>
+            <span class="tl-timezone">時差: -14時間</span>
+          </div>
+          <div class="tl-activity">★旅のハイライト：空中都市マチュピチュ遺跡をじっくり終日見学。絶景を満喫。</div>
+          <div class="tl-stay">🏨 宿泊: マチュピチュ村ホテル（2泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p1">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/03(火)</span>
+            <span class="tl-city">🇵🇪 クスコ</span>
+            <span class="tl-timezone">時差: -14時間</span>
+          </div>
+          <div class="tl-activity">午前中に列車でクスコへ移動。インカ帝国の古都クスコ市内観光（12角の石、太陽の神殿）。</div>
+          <div class="tl-stay">🏨 宿泊: クスコ市内ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p1">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/04(水)</span>
+            <span class="tl-city">🇵🇪 クスコ</span>
+            <span class="tl-timezone">時差: -14時間</span>
+          </div>
+          <div class="tl-activity">クスコ周辺観光（サクサイワマン等）、カフェや民芸品マーケット散策でゆったり過ごす。</div>
+          <div class="tl-stay">🏨 宿泊: クスコ市内ホテル（2泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p1">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/05(木)</span>
+            <span class="tl-city">🇧🇷 イグアス (ブラジル側)</span>
+            <span class="tl-timezone">時差: -12時間</span>
+          </div>
+          <div class="tl-activity">クスコ → リマ → フォス・ド・イグアスへ航空便で大移動。世界三大瀑布イグアスへ到着。</div>
+          <div class="tl-stay">🏨 宿泊: イグアス国立公園内または近郊ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p1">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/06(金)</span>
+            <span class="tl-city">🇧🇷 イグアスの滝 (ブラジル側)</span>
+            <span class="tl-timezone">時差: -12時間</span>
+          </div>
+          <div class="tl-activity">★ブラジル側イグアスの滝パノラマ遊歩道見学＆ヘリコプター遊覧飛行で上空から瀑布を眺望。</div>
+          <div class="tl-stay">🏨 宿泊: イグアスホテル（2泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p1">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/07(土)</span>
+            <span class="tl-city">🇦🇷 イグアスの滝 (アルゼンチン側)</span>
+            <span class="tl-timezone">時差: -12時間</span>
+          </div>
+          <div class="tl-activity">★国境を渡りアルゼンチン側へ。「悪魔の喉笛」を真上から体感＆大迫力ボートツアー。</div>
+          <div class="tl-stay">🏨 宿泊: イグアスホテル（3泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p1">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/08(日)</span>
+            <span class="tl-city">🇧🇷 サンパウロ</span>
+            <span class="tl-timezone">時差: -12時間</span>
+          </div>
+          <div class="tl-activity">国内線でサンパウロへ移動。南米最大の都市にチェックイン、シュラスコディナー。</div>
+          <div class="tl-stay">🏨 宿泊: サンパウロ市内ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p1">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/09(月)</span>
+            <span class="tl-city">🇧🇷 サンパウロ</span>
+            <span class="tl-timezone">時差: -12時間</span>
+          </div>
+          <div class="tl-activity">大西洋横断フライト前にゆったり休息、パウリスタ通り散策や東洋人街（リベルダーデ）。</div>
+          <div class="tl-stay">🏨 宿泊: サンパウロ市内ホテル（2泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day flight-day" data-phase="p1">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/10(火)</span>
+            <span class="tl-city">🛫 サンパウロ → 【機中泊】</span>
+            <span class="tl-timezone">時差: -12時間</span>
+          </div>
+          <div class="tl-flight-tag">✈️ 【区間5】TP88 サンパウロ(GRU) 23:15発 → リスボン 12:10着(+1) (TAPポルトガル・ビジネス)</div>
+          <div class="tl-activity">深夜便で大西洋を横断！フルフラットベッドシートで睡眠をしっかり確保。</div>
+          <div class="tl-stay">✈️ 宿泊: 機中泊（ビジネスクラス・ベッド）</div>
+        </div>
+      </div>
+
+      <!-- P2: ヨーロッパ -->
+      <div class="tl-day" data-phase="p2">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/11(水)</span>
+            <span class="tl-city">🇵🇹 リスボン (ポルトガル)</span>
+            <span class="tl-timezone">時差: -9時間</span>
+          </div>
+          <div class="tl-activity">お昼12:10にリスボン到着。午後からベレンの塔、ジェロニモス修道院、エッグタルト。</div>
+          <div class="tl-stay">🏨 宿泊: リスボン市内ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day flight-day" data-phase="p2">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/12(木)</span>
+            <span class="tl-city">🇪🇸 バルセロナ (スペイン)</span>
+            <span class="tl-timezone">時差: -8時間</span>
+          </div>
+          <div class="tl-flight-tag">✈️ 【区間6】TP1030 リスボン 07:10発 → バルセロナ 10:05着 (TAPポルトガル)</div>
+          <div class="tl-activity">スペイン・バルセロナへ移動。午後サグラダ・ファミリア外観やゴシック地区散策。</div>
+          <div class="tl-stay">🏨 宿泊: バルセロナ市内ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p2">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/13(金)</span>
+            <span class="tl-city">🇪🇸 バルセロナ</span>
+            <span class="tl-timezone">時差: -8時間</span>
+          </div>
+          <div class="tl-activity">終日観光：ガウディ建築（サグラダ・ファミリア入場、グエル公園、カサ・バトリョ）。</div>
+          <div class="tl-stay">🏨 宿泊: バルセロナ市内ホテル（2泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p2">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/14(土)</span>
+            <span class="tl-city">🇪🇸 マドリード</span>
+            <span class="tl-timezone">時差: -8時間</span>
+          </div>
+          <div class="tl-activity">高速鉄道AVEで首都マドリードへ移動（約2.5時間）。プラド美術館やプエルタ・デル・ソル。</div>
+          <div class="tl-stay">🏨 宿泊: マドリード市内ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p2">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/15(日)</span>
+            <span class="tl-city">🇪🇸 マドリード</span>
+            <span class="tl-timezone">時差: -8時間</span>
+          </div>
+          <div class="tl-activity">王宮散策 ＋ ★夜20:45 UEFAネーションズリーグ ビッグマッチ【スペイン代表 vs イングランド代表】スタジアム観戦！</div>
+          <div class="tl-stay">🏨 宿泊: マドリード市内ホテル（2泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day flight-day" data-phase="p2">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/16(月)</span>
+            <span class="tl-city">🇮🇹 ローマ (イタリア)</span>
+            <span class="tl-timezone">時差: -8時間</span>
+          </div>
+          <div class="tl-flight-tag">✈️ 【区間7】AZ79 バルセロナ 16:50発 → ローマ(FCO) 18:35着 (ITAエアウェイズ)</div>
+          <div class="tl-activity">午前中AVEでバルセロナへ戻り、夕方便でイタリア・ローマへ。夜美味しいパスタディナー。</div>
+          <div class="tl-stay">🏨 宿泊: ローマ市内ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p2">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/17(火)</span>
+            <span class="tl-city">🇮🇹 ローマ・ヴァチカン</span>
+            <span class="tl-timezone">時差: -8時間</span>
+          </div>
+          <div class="tl-activity">終日観光：古代ローマ遺跡コロッセオ、フォロ・ロマーノ、トレビの泉、ヴァチカン市国（サン・ピエトロ大聖堂）。</div>
+          <div class="tl-stay">🏨 宿泊: ローマ市内ホテル（2泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p2">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/18(水)</span>
+            <span class="tl-city">🇮🇹 トスカーナ地方 (ワイナリー日帰り)</span>
+            <span class="tl-timezone">時差: -8時間</span>
+          </div>
+          <div class="tl-activity">★専用車で美しいオルチャ渓谷と名門ワイナリーへ。トスカーナ料理と極上ワインを堪能。</div>
+          <div class="tl-stay">🏨 宿泊: ローマ市内ホテル（3泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day flight-day" data-phase="p2">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/19(木)</span>
+            <span class="tl-city">🇬🇷 アテネ (ギリシャ)</span>
+            <span class="tl-timezone">時差: -7時間（冬時間）</span>
+          </div>
+          <div class="tl-flight-tag">✈️ 【区間8】A3651 ローマ 10:35発 → アテネ 13:35着 (エーゲ航空ビジネス)</div>
+          <div class="tl-activity">エーゲ航空でギリシャ・アテネへ。午後プラカ地区散策、ギリシャ料理ディナー。</div>
+          <div class="tl-stay">🏨 宿泊: アテネ市内ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p2">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/20(金)</span>
+            <span class="tl-city">🇬🇷 アテネ</span>
+            <span class="tl-timezone">時差: -7時間</span>
+          </div>
+          <div class="tl-activity">終日観光：世界遺産アクロポリスの丘（パルテノン神殿）、新アクロポリス博物館。</div>
+          <div class="tl-stay">🏨 宿泊: アテネ市内ホテル（2泊目）</div>
+        </div>
+      </div>
+
+      <!-- P3: 中東・アフリカ -->
+      <div class="tl-day flight-day" data-phase="p3">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/21(土)</span>
+            <span class="tl-city">🇹🇷 カッパドキア (トルコ)</span>
+            <span class="tl-timezone">時差: -6時間</span>
+          </div>
+          <div class="tl-flight-tag">✈️ 【区間9】TK1840 アテネ 11:50発 → イスタンブール 14:30着 → 夕方便でカッパドキアへ</div>
+          <div class="tl-activity">イスタンブール経由で奇岩の地カッパドキアへ移動。幻想的な洞窟ホテルに宿泊。</div>
+          <div class="tl-stay">🏨 宿泊: カッパドキア洞窟ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p3">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/22(日)</span>
+            <span class="tl-city">🇹🇷 カッパドキア</span>
+            <span class="tl-timezone">時差: -6時間</span>
+          </div>
+          <div class="tl-activity">★早朝：数千の気球とともに朝日を浴びる【熱気球フライト】！奇岩群や地下都市を観光。</div>
+          <div class="tl-stay">🏨 宿泊: カッパドキア洞窟ホテル（2泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p3">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/23(月)</span>
+            <span class="tl-city">🇹🇷 イスタンブール</span>
+            <span class="tl-timezone">時差: -6時間</span>
+          </div>
+          <div class="tl-activity">朝便でイスタンブールへ。ブルーモスク（スルタンアフメト・モスク）、アヤソフィア、グランドバザール。</div>
+          <div class="tl-stay">🏨 宿泊: イスタンブール市内ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p3">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/24(火)</span>
+            <span class="tl-city">🇹🇷 イスタンブール</span>
+            <span class="tl-timezone">時差: -6時間</span>
+          </div>
+          <div class="tl-activity">トプカプ宮殿、ボスポラス海峡クルーズ ＋ ★夜18:45 UEFAチャンピオンズリーグ観戦【ガラタサライ戦】！</div>
+          <div class="tl-stay">🏨 宿泊: イスタンブール市内ホテル（2泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day flight-day" data-phase="p3">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/25(水)</span>
+            <span class="tl-city">🇪🇬 カイロ (エジプト)</span>
+            <span class="tl-timezone">時差: -7時間</span>
+          </div>
+          <div class="tl-flight-tag">✈️ 【区間10】MS738 イスタンブール 14:00発 → カイロ 15:15着 (エジプト航空ビジネス)</div>
+          <div class="tl-activity">サッカー観戦の翌朝はゆっくり起床。昼過ぎ便でエジプト・カイロへ。ホテルチェックイン。</div>
+          <div class="tl-stay">🏨 宿泊: カイロ（ギザ地区）ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p3">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/26(木)</span>
+            <span class="tl-city">🇪🇬 カイロ・ギザ</span>
+            <span class="tl-timezone">時差: -7時間</span>
+          </div>
+          <div class="tl-activity">★世界最古の七不思議：ギザの三大ピラミッド（クフ王ピラミッド内部見学）＆スフィンクス！</div>
+          <div class="tl-stay">🏨 宿泊: カイロ（ギザ地区）ホテル（2泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day flight-day" data-phase="p3">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/27(金)</span>
+            <span class="tl-city">🇪🇬 カイロ → 【機中泊】</span>
+            <span class="tl-timezone">時差: -7時間</span>
+          </div>
+          <div class="tl-flight-tag">✈️ 【区間11】MS849 カイロ 21:35発 → ナイロビ 03:30着(+1) (エジプト航空ビジネス)</div>
+          <div class="tl-activity">グランド・エジプト博物館（GEM）見学。夜の飛行機でケニア・ナイロビへ。</div>
+          <div class="tl-stay">✈️ 宿泊: 機中泊（ビジネスクラス）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p3">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/28(土)</span>
+            <span class="tl-city">🇰🇪 アンボセリ国立公園 (ケニア)</span>
+            <span class="tl-timezone">時差: -6時間</span>
+          </div>
+          <div class="tl-activity">早朝03:30ナイロビ着後、空港ホテルで仮眠・シャワー。午前中専用4x4サファリカーでアンボセリへ。夕方サファリ！</div>
+          <div class="tl-stay">🏨 宿泊: アンボセリ国立公園内サファリロッジ（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p3">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/29(日)</span>
+            <span class="tl-city">🇰🇪 アンボセリ国立公園</span>
+            <span class="tl-timezone">時差: -6時間</span>
+          </div>
+          <div class="tl-activity">★終日ゲームドライブ：アフリカ最高峰キリマンジャロ山を背景に、野生の象の大群やキリン、ライオンを観察！</div>
+          <div class="tl-stay">🏨 宿泊: アンボセリ国立公園内サファリロッジ（2泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p3">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">11/30(月)</span>
+            <span class="tl-city">🇰🇪 ナイロビ</span>
+            <span class="tl-timezone">時差: -6時間</span>
+          </div>
+          <div class="tl-activity">早朝サファリ後、ナイロビへ移動。ジラフセンターでキリンと触れ合い。空港近くのホテルで休養。</div>
+          <div class="tl-stay">🏨 宿泊: ナイロビ空港近郊ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day flight-day" data-phase="p3">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">12/01(火)</span>
+            <span class="tl-city">🛫 ナイロビ → エチオピア経由 → 【機中泊】</span>
+            <span class="tl-timezone">時差: -6時間</span>
+          </div>
+          <div class="tl-flight-tag">✈️ 【区間12・13】ET319 NBO 17:30発 → ADD 19:30着／ET608 ADD 23:55発 → BKK 12:30着(+1)</div>
+          <div class="tl-activity">エチオピア航空ビジネスクラス（フルフラット）でアジア・バンコクへ帰還フライト！</div>
+          <div class="tl-stay">✈️ 宿泊: 機中泊（ビジネスクラス・ベッド）</div>
+        </div>
+      </div>
+
+      <!-- P4: タイ滞在・帰国 -->
+      <div class="tl-day" data-phase="p4">
+        <div class="tl-dot"></div>
+        <div class="tl-card" style="border-left: 4px solid var(--success);">
+          <div class="tl-card-header">
+            <span class="tl-date">12/02(水)</span>
+            <span class="tl-city">🇹🇭 バンコク (タイ)</span>
+            <span class="tl-timezone">時差: -2時間</span>
+          </div>
+          <div class="tl-activity">🎉 <strong>お昼12:30 バンコク到着！世界一周本編の主要区間を無事完結！</strong></div>
+          <div class="tl-stay">🏠 滞在: バンコク自宅・生活拠点</div>
+        </div>
+      </div>
+
+      <div class="tl-day rest-day" data-phase="p4">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">12/03 〜 2027/2/28</span>
+            <span class="tl-city">🇹🇭 タイ・バンコク滞在</span>
+            <span class="tl-timezone">時差: -2時間</span>
+          </div>
+          <div class="tl-activity">タイ・バンコクにて約3ヶ月間の日常生活・ワーケーション滞在。</div>
+          <div class="tl-stay">🏠 滞在: バンコク</div>
+        </div>
+      </div>
+
+      <div class="tl-day flight-day" data-phase="p4">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">2027/03/01(月)</span>
+            <span class="tl-city">🇸🇬 シンガポール</span>
+            <span class="tl-timezone">時差: -1時間</span>
+          </div>
+          <div class="tl-flight-tag">✈️ 【区間14】SQ705 BKK 09:40発 → SIN 13:10着 (シンガポール航空ビジネス)</div>
+          <div class="tl-activity">帰省ルート第1弾。シンガポール航空でシンガポールへ。マリーナベイ・サンズや植物園。</div>
+          <div class="tl-stay">🏨 宿泊: シンガポール市内ホテル（1泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day" data-phase="p4">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-header">
+            <span class="tl-date">2027/03/02(火)</span>
+            <span class="tl-city">🇸🇬 シンガポール</span>
+            <span class="tl-timezone">時差: -1時間</span>
+          </div>
+          <div class="tl-activity">終日シンガポール市内観光・ショッピング・名物チキンライス等。</div>
+          <div class="tl-stay">🏨 宿泊: シンガポール市内ホテル（2泊目）</div>
+        </div>
+      </div>
+
+      <div class="tl-day flight-day" data-phase="p4">
+        <div class="tl-dot"></div>
+        <div class="tl-card" style="border-left: 4px solid var(--primary-light);">
+          <div class="tl-card-header">
+            <span class="tl-date">2027/03/03(水)</span>
+            <span class="tl-city">🇯🇵 東京・羽田空港</span>
+            <span class="tl-timezone">日本時間</span>
+          </div>
+          <div class="tl-flight-tag">✈️ 【区間15】NH842 SIN 10:45発 → 羽田 18:25着 (ANAビジネスクラス)</div>
+          <div class="tl-activity">🎉 <strong>ANAビジネスクラスで羽田空港へ帰国！世界一周旅行の全行程が無事終了！</strong></div>
+          <div class="tl-stay">🏠 帰国: 東京到着</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= TAB 2: FLIGHTS ================= -->
+  <div id="tab-flights" class="tab-pane">
+    <div class="notice-box">
+      ✈️ <strong>家族のためのフライト確認シート:</strong> 「現地時間」に加えて<strong>「日本時間」</strong>を併記しています。日本時間の何時から何時まで飛行機に乗っているか（連絡がつかない時間）がすぐにわかります。
+    </div>
+
+    <div class="card">
+      <div class="card-title">全フライト詳細（確定済・eチケット発券完了）</div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>日付(曜)</th>
+              <th>便名</th>
+              <th>区間</th>
+              <th>現地時刻 (発 → 着)</th>
+              <th>日本時間 (発 → 着)</th>
+              <th>所要</th>
+              <th>クラス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>①</td>
+              <td><strong>10/28(水)</strong></td>
+              <td><span class="carrier-tag">ANA</span> NH 8</td>
+              <td>成田 → サンフランシスコ</td>
+              <td>17:00 → 10:20 (同日)</td>
+              <td>17:00 → 10/29 02:20</td>
+              <td>9h20m</td>
+              <td><span class="class-badge biz">ビジネス Z</span></td>
+            </tr>
+            <tr>
+              <td>②</td>
+              <td><strong>10/29(木)</strong></td>
+              <td><span class="carrier-tag">UA</span> UA 1271</td>
+              <td>サンフランシスコ → メキシコシティ</td>
+              <td>10:45 → 16:05</td>
+              <td>10/30 02:45 → 07:05</td>
+              <td>4h20m</td>
+              <td><span class="class-badge eco">エコノミー B</span></td>
+            </tr>
+            <tr>
+              <td>③</td>
+              <td><strong>10/31(土)</strong></td>
+              <td><span class="carrier-tag">コパ</span> CM 121</td>
+              <td>メキシコシティ → パナマシティ</td>
+              <td>13:10 → 17:54</td>
+              <td>11/01 04:10 → 07:54</td>
+              <td>3h44m</td>
+              <td><span class="class-badge biz">ビジネス D</span></td>
+            </tr>
+            <tr>
+              <td>④</td>
+              <td><strong>10/31(土)</strong></td>
+              <td><span class="carrier-tag">コパ</span> CM 489</td>
+              <td>パナマシティ → リマ (ペルー)</td>
+              <td>19:09 → 22:45</td>
+              <td>11/01 09:09 → 12:45</td>
+              <td>3h36m</td>
+              <td><span class="class-badge biz">ビジネス D</span></td>
+            </tr>
+            <tr>
+              <td>—</td>
+              <td>11/01〜09</td>
+              <td colspan="6" style="background:#f1f5f9; color:#475569; font-weight:700;">
+                【地上区間】ペルー周遊（マチュピチュ・クスコ）⇢ ブラジル（イグアスの滝・サンパウロ）
+              </td>
+            </tr>
+            <tr>
+              <td>⑤</td>
+              <td><strong>11/10(火)</strong></td>
+              <td><span class="carrier-tag">TAP</span> TP 88</td>
+              <td>サンパウロ(GRU) → リスボン</td>
+              <td>23:15 → 12:10 (+1)</td>
+              <td>11/11 11:15 → 21:10</td>
+              <td>9h55m</td>
+              <td><span class="class-badge biz">ビジネス Z</span></td>
+            </tr>
+            <tr>
+              <td>⑥</td>
+              <td><strong>11/12(木)</strong></td>
+              <td><span class="carrier-tag">TAP</span> TP 1030</td>
+              <td>リスボン → バルセロナ</td>
+              <td>07:10 → 10:05</td>
+              <td>11/12 16:10 → 18:05</td>
+              <td>1h55m</td>
+              <td><span class="class-badge biz">ビジネス Z</span></td>
+            </tr>
+            <tr>
+              <td>⑦</td>
+              <td><strong>11/16(月)</strong></td>
+              <td><span class="carrier-tag">ITA</span> AZ 79</td>
+              <td>バルセロナ → ローマ(FCO)</td>
+              <td>16:50 → 18:35</td>
+              <td>11/17 00:50 → 02:35</td>
+              <td>1h45m</td>
+              <td><span class="class-badge biz">ビジネス Z</span></td>
+            </tr>
+            <tr>
+              <td>⑧</td>
+              <td><strong>11/19(木)</strong></td>
+              <td><span class="carrier-tag">エーゲ</span> A3 651</td>
+              <td>ローマ(FCO) → アテネ</td>
+              <td>10:35 → 13:35</td>
+              <td>11/19 18:35 → 20:35</td>
+              <td>2h00m</td>
+              <td><span class="class-badge biz">ビジネス D</span></td>
+            </tr>
+            <tr>
+              <td>⑨</td>
+              <td><strong>11/21(土)</strong></td>
+              <td><span class="carrier-tag">TK</span> TK 1840</td>
+              <td>アテネ → イスタンブール</td>
+              <td>11:50 → 14:30</td>
+              <td>11/21 18:50 → 20:30</td>
+              <td>1h40m</td>
+              <td><span class="class-badge biz">ビジネス D</span></td>
+            </tr>
+            <tr>
+              <td>⑩</td>
+              <td><strong>11/25(水)</strong></td>
+              <td><span class="carrier-tag">エジプト</span> MS 738</td>
+              <td>イスタンブール → カイロ</td>
+              <td>14:00 → 15:15</td>
+              <td>11/25 20:00 → 22:15</td>
+              <td>2h15m</td>
+              <td><span class="class-badge biz">ビジネス D</span></td>
+            </tr>
+            <tr>
+              <td>⑪</td>
+              <td><strong>11/27(金)</strong></td>
+              <td><span class="carrier-tag">エジプト</span> MS 849</td>
+              <td>カイロ → ナイロビ (ケニア)</td>
+              <td>21:35 → 03:30 (+1)</td>
+              <td>11/28 04:35 → 09:30</td>
+              <td>4h55m</td>
+              <td><span class="class-badge biz">ビジネス D</span></td>
+            </tr>
+            <tr>
+              <td>⑫</td>
+              <td><strong>12/01(火)</strong></td>
+              <td><span class="carrier-tag">エチオピア</span> ET 319</td>
+              <td>ナイロビ → アディスアベバ</td>
+              <td>17:30 → 19:30</td>
+              <td>12/01 23:30 → 12/02 01:30</td>
+              <td>2h00m</td>
+              <td><span class="class-badge biz">ビジネス D</span></td>
+            </tr>
+            <tr>
+              <td>⑬</td>
+              <td><strong>12/01(火)</strong></td>
+              <td><span class="carrier-tag">エチオピア</span> ET 608</td>
+              <td>アディスアベバ → バンコク</td>
+              <td>23:55 → 12:30 (+1)</td>
+              <td>12/02 05:55 → 14:30</td>
+              <td>8h35m</td>
+              <td><span class="class-badge biz">ビジネス D</span></td>
+            </tr>
+            <tr>
+              <td>⑭</td>
+              <td><strong>2027/3/1(月)</strong></td>
+              <td><span class="carrier-tag">SQ</span> SQ 705</td>
+              <td>バンコク → シンガポール</td>
+              <td>09:40 → 13:10</td>
+              <td>03/01 11:40 → 14:10</td>
+              <td>2h30m</td>
+              <td><span class="class-badge biz">ビジネス D</span></td>
+            </tr>
+            <tr>
+              <td>⑮</td>
+              <td><strong>2027/3/3(水)</strong></td>
+              <td><span class="carrier-tag">ANA</span> NH 842</td>
+              <td>シンガポール → 東京・羽田</td>
+              <td>10:45 → 18:25</td>
+              <td>03/03 11:45 → 18:25</td>
+              <td>6h40m</td>
+              <td><span class="class-badge biz">ビジネス Z</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">予約照会コード一覧</div>
+      <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:10px;">
+        万が一、各航空会社のWebサイトやカウンターでフライト状況を確認する必要が生じた場合は、以下の予約コードを使用できます。
+      </p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:10px; font-size:13px;">
+        <div style="background:#f8fafc; padding:10px; border-radius:6px;">ANA予約番号: <strong>EANRV5</strong></div>
+        <div style="background:#f8fafc; padding:10px; border-radius:6px;">ユナイテッド航空: <strong>FPHLEN</strong></div>
+        <div style="background:#f8fafc; padding:10px; border-radius:6px;">コパ航空: <strong>AXY1HV</strong></div>
+        <div style="background:#f8fafc; padding:10px; border-radius:6px;">ターキッシュ: <strong>VZV2V2</strong></div>
+        <div style="background:#f8fafc; padding:10px; border-radius:6px;">エチオピア航空: <strong>QTVTQV</strong></div>
+        <div style="background:#f8fafc; padding:10px; border-radius:6px;">TAP/ITA/エーゲ/エジプト/SQ: <strong>EANRV5</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TAB 3: CONTACTS ================= -->
+  <div id="tab-contacts" class="tab-pane">
+    <div class="notice-box info">
+      📞 <strong>緊急時の連絡体制:</strong> 海外旅行中もスマートフォンのLINE（通話・メッセージ）が常に最優先の連絡手段となります。万が一本人と直接連絡が取れない緊急事態に備え、現地日本大使館・領事館の緊急連絡先をリストアップしています。
+    </div>
+
+    <div class="contact-grid">
+
+      <!-- 本人連絡先 -->
+      <div class="contact-card" style="border-top: 4px solid var(--primary-light);">
+        <h4>📱 本人への日常連絡先</h4>
+        <div class="contact-item">
+          <span class="k">LINE:</span>
+          <span class="v">通常どおりLINE通話・トーク可能（現地Wi-Fi・常時eSIM接続）</span>
+        </div>
+        <div class="contact-item">
+          <span class="k">連絡頻度:</span>
+          <span class="v">毎朝ホテル出発前と、毎晩ホテル帰着時にLINEで一言安否連絡を入れます</span>
+        </div>
+        <div class="contact-item">
+          <span class="k">航空会社:</span>
+          <span class="v">全日空 ANAマイレージクラブデスク (+81-3-6741-6683)</span>
+        </div>
+      </div>
+
+      <!-- 北米・中南米 -->
+      <div class="contact-card">
+        <h4>🇺🇸 在サンフランシスコ日本国総領事館</h4>
+        <div class="contact-item"><span class="k">電話:</span><span class="v"><a href="tel:+14157806000" class="phone-link">+1-415-780-6000</a></span></div>
+        <div class="contact-item"><span class="k">住所:</span><span class="v">275 Battery St, Suite 2100, San Francisco, CA 94111</span></div>
+        <div class="contact-item"><span class="k">緊急番号:</span><span class="v">911（警察・消防・救急共通）</span></div>
+      </div>
+
+      <div class="contact-card">
+        <h4>🇲🇽 在メキシコ日本国大使館</h4>
+        <div class="contact-item"><span class="k">電話:</span><span class="v"><a href="tel:+525552110028" class="phone-link">+52-55-5211-0028</a></span></div>
+        <div class="contact-item"><span class="k">住所:</span><span class="v">Paseo de la Reforma No. 243, Torre Mapfre, Piso 9, Col. Cuauhtémoc, CDMX</span></div>
+        <div class="contact-item"><span class="k">緊急番号:</span><span class="v">911</span></div>
+      </div>
+
+      <div class="contact-card">
+        <h4>🇵🇪 在ペルー日本国大使館 (リマ)</h4>
+        <div class="contact-item"><span class="k">電話:</span><span class="v"><a href="tel:+5112199500" class="phone-link">+51-1-219-9500</a></span></div>
+        <div class="contact-item"><span class="k">住所:</span><span class="v">Av. San Felipe 356, Jesús María, Lima</span></div>
+        <div class="contact-item"><span class="k">緊急番号:</span><span class="v">105（警察）/ 116（消防・救急）</span></div>
+      </div>
+
+      <div class="contact-card">
+        <h4>🇧🇷 在サンパウロ日本国総領事館</h4>
+        <div class="contact-item"><span class="k">電話:</span><span class="v"><a href="tel:+551132540100" class="phone-link">+55-11-3254-0100</a></span></div>
+        <div class="contact-item"><span class="k">住所:</span><span class="v">Av. Paulista, 854 - 3º andar, Bela Vista, São Paulo</span></div>
+        <div class="contact-item"><span class="k">緊急番号:</span><span class="v">190（警察）/ 192（救急）</span></div>
+      </div>
+
+      <!-- ヨーロッパ -->
+      <div class="contact-card">
+        <h4>🇵🇹 在ポルトガル日本国大使館 (リスボン)</h4>
+        <div class="contact-item"><span class="k">電話:</span><span class="v"><a href="tel:+351213110560" class="phone-link">+351-21-311-0560</a></span></div>
+        <div class="contact-item"><span class="k">緊急番号:</span><span class="v">112（EU共通緊急通報）</span></div>
+      </div>
+
+      <div class="contact-card">
+        <h4>🇪🇸 在バルセロナ日本国総領事館 / 在スペイン大使館</h4>
+        <div class="contact-item"><span class="k">バルセロナ:</span><span class="v"><a href="tel:+34932801020" class="phone-link">+34-93-280-1020</a></span></div>
+        <div class="contact-item"><span class="k">マドリード:</span><span class="v"><a href="tel:+34915907600" class="phone-link">+34-91-590-7600</a></span></div>
+        <div class="contact-item"><span class="k">緊急番号:</span><span class="v">112（EU共通緊急通報）</span></div>
+      </div>
+
+      <div class="contact-card">
+        <h4>🇮🇹 在イタリア日本国大使館 (ローマ)</h4>
+        <div class="contact-item"><span class="k">電話:</span><span class="v"><a href="tel:+3906487991" class="phone-link">+39-06-487-991</a></span></div>
+        <div class="contact-item"><span class="k">住所:</span><span class="v">Via Quintino Sella, 60, 00187 Roma</span></div>
+        <div class="contact-item"><span class="k">緊急番号:</span><span class="v">112（EU共通）</span></div>
+      </div>
+
+      <div class="contact-card">
+        <h4>🇬🇷 在ギリシャ日本国大使館 (アテネ)</h4>
+        <div class="contact-item"><span class="k">電話:</span><span class="v"><a href="tel:+302106725352" class="phone-link">+30-210-672-5352</a></span></div>
+        <div class="contact-item"><span class="k">緊急番号:</span><span class="v">112（EU共通）</span></div>
+      </div>
+
+      <!-- 中東・アフリカ -->
+      <div class="contact-card">
+        <h4>🇹🇷 在イスタンブール日本国総領事館</h4>
+        <div class="contact-item"><span class="k">電話:</span><span class="v"><a href="tel:+902123174600" class="phone-link">+90-212-317-4600</a></span></div>
+        <div class="contact-item"><span class="k">緊急番号:</span><span class="v">112（救急・警察統合番号）</span></div>
+      </div>
+
+      <div class="contact-card">
+        <h4>🇪🇬 在エジプト日本国大使館 (カイロ)</h4>
+        <div class="contact-item"><span class="k">電話:</span><span class="v"><a href="tel:+20225285910" class="phone-link">+20-2-2528-5910</a></span></div>
+        <div class="contact-item"><span class="k">緊急番号:</span><span class="v">122（警察）/ 123（救急）</span></div>
+      </div>
+
+      <div class="contact-card">
+        <h4>🇰🇪 在ケニア日本国大使館 (ナイロビ)</h4>
+        <div class="contact-item"><span class="k">電話:</span><span class="v"><a href="tel:+254202898000" class="phone-link">+254-20-2898-000</a></span></div>
+        <div class="contact-item"><span class="k">緊急番号:</span><span class="v">999 / 112（警察・救急）</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= TAB 4: TIMEZONE ================= -->
+  <div id="tab-timezone" class="tab-pane">
+    <div class="notice-box">
+      ⏰ <strong>家族との連絡ゴールデンタイム:</strong> 日本との時差が大きいため、「日本が夜のとき、現地は朝または昼」になります。お互いの生活リズムを考慮したおすすめの通話時間帯をまとめました。
+    </div>
+
+    <div class="card">
+      <div class="card-title">地域別の時差と連絡おすすめ時間帯</div>
+      <div class="tz-grid">
+
+        <div class="tz-card">
+          <div class="tz-card-city">
+            <span>🇺🇸 サンフランシスコ</span>
+            <span class="tz-diff">-16時間</span>
+          </div>
+          <p style="font-size:12px; color:var(--text-muted);">日本より16時間遅れ</p>
+          <div class="tz-calc-example">
+            📞 <strong>おすすめ連絡時間:</strong><br>
+            ・日本 21:00 〜 23:00 ＝ 現地 午前 05:00 〜 07:00 (起床時)<br>
+            ・日本 10:00 〜 13:00 ＝ 現地 夕方 18:00 〜 21:00 (夕食時)
+          </div>
+        </div>
+
+        <div class="tz-card">
+          <div class="tz-card-city">
+            <span>🇲🇽 メキシコシティ</span>
+            <span class="tz-diff">-15時間</span>
+          </div>
+          <p style="font-size:12px; color:var(--text-muted);">日本より15時間遅れ</p>
+          <div class="tz-calc-example">
+            📞 <strong>おすすめ連絡時間:</strong><br>
+            ・日本 21:00 〜 23:00 ＝ 現地 朝 06:00 〜 08:00<br>
+            ・日本 11:00 〜 13:00 ＝ 現地 夜 20:00 〜 22:00
+          </div>
+        </div>
+
+        <div class="tz-card">
+          <div class="tz-card-city">
+            <span>🇵🇪 ペルー (マチュピチュ)</span>
+            <span class="tz-diff">-14時間</span>
+          </div>
+          <p style="font-size:12px; color:var(--text-muted);">日本より14時間遅れ</p>
+          <div class="tz-calc-example">
+            📞 <strong>おすすめ連絡時間:</strong><br>
+            ・日本 21:00 〜 23:00 ＝ 現地 朝 07:00 〜 09:00<br>
+            ・日本 10:00 〜 13:00 ＝ 現地 夜 20:00 〜 23:00
+          </div>
+        </div>
+
+        <div class="tz-card">
+          <div class="tz-card-city">
+            <span>🇧🇷 ブラジル (イグアス)</span>
+            <span class="tz-diff">-12時間</span>
+          </div>
+          <p style="font-size:12px; color:var(--text-muted);">日本とちょうど昼夜逆転</p>
+          <div class="tz-calc-example">
+            📞 <strong>おすすめ連絡時間:</strong><br>
+            ・日本 20:00 〜 22:00 ＝ 現地 朝 08:00 〜 10:00<br>
+            ・日本 08:00 〜 10:00 ＝ 現地 夜 20:00 〜 22:00
+          </div>
+        </div>
+
+        <div class="tz-card">
+          <div class="tz-card-city">
+            <span>🇵🇹 リスボン</span>
+            <span class="tz-diff">-9時間</span>
+          </div>
+          <p style="font-size:12px; color:var(--text-muted);">日本より9時間遅れ</p>
+          <div class="tz-calc-example">
+            📞 <strong>おすすめ連絡時間:</strong><br>
+            ・日本 17:00 〜 23:00 ＝ 現地 朝 08:00 〜 14:00<br>
+            ※夕方〜夜の連絡が非常に取りやすいです
+          </div>
+        </div>
+
+        <div class="tz-card">
+          <div class="tz-card-city">
+            <span>🇪🇸 スペイン / 🇮🇹 イタリア</span>
+            <span class="tz-diff">-8時間</span>
+          </div>
+          <p style="font-size:12px; color:var(--text-muted);">日本より8時間遅れ</p>
+          <div class="tz-calc-example">
+            📞 <strong>おすすめ連絡時間:</strong><br>
+            ・日本 17:00 〜 23:00 ＝ 現地 午前 09:00 〜 15:00
+          </div>
+        </div>
+
+        <div class="tz-card">
+          <div class="tz-card-city">
+            <span>🇹🇷 トルコ / 🇰🇪 ケニア</span>
+            <span class="tz-diff">-6時間</span>
+          </div>
+          <p style="font-size:12px; color:var(--text-muted);">日本より6時間遅れ</p>
+          <div class="tz-calc-example">
+            📞 <strong>おすすめ連絡時間:</strong><br>
+            ・日本 18:00 〜 23:00 ＝ 現地 お昼 12:00 〜 17:00
+          </div>
+        </div>
+
+        <div class="tz-card">
+          <div class="tz-card-city">
+            <span>🇹🇭 タイ (バンコク)</span>
+            <span class="tz-diff">-2時間</span>
+          </div>
+          <p style="font-size:12px; color:var(--text-muted);">時差わずか2時間</p>
+          <div class="tz-calc-example">
+            📞 <strong>おすすめ連絡時間:</strong><br>
+            ・終日いつでも気軽に日本と同じ感覚で通話可能
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TAB 5: SAFETY ================= -->
+  <div id="tab-safety" class="tab-pane">
+    <div class="card">
+      <div class="card-title">家族を安心させる 6つの安全＆健康ルール</div>
+      <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:16px;">
+        本旅行は綿密な睡眠監査・治安リスク分析を経て計画されています。家族の皆様が安心して過ごせるよう、以下のルールを徹底して運用します。
+      </p>
+
+      <ul class="rule-list">
+        <li>
+          <strong>毎日の「朝・晩LINE報告」の徹底:</strong><br>
+          毎朝のホテル出発前と、毎晩ホテルに戻った際に、必ずLINEで現在地や体調を一言報告します。
+        </li>
+        <li>
+          <strong>移動の安全対策（深夜外出禁止＆公認送迎のみ利用）:</strong><br>
+          流しのタクシーには一切乗らず、すべて空港直結ホテル、信頼できる事前手配の専用送迎車、またはUber等アプリ配車のみを利用します。深夜の街歩きは一切行いません。
+        </li>
+        <li>
+          <strong>全フライトのほぼ完全ビジネスクラス化（体力維持）:</strong><br>
+          全15区間のうち14区間がビジネスクラス（フルフラット寝台ベッド）。長距離の大西洋横断やアフリカ便でも横になってしっかり眠れるため、疲労を蓄積させません。
+        </li>
+        <li>
+          <strong>高山病への万全の配慮（ペルー）:</strong><br>
+          標高3,400mのクスコには到着直後滞在せず、初日に標高2,400mのマチュピチュ村へ直行して体を順応させる「低地先行ルート」を採用しています。
+        </li>
+        <li>
+          <strong>常時接続の通信環境（eSIM + ローミング）:</strong><br>
+          各国の高速データ通信eSIMを事前準備し、空港到着直後から常時インターネットに接続できる状態を維持します。
+        </li>
+        <li>
+          <strong>充実の海外旅行傷害保険:</strong><br>
+          最高水準の疾病治療・救援者費用・手荷物損害をカバーする海外旅行保険を付帯しています。万が一の病気や怪我でも24時間日本語デスクで病院手配が可能です。
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ================= TAB 6: DOCS ================= -->
+  <div id="tab-docs" class="tab-pane">
+    <div class="card">
+      <div class="card-title">旅程の詳細資料・手配リンク集</div>
+      <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:16px;">
+        より詳細な観光内容やスケジュール、各都市の個別資料はこちらから閲覧できます。
+      </p>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:12px;">
+        <a href="東回り_タイムチャート.html" style="text-decoration:none; color:inherit;">
+          <div style="border:1px solid var(--border); border-radius:8px; padding:12px; background:#f8fafc;">
+            <div style="font-weight:700; color:var(--primary); font-size:14px;">📊 東回り 詳細タイムチャート</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">時間単位の行動計画・睡眠ブロック・全日程チャート</div>
+          </div>
+        </a>
+
+        <a href="東回り_旅のガイド_スライド.html" style="text-decoration:none; color:inherit;">
+          <div style="border:1px solid var(--border); border-radius:8px; padding:12px; background:#f8fafc;">
+            <div style="font-weight:700; color:var(--primary); font-size:14px;">🖼️ 旅のガイドスライド (全42枚)</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">各都市の見どころ写真・ハイライト解説スライド</div>
+          </div>
+        </a>
+
+        <a href="手配_マチュピチュ.html" style="text-decoration:none; color:inherit;">
+          <div style="border:1px solid var(--border); border-radius:8px; padding:12px; background:#f8fafc;">
+            <div style="font-weight:700; color:var(--primary); font-size:14px;">🇵🇪 マチュピチュ・クスコ手配詳細</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">入場券、展望列車ペルーレイル、ホテル手配情報</div>
+          </div>
+        </a>
+
+        <a href="手配_イグアス.html" style="text-decoration:none; color:inherit;">
+          <div style="border:1px solid var(--border); border-radius:8px; padding:12px; background:#f8fafc;">
+            <div style="font-weight:700; color:var(--primary); font-size:14px;">🇧🇷🇦🇷 イグアスの滝手配詳細</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">ヘリコプター遊覧・ボートツアー・国立公園内送迎</div>
+          </div>
+        </a>
+
+        <a href="手配_気球ツアー.html" style="text-decoration:none; color:inherit;">
+          <div style="border:1px solid var(--border); border-radius:8px; padding:12px; background:#f8fafc;">
+            <div style="font-weight:700; color:var(--primary); font-size:14px;">🇹🇷 カッパドキア熱気球ツアー手配</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">早朝気球フライト・洞窟ホテル手配</div>
+          </div>
+        </a>
+
+        <a href="手配_サファリ.html" style="text-decoration:none; color:inherit;">
+          <div style="border:1px solid var(--border); border-radius:8px; padding:12px; background:#f8fafc;">
+            <div style="font-weight:700; color:var(--primary); font-size:14px;">🇰🇪 アンボセリ サファリ手配詳細</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">専用4x4サファリカー・サファリロッジ手配</div>
+          </div>
+        </a>
+
+        <a href="東回り_サッカー観戦候補.html" style="text-decoration:none; color:inherit;">
+          <div style="border:1px solid var(--border); border-radius:8px; padding:12px; background:#f8fafc;">
+            <div style="font-weight:700; color:var(--primary); font-size:14px;">⚽ サッカー観戦（マドリード・トルコ）</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">スペイン戦＆ガラタサライ戦の観戦情報</div>
+          </div>
+        </a>
+
+        <a href="手配_ワイナリー.html" style="text-decoration:none; color:inherit;">
+          <div style="border:1px solid var(--border); border-radius:8px; padding:12px; background:#f8fafc;">
+            <div style="font-weight:700; color:var(--primary); font-size:14px;">🍷 トスカーナ ワイナリー手配詳細</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">ローマ発日帰り専用車ツアー・ワイナリー見学</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>世界一周旅行 2026-2027 家族共有用ポータルサイト | 発行日: 2026年9月6日</p>
+  <p style="margin-top:4px; font-size:11px;">※本ページのデータはANA公式eチケット（予約番号: EANRV5 / 航空券番号: 205-2443136675〜678）に基づいて作成されています。</p>
+</footer>
+
+<script>
+  function switchTab(tabId, ev) {
+    document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    
+    const targetPane = document.getElementById('tab-' + tabId);
+    if (targetPane) targetPane.classList.add('active');
+
+    if (ev && ev.currentTarget) {
+      ev.currentTarget.classList.add('active');
+    }
+    window.scrollTo({ top: 180, behavior: 'smooth' });
+  }
+
+  function filterTimeline(phase, ev) {
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    if (ev && ev.currentTarget) {
+      ev.currentTarget.classList.add('active');
+    }
+
+    const days = document.querySelectorAll('.tl-day');
+    days.forEach(day => {
+      if (phase === 'all' || day.getAttribute('data-phase') === phase) {
+        day.style.display = 'block';
+      } else {
+        day.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

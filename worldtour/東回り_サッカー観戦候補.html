@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>東回り案：サッカー観戦候補 - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🐘 サファリ・象孤児院</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../東回り_サッカー観戦候補.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="_1">東回り案：サッカー観戦候補</h1>
+<blockquote>
+<p><strong>正本:</strong> <code>東回り_要件定義書.md</code>（第1版）に従属する派生文書。<br />
+<strong>作成日:</strong> 2026年9月3日 ／ <strong>調査日:</strong> 2026年9月3日</p>
+<h2 id="_2">🔴 このファイルの前提</h2>
+<ul>
+<li><strong>観戦チケットは2試合とも未購入。「観戦予定」であり「確定」ではない。</strong></li>
+<li><strong>試合日・キックオフ・会場はリーグ／UEFAの発表で変更され得る。渡航直前に公式で再確認すること。</strong></li>
+<li><strong>非公式の転売サイトは利用しない。</strong> 名前登録制・本人確認のある試合では入場拒否のリスクがある。<strong>購入は各連盟・各クラブの公式または公式リセールに限る。</strong></li>
+<li>旧・西回り案の観戦候補（<code>西回り案_アーカイブ/worldtour_2026_サッカー観戦候補.md</code>）は<strong>参照対象外</strong>。</li>
+</ul>
+</blockquote>
+<hr />
+<h2 id="0">0. 東回りに切り替えて何が変わったか</h2>
+<p>西回り（バンコク発）では <strong>11/3 イスタンブール → 11/4 アテネ</strong> の連日移動が必要で、<strong>便が2〜3時間遅れただけで観戦不能</strong>という最大の弱点があった。</p>
+<p>東回りでは欧州滞在が <strong>11月中旬〜下旬</strong>にずれ込み、結果として:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">西回り（旧案）</th>
+<th style="text-align: left;"><strong>東回り（本案）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">試合①</td>
+<td style="text-align: left;">ガラタサライ vs シュツットガルト（11/3）</td>
+<td style="text-align: left;"><strong>スペイン vs イングランド（11/15・マドリード）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">試合②</td>
+<td style="text-align: left;">AEKアテネ vs レアル・マドリード（11/4）</td>
+<td style="text-align: left;"><strong>ガラタサライ vs アストン・ヴィラ（11/24・イスタンブール）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">試合③</td>
+<td style="text-align: left;">ASローマ vs サッスオーロ（<strong>日程未発表</strong>）</td>
+<td style="text-align: left;">（任意）ポルトガル vs デンマーク（11/14）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>試合間の余裕</strong></td>
+<td style="text-align: left;">🔴 <strong>連日（1日）</strong></td>
+<td style="text-align: left;">✅ <strong>9日</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">日程の確度</td>
+<td style="text-align: left;">1試合が未発表</td>
+<td style="text-align: left;"><strong>2試合とも日付・会場が確定済み</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">種別</td>
+<td style="text-align: left;">クラブ戦のみ</td>
+<td style="text-align: left;"><strong>代表戦＋クラブ戦の両方</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1">1. ★ 観戦予定（<strong>チケット未確保</strong>）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">日時（現地時間）</th>
+<th style="text-align: left;">カード</th>
+<th style="text-align: left;">会場・都市</th>
+<th style="text-align: left;">優先度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>①</strong></td>
+<td style="text-align: left;"><strong>11/15(日) 20:45 CET</strong></td>
+<td style="text-align: left;"><strong>スペイン vs イングランド</strong><br>UEFA ネーションズリーグ League A グループ3・<strong>第6節（最終節）</strong></td>
+<td style="text-align: left;"><strong>リヤド・エアー・メトロポリターノ／マドリード</strong><br>（収容 70,692人／アトレティコ・マドリードの本拠地）</td>
+<td style="text-align: left;">🔴 <strong>最優先</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>②</strong></td>
+<td style="text-align: left;"><strong>11/24(火) 18:45 CET</strong></td>
+<td style="text-align: left;"><strong>ガラタサライ vs アストン・ヴィラ</strong><br>UEFA チャンピオンズリーグ リーグフェーズ <strong>第5節</strong></td>
+<td style="text-align: left;"><strong>RAMS Park／イスタンブール</strong></td>
+<td style="text-align: left;">🔴 <strong>最優先</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">③</td>
+<td style="text-align: left;"><strong>11/14(土)</strong></td>
+<td style="text-align: left;">ポルトガル vs デンマーク<br>ネーションズリーグ League A グループ4・第5節</td>
+<td style="text-align: left;"><strong>ポルトガル（会場要確認）</strong></td>
+<td style="text-align: left;"><strong>優先度低</strong>（リスボン滞在中なら）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<span id="spain"></span><h2 id="2-1-vs-1115">2. ① スペイン vs イングランド（11/15・マドリード）</h2>
+<h3 id="_3">なぜこの試合か</h3>
+<ul>
+<li><strong>2026年W杯のベスト4同士の対戦。</strong></li>
+<li><strong>両国にとってグループ最終節</strong>で、クロアチア・チェコを含む激戦グループの<strong>決着がかかる可能性がある</strong>。</li>
+<li><strong>会場はスペインサッカー連盟（RFEF）とアトレティコ・マドリードが2026年8月4日に公式発表済み。</strong></li>
+</ul>
+<h3 id="_4">会場についての注意</h3>
+<blockquote>
+<p>🔴 <strong>一部の転売・アグリゲーターサイトが「サンティアゴ・ベルナベウ」「ウェンブリー」と誤記している。</strong><br />
+<strong>公式（RFEF／アトレティコ・マドリード）はリヤド・エアー・メトロポリターノ</strong>と発表している。<strong>購入時に会場表記を必ず確認すること。</strong></p>
+</blockquote>
+<p>補足：スペイン代表はこの会場で過去3回戦って<strong>無敗</strong>（2018年3月 アルゼンチンに6-1、2019年11月 ルーマニアに5-0 など）。今回が4回目。</p>
+<h3 id="_5">チケット入手</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>販売元</strong></td>
+<td style="text-align: left;">🔴 <strong>RFEF（スペインサッカー連盟）の公式プラットフォームのみ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>発売時期</strong></td>
+<td style="text-align: left;"><strong>2026年9月以降に情報公開</strong>と告知済み。<strong>9月中に RFEF のサイトを確認すること</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>受け取り方</strong></td>
+<td style="text-align: left;"><strong>記名式・デジタル配信</strong>（RFEF Tickets アプリ）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>⚠️ 警告</strong></td>
+<td style="text-align: left;"><strong>RFEF が「公式プラットフォーム以外で買わないように」と明示的に注意喚起している</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">備考</td>
+<td style="text-align: left;">イングランドのアウェイ配分は別途、イングランド側で告知される</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">行程との関係</h3>
+<ul>
+<li><strong>バルセロナ滞在中（11/14〜11/17）に、マドリードへ1泊で遠征する。</strong></li>
+<li><strong>AVE（高速鉄道）でバルセロナ→マドリード 約2時間30分。</strong></li>
+<li>キックオフ 20:45 のため、<strong>当日中にバルセロナへ戻るのは不可能</strong>（最終 AVE に間に合わない）。<strong>マドリードに1泊し、翌11/16 に戻る。</strong></li>
+<li><strong>なぜバルセロナを RTW の経由地にするか:</strong> サグラダ・ファミリア（塔登頂）と Barça Immersive Tour を残すため。マドリードを RTW の経由地にするとバルセロナを失う。</li>
+</ul>
+<hr />
+<span id="galatasaray"></span><h2 id="3-2-vs-1124">3. ② ガラタサライ vs アストン・ヴィラ（11/24・イスタンブール）</h2>
+<h3 id="_7">日程</h3>
+<ul>
+<li><strong>UCL リーグフェーズ 第5節は 2026年11月24日・25日。</strong></li>
+<li><strong>11/24（火）の 18:45 キックオフ</strong>（同時間帯：ボドー/グリムト vs LASK）。</li>
+<li>同節の他カード：アーセナル vs ドルトムント、マンチェスター・シティ vs ナポリ、レアル・マドリード vs PSV、コモ vs AEKアテネ、フェイエノールト vs ポルト ほか。</li>
+</ul>
+<h3 id="9">チケット入手 — 🔴 <strong>9月中に手続きが必要</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>必須条件</strong></td>
+<td style="text-align: left;">🔴 <strong>Passo Taraftar カード</strong>（トルコ法律第6222号により、<strong>外国人・観光客・7歳以上の子どもも全員必須</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>外国人の場合</strong></td>
+<td style="text-align: left;"><strong>Passo Taraftar Wallet（プリペイド）一択</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>申請先</strong></td>
+<td style="text-align: left;"><strong><code>passo.com.tr</code>（英語対応）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>カード受取</strong></td>
+<td style="text-align: left;"><strong>RAMS Park の窓口で受け取り可</strong>。アカウントが有効ならアプリでデジタル入場も可</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>発売時期</strong></td>
+<td style="text-align: left;">UCL の一般販売は<strong>試合の2〜3週間前</strong>が目安 → <strong>11月上旬</strong>の見込み</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>やること</strong></td>
+<td style="text-align: left;"><strong>9月中に passo.com.tr で Passo Taraftar カードを申請する</strong>（カードがないと購入も入場もできない）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">行程との関係</h3>
+<ul>
+<li><strong>イスタンブール滞在 11/23〜11/25（3泊）の中日</strong>にあたる。</li>
+<li>11/21 にアテネから入り、11/21〜22 はカッパドキア（気球ツアー）、<strong>11/23 にイスタンブールへ戻る</strong>。</li>
+<li><strong>試合当日（11/24）は移動がなく、終日イスタンブール滞在。</strong> 遅延で観戦不能になるリスクが小さい。</li>
+</ul>
+<hr />
+<h2 id="4-3-vs-1114">4. ③【任意】ポルトガル vs デンマーク（11/14）</h2>
+<ul>
+<li><strong>ネーションズリーグ League A グループ4 第5節</strong>（ポルトガル／デンマーク／ノルウェー／ウェールズ）。</li>
+<li><strong>11/14(土) にポルトガルのホーム戦。</strong></li>
+<li><strong>リスボン滞在は 11/11〜11/14</strong> なので、<strong>会場がリスボンなら観戦可能</strong>。</li>
+<li>⚠️ <strong>会場が未確認。</strong> ポルトガル代表はリスボン（エスタディオ・ダ・ルス／ジョゼ・アルヴァラーデ）のほか、ポルトやギマランイスでも開催する。<strong>要確認。</strong></li>
+<li><strong>11/14 は同日にリスボン→バルセロナへ移動する日</strong>でもあるため、<strong>キックオフ時刻次第では両立しない。</strong></li>
+<li><strong>優先度は低い。</strong> ①②が確保できた後に検討する。</li>
+</ul>
+<hr />
+<h2 id="5">5. 観戦できない試合（記録）</h2>
+<p>東回りにしたことで、以下は観戦不可となった。判断の記録として残す。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">カード</th>
+<th style="text-align: left;">理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">11/12(木) 18:00</td>
+<td style="text-align: left;"><strong>トルコ vs ベルギー</strong>（NL第5節・トルコ開催）</td>
+<td style="text-align: left;"><strong>その時期はまだリスボン滞在。</strong> 東回りではイスタンブールが旅程の終盤になる</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/15(日)</td>
+<td style="text-align: left;">ベルギー vs イタリア／フランス vs トルコ</td>
+<td style="text-align: left;"><strong>イタリア・トルコとも アウェイ</strong>。ローマ・イスタンブールでは開催されない</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/17(火)</td>
+<td style="text-align: left;">ウェールズ vs ポルトガル</td>
+<td style="text-align: left;">ポルトガルはアウェイ</td>
+</tr>
+<tr>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><strong>イタリア代表のホーム戦</strong></td>
+<td style="text-align: left;"><strong>11月にホーム戦がない</strong>（10/2 にフランス戦を消化済み）。ローマでの代表戦は不可</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/25(水)</td>
+<td style="text-align: left;">インテル vs シュツットガルト（UCL第5節）</td>
+<td style="text-align: left;"><strong>ミラノは訪問対象外</strong>（旧 F-9 を継承）</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/24(火)</td>
+<td style="text-align: left;">コモ vs AEKアテネ</td>
+<td style="text-align: left;">AEK はアウェイ。アテネでは開催されない</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6">6.【任意】滞在中に開催される可能性のあるリーグ戦</h2>
+<p><strong>国際マッチウィーク（11/9〜11/17）は欧州各国リーグが全面中断</strong>する。<strong>11/17 以降に再開</strong>するため、以下は再開後の滞在都市で観戦できる可能性がある。<strong>いずれも日程未確認・要確認。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">滞在</th>
+<th style="text-align: left;">都市</th>
+<th style="text-align: left;">可能性のあるリーグ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">11/17〜11/19</td>
+<td style="text-align: left;"><strong>ローマ</strong></td>
+<td style="text-align: left;">セリエA（<strong>11/21〜22 の週末開催なら滞在期間外</strong>。要確認）</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/19〜11/21</td>
+<td style="text-align: left;"><strong>アテネ</strong></td>
+<td style="text-align: left;">ギリシャ・スーパーリーグ（AEK／パナシナイコス／オリンピアコス）</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/23〜11/25</td>
+<td style="text-align: left;"><strong>イスタンブール</strong></td>
+<td style="text-align: left;">スュペル・リグ（ガラタサライ／フェネルバフチェ／ベシクタシュ）</td>
+</tr>
+<tr>
+<td style="text-align: left;">10/30〜11/02</td>
+<td style="text-align: left;"><strong>メキシコシティ</strong></td>
+<td style="text-align: left;">リーガMX（<strong>組み合わせ・時刻は11月中旬発表</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;">10/26〜10/29</td>
+<td style="text-align: left;"><strong>東京</strong></td>
+<td style="text-align: left;">J1リーグ（秋春制。日程要確認）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>⚠️ ローマでセリエAを観たい場合:</strong> ローマ滞在を <strong>11/18〜11/22</strong> にずらせば週末開催に当たる可能性があるが、<strong>アテネ滞在が1泊に圧縮される</strong>。①②を優先するなら現行日程を維持する。</p>
+</blockquote>
+<hr />
+<h2 id="7">7. 🔴 準備スケジュール</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">時期</th>
+<th style="text-align: left;">やること</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>9月中（最優先）</strong></td>
+<td style="text-align: left;">① <strong><code>passo.com.tr</code> で Passo Taraftar カードを申請</strong>（ガラタサライ戦の前提条件・外国人必須）<br>② <strong>RFEF 公式でスペイン戦の販売情報を確認</strong>（9月以降公開と告知済み）<br>③ RTW の見積もり取得（<code>東回り_発券用資料.md</code>）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>10月上旬</strong></td>
+<td style="text-align: left;">ポルトガル vs デンマークの<strong>会場</strong>を確認（リスボンか否か）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>10月下旬〜11月上旬</strong></td>
+<td style="text-align: left;"><strong>ガラタサライ戦の一般販売</strong>（試合2〜3週間前の見込み）→ Passo アカウントで購入</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>販売開始次第</strong></td>
+<td style="text-align: left;"><strong>スペイン戦を RFEF 公式アプリで購入</strong>（記名式・デジタル配信）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>渡航直前</strong></td>
+<td style="text-align: left;">全試合の<strong>日時・会場を公式で再確認</strong>。ローマ／アテネ／イスタンブールのリーグ戦日程も確認</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8">8. 購入時の注意（旧案から継承）</h2>
+<ul>
+<li>🔴 <strong>非公式の転売サイトは使わない。</strong> 名前登録制・本人確認のある試合では<strong>入場拒否＝チケット代全損</strong>のリスクがある。</li>
+<li><strong>購入者名＝入場者名</strong>の本人確認がある試合があるため、<strong>パスポート表記で購入する</strong>。</li>
+<li>スタジアムは<strong>持込制限が厳しい</strong>（大きいバッグ不可の場合あり）。</li>
+<li><strong>スペイン戦は RFEF が公式プラットフォーム以外での購入について明示的に警告している。</strong></li>
+</ul>
+<hr />
+<h2 id="9-202693">9. 出典（2026年9月3日 確認）</h2>
+<ul>
+<li><a href="https://www.uefa.com/uefachampionsleague/news/02a8-2174c9e9019d-f909a77bd77a-1000--2026-27-champions-league-all-the-league-phase-fixtures/">2026/27 Champions League: All the league phase fixtures — UEFA.com</a></li>
+<li><a href="https://www.uefa.com/uefanationsleague/news/02a2-1fea18abbcbc-456e846509e7-1000--2026-27-uefa-nations-league-all-the-league-phase-fixtures/">2026/27 UEFA Nations League: All the league phase fixtures — UEFA.com</a></li>
+<li><a href="https://en.atleticodemadrid.com/noticias/world-champions-spain-set-to-face-england-at-the-riyadh-air-metropolitano-on-15-november">World champions Spain set to face England at the Riyadh Air Metropolitano on 15 November — Atlético de Madrid 公式</a></li>
+<li><a href="https://rfef.es/en/noticias/Metropolitano-to-Host-Spain-vs-England-in-the-UEFA-Nations-League">Metropolitano to Host Spain vs England in the UEFA Nations League — RFEF 公式</a></li>
+<li><a href="https://www.turkiyetoday.com/sports/how-foreign-visitors-can-attend-football-matches-in-turkiye-step-by-step-guide-3204050">How foreign visitors can attend football matches in Türkiye — Türkiye Today</a></li>
+<li><a href="https://www.si.com/soccer/when-is-next-international-break-2026-dates-schedule">When Is the Next International Break? 2026 Dates and Schedule — Sports Illustrated</a></li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

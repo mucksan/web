@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>東回り RTW 空席ウォッチ 運用手順（監視ツール編） - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🐘 サファリ・象孤児院</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../東回り_空席ウォッチ運用.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="rtw">東回り RTW 空席ウォッチ 運用手順（監視ツール編）</h1>
+<blockquote>
+<p><strong>親文書:</strong> <code>東回り_発券用資料.md</code>（第10版）。<strong>いま何をウォッチしているかは親文書 §0.2 にある。</strong><br />
+本書は「どうやって空席を見るか」という<strong>運用・ツールの手順だけ</strong>を扱う。<br />
+<strong>改定日:</strong> 2026年9月6日（<strong>発券完了に伴い改定。予約クラスが券面で確定し、ウォッチ対象は3件に絞られた</strong>）</p>
+<h2 id="202696pnr-eanrv5">✅ 発券が完了しました（2026/9/6・PNR: EANRV5）</h2>
+<p><strong>「予約が消えるか」を毎日見る必要はなくなった。</strong>残るのは「空きが出たら変更する」だけ。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID</th>
+<th style="text-align: left;">対象</th>
+<th style="text-align: left;">狙う便</th>
+<th style="text-align: left;">期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>S-1</strong></td>
+<td style="text-align: left;">② 10/29 SFO→MEX（<strong>UA1271 が <code>B</code>＝エコノミーで発券</strong>）</td>
+<td style="text-align: left;">UA1271 のビジネス（D／Z）</td>
+<td style="text-align: left;">10/28</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>B-3</strong></td>
+<td style="text-align: left;">⑤ <strong>TP88 の在庫</strong>（これが開かないと ⑥ を動かせない）</td>
+<td style="text-align: left;">開いたら ⑥ を TP1034 10:50発へ</td>
+<td style="text-align: left;">11/11</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>A-4</strong></td>
+<td style="text-align: left;">⑨ 11/21 ATH→IST</td>
+<td style="text-align: left;">TK1844 10:10→12:50</td>
+<td style="text-align: left;">11/20（実質10月中）</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>B-3 のウォッチ対象は TP1034 ではなく <code>TP88</code>。</strong><br />
+窓口回答は「TP1034 に空きはあるが、<strong>TP88 とセットで予約しているため変更できない。TP88 に空きができたら変更可能</strong>」だった。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">用途</th>
+<th style="text-align: left;">参照先</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>いまウォッチしている3件</strong></td>
+<td style="text-align: left;"><code>東回り_発券用資料.md</code> <strong>§0.2</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>発券実績・券面の内容</strong></td>
+<td style="text-align: left;"><code>東回り_発券用資料.md</code> <strong>§0〜§4</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>各区間の代替便候補</strong></td>
+<td style="text-align: left;"><code>東回り_発券用資料.md</code> <strong>§9</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>空席の見方・ツール・実行頻度・記録</strong></td>
+<td style="text-align: left;"><strong>本書（以下）</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1-expertflyer">1. ウォッチの手段（ExpertFlyer を使わない自前運用）</h2>
+<p>🔴 <strong>前提：Google Flights では予約クラス（Z）を判定できない。</strong></p>
+<p>Google Flights の内部データを実際にデコードして確認した結果、1区間あたり保持しているのは<br />
+<code>運航会社 / 便名 / 発着時刻 / 機材 / キャビン(business) / 価格</code> のみで、<br />
+<strong>Z・D・C・J といった予約クラスのフィールドが存在しない。</strong><br />
+これは取得方法を変えても解決しない Google Flights 自体の仕様である。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">手段</th>
+<th style="text-align: center;">予約クラス(RBD)</th>
+<th style="text-align: left;">費用</th>
+<th style="text-align: left;">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>ANA 予約確認ページ</strong>（§冒頭URL）</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;">無料</td>
+<td style="text-align: left;">🔴 <strong>自分の予約16区間の生存・時刻変更。最も確実な一次情報。発券まで毎日1回</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>自前ツール <code>tools/flightwatch</code></strong><br>（Google Flights）</td>
+<td style="text-align: center;">❌ <strong>不可</strong><br>キャビンのみ</td>
+<td style="text-align: left;">無料</td>
+<td style="text-align: left;"><strong>①予約済み15区間のダイヤ・機材ドリフト検出</strong><br><strong>②代替便の時刻の洗い出し</strong>（A-1〜A-3）<br>→ 「窓口に聞く価値があるか」の一次スクリーニング</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>ITA Matrix</strong><br><code>f bc=Z</code> 指定</td>
+<td style="text-align: center;">✅ <strong>可能</strong></td>
+<td style="text-align: left;"><strong>無料</strong></td>
+<td style="text-align: left;">🔴 <strong>Zクラスの可否を見られる唯一の無料手段。</strong><br><code>tools/flightwatch matrix</code> がURLを自動生成する</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ExpertFlyer</strong>（有料）</td>
+<td style="text-align: center;">✅ 可能（素の在庫）</td>
+<td style="text-align: left;">有料</td>
+<td style="text-align: left;"><strong>Matrix でも分離できない「運賃未設定」と「在庫ゼロ」を区別</strong>したい場合のみ。必須ではない</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ANA窓口への照会</strong></td>
+<td style="text-align: center;">✅ <strong>確定情報</strong></td>
+<td style="text-align: left;">無料</td>
+<td style="text-align: left;">🔴 <strong>最終判断は必ずここ。</strong> 上記はすべて「窓口に聞く材料集め」</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ita-matrix-z">🔴 ITA Matrix による Z クラス判定（実証済み）</h3>
+<p>Google が所有する <a href="https://matrix.itasoftware.com/">ITA Matrix</a> には<br />
+routing language の <strong><code>bc=</code>（booking class）</strong> 指定があり、予約クラス単位で絞り込める。<br />
+<strong>2026年9月4日に実際に対照実験して動作を確認した：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">検索条件（UA / SFO→MEX / 10-29）</th>
+<th style="text-align: left;">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Extension = <code>f bc=Y</code></td>
+<td style="text-align: left;"><strong>3便ヒット</strong> — 10:45発（<strong>UA1271</strong>）／13:14発／22:48発（UA412）</td>
+</tr>
+<tr>
+<td style="text-align: left;">Extension = <code>f bc=Z</code></td>
+<td style="text-align: left;">🔴 <strong>No flights found</strong></td>
+</tr>
+</tbody>
+</table>
+<p>→ <strong><code>bc=</code> フィルタは確かに機能しており、10/29 の UA 全便で Z は開いていない。</strong><br />
+Google Flights が「UA412にビジネスあり」と表示したのは Z ではなく上位バケット（J/C/D）だった。<br />
+<strong>窓口が UA1271 をエコノミーで取った理由がこれで裏付けられる。</strong></p>
+<h3 id="202694">🔴 使い方の訂正（2026/9/4 実測）</h3>
+<p><strong>URLを開くだけでは検索が走らない。</strong>base64 URL は検索条件を復元するだけでクエリを発火しない。<br />
+実際に開いたまま <strong>145秒待っても進捗バーが回り続け、結果が出なかった</strong>（SFO→MEX / GRU→LIS の両方で再現）。</p>
+<p>正しい手順は3ステップ：</p>
+<ol>
+<li><code>python flightwatch.py matrix</code> が生成するURLを開く（フォームに全条件が復元される）</li>
+<li><strong>「Modify search」タブをクリック</strong></li>
+<li><strong>「Search」ボタンをクリック</strong> → ページタイトルが区間名（例 <code>SFO ⭢ MEX</code>）に変われば発火成功</li>
+</ol>
+<p>完了までさらに <strong>40〜90秒</strong>。完了すると URL に <code>solution.sessionId</code> が付く。</p>
+<blockquote>
+<p>⚠️ 従来この項に「リンクをクリックするだけでよい」と書いていたが<strong>誤りだった</strong>。<br />
+上の <code>bc=Y</code>/<code>bc=Z</code> 対照実験はフォーム操作で行っており、URL直叩きは未検証のまま記載していた。</p>
+</blockquote>
+<h3 id="202694-0700-0703">🔴 実測ログ（2026/9/4 07:00-07:03・上記手順で取得）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">対象</th>
+<th style="text-align: left;">区間・日付</th>
+<th style="text-align: left;"><code>bc=Z</code> の結果</th>
+<th style="text-align: left;">判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>S-1</strong></td>
+<td style="text-align: left;">UA / SFO→MEX / 10-29</td>
+<td style="text-align: left;">❌ <strong>No flights found</strong></td>
+<td style="text-align: left;">同日の再確認でも一致。<strong>待つしかない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>A-3</strong></td>
+<td style="text-align: left;">TP / GRU→LIS / 11-10</td>
+<td style="text-align: left;">🔴 <strong>在庫あり・3便</strong>（R$12,410）<br>TP84 01:30→14:25<br><strong>TP82 16:20→05:15(+1)</strong><br>TP88 23:15→12:10(+1)＝現予約</td>
+<td style="text-align: left;"><strong>窓口照会の価値あり</strong>（下記）</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>A-3 について：TP82（16:20発）に Z 在庫が実在する。</strong><br />
+ただし A-3 の当初の狙い「リスボン<strong>午前</strong>着」は満たさない（05:15着＝早朝）。<br />
+現予約 TP88 の 12:10 着に対し <strong>約7時間早い</strong>が、GRU を 16:20 に発つため<br />
+<strong>11/10 のサンパウロ側の行程が7時間短くなる</strong>トレードオフがある。<br />
+→ <strong>行程上の得失を先に判断してから窓口へ。</strong>在庫だけを見て飛びつく話ではない。</p>
+<h3 id="matrix">⚠️ Matrix の限界（正直な注意書き）</h3>
+<p><code>bc=Z</code> が空振りしても、原因は2通りありうる：</p>
+<ol>
+<li><strong>Z の座席在庫が無い</strong>（＝知りたかったこと）</li>
+<li><strong>その市場に Z で発券される運賃が設定されていない</strong>（＝在庫と無関係）</li>
+</ol>
+<p>Matrix は「運賃 × 在庫」を同時に見るため、この2つを<strong>分離できない</strong>。<br />
+ExpertFlyer は運賃と無関係に素の在庫（<code>Z4</code> <code>Z0</code> 等）を表示するので、そこだけが本質的な差。<br />
+<strong>したがって Matrix が「無し」でも、確定判断は必ず ANA 窓口で行うこと。</strong></p>
+<h3 id="rbd202696">✅ どのRBDを見るのか（2026/9/6 券面で確定）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">運航会社</th>
+<th style="text-align: left;">RBD</th>
+<th style="text-align: left;">根拠</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>NH（ANA）</strong></td>
+<td style="text-align: left;">✅ <strong>Z</strong></td>
+<td style="text-align: left;">eチケット券面 <code>Z(C)</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>TP・AZ</strong></td>
+<td style="text-align: left;">✅ <strong>Z</strong></td>
+<td style="text-align: left;">eチケット券面</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CM・A3・TK・MS・ET・SQ</strong></td>
+<td style="text-align: left;">✅ <strong>D</strong></td>
+<td style="text-align: left;">eチケット券面</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>UA（ユナイテッド）</strong></td>
+<td style="text-align: left;">🔴 <strong>B（エコノミー）で発券された</strong></td>
+<td style="text-align: left;">eチケット券面。<strong>ビジネス化が S-1 の目的</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔴 <strong>従来「窓口に確認すれば Z 一本に絞れる」と書いていたのは誤りだった。</strong><br />
+<strong>実際にはスターアライアンス他社は <code>D</code> で発券されている。</strong><br />
+したがって <strong>ウォッチでは <code>D</code> と <code>Z</code> の両方</strong>を見る（<code>watchlist.json</code> に反映済み）。</p>
+<p><strong>S-1 で見るべきなのは UA1271 の <code>D</code> または <code>Z</code> の在庫。</strong><br />
+9/4 の ITA Matrix 調査で <code>bc=Z</code> がゼロだったのは事実だが、<br />
+<strong><code>D</code> を見ていなかった</strong>ため、<strong>S-1 の再調査では <code>f bc=D</code> も試すこと。</strong></p>
+</blockquote>
+<hr />
+<h2 id="2">2. 🔭 実行頻度（発券後版）</h2>
+<p><strong>考え方が変わった。</strong> 発券が済んだので <strong>「予約の生存確認」は不要</strong>になった。<br />
+残るのは <strong>D／Z 在庫が開くのを待つ</strong>ことだけで、在庫は<strong>出発2〜3週間前と72時間前</strong>に動きやすい。<br />
+それ以外の時期に毎日回しても得るものはほぼ無い。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">時期</th>
+<th style="text-align: center;"><code>schedule</code></th>
+<th style="text-align: center;"><code>watch</code></th>
+<th style="text-align: center;"><code>matrix</code>（D／Z判定）</th>
+<th style="text-align: left;">主眼</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>9/7〜9月末</strong></td>
+<td style="text-align: center;">月1</td>
+<td style="text-align: center;">月1</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;">ダイヤ変更の検出のみ。在庫はまだ動かない</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>10/1〜10/10</strong></td>
+<td style="text-align: center;">月1</td>
+<td style="text-align: center;">隔週</td>
+<td style="text-align: center;">隔週（S-1）</td>
+<td style="text-align: left;">平常運転</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>10/11〜10/24</strong></td>
+<td style="text-align: center;">週1</td>
+<td style="text-align: center;"><strong>週2</strong></td>
+<td style="text-align: center;"><strong>週2（S-1）</strong></td>
+<td style="text-align: left;">🔴 <strong>最初の狙い目。</strong>団体席の返却・仮予約の失効で D が開きやすい</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>10/25〜10/28</strong></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"><strong>毎日</strong></td>
+<td style="text-align: center;"><strong>毎日（S-1）</strong></td>
+<td style="text-align: left;">🔴 <strong>S-1 の最終チャンス。</strong>UA1271 は 10/29 発なので <strong>10/28 が期限</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>10/29〜11/9</strong></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">週2</td>
+<td style="text-align: center;">週2（<strong>B-3＝TP88</strong>）</td>
+<td style="text-align: left;">🔴 <strong>B-3 の狙い目。</strong>TP88 は 11/10 発</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/10〜11/19</strong></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">週2</td>
+<td style="text-align: center;">週2（A-4）</td>
+<td style="text-align: left;">A-4 の期限は 11/20。<strong>ただし IST→NAV を予約する前＝10月中に一度見ておく</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/21以降</strong></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;">🔭 <strong>ウォッチ終了。</strong>3件とも期限切れ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2026/12〜2027/3</strong></td>
+<td style="text-align: center;">月1</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;">SQ705・NH842 のダイヤ変更通知のみ</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>A-4 の実質期限は 10月中。</strong>11/20 まで変更自体は可能だが、<br />
+<strong>IST→NAV の便と気球ツアーを予約してしまうと動かせなくなる。</strong></p>
+</blockquote>
+<hr />
+<h2 id="3-toolsflightwatch">3. 自前ツール <code>tools/flightwatch</code></h2>
+<pre><code class="language-bash">pip install fast-flights
+cd tools/flightwatch
+
+python flightwatch.py schedule   # 予約済み15区間のダイヤ・機材ドリフト検出
+python flightwatch.py watch      # ウォッチ対象のビジネス空席（キャビン単位）
+python flightwatch.py matrix     # Zクラス確認用 ITA Matrix リンクを生成
+</code></pre>
+<ul>
+<li>結果は <code>reports/latest_&lt;mode&gt;.md</code> に出力。前回との<strong>差分</strong>（新規/消滅/時刻変更/機材変更/価格）を自動表示</li>
+<li>HIT または ダイヤ変更があれば<strong>終了コード2</strong>を返すため、タスクスケジューラから拾える</li>
+<li>設定は <code>watchlist.json</code>（監視対象・判定ルール・RBD前提）</li>
+<li>詳細は <code>tools/flightwatch/README.md</code></li>
+</ul>
+<p><strong>2026/9/4 初回実行の結果：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">確認内容</th>
+<th style="text-align: left;">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>予約済み区間のダイヤ照合</strong></td>
+<td style="text-align: left;">🔵 <strong>15区間中14区間が予約内容と完全一致</strong>（時刻・機材とも公示ダイヤどおり）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ET608（ADD→BKK）</strong></td>
+<td style="text-align: left;">⚪ <strong>Google Flights が ET の ADD–BKK 直行を収録していない</strong>（日付を変えても常に0件・経由便のみ表示）。<strong>便が無いのではなく検索側の穴</strong>。ANA予約ページ／Ethiopian公式で確認すること</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>S-1（SFO→MEX ビジネス）</strong></td>
+<td style="text-align: left;">🔵 キャビン単位では UA412（22:48発）のみ。ただし <strong>Matrix で確認したところ Z は全便ゼロ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>A-1（MEX→LIM）</strong></td>
+<td style="text-align: left;">🔴 <strong>同日リマ着の組み合わせを2つ発見</strong>（下記 §9.2.2）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-cowork">4. 実行方法：Cowork の「このコンピュータを必須にする」を使う</h2>
+<p>🔴 <strong>判断の分岐点は、スケジュールタスク作成画面の一番下にあるトグル1つ。</strong></p>
+<blockquote>
+<p><strong>このコンピュータ（leira）を必須にする</strong><br />
+お使いのコンピュータが起動しているときのみ実行されます。<br />
+このコンピュータで<strong>許可したフォルダ</strong>および <strong>Claude in Chrome</strong> へのアクセスが可能になります。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">トグル</th>
+<th style="text-align: left;">使えるもの</th>
+<th style="text-align: left;">制約</th>
+<th style="text-align: left;">登録するタスク</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>オン（推奨）</strong></td>
+<td style="text-align: left;">ローカルファイル ＋ <strong>自分のChrome</strong></td>
+<td style="text-align: left;"><strong>PCが起動中のときだけ実行</strong></td>
+<td style="text-align: left;"><strong>タスクL</strong>（実取得）＋タスクB</td>
+</tr>
+<tr>
+<td style="text-align: left;">オフ</td>
+<td style="text-align: left;">実質ネットワークなし（下表）</td>
+<td style="text-align: left;">PCの電源に依存しない</td>
+<td style="text-align: left;">タスクR（リマインダーのみ）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>オンにすれば、9/4 に実測した遮断はすべて回避できる。</strong><br />
+Claude in Chrome は<strong>利用者自身のChrome</strong>を操作するため、Coworkのプロキシを通らない。</p>
+<h3 id="202694_1">トグル「オフ」で実測した遮断（2026/9/4）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">遮断された箇所</th>
+<th style="text-align: left;">実際に起きたこと</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>matrix.itasoftware.com</code></td>
+<td style="text-align: left;">プロキシが即座に <strong>403</strong>（許可リスト外ドメイン扱い）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>google.com/travel/flights</code></td>
+<td style="text-align: left;"><strong>provenance（出所確認）承認待ちでタイムアウト</strong>。無人実行なので承認者がいない</td>
+</tr>
+<tr>
+<td style="text-align: left;">WebFetch の性質</td>
+<td style="text-align: left;"><strong>JSを実行しない一回限りのHTML取得</strong>。Matrixは描画に40〜90秒かかるため、通ってもスケルトンHTMLしか取れない</td>
+</tr>
+<tr>
+<td style="text-align: left;">ブラウザ操作</td>
+<td style="text-align: left;">クラウドの隔離セッションに<strong>デスクトップブリッジが無い</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_1">🔴 スケジュール画面の設定値</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">設定</th>
+<th style="text-align: left;">理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">タイトル</td>
+<td style="text-align: left;">ANA RTW航空券 空席ウォッチ</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;">手順</td>
+<td style="text-align: left;"><code>tools/flightwatch/cowork-task.md</code> の <strong>タスクL</strong> を貼る</td>
+<td style="text-align: left;">自動生成。手打ち事故が起きない</td>
+</tr>
+<tr>
+<td style="text-align: left;">プロジェクトまたはフォルダーで作業する</td>
+<td style="text-align: left;"><strong><code>C:\dev\claude\worldtour</code></strong></td>
+<td style="text-align: left;">付録AのURL と 前回結果ファイル を読むため</td>
+</tr>
+<tr>
+<td style="text-align: left;">モデル</td>
+<td style="text-align: left;">デフォルトのモデル</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>頻度</strong></td>
+<td style="text-align: left;"><strong>毎週 月曜 09:00</strong>（10/25〜10/28 は毎日に変更）</td>
+<td style="text-align: left;">🔴 <strong>「マニュアル」のままでは定期実行されない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>権限</strong></td>
+<td style="text-align: left;"><strong>自動承認</strong></td>
+<td style="text-align: left;">🔴 <strong>「手動で承認」だと無人実行で承認待ちのまま止まる</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>このコンピュータを必須にする</strong></td>
+<td style="text-align: left;">🔴 <strong>オン</strong></td>
+<td style="text-align: left;">これが本体。オフだと何も取得できない</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2_1">実行経路は2本ある</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">経路</th>
+<th style="text-align: left;">起動方法</th>
+<th style="text-align: left;">PCの電源</th>
+<th style="text-align: left;">備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Cowork タスクL</strong></td>
+<td style="text-align: left;">自動（毎週月曜09:00）</td>
+<td style="text-align: left;">必要</td>
+<td style="text-align: left;">ブラウザ操作。無人で回る</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Claude Code <code>/flightwatch</code></strong></td>
+<td style="text-align: left;">手動</td>
+<td style="text-align: left;">必要</td>
+<td style="text-align: left;">Python＋Playwright。差分は <code>state/</code>。<strong>トグルと無関係に常に動く</strong></td>
+</tr>
+</tbody>
+</table>
+<p><code>/flightwatch</code> の定義は <code>.claude/commands/flightwatch.md</code>。</p>
+<pre><code>/flightwatch          # 空席ウォッチ（数秒）
+/flightwatch full     # ダイヤ照合も含むフル実行（月1回）
+</code></pre>
+<p>🔴 <strong>Windows タスクスケジューラには何も登録していない。</strong></p>
+<hr />
+<h2 id="5">5. ウォッチ記録シート</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">対象</th>
+<th style="text-align: left;">確認結果</th>
+<th style="text-align: center;">窓口照会</th>
+<th style="text-align: left;">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>9/4</strong></td>
+<td style="text-align: left;">全15区間 ダイヤ照合</td>
+<td style="text-align: left;">✅ 14/15 一致・変更なし（ET608 は Google 未収録）</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>9/4</strong></td>
+<td style="text-align: left;">S-1 UA1271 ビジネス</td>
+<td style="text-align: left;">❌ Matrix <code>bc=Z</code> → No flights found</td>
+<td style="text-align: center;">☑</td>
+<td style="text-align: left;">❌ <strong>9/6 発券時も空きなし</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>9/4</strong></td>
+<td style="text-align: left;">A-3 GRU→LIS 早便</td>
+<td style="text-align: left;">🔴 Z在庫あり・TP全3便</td>
+<td style="text-align: center;">☑</td>
+<td style="text-align: left;">現行 TP88 のまま確定</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>9/6</strong></td>
+<td style="text-align: left;">全15区間 実ダイヤ再取得</td>
+<td style="text-align: left;">✅ 第1〜第3希望を確定（発券用資料 §9）</td>
+<td style="text-align: center;">☑</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>9/6</strong></td>
+<td style="text-align: left;">A-1 MEX→LIM</td>
+<td style="text-align: left;">✅ CM121→CM489 を発見</td>
+<td style="text-align: center;">☑</td>
+<td style="text-align: left;">✅ <strong>変更成立。リマ着 22:45</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>9/6</strong></td>
+<td style="text-align: left;">A-2 CAI→NBO</td>
+<td style="text-align: left;">❌ 当日の直行便は MS849 の1便のみ</td>
+<td style="text-align: center;">☑</td>
+<td style="text-align: left;">❌ <strong>取り下げ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>9/6</strong></td>
+<td style="text-align: left;">B-3 LIS→BCN</td>
+<td style="text-align: left;">TP1032 空きなし／TP1034 空きあり</td>
+<td style="text-align: center;">☑</td>
+<td style="text-align: left;">❌ <strong>TP88 とセット予約のため不可。TP88 待ち</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>9/6</strong></td>
+<td style="text-align: left;">A-4 ATH→IST</td>
+<td style="text-align: left;">TK1844 を発見</td>
+<td style="text-align: center;">☑</td>
+<td style="text-align: left;">❌ <strong>空きなし</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">____</td>
+<td style="text-align: left;"><strong>S-1</strong> UA1271 の D／Z</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">____</td>
+<td style="text-align: left;"><strong>B-3</strong> TP88 の在庫</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">____</td>
+<td style="text-align: left;"><strong>A-4</strong> TK1844 の D／Z</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">____</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">____</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">☐</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6">6. 🔴 ウォッチしても意味が薄いもの（時間を使わない）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">対象</th>
+<th style="text-align: left;">理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>欧州域内4区間の座席品質</strong></td>
+<td style="text-align: left;">中央席ブロックのリクライニングで各社横並び。1〜2時間の飛行で差が出ない（C-2）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CM便（MEX→PTY→LIM）の座席品質</strong></td>
+<td style="text-align: left;">Copaのビジネスは B737 のリクライニング。<strong>どの便に振り替えても座席は同じ</strong>。ウォッチすべきは<strong>座席ではなく時刻</strong>（A-1）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>飛行区間を1本追加する形の改善案</strong></td>
+<td style="text-align: left;"><strong>クーポン16枚上限に達しており物理的に不可能</strong>（W-4）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>LIM⇢GRU の地上区間を飛行区間に戻すこと</strong></td>
+<td style="text-align: left;">同上。かつイグアス3泊の行程が崩壊する</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>より上位クラス（ファースト）へのアップグレード</strong></td>
+<td style="text-align: left;">RTWビジネス運賃からの有償アップグレード可否は運賃規則上ほぼ不可。<strong>確認は1回すれば十分</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Google Flights でZクラスを探すこと</strong></td>
+<td style="text-align: left;">🔴 <strong>原理的に不可能。</strong>Google Flights は予約クラスのデータを持っていない（§9.2）。Zを見たいときは必ず ITA Matrix を使う</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>B-1 / B-2 / B-4</strong></td>
+<td style="text-align: left;">✅ <strong>決着済み。</strong>SIN→HND と ADD→BKK は現行便で確定</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>予約の生存確認（旧 W-7）</strong></td>
+<td style="text-align: left;">✅ <strong>発券が完了したため不要。</strong>「毎日1回 予約確認ページを見る」運用は 2026/9/6 で終了</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>A-1 / A-2 / A-3 / C-1 / C-2 / C-3</strong></td>
+<td style="text-align: left;">✅ <strong>すべて決着済み。</strong>残るウォッチは S-1／B-3／A-4 の3件だけ（発券用資料 §0.2）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>B-3 で TP1034 の空席を見ること</strong></td>
+<td style="text-align: left;">🔴 <strong>意味がない。</strong>TP1034 に空きがあっても、<strong>TP88 が開かない限り変更できない。</strong>見るべきは TP88</td>
+</tr>
+</tbody>
+</table>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

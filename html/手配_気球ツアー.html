@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個別手配資料 ⑤ 気球ツアー（カッパドキア／トルコ） - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🐘 サファリ・象孤児院</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_気球ツアー.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="5">個別手配資料 ⑤ 気球ツアー（カッパドキア／トルコ）</h1>
+<p><strong>対象日程:</strong> 2026年11月21日(土)〜11月23日(月)<br />
+<strong>調査日:</strong> 2026年9月4日（初版）／<strong>9月5日（Klook以外へ調査範囲を拡大）</strong><br />
+<strong>関連:</strong> <a href="東回り_要件定義書.md"><code>東回り_要件定義書.md</code></a> §4・§6</p>
+<blockquote>
+<p><strong>調査範囲:</strong> Klook に加え、<strong>公式・直販サイト、現地事業者（スペイン語／ポルトガル語／イタリア語／トルコ語圏）、<br />
+英語 OTA（Viator・GetYourGuide・Expedia・TripAdvisor）、日本語事業者（VELTRA・道祖神・たびチョク・HIS）</strong>を横断。</p>
+<p>⚠️ <strong>Klook の商品ページは bot 検知（HTTP 403）で直接開けませんでした</strong>（WebFetch・実ブラウザとも）。<br />
+Klook の商品名・URLは検索インデックス経由です。<strong>すべての価格・催行日は未検証</strong>なので、<br />
+発注前にご自身のブラウザで開いて確認してください。</p>
+</blockquote>
+<hr />
+<h2 id="0">0. 結論</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">論点</th>
+<th style="text-align: left;">判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>最大の問題</strong></td>
+<td style="text-align: left;">🔴 <strong>気球の欠航率は 30〜40%。現行行程には搭乗チャンスが 11/22 の1回しかない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Klook で手配できるか</strong></td>
+<td style="text-align: left;">✅ <strong>できる。</strong>商品が最も豊富。<strong>天候欠航は全額返金 or 翌日振替</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/21 の到着</strong></td>
+<td style="text-align: left;">⚠️ <strong>IST 乗継 2時間19分 ＋ 夜到着 ＋ 翌朝04:30起き。</strong>成立はするが余裕がない</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>推奨する対策</strong></td>
+<td style="text-align: left;">🔴 <strong>11/23 の NAV→IST を「変更可能な券」で押さえ、<br>欠航時に午後便へ振り替えて 11/23 朝に再挑戦する</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>日程を動かせるか</strong></td>
+<td style="text-align: left;">⚠️ <strong>11/24 18:45 の観戦（絶対条件）が壁。</strong>カッパドキア延泊は可能だが代償が大きい</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<span id="schedule"></span><h2 id="1">1. 現行タイムチャート（該当部分）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">行程</th>
+<th style="text-align: left;">宿泊</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>11/21(土)</strong></td>
+<td style="text-align: left;">08:30 ホテル発 → 🔴 <strong>ATH 11:50 TK1840 → IST 14:30</strong><br>⬜ 夕方 <strong>IST → NAV</strong>（別手配国内線）でカッパドキアへ</td>
+<td style="text-align: left;">カッパドキア①</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/22(日)</strong></td>
+<td style="text-align: left;">🔴 <strong>早朝：熱気球ツアー</strong>／日中：ギョレメ野外博物館</td>
+<td style="text-align: left;">カッパドキア②</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/23(月)</strong></td>
+<td style="text-align: left;">⬜ 午前 <strong>NAV → IST</strong>。アヤソフィア、ブルーモスク</td>
+<td style="text-align: left;">イスタンブール①</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/24(火)</strong></td>
+<td style="text-align: left;">午前 グランドバザール、ボスポラス海峡クルーズ<br>🔴 <strong>18:45 ガラタサライ vs アストン・ヴィラ（絶対条件）</strong></td>
+<td style="text-align: left;">イスタンブール②</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<span id="balloon"></span><h2 id="2-3040">2. 🔴 欠航率 30〜40% — これが本テーマの核心</h2>
+<h3 id="_1">事実</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>欠航率</strong></td>
+<td style="text-align: left;"><strong>全フライトの約 30〜40% が悪天候で中止</strong>（通年平均）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>運航は1日1回のみ</strong></td>
+<td style="text-align: left;"><strong>日の出時のみ</strong>。1日あたり最大約160機</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>中止条件</strong></td>
+<td style="text-align: left;">雨・霧・雪・<strong>風速 約7mph（約3m/s）超</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>判断のタイミング</strong></td>
+<td style="text-align: left;">🔴 <strong>当日早朝、トルコ側の気球当局が判断。</strong><br><strong>ホテルでピックアップされた後に中止が告げられることもある</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11月の位置づけ</strong></td>
+<td style="text-align: left;">運航好適期（4〜11月）の<strong>末端</strong>。冬型が入り始める</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">現行行程の脆弱性</h3>
+<pre><code>11/21 夜  カッパドキア着
+11/22 朝  ★気球（唯一のチャンス）  ← ここで欠航したら終わり
+11/23 朝  NAV → IST（移動）
+</code></pre>
+<p>🔴 <strong>チャンスが1回しかないため、確率的には 30〜40% の割合で「気球に乗れないまま去る」ことになります。</strong><br />
+これは本旅程で<strong>最も高い「体験を落とす確率」</strong>です。</p>
+<hr />
+<span id="goreme"></span><h2 id="3-1123">3. 🔴 対策：11/23 朝を予備日に変える</h2>
+<p><strong>NAV ⇄ IST の便数を調べたところ、予備日を作る余地があります。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">実態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">運航会社</td>
+<td style="text-align: left;"><strong>Turkish Airlines（週47便）＋ AJet（週17便）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">1日あたり</td>
+<td style="text-align: left;"><strong>平均5便</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">運航時間帯</td>
+<td style="text-align: left;"><strong>02:05 〜 20:45</strong>（IST→NAV の幅）</td>
+</tr>
+<tr>
+<td style="text-align: left;">所要</td>
+<td style="text-align: left;">約1時間20分</td>
+</tr>
+</tbody>
+</table>
+<p><strong>つまり NAV→IST は午後便が確保できます。</strong></p>
+<h3 id="1123">気球のタイムライン（11/23 に再挑戦する場合）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: left;">行動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">04:30</td>
+<td style="text-align: left;">ホテルピックアップ</td>
+</tr>
+<tr>
+<td style="text-align: left;">05:30-06:00</td>
+<td style="text-align: left;">離陸（日の出）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>06:30-07:15</strong></td>
+<td style="text-align: left;">着陸（飛行時間 50〜75分）＋シャンパン・トースト</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>08:00-08:30</strong></td>
+<td style="text-align: left;">ホテル帰着</td>
+</tr>
+<tr>
+<td style="text-align: left;">09:30</td>
+<td style="text-align: left;">チェックアウト → NAV 空港へ（約45分）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>12:00-14:00</strong></td>
+<td style="text-align: left;"><strong>NAV → IST 午後便</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">15:00-16:00</td>
+<td style="text-align: left;">イスタンブール着</td>
+</tr>
+</tbody>
+</table>
+<p><strong>11/23 朝に飛んでも、当日中にイスタンブール入りできます。</strong></p>
+<h3 id="_3">🔴 推奨する手当て</h3>
+<blockquote>
+<p><strong>NAV → IST の航空券を「変更可能な運賃」で 11/23 午前便として押さえる。</strong><br />
+- <strong>11/22 に飛べた</strong> → そのまま午前便に乗り、予定どおりイスタンブール観光<br />
+- <strong>11/22 が欠航</strong> → 🔴 <strong>午後便へ変更し、11/23 朝に再挑戦</strong></p>
+</blockquote>
+<p><strong>代償：</strong>11/23 の午後便に変えた場合、<strong>アヤソフィア／ブルーモスクの時間が消えます。</strong><br />
+その分は 11/24 午前（グランドバザール・ボスポラスクルーズ枠）から捻出することになります。<br />
+🔴 <strong>ただし 11/24 は 18:45 の観戦が絶対条件なので、詰め込みすぎないこと。</strong></p>
+<hr />
+<h2 id="4-1121">4. 11/21 の到着：余裕がない</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: left;">行動</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">11:50</td>
+<td style="text-align: left;">ATH 発 TK1840</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>14:30</strong></td>
+<td style="text-align: left;"><strong>IST 着（国際線）</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">14:30-16:45</td>
+<td style="text-align: left;">🔴 <strong>入国 → 国内線へ乗り継ぎ</strong></td>
+<td style="text-align: left;">⚠️ <strong>2時間19分。</strong>IST は広大。<strong>余裕は見た目ほど無い</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>16:49</strong></td>
+<td style="text-align: left;">IST → NAV（例：TK2007）</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">18:09</td>
+<td style="text-align: left;">NAV 着</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">18:15-19:15</td>
+<td style="text-align: left;">ギョレメまで送迎（約45〜60分）</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">19:30</td>
+<td style="text-align: left;">ホテル着・夕食</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">21:30</td>
+<td style="text-align: left;">就寝</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>04:30</strong></td>
+<td style="text-align: left;">🔴 <strong>気球ピックアップ</strong></td>
+<td style="text-align: left;">⚠️ <strong>睡眠 約7時間</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>成立します。</strong>ただし<br />
+- 🔴 <strong>TK1840 が遅延すると国内線に乗り継げない</strong>（別手配なので保護されない）<br />
+- 🔴 <strong>同一予約でないため、遅延時の振替は自己負担</strong></p>
+<p><strong>対策：</strong>IST→NAV は <strong>18:00〜19:00 発</strong>を選べば乗継余裕が3時間半以上になります。<br />
+ホテル着は 21:00 頃になりますが、<strong>乗り遅れて初日を失うリスクのほうが重い</strong>と考えます。</p>
+<hr />
+<h2 id="5-klook">5. 手配方法の比較（Klook / 運航会社直販 / 比較サイト / 日本語）</h2>
+<h3 id="51-1525">5.1 🔴 まず知っておくこと：直販が 15〜25% 安い</h3>
+<blockquote>
+<p><strong>運航会社に直接（サイトまたはメールで）予約すると、OTA 経由より 15〜25% 安い。</strong><br />
+ただし<strong>トラブル時の消費者保護は OTA のほうが手厚い。</strong></p>
+</blockquote>
+<p><strong>本件は「欠航リスクが最大の論点」なので、価格差より振替条件を優先すべきです。</strong></p>
+<h3 id="52">5.2 🔴 運航会社 直販（トルコ現地）</h3>
+<p><strong>カッパドキアの気球は運航会社の格差が大きい分野です。</strong>主要3社は以下。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">運航会社</th>
+<th style="text-align: left;">予約</th>
+<th style="text-align: left;">確認できたキャンセル規定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>Voyager Balloons</strong></td>
+<td style="text-align: left;"><a href="https://voyagerballoons.com/">voyagerballoons.com</a>／<a href="https://voyagerballoons.com/book/">Book</a></td>
+<td style="text-align: left;">🔴 <strong>規定が明快。</strong><br>・<strong>7日前まで手数料なしで取消可</strong><br>・7日を切ると預り金が発生<br>・<strong>天候欠航＝全額返金</strong><br>・🔴 <strong>天候欠航時は翌朝へ振替可（空き次第）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Butterfly Balloons</strong></td>
+<td style="text-align: left;"><a href="https://booking.butterflyballoons.com/Reservation/OnlineReservation">オンライン予約</a></td>
+<td style="text-align: left;">直販あり。規定は要確認</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Royal Balloon</strong></td>
+<td style="text-align: left;"><a href="https://royalballoon.com/">royalballoon.com</a>／<a href="https://royalballoonco.com/faqs">FAQ</a></td>
+<td style="text-align: left;">直販あり。規定は要確認</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>Voyager Balloons を第一候補に推奨します。</strong><br />
+本件で必要な「<strong>天候欠航時の翌朝振替</strong>」が<strong>明文で確認できた唯一の会社</strong>だからです。<br />
+11/22 に欠航しても <strong>11/23 朝へ振り替えられる</strong>なら、§3 の予備日設計がそのまま機能します。</p>
+<blockquote>
+<p>⚠️ Butterfly / Royal も同等の規定を持つ可能性が高いですが、<strong>未確認</strong>です。<br />
+予約前に「weather cancellation → next-day rebooking」の可否をメールで確認してください。</p>
+</blockquote>
+<h3 id="53">5.3 比較・在庫確認サイト</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">サイト</th>
+<th style="text-align: left;">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <a href="https://balloonscanner.com/en"><strong>BalloonScanner</strong></a></td>
+<td style="text-align: left;"><strong>カッパドキア気球の横断予約プラットフォーム</strong><br><a href="https://balloonscanner.com/en/blogs/2025-cappadocia-hot-air-balloon-prices:-complete-guide-and-best-deals">2026年価格ガイド</a>／<a href="https://balloonscanner.com/en/blogs/navigating-the-skies:-predicting-and-preparing-for-hot-air-balloon-cancellations-in-cappadocia">欠航予測ガイド</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://cappadociaballoonticket.com/en">Cappadocia Balloon Ticket</a></td>
+<td style="text-align: left;">€60〜250 の価格帯を掲示</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.hotairballooncappadocia.com/">Hot Air Balloon Cappadocia</a></td>
+<td style="text-align: left;">価格・予約</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://balloonsbooking.com/">Balloons Booking</a></td>
+<td style="text-align: left;">予約</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.cappadociaballoonsturkey.com/cappadocia-balloon-prices/">Cappadocia Balloons Turkey — 2026 価格</a></td>
+<td style="text-align: left;">価格</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://myturkeyadventure.com/blog/cappadocia-hot-air-balloon-cost-2026-real-prices-by-operator">My Turkey Adventure — 運航会社別の実勢価格</a></td>
+<td style="text-align: left;">🔴 <strong>会社別の実額比較に有用</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://exploremoreturkey.com/2026-travel-news-trends/cappadocia-hot-air-balloon-rides-2026-prices-best-operators-insider-tips/">Explore More Turkey — 2026 ガイド</a></td>
+<td style="text-align: left;">総合ガイド</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://toursce.com/cappadocia-hot-air-balloon-flight-status-cancellation-checker/">Cappadocia Balloon Flight Status Checker</a></td>
+<td style="text-align: left;">🔴 <strong>当日の運航可否を確認できる</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="54-2026">5.4 🔴 2026年の価格帯（情報源によって幅がある）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">情報源</th>
+<th style="text-align: left;">提示価格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">BalloonScanner</td>
+<td style="text-align: left;">€80〜300（グレード・定員による）</td>
+</tr>
+<tr>
+<td style="text-align: left;">複数ガイド</td>
+<td style="text-align: left;"><strong>€150〜300</strong>（標準的な60分・バスケット規模による）</td>
+</tr>
+<tr>
+<td style="text-align: left;">別ガイド</td>
+<td style="text-align: left;">€150〜450</td>
+</tr>
+<tr>
+<td style="text-align: left;">USD 建て</td>
+<td style="text-align: left;">$320〜450（16〜24人乗り・60分）</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ <strong>幅が大きいので、実額は予約時に確認してください。</strong><br />
+概ね <strong>標準クラスで €150〜250、少人数クラスで €250〜400</strong> と見ておけば大きく外しません。</p>
+<h3 id="55-klook-ota">5.5 Klook / 英語 OTA</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">商品</th>
+<th style="text-align: left;">特徴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <a href="https://www.klook.com/en-US/activity/78848-hot-air-balloon-experience-hotel-transfers-cappadocia/"><strong>Top Hot Air Balloon Experience with Hotel Transfers</strong></a></td>
+<td style="text-align: left;"><strong>送迎込み。Standard / Comfort / Deluxe 選択可</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.klook.com/en-US/activity/11336-hot-air-balloon-flight-cappadocia/">Fairy Chimneys Sunrise Hot Air Balloon Flight</a></td>
+<td style="text-align: left;">定番</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.klook.com/en-US/activity/80952-1-hour-budget-hot-air-ballon-ride-cappadocia/">Göreme Hot Air Balloon Trip with Breakfast</a></td>
+<td style="text-align: left;">廉価版・1時間</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <a href="https://www.klook.com/en-US/activity/90831-sognali-valley-hot-air-balloon-sunrise-cappadocia/"><strong>Soganli Valley</strong> Hot Air Balloon Sunrise</a></td>
+<td style="text-align: left;">🔴 <strong>ギョレメより南の別谷。</strong>混雑が少ない</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.klook.com/en-US/activity/95572-fairy-chimneys-hot-air-balloon-experience-cappadocia/">Fairy Chimneys Hot Air Balloon Experience</a></td>
+<td style="text-align: left;">同系</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.klook.com/activity/96197-1-4-valleys-hot-air-balloon-flight-experience-cappadocia/">1 of 3 Valleys Hot Air Balloon Flight</a></td>
+<td style="text-align: left;">谷を選択</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.klook.com/en-US/activity/90720-hot-air-balloon-experience-sunset-atv-tour-cappadocia/">Balloon ＋ Sunset ATV Combo</a></td>
+<td style="text-align: left;">11/22 日中の使い道</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.klook.com/en-US/activity/102187-balloon-watching-tour-cappadocia/">Balloon <strong>Watching</strong> Tour</a></td>
+<td style="text-align: left;">⚠️ <strong>地上から眺める。</strong><br><strong>欠航時の代替にはならない</strong>（飛ばない日は見るものが無い）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://www.expedia.com/things-to-do/cappadocia-balloon-tours-with-breakfast-and-champagne.a2086029.activity-details">Expedia: Cappadocia balloon with breakfast and champagne</a></td>
+<td style="text-align: left;">比較用</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://ph.trip.com/things-to-do/experiences/cappadocia-fireballoon">Trip.com: カッパドキア気球</a></td>
+<td style="text-align: left;">比較用</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Klook のキャンセル規定：天候中止は全額返金、または翌日振替を選択可。</strong><br />
+🔴 <strong>商品ごとに異なる可能性があるため、必ず該当商品ページで確認してください。</strong></p>
+<h3 id="56">5.6 日本語で手配する場合</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">事業者</th>
+<th style="text-align: left;">商品</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>VELTRA</strong></td>
+<td style="text-align: left;"><a href="https://www.veltra.com/jp/europe/turkey/cappadocia/ctg/2459:2459/"><strong>カッパドキア 気球ツアー 一覧</strong></a>／<a href="https://www.veltra.com/jp/europe/turkey/ctg/2459:2459/">トルコ全体</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">VELTRA</td>
+<td style="text-align: left;"><a href="https://www.veltra.com/jp/europe/turkey/ctg/167562:CAP2_from_IST/">気球フライト付き宿泊ツアー（イスタンブール発・カッパドキア宿泊）</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">VELTRA</td>
+<td style="text-align: left;"><a href="https://www.veltra.com/jp/europe/turkey/cappadocia/ctg/202076:balloon_plan/">気球ツアー付きプラン</a></td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>VELTRA には「イスタンブール発・カッパドキア宿泊・気球付き」のパッケージがあります。</strong><br />
+これは <strong>11/21 夕方 IST発 → 11/22 気球 → 11/23 IST戻り</strong> という本行程の形とよく似ています。<br />
+<strong>国内線・送迎・ホテル・気球をまとめて日本語で手配できる</strong>可能性があるので、<br />
+<strong>バラで組む前に一度中身を見る価値があります。</strong></p>
+<p>⚠️ ただし<strong>パッケージは日程が固定される</strong>ため、<br />
+§3 の「欠航時に 11/23 朝へ振り替える」柔軟性が失われる恐れがあります。<strong>要確認。</strong></p>
+<h3 id="57">5.7 推奨する手配の内訳（更新版）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">対象</th>
+<th style="text-align: left;">🔴 推奨手配先</th>
+<th style="text-align: left;">言語</th>
+<th style="text-align: right;">概算</th>
+<th style="text-align: left;">期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">🔴 <strong>気球（11/22 早朝・送迎込み）</strong></td>
+<td style="text-align: left;">🔴 <strong>Voyager Balloons 直販</strong>（振替規定が明快）<br>または Klook 78848</td>
+<td style="text-align: left;">英</td>
+<td style="text-align: right;">€150〜400</td>
+<td style="text-align: left;">3〜4週間前</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">🔴 <strong>IST → NAV（11/21 18:00〜19:00発）</strong></td>
+<td style="text-align: left;">TK / AJet 直販</td>
+<td style="text-align: left;">英</td>
+<td style="text-align: right;">要見積</td>
+<td style="text-align: left;">🔴 <strong>9月中</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">🔴 <strong>NAV → IST（11/23）※変更可能運賃</strong></td>
+<td style="text-align: left;">TK / AJet 直販</td>
+<td style="text-align: left;">英</td>
+<td style="text-align: right;">要見積</td>
+<td style="text-align: left;">🔴 <strong>9月中</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">（代替）一括パッケージ</td>
+<td style="text-align: left;">VELTRA 167562</td>
+<td style="text-align: left;"><strong>日本語</strong></td>
+<td style="text-align: right;">要見積</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">NAV ⇄ ギョレメ 送迎</td>
+<td style="text-align: left;">気球ツアーに含まれる場合あり</td>
+<td style="text-align: left;">英</td>
+<td style="text-align: right;">$20〜40</td>
+<td style="text-align: left;">2週間前</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">カッパドキア 洞窟ホテル2泊</td>
+<td style="text-align: left;">Booking 等（<strong>11/23 延泊の可否も確認</strong>）</td>
+<td style="text-align: left;">日</td>
+<td style="text-align: right;">要見積</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: left;">当日の運航可否確認</td>
+<td style="text-align: left;"><a href="https://toursce.com/cappadocia-hot-air-balloon-flight-status-cancellation-checker/">Flight Status Checker</a></td>
+<td style="text-align: left;">英</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: left;">現地</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. タイムチャート変更の選択肢</h2>
+<h3 id="1_1">変更案①（推奨）：日程は変えず、<strong>航空券で予備日を買う</strong></h3>
+<p><strong>NAV→IST を変更可能運賃にするだけ。</strong>日程表の変更は不要で、<br />
+<strong>欠航時にだけ 11/23 午後便へ振り替える</strong>。差額は変更手数料のみ。</p>
+<ul>
+<li>✅ <strong>費用が最小。日程への影響もゼロ（飛べた場合）</strong></li>
+<li>❌ 欠航時はイスタンブール観光が半日削られる</li>
+</ul>
+<h3 id="211123">変更案②：カッパドキアを1泊延ばす（11/23 もカッパドキア泊）</h3>
+<pre><code>11/23  カッパドキア泊（気球チャンス2回目 = 11/23朝）
+11/24  朝 NAV → IST（気球チャンス3回目 = 11/24朝も理論上は可）
+       → 18:45 観戦
+</code></pre>
+<ul>
+<li>✅ <strong>気球チャンスが2〜3回に増え、搭乗確率が 60% → 85%以上に上がる</strong></li>
+<li>❌ 🔴 <strong>イスタンブール観光がほぼ消える</strong>（アヤソフィア・ブルーモスク・バザール全て）</li>
+<li>❌ 🔴 <strong>観戦当日の朝に飛行機移動。</strong>遅延したら<strong>絶対条件を落とす</strong></li>
+<li>→ <strong>リスクの質が悪い。推奨しません</strong></li>
+</ul>
+<h3 id="3soganli-valley">変更案③：ギョレメ以外の谷（Soganli Valley）を選ぶ</h3>
+<p><strong>ギョレメ上空が風で閉じても、南のソアンル渓谷は飛べる日がある</strong>とされます。<br />
+確実な保証ではありませんが、<strong>11/22 に賭ける場合の当たり判定を少し広げられます。</strong></p>
+<ul>
+<li>予約時に「ギョレメが欠航でも別谷で飛ぶか」を運航会社に確認する価値あり</li>
+</ul>
+<h3 id="4">変更案④：気球を諦める前提で組む — ❌ 非推奨</h3>
+<p>カッパドキアは気球が主目的です。<strong>日程を組み替えてでも搭乗確率を上げる価値があります。</strong></p>
+<hr />
+<h2 id="7">7. 🔴 アクションリスト</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">優先</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: left;">🔴 <strong>IST→NAV（11/21）を 18:00〜19:00 発で確保</strong>（乗継余裕を3時間半に）</td>
+<td style="text-align: left;"><strong>9月中</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: left;">🔴 <strong>NAV→IST（11/23）を「変更可能運賃」で確保</strong></td>
+<td style="text-align: left;"><strong>9月中</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: left;">Klook で気球（11/22）を予約。<strong>「翌日振替可」を必ず確認</strong></td>
+<td style="text-align: left;">10月下旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">グレードは <strong>Comfort 以上</strong>を選ぶ</td>
+<td style="text-align: left;">同上</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">ソアンル渓谷便の欠航実績を運航会社に確認</td>
+<td style="text-align: left;">10月下旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">カッパドキア洞窟ホテル2泊（<strong>11/23 延泊の可否も確認しておく</strong>）</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: left;">11/22 日中の予備プラン（ギョレメ野外博物館／ATV）を用意</td>
+<td style="text-align: left;">11月上旬</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>⚠️ 未確認事項:</strong><br />
+- Klook 各商品の<strong>「翌日振替」の可否</strong>（返金のみの商品がある可能性）<br />
+- <strong>11/22・11/23 の NAV⇄IST 実便時刻</strong>（TK2007 16:49 は参考値。要実便確認）<br />
+- 2026年11月のカッパドキアの<strong>実際の欠航率</strong>（通年平均30〜40%からの季節変動）</p>
+</blockquote>
+<hr />
+<h2 id="_4">出典</h2>
+<ul>
+<li><a href="https://www.klook.com/en-US/activity/78848-hot-air-balloon-experience-hotel-transfers-cappadocia/">Klook: Top Hot Air Balloon Experience with Hotel Transfers</a></li>
+<li><a href="https://www.klook.com/en-US/activity/11336-hot-air-balloon-flight-cappadocia/">Klook: Cappadocia Fairy Chimneys Sunrise Hot Air Balloon Flight</a></li>
+<li><a href="https://www.klook.com/en-US/activity/90831-sognali-valley-hot-air-balloon-sunrise-cappadocia/">Klook: Soganli Valley Hot Air Balloon Tour at Sunrise</a></li>
+<li><a href="https://www.klook.com/en-US/activity/102187-balloon-watching-tour-cappadocia/">Klook: Balloon Watching Tour at Sunrise</a></li>
+<li><a href="https://epicturkeytravel.com/cappadocia-hot-air-balloon-cancellation/">Cappadocia Balloon Cancellation: Rates, Weather &amp; What To Do</a></li>
+<li><a href="https://balloonscanner.com/en/blogs/navigating-the-skies:-predicting-and-preparing-for-hot-air-balloon-cancellations-in-cappadocia">Predicting Balloon Cancellations in Cappadocia | BalloonScanner</a></li>
+<li><a href="https://www.hotairballoons-cappadocia.com/timings-and-season/">Cappadocia Hot Air Balloon Timings &amp; Best Visiting Seasons</a></li>
+<li><a href="https://amateurtraveler.com/cappadocia-when-your-hot-air-balloon-flight-is-canceled/">Cappadocia: When Your Hot Air Balloon Flight Is Canceled</a></li>
+<li><a href="https://www.turkishairlines.com/en/flights-from-istanbul-to-nevsehir">Turkish Airlines: Flights From Istanbul to Nevsehir</a></li>
+<li><a href="https://www.flightconnections.com/flights-from-ist-to-nav">FlightConnections: IST to NAV</a></li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

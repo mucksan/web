@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界一周旅行 2026-27 東回り 旅のガイドスライド</title>
+<style>
+  :root {
+    --bg-main: #090d16;
+    --bg-card: #131b2e;
+    --bg-card-alt: #1a253f;
+    --border-color: #24324f;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent: #38bdf8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.5;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Top Navigation Bar */
+  .top-bar {
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    z-index: 100;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .brand-badge {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+
+  .nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .slide-counter {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    min-width: 70px;
+    text-align: center;
+  }
+
+  .ctrl-btn {
+    background: var(--bg-card-alt);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ctrl-btn:hover {
+    background: var(--accent);
+    color: #0f172a;
+    border-color: var(--accent);
+  }
+
+  .ctrl-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  /* Main Slide Presentation Area */
+  .slide-viewport {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .slide-container {
+    width: 100%;
+    max-width: 1280px;
+    height: 100%;
+    max-height: 760px;
+    position: relative;
+  }
+
+  .slide {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 36px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.97) translateY(10px);
+    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+  }
+
+  .slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1) translateY(0);
+    z-index: 10;
+  }
+
+  /* Slide Content Typography */
+  .slide-header {
+    margin-bottom: 18px;
+  }
+
+  .slide-tag {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .slide-title {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--text-primary);
+  }
+
+  .slide-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .slide-body {
+    flex: 1;
+  }
+
+  .slide-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 14px;
+    margin-top: 20px;
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+
+  /* Elements inside slides */
+  .stat-box {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .stat-val {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .stat-lbl {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    font-weight: 600;
+  }
+
+  .card-box {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px 20px;
+  }
+
+  .guide-list {
+    list-style: none;
+  }
+
+  .guide-list li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 18px;
+    line-height: 1.5;
+    font-size: 13px;
+  }
+
+  .guide-list li::before {
+    content: "•";
+    position: absolute;
+    left: 4px;
+    color: var(--accent);
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .day-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .day-flow-item {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .flow-date {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: var(--accent);
+    min-width: 110px;
+    flex-shrink: 0;
+  }
+
+  .flow-desc {
+    font-size: 12.5px;
+    color: #cbd5e1;
+    line-height: 1.4;
+  }
+
+  .highlight-item {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .hl-num {
+    font-size: 12px;
+    font-weight: 800;
+    background: var(--accent);
+    color: #0f172a;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .hl-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #f8fafc;
+  }
+
+  .hl-desc {
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  /* Thumbnail Modal / Overview */
+  .overview-grid {
+    display: none;
+    position: fixed;
+    top: 50px; left: 0; right: 0; bottom: 0;
+    background: rgba(9, 13, 22, 0.95);
+    backdrop-filter: blur(12px);
+    z-index: 200;
+    padding: 30px;
+    overflow-y: auto;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .overview-grid.active {
+    display: grid;
+  }
+
+  .thumb-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .thumb-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .thumb-card.current {
+    border-color: var(--accent);
+    background: rgba(56, 189, 248, 0.1);
+  }
+
+  .thumb-num {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .thumb-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-top: 4px;
+  }
+
+  /* Print Styles */
+  @media print {
+    body {
+      background: #ffffff !important;
+      color: #000000 !important;
+      height: auto !important;
+      overflow: visible !important;
+    }
+    .top-bar, .overview-grid {
+      display: none !important;
+    }
+    .slide-viewport {
+      padding: 0 !important;
+      display: block !important;
+    }
+    .slide-container {
+      max-width: 100% !important;
+      max-height: none !important;
+      height: auto !important;
+    }
+    .slide {
+      position: static !important;
+      opacity: 1 !important;
+      transform: none !important;
+      page-break-after: always !important;
+      box-shadow: none !important;
+      border: 1px solid #ccc !important;
+      background: #ffffff !important;
+      color: #000000 !important;
+      margin-bottom: 30px !important;
+      max-height: none !important;
+      height: auto !important;
+    }
+    .card-box, .stat-box, .day-flow-item, .highlight-item {
+      background: #f8fafc !important;
+      border-color: #cbd5e1 !important;
+      color: #000000 !important;
+    }
+    .flow-desc, .slide-subtitle, .stat-lbl, .guide-list li, .hl-desc {
+      color: #334155 !important;
+    }
+    .slide-title, .hl-title, .stat-val {
+      color: #000000 !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top Navigation Bar -->
+<div class="top-bar">
+  <div class="brand">
+    <span>🌏 世界一周 2026-27</span>
+    <span class="brand-badge">東回り TRAVEL GUIDE</span>
+    <span style="font-size: 12px; color: var(--text-secondary); font-weight: normal; margin-left: 6px;">PNR: DM4H3V</span>
+  </div>
+
+  <div class="nav-controls">
+    <button class="ctrl-btn" onclick="prevSlide()" id="prevBtn">◀ 前へ</button>
+    <div class="slide-counter" id="slideCounter">1 / 15</div>
+    <button class="ctrl-btn" onclick="nextSlide()" id="nextBtn">次へ ▶</button>
+    <button class="ctrl-btn" onclick="toggleOverview()">📑 一覧</button>
+    <button class="ctrl-btn" onclick="window.print()">🖨️ 印刷/PDF</button>
+  </div>
+</div>
+
+<!-- Slide Viewport -->
+<div class="slide-viewport">
+  <div class="slide-container">
+
+    <!-- Slide 1: cover -->
+    <div class="slide active" id="slide-0" data-index="0">
+      <div class="slide-header">
+        <div class="slide-tag" style="color: #38bdf8;">TRAVEL GUIDE & ITINERARY</div>
+        <h1 class="slide-title">世界一周旅行 2026-27<br><span style='color:#38bdf8;'>東回り 旅のしおり</span></h1>
+        <div class="slide-subtitle">東京発着・スターアライアンス ビジネスクラス 一筆書きの旅</div>
+      </div>
+
+      <div class="slide-body">
+        
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 36px 0 28px;">
+              <div class="stat-box">
+                <div class="stat-val">38<span style="font-size:16px;">日間</span></div>
+                <div class="stat-lbl">主要日程（10/26〜12/2）</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-val">12<span style="font-size:16px;">か国</span></div>
+                <div class="stat-lbl">訪問国数（世界4大陸）</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-val">31,308<span style="font-size:16px;">マイル</span></div>
+                <div class="stat-lbl">総飛行距離（16クーポン）</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-val">2<span style="font-size:16px;">試合</span></div>
+                <div class="stat-lbl">欧州サッカー公式戦観戦</div>
+              </div>
+            </div>
+
+            <div class="card-box" style="background: rgba(56, 189, 248, 0.08); border-left: 4px solid #38bdf8; padding: 18px 24px;">
+              <div style="font-weight: 700; font-size: 15px; margin-bottom: 6px; color: #38bdf8;">
+                ✈️ 予約完了（PNR: DM4H3V）に基づく確定版ガイド
+              </div>
+              <div style="font-size: 13.5px; color: #cbd5e1; line-height: 1.6;">
+                本スライドは、各ステージの行程、フライト、主要アクティビティ、高山病対策や乗継リスクの回避策をまとめたトラベルガイドです。旅程の確認や現地の行動計画にお役立てください。
+              </div>
+            </div>
+            
+      </div>
+
+      <div class="slide-footer">
+        <div>TAKAMUKU TAKESHI MR ｜ 世界一周旅行 2026-27（東回り・全16クーポン確定版）</div>
+        <div>Slide 1 of 15</div>
+      </div>
+    </div>
+
+    <!-- Slide 2: route -->
+    <div class="slide " id="slide-1" data-index="1">
+      <div class="slide-header">
+        <div class="slide-tag" style="color: #60a5fa;">OVERALL ITINERARY</div>
+        <h1 class="slide-title">全体航路 ＆ ルート概要</h1>
+        <div class="slide-subtitle">太平洋・大西洋・インド洋を東回りに渡る 31,308マイルの一筆書き</div>
+      </div>
+
+      <div class="slide-body">
+        
+            <div class="route-banner" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 18px; margin-bottom: 24px; font-family: monospace; font-size: 13.5px; line-height: 1.8; color: #f8fafc;">
+              <span style="color: #38bdf8; font-weight: bold;">【東回りフライト航路】</span><br>
+              東京(NRT) ➔ <span style="color:#60a5fa;">SFO</span> ➔ <span style="color:#34d399;">MEX</span> ➔ PTY ➔ <span style="color:#fbbf24;">LIM</span> ⇢(地上) <span style="color:#f87171;">GRU</span> ➔ <span style="color:#a78bfa;">LIS</span> ➔ <span style="color:#f472b6;">BCN</span> ➔ <span style="color:#fb923c;">FCO</span> ➔ <span style="color:#38bdf8;">ATH</span> ➔ <span style="color:#facc15;">IST</span> ➔ <span style="color:#4ade80;">CAI</span> ➔ <span style="color:#fb7185;">NBO</span> ➔ ADD ➔ <span style="color:#38bdf8;">BKK</span> ‖ <span style="color:#94a3b8;">BKK ➔ SIN ➔ 東京(HND)</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+              <div class="card-box">
+                <div style="font-weight: 700; font-size: 15px; margin-bottom: 12px; color: #60a5fa; display: flex; align-items: center; gap: 8px;">
+                  <span>📋</span> 基本スペック（スターアライアンス RTW）
+                </div>
+                <ul class="guide-list">
+                  <li><strong>総クーポン数：</strong> 飛行15枚 ＋ 地上1枚（LIM⇢GRU）＝ <strong>16枚（上限ぴったり・予備0枚）</strong></li>
+                  <li><strong>総マイル数：</strong> <strong>31,308マイル</strong>（34,000マイル枠・余裕 約2,692マイル）</li>
+                  <li><strong>周回ルール：</strong> 太平洋1回横断（NH8）、大西洋1回横断（TP88）に完全適合</li>
+                  <li><strong>起点・終点：</strong> 日本発（成田 NRT）→ 日本着（羽田 HND）</li>
+                  <li><strong>全区間ビジネスクラス：</strong> ANA、ユナイテッド、コパ、TAP、ITA、エーゲ、ターキッシュ、エジプト、エチオピア、SQ</li>
+                </ul>
+              </div>
+
+              <div class="card-box">
+                <div style="font-weight: 700; font-size: 15px; margin-bottom: 12px; color: #34d399; display: flex; align-items: center; gap: 8px;">
+                  <span>🗺️</span> 4大ステージ構成
+                </div>
+                <ul class="guide-list">
+                  <li><strong style="color:#60a5fa;">Stage 1: 南北アメリカ編（10/28〜11/10）</strong><br>SFO・メキシコシティ・マチュピチュ・イグアスの滝・サンパウロ</li>
+                  <li><strong style="color:#f472b6;">Stage 2: ヨーロッパ編（11/11〜11/20）</strong><br>リスボン・バルセロナ・★マドリード戦・ローマ・トスカーナ・アテネ</li>
+                  <li><strong style="color:#facc15;">Stage 3: トルコ・エジプト・ケニア編（11/21〜12/01）</strong><br>カッパドキア気球・★ガラタサライ戦・ピラミッド・アンボセリサファリ</li>
+                  <li><strong style="color:#38bdf8;">Stage 4: 帰宅＆完結編（12/02 ＆ 2027/03）</strong><br>バンコク帰宅（12/2 14時）➔ 2027年3月シンガポール経由・羽田着完結</li>
+                </ul>
+              </div>
+            </div>
+            
+      </div>
+
+      <div class="slide-footer">
+        <div>TAKAMUKU TAKESHI MR ｜ 世界一周旅行 2026-27（東回り・全16クーポン確定版）</div>
+        <div>Slide 2 of 15</div>
+      </div>
+    </div>
+
+    <!-- Slide 3: highlights -->
+    <div class="slide " id="slide-2" data-index="2">
+      <div class="slide-header">
+        <div class="slide-tag" style="color: #f59e0b;">TOP 10 HIGHLIGHTS</div>
+        <h1 class="slide-title">旅の10大ハイライト</h1>
+        <div class="slide-subtitle">一生の記憶に残る、世界最高峰のエクスペリエンス</div>
+      </div>
+
+      <div class="slide-body">
+        
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;">
+              <div class="highlight-item">
+                <span class="hl-num">01</span>
+                <div>
+                  <div class="hl-title">✈️ ANA「THE Room」での太平洋横断</div>
+                  <div class="hl-desc">成田発SFO行きNH8便。完全個室型ビジネスクラスで極上の9時間20分。</div>
+                </div>
+              </div>
+
+              <div class="highlight-item">
+                <span class="hl-num">02</span>
+                <div>
+                  <div class="hl-title">🏛️ テオティワカン遺跡 ＆ 国立人類学博物館</div>
+                  <div class="hl-desc">太陽・月のピラミッドの壮大さとアステカ文明の精緻な遺産を終日体感。</div>
+                </div>
+              </div>
+
+              <div class="highlight-item">
+                <span class="hl-num">03</span>
+                <div>
+                  <div class="hl-title">⛰️ インカ空中都市 マチュピチュ遺跡</div>
+                  <div class="hl-desc">医学的見地に基づくクスコ不泊・直行ルートで高山病を回避しワイナピチュ登頂。</div>
+                </div>
+              </div>
+
+              <div class="highlight-item">
+                <span class="hl-num">04</span>
+                <div>
+                  <div class="hl-title">🌊 イグアスの滝 陸・川・空 完全制覇</div>
+                  <div class="hl-desc">アルゼンチン側「悪魔の喉笛」ボート突入 ＆ ブラジル側「Helisulヘリ遊覧飛行」。</div>
+                </div>
+              </div>
+
+              <div class="highlight-item">
+                <span class="hl-num">05</span>
+                <div>
+                  <div class="hl-title">🏰 サグラダ・ファミリア（塔登頂）＆ ガウディ建築</div>
+                  <div class="hl-desc">2026年完成間近の偉容。受難の塔登頂とカサ・バトリョ、グエル公園巡り。</div>
+                </div>
+              </div>
+
+              <div class="highlight-item" style="border-left-color: #ef4444;">
+                <span class="hl-num" style="background: #ef4444;">06</span>
+                <div>
+                  <div class="hl-title" style="color: #f87171;">⚽ 【観戦①】スペイン vs イングランド（代表戦）</div>
+                  <div class="hl-desc">11/15 マドリード（メトロポリターノ）。欧州ネーションズリーグ屈指の頂上決戦！</div>
+                </div>
+              </div>
+
+              <div class="highlight-item">
+                <span class="hl-num">07</span>
+                <div>
+                  <div class="hl-title">🍷 トスカーナ世界遺産オルチャ渓谷＆ワイナリー</div>
+                  <div class="hl-desc">ローマ発専用車で巡る地下セラー試飲、ワイナリーランチ、ピエンツァの絶景。</div>
+                </div>
+              </div>
+
+              <div class="highlight-item">
+                <span class="hl-num">08</span>
+                <div>
+                  <div class="hl-title">🎈 カッパドキア早朝熱気球フライト</div>
+                  <div class="hl-desc">奇岩地帯から昇る朝日を上空から望む絶景と、憧れの洞窟ホテル連泊。</div>
+                </div>
+              </div>
+
+              <div class="highlight-item" style="border-left-color: #ef4444;">
+                <span class="hl-num" style="background: #ef4444;">09</span>
+                <div>
+                  <div class="hl-title" style="color: #f87171;">⚽ 【観戦②】ガラタサライ vs アストン・ヴィラ</div>
+                  <div class="hl-desc">11/24 イスタンブール（RAMS Park）。世界一熱いスタジアムの地獄の轟音。</div>
+                </div>
+              </div>
+
+              <div class="highlight-item">
+                <span class="hl-num">10</span>
+                <div>
+                  <div class="hl-title">🦁 ギザ三大ピラミッド ＆ アンボセリ象サファリ</div>
+                  <div class="hl-desc">クフ王ピラミッド内部見学、キリマンジャロ背景の百頭規模の象の群れ。</div>
+                </div>
+              </div>
+            </div>
+            
+      </div>
+
+      <div class="slide-footer">
+        <div>TAKAMUKU TAKESHI MR ｜ 世界一周旅行 2026-27（東回り・全16クーポン確定版）</div>
+        <div>Slide 3 of 15</div>
+      </div>
+    </div>
+
+    <!-- Slide 4: prep -->
+    <div class="slide " id="slide-3" data-index="3">
+      <div class="slide-header">
+        <div class="slide-tag" style="color: #ef4444;">PRE-DEPARTURE CHECKLIST</div>
+        <h1 class="slide-title">渡航手続・防疫・必須準備リスト</h1>
+        <div class="slide-subtitle">出発前（9〜10月中）に確実にクリアしておくべき重要タスク</div>
+      </div>
+
+      <div class="slide-body">
+        
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+              <div class="card-box">
+                <div style="font-weight: 700; font-size: 14px; margin-bottom: 8px; color: #f87171;">
+                  🔴 ビザ・電子渡航認証
+                </div>
+                <ul class="guide-list" style="font-size: 12.5px;">
+                  <li><strong>米国 ESTA：</strong> SFO経由のため必須。10月中に公式アプリ/サイトで申請。</li>
+                  <li><strong>ケニア eTA：</strong> 入国72時間前までにオンライン申請（黄熱証明書の添付要否を確認）。</li>
+                  <li><strong>欧州 EES：</strong> 11/11 リスボン入国時に生体認証（指紋・顔写真）登録。</li>
+                  <li><strong>パスポート残存期間：</strong> 帰国時6か月以上・未使用査証欄10頁以上を確認。</li>
+                </ul>
+              </div>
+
+              <div class="card-box">
+                <div style="font-weight: 700; font-size: 14px; margin-bottom: 8px; color: #facc15;">
+                  🟡 ワクチン・健康防疫
+                </div>
+                <ul class="guide-list" style="font-size: 12.5px;">
+                  <li><strong>黄熱ワクチン（イエローカード）：</strong> ケニア入国（11/28）の10日前＝<strong>11/18までに接種必須</strong>。タイ帰着時にも提示を求められる可能性大。</li>
+                  <li><strong>高山病対策薬（ダイアモックス）：</strong> クスコ・マチュピチュ用。渡航外来で処方受ける。</li>
+                  <li><strong>常備薬・胃腸薬：</strong> 整腸剤、解熱鎮痛剤、虫除け（ディート高濃度）。</li>
+                </ul>
+              </div>
+
+              <div class="card-box">
+                <div style="font-weight: 700; font-size: 14px; margin-bottom: 8px; color: #60a5fa;">
+                  🔵 チケット・予約手配
+                </div>
+                <ul class="guide-list" style="font-size: 12.5px;">
+                  <li><strong>ガラタサライ戦：</strong> Passo.com.tr で Passo Taraftar カード申請（9月中）。</li>
+                  <li><strong>スペイン代表戦：</strong> RFEF公式販売案内確認・アプリ導入（9月中）。</li>
+                  <li><strong>マチュピチュ入場券：</strong> 日時指定・定員制。発券後すぐに確保。</li>
+                  <li><strong>サグラダ・ファミリア：</strong> 塔登頂付きチケット事前予約。</li>
+                  <li><strong>トスカーナ・サファリ：</strong> 現地ツアー・専用車の手配（10月）。</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card-box" style="margin-top: 16px; background: rgba(239, 68, 68, 0.08); border-left: 4px solid #ef4444; padding: 12px 18px;">
+              <strong style="color: #f87171;">🔴 発券期限アラート：2026年9月7日（月）00:43（タイ時間）</strong><br>
+              <span style="font-size: 12.5px; color: #cbd5e1;">UA1271のビジネス空き確認、全区間のブッキングクラス確認、タイ発券vs東京発券（外貨手数料回避）の判断を9/6中に決着させて発券を完了すること。</span>
+            </div>
+            
+      </div>
+
+      <div class="slide-footer">
+        <div>TAKAMUKU TAKESHI MR ｜ 世界一周旅行 2026-27（東回り・全16クーポン確定版）</div>
+        <div>Slide 4 of 15</div>
+      </div>
+    </div>
+
+    <!-- Slide 5: stage1 -->
+    <div class="slide " id="slide-4" data-index="4">
+      <div class="slide-header">
+        <div class="slide-tag" style="color: #38bdf8;">STAGE 1: NORTH & CENTRAL AMERICA</div>
+        <h1 class="slide-title">Stage 1: 北米・メキシコ編</h1>
+        <div class="slide-subtitle">2026/10/26(月) 〜 10/31(土) ｜ 太平洋横断から古代文明の都へ</div>
+      </div>
+
+      <div class="slide-body">
+        
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px;">
+              <div>
+                <div class="day-flow">
+                  <div class="day-flow-item">
+                    <div class="flow-date">10/26(月)〜27(火)</div>
+                    <div class="flow-desc"><strong>バンコク ➔ 東京（実家泊）</strong><br>ポジショニング移動。東京でパッキング・ESTA最終確認・休息。</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">10/28(水)</div>
+                    <div class="flow-desc"><strong>成田 17:00発 NH 8 ➔ サンフランシスコ 10:20着</strong><br>🌟 <strong>THE Room ビジネスクラス満喫</strong>。午後SFO市内観光（フィッシャーマンズワーフ）。SFO泊①</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">10/29(木)</div>
+                    <div class="flow-desc"><strong>SFO 10:45発 UA 1271 ➔ メキシコシティ 16:05着</strong><br>夕方ソカロ歴史地区散策、メキシコ料理ディナー。メキシコ泊①</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">10/30(金)</div>
+                    <div class="flow-desc"><strong>★テオティワカン遺跡 ＆ 国立人類学博物館（終日観光）</strong><br>太陽のピラミッド、月のピラミッド登頂、アステカの暦石見学。メキシコ泊②</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">10/31(土)</div>
+                    <div class="flow-desc"><strong>メキシコシティ ➔ パナマ ➔ リマ（機中泊・深夜着）</strong><br>午前フリーダ・カーロ博物館観光。午後MEX 15:30発 CM135でパナマへ。</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-box" style="height: fit-content;">
+                <div style="font-weight: 700; font-size: 14px; margin-bottom: 10px; color: #38bdf8;">
+                  💡 Stage 1 の旅のポイント
+                </div>
+                <div style="font-size: 13px; line-height: 1.6; color: #cbd5e1;">
+                  <p style="margin-bottom: 10px;"><strong>🎯 THE Room の体験：</strong> 成田T1ラウンジから始まる世界最高峰のビジネスクラス。時差ボケを最小限に抑えつつSFOへ。</p>
+                  <p style="margin-bottom: 10px;"><strong>🕒 10/31 メキシコ発が午後便化：</strong> 当初案からCM135（15:30発）に変更されたことで、最終日午前が丸々観光に使えるように改善されました。</p>
+                  <div style="background: rgba(239,68,68,0.15); border: 1px solid #ef4444; border-radius: 8px; padding: 10px; margin-top: 12px;">
+                    <strong style="color: #f87171;">⚠️ 要注意：10/31 パナマ乗継（1h05m）</strong><br>
+                    CM135（20:14着）➔ CM337（21:19発）。乗継時間は最短級です。機内前方座席から速やかに降り、T2ゲートへ直行してください。受託手荷物はスルー預けです。
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+      </div>
+
+      <div class="slide-footer">
+        <div>TAKAMUKU TAKESHI MR ｜ 世界一周旅行 2026-27（東回り・全16クーポン確定版）</div>
+        <div>Slide 5 of 15</div>
+      </div>
+    </div>
+
+    <!-- Slide 6: stage2 -->
+    <div class="slide " id="slide-5" data-index="5">
+      <div class="slide-header">
+        <div class="slide-tag" style="color: #fbbf24;">STAGE 2: PERU & MACHU PICCHU</div>
+        <h1 class="slide-title">Stage 2: ペルー・マチュピチュ編</h1>
+        <div class="slide-subtitle">2026/11/01(日) 〜 11/04(水) ｜ 高山病を医学的に完全回避しインカの空中都市へ</div>
+      </div>
+
+      <div class="slide-body">
+        
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px;">
+              <div>
+                <div class="day-flow">
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/01(日)</div>
+                    <div class="flow-desc"><strong>00:55 リマ着 ➔ 空港ホテル仮眠 ➔ マチュピチュ村直行</strong><br>Wyndhamで仮眠後、午後便LIM→CUZ。専用車でオリャンタイタンボへ下り、夕方列車でマチュピチュ村（2,040m）直行！マチュピチュ泊①</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/02(月)</div>
+                    <div class="flow-desc"><strong>★マチュピチュ遺跡 終日観光（ワイナピチュ・インティプンク）</strong><br>早朝から遺跡へ。ワイナピチュ登山と太陽の神殿をじっくり見学。温泉とペルー料理。マチュピチュ泊②</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/03(火)</div>
+                    <div class="flow-desc"><strong>マチュピチュ村 ➔ 展望列車 ➔ クスコへ移動</strong><br>午前村内散策。展望列車と車で標高3,400mのクスコへ戻る（この時点で標高順応完了！）。アルマス広場散策。クスコ泊①</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/04(水)</div>
+                    <div class="flow-desc"><strong>★クスコ市内 ＆ 近郊インカ遺跡群観光</strong><br>巨大巨石サクサイワマン、ケンコー、12角の石、サン・ペドロ市場散策。クスコ泊②</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-box" style="height: fit-content;">
+                <div style="font-weight: 700; font-size: 14px; margin-bottom: 10px; color: #fbbf24;">
+                  💡 高山病回避の黄金動線
+                </div>
+                <div style="font-size: 13px; line-height: 1.6; color: #cbd5e1;">
+                  <p style="margin-bottom: 10px;"><strong>🛡️ なぜ「クスコ不泊」なのか：</strong> クスコ（3,400m）に到着後すぐ泊まると高山病発症率が激増します。到着後すぐに標高の低いマチュピチュ村（2,040m）へ下り、2泊して体を慣らしてからクスコに戻るのが医学的推奨ルートです。</p>
+                  <p style="margin-bottom: 10px;"><strong>🏨 11/1 深夜リマ着の再設計：</strong> 00:55着に伴い、空港直結 Wyndham Costa del Sol で 01:00〜09:30 にしっかり仮眠を取り、午後の国内線でクスコへ向かいます。</p>
+                  <div style="background: rgba(251,191,36,0.15); border: 1px solid #fbbf24; border-radius: 8px; padding: 10px; margin-top: 12px; color: #fde68a;">
+                    <strong>手配必須（U-7）：</strong><br>
+                    ① 11/1 リマ空港直結ホテル 1泊<br>
+                    ② 11/1 午後便（13時前後）LIM ➔ CUZ 国内線<br>
+                    ③ 11/1 夕方（19時前後）オリャンタイタンボ発の列車
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+      </div>
+
+      <div class="slide-footer">
+        <div>TAKAMUKU TAKESHI MR ｜ 世界一周旅行 2026-27（東回り・全16クーポン確定版）</div>
+        <div>Slide 6 of 15</div>
+      </div>
+    </div>
+
+    <!-- Slide 7: stage3 -->
+    <div class="slide " id="slide-6" data-index="6">
+      <div class="slide-header">
+        <div class="slide-tag" style="color: #f87171;">STAGE 3: IGUAZU FALLS & BRAZIL</div>
+        <h1 class="slide-title">Stage 3: イグアスの滝 ＆ サンパウロ編</h1>
+        <div class="slide-subtitle">2026/11/05(木) 〜 11/10(火) ｜ 世界三大瀑布の轟音と南米最大のメガシティ</div>
+      </div>
+
+      <div class="slide-body">
+        
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px;">
+              <div>
+                <div class="day-flow">
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/05(木)</div>
+                    <div class="flow-desc"><strong>クスコ ➔ リマ ➔ イグアス（IGU）国内線移動日</strong><br>南米横断（地上区間クーポン適用）。イグアス到着・3連泊開始。イグアス泊①</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/06(金)</div>
+                    <div class="flow-desc"><strong>★イグアスの滝【アルゼンチン側】丸1日観光</strong><br>トロッコ列車で「悪魔の喉笛」へ。上・下トレイル散策 ＆ ★Gran Aventura滝壺突入ボート！極上アルゼンチン牛ステーキ。イグアス泊②</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/07(土)</div>
+                    <div class="flow-desc"><strong>★イグアスの滝【ブラジル側】丸1日観光 ＆ ヘリ遊覧</strong><br>滝の大パノラマ遊歩道 ＆ ★Helisulヘリコプター遊覧飛行で滝全景を空撮！鳥類園、本場シュラスコディナー。イグアス泊③</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/08(日)〜09(月)</div>
+                    <div class="flow-desc"><strong>イグアス ➔ サンパウロ（2連泊）</strong><br>午前国内線でサンパウロへ。パウリスタ通り、MASP美術館、リベルダーデ東洋人街、中央市場モルタデッラサンド。サンパウロ泊①②</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/10(火)</div>
+                    <div class="flow-desc"><strong>サンパウロ観光 ➔ GRU 23:15発 TP 88（機中泊）</strong><br>夕方までショッピング。GRU空港T3ラウンジでシャワー後、大西洋横断夜行便へ！</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-box" style="height: fit-content;">
+                <div style="font-weight: 700; font-size: 14px; margin-bottom: 10px; color: #f87171;">
+                  💡 イグアス完全制覇のポイント
+                </div>
+                <div style="font-size: 13px; line-height: 1.6; color: #cbd5e1;">
+                  <p style="margin-bottom: 10px;"><strong>🇦🇷 アルゼンチン側の迫力：</strong> 「悪魔の喉笛」展望橋は水飛沫でずぶ濡れになります。レインコートとスマホ防水ケースが必須。滝壺ボートツアー（Gran Aventura）は着替え持参で臨みましょう。</p>
+                  <p style="margin-bottom: 10px;"><strong>🇧🇷 ブラジル側のパノラマ＋ヘリ：</strong> ブラジル側は滝の全貌を見渡す絶景。Helisul社のヘリコプター（約10分）は人生観が変わるパノラマです。</p>
+                  <p><strong>✈️ TP88（大西洋横断）：</strong> GRU発が23:15のため、サンパウロ最終日を丸一日使えます。夜行便でしっかり寝てヨーロッパへ向かいます。</p>
+                </div>
+              </div>
+            </div>
+            
+      </div>
+
+      <div class="slide-footer">
+        <div>TAKAMUKU TAKESHI MR ｜ 世界一周旅行 2026-27（東回り・全16クーポン確定版）</div>
+        <div>Slide 7 of 15</div>
+      </div>
+    </div>
+
+    <!-- Slide 8: stage4 -->
+    <div class="slide " id="slide-7" data-index="7">
+      <div class="slide-header">
+        <div class="slide-tag" style="color: #f472b6;">STAGE 4: IBERIA & SPAIN FOOTBALL</div>
+        <h1 class="slide-title">Stage 4: イベリア半島 ＆ サッカー代表戦</h1>
+        <div class="slide-subtitle">2026/11/11(水) 〜 11/16(月) ｜ ガウディの建築美と欧州最高峰の黄金カード観戦！</div>
+      </div>
+
+      <div class="slide-body">
+        
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px;">
+              <div>
+                <div class="day-flow">
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/11(水)</div>
+                    <div class="flow-desc"><strong>12:10 リスボン着 ➔ 午後市内観光</strong><br>大西洋横断完了。ベレンの塔、ジェロニモス修道院、元祖エッグタルト、ファド鑑賞。<strong>翌朝04:40発のため超早寝！</strong> リスボン泊①</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/12(木)〜13(金)</div>
+                    <div class="flow-desc"><strong>リスボン ➔ バルセロナ（2連泊）</strong><br>早朝便TP1030（07:10発）でバルセロナへ。午前から観光。★サグラダ・ファミリア（塔登頂）、カサ・バトリョ、グエル公園、パエリア。バルセロナ泊①②</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/14(土)</div>
+                    <div class="flow-desc"><strong>カンプノウ見学 ➔ 午後 AVEでマドリードへ（前日入り！）</strong><br>FCバルセロナミュージアム見学後、高速鉄道AVEでマドリードへ移動。前日入りで移動リスクを完全排除。マドリード泊①</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/15(日)</div>
+                    <div class="flow-desc"><strong>マドリード観光 ➔ ⚽ 20:45 スペイン vs イングランド観戦！！</strong><br>プラド美術館見学。夜はメトロポリターノで欧州最高峰の代表戦を生観戦！マドリード泊②</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/16(月)</div>
+                    <div class="flow-desc"><strong>09:30発 AVEでバルセロナ戻り ➔ BCN 16:50発 AZ 79でローマへ</strong><br>Sants駅からBCN空港T1へ移動し、夕方便でローマへ飛ぶ。ローマ泊①</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-box" style="height: fit-content;">
+                <div style="font-weight: 700; font-size: 14px; margin-bottom: 10px; color: #f472b6;">
+                  ⚽ 代表戦観戦の完璧な動線設計
+                </div>
+                <div style="font-size: 13px; line-height: 1.6; color: #cbd5e1;">
+                  <p style="margin-bottom: 10px;"><strong>★前日入り（11/14）の重要性：</strong> 試合当日の移動は列車のストライキや遅延で観戦を逃すリスクがあります。前日にマドリードに入っておくことで安心安全に試合に臨めます。</p>
+                  <p style="margin-bottom: 10px;"><strong>🏟️ エスタディオ・メトロポリターノ：</strong> アトレティコの本拠地。地下鉄7号線「Estadio Metropolitano」駅直結。試合終了後の混雑を見越し、帰路の動線を確認しておきましょう。</p>
+                  <div style="background: rgba(244,114,182,0.15); border: 1px solid #f472b6; border-radius: 8px; padding: 10px; margin-top: 12px;">
+                    <strong style="color: #f472b6;">翌朝11/16のAVE移動：</strong><br>
+                    BCN 16:50発 AZ79に余裕をもって搭乗するため、マドリードAtocha駅発のAVEは <strong>09:30頃発（12:30頃Sants着）</strong> を利用します。
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+      </div>
+
+      <div class="slide-footer">
+        <div>TAKAMUKU TAKESHI MR ｜ 世界一周旅行 2026-27（東回り・全16クーポン確定版）</div>
+        <div>Slide 8 of 15</div>
+      </div>
+    </div>
+
+    <!-- Slide 9: stage5 -->
+    <div class="slide " id="slide-8" data-index="8">
+      <div class="slide-header">
+        <div class="slide-tag" style="color: #fb923c;">STAGE 5: ITALY & GREECE</div>
+        <h1 class="slide-title">Stage 5: イタリア ＆ ギリシャ編</h1>
+        <div class="slide-subtitle">2026/11/16(月) 〜 11/20(金) ｜ 永遠の都ローマ、至高のトスカーナ、古代アテネ</div>
+      </div>
+
+      <div class="slide-body">
+        
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px;">
+              <div>
+                <div class="day-flow">
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/16(月)</div>
+                    <div class="flow-desc"><strong>ローマ到着（18:35着）➔ トレビの泉 夜景散策</strong><br>ローマ3連泊スタート。ホテルに荷物を置き、トレビの泉やパンテオンのライトアップを散策。ローマ泊①</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/17(火)</div>
+                    <div class="flow-desc"><strong>★コロッセオ ＆ ヴァチカン市国 終日観光</strong><br>古代遺跡コロッセオ内部見学、フォロ・ロマーノ、ヴァチカン博物館、システィーナ礼拝堂、サン・ピエトロ大聖堂。ローマ泊②</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/18(水)</div>
+                    <div class="flow-desc"><strong>★トスカーナ日帰り名門ワイナリーツアー（連泊・荷物移動なし！）</strong><br>専用車で巡るオルチャ渓谷（世界遺産）、モンテプルチャーノ地下セラー試飲、ワイナリーランチ、ピエンツァ。ローマ泊③</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/19(木)〜20(金)</div>
+                    <div class="flow-desc"><strong>ローマ ➔ アテネ（2連泊）</strong><br>FCO 10:35発 A3 651でアテネへ。★パルテノン神殿、新アクロポリス博物館、古代アゴラ、プラカ地区夕景ディナー。アテネ泊①②</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-box" style="height: fit-content;">
+                <div style="font-weight: 700; font-size: 14px; margin-bottom: 10px; color: #fb923c;">
+                  💡 ローマ3連泊＆トスカーナの魅力
+                </div>
+                <div style="font-size: 13px; line-height: 1.6; color: #cbd5e1;">
+                  <p style="margin-bottom: 10px;"><strong>🧳 荷物移動ゼロの連泊リフレッシュ：</strong> 世界一周の中盤で疲れが出やすい時期。ローマに3連泊することで、毎日のパッキングやスーツケース移動から解放されます。</p>
+                  <p style="margin-bottom: 10px;"><strong>🍷 トスカーナ日帰りの極意：</strong> ローマから北上し、糸杉の並木道が続くオルチャ渓谷へ。名醸ワイン「ヴィーノ・ノービレ・ディ・モンテプルチャーノ」を堪能し、夕方にはローマのホテルへ身軽に戻れます。</p>
+                  <p><strong>🏛️ アテネ2連泊：</strong> パルテノン神殿の壮大な白亜の柱と、リカヴィトスの丘から見渡す夕景は地中海旅行の真骨頂です。</p>
+                </div>
+              </div>
+            </div>
+            
+      </div>
+
+      <div class="slide-footer">
+        <div>TAKAMUKU TAKESHI MR ｜ 世界一周旅行 2026-27（東回り・全16クーポン確定版）</div>
+        <div>Slide 9 of 15</div>
+      </div>
+    </div>
+
+    <!-- Slide 10: stage6 -->
+    <div class="slide " id="slide-9" data-index="9">
+      <div class="slide-header">
+        <div class="slide-tag" style="color: #facc15;">STAGE 6: TURKEY & HOT AIR BALLOON</div>
+        <h1 class="slide-title">Stage 6: トルコ・魅惑の東西交差点編</h1>
+        <div class="slide-subtitle">2026/11/21(土) 〜 11/25(水) ｜ 洞窟ホテル・熱気球フライト ＆ ★ガラタサライ戦観戦！</div>
+      </div>
+
+      <div class="slide-body">
+        
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px;">
+              <div>
+                <div class="day-flow">
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/21(土)</div>
+                    <div class="flow-desc"><strong>アテネ 11:50発 TK 1840 ➔ IST 14:30 ➔ カッパドキアへ</strong><br>午前便化で乗継に余裕！夕方の国内線で奇岩地帯へ。憧れの洞窟ホテルにチェックイン。カッパドキア泊①</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/22(日)</div>
+                    <div class="flow-desc"><strong>🎈 ★早朝カッパドキア熱気球フライト ＆ ギョレメ野外博物館</strong><br>日の出とともに無数の気球が舞う絶景体験。日中は地下都市と岩窟教会群見学。名物壷焼きケバブディナー。カッパドキア泊②</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/23(月)</div>
+                    <div class="flow-desc"><strong>カッパドキア ➔ イスタンブール（2連泊）</strong><br>午前国内線でイスタンブールへ。世界遺産アヤソフィア大聖堂、ブルーモスク、地下宮殿。イスタンブール泊①</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/24(火)</div>
+                    <div class="flow-desc"><strong>市内観光 ➔ ⚽ 18:45 ガラタサライ vs アストン・ヴィラ観戦！！</strong><br>グランドバザール、ボスポラス海峡クルーズ後、夕方RAMS Parkへ。世界で最も情熱的なスタジアムで生観戦！イスタンブール泊②</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/25(水)</div>
+                    <div class="flow-desc"><strong>試合翌朝ゆっくり起床 ➔ IST 14:00発 MS 738でカイロへ</strong><br>昼便確保により試合翌朝の疲労を完全に回復してからエジプトへ。カイロ泊①</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-box" style="height: fit-content;">
+                <div style="font-weight: 700; font-size: 14px; margin-bottom: 10px; color: #facc15;">
+                  💡 トルコ編の神スケジュール
+                </div>
+                <div style="font-size: 13px; line-height: 1.6; color: #cbd5e1;">
+                  <p style="margin-bottom: 10px;"><strong>✈️ TK1840 の午前便化：</strong> 当初案（13:15発）から11:50発へ前倒しされたことで、イスタンブールでの国内線乗り継ぎに大きな余裕が生まれました。</p>
+                  <p style="margin-bottom: 10px;"><strong>🏟️ ガラタサライ戦（Passoカード必須）：</strong> トルコでの観戦は外国人でも「Passo Lig」カード登録が法定义務です。9月中にオンライン申請を済ませておきましょう。</p>
+                  <p><strong>☀️ 11/25 昼便化の恩恵：</strong> 激闘の試合翌朝、チェックアウトを急ぐことなく9:30までホテルで熟睡できます。ターキッシュの誇るイスタンブールラウンジも満喫できます。</p>
+                </div>
+              </div>
+            </div>
+            
+      </div>
+
+      <div class="slide-footer">
+        <div>TAKAMUKU TAKESHI MR ｜ 世界一周旅行 2026-27（東回り・全16クーポン確定版）</div>
+        <div>Slide 10 of 15</div>
+      </div>
+    </div>
+
+    <!-- Slide 11: stage7 -->
+    <div class="slide " id="slide-10" data-index="10">
+      <div class="slide-header">
+        <div class="slide-tag" style="color: #4ade80;">STAGE 7: EGYPT & THE PYRAMIDS</div>
+        <h1 class="slide-title">Stage 7: エジプト・古代文明編</h1>
+        <div class="slide-subtitle">2026/11/25(水) 〜 11/27(金) ｜ 悠久のピラミッド内部潜入と大エジプト博物館</div>
+      </div>
+
+      <div class="slide-body">
+        
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px;">
+              <div>
+                <div class="day-flow">
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/25(水)</div>
+                    <div class="flow-desc"><strong>イスタンブール ➔ カイロ（15:15着）</strong><br>MS738でカイロ着。夕方ハン・ハリーリ市場散策。シーシャとミントティー。カイロ泊①</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/26(木)</div>
+                    <div class="flow-desc"><strong>★ギザ三大ピラミッド（クフ王内部見学）＆ スフィンクス</strong><br>クフ王のピラミッド大回廊から王の間へ内部潜入！スフィンクス、サッカラの階段ピラミッド見学。ナイル川沿いディナー。カイロ泊②</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/27(金)</div>
+                    <div class="flow-desc"><strong>★大エジプト博物館（GEM）見学 ➔ CAI 21:35発 MS 849（機中泊）</strong><br>ツタンカーメン黄金のマスク等を鑑賞（15:00まで）。17:00空港移動、エジプト航空夜行便でケニア・ナイロビへ！</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-box" style="height: fit-content;">
+                <div style="font-weight: 700; font-size: 14px; margin-bottom: 10px; color: #4ade80;">
+                  💡 カイロ最終日の重要時間管理
+                </div>
+                <div style="font-size: 13px; line-height: 1.6; color: #cbd5e1;">
+                  <p style="margin-bottom: 10px;"><strong>🏛️ クフ王ピラミッド内部：</strong> 傾斜のある狭い回廊を登るため、履き慣れたスニーカーと水分補給が必須です。内部は神聖かつ圧巻のスケール。</p>
+                  <div style="background: rgba(239,68,68,0.15); border: 1px solid #ef4444; border-radius: 8px; padding: 10px; margin-top: 12px;">
+                    <strong style="color: #f87171;">⚠️ 11/27 GEM見学は15:00厳守切り上げ！</strong><br>
+                    MS849の出発時刻が 23:55発 ➔ <strong>21:35発（2時間20分早発）</strong> となりました。カイロ市内の名物大渋滞を考慮し、15:00に見学を終了、16:00ホテル荷物回収、17:00には空港へ向かうタイムラインを死守してください。
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+      </div>
+
+      <div class="slide-footer">
+        <div>TAKAMUKU TAKESHI MR ｜ 世界一周旅行 2026-27（東回り・全16クーポン確定版）</div>
+        <div>Slide 11 of 15</div>
+      </div>
+    </div>
+
+    <!-- Slide 12: stage8 -->
+    <div class="slide " id="slide-11" data-index="11">
+      <div class="slide-header">
+        <div class="slide-tag" style="color: #fb7185;">STAGE 8: KENYA & SAFARI</div>
+        <h1 class="slide-title">Stage 8: ケニア・大自然サファリ編</h1>
+        <div class="slide-subtitle">2026/11/28(土) 〜 12/01(火) ｜ キリマンジャロを望む象の楽園とキリン触れ合い</div>
+      </div>
+
+      <div class="slide-body">
+        
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px;">
+              <div>
+                <div class="day-flow">
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/28(土)</div>
+                    <div class="flow-desc"><strong>03:30 ナイロビ着 ➔ 空港ホテル仮眠 ➔ アンボセリへ！</strong><br>空港直結ホテル（04:30〜08:30）で仮眠・シャワー。専用4x4でアンボセリへ移動し、15:30〜★サンセットサファリ！アンボセリ泊①</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/29(日)</div>
+                    <div class="flow-desc"><strong>★アンボセリ国立公園 終日サファリ（ゲームドライブ）</strong><br>雄大なキリマンジャロを背景に百頭規模の象の群れ、ライオン、チーター、キリンを追跡。ロッジディナーと満天の星。アンボセリ泊②</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">11/30(月)</div>
+                    <div class="flow-desc"><strong>早朝サファリ ➔ 13:30 ナイロビ戻り ➔ ★ジラフ・センター</strong><br>早朝モーニングサファリ後、前日昼にナイロビへ戻り陸路リスク排除。キリンの手渡し餌やり体験！安心の空港敷地内ホテル泊</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">12/01(火)</div>
+                    <div class="flow-desc"><strong>★象孤児院 ➔ NBO 17:30発 ET 319でアディスアベバへ</strong><br>赤ちゃん象のミルクやり見学後、空港へ。ET319でエチオピア乗継、夜行便ET608でバンコクへ向かう！</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-box" style="height: fit-content;">
+                <div style="font-weight: 700; font-size: 14px; margin-bottom: 10px; color: #fb7185;">
+                  💡 ケニア初日＆最終日の神リカバリー
+                </div>
+                <div style="font-size: 13px; line-height: 1.6; color: #cbd5e1;">
+                  <p style="margin-bottom: 10px;"><strong>🛏️ 03:30早朝着に伴うデイユース：</strong> 深夜到着後、クラウンプラザ等の空港ホテルで4時間の仮眠とシャワーを取ることで、夕方サファリを万全の体調で楽しめます。</p>
+                  <p style="margin-bottom: 10px;"><strong>🚗 前日昼戻り（11/30 13:30）：</strong> サファリ最終日の移動遅延リスクを完全に排除。午後はジラフ・センターでキリンと触れ合い、夜は空港敷地内ホテルに泊まる完璧なリスクマネジメントです。</p>
+                  <p><strong>🐘 エレファント孤児院（要予約）：</strong> 12/1午前、保護された赤ちゃん象が巨大哺乳瓶からミルクを飲む姿は必見です。</p>
+                </div>
+              </div>
+            </div>
+            
+      </div>
+
+      <div class="slide-footer">
+        <div>TAKAMUKU TAKESHI MR ｜ 世界一周旅行 2026-27（東回り・全16クーポン確定版）</div>
+        <div>Slide 12 of 15</div>
+      </div>
+    </div>
+
+    <!-- Slide 13: stage9 -->
+    <div class="slide " id="slide-12" data-index="12">
+      <div class="slide-header">
+        <div class="slide-tag" style="color: #38bdf8;">STAGE 9: RETURN TO BANGKOK</div>
+        <h1 class="slide-title">Stage 9: バンコク帰宅（主要行程完結！）</h1>
+        <div class="slide-subtitle">2026/12/01(火) 〜 12/02(水) ｜ 38日間の大冒険を終え、我が家へ凱旋</div>
+      </div>
+
+      <div class="slide-body">
+        
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+              <div class="card-box">
+                <div style="font-weight: 700; font-size: 15px; margin-bottom: 12px; color: #38bdf8;">
+                  ✈️ エチオピア航空ビジネスクラス ＆ ADD乗継
+                </div>
+                <div class="day-flow-item" style="margin-bottom: 12px;">
+                  <div class="flow-date">12/01(火) 17:30発</div>
+                  <div class="flow-desc"><strong>NBO ➔ ADD（ET 319 / 所要2h00m）</strong><br>ナイロビからエチオピアの首都アディスアベバへ。</div>
+                </div>
+                <div class="day-flow-item" style="margin-bottom: 12px;">
+                  <div class="flow-date">12/01(火) 19:30〜23:55</div>
+                  <div class="flow-desc"><strong>アディスアベバ乗継（4時間25分・超安全圏）</strong><br>エチオピア航空の旗艦ラウンジ「Cloud Nine Lounge」で本場インジェラや本格エチオピアンコーヒーを楽しみ、シャワーですっきりリフレッシュ。</div>
+                </div>
+                <div class="day-flow-item">
+                  <div class="flow-date">12/01(火) 23:55発</div>
+                  <div class="flow-desc"><strong>ADD ➔ BKK（ET 608 / 所要8h35m）</strong><br>最新鋭B787/A350ビジネスクラスでフルフラット機中泊。</div>
+                </div>
+              </div>
+
+              <div class="card-box" style="background: rgba(56, 189, 248, 0.08); border: 1px solid #38bdf8;">
+                <div style="font-weight: 700; font-size: 16px; margin-bottom: 12px; color: #38bdf8;">
+                  🎉 12/2(水) 12:30 バンコク着 ➔ 14時頃 自宅帰宅！
+                </div>
+                <div style="font-size: 13.5px; line-height: 1.7; color: #cbd5e1;">
+                  <p style="margin-bottom: 12px;">
+                    スワンナプーム空港に12:30着。プレミアムレーンでの入国審査・手荷物受取を経て、<strong>14時頃にバンコクの自宅へ無事帰宅</strong>！
+                  </p>
+                  <p style="margin-bottom: 12px;">
+                    当初の目標であった「正午帰宅（E-5）」から約2時間遅れですが、<strong>12/2(水)中の昼過ぎに帰宅という本質的要件を完全達成</strong>しました。
+                  </p>
+                  <div style="background: #1e293b; border-radius: 8px; padding: 12px; font-weight: 700; color: #38bdf8; text-align: center;">
+                    🏆 38日間の世界一周 主要行程、完全達成！！
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+      </div>
+
+      <div class="slide-footer">
+        <div>TAKAMUKU TAKESHI MR ｜ 世界一周旅行 2026-27（東回り・全16クーポン確定版）</div>
+        <div>Slide 13 of 15</div>
+      </div>
+    </div>
+
+    <!-- Slide 14: stage10 -->
+    <div class="slide " id="slide-13" data-index="13">
+      <div class="slide-header">
+        <div class="slide-tag" style="color: #a855f7;">STAGE 10: MARCH 2027 RETURN TO TOKYO</div>
+        <h1 class="slide-title">Stage 10: 2027年3月 帰省便＆世界一周完結</h1>
+        <div class="slide-subtitle">2027/03/01(月) 〜 03/03(水) ｜ シンガポール2泊を経て、東京・羽田へ感動のゴール！</div>
+      </div>
+
+      <div class="slide-body">
+        
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px;">
+              <div>
+                <div class="day-flow">
+                  <div class="day-flow-item">
+                    <div class="flow-date">2027/03/01(月)</div>
+                    <div class="flow-desc"><strong>バンコク 09:40発 SQ 705 ➔ シンガポール 13:10着</strong><br>SQビジネスクラス。午前便のため初日午後が丸々使える！マリーナベイ・サンズ周辺散策、夜の光と水のショー鑑賞。シンガポール泊①</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">2027/03/02(火)</div>
+                    <div class="flow-desc"><strong>★シンガポール終日観光（実質唯一の丸1日）</strong><br>ガーデンズ・バイ・ザ・ベイ（フラワードーム・クラウドフォレスト巨大人工滝）、植物園、クラークキーで名物チリクラブディナー。シンガポール泊②</div>
+                  </div>
+                  <div class="day-flow-item">
+                    <div class="flow-date">2027/03/03(水)</div>
+                    <div class="flow-desc"><strong>シンガポール 10:45発 NH 842 ➔ 東京・羽田 18:25着</strong><br>🌟 <strong>ANAビジネスクラス Z確定！</strong> チャンギT2シルバークリスラウンジ後、快適な日中便で羽田空港へ帰着。世界一周完結！！</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-box" style="height: fit-content;">
+                <div style="font-weight: 700; font-size: 14px; margin-bottom: 10px; color: #a855f7;">
+                  💡 最終区間の素晴らしいポイント
+                </div>
+                <div style="font-size: 13px; line-height: 1.6; color: #cbd5e1;">
+                  <p style="margin-bottom: 10px;"><strong>✈️ SQ638（夜行・成田）➔ NH842（日中便・羽田）への変更：</strong> 深夜便ではなく快適な昼行便となったため、睡眠リズムを崩さずに帰国できます。到着地も利便性の高い<strong>羽田空港</strong>です！</p>
+                  <p style="margin-bottom: 10px;"><strong>🇸🇬 シンガポール2連泊のゆとり：</strong> 初日午後＋中日丸1日を使って、東南アジア最先端のガーデンシティを優雅に観光できます。</p>
+                  <div style="background: rgba(168,85,247,0.15); border: 1px solid #a855f7; border-radius: 8px; padding: 10px; margin-top: 12px; text-align: center;">
+                    <strong style="color: #c084fc; font-size: 14px;">18:25 羽田着で東回り世界一周一筆書き完結！</strong><br>
+                    <span style="font-size: 12px; color: #e9d5ff;">有効期限12か月以内の規則にも完全に合致しています。</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+      </div>
+
+      <div class="slide-footer">
+        <div>TAKAMUKU TAKESHI MR ｜ 世界一周旅行 2026-27（東回り・全16クーポン確定版）</div>
+        <div>Slide 14 of 15</div>
+      </div>
+    </div>
+
+    <!-- Slide 15: emergency -->
+    <div class="slide " id="slide-14" data-index="14">
+      <div class="slide-header">
+        <div class="slide-tag" style="color: #10b981;">EMERGENCY & ACTION ITEMS</div>
+        <h1 class="slide-title">緊急連絡先 ＆ 発券後アクションリスト</h1>
+        <div class="slide-subtitle">安心安全な旅のために ｜ Bon Voyage!</div>
+      </div>
+
+      <div class="slide-body">
+        
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+              <div class="card-box">
+                <div style="font-weight: 700; font-size: 15px; margin-bottom: 10px; color: #10b981;">
+                  📞 予約・航空会社 緊急連絡先
+                </div>
+                <ul class="guide-list" style="font-size: 13px;">
+                  <li><strong>ANA予約番号（PNR）：</strong> <span style="font-family: monospace; font-size: 16px; color: #38bdf8; font-weight: bold;">DM4H3V</span></li>
+                  <li><strong>搭乗者名：</strong> TAKAMUKU TAKESHI MR</li>
+                  <li><strong>ANA タイ窓口（発券元）：</strong> +66-2-238-5121（平日 08:30〜17:30）</li>
+                  <li><strong>ANA 日本（国際線）：</strong> 0570-029-767 / +81-3-6741-6685（24時間）</li>
+                  <li><strong>予約確認URL：</strong> <a href="https://aswbe.ana.co.jp/webapps/servicing/booking-search?CONNECTION_KIND=THA&LANG=ja" target="_blank" style="color: #38bdf8;">ANA予約検索ページ</a></li>
+                  <li><strong>変更ルール：</strong> 搭乗24時間前まで変更可能（同区間航空会社変更は無料／路線変更はUS$125）</li>
+                </ul>
+              </div>
+
+              <div class="card-box">
+                <div style="font-weight: 700; font-size: 15px; margin-bottom: 10px; color: #facc15;">
+                  📝 発券後のTODO優先順位
+                </div>
+                <ol class="guide-list" style="font-size: 12.5px; padding-left: 20px;">
+                  <li><strong>9月中：</strong> ガラタサライ戦 Passoカード申請 ＆ スペイン戦 RFEFチケット確保</li>
+                  <li><strong>9月中：</strong> マチュピチュ入場券（公式）の日時指定予約</li>
+                  <li><strong>9〜10月：</strong> リマ空港ホテル ＆ LIM→CUZ便 ＆ 展望列車の手配</li>
+                  <li><strong>10月：</strong> 米国ESTA申請 ＆ 黄熱ワクチン接種（11/18までに）</li>
+                  <li><strong>10月：</strong> ナイロビ空港ホテルデイユース ＆ アンボセリサファリ手配</li>
+                  <li><strong>10月：</strong> トスカーナ日帰りツアー ＆ イグアスHelisulヘリ予約</li>
+                </ol>
+              </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 24px; padding: 18px; background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(56,189,248,0.1)); border-radius: 12px; border: 1px solid rgba(56,189,248,0.3);">
+              <div style="font-size: 20px; font-weight: 800; color: #f8fafc; margin-bottom: 4px;">
+                🌏 素晴らしい世界一周の旅になりますように！
+              </div>
+              <div style="font-size: 13px; color: #94a3b8;">
+                Great journeys begin with thorough preparation. Have a safe, inspiring, and unforgettable world tour!
+              </div>
+            </div>
+            
+      </div>
+
+      <div class="slide-footer">
+        <div>TAKAMUKU TAKESHI MR ｜ 世界一周旅行 2026-27（東回り・全16クーポン確定版）</div>
+        <div>Slide 15 of 15</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Thumbnail Overview Grid -->
+<div class="overview-grid" id="overviewGrid" onclick="closeOverviewIfBg(event)">
+
+  <div class="thumb-card current" id="thumb-0" onclick="goToSlide(0)">
+    <div class="thumb-num">SLIDE 01</div>
+    <div class="thumb-title">世界一周旅行 2026-27 東回り 旅のしおり</div>
+    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">TRAVEL GUIDE & ITINERARY</div>
+  </div>
+
+  <div class="thumb-card " id="thumb-1" onclick="goToSlide(1)">
+    <div class="thumb-num">SLIDE 02</div>
+    <div class="thumb-title">全体航路 ＆ ルート概要</div>
+    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">OVERALL ITINERARY</div>
+  </div>
+
+  <div class="thumb-card " id="thumb-2" onclick="goToSlide(2)">
+    <div class="thumb-num">SLIDE 03</div>
+    <div class="thumb-title">旅の10大ハイライト</div>
+    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">TOP 10 HIGHLIGHTS</div>
+  </div>
+
+  <div class="thumb-card " id="thumb-3" onclick="goToSlide(3)">
+    <div class="thumb-num">SLIDE 04</div>
+    <div class="thumb-title">渡航手続・防疫・必須準備リスト</div>
+    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">PRE-DEPARTURE CHECKLIST</div>
+  </div>
+
+  <div class="thumb-card " id="thumb-4" onclick="goToSlide(4)">
+    <div class="thumb-num">SLIDE 05</div>
+    <div class="thumb-title">Stage 1: 北米・メキシコ編</div>
+    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">STAGE 1: NORTH & CENTRAL AMERICA</div>
+  </div>
+
+  <div class="thumb-card " id="thumb-5" onclick="goToSlide(5)">
+    <div class="thumb-num">SLIDE 06</div>
+    <div class="thumb-title">Stage 2: ペルー・マチュピチュ編</div>
+    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">STAGE 2: PERU & MACHU PICCHU</div>
+  </div>
+
+  <div class="thumb-card " id="thumb-6" onclick="goToSlide(6)">
+    <div class="thumb-num">SLIDE 07</div>
+    <div class="thumb-title">Stage 3: イグアスの滝 ＆ サンパウロ編</div>
+    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">STAGE 3: IGUAZU FALLS & BRAZIL</div>
+  </div>
+
+  <div class="thumb-card " id="thumb-7" onclick="goToSlide(7)">
+    <div class="thumb-num">SLIDE 08</div>
+    <div class="thumb-title">Stage 4: イベリア半島 ＆ サッカー代表戦</div>
+    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">STAGE 4: IBERIA & SPAIN FOOTBALL</div>
+  </div>
+
+  <div class="thumb-card " id="thumb-8" onclick="goToSlide(8)">
+    <div class="thumb-num">SLIDE 09</div>
+    <div class="thumb-title">Stage 5: イタリア ＆ ギリシャ編</div>
+    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">STAGE 5: ITALY & GREECE</div>
+  </div>
+
+  <div class="thumb-card " id="thumb-9" onclick="goToSlide(9)">
+    <div class="thumb-num">SLIDE 10</div>
+    <div class="thumb-title">Stage 6: トルコ・魅惑の東西交差点編</div>
+    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">STAGE 6: TURKEY & HOT AIR BALLOON</div>
+  </div>
+
+  <div class="thumb-card " id="thumb-10" onclick="goToSlide(10)">
+    <div class="thumb-num">SLIDE 11</div>
+    <div class="thumb-title">Stage 7: エジプト・古代文明編</div>
+    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">STAGE 7: EGYPT & THE PYRAMIDS</div>
+  </div>
+
+  <div class="thumb-card " id="thumb-11" onclick="goToSlide(11)">
+    <div class="thumb-num">SLIDE 12</div>
+    <div class="thumb-title">Stage 8: ケニア・大自然サファリ編</div>
+    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">STAGE 8: KENYA & SAFARI</div>
+  </div>
+
+  <div class="thumb-card " id="thumb-12" onclick="goToSlide(12)">
+    <div class="thumb-num">SLIDE 13</div>
+    <div class="thumb-title">Stage 9: バンコク帰宅（主要行程完結！）</div>
+    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">STAGE 9: RETURN TO BANGKOK</div>
+  </div>
+
+  <div class="thumb-card " id="thumb-13" onclick="goToSlide(13)">
+    <div class="thumb-num">SLIDE 14</div>
+    <div class="thumb-title">Stage 10: 2027年3月 帰省便＆世界一周完結</div>
+    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">STAGE 10: MARCH 2027 RETURN TO TOKYO</div>
+  </div>
+
+  <div class="thumb-card " id="thumb-14" onclick="goToSlide(14)">
+    <div class="thumb-num">SLIDE 15</div>
+    <div class="thumb-title">緊急連絡先 ＆ 発券後アクションリスト</div>
+    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">EMERGENCY & ACTION ITEMS</div>
+  </div>
+
+</div>
+
+<script>
+let currentSlide = 0;
+const totalSlides = 15;
+
+function updateSlideView() {
+  document.querySelectorAll('.slide').forEach((s, idx) => {
+    if (idx === currentSlide) {
+      s.classList.add('active');
+    } else {
+      s.classList.remove('active');
+    }
+  });
+
+  document.querySelectorAll('.thumb-card').forEach((t, idx) => {
+    if (idx === currentSlide) {
+      t.classList.add('current');
+    } else {
+      t.classList.remove('current');
+    }
+  });
+
+  document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+  document.getElementById('prevBtn').disabled = currentSlide === 0;
+  document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+}
+
+function nextSlide() {
+  if (currentSlide < totalSlides - 1) {
+    currentSlide++;
+    updateSlideView();
+  }
+}
+
+function prevSlide() {
+  if (currentSlide > 0) {
+    currentSlide--;
+    updateSlideView();
+  }
+}
+
+function goToSlide(idx) {
+  currentSlide = idx;
+  updateSlideView();
+  closeOverview();
+}
+
+function toggleOverview() {
+  document.getElementById('overviewGrid').classList.toggle('active');
+}
+
+function closeOverview() {
+  document.getElementById('overviewGrid').classList.remove('active');
+}
+
+function closeOverviewIfBg(e) {
+  if (e.target.id === 'overviewGrid') {
+    closeOverview();
+  }
+}
+
+// Keyboard Navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+    nextSlide();
+  } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+    prevSlide();
+  } else if (e.key === 'Escape') {
+    closeOverview();
+  } else if (e.key === 'o' || e.key === 'O') {
+    toggleOverview();
+  }
+});
+
+// Initialize
+updateSlideView();
+</script>
+
+</body>
+</html>

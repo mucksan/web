@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>マチュピチュ 全10ルート比較 - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🐘 サファリ・象孤児院</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_マチュピチュ_ルート比較.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="10">マチュピチュ 全10ルート比較</h1>
+<p><strong>作成:</strong> 2026年9月5日<br />
+<strong>出典:</strong> ペルー文化省 公式API（<code>api-tuboleto.cultura.pe/visita/lugar-info?idLugar=llaqta_machupicchu</code>）から<br />
+説明文・距離・体力レベルを直接取得。在庫は <a href="https://tuboleto.cultura.pe/llaqta_machupicchu">tuboleto.cultura.pe</a> を実操作して確認<br />
+<strong>関連:</strong> <a href="手配_マチュピチュ.md"><code>手配_マチュピチュ.md</code></a></p>
+<hr />
+<h2 id="95">🔴 重要な訂正（9/5）</h2>
+<blockquote>
+<p><strong>9/5 の初回調査で「2026年分は全ルート・全月が完売」と報告しましたが、誤りでした。</strong></p>
+<p><strong>原因:</strong> 公式サイトはルート選択後に在庫を非同期で取得します。<br />
+私の自動操作がその取得完了を待たずにカレンダーを読んでいたため、<br />
+<strong>全日が「選択不可」に見えていました。</strong>待機を3.5秒に延ばしたところ、<br />
+<strong>在庫のあるルートが複数あることが判明</strong>しました。</p>
+<p><strong>したがって「認可業者の割当枠に頼るしかない」という前回の結論も撤回します。</strong><br />
+<strong>公式サイトで普通に買えるルートがあります。</strong></p>
+</blockquote>
+<hr />
+<h2 id="0-202695">0. ✅ 購入実績（2026/9/5）</h2>
+<p><strong>11/2 の2枚を購入完了。§5.3 の「手続きを2回に分ける」方法で成功した。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">券</th>
+<th style="text-align: left;">ルート</th>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: left;">入場口</th>
+<th style="text-align: right;">合計</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">①</td>
+<td style="text-align: left;"><strong>3-A Montaña Waynapicchu</strong></td>
+<td style="text-align: left;">07:00</td>
+<td style="text-align: left;"><strong>Puerta Baja</strong></td>
+<td style="text-align: right;">S/ 209.84</td>
+</tr>
+<tr>
+<td style="text-align: left;">②</td>
+<td style="text-align: left;"><strong>1-B Terraza superior</strong></td>
+<td style="text-align: left;">13:00</td>
+<td style="text-align: left;"><strong>Puerta Principal</strong></td>
+<td style="text-align: right;">S/ 159.48</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>合計</strong></td>
+<td style="text-align: right;"><strong>S/ 369.32</strong></td>
+</tr>
+</tbody>
+</table>
+<p>→ 明細・券面から判明した注意点は <a href="tickets/マチュピチュ/費用明細.md"><code>tickets/マチュピチュ/費用明細.md</code></a></p>
+<hr />
+<h2 id="1">1. サーキットの性格（公式の定義）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">サーキット</th>
+<th style="text-align: left;">公式の位置づけ</th>
+<th style="text-align: center;">ルート数</th>
+<th style="text-align: left;">体力</th>
+<th style="text-align: left;">得られる写真</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>1 — Panorámico</strong>（パノラマ）</td>
+<td style="text-align: left;">遺跡と聖なる山々の<strong>広い眺望</strong>。最も高い場所へ導く狭い道を通り、<strong>定番写真を超えた景観</strong>を楽しむ</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">ルートにより大差</td>
+<td style="text-align: left;">🔴 <strong>高所からの全景</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2 — Clásico</strong>（クラシコ）</td>
+<td style="text-align: left;">中段の段々畑と<strong>市街地全域</strong>を組み合わせる。住居・儀式・天体観測の建物を巡る</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">中〜高</td>
+<td style="text-align: left;">🔴 <strong>定番の全景＋遺跡内部</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3 — Realeza</strong>（王族）</td>
+<td style="text-align: left;"><strong>インカ王族が使った最も神聖な空間</strong>（太陽の神殿、インカの家、コンドルの神殿など）。体力の要求は低い</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">低（山に登る場合を除く）</td>
+<td style="text-align: left;">⚠️ <strong>市街地に近い低い角度</strong></td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>写真の観点での決定的な差：</strong><br />
+「絵葉書のマチュピチュ」を<strong>高い位置から</strong>撮りたいなら <strong>サーキット1 または 2</strong>。<br />
+サーキット3 は公式説明でも「zona urbana <strong>bastante cerca</strong>（市街地のかなり近く）」とあり、<br />
+<strong>下から見上げる角度</strong>になります。</p>
+<hr />
+<h2 id="2-10">2. 全10ルート一覧</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ルート</th>
+<th style="text-align: left;">名称</th>
+<th style="text-align: right;">距離(往復)</th>
+<th style="text-align: left;">体力</th>
+<th style="text-align: center;">定番写真</th>
+<th style="text-align: center;">繁忙期限定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>1-A</strong></td>
+<td style="text-align: left;">Montaña Machupicchu（マチュピチュ山）</td>
+<td style="text-align: right;"><strong>3.8 km</strong></td>
+<td style="text-align: left;">🔴 <strong>高</strong></td>
+<td style="text-align: center;">◎</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>1-B</strong></td>
+<td style="text-align: left;">Terraza superior（上段テラス）</td>
+<td style="text-align: right;"><strong>1.6 km</strong></td>
+<td style="text-align: left;">中</td>
+<td style="text-align: center;">◎ <strong>最適</strong></td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>1-C</strong></td>
+<td style="text-align: left;">Portada Intipunku（太陽の門）</td>
+<td style="text-align: right;"><strong>3.4 km</strong></td>
+<td style="text-align: left;">中</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">🔴 <strong>あり</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>1-D</strong></td>
+<td style="text-align: left;">Puente Inka（インカ橋）</td>
+<td style="text-align: right;"><strong>2.6 km</strong></td>
+<td style="text-align: left;">中</td>
+<td style="text-align: center;">△</td>
+<td style="text-align: center;">🔴 <strong>あり</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2-A</strong></td>
+<td style="text-align: left;">Clásico diseñada（クラシコ）</td>
+<td style="text-align: right;"><strong>2.5 km</strong></td>
+<td style="text-align: left;">中〜高</td>
+<td style="text-align: center;">◎ <strong>最適</strong></td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2-B</strong></td>
+<td style="text-align: left;">Terraza inferior（下段テラス）</td>
+<td style="text-align: right;"><strong>2.7 km</strong></td>
+<td style="text-align: left;">中〜高</td>
+<td style="text-align: center;">◎</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3-A</strong></td>
+<td style="text-align: left;">Montaña Waynapicchu（ワイナピチュ）</td>
+<td style="text-align: right;"><strong>2.4 km</strong></td>
+<td style="text-align: left;">🔴 <strong>高</strong></td>
+<td style="text-align: center;">△ 近距離</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3-B</strong></td>
+<td style="text-align: left;">Realeza diseñada（王族）</td>
+<td style="text-align: right;"><strong>1.3 km</strong></td>
+<td style="text-align: left;">中</td>
+<td style="text-align: center;">△ 近距離</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3-C</strong></td>
+<td style="text-align: left;">Gran Caverna（大洞窟）</td>
+<td style="text-align: right;"><strong>3.0 km</strong></td>
+<td style="text-align: left;">🔴 <strong>高</strong></td>
+<td style="text-align: center;">△ 近距離</td>
+<td style="text-align: center;">🔴 <strong>あり</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3-D</strong></td>
+<td style="text-align: left;">Huchuypicchu（フチュイピチュ）</td>
+<td style="text-align: right;"><strong>1.7 km</strong></td>
+<td style="text-align: left;">中</td>
+<td style="text-align: center;">△ 近距離</td>
+<td style="text-align: center;">🔴 <strong>あり</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔴 <strong>「繁忙期限定（disponible solo en temporada alta）」の4ルートに注意。</strong><br />
+繁忙期は <strong>6/19〜11/2</strong> で、<strong>11/2 が最終日</strong>です。<br />
+実測でも <strong>1-D と 3-C は「11月1日・2日のみ」</strong>しか選べませんでした（§4.1）。<br />
+一方 <strong>1-C と 3-D は11月まるごと販売なし</strong>でした。<br />
+<strong>繁忙期限定＝11/2までは必ず買える、という意味ではありません。</strong></p>
+</blockquote>
+<hr />
+<h2 id="3">3. 各ルートの詳細</h2>
+<h3 id="1-panoramico">サーキット1 — Panorámico（パノラマ）</h3>
+<h4 id="1-aruta-montana-machupicchu">🏔 1-A：Ruta Montaña Machupicchu（マチュピチュ山）</h4>
+<p>マチュピチュ山の<strong>山頂まで登る</strong>ルート。頂上からは<strong>サルカンタイ峰・プマシージョ峰</strong>の雪山を望み、<br />
+遺跡を取り巻く文化的景観全体のパノラマ写真が撮れる。</p>
+<ul>
+<li><strong>往復 3.8 km／体力：高</strong></li>
+<li>🔴 <strong>10ルート中もっとも登る。</strong>標高差が大きく、往復4〜5時間規模</li>
+<li><a href="https://tuboleto.cultura.pe/">地図 C1-R1A.pdf</a> ／ <a href="https://youtu.be/DsFu5do-y24">動画</a></li>
+</ul>
+<h4 id="1-bruta-terraza-superior">📸 1-B：Ruta terraza superior（上段テラス） ← <strong>万人向けの本命</strong></h4>
+<p>主役は<strong>展望台とマチュピチュのパノラマ</strong>。地質構造「ビルカバンバ岩体」と<br />
+ウルバンバ川の蛇行も見える。<strong>公式が「パノラマ写真と定番写真を撮りたいなら理想的」と明記。</strong></p>
+<ul>
+<li><strong>往復 1.6 km／体力：中</strong></li>
+<li>🔴 <strong>距離が短く体力も中程度で、定番写真が確実に撮れる。コスパ最良</strong></li>
+<li><a href="https://youtu.be/m9r2ZGGYyA8">動画</a></li>
+</ul>
+<h4 id="1-cruta-portada-intipunku">🚪 1-C：Ruta Portada Intipunku（太陽の門） 🔴 繁忙期限定</h4>
+<p>インカ道から市街へ入る門「<strong>インティプンク</strong>」へ向かうルート。<br />
+インカ道そのものを間近に見られ、<strong>別角度からの全景</strong>も得られる。</p>
+<ul>
+<li><strong>往復 3.4 km／体力：中</strong></li>
+<li>❌ <strong>実測では11月は全日販売なし。</strong>今回は選べません（§4.1）</li>
+<li><a href="https://youtu.be/36jaTAtblEU">動画</a></li>
+</ul>
+<h4 id="1-druta-puente-inka">🌉 1-D：Ruta Puente Inka（インカ橋） 🔴 繁忙期限定</h4>
+<p>石と木で造られた<strong>インカ橋</strong>へ向かう。ビルカノータ渓谷の眺めが美しい。</p>
+<ul>
+<li><strong>往復 2.6 km／体力：中</strong></li>
+<li>⚠️ <strong>遺跡本体の見学は薄い。</strong>橋が目的の人向け</li>
+<li><a href="https://youtu.be/BJf5yNIepnA">動画</a></li>
+</ul>
+<hr />
+<h3 id="2-clasico">サーキット2 — Clásico（クラシコ）</h3>
+<h4 id="2-aruta-clasico-disenada">🏛 2-A：Ruta clásico diseñada 🔴 最も人気</h4>
+<p>市街地の主要区画を<strong>ひととおり歩ける</strong>ルート。農業地区から遺跡全体を望み、<br />
+Llaqta Punku（正面入口）→ 太陽の神殿の展望 → 主広場 → 聖なる岩 → 水鏡と進む。<br />
+<strong>公式が「定番写真に理想的」と明記。</strong></p>
+<ul>
+<li><strong>往復 2.5 km／体力：中〜高</strong></li>
+<li>🔴 <strong>「マチュピチュに行った」と言うなら最も過不足がない</strong></li>
+<li><a href="https://youtu.be/Etxbt0ilONY">動画</a></li>
+</ul>
+<h4 id="2-bruta-terraza-inferior">🧱 2-B：Ruta terraza inferior（下段テラス）</h4>
+<p>農業地区から下段テラスへ登り、そこで全景と定番写真。<br />
+続いて Llaqta Punku、<strong>建材を切り出した石切場</strong>、主広場、聖なる岩、水鏡。</p>
+<ul>
+<li><strong>往復 2.7 km／体力：中〜高</strong></li>
+<li><strong>2-A との差は石切場の有無と眺望の高さ。</strong>2-A が取れないときの代替</li>
+<li><a href="https://youtu.be/aZ-WBmxbplA">動画</a></li>
+</ul>
+<hr />
+<h3 id="3-realeza">サーキット3 — Realeza（王族）</h3>
+<h4 id="3-aruta-montana-waynapicchu">⛰ 3-A：Ruta Montaña Waynapicchu（ワイナピチュ） 🔴 最難関の人気枠</h4>
+<p>農業地区から始まり市街地のすぐ近くで定番写真。太陽の神殿、インカの家、<br />
+儀式の泉、三つの扉を経て<strong>ワイナピチュ山へ登頂</strong>。下山後にコンドルの神殿。</p>
+<ul>
+<li><strong>往復 2.4 km／体力：高</strong></li>
+<li>🔴 <strong>1日400人の別枠。</strong>切り立った石段と断崖で<strong>高所が苦手な人には不向き</strong></li>
+<li><a href="https://youtu.be/OzzMyCKk12M">動画</a></li>
+</ul>
+<h4 id="3-bruta-realeza-disenada">♿ 3-B：Ruta realeza diseñada 🔴 最も楽</h4>
+<p>段々畑を眺めつつ市街地近くで定番写真。太陽の神殿、インカの家、儀式の泉、<br />
+三つの扉、コンドルの神殿。<strong>10ルート中もっとも短い。</strong></p>
+<ul>
+<li><strong>往復 1.3 km／体力：中</strong></li>
+<li>🔴 <strong>公式に「車椅子または介助が必要な人が通行できる区間がある」と明記されている唯一のルート</strong></li>
+<li><a href="https://youtu.be/Wrq3lwPM7_U">動画</a></li>
+</ul>
+<h4 id="3-cruta-gran-caverna">🕳 3-C：Ruta Gran Caverna（大洞窟） 🔴 繁忙期限定</h4>
+<p>3-B の経路から<strong>大洞窟（月の神殿方面）</strong>へ足を延ばす。戻りにコンドルの神殿。</p>
+<ul>
+<li><strong>往復 3.0 km／体力：高</strong></li>
+<li>⚠️ <strong>往復の下り・登り返しが厳しい。</strong>時間もかかる</li>
+<li><a href="https://youtu.be/nGTqtrjn7sc">動画</a></li>
+</ul>
+<h4 id="3-druta-huchuypicchu">🏞 3-D：Ruta Huchuypicchu（フチュイピチュ） 🔴 繁忙期限定</h4>
+<p>ワイナピチュの手前にある<strong>小さな山フチュイピチュ</strong>に登る。<br />
+山頂から遺跡と景観のパノラマ。戻りにコンドルの神殿。</p>
+<ul>
+<li><strong>往復 1.7 km／体力：中</strong></li>
+<li>🔴 <strong>「ワイナピチュは怖いが山には登りたい」人の折衷案。</strong>登頂時間も短い</li>
+<li><a href="https://youtu.be/NoyAKr1GWPQ">動画</a></li>
+</ul>
+<hr />
+<h2 id="4-202695">4. 🔴 実測在庫（2026年9月5日）</h2>
+<p>公式サイトでルートごとに日付を選び、時間帯別の残数まで読み取ったものです。</p>
+<h3 id="41-11">4.1 11月全体で選べる日</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ルート</th>
+<th style="text-align: left;">11月の選択可能日</th>
+<th style="text-align: left;">判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>1-A</strong> Montaña Machupicchu</td>
+<td style="text-align: left;">🟢 <strong>全30日</strong></td>
+<td style="text-align: left;">潤沢</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>1-B</strong> Terraza superior</td>
+<td style="text-align: left;">🟢 <strong>全30日</strong></td>
+<td style="text-align: left;">🔴 <strong>最も潤沢</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">1-C Portada Intipunku</td>
+<td style="text-align: left;">❌ <strong>0日</strong></td>
+<td style="text-align: left;">11月は販売なし</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>1-D</strong> Puente Inka</td>
+<td style="text-align: left;">🟡 <strong>1日・2日のみ</strong></td>
+<td style="text-align: left;">🔴 <strong>繁忙期最終日の11/2が最後</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">2-A Clásico</td>
+<td style="text-align: left;">❌ <strong>0日</strong></td>
+<td style="text-align: left;">🔴 <strong>完売</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">2-B Terraza inferior</td>
+<td style="text-align: left;">❌ <strong>0日</strong></td>
+<td style="text-align: left;">🔴 <strong>完売</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3-A</strong> Waynapicchu</td>
+<td style="text-align: left;">🟢 <strong>28日</strong>（3日・22日のみ完売）</td>
+<td style="text-align: left;">🔴 <strong>取れる</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">3-B Realeza diseñada</td>
+<td style="text-align: left;">🟡 <strong>23〜30日のみ</strong></td>
+<td style="text-align: left;">11/2 は不可</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3-C</strong> Gran Caverna</td>
+<td style="text-align: left;">🟡 <strong>1日・2日のみ</strong></td>
+<td style="text-align: left;">🔴 <strong>11/2が最後</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">3-D Huchuypicchu</td>
+<td style="text-align: left;">❌ <strong>0日</strong></td>
+<td style="text-align: left;">11月は販売なし</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>サーキット2（クラシコ）は11月まるごと完売。</strong>最も人気のルートなので妥当な結果です。<br />
+現地体験談で「サーキット2の午後枠は完売」とあったのと一致します。</p>
+<p>🔴 <strong>1-D と 3-C が「1日・2日のみ」なのは、繁忙期（6/19〜11/2）が11/2で終わるため。</strong><br />
+実データが制度の境界を裏づけています。</p>
+<h3 id="42-112">4.2 🔴 11月2日（月）に買えるルートと時間帯別残数</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ルート</th>
+<th style="text-align: right;">合計</th>
+<th style="text-align: left;">時間帯別</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>1-B</strong> Terraza superior</td>
+<td style="text-align: right;">🔴 <strong>544枚</strong></td>
+<td style="text-align: left;">06:00→59／07:00→74／08:00→47／09:00→36／10:00→32<br>11:00→43／12:00→69／13:00→62／14:00→65／15:00→57</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>1-A</strong> Montaña Machupicchu</td>
+<td style="text-align: right;"><strong>252枚</strong></td>
+<td style="text-align: left;">07:00→120／09:00→132</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3-A</strong> Waynapicchu</td>
+<td style="text-align: right;"><strong>169枚</strong></td>
+<td style="text-align: left;">🔴 <strong>07:00→117／10:00→52</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>1-D</strong> Puente Inka</td>
+<td style="text-align: right;">65枚</td>
+<td style="text-align: left;">08:00→16／09:00→13／10:00→16／11:00→20</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3-C</strong> Gran Caverna</td>
+<td style="text-align: right;">33枚</td>
+<td style="text-align: left;">08:00→25／09:00→8</td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ 1-C / 2-A / 2-B / 3-B / 3-D</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: left;"><strong>11/2 は購入不可</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>在庫は日々動きます。</strong>購入直前にご自身で再確認してください。</p>
+</blockquote>
+<hr />
+<h2 id="5">5. 🔴 本行程での推奨</h2>
+<p>現行タイムチャートは <strong>11/1 20:45 マチュピチュ村着 → 11/2 遺跡終日 → 11/3 クスコへ</strong>。</p>
+<h3 id="51-2045">5.1 前提：前夜20:45着であることを踏まえる</h3>
+<p>村への到着が夜になるため、<strong>11/2 の早朝スタートは体力的に厳しい</strong>です。<br />
+遺跡行きバスは村を <strong>05:30頃から</strong>運行し、07:00 入場なら <strong>05:30〜06:00 のバス</strong>に乗る必要があります。</p>
+<h3 id="52">5.2 推奨順位</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">順位</th>
+<th style="text-align: left;">ルート・時間帯</th>
+<th style="text-align: left;">理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">🥇 <strong>1</strong></td>
+<td style="text-align: left;">🔴 <strong>3-A ワイナピチュ 07:00</strong>（117枚）</td>
+<td style="text-align: left;"><strong>第1希望が実際に取れる。</strong>1日400人の狭き門を突破できる<br>⚠️ 体力【高】＋前夜20:45着＋05:30バス。<strong>覚悟が要る</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">🥈 <strong>2</strong></td>
+<td style="text-align: left;"><strong>1-B 上段テラス 08:00〜09:00</strong>（47／36枚）</td>
+<td style="text-align: left;">🔴 <strong>最も無理がない本命。</strong>1.6km・体力中で<br><strong>定番の全景写真が確実</strong>と公式が明記。朝靄が晴れる時間帯</td>
+</tr>
+<tr>
+<td style="text-align: center;">🥉 <strong>3</strong></td>
+<td style="text-align: left;"><strong>1-A マチュピチュ山 09:00</strong>（132枚）</td>
+<td style="text-align: left;">登山を楽しむなら。3.8km・体力【高】だが 09:00 発なら朝に余裕</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;"><strong>1-B 12:00〜13:00</strong>（69／62枚）</td>
+<td style="text-align: left;">🔴 <strong>午前を完全休養に充てる案。</strong>前夜の疲れを取れる<br>11月は午後に雲が出やすい点は許容する</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">1-D インカ橋 / 3-C 大洞窟</td>
+<td style="text-align: left;"><strong>11/2 が最後のチャンス</strong>だが、遺跡本体の見学は薄い</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53-3-a-1-b-2-2">5.3 🔴 3-A ＋ 1-B の同日2枚 — <strong>可能。ただし手続きを2回に分ける</strong></h3>
+<h4 id="202695-12">🔴 検証結果（2026/9/5）— <strong>1回の手続きでは買えない。2回に分ければ買える</strong></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">手順</th>
+<th style="text-align: left;">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">① 3-A／11-02／<strong>07:00</strong>／1枚 → カートへ</td>
+<td style="text-align: left;">✅ 成功</td>
+</tr>
+<tr>
+<td style="text-align: left;">② ダイアログに「Seguir agregando（追加を続ける）」</td>
+<td style="text-align: left;">✅ 表示される</td>
+</tr>
+<tr>
+<td style="text-align: left;">③ 1-B／11-02／<strong>13:00</strong>／1枚 → カートへ</td>
+<td style="text-align: left;">✅ <strong>カート件数 2 になる</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">④ 「Continuar」→ ログイン → <strong>訪問者データ入力</strong></td>
+<td style="text-align: left;">🔴 <strong>ここで失敗</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">⑤ 2枚目に同じパスポート番号を入力</td>
+<td style="text-align: left;">🔴 <strong>エラー「Documento duplicado（重複文書）」</strong><br>「文書番号は、<strong>現在の手続きにおいて</strong>既に別の形式で登録されています」</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>カートに入っても、訪問者データ登録の段階で同一パスポートが弾かれます。</strong></p>
+<h4 id="2">エラーの正確な意味 — 「同日2枚の禁止」ではない</h4>
+<p>エラー文の限定に注目してください。</p>
+<blockquote>
+<p>「<strong>現在の手続き（el presente trámite）において</strong>既に登録されている」</p>
+</blockquote>
+<p><strong>つまり制限は「1回の購入手続き内で同じ書類番号を2回使えない」ことであって、<br />
+「同じ日に2枚持てない」ではありません。</strong></p>
+<p>これは公式サイトの既知の仕様で、複数の情報源が一致しています：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">情報源の記述</th>
+<th style="text-align: left;">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">「<strong>同じ日付でも、種類（サーキット）が違えば1人が複数枚買える</strong>」</td>
+<td style="text-align: left;">⚠️ <strong>第三者（現地旅行会社）の記述。</strong>公式の明文ではない</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 「公式サイトでは<strong>異なる種類の券を同一取引で買えない。別々に買う必要がある</strong>」</td>
+<td style="text-align: left;">🔴 <strong>これが今回のエラーの正体</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">「<strong>同じ種類の券を同じ日に2枚</strong>は買えない」</td>
+<td style="text-align: left;">3-A を2枚などは不可（今回は該当せず）</td>
+</tr>
+<tr>
+<td style="text-align: left;">「1取引で買えるのは<strong>同一種類・最大5名分</strong>まで」</td>
+<td style="text-align: left;">種類が混ざると弾かれる</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2_1">🔴 回避策 — 手続きを2回に分ける</h4>
+<pre><code>【1回目の手続き】3-A ワイナピチュ 07:00 を1枚だけカートに入れる
+                 → 訪問者データ入力 → 決済完了
+【2回目の手続き】改めて 1-B 上段テラス 13:00 を1枚だけカートに入れる
+                 → 訪問者データ入力 → 決済完了
+</code></pre>
+<p>🔴 <strong>順序は 3-A を先に。</strong>理由は2つ：</p>
+<ol>
+<li><strong>3-A のほうが希少</strong>（11/2 の残数 117枚 vs 1-B 544枚）。1-B は待っても消えにくい</li>
+<li>万一2回目も弾かれた場合、<strong>手元に残るのがワイナピチュのほうが価値が高い</strong></li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>2回目が通る保証はありません。</strong><br />
+システムが「パスポート＋日付」でグローバルに重複チェックしている可能性は残ります。<br />
+ただし<strong>エラー文が「現在の手続きにおいて」と明示的に限定している</strong>こと、<br />
+および複数の情報源が「別々に買えばよい」と記していることから、<strong>通る見込みは高い</strong>と判断します。</p>
+<p>🔴 <strong>2回目が弾かれても 3-A は残ります。</strong>それでも十分に良い結果です。</p>
+</blockquote>
+<h4 id="_1">当日の入場方法</h4>
+<p>2枚とも取れた場合の運用について、次の記述があります。</p>
+<ul>
+<li><strong>通しで滞在する場合</strong>：正門で<strong>両方の券をスキャン</strong>してもらう</li>
+<li><strong>いったん外に出る場合</strong>：その回に使う券だけをスキャン</li>
+</ul>
+<p>⚠️ ただし <strong>2024年以降は再入場（reingreso）が厳格に禁止</strong>されています。<br />
+<strong>「退場して、2枚目で入り直す」前提で計画してください</strong>（§5.3 の案A はその想定）。<br />
+現地の運用は変わりうるので、<strong>当日ゲートで確認</strong>するのが安全です。</p>
+<h4 id="_2">料金（外国人一般）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">券</th>
+<th style="text-align: right;">金額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">3-A ワイナピチュ</td>
+<td style="text-align: right;"><strong>S/ 200.00</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">1-B 上段テラス</td>
+<td style="text-align: right;"><strong>S/ 152.00</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>合計</strong></td>
+<td style="text-align: right;">🔴 <strong>S/ 352.00</strong>（約 ¥14,000〜15,000）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_3">🔴 時間的に回れるか — 回れます</h4>
+<p><strong>ワイナピチュの往復所要は 2〜3時間</strong>（登り45〜60分・山頂・下り約1時間）。<br />
+入場枠は <strong>07:00–08:00 と 10:00–11:00 の2本、各200枚</strong>という運用です。</p>
+<p><strong>【案A・推奨】3-A 07:00 ＋ 1-B 13:00</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: left;">行動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">05:00</td>
+<td style="text-align: left;">起床</td>
+</tr>
+<tr>
+<td style="text-align: left;">05:30–06:00</td>
+<td style="text-align: left;">村からシャトルバス（約30分）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>07:00</strong></td>
+<td style="text-align: left;"><strong>3-A 入場</strong>（太陽の神殿・インカの家・儀式の泉・三つの扉）</td>
+</tr>
+<tr>
+<td style="text-align: left;">07:30–10:30</td>
+<td style="text-align: left;">🔴 <strong>ワイナピチュ登頂・下山</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">10:30–11:15</td>
+<td style="text-align: left;">コンドルの神殿 → 退場</td>
+</tr>
+<tr>
+<td style="text-align: left;">11:15–13:00</td>
+<td style="text-align: left;">ゲート付近で昼食・休憩（<strong>再入場は不可なので場外で待つ</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>13:00</strong></td>
+<td style="text-align: left;"><strong>1-B 入場</strong>（上段テラス・展望台）</td>
+</tr>
+<tr>
+<td style="text-align: left;">14:30–15:00</td>
+<td style="text-align: left;">退場 → バスで村へ</td>
+</tr>
+<tr>
+<td style="text-align: left;">16:00</td>
+<td style="text-align: left;">村着</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>✅ <strong>1時間45分の余裕</strong>がある。ワイナピチュが長引いても吸収できる</li>
+<li>✅ 午後の光で全景写真が撮れる</li>
+<li>🔴 <strong>前夜20:45着 → 05:00起床。睡眠5〜6時間</strong>。ここが最大の負担</li>
+</ul>
+<p><strong>【案B】3-A 10:00 ＋ 1-B 15:00</strong></p>
+<ul>
+<li>✅ <strong>08:30 村発でよく、睡眠を確保できる</strong></li>
+<li>❌ 🔴 <strong>1-B が15:00入場で、遺跡の閉場（16:15）と競合する。</strong>余裕がない</li>
+<li>❌ 下山バスの最終（17:30頃）にも近づく</li>
+</ul>
+<p>→ 🔴 <strong>案Aを推奨します。</strong>きついですが、時間の余裕という点で明確に優れています。</p>
+<h4 id="_4">判断材料</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">もし…</th>
+<th style="text-align: left;">選択</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">体力に自信があり、ワイナピチュを外せない</td>
+<td style="text-align: left;">🔴 <strong>案A（2枚買い）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">前夜の疲れが読めない／登山は必須でない</td>
+<td style="text-align: left;"><strong>1-B 単独 08:00〜09:00</strong>（544枚と潤沢）</td>
+</tr>
+<tr>
+<td style="text-align: left;">登りたいが断崖は怖い</td>
+<td style="text-align: left;"><strong>1-A マチュピチュ山 09:00</strong>（132枚）に差し替え</td>
+</tr>
+</tbody>
+</table>
+<h3 id="55-izipay-202695">5.5 🔴 決済で詰まったら — Izipay の地域制限（実測・2026/9/5）</h3>
+<h4 id="_5">症状</h4>
+<pre><code>Mensaje de la Pasarela de Pago
+Error: No se pudo cargar el script: https://checkout.izipay.pe/payments/v1/js/index.js
+</code></pre>
+<p>または <code>ReferenceError: Izipay is not defined</code>。<strong>決済画面で先に進めなくなります。</strong></p>
+<h4 id="pc">🔴 原因の切り分け（このPCから実測）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">検査</th>
+<th style="text-align: left;">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">DNS 解決</td>
+<td style="text-align: left;">✅ 正常（190.102.141.101）</td>
+</tr>
+<tr>
+<td style="text-align: left;">TCP 443 接続</td>
+<td style="text-align: left;">✅ 成功（0.34秒）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>TLS ハンドシェイク</strong></td>
+<td style="text-align: left;">🔴 <strong>無応答のままタイムアウト（3回連続）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">TLS 1.2 / 1.3 を明示指定</td>
+<td style="text-align: left;">🔴 いずれもタイムアウト</td>
+</tr>
+<tr>
+<td style="text-align: left;">SNI なし／別SNI／IP直</td>
+<td style="text-align: left;">🔴 いずれもタイムアウト</td>
+</tr>
+<tr>
+<td style="text-align: left;">ポート80（HTTP）</td>
+<td style="text-align: left;">🔴 タイムアウト</td>
+</tr>
+<tr>
+<td style="text-align: left;">別経路（Anthropic のネットワーク）から</td>
+<td style="text-align: left;">🔴 失敗</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>参考：<code>secure.micuentaweb.pe</code></strong>（同じIzipay系）</td>
+<td style="text-align: left;">✅ <strong>200 OK・0.75秒</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">参考：<code>api.micuentaweb.pe</code></td>
+<td style="text-align: left;">✅ 200 OK</td>
+</tr>
+<tr>
+<td style="text-align: left;">参考：<code>www.izipay.pe</code></td>
+<td style="text-align: left;">✅ TLS 正常</td>
+</tr>
+</tbody>
+</table>
+<p>→ <strong><code>checkout.izipay.pe</code> だけが応答しない。</strong>ブラウザ・拡張機能・広告ブロッカーの問題ではありません。<br />
+<strong>Izipay 側がペルー国外からのアクセスを遮断している</strong>と考えられます。</p>
+<h4 id="vpn">🔴 解決策：VPN でペルー（または米国）に見せる</h4>
+<p><strong>Tuboleto のサポート自身が「VPNを使え」と案内している</strong>という報告があります。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">報告者</th>
+<th style="text-align: left;">所在</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Vitalijus</td>
+<td style="text-align: left;">リトアニア</td>
+<td style="text-align: left;">ブラウザ変更・広告ブロッカー停止は<strong>効果なし</strong>。<br><strong>ProtonVPN で米国に設定したら即座に決済完了</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Jenny B</td>
+<td style="text-align: left;">米テキサス</td>
+<td style="text-align: left;">VPN で解決</td>
+</tr>
+<tr>
+<td style="text-align: left;">Miro M</td>
+<td style="text-align: left;">英国</td>
+<td style="text-align: left;">VPN で解決</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>Yujiro H</strong></td>
+<td style="text-align: left;">🔴 <strong>日本</strong></td>
+<td style="text-align: left;">🔴 <strong>VPNだけでは駄目だった。</strong>下記の手順で成功</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_6">🔴 日本からの成功手順（そのまま真似できる）</h4>
+<blockquote>
+<ol>
+<li><strong>PCで予約（reserva）まで済ませる</strong> ← すでに完了している状態</li>
+<li><strong>スマホ（Android）で VPN を有効にし、接続先を「ペルー」にする</strong><br />
+   ※ この人は<strong>米国では駄目でペルーで通った</strong></li>
+<li>スマホの <strong>Chrome をシークレットモード</strong>で開く</li>
+<li><code>tuboleto.cultura.pe</code> にログイン</li>
+<li><strong>決済 → 成功。券は即座に届いた</strong></li>
+</ol>
+</blockquote>
+<p><strong>効果がなかったこと（試す必要なし）：</strong><br />
+- PCのキャッシュ・Cookie 削除<br />
+- 広告ブロッカーの停止<br />
+- ブラウザの変更（Safari以外を試した範囲で）</p>
+<h4 id="_7">注意点</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>procedencia（居住区分）</strong></td>
+<td style="text-align: left;">🔴 <strong>「Extranjero」のまま変えないこと。</strong><br>VPN は Izipay に別の国だと思わせるためだけのもので、<strong>申告国籍とは無関係</strong>。<br>フォーラムでも「入場時に食い違いを指摘されないか」という質問に対し<br><strong>「国籍を変える必要はない」</strong>と回答されている</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>VPN の選択</strong></td>
+<td style="text-align: left;">無料VPNは非推奨との助言あり（ProtonVPN・McAfee付属などの実績報告）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>接続先の優先順</strong></td>
+<td style="text-align: left;"><strong>① ペルー ② 米国</strong>（日本からはペルーで成功）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>決済カード</strong></td>
+<td style="text-align: left;">「international card」を選ぶ。<strong>Visa/Mastercard の外貨決済</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_8">この件の位置づけ</h4>
+<p><strong>これは一時的な障害ではなく、恒常的な地域制限です。</strong>待っても直りません。<br />
+<strong>VPN を用意することが購入の前提条件</strong>だと考えてください。</p>
+<hr />
+<h3 id="54">5.4 諦めるもの</h3>
+<p>🔴 <strong>サーキット2（クラシコ）は11月完売なので選べません。</strong><br />
+「主広場・聖なる岩・水鏡を歩く」定番の遺跡内部コースは今回は断念することになります。<br />
+ただし <strong>1-B と 1-A で定番の全景写真は確保でき</strong>、3-A なら太陽の神殿・インカの家・<br />
+コンドルの神殿は回れるため、<strong>体験の中核は失われません。</strong></p>
+<h2 id="6">6. 🔴 キャンセル・変更の規定</h2>
+<h3 id="61">6.1 原則 — <strong>払戻なし・日付変更なし</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">規定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>払戻（devolución）</strong></td>
+<td style="text-align: left;">🔴 <strong>原則なし</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>日付・時間の変更</strong></td>
+<td style="text-align: left;">🔴 <strong>不可。</strong>購入した日時のみ有効</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>氏名の変更／譲渡</strong></td>
+<td style="text-align: left;">🔴 <strong>不可。</strong>記名式・譲渡不可</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>サーキット／ルートの変更</strong></td>
+<td style="text-align: left;">❌ <strong>発券後は不可。</strong>ゲートでの変更もできない</td>
+</tr>
+<tr>
+<td style="text-align: left;">⭕ <strong>唯一できる訂正</strong></td>
+<td style="text-align: left;"><strong>同一人物のパスポート番号・身分証番号の訂正のみ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>遅刻</strong></td>
+<td style="text-align: left;">通常枠は <strong>30分の猶予</strong>。<br>🔴 <strong>山系ルート（1-A・3-A 等）は猶予なし</strong>。入れなければ失効</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>つまり「買った瞬間に 11/2 が確定する」と考えてください。</strong></p>
+<blockquote>
+<p>⚠️ <strong>第三者サイトが書いている「72時間前までなら30%返金」は公式規定ではありません。</strong><br />
+あれは各予約プラットフォーム独自の規約です。<strong>公式（tuboleto）で買う場合は適用されません。</strong></p>
+</blockquote>
+<h3 id="62-fuerza-mayor">6.2 例外 — 不可抗力（fuerza mayor）</h3>
+<p><strong>根拠：Resolución Ministerial N.º 275-2024-MC</strong></p>
+<blockquote>
+<p>文化省は払戻・返金を行わない。<strong>ただし不可抗力または予見不能な事態により<br />
+マチュピチュに到達・入場できなかった場合はこの限りでなく、<br />
+訪問日時の再設定（reprogramación）も認められる。</strong></p>
+</blockquote>
+<p><strong>実際に適用された例：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">事象</th>
+<th style="text-align: left;">対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">クスコの全国ストライキ（paro nacional）で列車・バス運休</td>
+<td style="text-align: left;">再設定または返金</td>
+</tr>
+<tr>
+<td style="text-align: left;">火災による列車運休</td>
+<td style="text-align: left;">再設定または返金</td>
+</tr>
+<tr>
+<td style="text-align: left;">抗議行動によるマチュピチュ閉鎖</td>
+<td style="text-align: left;">再設定または返金</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返金の申請先：</strong> Dirección Desconcentrada de Cultura de Cusco の <strong>mesa de partes</strong> に、<br />
+購入を証明する書類を提出。</p>
+<p>🔴 <strong>ペルーはストライキ（paro）や列車運休が実際に起きやすい国です。</strong><br />
+「不可抗力の救済がある」ことは、リスク評価上そこそこ大きい意味を持ちます。</p>
+<h3 id="63-a-1">6.3 🔴 本件への影響 — <strong>A-1 の判断とは独立している</strong></h3>
+<p>「フライトを後で確定したい」という方針との整合を確認しました。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">案</th>
+<th style="text-align: left;">リマ着</th>
+<th style="text-align: left;">村着</th>
+<th style="text-align: left;"><strong>遺跡見学日</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">現行 CM135/CM337</td>
+<td style="text-align: left;">11/1 00:55</td>
+<td style="text-align: left;"><strong>11/1 夜</strong></td>
+<td style="text-align: left;"><strong>11/2</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">A-1 代替 CM195/CM131</td>
+<td style="text-align: left;">10/31 15:40</td>
+<td style="text-align: left;"><strong>11/1 中</strong></td>
+<td style="text-align: left;"><strong>11/2</strong></td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>どちらを選んでも遺跡見学は 11/2 のままです。</strong><br />
+A-1 で前倒しされるのは<strong>リマ到着だけ</strong>で、村に着くのは11/1、遺跡は11/2で変わりません。</p>
+<p>→ <strong>11/2 の入場券は、A-1 の結論を待たずに今買って構いません。</strong></p>
+<p><strong>券が無駄になるのは、ペルー日程そのものを動かす場合だけ</strong>です。その場合の損失は<br />
+<strong>S/ 352（約1.4〜1.5万円）</strong>。RTW運賃（約122万円）に対しては小さく、<br />
+<strong>「取れるうちに押さえる」ほうが合理的</strong>と判断します。</p>
+<h3 id="64">6.4 実務上の備え</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">対策</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>旅行保険</strong></td>
+<td style="text-align: left;">「観光施設の入場料・前払費用」が補償対象か確認しておく</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>証憑の保管</strong></td>
+<td style="text-align: left;">購入確認メール・決済明細を保存（不可抗力の申請に必要）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>パスポート情報の正確な入力</strong></td>
+<td style="text-align: left;"><strong>訂正できるのはここだけ。</strong>逆に言えば入力ミスは救済される</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/1 の遅延リスク</strong></td>
+<td style="text-align: left;">LIM→CUZ の欠航・列車運休は<strong>不可抗力に該当しうる</strong>。<br>発生したら諦めずに再設定を申請する</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7">7. 共通ルール（全ルート）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>販売</strong></td>
+<td style="text-align: left;">公式 <a href="https://tuboleto.cultura.pe/llaqta_machupicchu">tuboleto.cultura.pe</a> のみ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>開園時間</strong></td>
+<td style="text-align: left;">月〜日 <strong>08:00〜16:15</strong>（※時間帯枠は 06:00 から選べる）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>標高</strong></td>
+<td style="text-align: left;">2,430 m</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>入場時刻</strong></td>
+<td style="text-align: left;">🔴 <strong>枠制。</strong>猶予は<strong>券面に45分</strong>と印字（3-A・1-B とも実券で確認）<br>⚠️ ただし<strong>ワイナピチュ登山ゲートは 09:00 締切</strong>という別制約がある</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>滞在上限</strong></td>
+<td style="text-align: left;">多くのルートで <strong>2時間30分</strong>。再入場は原則不可</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>券面</strong></td>
+<td style="text-align: left;"><strong>日付・時間・氏名・パスポート紐付け。変更不可・払戻不可</strong>（詳細は §6）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>1アカウント</strong></td>
+<td style="text-align: left;">最大5枚まで</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ガイド</strong></td>
+<td style="text-align: left;">ルートにより公認ガイド同行が必要</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_9">出典</h2>
+<ul>
+<li><strong>公式:</strong> <a href="https://tuboleto.cultura.pe/llaqta_machupicchu">tuboleto.cultura.pe — Llaqta Machupicchu</a>（フォーム操作・在庫実測・カート投入試験）</li>
+<li><strong>公式API:</strong> <code>api-tuboleto.cultura.pe/visita/lugar-info?idLugar=llaqta_machupicchu</code>（全10ルートの説明・距離・体力レベル）</li>
+<li><strong>公式:</strong> <a href="https://tuboleto.cultura.pe/disponibilidad/llaqta_machupicchu">対面販売リアルタイム在庫</a></li>
+<li><a href="https://www.infobae.com/america/agencias/2024/01/27/ministerio-de-cultura-ofrece-reprogramar-visitas-a-machu-picchu-o-devolucion-de-pago/">Ministerio de Cultura ofrece reprogramar visitas a Machu Picchu o devolución de pago（Infobae）</a></li>
+<li><a href="https://www.infobae.com/peru/2025/05/14/paro-nacional-en-cusco-turistas-que-no-puedan-llegar-a-machu-picchu-por-protestas-podran-reprogramar-sus-entradas/">Paro nacional en Cusco: turistas podrán reprogramar sus entradas（Infobae, RM 275-2024-MC に言及）</a></li>
+<li><a href="https://n60.pe/gobierno-permitira-reprogramar-o-devolver-boletos-de-machu-picchu-tras-suspension-de-trenes-por-incendio/">Gobierno permitirá reprogramar o devolver boletos tras suspensión de trenes por incendio</a></li>
+<li><a href="https://www.comeseeperutours.com/travel-information/are-machu-picchu-tickets-refundable">Are Machu Picchu Tickets Refundable? A Complete Guide</a></li>
+<li><a href="https://www.urosexpeditions.com/blog/machu-picchu-entry-rules-regulations">Machu Picchu Entry Rules &amp; Regulations 2026</a></li>
+<li><a href="https://www.perurail.com/es/machu-picchu-huelga/">PeruRail: ¿Está abierto Machu Picchu? Todo sobre huelgas, trenes y más</a></li>
+<li><a href="https://blog.incarail.com/how-long-is-the-climb-to-the-top-of-huayna-picchu/">Blog IncaRail: ワイナピチュ登山の所要時間</a></li>
+<li><a href="https://www.salkantaytrekking.com/blog/machu-picchu-mountains-huayna-picchu-huchuy-picchu-machu-picchu-mountain/">Salkantay Trekking: The Machu Picchu Mountains 2026</a></li>
+<li><a href="https://www.adiosadventuretravel.com/blog/2022/12/should-you-buy-more-than-one-entry-ticket-to-machu-picchu/">Adios Adventure Travel: Should You Buy More Than One Entry Ticket to Machu Picchu?</a>（同日複数枚は種類が違えば可／<strong>別々に購入する必要がある</strong>）</li>
+<li><a href="https://www.adiosadventuretravel.com/blog/avoid-these-mistakes-when-buying-tickets-to-machu-picchu">Adios Adventure Travel: Avoid These Mistakes When Buying Tickets</a>（同一種類の同日2枚は不可）</li>
+<li><strong>利用者による実地報告（2026/9/5）:</strong> 訪問者データ登録で「Documento duplicado」エラーを確認</li>
+<li><a href="https://www.tripadvisor.com/ShowTopic-g294318-i3352-k15082162-Paying_for_MP_tickets_Izipay_is_not_defined_Machu_Picchu_Sacred_Valley_Cusco_Region.html">TripAdvisor: Paying for MP tickets — "Izipay is not defined"</a>（VPNでの解決報告多数。<strong>日本からの成功手順</strong>を含む）</li>
+<li><strong>自環境での実測（2026/9/5）:</strong> <code>checkout.izipay.pe</code> はTCP接続後にTLS無応答。同社の他ホストは正常</li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>
