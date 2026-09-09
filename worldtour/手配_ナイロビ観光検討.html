@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個別手配資料 ③-2 ナイロビ観光プラン検討結果 - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🐘 サファリ・象孤児院</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="観戦チケット_販売方法と時期.html">🎫 観戦チケット 販売方法と時期</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_ナイロビ観光検討.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="3-2">個別手配資料 ③-2 ナイロビ観光プラン検討結果</h1>
+<p><strong>検討日:</strong> 2026年9月6日<br />
+<strong>対象日程:</strong> 2026年11月30日(月) 午後 〜 12月1日(火) 昼<br />
+<strong>関連資料:</strong> <a href="手配_サファリ.md"><code>手配_サファリ.md</code></a> ／ <a href="東回り_要件定義書.md"><code>東回り_要件定義書.md</code></a> §4・§6 ／ <a href="html/family_guide.html"><code>html/family_guide.html</code></a></p>
+<hr />
+<h2 id="1">1. 検討の背景と前提条件</h2>
+<h3 id="11">1.1 タイムフレームと拠点</h3>
+<ul>
+<li><strong>11月30日(月) 午後（約4時間半）:</strong></li>
+<li>アンボセリ国立公園で早朝サファリ＆朝食後、陸路専用車でナイロビへ移動（約4〜4.5時間）。</li>
+<li><strong>ナイロビ到着見込み: 13:30〜14:00</strong>。活動可能時間は <strong>14:00〜18:30（日没）</strong>。</li>
+<li><strong>12月01日(火) 午前〜昼（約5時間半）:</strong></li>
+<li>バンコク帰還フライト: <strong>ET319 ナイロビ 17:30発</strong>（アディスアベバ経由 ET608）。</li>
+<li>国際線チェックイン推奨時刻: <strong>15:00</strong>。活動可能時間は <strong>09:00〜14:30</strong>。</li>
+<li><strong>宿泊拠点:</strong></li>
+<li>ジョモ・ケニヤッタ国際空港（JKIA）敷地内ホテル（Four Points by Sheraton Nairobi Airport または Crowne Plaza）。</li>
+</ul>
+<h3 id="12">1.2 ナイロビ特有の制約と地理的特性</h3>
+<ul>
+<li><strong>交通渋滞（Nairobi Jam）の深刻さ:</strong></li>
+<li>ナイロビの交通渋滞は世界屈指であり、時間帯（特に朝夕の通勤時や雨天時）によっては数キロの移動に1〜2時間を要する。</li>
+<li>観光地が集中する<strong>「カレン地区（南西部）」</strong>と宿泊拠点の<strong>「空港地区（南東部）」</strong>は、サザン・バイパス（高速道路）を使っても片道40〜70分かかる。</li>
+<li><strong>原則: 最終日（12/1）午後に出発フライトを控えているため、フライト直前に遠方から空港へ移動するリスクは極力排除する。</strong></li>
+<li><strong>旅程全体での体験バランス:</strong></li>
+<li>直前の2日間（11/28〜29）に<strong>アンボセリ国立公園で「野生の象の大群」「キリマンジャロ遠望」を徹底的に満喫</strong>している。</li>
+<li>したがって、ナイロビでは「アンボセリの焼き直し」ではなく、<strong>「アンボセリでは見られないもの（サイ、歴史、食、文化、工芸）」</strong>を取り入れることが満足度向上の鍵となる。</li>
+</ul>
+<hr />
+<h2 id="2">2. 現行候補の評価（ジラフ・センターと象の孤児院）</h2>
+<h3 id="21-giraffe-centre">2.1 ジラフ・センター（Giraffe Centre）</h3>
+<ul>
+<li><strong>概要:</strong> 絶滅危惧種であるロスチャイルドキリン（Rothschild's Giraffe）の保護・繁殖施設。</li>
+<li><strong>体験価値:</strong> 高架デッキからキリンと同じ目線に立ち、手渡しでペレット（餌）をあげたり、顔を近づけて触れ合える体験。</li>
+<li><strong>所要時間:</strong> 約45分〜1時間。</li>
+<li><strong>評価:</strong> <strong>【維持を強く推奨】</strong></li>
+<li>サファリカーから遠く眺めるのとは全く異なり、「至近距離で直接触れ合える」唯一無二の体験。</li>
+<li>所要時間が短く、カレン地区の他施設とも組み合わせやすい。</li>
+</ul>
+<h3 id="22-sheldrick-wildlife-trust">2.2 象の孤児院（Sheldrick Wildlife Trust）</h3>
+<ul>
+<li><strong>概要:</strong> 密猟や干ばつ等で親を失った子象を保護・野生復帰させる世界的NGO。</li>
+<li><strong>体験価値:</strong> 子象たちが泥浴びをしたり、巨大な哺乳瓶からミルクを飲む姿を間近で見学・解説。</li>
+<li><strong>致命的制約:</strong></li>
+<li><strong>一般公開が「毎日 11:00〜12:00 の1時間のみ」</strong>（完全事前予約制・厳格な人数制限）。</li>
+<li>11/30はアンボセリからの移動で到着が13:30以降になるため、<strong>一般枠（11:00）は物理的に間に合わない</strong>。</li>
+<li>11/30午後に訪れるには、<strong>年$50の里親（Foster Parent）登録を行い、17:00〜18:00のプライベート枠を事前確保</strong>する必要がある。</li>
+<li>12/1午前に一般枠（11:00〜12:00）を入れた場合、終了が12:00、カレン地区から空港ホテルへ戻ると13:30〜14:00となり、<strong>15:00の空港入りまで時間的猶予がほぼなく、渋滞リスクが高い</strong>。</li>
+<li><strong>旅程全体での評価:</strong> <strong>【差替え・見直しの有力候補】</strong></li>
+<li>保護活動としての社会的意義は極めて高いが、旅行者としては<strong>アンボセリで野生の象の生態を散々見ている</strong>ため、強行スケジュールを冒してまで組み込む必然性は薄い。</li>
+</ul>
+<hr />
+<h2 id="3">3. その他の有力な選択肢（詳細比較）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">観光地・体験</th>
+<th style="text-align: left;">ジャンル</th>
+<th style="text-align: left;">所要時間</th>
+<th style="text-align: left;">場所・エリア</th>
+<th style="text-align: left;">特徴・見どころ</th>
+<th style="text-align: left;">アンボセリとの差別化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>①</strong></td>
+<td style="text-align: left;"><strong>ナイロビ国立公園</strong><br><em>(Nairobi National Park)</em></td>
+<td style="text-align: left;">大自然・サファリ</td>
+<td style="text-align: left;">3〜4時間</td>
+<td style="text-align: left;">空港至近<br>（南東部）</td>
+<td style="text-align: left;">・世界で唯一「摩天楼を背景に動物が闊歩する」公園<br>・<strong>クロサイ・シロサイの高密度保護区</strong><br>・空港ホテルから車で10〜15分</td>
+<td style="text-align: left;">🔴 <strong>アンボセリにいない「サイ」に出会える</strong><br>摩天楼×野生動物の異次元景観</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>②</strong></td>
+<td style="text-align: left;"><strong>カレン・ブリクセン博物館</strong><br><em>(Karen Blixen Museum)</em></td>
+<td style="text-align: left;">歴史・建築・文学</td>
+<td style="text-align: left;">1〜1.5時間</td>
+<td style="text-align: left;">カレン地区<br>（南西部）</td>
+<td style="text-align: left;">・映画『愛と哀しみの果て』の原作者旧邸宅<br>・1920年代の優雅な英国コロニアル様式建築<br>・ンゴング・ヒルズを望む美しい庭園とカフェ</td>
+<td style="text-align: left;">落ち着いたコロニアル史・文化体験<br>ジラフセンターから車で10分</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>③</strong></td>
+<td style="text-align: left;"><strong>カーニボア・レストラン</strong><br><em>(Carnivore Restaurant)</em></td>
+<td style="text-align: left;">名物グルメ・肉料理</td>
+<td style="text-align: left;">1.5〜2時間</td>
+<td style="text-align: left;">ウィルソン空港近郊<br>（中央南部）</td>
+<td style="text-align: left;">・巨大炭火ピットから切り分けるアフリカンBBQ<br>・牛・豚・羊に加え<strong>ダチョウ肉やワニ肉</strong>も提供<br>・「世界トップ50」選出歴のある超名物店</td>
+<td style="text-align: left;">サファリ後の豪快な肉の饗宴<br>エンターテインメント性抜群</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>④</strong></td>
+<td style="text-align: left;"><strong>ウトゥマディ工芸村</strong><br><em>(Utamaduni Craft Centre)</em></td>
+<td style="text-align: left;">ショッピング・工芸</td>
+<td style="text-align: left;">1時間</td>
+<td style="text-align: left;">カレン地区<br>（南西部）</td>
+<td style="text-align: left;">・邸宅を改装した高級クラフトセレクトショップ<br>・マサイビーズ、木彫り、布、コーヒーが揃う<br>・<strong>定額制（値切り交渉不要・ぼったくりゼロ）</strong></td>
+<td style="text-align: left;">露天商の強引な客引きを避け、<br>安全・上質なお土産を快適に購入</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>⑤</strong></td>
+<td style="text-align: left;"><strong>カズリ・ビーズ工房</strong><br><em>(Kazuri Beads Factory)</em></td>
+<td style="text-align: left;">社会貢献・手仕事</td>
+<td style="text-align: left;">45分〜1時間</td>
+<td style="text-align: left;">カレン地区<br>（南西部）</td>
+<td style="text-align: left;">・シングルマザー自立支援の陶器ビーズ工房<br>・職人たちの成形・彩色現場を見学可能<br>・発色の良い陶器アクセサリーが欧米で高評価</td>
+<td style="text-align: left;">温かみのあるケニアの手仕事見学<br>女性や家族へのお土産に最適</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>⑥</strong></td>
+<td style="text-align: left;"><strong>ケニア国立博物館</strong><br><em>(Nairobi National Museum)</em></td>
+<td style="text-align: left;">人類史・古生物学</td>
+<td style="text-align: left;">1.5〜2時間</td>
+<td style="text-align: left;">市内中心部<br>（北部）</td>
+<td style="text-align: left;">・160万年前の初期人類「トゥルカナ・ボーイ」骨格<br>・ケニア先住42部族の伝統衣装・武器・文化展示<br>・アフリカ大自然の鳥類・動物剥製コレクション</td>
+<td style="text-align: left;">「人類発祥の地」としての知的探訪<br>民族文化の本格的な学び</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>⑦</strong></td>
+<td style="text-align: left;"><strong>フェアビュー・コーヒー農園</strong><br><em>(Fairview Coffee Estate)</em></td>
+<td style="text-align: left;">農業・テイスティング</td>
+<td style="text-align: left;">2時間</td>
+<td style="text-align: left;">市内郊外<br>（北東部）</td>
+<td style="text-align: left;">・最高級銘柄「ケニアAA」の農園散策<br>・豆の栽培、収穫、精製、焙煎プロセスの見学<br>・専門家による本格的なカッピング（試飲）体験</td>
+<td style="text-align: left;">世界最高峰のコーヒー文化体験<br>（※事前予約必須）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-4">4. 目的別・組み合わせモデルコース（4案）</h2>
+<h3 id="1_1">【案1】🔴 最も推奨：サイ制覇＆フライト遅延リスクゼロ「大自然・安全完結コース」</h3>
+<p><em>〜「アンボセリにいないサイ」を追跡し、最終日の帰国便リスクをゼロにする最高効率プラン〜</em></p>
+<ul>
+<li><strong>11月30日(月) 午後: カレン地区＆名物ディナー</strong></li>
+<li>14:00 アンボセリから到着後、そのままカレン地区へ直行。</li>
+<li>14:30〜15:45 <strong>ジラフ・センター</strong>（キリンと触れ合い・餌やり）。</li>
+<li>16:00〜17:00 <strong>ウトゥマディ工芸村</strong> または <strong>カズリ・ビーズ</strong>でお土産選び＆カフェ休憩。</li>
+<li>18:00〜19:30 <strong>カーニボア（Carnivore）</strong>で名物アフリカン炭火BBQディナー（ダチョウ・ワニ肉等を堪能）。</li>
+<li>20:00 空港敷地内ホテルへチェックイン、就寝。</li>
+<li><strong>12月01日(火) 午前〜昼: ナイロビ国立公園＆帰国便へ</strong></li>
+<li>06:30〜10:30 <strong>ナイロビ国立公園 モーニング・ゲームドライブ</strong>。<ul>
+<li>ホテルから10分でゲートイン。</li>
+<li>背景に高層ビル群がそびえる中、アンボセリで見られなかった<strong>「クロサイ・シロサイ」</strong>を追跡。</li>
+</ul>
+</li>
+<li>11:00 ホテルへ帰着。シャワー、パッキング、プールサイドでランチ。</li>
+<li>14:30〜15:00 ホテルから空港ターミナルへ（専用シャトルでわずか3〜5分）。</li>
+<li>17:30 ET319便にてバンコクへ向け出発！</li>
+</ul>
+<blockquote>
+<p><strong>メリット:</strong><br />
+- アンボセリ（象・キリマンジャロ）＋ ナイロビNP（サイ・摩天楼）により、<strong>ケニアサファリの主要動物を完全制覇</strong>。<br />
+- 12/1の行動がすべて空港至近（半径数キロ以内）で完結するため、<strong>ナイロビの大渋滞による乗り遅れリスクが完全にゼロ</strong>。</p>
+</blockquote>
+<hr />
+<h3 id="2_1">【案2】英国コロニアル史と優雅な手仕事「カレン地区王道コース」</h3>
+<p><em>〜大人の知性と落ち着いた時間を楽しむ、文化・歴史型プラン〜</em></p>
+<ul>
+<li><strong>11月30日(月) 午後: カレン地区凝縮観光</strong></li>
+<li>14:00 ナイロビ到着後、カレン地区へ。</li>
+<li>14:30〜15:30 <strong>ジラフ・センター</strong>。</li>
+<li>15:45〜17:00 <strong>カレン・ブリクセン博物館</strong>（『愛と哀しみの果て』旧邸宅・庭園散策）。</li>
+<li>17:15〜18:00 <strong>ウトゥマディ工芸村</strong>で安心のショッピング＆お茶。</li>
+<li>19:30 空港ホテルチェックイン。ホテル内レストランでディナー。</li>
+<li><strong>12月01日(火) 午前〜昼: 完全休養・リラクゼーション</strong></li>
+<li>午前中: 旅程の最終盤に備え、ホテルで完全休養（スパ、プール、荷物整理）。</li>
+<li>12:30 レイトチェックアウト後、ホテルラウンジで優雅にランチ。</li>
+<li>15:00 空港へ移動、出国。</li>
+</ul>
+<blockquote>
+<p><strong>メリット:</strong><br />
+- サファリの連続による疲労を癒やし、世界一周の終盤を落ち着いて振り返るゆとりが生まれる。</p>
+</blockquote>
+<hr />
+<h3 id="3_1">【案3】保護活動重視「象の孤児院維持コース」</h3>
+<p><em>〜Sheldrick Wildlife Trustへの訪問を日程に組み込むプラン〜</em></p>
+<ul>
+<li><strong>11月30日(月) 午後: 里親枠プライベート訪問</strong></li>
+<li>14:30〜16:00 <strong>ジラフ・センター</strong>。</li>
+<li>16:30 移動。</li>
+<li>17:00〜18:00 <strong>象の孤児院（Sheldrick）プライベート訪問（※要里親登録 $50/年）</strong>。<ul>
+<li>寝床に戻る子象たちを少人数で間近に見学。</li>
+</ul>
+</li>
+<li>19:30 空港ホテルへ。</li>
+<li><strong>12月01日(火) 午前〜昼: 予備日・休養</strong></li>
+<li>11/30の陸路移動が遅れて17:00に間に合わなかった場合、この日（12/1）の11:00〜12:00一般枠へ振り替え。</li>
+<li>順調だった場合は午前中休養。</li>
+</ul>
+<blockquote>
+<p><strong>注意点:</strong><br />
+- 11/30のアンボセリ出発を朝08:30以前に設定し、道路の順調な通行が前提条件となる。</p>
+</blockquote>
+<hr />
+<h3 id="4">【案4】人類発祥の地を学ぶ「知的好奇心・文化深掘りコース」</h3>
+<p><em>〜大自然サファリから人類史・民族文化の探訪へ〜</em></p>
+<ul>
+<li><strong>11月30日(月) 午後: ジラフ ＋ カレン邸</strong></li>
+<li>ジラフ・センター ＋ カレン・ブリクセン博物館。</li>
+<li><strong>12月01日(火) 午前: ケニア国立博物館</strong></li>
+<li>09:30〜11:30 <strong>ケニア国立博物館</strong>（トゥルカナ・ボーイ頭骨化石、ケニア42部族の伝統工芸展示）。</li>
+<li>12:00〜13:15 市内レストランでランチ。</li>
+<li>13:30 高速道路（ナイロビ・エクスプレスウェイ）経由で空港へ。</li>
+<li>15:00 空港到着。</li>
+</ul>
+<blockquote>
+<p><strong>注意点:</strong><br />
+- 市内中心部へ入るため、高速道路利用でも予期せぬ渋滞の警戒が必要。</p>
+</blockquote>
+<hr />
+<h2 id="5">5. 比較・判定サマリー</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">比較項目</th>
+<th style="text-align: center;">【案1】サイ制覇＆安全動線</th>
+<th style="text-align: center;">【案2】カレン地区王道</th>
+<th style="text-align: center;">【案3】象の孤児院維持</th>
+<th style="text-align: center;">【案4】人類史・国立博物館</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>体験の新規性・多様性</strong></td>
+<td style="text-align: center;">⭐⭐⭐⭐⭐<br>（サイ＋摩天楼＋肉）</td>
+<td style="text-align: center;">⭐⭐⭐⭐<br>（キリン＋邸宅＋工芸）</td>
+<td style="text-align: center;">⭐⭐⭐<br>（キリン＋子象）</td>
+<td style="text-align: center;">⭐⭐⭐⭐<br>（キリン＋人類化石）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>最終日の安全性（対渋滞）</strong></td>
+<td style="text-align: center;">🔴 <strong>最高（リスク0）</strong></td>
+<td style="text-align: center;">🔴 <strong>最高（ホテル滞在）</strong></td>
+<td style="text-align: center;">⚠️ ややタイト</td>
+<td style="text-align: center;">⚠️ 渋滞警戒が必要</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>アンボセリとの重複感</strong></td>
+<td style="text-align: center;">なし（別種のサイ）</td>
+<td style="text-align: center;">なし（歴史・文化）</td>
+<td style="text-align: center;">⚠️ やや重複（象）</td>
+<td style="text-align: center;">なし（人類学・歴史）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>予約手配の難易度</strong></td>
+<td style="text-align: center;">低〜中</td>
+<td style="text-align: center;">低</td>
+<td style="text-align: center;">🔴 <strong>高（要里親＋即連絡）</strong></td>
+<td style="text-align: center;">低</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6">6. 推奨結論と次の手配アクション</h2>
+<h3 id="61">6.1 結論</h3>
+<ol>
+<li><strong>ジラフ・センター（キリン）は11/30午後に確実に実施</strong>するのがベスト。</li>
+<li><strong>象の孤児院（Sheldrick）は必須とせず、「ナイロビ国立公園（サイ狙い）」または「カレン・ブリクセン博物館」への振替を推奨</strong>する。</li>
+<li>理由①: アンボセリで象を満喫済みであり、ナイロビ国立公園ならアンボセリにいない<strong>サイ（Big 5制覇）</strong>が狙える。</li>
+<li>理由②: 12/1のフライト（17:30発）に対し、空港隣接のナイロビ国立公園なら<strong>渋滞リスクが皆無</strong>。</li>
+<li>食事面では、11/30の夕食に<strong>「カーニボア（Carnivore）」</strong>を組み込むことで、旅のクライマックスにふさわしいインパクトが得られる。</li>
+</ol>
+<h3 id="62">6.2 今後の手配ステップ</h3>
+<ol>
+<li><strong>方向性の選択:</strong> 【案1（サイ＋カーニボア）】または【案2（カレン邸＋工芸）】の決定。</li>
+<li><strong>サファリ業者（道祖神等）への見積依頼時の盛り込み:</strong></li>
+<li>「11/30 14:00頃ナイロビ着後、専用車のままジラフセンター（＋カレン邸等）へ案内し、空港ホテルへ送迎」をパッケージに含める。</li>
+<li><strong>ナイロビ国立公園（案1の場合）:</strong></li>
+<li>空港ホテル（Four Points等）のコンシェルジュ手配、またはサファリ業者の最終日半日オプションとして手配（現地判断でも十分間に合う）。</li>
+</ol>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

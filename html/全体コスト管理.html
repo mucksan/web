@@ -367,6 +367,48 @@
     color: var(--text-dim);
     font-size: 12.5px;
   }
+
+  /* Audit Card (2026/9/6 監査メモ) */
+  .audit-card {
+    background: linear-gradient(180deg, rgba(59,130,246,0.07), rgba(17,24,39,0));
+    border: 1px solid rgba(59, 130, 246, 0.35);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-top: 28px;
+  }
+  .audit-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #93c5fd;
+    margin-bottom: 12px;
+  }
+  .audit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 10px;
+  }
+  .audit-item {
+    font-size: 12.5px;
+    color: #cbd5e1;
+    line-height: 1.65;
+    background: rgba(31, 41, 55, 0.5);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .audit-tag {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 4px;
+    font-size: 10.5px;
+    font-weight: 700;
+    margin-right: 6px;
+    vertical-align: 1px;
+  }
+  .tag-fix  { background: rgba(59,130,246,0.2);  color: #93c5fd; }
+  .tag-err  { background: rgba(244,63,94,0.2);   color: #fda4af; }
+  .tag-add  { background: rgba(16,185,129,0.2);  color: #6ee7b7; }
+  .tag-warn { background: rgba(245,158,11,0.2);  color: #fcd34d; }
+  code { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #a5b4fc; }
 </style>
 </head>
 <body>
@@ -374,37 +416,94 @@
   <!-- HEADER -->
   <header>
     <div class="container">
-      <div class="header-badge">💰 Budget & Cost Management</div>
+      <div class="header-badge">💰 Budget &amp; Cost Management</div>
       <h1>世界一周の旅 2026 全体コスト管理表</h1>
       <p class="subtitle">
-        世界一周航空券（発券済）、南米・トルコ国内線、ホテル全35泊、サファリ等の各種アクティビティ、諸経費の予想コストと実績を一元管理します。
+        世界一周航空券（発券済）、南米・トルコ国内線、宿泊全36泊＋機中泊3、サファリ等のアクティビティ、諸経費の予想コストと実績を一元管理します。
+        <br><strong style="color:#34d399;">サマリーの数値はすべて明細行から自動計算しています。</strong>
       </p>
     </div>
   </header>
 
   <div class="container">
 
+    <!-- 監査メモ -->
+    <div class="audit-card">
+      <div class="audit-title">🔍 2026/9/6 金額監査で修正した点</div>
+      <div class="audit-grid">
+        <div class="audit-item">
+          <span class="audit-tag tag-fix">集計</span>
+          サマリーカードが明細と一致していなかった（宿泊 +16,600／アクティビティ −26,990／総額 −10,390）。
+          <strong>明細からの自動計算に変更し、手入力の合計を廃止。</strong>
+        </div>
+        <div class="audit-item">
+          <span class="audit-tag tag-fix">行程</span>
+          宿泊が4か所ずれていた。<strong>マチュピチュ村 1→2泊</strong>／<strong>サンパウロ 1→2泊</strong>／
+          <strong>リスボン 2→1泊</strong>（11/10 は機中泊）／<strong>リマ市内11/4泊を削除</strong>（11/4 はクスコ泊）。
+          機中泊3回を明示し、10/26〜12/1 の37夜が過不足なく埋まることを確認。
+        </div>
+        <div class="audit-item">
+          <span class="audit-tag tag-err">誤記</span>
+          サッカーが「ラ・リーガ／ベルナベウ／11/14」になっていた。正しくは
+          <strong>11/15 スペイン vs イングランド（ネーションズリーグ）／リヤド・エアー・メトロポリターノ</strong>。
+          <em>東回り_サッカー観戦候補.md が「転売サイトのベルナベウ誤記に注意」と警告していた、その誤記そのもの。</em>
+        </div>
+        <div class="audit-item">
+          <span class="audit-tag tag-err">区間</span>
+          ペルー国内線が「リマ⇄クスコ往復」になっていたが、実際は <strong>LIM→CUZ 片道</strong>。
+          復路は 11/5 の <strong>CUZ→LIM→IGU</strong>。区間を実行程どおりに分解した。
+        </div>
+        <div class="audit-item">
+          <span class="audit-tag tag-add">実績</span>
+          マチュピチュ入場券は<strong>購入済み</strong>（S/369.32＝約¥15,142・3-A＋1-B の2枚）。
+          「見積 ¥8,200 / Circuit 2A」から実績に置き換え、確定額に算入。
+        </div>
+        <div class="audit-item">
+          <span class="audit-tag tag-add">追加</span>
+          計上漏れを追加：<strong>10/26 BKK→東京</strong>／<strong>クスコ⇄オリャンタイタンボ送迎</strong>／
+          <strong>黄熱ワクチン等の予防接種</strong>／<strong>ナイロビ市内送迎</strong>。
+        </div>
+        <div class="audit-item">
+          <span class="audit-tag tag-add">増額</span>
+          飲食費を <strong>¥250,000（36日・1日7,000円）→ ¥400,000（実質33日・1日約12,000円）</strong>へ。
+          ビジネスクラス／4〜5つ星／リマの Central という水準に対し過小だった。
+          旅程は 10/26〜12/2 の<strong>38日</strong>（機中泊3回とサファリ全食事込を除いて実質33日）。
+        </div>
+        <div class="audit-item">
+          <span class="audit-tag tag-warn">変更</span>
+          リスボンを「シントラ日帰りツアー」から<strong>ベレン地区</strong>へ。
+          11/11 は 12:10 着・翌 07:10 発で<strong>滞在19時間</strong>のため、シントラ日帰りは物理的に不可能。
+        </div>
+        <div class="audit-item">
+          <span class="audit-tag tag-warn">削除</span>
+          <strong>リマの美食ディナー（Central / Maido・¥34,100）を削除。</strong>
+          11/4 に置かれていたが 11/4 はクスコ泊で、そもそも日程が合っていなかった。
+          <em>（2026/9/6・本人の判断で取りやめ）</em>
+        </div>
+      </div>
+    </div>
+
     <!-- KPI SUMMARY -->
     <div class="kpi-grid">
       <div class="kpi-card">
         <div class="kpi-title">予想総コスト (Estimated)</div>
-        <div class="kpi-value">¥3,168,215</div>
+        <div class="kpi-value" id="kpiTotal">—</div>
         <div class="kpi-sub">全カテゴリ想定総額</div>
       </div>
       <div class="kpi-card" style="border-top: 3px solid var(--emerald);">
         <div class="kpi-title">実績・確定額 (Committed)</div>
-        <div class="kpi-value" style="color: #34d399;">¥1,211,160</div>
-        <div class="kpi-sub">世界一周RTW航空券 発券完了</div>
+        <div class="kpi-value" id="kpiActual" style="color: #34d399;">—</div>
+        <div class="kpi-sub">RTW航空券 ＋ マチュピチュ入場券</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-title">未確定残高 (Remaining)</div>
-        <div class="kpi-value" style="color: var(--gold);">¥1,957,055</div>
+        <div class="kpi-value" id="kpiRemain" style="color: var(--gold);">—</div>
         <div class="kpi-sub">宿泊・アクティビティ等</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-title">確定率 (Commitment %)</div>
-        <div class="kpi-value">38.2%</div>
-        <div class="kpi-sub">航空券確定により約4割Fix</div>
+        <div class="kpi-value" id="kpiPct">—</div>
+        <div class="kpi-sub" id="kpiPctSub">—</div>
       </div>
     </div>
 
@@ -412,14 +511,14 @@
     <div class="progress-card">
       <div class="progress-header">
         <span>手配確定進捗 (Commitment Progress)</span>
-        <span style="color: #34d399;">38.2% 確定済み (¥1,211,160 / ¥3,168,215)</span>
+        <span style="color: #34d399;" id="progLabel">—</span>
       </div>
       <div class="bar-bg">
-        <div class="bar-fill" style="width: 38.2%;"></div>
+        <div class="bar-fill" id="progBar" style="width: 0%;"></div>
       </div>
       <div class="progress-legend">
-        <span><span class="legend-dot" style="background:#10b981;"></span>確定・発券済 (38.2%)</span>
-        <span><span class="legend-dot" style="background:#374151;"></span>未確定・見積段階 (61.8%)</span>
+        <span><span class="legend-dot" style="background:#10b981;"></span>確定・発券済 <span id="legDone">—</span></span>
+        <span><span class="legend-dot" style="background:#374151;"></span>未確定・見積段階 <span id="legEst">—</span></span>
       </div>
     </div>
 
@@ -428,81 +527,57 @@
       <div class="cat-card" style="--cat-color: #3b82f6;">
         <div class="cat-card-header">
           <span>✈️ 航空券 (Flights)</span>
-          <span style="font-size:12px; color:#60a5fa;">90.6% 確定</span>
+          <span style="font-size:12px; color:#60a5fa;" id="catFlightPct">—</span>
         </div>
-        <div class="cat-stat-row">
-          <span>予想コスト:</span>
-          <span class="cat-stat-val">¥1,336,710</span>
-        </div>
-        <div class="cat-stat-row">
-          <span>確定実績:</span>
-          <span class="cat-stat-val" style="color:#34d399;">¥1,211,160</span>
-        </div>
+        <div class="cat-stat-row"><span>予想コスト:</span><span class="cat-stat-val" id="catFlightEst">—</span></div>
+        <div class="cat-stat-row"><span>確定実績:</span><span class="cat-stat-val" style="color:#34d399;" id="catFlightAct">—</span></div>
       </div>
 
       <div class="cat-card" style="--cat-color: #a855f7;">
         <div class="cat-card-header">
           <span>🏨 宿泊費 (Accommodations)</span>
-          <span style="font-size:12px; color:#c084fc;">全35泊</span>
+          <span style="font-size:12px; color:#c084fc;" id="catHotelNights">—</span>
         </div>
-        <div class="cat-stat-row">
-          <span>予想コスト:</span>
-          <span class="cat-stat-val">¥793,230</span>
-        </div>
-        <div class="cat-stat-row">
-          <span>確定実績:</span>
-          <span class="cat-stat-val">¥0 (順次予約)</span>
-        </div>
+        <div class="cat-stat-row"><span>予想コスト:</span><span class="cat-stat-val" id="catHotelEst">—</span></div>
+        <div class="cat-stat-row"><span>確定実績:</span><span class="cat-stat-val" id="catHotelAct">—</span></div>
       </div>
 
       <div class="cat-card" style="--cat-color: #f59e0b;">
         <div class="cat-card-header">
           <span>🎟️ アクティビティ (Activities)</span>
-          <span style="font-size:12px; color:#fbbf24;">全19件</span>
+          <span style="font-size:12px; color:#fbbf24;" id="catActCount">—</span>
         </div>
-        <div class="cat-stat-row">
-          <span>予想コスト:</span>
-          <span class="cat-stat-val">¥514,600</span>
-        </div>
-        <div class="cat-stat-row">
-          <span>確定実績:</span>
-          <span class="cat-stat-val">¥0 (9月以降予約)</span>
-        </div>
+        <div class="cat-stat-row"><span>予想コスト:</span><span class="cat-stat-val" id="catActEst">—</span></div>
+        <div class="cat-stat-row"><span>確定実績:</span><span class="cat-stat-val" id="catActAct">—</span></div>
       </div>
 
       <div class="cat-card" style="--cat-color: #10b981;">
         <div class="cat-card-header">
-          <span>🛡️ 諸経費・予備費 (Misc & Buffer)</span>
+          <span>🛡️ 諸経費・予備費 (Misc &amp; Buffer)</span>
           <span style="font-size:12px; color:#34d399;">保険・ビザ・食費</span>
         </div>
-        <div class="cat-stat-row">
-          <span>予想コスト:</span>
-          <span class="cat-stat-val">¥523,675</span>
-        </div>
-        <div class="cat-stat-row">
-          <span>確定実績:</span>
-          <span class="cat-stat-val">¥0</span>
-        </div>
+        <div class="cat-stat-row"><span>予想コスト:</span><span class="cat-stat-val" id="catMiscEst">—</span></div>
+        <div class="cat-stat-row"><span>確定実績:</span><span class="cat-stat-val" id="catMiscAct">—</span></div>
       </div>
     </div>
 
     <!-- CONTROLS BAR -->
     <div class="controls-bar">
       <div class="filter-group" id="categoryFilters">
-        <button class="btn-filter active" onclick="applyFilter('cat', 'all')">すべて表示</button>
-        <button class="btn-filter" onclick="applyFilter('cat', 'flight')">✈️ 航空券</button>
-        <button class="btn-filter" onclick="applyFilter('cat', 'hotel')">🏨 宿泊費</button>
-        <button class="btn-filter" onclick="applyFilter('cat', 'activity')">🎟️ アクティビティ</button>
-        <button class="btn-filter" onclick="applyFilter('cat', 'misc')">🛡️ 諸経費</button>
+        <button class="btn-filter active" data-type="cat" data-val="all">すべて表示</button>
+        <button class="btn-filter" data-type="cat" data-val="flight">✈️ 航空券</button>
+        <button class="btn-filter" data-type="cat" data-val="hotel">🏨 宿泊費</button>
+        <button class="btn-filter" data-type="cat" data-val="activity">🎟️ アクティビティ</button>
+        <button class="btn-filter" data-type="cat" data-val="misc">🛡️ 諸経費</button>
       </div>
 
       <div class="filter-group" id="statusFilters">
-        <button class="btn-filter active" onclick="applyFilter('status', 'all')">全ステータス</button>
-        <button class="btn-filter" onclick="applyFilter('status', 'done')">✅ 確定・発券済</button>
-        <button class="btn-filter" onclick="applyFilter('status', 'est')">⏳ 見積・未手配</button>
+        <button class="btn-filter active" data-type="status" data-val="all">全ステータス</button>
+        <button class="btn-filter" data-type="status" data-val="done">✅ 確定・発券済</button>
+        <button class="btn-filter" data-type="status" data-val="est">⏳ 見積・未手配</button>
       </div>
 
-      <input type="text" id="searchInput" class="search-input" placeholder="🔍 項目・都市・通貨検索..." onkeyup="searchTable()">
+      <input type="text" id="searchInput" class="search-input" placeholder="🔍 項目・都市・通貨検索...">
     </div>
 
     <!-- MASTER COST TABLE -->
@@ -512,311 +587,402 @@
           <tr>
             <th>カテゴリ</th>
             <th>手配項目・内容</th>
+            <th>日付</th>
             <th>都市・国</th>
             <th>地元通貨 (Local)</th>
             <th class="text-right">適用レート</th>
             <th class="text-right">予想コスト (JPY)</th>
             <th class="text-right">実績コスト (JPY)</th>
             <th class="text-center">ステータス</th>
-            <th>手配メモ / リンク</th>
+            <th>手配メモ</th>
           </tr>
         </thead>
         <tbody>
 
-          <!-- FLIGHTS -->
-          <tr data-cat="flight" data-status="done">
+          <!-- ===== FLIGHTS ===== -->
+          <tr data-cat="flight" data-status="done" data-est="1220000" data-actual="1211160">
             <td><span class="cat-badge cat-flight">✈️ 航空券</span></td>
             <td><strong>スターアライアンス世界一周航空券 (全16区間)</strong></td>
-            <td>世界一周 (10カ国)</td>
+            <td>10/28〜3/3</td>
+            <td>世界一周 (12都市)</td>
             <td class="num-font">¥1,211,160 JPY</td>
             <td class="num-font text-right">1.0</td>
             <td class="num-font text-right">¥1,220,000</td>
             <td class="num-font text-right" style="color:#34d399; font-weight:800;">¥1,211,160</td>
             <td class="text-center"><span class="status-badge status-done">確定・発券済</span></td>
-            <td>ANA東京発券・運賃822,000+税383,660+手数料5,500 (PNR: EANRV5)</td>
+            <td>ANA東京発券・JPY建て / 運賃822,000＋税383,660＋手数料5,500 (PNR: EANRV5)</td>
           </tr>
 
-          <tr data-cat="flight" data-status="est">
+          <tr data-cat="flight" data-status="est" data-est="53165" data-actual="0">
             <td><span class="cat-badge cat-flight">✈️ 航空券</span></td>
-            <td>ペルー国内線往復 (リマ ⇄ クスコ)</td>
+            <td>バンコク → 東京 (ポジショニング・エコノミー)</td>
+            <td>10/26</td>
+            <td>🇹🇭 ➔ 🇯🇵</td>
+            <td class="num-font">$343.00 USD</td>
+            <td class="num-font text-right">155.0</td>
+            <td class="num-font text-right">¥53,165</td>
+            <td class="num-font text-right">-</td>
+            <td class="text-center"><span class="status-badge status-est">見積</span></td>
+            <td>✏️ <strong>TG660 14:25→HND 22:05 の実勢運賃へ。</strong>✅ <strong>受託30kg込みで荷物の上乗せなし</strong>（LCCは別料金）。C1</td>
+          </tr>
+
+          <tr data-cat="flight" data-status="done" data-est="20243" data-actual="20243">
+            <td><span class="cat-badge cat-flight">✈️ 航空券</span></td>
+            <td>リマ → クスコ (片道)</td>
+            <td>11/01</td>
             <td>🇵🇪 ペルー</td>
-            <td class="num-font">$240.00 USD</td>
+            <td class="num-font">$130.60 USD</td>
             <td class="num-font text-right">155.0</td>
-            <td class="num-font text-right">¥37,200</td>
-            <td class="num-font text-right">-</td>
-            <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>LATAM航空またはSKY便想定（受託手荷物込）</td>
+            <td class="num-font text-right">¥20,243</td>
+            <td class="num-font text-right">¥20,243</td>
+            <td class="text-center"><span class="status-badge status-done">確定</span></td>
+            <td>✅ <strong>2026/9/8 購入済（PNR: MAYCQV）。</strong>LA2013 07:40→09:05・Premium Economy Full・<strong>座席2A</strong>。運賃$100.00＋税$30.60。受託23kg／持込12kg。<strong>出発前なら100%返金・変更無料</strong>。C2</td>
           </tr>
 
-          <tr data-cat="flight" data-status="est">
+          <tr data-cat="flight" data-status="done" data-est="40870" data-actual="40870">
             <td><span class="cat-badge cat-flight">✈️ 航空券</span></td>
-            <td>南米内陸移動 (リマ ➔ イグアス ➔ サンパウロ)</td>
+            <td>クスコ → リマ → イグアス</td>
+            <td>11/05</td>
             <td>🇵🇪 ➔ 🇧🇷</td>
-            <td class="num-font">$450.00 USD</td>
+            <td class="num-font">$263.68 USD</td>
             <td class="num-font text-right">155.0</td>
-            <td class="num-font text-right">¥69,750</td>
-            <td class="num-font text-right">-</td>
-            <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>LIM-IGU (LATAM) & IGU-GRU (LATAM/Gol)</td>
+            <td class="num-font text-right">¥40,870</td>
+            <td class="num-font text-right">¥40,870</td>
+            <td class="text-center"><span class="status-badge status-done">確定</span></td>
+            <td>✅ <strong>2026/9/8 購入済・3レグ通し1枚（PNR IWYEMJ）。</strong>LA2167 05:00→06:35（13C）／LA8005 09:15→16:25（13C）／LA3206 22:35→00:20+1（12C）。全 Economy Full・受託23kg・出発前100%返金。<strong>別券3枚案（約$546）より約$283 安く、LIM乗継も保護</strong>。✅ 旧券 FWIGFO/GQORJO は <strong>$385.33 満額返金済（9/9・撤回法適用）</strong>。🎫 アップグレード入札 $128（落札時のみ課金・未確定）。C3</td>
           </tr>
 
-          <tr data-cat="flight" data-status="est">
+          <tr data-cat="flight" data-status="est" data-est="57970" data-actual="0">
             <td><span class="cat-badge cat-flight">✈️ 航空券</span></td>
-            <td>トルコ国内線往復 (イスタンブール ⇄ カッパドキア)</td>
-            <td>🇹🇷 トルコ</td>
-            <td class="num-font">$120.00 USD</td>
+            <td>イグアス → サンパウロ</td>
+            <td>11/08</td>
+            <td>🇧🇷 ブラジル</td>
+            <td class="num-font">$374.00 USD</td>
             <td class="num-font text-right">155.0</td>
-            <td class="num-font text-right">¥18,600</td>
+            <td class="num-font text-right">¥57,970</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>ターキッシュ エアラインズまたはペガサス航空</td>
+            <td>🔴 <strong>午前便は $334〜362 と高い</strong>（夕方 LA3205 は $163）。受託込みで $374。<strong>差額はサンパウロ半日分の対価</strong>。LA3201 10:40→12:25。C4</td>
           </tr>
 
-          <!-- ACCOMMODATION -->
-          <tr data-cat="hotel" data-status="done">
+          <tr data-cat="flight" data-status="est" data-est="32550" data-actual="0">
+            <td><span class="cat-badge cat-flight">✈️ 航空券</span></td>
+            <td>イスタンブール ⇄ カッパドキア (往復)</td>
+            <td>11/21・11/23</td>
+            <td>🇹🇷 トルコ</td>
+            <td class="num-font">$210.00 USD</td>
+            <td class="num-font text-right">155.0</td>
+            <td class="num-font text-right">¥32,550</td>
+            <td class="num-font text-right">-</td>
+            <td class="text-center"><span class="status-badge status-est">見積</span></td>
+            <td>🔴 <strong>ExtraFly 以上が必須</strong>（EcoFly は15kg・変更不可）。TK2008 11/21 19:40 ／ TK2001 11/23 09:30。🔴 <strong>ここが旅程で荷物のピーク</strong>。C5・C6</td>
+          </tr>
+
+          <!-- ===== ACCOMMODATION ===== -->
+          <tr data-cat="hotel" data-status="done" data-est="0" data-actual="0" data-nights="2">
             <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
-            <td>東京 2泊 (出発前準備・実家)</td>
+            <td>東京 2泊 (実家)</td>
+            <td>10/26-27</td>
             <td>🇯🇵 東京</td>
             <td class="num-font">¥0 JPY</td>
             <td class="num-font text-right">1.0</td>
             <td class="num-font text-right">¥0</td>
             <td class="num-font text-right">¥0</td>
             <td class="text-center"><span class="status-badge status-done">確定</span></td>
-            <td>10/26〜10/27 実家泊（宿泊費0円）</td>
+            <td>宿泊費0円</td>
           </tr>
 
-          <tr data-cat="hotel" data-status="est">
+          <tr data-cat="hotel" data-status="est" data-est="27125" data-actual="0" data-nights="1">
             <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
             <td>サンフランシスコ市内 1泊</td>
+            <td>10/28</td>
             <td>🇺🇸 SFO</td>
-            <td class="num-font">$250.00 USD</td>
+            <td class="num-font">$175.00 USD</td>
             <td class="num-font text-right">155.0</td>
-            <td class="num-font text-right">¥38,750</td>
+            <td class="num-font text-right">¥27,125</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>10/28 ユニオンスクエア周辺</td>
+            <td>10:20着→翌10:45発。<strong>ユニオンスクエアは Tenderloin 隣接。</strong>ノブヒル/ジャパンタウン または ミルブレー($175/泊)</td>
           </tr>
 
-          <tr data-cat="hotel" data-status="est">
+          <tr data-cat="hotel" data-status="est" data-est="29450" data-actual="0" data-nights="2">
             <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
             <td>メキシコシティ市内 2泊</td>
+            <td>10/29-30</td>
             <td>🇲🇽 メキシコシティ</td>
-            <td class="num-font">$240.00 USD</td>
+            <td class="num-font">$190.00 USD</td>
             <td class="num-font text-right">155.0</td>
-            <td class="num-font text-right">¥37,200</td>
+            <td class="num-font text-right">¥29,450</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>10/29-30 レフォルマ/ポランコ地区 ($120/泊)</td>
+            <td><strong>Roma Norte / Condesa</strong> のブティック ($95/泊)。レフォルマ大通り沿いより安く治安も良い</td>
           </tr>
 
-          <tr data-cat="hotel" data-status="est">
+          <tr data-cat="hotel" data-status="est" data-est="24800" data-actual="0" data-nights="1">
             <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
-            <td>リマ空港直結ホテル 1泊 (Costa del Sol Wyndham)</td>
+            <td>リマ空港近郊ホテル 1泊 (Costa del Sol Wyndham 等)</td>
+            <td>10/31</td>
             <td>🇵🇪 リマ</td>
             <td class="num-font">$160.00 USD</td>
             <td class="num-font text-right">155.0</td>
             <td class="num-font text-right">¥24,800</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>10/31 22:45着後、空港直結で治安安心・翌朝クスコ便へ</td>
+            <td>🛡️ <strong>減額対象外。</strong>22:45着・ターミナル直結という点に払う費用。カヤオ地区の安宿は代替にならない</td>
           </tr>
 
-          <tr data-cat="hotel" data-status="est">
+          <tr data-cat="hotel" data-status="est" data-est="40300" data-actual="0" data-nights="2">
             <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
-            <td>マチュピチュ村ホテル 1泊</td>
+            <td>マチュピチュ村ホテル <strong>2泊</strong></td>
+            <td>11/01-02</td>
             <td>🇵🇪 マチュピチュ村</td>
+            <td class="num-font">$260.00 USD</td>
+            <td class="num-font text-right">155.0</td>
+            <td class="num-font text-right">¥40,300</td>
+            <td class="num-font text-right">-</td>
+            <td class="text-center"><span class="status-badge status-est">見積</span></td>
+            <td>標高2,040mで高山病回避ルートの要。村の中級ホテルで十分 ($130/泊)</td>
+          </tr>
+
+          <tr data-cat="hotel" data-status="est" data-est="31000" data-actual="0" data-nights="2">
+            <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
+            <td>クスコ市内ホテル 2泊</td>
+            <td>11/03-04</td>
+            <td>🇵🇪 クスコ</td>
+            <td class="num-font">$200.00 USD</td>
+            <td class="num-font text-right">155.0</td>
+            <td class="num-font text-right">¥31,000</td>
+            <td class="num-font text-right">-</td>
+            <td class="text-center"><span class="status-badge status-est">見積</span></td>
+            <td>✏️ 日付を 11/02-03 から 11/03-04 へ修正済。アルマス広場周辺・標高3,400m ($100/泊)</td>
+          </tr>
+
+          <tr data-cat="hotel" data-status="est" data-est="39525" data-actual="0" data-nights="3">
+            <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
+            <td>イグアス地区ホテル 3泊</td>
+            <td>11/05-07</td>
+            <td>🇧🇷 イグアス</td>
+            <td class="num-font">$255.00 USD</td>
+            <td class="num-font text-right">155.0</td>
+            <td class="num-font text-right">¥39,525</td>
+            <td class="num-font text-right">-</td>
+            <td class="text-center"><span class="status-badge status-est">見積</span></td>
+            <td><strong>フォズ・ド・イグアス市街の4つ星 ($85/泊)。</strong>国立公園内リゾート($180/泊)は両国側に通う今回の使い方に不向き</td>
+          </tr>
+
+          <tr data-cat="hotel" data-status="est" data-est="27900" data-actual="0" data-nights="2">
+            <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
+            <td>サンパウロ市内ホテル <strong>2泊</strong></td>
+            <td>11/08-09</td>
+            <td>🇧🇷 サンパウロ</td>
             <td class="num-font">$180.00 USD</td>
             <td class="num-font text-right">155.0</td>
             <td class="num-font text-right">¥27,900</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/01 標高低く高山病対策に最適</td>
+            <td>パウリスタ通り周辺 ($90/泊)。11/10 の TP88 23:15発まで滞在</td>
           </tr>
 
-          <tr data-cat="hotel" data-status="est">
+          <tr data-cat="hotel" data-status="done" data-est="0" data-actual="0" data-nights="1">
             <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
-            <td>クスコ市内ホテル 2泊</td>
-            <td>🇵🇪 クスコ</td>
-            <td class="num-font">$280.00 USD</td>
-            <td class="num-font text-right">155.0</td>
-            <td class="num-font text-right">¥43,400</td>
-            <td class="num-font text-right">-</td>
-            <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/02-03 アルマス広場周辺 ($140/泊)</td>
+            <td>機中泊 (サンパウロ → リスボン / TP88)</td>
+            <td>11/10</td>
+            <td>✈️ 大西洋上</td>
+            <td class="num-font">—</td>
+            <td class="num-font text-right">—</td>
+            <td class="num-font text-right">¥0</td>
+            <td class="num-font text-right">¥0</td>
+            <td class="text-center"><span class="status-badge status-done">確定</span></td>
+            <td>🆕 23:15発→12:10着。<strong>宿泊費は発生しない</strong>（座席 5K・A330-900neo）</td>
           </tr>
 
-          <tr data-cat="hotel" data-status="est">
+          <tr data-cat="hotel" data-status="est" data-est="18040" data-actual="0" data-nights="1">
             <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
-            <td>リマ市内ホテル 1泊</td>
-            <td>🇵🇪 リマ</td>
-            <td class="num-font">$150.00 USD</td>
-            <td class="num-font text-right">155.0</td>
-            <td class="num-font text-right">¥23,250</td>
-            <td class="num-font text-right">-</td>
-            <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/04 ミラフローレス地区（美食ディナー徒歩圏）</td>
-          </tr>
-
-          <tr data-cat="hotel" data-status="est">
-            <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
-            <td>イグアス地区ホテル 3泊</td>
-            <td>🇧🇷 イグアス</td>
-            <td class="num-font">$540.00 USD</td>
-            <td class="num-font text-right">155.0</td>
-            <td class="num-font text-right">¥83,700</td>
-            <td class="num-font text-right">-</td>
-            <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/05-07 国立公園内または市街リゾート ($180/泊)</td>
-          </tr>
-
-          <tr data-cat="hotel" data-status="est">
-            <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
-            <td>サンパウロ市内ホテル 1泊</td>
-            <td>🇧🇷 サンパウロ</td>
-            <td class="num-font">$130.00 USD</td>
-            <td class="num-font text-right">155.0</td>
-            <td class="num-font text-right">¥20,150</td>
-            <td class="num-font text-right">-</td>
-            <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/08 パウリスタ通り周辺</td>
-          </tr>
-
-          <tr data-cat="hotel" data-status="est">
-            <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
-            <td>リスボン市内ホテル 2泊</td>
+            <td>リスボン市内ホテル <strong>1泊</strong></td>
+            <td>11/11</td>
             <td>🇵🇹 リスボン</td>
-            <td class="num-font">€320.00 EUR</td>
+            <td class="num-font">€110.00 EUR</td>
             <td class="num-font text-right">164.0</td>
-            <td class="num-font text-right">¥52,480</td>
+            <td class="num-font text-right">¥18,040</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/10-11 シアード地区 (€160/泊)</td>
+            <td>🔴 12:10着・翌07:10発で<strong>滞在19時間・睡眠5時間</strong>。高い宿を取る意味が薄い区間 (€110)</td>
           </tr>
 
-          <tr data-cat="hotel" data-status="est">
+          <tr data-cat="hotel" data-status="est" data-est="42640" data-actual="0" data-nights="2">
             <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
             <td>バルセロナ市内ホテル 2泊</td>
+            <td>11/12-13</td>
             <td>🇪🇸 バルセロナ</td>
-            <td class="num-font">€360.00 EUR</td>
-            <td class="num-font text-right">164.0</td>
-            <td class="num-font text-right">¥59,040</td>
-            <td class="num-font text-right">-</td>
-            <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/12-13 アシャンプラ地区 (€180/泊)</td>
-          </tr>
-
-          <tr data-cat="hotel" data-status="est">
-            <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
-            <td>マドリード市内ホテル 2泊</td>
-            <td>🇪🇸 マドリード</td>
-            <td class="num-font">€320.00 EUR</td>
-            <td class="num-font text-right">164.0</td>
-            <td class="num-font text-right">¥52,480</td>
-            <td class="num-font text-right">-</td>
-            <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/14-15 グラン・ビア周辺 (€160/泊)</td>
-          </tr>
-
-          <tr data-cat="hotel" data-status="est">
-            <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
-            <td>ローマ市内ホテル 3泊</td>
-            <td>🇮🇹 ローマ</td>
-            <td class="num-font">€480.00 EUR</td>
-            <td class="num-font text-right">164.0</td>
-            <td class="num-font text-right">¥78,720</td>
-            <td class="num-font text-right">-</td>
-            <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/16-18 テルミニ/歴史地区 (€160/泊)</td>
-          </tr>
-
-          <tr data-cat="hotel" data-status="est">
-            <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
-            <td>アテネ市内ホテル 2泊</td>
-            <td>🇬🇷 アテネ</td>
             <td class="num-font">€260.00 EUR</td>
             <td class="num-font text-right">164.0</td>
             <td class="num-font text-right">¥42,640</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/19-20 プラカ地区 (€130/泊)</td>
+            <td>アシャンプラ地区 (€130/泊)。11月は年間最閑散期で €180/泊 は過大</td>
           </tr>
 
-          <tr data-cat="hotel" data-status="est">
+          <tr data-cat="hotel" data-status="est" data-est="45920" data-actual="0" data-nights="2">
+            <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
+            <td>マドリード市内ホテル 2泊</td>
+            <td>11/14-15</td>
+            <td>🇪🇸 マドリード</td>
+            <td class="num-font">€280.00 EUR</td>
+            <td class="num-font text-right">164.0</td>
+            <td class="num-font text-right">¥45,920</td>
+            <td class="num-font text-right">-</td>
+            <td class="text-center"><span class="status-badge status-est">見積</span></td>
+            <td>🔴 <strong>11/15 スペイン代表戦で市内需要が跳ねる</strong>ため他都市ほど下げない (€140/泊)。早期確保推奨</td>
+          </tr>
+
+          <tr data-cat="hotel" data-status="est" data-est="54120" data-actual="0" data-nights="3">
+            <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
+            <td>ローマ市内ホテル 3泊</td>
+            <td>11/16-18</td>
+            <td>🇮🇹 ローマ</td>
+            <td class="num-font">€330.00 EUR</td>
+            <td class="num-font text-right">164.0</td>
+            <td class="num-font text-right">¥54,120</td>
+            <td class="num-font text-right">-</td>
+            <td class="text-center"><span class="status-badge status-est">見積</span></td>
+            <td>モンティ/トラステヴェレの3つ星 (€110/泊)。<strong>3連泊なのでアパート(洗濯機付)も有力</strong></td>
+          </tr>
+
+          <tr data-cat="hotel" data-status="est" data-est="29520" data-actual="0" data-nights="2">
+            <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
+            <td>アテネ市内ホテル 2泊</td>
+            <td>11/19-20</td>
+            <td>🇬🇷 アテネ</td>
+            <td class="num-font">€180.00 EUR</td>
+            <td class="num-font text-right">164.0</td>
+            <td class="num-font text-right">¥29,520</td>
+            <td class="num-font text-right">-</td>
+            <td class="text-center"><span class="status-badge status-est">見積</span></td>
+            <td>プラカ地区 (€90/泊)。🔴 11/20 13:00 にガラタサライ戦を購入する日</td>
+          </tr>
+
+          <tr data-cat="hotel" data-status="est" data-est="39360" data-actual="0" data-nights="2">
             <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
             <td>カッパドキア洞窟ホテル 2泊</td>
+            <td>11/21-22</td>
             <td>🇹🇷 カッパドキア</td>
-            <td class="num-font">€380.00 EUR</td>
+            <td class="num-font">€240.00 EUR</td>
             <td class="num-font text-right">164.0</td>
-            <td class="num-font text-right">¥62,320</td>
+            <td class="num-font text-right">¥39,360</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/21-22 ギョレメ/ウチヒサルの本格洞窟ホテル</td>
+            <td><strong>洞窟ホテルは維持したまま11月閑散期の相場へ (€120/泊)。</strong>🔴 11/21 は21:30頃着で気球まで実質4.5時間</td>
           </tr>
 
-          <tr data-cat="hotel" data-status="est">
+          <tr data-cat="hotel" data-status="est" data-est="36080" data-actual="0" data-nights="2">
             <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
             <td>イスタンブール市内ホテル 2泊</td>
+            <td>11/23-24</td>
             <td>🇹🇷 イスタンブール</td>
-            <td class="num-font">€300.00 EUR</td>
+            <td class="num-font">€220.00 EUR</td>
             <td class="num-font text-right">164.0</td>
-            <td class="num-font text-right">¥49,200</td>
+            <td class="num-font text-right">¥36,080</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/23-24 スルタンアフメト旧市街 (€150/泊)</td>
+            <td>スルタンアフメト旧市街 (€110/泊)</td>
           </tr>
 
-          <tr data-cat="hotel" data-status="est">
+          <tr data-cat="hotel" data-status="est" data-est="29450" data-actual="0" data-nights="2">
             <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
             <td>カイロ・ギザ地区ホテル 2泊 (ピラミッドビュー)</td>
+            <td>11/25-26</td>
             <td>🇪🇬 カイロ</td>
-            <td class="num-font">$300.00 USD</td>
+            <td class="num-font">$190.00 USD</td>
             <td class="num-font text-right">155.0</td>
-            <td class="num-font text-right">¥46,500</td>
+            <td class="num-font text-right">¥29,450</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/25-26 部屋からピラミッドが見えるホテル ($150/泊)</td>
+            <td><strong>ピラミッドビューは維持 ($95/泊)。</strong>ギザは眺望を売りにする中小ホテルの激戦区で $150/泊 は過大</td>
           </tr>
 
-          <tr data-cat="hotel" data-status="est">
+          <tr data-cat="hotel" data-status="done" data-est="0" data-actual="0" data-nights="1">
+            <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
+            <td>機中泊 (カイロ → ナイロビ / MS849)</td>
+            <td>11/27</td>
+            <td>✈️ アフリカ上空</td>
+            <td class="num-font">—</td>
+            <td class="num-font text-right">—</td>
+            <td class="num-font text-right">¥0</td>
+            <td class="num-font text-right">¥0</td>
+            <td class="text-center"><span class="status-badge status-done">確定</span></td>
+            <td>🆕 21:35発→03:30着（4h55m）。🔴 座席未指定・当日カイロ空港で通路側を要求</td>
+          </tr>
+
+          <tr data-cat="hotel" data-status="est" data-est="13950" data-actual="0" data-nights="0">
             <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
             <td>ナイロビ空港ホテル デイユース (04:30〜08:30)</td>
+            <td>11/28</td>
             <td>🇰🇪 ナイロビ</td>
             <td class="num-font">$90.00 USD</td>
             <td class="num-font text-right">155.0</td>
             <td class="num-font text-right">¥13,950</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/28 早朝03:30着後の仮眠・シャワー（クラウンプラザ等）</td>
+            <td>🛡️ <strong>減額対象外。</strong>03:30着。仮眠なしで陸路4h→サンセットサファリは不可</td>
           </tr>
 
-          <tr data-cat="hotel" data-status="est">
+          <tr data-cat="hotel" data-status="est" data-est="0" data-actual="0" data-nights="2">
             <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
-            <td>アンボセリ国立公園サファリロッジ 2泊</td>
+            <td>アンボセリ国立公園 サファリロッジ 2泊</td>
+            <td>11/28-29</td>
             <td>🇰🇪 アンボセリ</td>
             <td class="num-font">$0.00 USD</td>
             <td class="num-font text-right">155.0</td>
             <td class="num-font text-right">¥0</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/28-29 サファリツアーパッケージに宿泊・全食事込</td>
+            <td>サファリパッケージに宿泊・全食事込（→ アクティビティ側で計上）</td>
           </tr>
 
-          <tr data-cat="hotel" data-status="est">
+          <tr data-cat="hotel" data-status="est" data-est="20150" data-actual="0" data-nights="1">
             <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
             <td>ナイロビ空港近郊ホテル 1泊</td>
+            <td>11/30</td>
             <td>🇰🇪 ナイロビ</td>
             <td class="num-font">$130.00 USD</td>
             <td class="num-font text-right">155.0</td>
             <td class="num-font text-right">¥20,150</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/30 サファリ帰還後の休息・空港アクセス良好ホテル</td>
+            <td>🛡️ <strong>減額対象外。</strong>サファリ帰還後（13:30着）の休息・翌日の孤児象と空港アクセス</td>
           </tr>
 
-          <!-- ACTIVITIES -->
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="hotel" data-status="done" data-est="0" data-actual="0" data-nights="1">
+            <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
+            <td>機中泊 (ナイロビ → アディスアベバ → バンコク)</td>
+            <td>12/01</td>
+            <td>✈️ インド洋上空</td>
+            <td class="num-font">—</td>
+            <td class="num-font text-right">—</td>
+            <td class="num-font text-right">¥0</td>
+            <td class="num-font text-right">¥0</td>
+            <td class="text-center"><span class="status-badge status-done">確定</span></td>
+            <td>🆕 ET319 17:30発 → ADD乗継4h25m → ET608 23:55発 → <strong>12/2 12:30 BKK着</strong></td>
+          </tr>
+
+          <tr data-cat="hotel" data-status="est" data-est="46500" data-actual="0" data-nights="2">
+            <td><span class="cat-badge cat-hotel">🏨 宿泊費</span></td>
+            <td>シンガポール市内ホテル 2泊</td>
+            <td>2027/03/01-02</td>
+            <td>🇸🇬 シンガポール</td>
+            <td class="num-font">$300.00 USD</td>
+            <td class="num-font text-right">155.0</td>
+            <td class="num-font text-right">¥46,500</td>
+            <td class="num-font text-right">-</td>
+            <td class="text-center"><span class="status-badge status-est">見積</span></td>
+            <td>🆕 <strong>行が欠落していたため新規追加。</strong>3/3 は SIN 10:45発。マリーナベイ/ブギス周辺 ($150/泊)</td>
+          </tr>
+
+          <!-- ===== ACTIVITIES ===== -->
+          <tr data-cat="activity" data-status="est" data-est="9300" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>テオティワカン遺跡＋国立人類学博物館 入場料</td>
+            <td>テオティワカン遺跡＋国立人類学博物館</td>
+            <td>10/30</td>
             <td>🇲🇽 メキシコシティ</td>
             <td class="num-font">$60.00 USD</td>
             <td class="num-font text-right">155.0</td>
@@ -826,213 +992,244 @@
             <td>太陽・月のピラミッド入場＋ガイド料</td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="done" data-est="15142" data-actual="15142">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>マチュピチュ遺跡入場券＋ワイナピチュ峰入場券 (Circuit 2A)</td>
+            <td><strong>マチュピチュ入場券 2枚 (3-A ワイナピチュ ＋ 1-B 上段テラス)</strong></td>
+            <td>11/02</td>
             <td>🇵🇪 マチュピチュ</td>
-            <td class="num-font">200.00 PEN</td>
+            <td class="num-font">S/369.32 PEN</td>
             <td class="num-font text-right">41.0</td>
-            <td class="num-font text-right">¥8,200</td>
-            <td class="num-font text-right">-</td>
-            <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>ペルー文化省公式チケット（枠数限定・早め確保）</td>
+            <td class="num-font text-right">¥15,142</td>
+            <td class="num-font text-right" style="color:#34d399; font-weight:800;">¥15,142</td>
+            <td class="text-center"><span class="status-badge status-done">確定・購入済</span></td>
+            <td>🔴 <strong>購入済み（見積¥8,200から修正）。</strong>07:00 Puerta Baja / 13:00 Puerta Principal。1-B券は氏名綴り違いあり</td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="done" data-est="24738" data-actual="24738">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>展望パノラマ列車 (PeruRail Vistadome 往復)</td>
+            <td>PeruRail 往復 (オリャンタイタンボ ⇄ マチュピチュ村)</td>
+            <td>11/01・11/03</td>
             <td>🇵🇪 ペルー</td>
-            <td class="num-font">$190.00 USD</td>
+            <td class="num-font">$159.60 USD</td>
             <td class="num-font text-right">155.0</td>
-            <td class="num-font text-right">¥29,450</td>
-            <td class="num-font text-right">-</td>
-            <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>オリャンタイタンボ ⇄ マチュピチュ村 パノラマ車両</td>
+            <td class="num-font text-right">¥24,738</td>
+            <td class="num-font text-right">¥24,738</td>
+            <td class="text-center"><span class="status-badge status-done">確定</span></td>
+            <td>✅ <strong>2026/9/8 購入済（予約 WEB3204304・$159.60）。</strong>往路 <strong>V.Observatory 303</strong> 13:27→14:50・A号車10番・集合12:57 ／ 復路 <strong>Vistadome 602</strong> 12:46→14:19・A号車33番・集合12:16。🔴 <strong>手荷物8kg制限</strong>（手配_鉄道.md §5）</td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="est" data-est="20150" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>リマ美食名店ディナー (Central または Maido)</td>
-            <td>🇵🇪 リマ</td>
-            <td class="num-font">$220.00 USD</td>
+            <td>クスコ空港 ⇄ オリャンタイタンボ 専用送迎 (往復)</td>
+            <td>11/01・11/03</td>
+            <td>🇵🇪 ペルー</td>
+            <td class="num-font">$130.00 USD</td>
             <td class="num-font text-right">155.0</td>
-            <td class="num-font text-right">¥34,100</td>
+            <td class="num-font text-right">¥20,150</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>世界のベストレストラン50 第1位経験店コース＋ペアリング</td>
+            <td>🆕 計上漏れ。片道約1h45m（発券用資料 §5-3）</td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="est" data-est="12000" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
             <td>イグアス国立公園 入園料 (ブラジル側＋アルゼンチン側)</td>
+            <td>11/06-07</td>
             <td>🇧🇷 / 🇦🇷 イグアス</td>
-            <td class="num-font">200 BRL + 35,000 ARS</td>
-            <td class="num-font text-right">-</td>
+            <td class="num-font">200 BRL ＋ 35,000 ARS</td>
+            <td class="num-font text-right">28.0 / 0.183</td>
             <td class="num-font text-right">¥12,000</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>悪魔の喉笛展望橋・パノラマ遊歩道</td>
+            <td>✏️ ARS の適用レートを明記。悪魔の喉笛展望橋・パノラマ遊歩道</td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="est" data-est="27900" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>マクコ・サファリ (滝壺スピードボート＆ヘリ遊覧)</td>
+            <td>マクコ・サファリ (滝壺ボート) ＋ ヘリ遊覧 (Helisul)</td>
+            <td>11/06-07</td>
             <td>🇧🇷 イグアス</td>
             <td class="num-font">$180.00 USD</td>
             <td class="num-font text-right">155.0</td>
             <td class="num-font text-right">¥27,900</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>豪快に滝壺へ突入するボートツアー＆空からの全景</td>
+            <td>⚠️ ヘリ遊覧は<strong>カード付帯保険の免責に当たらないか要確認</strong></td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="est" data-est="3280" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>シントラ・ペーナ宮殿＆ロカ岬 日帰りツアー</td>
-            <td>🇵🇹 ポルトガル</td>
-            <td class="num-font">€40.00 EUR</td>
+            <td>ベレン地区 (ベレンの塔・ジェロニモス修道院)</td>
+            <td>11/11</td>
+            <td>🇵🇹 リスボン</td>
+            <td class="num-font">€20.00 EUR</td>
             <td class="num-font text-right">164.0</td>
-            <td class="num-font text-right">¥6,560</td>
+            <td class="num-font text-right">¥3,280</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>ユーラシア大陸最西端ロカ岬証明書</td>
+            <td>🔴 <strong>シントラ日帰りツアーから変更。</strong>滞在19時間・観光は午後のみで日帰りは不可能</td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="est" data-est="8200" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>サグラダ・ファミリア教会 (塔入場付) ＆ グエル公園</td>
+            <td>サグラダ・ファミリア (塔入場付) ＆ グエル公園</td>
+            <td>11/13</td>
             <td>🇪🇸 バルセロナ</td>
             <td class="num-font">€50.00 EUR</td>
             <td class="num-font text-right">164.0</td>
             <td class="num-font text-right">¥8,200</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>公式優先入場チケット</td>
+            <td>🔴 <strong>塔の登頂は枠が少なく事前予約必須</strong>（公式優先入場）</td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="est" data-est="21320" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>高速鉄道 AVE (バルセロナ ⇄ マドリード)</td>
+            <td>高速鉄道 AVE (バルセロナ ⇄ マドリード 往復)</td>
+            <td>11/14・11/16</td>
             <td>🇪🇸 スペイン</td>
             <td class="num-font">€130.00 EUR</td>
             <td class="num-font text-right">164.0</td>
             <td class="num-font text-right">¥21,320</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>所要2時間30分 Renfe公式手配</td>
+            <td>🔴 <strong>11/16 は 09:30頃発を選ぶ</strong>（AZ79 16:50発に間に合わせる）。所要2h30m</td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="est" data-est="32800" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>本場サッカー観戦チケット (ラ・リーガ レアル・マドリード戦等)</td>
+            <td><strong>スペイン vs イングランド (UEFAネーションズリーグ 最終節)</strong></td>
+            <td>11/15 20:45</td>
             <td>🇪🇸 マドリード</td>
             <td class="num-font">€200.00 EUR</td>
             <td class="num-font text-right">164.0</td>
             <td class="num-font text-right">¥32,800</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/14 サンティアゴ・ベルナベウ等</td>
+            <td>🔴 <strong>会場はリヤド・エアー・メトロポリターノ</strong>（ベルナベウではない）。tickets.rfef.es のみ・記名式。発売は10月上旬の見込み</td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="est" data-est="10660" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>コロッセオ・フォロ・ロマーノ・ヴァチカン共通入場</td>
+            <td>コロッセオ・フォロロマーノ ＋ ヴァチカン博物館</td>
+            <td>11/17</td>
             <td>🇮🇹 ローマ</td>
             <td class="num-font">€65.00 EUR</td>
             <td class="num-font text-right">164.0</td>
             <td class="num-font text-right">¥10,660</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>サン・ピエトロ大聖堂＆古代ローマ遺跡</td>
+            <td>🔴 <strong>両方とも事前予約必須</strong>（当日券は長蛇の列）</td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="est" data-est="36080" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>トスカーナ地方日帰りワイナリーツアー (送迎・試飲ランチ付)</td>
+            <td>トスカーナ日帰りワイナリーツアー (送迎・試飲ランチ付)</td>
+            <td>11/18</td>
             <td>🇮🇹 トスカーナ</td>
             <td class="num-font">€220.00 EUR</td>
             <td class="num-font text-right">164.0</td>
             <td class="num-font text-right">¥36,080</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>オルチャ渓谷の絶景とブルネッロ/キャンティ名醸ワイナリー</td>
+            <td>約11〜12h。⚠️ <strong>翌 11/19 は 07:15 ホテル発</strong>なので帰着の早いツアーを選ぶ</td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="est" data-est="6560" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>アクロポリス共通入場券 (パルテノン神殿) ＆ 新博物館</td>
+            <td>アクロポリス共通入場券 ＆ アクロポリス博物館</td>
+            <td>11/20</td>
             <td>🇬🇷 アテネ</td>
             <td class="num-font">€40.00 EUR</td>
             <td class="num-font text-right">164.0</td>
             <td class="num-font text-right">¥6,560</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>古代ギリシャ世界遺産</td>
+            <td>パルテノン神殿ほか</td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="est" data-est="42640" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>カッパドキア早朝 熱気球フライト (シャンパン付)</td>
+            <td>カッパドキア 早朝 熱気球フライト</td>
+            <td>11/22 04:00</td>
             <td>🇹🇷 カッパドキア</td>
             <td class="num-font">€260.00 EUR</td>
             <td class="num-font text-right">164.0</td>
             <td class="num-font text-right">¥42,640</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>奇岩群を見下ろす約60分間のフライト</td>
+            <td>🔴 <strong>04:00 ピックアップで実質睡眠4.5時間（行程中で最短）。</strong>気球後の仮眠を前提に組む。⚠️ 保険の免責も要確認</td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="est" data-est="29520" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>UEFAチャンピオンズリーグ観戦チケット (ガラタサライ戦)</td>
+            <td><strong>ガラタサライ vs アストン・ヴィラ (UCLリーグフェーズ 第5節)</strong></td>
+            <td>11/24 18:45</td>
             <td>🇹🇷 イスタンブール</td>
             <td class="num-font">€180.00 EUR</td>
             <td class="num-font text-right">164.0</td>
             <td class="num-font text-right">¥29,520</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>11/24 夜 Ali Sami Yen Stadium（世界屈指の熱狂）</td>
+            <td>🔴 <strong>一般販売は 11/20(金) 14:00 トルコ時間＝アテネ 13:00。</strong>GSロゴ入り Passo Taraftar カードを9月中に申請</td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="est" data-est="11625" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>ギザの三大ピラミッド入場＋クフ王内部特別入場＋GEM大エジプト博物館</td>
+            <td>ギザ三大ピラミッド ＋ クフ王内部 ＋ 大エジプト博物館 (GEM)</td>
+            <td>11/26-27</td>
             <td>🇪🇬 カイロ</td>
             <td class="num-font">$75.00 USD</td>
             <td class="num-font text-right">155.0</td>
             <td class="num-font text-right">¥11,625</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>クフ王玄室内部入場＋ツタンカーメン黄金のマスク</td>
+            <td>⚠️ <strong>GEM は 11/27 15:00 で切り上げる</strong>（MS849 21:35発のため）</td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="est" data-est="209250" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>アンボセリ国立公園 2泊3日専用サファリパッケージ</td>
+            <td><strong>アンボセリ国立公園 2泊3日 専用サファリパッケージ</strong></td>
+            <td>11/28-30</td>
             <td>🇰🇪 アンボセリ</td>
             <td class="num-font">$1,350.00 USD</td>
             <td class="num-font text-right">155.0</td>
             <td class="num-font text-right">¥209,250</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>専用4x4ポップアップカー、公園入園料、専属ガイド、ロッジ全食事込</td>
+            <td>専用4x4・入園料・専属ガイド・ロッジ全食事込。<strong>11/28 09:00 ナイロビ発／11/30 13:30 戻り</strong></td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="est" data-est="10075" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td><a href="https://www.sheldrickwildlifetrust.org/" target="_blank" rel="noopener" class="ext-link">シェルドリック野生動物信託 (Sheldrick Wildlife Trust)</a> 孤児象保護施設</td>
+            <td>ナイロビ市内 送迎 (シェルドリック・ジラフセンター)</td>
+            <td>11/30</td>
+            <td>🇰🇪 ナイロビ</td>
+            <td class="num-font">$65.00 USD</td>
+            <td class="num-font text-right">155.0</td>
+            <td class="num-font text-right">¥10,075</td>
+            <td class="num-font text-right">-</td>
+            <td class="text-center"><span class="status-badge status-est">見積</span></td>
+            <td>🆕 計上漏れ。市内は距離があり配車が要る</td>
+          </tr>
+
+          <tr data-cat="activity" data-status="est" data-est="3100" data-actual="0">
+            <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
+            <td><a href="https://www.sheldrickwildlifetrust.org/" target="_blank" rel="noopener" class="ext-link">シェルドリック野生動物信託</a> 孤児象保護施設</td>
+            <td>11/30</td>
             <td>🇰🇪 ナイロビ</td>
             <td class="num-font">$20.00 USD (2,600 KES)</td>
             <td class="num-font text-right">155.0</td>
             <td class="num-font text-right">¥3,100</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td><a href="https://www.sheldrickwildlifetrust.org/" target="_blank" rel="noopener" class="ext-link">公式予約 (11:00-12:00 公開ミルク給餌)</a></td>
+            <td><a href="https://www.sheldrickwildlifetrust.org/" target="_blank" rel="noopener" class="ext-link">公式予約</a>（11:00-12:00 の公開ミルク給餌）</td>
           </tr>
 
-          <tr data-cat="activity" data-status="est">
+          <tr data-cat="activity" data-status="est" data-est="2325" data-actual="0">
             <td><span class="cat-badge cat-activity">🎟️ アクティビティ</span></td>
-            <td>ジラフ・センター (Giraffe Centre) キリン保全施設入場料</td>
+            <td>ジラフ・センター (Giraffe Centre)</td>
+            <td>11/30</td>
             <td>🇰🇪 ナイロビ</td>
             <td class="num-font">$15.00 USD (2,000 KES)</td>
             <td class="num-font text-right">155.0</td>
@@ -1042,65 +1239,83 @@
             <td>絶滅危惧ロスチャイルドキリンへの手渡し餌やり</td>
           </tr>
 
-          <!-- MISC & CONTINGENCY -->
-          <tr data-cat="misc" data-status="est">
+          <!-- ===== MISC & CONTINGENCY ===== -->
+          <tr data-cat="misc" data-status="est" data-est="45000" data-actual="0">
             <td><span class="cat-badge cat-misc">🛡️ 諸経費</span></td>
-            <td>海外旅行傷害保険 (世界一周プラン・医療搬送無制限)</td>
+            <td>海外旅行保険 (治療・救援・医療搬送の上乗せ分)</td>
+            <td>10/26〜12/02</td>
             <td>世界共通</td>
             <td class="num-font">¥45,000 JPY</td>
             <td class="num-font text-right">1.0</td>
             <td class="num-font text-right">¥45,000</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>高地・サファリ対応・航空機遅延補償付帯</td>
+            <td>🔴 カード付帯（ANA＋JAL）をベースにした<strong>上乗せ分</strong>。医療搬送はカードでは 400〜500万円が限界。⚠️ <strong>タイ在住で加入可能かの確認が先</strong></td>
           </tr>
 
-          <tr data-cat="misc" data-status="est">
+          <tr data-cat="misc" data-status="est" data-est="20000" data-actual="0">
             <td><span class="cat-badge cat-misc">🛡️ 諸経費</span></td>
-            <td>渡航認証・ビザ手数料 (ESTA / ケニアETA / エジプトe-Visa等)</td>
+            <td>予防接種 (黄熱・A型肝炎・腸チフス等)</td>
+            <td>9〜10月</td>
+            <td>🇰🇪 ケニア入国要件</td>
+            <td class="num-font">¥20,000 JPY</td>
+            <td class="num-font text-right">1.0</td>
+            <td class="num-font text-right">¥20,000</td>
+            <td class="num-font text-right">-</td>
+            <td class="text-center"><span class="status-badge status-est">見積</span></td>
+            <td>🆕 計上漏れ。<strong>黄熱は接種から10日後に有効</strong>になるため9月中に予約する</td>
+          </tr>
+
+          <tr data-cat="misc" data-status="est" data-est="18600" data-actual="0">
+            <td><span class="cat-badge cat-misc">🛡️ 諸経費</span></td>
+            <td>渡航認証・ビザ手数料 (ESTA / ケニアeTA / エジプトe-Visa 等)</td>
+            <td>9〜10月</td>
             <td>各国</td>
             <td class="num-font">$120.00 USD</td>
             <td class="num-font text-right">155.0</td>
             <td class="num-font text-right">¥18,600</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>米国ESTA ($21)、ケニアETA ($35)、エジプトe-Visa ($25) 等</td>
+            <td>米ESTA・ケニアeTA・エジプトe-Visa。トルコ／ブラジル／アルゼンチン／ペルーは日本国籍はビザ免除</td>
           </tr>
 
-          <tr data-cat="misc" data-status="est">
+          <tr data-cat="misc" data-status="est" data-est="10075" data-actual="0">
             <td><span class="cat-badge cat-misc">🛡️ 諸経費</span></td>
-            <td>通信費 (世界周遊eSIM 20GB / ローミング)</td>
+            <td>通信費 (世界周遊 eSIM 20GB)</td>
+            <td>全期間</td>
             <td>世界共通</td>
             <td class="num-font">$65.00 USD</td>
             <td class="num-font text-right">155.0</td>
             <td class="num-font text-right">¥10,075</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>Airalo または Ubigi 世界周遊データプラン</td>
+            <td>Airalo / Ubigi 等。🔴 <strong>11/20 のチケット購入に通信が必須</strong></td>
           </tr>
 
-          <tr data-cat="misc" data-status="est">
+          <tr data-cat="misc" data-status="est" data-est="400000" data-actual="0">
             <td><span class="cat-badge cat-misc">🛡️ 諸経費</span></td>
-            <td>現地滞在飲食費・市内交通・チップ等 (36日間分)</td>
+            <td>現地飲食費・市内交通・チップ (実質33日分)</td>
+            <td>10/26〜12/02</td>
             <td>滞在全都市</td>
-            <td class="num-font">¥250,000 JPY</td>
+            <td class="num-font">¥400,000 JPY</td>
             <td class="num-font text-right">1.0</td>
-            <td class="num-font text-right">¥250,000</td>
+            <td class="num-font text-right">¥400,000</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>1日平均 約7,000円 想定</td>
+            <td>🔴 <strong>¥250,000 から増額。</strong>旅程は38日、機中泊3回とサファリ全食事込を除き実質33日。<strong>1日 約12,000円</strong>（欧州は外食2食＋交通で €80〜100/日）</td>
           </tr>
 
-          <tr data-cat="misc" data-status="est">
+          <tr data-cat="misc" data-status="est" data-est="200000" data-actual="0">
             <td><span class="cat-badge cat-misc">🛡️ 諸経費</span></td>
             <td>予備費 (為替変動バッファ・不測の緊急出費枠)</td>
+            <td>—</td>
             <td>予備枠</td>
             <td class="num-font">¥200,000 JPY</td>
             <td class="num-font text-right">1.0</td>
             <td class="num-font text-right">¥200,000</td>
             <td class="num-font text-right">-</td>
             <td class="text-center"><span class="status-badge status-est">見積</span></td>
-            <td>為替レート急変や現地タクシー・オプショナル枠</td>
+            <td>為替の急変、オプショナル追加、現地タクシー等</td>
           </tr>
 
         </tbody>
@@ -1110,100 +1325,120 @@
     <!-- EXCHANGE RATES REFERENCE -->
     <div class="rates-card">
       <div class="rates-title">
-        <span>💱 為替レート換算基準 (2026年9月現在基準レート)</span>
+        <span>💱 為替レート換算基準 (2026年9月 基準レート)</span>
       </div>
       <div class="rates-grid">
-        <div class="rate-item">
-          <div class="rate-curr">🇺🇸 米ドル (USD)</div>
-          <div class="rate-val">1 USD = ¥155.0</div>
-        </div>
-        <div class="rate-item">
-          <div class="rate-curr">🇪🇺 ユーロ (EUR)</div>
-          <div class="rate-val">1 EUR = ¥164.0</div>
-        </div>
-        <div class="rate-item">
-          <div class="rate-curr">🇧🇷 レアル (BRL)</div>
-          <div class="rate-val">1 BRL = ¥28.0</div>
-        </div>
-        <div class="rate-item">
-          <div class="rate-curr">🇵🇪 ソル (PEN)</div>
-          <div class="rate-val">1 PEN = ¥41.0</div>
-        </div>
-        <div class="rate-item">
-          <div class="rate-curr">🇹🇷 リラ (TRY)</div>
-          <div class="rate-val">1 TRY = ¥4.5</div>
-        </div>
-        <div class="rate-item">
-          <div class="rate-curr">🇪🇬 ポンド (EGP)</div>
-          <div class="rate-val">1 EGP = ¥3.2</div>
-        </div>
-        <div class="rate-item">
-          <div class="rate-curr">🇰🇪 シリング (KES)</div>
-          <div class="rate-val">1 KES = ¥1.2</div>
-        </div>
-        <div class="rate-item">
-          <div class="rate-curr">🇲🇽 ペソ (MXN)</div>
-          <div class="rate-val">1 MXN = ¥7.8</div>
-        </div>
-        <div class="rate-item">
-          <div class="rate-curr">🇹🇭 バーツ (THB)</div>
-          <div class="rate-val">1 THB = ¥4.5</div>
-        </div>
+        <div class="rate-item"><div class="rate-curr">🇺🇸 米ドル (USD)</div><div class="rate-val">1 USD = ¥155.0</div></div>
+        <div class="rate-item"><div class="rate-curr">🇪🇺 ユーロ (EUR)</div><div class="rate-val">1 EUR = ¥164.0</div></div>
+        <div class="rate-item"><div class="rate-curr">🇧🇷 レアル (BRL)</div><div class="rate-val">1 BRL = ¥28.0</div></div>
+        <div class="rate-item"><div class="rate-curr">🇦🇷 ペソ (ARS)</div><div class="rate-val">1 ARS = ¥0.183</div></div>
+        <div class="rate-item"><div class="rate-curr">🇵🇪 ソル (PEN)</div><div class="rate-val">1 PEN = ¥41.0</div></div>
+        <div class="rate-item"><div class="rate-curr">🇹🇷 リラ (TRY)</div><div class="rate-val">1 TRY = ¥4.5 ⚠️</div></div>
+        <div class="rate-item"><div class="rate-curr">🇪🇬 ポンド (EGP)</div><div class="rate-val">1 EGP = ¥3.2</div></div>
+        <div class="rate-item"><div class="rate-curr">🇰🇪 シリング (KES)</div><div class="rate-val">1 KES = ¥1.2</div></div>
+        <div class="rate-item"><div class="rate-curr">🇲🇽 ペソ (MXN)</div><div class="rate-val">1 MXN = ¥7.8</div></div>
+        <div class="rate-item"><div class="rate-curr">🇹🇭 バーツ (THB)</div><div class="rate-val">1 THB = ¥4.5</div></div>
       </div>
+      <p style="margin-top:12px; font-size:12px; color:var(--text-muted);">
+        ⚠️ <strong>TRY = ¥4.5（USD/TRY ≈ 34）は他通貨に比べて強すぎる可能性があります。</strong>
+        ただしトルコの支出は USD／EUR 建てで計上しているため、総額への影響はありません。
+        ARS のレートは旧版で空欄だったため、イグアス入園料の内訳（200 BRL ＋ 35,000 ARS ＝ ¥12,000）から逆算して明記しました。
+      </p>
     </div>
 
     <!-- FOOTER -->
     <footer>
-      <p>World Tour 2026 Cost Management System | Currency in Local & JPY</p>
-      <p style="margin-top: 4px;">実績は随時手配・決済完了後に更新されます。</p>
+      <p>World Tour 2026 Cost Management System | Currency in Local &amp; JPY</p>
+      <p style="margin-top: 4px;">サマリーは明細行の <code>data-est</code> / <code>data-actual</code> から自動集計しています。行を追加・修正すれば合計も自動で追随します。</p>
+      <p style="margin-top: 4px;">最終監査: 2026年9月6日</p>
     </footer>
 
   </div>
 
   <script>
+    // ---- 集計（明細行から自動計算。手入力の合計は持たない）----
+    const yen = n => '¥' + n.toLocaleString('ja-JP');
+
+    function computeTotals() {
+      const rows = document.querySelectorAll('#costTable tbody tr');
+      const acc = {
+        flight:  { est: 0, act: 0, n: 0 },
+        hotel:   { est: 0, act: 0, n: 0, nights: 0 },
+        activity:{ est: 0, act: 0, n: 0 },
+        misc:    { est: 0, act: 0, n: 0 }
+      };
+      rows.forEach(r => {
+        const c = r.dataset.cat;
+        if (!acc[c]) return;
+        acc[c].est += parseInt(r.dataset.est || '0', 10);
+        acc[c].act += parseInt(r.dataset.actual || '0', 10);
+        acc[c].n   += 1;
+        if (c === 'hotel') acc.hotel.nights += parseInt(r.dataset.nights || '0', 10);
+      });
+
+      const totalEst = acc.flight.est + acc.hotel.est + acc.activity.est + acc.misc.est;
+      const totalAct = acc.flight.act + acc.hotel.act + acc.activity.act + acc.misc.act;
+      const remain   = totalEst - totalAct;
+      const pct      = totalEst ? (totalAct / totalEst * 100) : 0;
+
+      document.getElementById('kpiTotal').textContent  = yen(totalEst);
+      document.getElementById('kpiActual').textContent = yen(totalAct);
+      document.getElementById('kpiRemain').textContent = yen(remain);
+      document.getElementById('kpiPct').textContent    = pct.toFixed(1) + '%';
+      document.getElementById('kpiPctSub').textContent = 'RTW発券とマチュピチュ券で確定';
+
+      document.getElementById('progLabel').textContent =
+        pct.toFixed(1) + '% 確定済み (' + yen(totalAct) + ' / ' + yen(totalEst) + ')';
+      document.getElementById('progBar').style.width = pct.toFixed(1) + '%';
+      document.getElementById('legDone').textContent = '(' + pct.toFixed(1) + '%)';
+      document.getElementById('legEst').textContent  = '(' + (100 - pct).toFixed(1) + '%)';
+
+      const set = (id, v) => document.getElementById(id).textContent = v;
+      set('catFlightEst', yen(acc.flight.est));
+      set('catFlightAct', yen(acc.flight.act));
+      set('catFlightPct', acc.flight.est ? (acc.flight.act / acc.flight.est * 100).toFixed(1) + '% 確定' : '—');
+
+      set('catHotelEst', yen(acc.hotel.est));
+      set('catHotelAct', acc.hotel.act ? yen(acc.hotel.act) : '¥0 (順次予約)');
+      set('catHotelNights', '全' + acc.hotel.nights + '夜（ホテル' + (acc.hotel.nights - 3) + '泊＋機中泊3）');
+
+      set('catActEst', yen(acc.activity.est));
+      set('catActAct', acc.activity.act ? yen(acc.activity.act) : '¥0');
+      set('catActCount', '全' + acc.activity.n + '件');
+
+      set('catMiscEst', yen(acc.misc.est));
+      set('catMiscAct', acc.misc.act ? yen(acc.misc.act) : '¥0');
+    }
+
+    // ---- フィルタ・検索 ----
     let currentCat = 'all';
     let currentStatus = 'all';
 
-    function applyFilter(type, val) {
-      if (type === 'cat') {
-        currentCat = val;
-        document.querySelectorAll('#categoryFilters .btn-filter').forEach(btn => {
-          btn.classList.remove('active');
-        });
-      } else if (type === 'status') {
-        currentStatus = val;
-        document.querySelectorAll('#statusFilters .btn-filter').forEach(btn => {
-          btn.classList.remove('active');
-        });
-      }
-      event.target.classList.add('active');
-      filterRows();
-    }
-
     function filterRows() {
-      const rows = document.querySelectorAll('#costTable tbody tr');
       const query = document.getElementById('searchInput').value.toLowerCase();
-
-      rows.forEach(row => {
-        const cat = row.getAttribute('data-cat');
-        const status = row.getAttribute('data-status');
-        const text = row.innerText.toLowerCase();
-
-        const matchCat = (currentCat === 'all' || cat === currentCat);
-        const matchStatus = (currentStatus === 'all' || status === currentStatus);
-        const matchQuery = (!query || text.includes(query));
-
-        if (matchCat && matchStatus && matchQuery) {
-          row.style.display = '';
-        } else {
-          row.style.display = 'none';
-        }
+      document.querySelectorAll('#costTable tbody tr').forEach(row => {
+        const matchCat    = (currentCat === 'all' || row.dataset.cat === currentCat);
+        const matchStatus = (currentStatus === 'all' || row.dataset.status === currentStatus);
+        const matchQuery  = (!query || row.innerText.toLowerCase().includes(query));
+        row.style.display = (matchCat && matchStatus && matchQuery) ? '' : 'none';
       });
     }
 
-    function searchTable() {
-      filterRows();
-    }
+    document.querySelectorAll('.btn-filter').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.dataset.type;
+        const val  = btn.dataset.val;
+        const scope = (type === 'cat') ? '#categoryFilters' : '#statusFilters';
+        document.querySelectorAll(scope + ' .btn-filter').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (type === 'cat') currentCat = val; else currentStatus = val;
+        filterRows();
+      });
+    });
+
+    document.getElementById('searchInput').addEventListener('keyup', filterRows);
+
+    computeTotals();
   </script>
 </body>
 </html>

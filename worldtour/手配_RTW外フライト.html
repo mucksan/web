@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>手配_RTW外フライト — C1〜C6 の候補と優先順位 - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🐘 サファリ・象孤児院</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="観戦チケット_販売方法と時期.html">🎫 観戦チケット 販売方法と時期</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_RTW外フライト.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="_rtw-c1c6">手配_RTW外フライト — C1〜C6 の候補と優先順位</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>版数</strong></td>
+<td style="text-align: left;">第1版</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>作成日</strong></td>
+<td style="text-align: left;">2026年9月6日</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>対象</strong></td>
+<td style="text-align: left;">TODO.md <strong>C群（C1〜C6）</strong>／RTW航空券（PNR <strong>EANRV5</strong>）に含まれない自己手配6区間</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>データ出所</strong></td>
+<td style="text-align: left;">🔴 <strong>Google Flights の実データ</strong>（<code>tools/flightwatch</code> の <code>search()</code> を再利用して 2026/9/6 取得）<br>エコノミー・片道・USD建て。<strong>便名と時刻は実在の公示ダイヤ、運賃は取得時点の目安</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>前提</strong></td>
+<td style="text-align: left;">✅ <strong>A-1 成立（10/31 リマ着 22:45）により、11/1 の設計が朝型に変わった</strong>（C2・D1）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h2 id="_1">🔴 本書の大原則</h2>
+<ol>
+<li><strong>RTW本券とは別券。</strong>遅延しても RTW 側は救済されない。<strong>乗継は自分で厚く取る。</strong></li>
+<li><strong>11/2 のマチュピチュ入場券は購入済み・日時固定・再発行不可。</strong><br />
+   → <strong>C2 の遅延は旅程全体で最も損害が大きい。</strong>ここだけは価格で選ばない。</li>
+<li><strong>C6 は「安い運賃」ではなく「変更できる運賃」を買う区間。</strong></li>
+</ol>
+</blockquote>
+<h3 id="_2">優先順位まとめ</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">区間</th>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">推奨</th>
+<th style="text-align: right;">概算</th>
+<th style="text-align: center;">優先</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>C2</strong></td>
+<td style="text-align: left;">LIM → CUZ</td>
+<td style="text-align: left;">11/1</td>
+<td style="text-align: left;"><strong>LA2013 07:40→09:05</strong></td>
+<td style="text-align: right;">$71</td>
+<td style="text-align: center;">🔴 最優先</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>C3</strong></td>
+<td style="text-align: left;">CUZ → LIM → GRU → IGU</td>
+<td style="text-align: left;">11/5</td>
+<td style="text-align: left;"><strong>LA2167／LA8005／LA3206</strong>（全LATAM1枚）</td>
+<td style="text-align: right;">約$300</td>
+<td style="text-align: center;">🔴 最優先</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>C5</strong></td>
+<td style="text-align: left;">IST → NAV</td>
+<td style="text-align: left;">11/21</td>
+<td style="text-align: left;"><strong>TK2008 19:40→21:00</strong></td>
+<td style="text-align: right;">$77</td>
+<td style="text-align: center;">🔴 高</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>C6</strong></td>
+<td style="text-align: left;">NAV → IST</td>
+<td style="text-align: left;">11/23</td>
+<td style="text-align: left;"><strong>TK2001 09:30→11:05（ExtraFly以上）</strong></td>
+<td style="text-align: right;">$77+</td>
+<td style="text-align: center;">🔴 高</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>C4</strong></td>
+<td style="text-align: left;">IGU → GRU</td>
+<td style="text-align: left;">11/8</td>
+<td style="text-align: left;"><strong>LA3201 10:40→12:25</strong></td>
+<td style="text-align: right;">$334</td>
+<td style="text-align: center;">🟡 中</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>C1</strong></td>
+<td style="text-align: left;">BKK → 東京</td>
+<td style="text-align: left;">10/26</td>
+<td style="text-align: left;"><strong>TG660 14:25→HND 22:05</strong></td>
+<td style="text-align: right;">$343</td>
+<td style="text-align: center;">🟡 中</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<span id="c1"></span><h2 id="c1-bkk-1026">C1. BKK → 東京（10/26）🟡</h2>
+<p><strong>制約:</strong> 家族旅行 10/23-25 の翌日。10/26・10/27 は実家泊、10/28 に <strong>NH8 成田17:00発</strong>。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">順</th>
+<th style="text-align: left;">便</th>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: right;">運賃</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">★<strong>1</strong></td>
+<td style="text-align: left;"><strong>TG660</strong></td>
+<td style="text-align: left;"><strong>BKK 14:25 → HND 22:05</strong></td>
+<td style="text-align: right;"><strong>$343</strong></td>
+<td style="text-align: left;">✅ <strong>午後発でゆとり。</strong>家族旅行の翌日に早起きしなくてよい。直行・受託手荷物込み。羽田着</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"><strong>TG676</strong></td>
+<td style="text-align: left;">BKK 08:00 → NRT 15:50</td>
+<td style="text-align: right;">$469</td>
+<td style="text-align: left;">✅ 夕方から実家でゆっくりできる。⚠️ <strong>BKK 05:00台出発</strong>になる</td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;"><strong>ZG52</strong>（ZIPAIR）</td>
+<td style="text-align: left;">BKK 23:45 → NRT 07:30(+1)</td>
+<td style="text-align: right;"><strong>$267</strong></td>
+<td style="text-align: left;">💰 <strong>最安。</strong>787。🔴 <strong>10/26 の夜を機中で失い実家泊が1泊に減る。</strong>受託手荷物は別料金</td>
+</tr>
+<tr>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"><strong>NH806</strong></td>
+<td style="text-align: left;">BKK 07:10 → NRT 15:05</td>
+<td style="text-align: right;">$800</td>
+<td style="text-align: left;">ANA。マイル・遅延時のケアは最良だが<strong>TG676比 +$331 の価値は薄い</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">VZ830（Thai Vietjet）</td>
+<td style="text-align: left;">BKK 23:55 → NRT 07:55(+1)</td>
+<td style="text-align: right;">$292</td>
+<td style="text-align: left;">LCC深夜便。③より条件が悪い</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>LCCの価格差は受託手荷物で縮む。</strong>世界一周の荷物は重い。<br />
+TG／JL／NH は受託手荷物込みだが、ZIPAIR・Thai Vietjet は別料金。<strong>総額で比較すること。</strong></p>
+<p>✅ <strong>RTW本券は 10/28 NRT 発。</strong>C1 が羽田着でも成田着でも、間に実家泊2泊が入るので影響しない。</p>
+</blockquote>
+<hr />
+<span id="c2"></span><h2 id="c2-lim-cuz111">C2. LIM → CUZ（11/1）🔴 <strong>最優先</strong></h2>
+<p><strong>制約の変化:</strong> ✅ <strong>A-1 成立で 10/31 22:45 リマ着となり、11/1 は普通の朝を迎えられる。</strong><br />
+🔴 <strong>さらに <code>手配_鉄道.md</code> の調査で、オリャンタイタンボ〜マチュピチュ村の鉄道が<br />
+2026年に2度（2025/12 の列車衝突、2026/8 の線路火災）運行停止していることが判明した。</strong><br />
+✅ 2026/9/9 時点で全便の販売が確認できており段階的再開は完了しているが、<strong>路線が脆いこと自体は変わらない。</strong><br />
+→ <strong>朝便は「選べる」ではなく「取るべき」。</strong>後続列車を保険として複数残せるため。</p>
+<p>✅ <strong>接続する列車は D1＝Vistadome Observatory 303（13:27発・14:50着）に確定した。</strong><br />
+<strong>着後 → 送迎1h45m → オリャンタイタンボ → 13:27 の列車</strong>の連鎖で逆算する。<br />
+PeruRail の推奨集合は発車30分前（＝<strong>12:57 までにオリャンタイタンボ駅</strong>）。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">順</th>
+<th style="text-align: left;">便</th>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: right;">運賃</th>
+<th style="text-align: left;">オリャンタ着</th>
+<th style="text-align: left;">D1（13:27）への余裕</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">★<strong>1</strong></td>
+<td style="text-align: left;"><strong>LA2013</strong>（LATAM）</td>
+<td style="text-align: left;"><strong>07:40 → 09:05</strong></td>
+<td style="text-align: right;"><strong>$71</strong></td>
+<td style="text-align: left;"><strong>11:00頃</strong></td>
+<td style="text-align: left;">✅ <strong>2時間27分。</strong>荷物預け（§C2補足）も余裕を持って行える</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"><strong>LA2130</strong>（LATAM）</td>
+<td style="text-align: left;">08:05 → 09:30</td>
+<td style="text-align: right;">$90</td>
+<td style="text-align: left;">11:15頃</td>
+<td style="text-align: left;">✅ 2時間12分。①のバックアップ</td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;"><strong>LA2011</strong>（LATAM）</td>
+<td style="text-align: left;">05:10 → 06:35</td>
+<td style="text-align: right;">$64</td>
+<td style="text-align: left;">08:30頃</td>
+<td style="text-align: left;">✅ <strong>最大の余裕。</strong>⚠️ リマ空港へ04:00台</td>
+</tr>
+<tr>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">JA7025（JetSMART）</td>
+<td style="text-align: left;">09:00 → 10:20</td>
+<td style="text-align: right;"><strong>$62</strong></td>
+<td style="text-align: left;">12:15頃</td>
+<td style="text-align: left;">⚠️ <strong>42分しかない。</strong>荷物預けを含めると不可。<strong>LCCで振替の選択肢も乏しい</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">H25007（Sky Airline）</td>
+<td style="text-align: left;">10:05 → 11:30</td>
+<td style="text-align: right;">要確認</td>
+<td style="text-align: left;">13:25頃</td>
+<td style="text-align: left;">❌ <strong>13:27 に間に合わない</strong>（保険の 15:37 へ回ることになる）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h3 id="c2-111">🔴 C2 補足：11/1 は「オリャンタイタンボ駅で荷物を預ける」工程が入る</h3>
+<p><strong>PeruRail は車内持ち込みを 8kg・三辺合計115cm に制限しており、<br />
+世界一周のスーツケースは列車に乗らない。</strong><br />
+オリャンタイタンボ駅の荷物預かり（04:15〜21:00）に預け、<strong>11/3 の復路到着時に回収する。</strong><br />
+→ <strong>CUZ 着から列車発車までに、送迎1h45m ＋ 荷物預け ＋ 荷物の詰め替えが入る。</strong><br />
+詳細は <a href="手配_鉄道.md"><code>手配_鉄道.md</code></a> §5。<strong>D3 の送迎手配にこの立ち寄りを条件として含めること。</strong></p>
+<h3 id="_3">🔴 なぜ価格で選ばないか</h3>
+<ul>
+<li><strong>クスコ空港（CUZ）は午後に風の影響で遅延・欠航が出やすい。</strong>午前着が原則。</li>
+<li><strong>11/2 の入場券は購入済み・日時固定・再発行不可</strong>（<code>tickets/マチュピチュ/費用明細.md</code>）。<br />
+  11/1 に村へ着けなければ <strong>S/369.32 と旅程の中心が同時に消える。</strong></li>
+<li><strong>LATAM は LIM–CUZ の便数が最多</strong>で、欠航時に当日中の後続便へ振り替えられる可能性が最も高い。<br />
+  JetSMART／Sky との差額 $10〜30 は、この保険料として払う価値がある。</li>
+</ul>
+<p>✅ <strong>推奨：LA2013（07:40）を本命、LA2130（08:05）を保険として同日に把握しておく。</strong></p>
+</blockquote>
+<hr />
+<span id="c3"></span><h2 id="c3-115">C3. クスコ → イグアス（11/5）🔴 <strong>最優先・最難関</strong></h2>
+<p>🔴 <strong>結論：11/5 中に明るいうちフォズへ着く方法は存在しない。</strong><br />
+クスコ発・当日着の組み合わせを総当たりした結果、現実的な最速到着は <strong>22:25〜翌00:20</strong> だった。</p>
+<p>✅ <strong>ただし要件定義書 §4 でも 11/5 は純粋な移動日</strong>であり、深夜着でも失うものはほぼない。<br />
+🔴 <strong>逆に「11/6 昼着」の案は、アルゼンチン側終日観光（11/6）を丸ごと失うため採用不可。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">順</th>
+<th style="text-align: left;">経路</th>
+<th style="text-align: left;">到着</th>
+<th style="text-align: right;">運賃</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">★<strong>1</strong></td>
+<td style="text-align: left;"><strong>LA2167</strong> CUZ 05:00→LIM 06:35<br><strong>LA8005</strong> LIM 09:15→GRU 16:25<br><strong>LA3206</strong> GRU 22:35→IGU <strong>00:20(+1)</strong></td>
+<td style="text-align: left;">11/6 <strong>00:20</strong></td>
+<td style="text-align: right;">約<strong>$300</strong></td>
+<td style="text-align: left;">✅ <strong>全区間LATAM＝1枚で保護される。</strong>乗継 LIM 2h40m・GRU 6h10m と厚い。<br>✅ <strong>クスコ2泊を守れる</strong>（11/5 03:30 ホテル発）</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"><strong>LA2222</strong> CUZ 00:05→LIM 01:40<br><strong>LA2945</strong> LIM 07:30→GRU 14:25<br><strong>LA3206</strong> GRU 22:35→IGU 00:20(+1)</td>
+<td style="text-align: left;">11/6 <strong>00:20</strong></td>
+<td style="text-align: right;"><strong>$309</strong></td>
+<td style="text-align: left;">同じ到着時刻なのに <strong>11/4 22:00頃にクスコを出る</strong>必要があり、<strong>クスコ2泊目が実質デイユースになる。</strong>①の下位互換</td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">①の最終レグを <strong>G31182</strong> GRU 21:50→IGU <strong>23:40</strong> に変更</td>
+<td style="text-align: left;">11/5 <strong>23:40</strong></td>
+<td style="text-align: right;">約$290</td>
+<td style="text-align: left;">🕒 <strong>11/5 中に着く。</strong>🔴 <strong>LATAM→GOL の別券</strong>で、GRU で遅れても保護がない</td>
+</tr>
+<tr>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"><strong>LA2945</strong> LIM 07:30→GRU 14:25<br><strong>LA3438</strong> CGH 20:40→IGU <strong>22:25</strong></td>
+<td style="text-align: left;">11/5 <strong>22:25</strong></td>
+<td style="text-align: right;">$279</td>
+<td style="text-align: left;">🕒 最良の到着時刻。🔴 <strong>GRU→CGH（コンゴーニャス）の空港間陸路移動</strong>が要る。クスコ発の接続も別途必要</td>
+</tr>
+<tr>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;"><strong>LA2034</strong> CUZ 19:45→LIM 21:15<br><strong>LA8041</strong> LIM 00:30→GRU 07:35<br><strong>LA3202</strong> GRU 11:55→IGU 13:35</td>
+<td style="text-align: left;">11/6 <strong>13:35</strong></td>
+<td style="text-align: right;">$331</td>
+<td style="text-align: left;">🔴 <strong>採用不可。</strong>移動は最も楽だが、<strong>11/6 のアルゼンチン側終日観光が消える</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h3 id="_4">実務上の注意</h3>
+<ul>
+<li>🔴 <strong>①②とも GRU で 6〜8時間の待ちが発生する。</strong>ANAカードゴールドのラウンジ付帯条件を事前に確認しておくと、この時間の質が大きく変わる。</li>
+<li>🔴 <strong>フォズのホテル（E6）に深夜チェックインを事前通知すること。</strong></li>
+<li>⚠️ <strong>11/6 の Gran Aventura（F5）は午前〜昼の枠を避け、午後枠で予約する。</strong>00:20 着の翌朝は動けない。</li>
+<li>アルゼンチン側の <strong>IGR（プエルト・イグアス）着</strong>も検討したが、クスコからの経路が成立しない（検索結果0件）うえ、宿は E6 でブラジル側のため不利。</li>
+</ul>
+</blockquote>
+<hr />
+<span id="c4"></span><h2 id="c4-igu-gru118">C4. IGU → GRU（11/8）🟡</h2>
+<p><strong>制約:</strong> 午前便（11/8 午後はサンパウロ市内散策）。前日 11/7 はブラジル側＋ヘリで終日。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">順</th>
+<th style="text-align: left;">便</th>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: right;">運賃</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">★<strong>1</strong></td>
+<td style="text-align: left;"><strong>LA3201</strong>（LATAM）</td>
+<td style="text-align: left;"><strong>10:40 → 12:25</strong></td>
+<td style="text-align: right;"><strong>$334</strong></td>
+<td style="text-align: left;">✅ <strong>本命。</strong>前夜に荷造りする余裕があり、サンパウロの午後を丸ごと使える</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"><strong>G31179</strong>（GOL）</td>
+<td style="text-align: left;">12:00 → 13:40</td>
+<td style="text-align: right;">$362</td>
+<td style="text-align: left;">⚠️ 午後の観光が1時間半短くなる。①が取れないとき</td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;"><strong>LA3203</strong>（LATAM）</td>
+<td style="text-align: left;">14:40 → 16:25</td>
+<td style="text-align: right;">$334</td>
+<td style="text-align: left;">⚠️ 夕方着。<strong>パウリスタ通り散策のみ</strong>になる</td>
+</tr>
+<tr>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"><strong>G31183</strong>（GOL）</td>
+<td style="text-align: left;">06:15 → 08:00</td>
+<td style="text-align: right;">$362</td>
+<td style="text-align: left;">🕒 サンパウロ最長。🔴 <strong>05:00 ホテル発でイグアス最終朝が消える</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;">LA3205（LATAM）</td>
+<td style="text-align: left;">18:10 → 20:00</td>
+<td style="text-align: right;"><strong>$163</strong></td>
+<td style="text-align: left;">🔴 <strong>最安だがサンパウロ初日が消える。</strong>①との差 $171 は「1日分」の値段</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<span id="c5"></span><h2 id="c5-ist-nav1121">C5. IST → NAV（11/21）🔴</h2>
+<p><strong>制約:</strong> 🔴 <strong>TK1840 が IST 14:30着</strong>（RTW本券・ATH発）。国際線到着 → 入国 → 受託手荷物受取 → 国内線チェックイン。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">順</th>
+<th style="text-align: left;">便</th>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: right;">運賃</th>
+<th style="text-align: left;">乗継</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">★<strong>1</strong></td>
+<td style="text-align: left;"><strong>TK2008</strong></td>
+<td style="text-align: left;"><strong>IST 19:40 → NAV 21:00</strong></td>
+<td style="text-align: right;"><strong>$77</strong></td>
+<td style="text-align: left;">5h10m</td>
+<td style="text-align: left;">✅ <strong>本命。夕方の NAV 便はこれ1本しかない。</strong>乗継に十分な厚み</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"><strong>TK2018</strong></td>
+<td style="text-align: left;">IST 19:00 → <strong>ASR</strong> 20:25</td>
+<td style="text-align: right;">$85</td>
+<td style="text-align: left;">4h30m</td>
+<td style="text-align: left;">🛟 <strong>①が満席・欠航のときの実質的な代替。</strong>⚠️ カイセリ空港からギョレメは<strong>約75km／70分</strong>（NAVは約40km／45分）</td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;"><strong>TK2016</strong></td>
+<td style="text-align: left;">IST 16:25 → <strong>ASR</strong> 17:55</td>
+<td style="text-align: right;">$70</td>
+<td style="text-align: left;">1h55m</td>
+<td style="text-align: left;">⚠️ <strong>国際線到着からの乗継としては薄すぎる。</strong>手荷物受取で崩れる</td>
+</tr>
+<tr>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;">TK2006</td>
+<td style="text-align: left;">IST 14:30 → NAV 15:50</td>
+<td style="text-align: right;">$77</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">🔴 TK1840 の到着と同時刻。<strong>不可</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h3 id="c5c6">🔴 運賃クラスの注意（C5・C6 共通）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">運賃</th>
+<th style="text-align: left;">受託手荷物</th>
+<th style="text-align: left;">変更・払戻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>EcoFly</strong></td>
+<td style="text-align: left;"><strong>15kg</strong></td>
+<td style="text-align: left;">🔴 <strong>変更・払戻とも不可</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ExtraFly</strong></td>
+<td style="text-align: left;"><strong>20kg</strong></td>
+<td style="text-align: left;">⚠️ 手数料ありで変更・取消可</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PrimeFly</strong></td>
+<td style="text-align: left;">さらに拡大＋座席指定無料</td>
+<td style="text-align: left;">✅ 無償〜低額で変更可</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>世界一周の荷物は 15kg に収まらない可能性が高い。ExtraFly 以上を選ぶこと。</strong><br />
+⚠️ <strong>ペガサス航空（PC）は SAW（サビハ・ギョクチェン）発</strong>で、IST とは市内を挟んで反対側。<br />
+TK1840 が IST 着である以上、<strong>トルコ航空一択</strong>。</p>
+</blockquote>
+<hr />
+<span id="c6"></span><h2 id="c6-nav-ist1123">C6. NAV → IST（11/23）🔴 <strong>変更可能運賃で買う区間</strong></h2>
+<p><strong>制約:</strong> TODO.md C6 の要件は「<strong>変更可能運賃で</strong>（気球欠航時の振替用）」。<br />
+🔴 <strong>ここには本質的なトレードオフがある。</strong></p>
+<ul>
+<li>気球（F10）の本番は <strong>11/22 早朝</strong>。<code>手配_気球ツアー.md</code> の通り <strong>欠航率30〜40%</strong>。</li>
+<li><strong>欠航時の唯一の再挑戦枠が 11/23 早朝。</strong></li>
+<li>しかし 11/23 早朝に飛ぶと、着陸07:30 → ギョレメ戻り08:30 → NAV まで45分で、<strong>09:30発には間に合わない。</strong></li>
+<li>一方 11/23 は<strong>イスタンブール初日</strong>（アヤソフィア・ブルーモスク）でもある。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">順</th>
+<th style="text-align: left;">便</th>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: right;">運賃</th>
+<th style="text-align: left;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">★<strong>1</strong></td>
+<td style="text-align: left;"><strong>TK2001</strong></td>
+<td style="text-align: left;"><strong>NAV 09:30 → IST 11:05</strong></td>
+<td style="text-align: right;"><strong>$77＋</strong></td>
+<td style="text-align: left;">✅ <strong>本命。イスタンブール初日を確保。</strong>🔴 <strong>ExtraFly／PrimeFly で購入し、11/22 が欠航したら②へ振り替える</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"><strong>TK2007</strong></td>
+<td style="text-align: left;">NAV 16:45 → IST 18:20</td>
+<td style="text-align: right;">$77</td>
+<td style="text-align: left;">🛟 <strong>振替先。</strong>11/23 早朝の気球に確実に間に合う。⚠️ <strong>イスタンブール初日は消える</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;"><strong>TK2005</strong></td>
+<td style="text-align: left;">NAV 11:25 → IST 13:00</td>
+<td style="text-align: right;">$104</td>
+<td style="text-align: left;">⚠️ 中間案。11/23 の気球（ギョレメ戻り08:30）からは<strong>綱渡り</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;">TK2009</td>
+<td style="text-align: left;">NAV 21:45 → IST 23:15</td>
+<td style="text-align: right;"><strong>$62</strong></td>
+<td style="text-align: left;">🔴 最安だが<strong>1日を全損する。</strong>振替先としても②に劣る</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>✅ <strong>運賃差（EcoFly→ExtraFly で概ね $20〜30）は、気球の欠航保険料と考えれば安い。</strong><br />
+🔴 <strong>併せて E13（カッパドキア洞窟ホテルの 11/23 延泊可否）を必ず確認すること。</strong><br />
+便を振り替えても宿が取れなければ再挑戦は成立しない。</p>
+</blockquote>
+<hr />
+<h2 id="_5">手配タスク</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">対象</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">期限</th>
+<th style="text-align: center;">優先</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"><strong>C2</strong></td>
+<td style="text-align: left;">LA2013（11/1 07:40）を LATAM 公式で確保。LA2130 も控えておく</td>
+<td style="text-align: left;">9月中</td>
+<td style="text-align: center;">🔴</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"><strong>C3</strong></td>
+<td style="text-align: left;">LATAM 公式で <strong>CUZ→LIM→GRU→IGU を1枚</strong>として発券（LA2167／LA8005／LA3206）</td>
+<td style="text-align: left;">9月中</td>
+<td style="text-align: center;">🔴</td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;"><strong>C3</strong></td>
+<td style="text-align: left;">フォズのホテル（E6）へ<strong>深夜チェックインを通知</strong>。F5 は午後枠で予約</td>
+<td style="text-align: left;">10月上旬</td>
+<td style="text-align: center;">🔴</td>
+</tr>
+<tr>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"><strong>C5</strong></td>
+<td style="text-align: left;">TK2008（11/21 19:40）を <strong>ExtraFly 以上</strong>で確保</td>
+<td style="text-align: left;">9月中</td>
+<td style="text-align: center;">🔴</td>
+</tr>
+<tr>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"><strong>C6</strong></td>
+<td style="text-align: left;">TK2001（11/23 09:30）を <strong>ExtraFly／PrimeFly</strong> で確保。振替先 TK2007 を控える</td>
+<td style="text-align: left;">9月中</td>
+<td style="text-align: center;">🔴</td>
+</tr>
+<tr>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;"><strong>C6</strong></td>
+<td style="text-align: left;">E13：<strong>カッパドキア 11/23 の延泊可否</strong>を確認</td>
+<td style="text-align: left;">10月上旬</td>
+<td style="text-align: center;">🔴</td>
+</tr>
+<tr>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;"><strong>C4</strong></td>
+<td style="text-align: left;">LA3201（11/8 10:40）を確保</td>
+<td style="text-align: left;">10月上旬</td>
+<td style="text-align: center;">🟡</td>
+</tr>
+<tr>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;"><strong>C1</strong></td>
+<td style="text-align: left;">TG660（10/26 14:25）を確保。<strong>受託手荷物込みの総額</strong>で比較</td>
+<td style="text-align: left;">9月中</td>
+<td style="text-align: center;">🟡</td>
+</tr>
+<tr>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">共通</td>
+<td style="text-align: left;">ANAカードゴールドの<strong>ラウンジ付帯条件</strong>を確認（C3 の GRU 6時間待ち対策）</td>
+<td style="text-align: left;">10月上旬</td>
+<td style="text-align: center;">⬜</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_6">再取得の方法</h2>
+<p>本書の便名・時刻・運賃は <code>tools/flightwatch</code> の <code>search()</code> で取得した。更新する場合:</p>
+<pre><code class="language-bash">cd tools/flightwatch
+python -c &quot;
+import sys; sys.path.insert(0,'.')
+from flightwatch import search
+for it in search('LIM','CUZ','2026-11-01',seat='economy',max_stops=0):
+    print(it.price, [(l.flight,l.dep,l.arr) for l in it.legs])
+&quot;
+</code></pre>
+<blockquote>
+<p>⚠️ <strong>Google Flights の運賃は目安。</strong>実際の購入可否・運賃クラス（EcoFly 等）・<br />
+受託手荷物条件は<strong>各社公式サイトで確認すること</strong>（<code>tools/flightwatch/README.md</code> の限界の項を参照）。</p>
+</blockquote>
+<hr />
+<h2 id="_7">関連ファイル</h2>
+<ul>
+<li><a href="TODO.md"><code>TODO.md</code></a> — C群の定義</li>
+<li><a href="東回り_要件定義書.md"><code>東回り_要件定義書.md</code></a> — §4 全体日程表／§6 RTW外区間</li>
+<li><a href="手配_鉄道.md"><code>手配_鉄道.md</code></a> — <strong>D1・D2（C2 と一体で設計する）</strong></li>
+<li><a href="手配_マチュピチュ.md"><code>手配_マチュピチュ.md</code></a> — 11/1 の連鎖・入場券</li>
+<li><a href="手配_気球ツアー.md"><code>手配_気球ツアー.md</code></a> — <strong>C6 のトレードオフの根拠（欠航率）</strong></li>
+<li><a href="手配_イグアス.md"><code>手配_イグアス.md</code></a> — C3・C4 の到着後の行程</li>
+<li><a href="tools/flightwatch/README.md"><code>tools/flightwatch/README.md</code></a> — 取得ツールの限界</li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>各手配の空き状況・発売時期・予約アクション一覧 - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🐘 サファリ・象孤児院</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="観戦チケット_販売方法と時期.html">🎫 観戦チケット 販売方法と時期</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_各手配の空き状況と予約時期.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="_1">各手配の空き状況・発売時期・予約アクション一覧</h1>
+<p><strong>調査日:</strong> 2026年9月7日<br />
+<strong>対象期間:</strong> 2026年10月28日 〜 2026年12月2日（世界一周RTW旅行）<br />
+<strong>調査方法:</strong> 各種公式サイト・予約エンジンの実画面確認および公式レギュレーションの調査</p>
+<hr />
+<h2 id="_2">🚨 直近のアクションタイムライン（いつ何を予約するか）</h2>
+<pre><code class="language-mermaid">timeline
+    title 主要予約の解禁・手配タイムライン
+    2026-09-01 : 【受付中】Sheldrick 象の孤児院（3ヶ月前解禁済）
+               : 【受付中】カッパドキア気球（Voyager €360）
+               : 【受付中】ペルーレイル（Ollantaytambo-MP）
+    2026-09-14頃 : 【発売】サグラダ・ファミリア（60日前）
+    2026-09-18 : 【発売】バチカン美術館（60日前・ローマ0:00）
+    2026-09-30 : 【事前準備】Passoカード申請（ガラタサライ用）
+               : 【相見積】ケニアサファリ会社へ連絡
+    2026-10-06頃 : 【発売見込】スペイン代表 vs イングランド代表（約40日前）
+    2026-10-18 : 【発売】コロッセオ（30日前・同時刻枠）
+    2026-11-20 14:00 TRT : 【発売】ガラタサライ vs アストン・ヴィラ（直前金曜）
+</code></pre>
+<hr />
+<h2 id="1-phase-1">1. 【Phase 1: 受付中・即予約可能なもの（今すぐ手配可能）】</h2>
+<h3 id="1-sheldrick-wildlife-trust">① シェルドリック象の孤児院（Sheldrick Wildlife Trust / ナイロビ）</h3>
+<ul>
+<li><strong>対象日:</strong> 2026年11月30日(月) または 12月1日(火) 11:00〜12:00（一般公開は1日1時間のみ）</li>
+<li><strong>空き状況・受付ステータス:</strong> <strong>【受付中】</strong></li>
+<li>公式規約: <strong>「訪問日の3ヶ月前以内（within 3 months of the visit date）」</strong>から予約受付。</li>
+<li>11/30・12/1の枠は <strong>2026年9月1日より受付開始済み</strong>。</li>
+<li><strong>予約方法:</strong></li>
+<li>公式メールアドレス <code>rc@sheldrickwildlifetrust.org</code> 宛に直接メールで申請（予約フォームなし）。</li>
+<li>必要情報: 訪問希望日、全員の氏名、国籍、人数。</li>
+<li>返信目安: 2営業日以内。確認メール（Confirmation Letter）が届き予約完了。</li>
+<li><strong>費用:</strong></li>
+<li>寄付金: <strong>$20 USD / 人</strong>（現地キャッシュレス払い、または事前寄付）</li>
+<li>国立公園入園料: ケニア野生生物公社（KWS）の規定改定により、ナイロビ国立公園入場料（大人約$43〜$50）が別途必要。eCitizen（<code>kwspay.ecitizen.go.ke</code>）にて事前決済。</li>
+<li><strong>公式サイト:</strong> <a href="https://www.sheldrickwildlifetrust.org/nursery-visit">Sheldrick Wildlife Trust - Nursery Visit</a></li>
+</ul>
+<hr />
+<h3 id="2-voyager-balloons">② カッパドキア気球ツアー（Voyager Balloons / トルコ）</h3>
+<ul>
+<li><strong>対象日:</strong> 2026年11月22日(日) 早朝（予備日: 11月23日(月)）</li>
+<li><strong>空き状況・受付ステータス:</strong> <strong>【空きあり・即時予約可能】</strong></li>
+<li>提携予約エンジン（Pelikan Aviation）の空き状況確認済み。11/22・11/23ともに空席あり。</li>
+<li><strong>コースと価格:</strong></li>
+<li><strong>Comfort Flight（推奨・16人乗り中型バスケット）: €360 / 人</strong>（約58,000円）</li>
+<li>Standard Flight（20〜28人乗り大型バスケット）: €260〜€300 / 人（約42,000円〜48,000円）</li>
+<li><strong>重要ポリシー:</strong></li>
+<li>民間航空局（SHGM）の天候判断により飛行中止となった場合は <strong>全額返金（Full Refund）</strong>。</li>
+<li>予備日（11/23）へのスライドも可能（空席次第）。</li>
+<li><strong>公式サイト:</strong> <a href="https://voyagerballoons.com/comfort-flights/">Voyager Balloons</a></li>
+</ul>
+<hr />
+<h3 id="3-perurail">③ ペルーレイル（PeruRail / クスコ・オリャンタイタンボ ⇄ マチュピチュ村）</h3>
+<ul>
+<li><strong>対象日（✏️ 2026/9/9 確定 → <a href="手配_鉄道.md"><code>手配_鉄道.md</code></a> が正本）:</strong></li>
+<li><strong>往路: 11月1日(日) 13:27 オリャンタイタンボ発 → 14:50 マチュピチュ村着（Vistadome Observatory 303 / $94.05）</strong></li>
+<li><strong>復路: 11月3日(火) 12:46 マチュピチュ村発 → 14:19 オリャンタイタンボ着（Vistadome 602 / $65.55）</strong></li>
+<li>🔴 旧「往路 19:04」は A-1 成立（リマ着が 00:55 → 22:45）前の前提のため撤回。19:04 は保険列車として残す</li>
+<li><strong>空き状況・受付ステータス:</strong> <strong>【空席あり・購入可能】</strong></li>
+<li><strong>book.perurail.com の販売画面で 05:05〜21:00 の全便を実売価格つきで確認済み</strong>（往路/復路PDF: <code>tickets/マチュピチュ/鉄道/</code>）。</li>
+<li><strong>価格（実売・割引後）:</strong></li>
+<li><strong>往復合計 $159.60</strong>（コスト管理表の枠 $190 に対し余裕あり）</li>
+<li>便ごとに価格差が大きい。同じ Vistadome Observatory でも $94.05〜$175.75 と開きがあるため、便単位で見ること</li>
+<li>🔴 <strong>手荷物は 8kg・三辺合計115cm まで。大型スーツケースは持ち込めない</strong>（オリャンタイタンボ駅の預かり 04:15〜21:00 を使う）</li>
+<li><strong>公式サイト:</strong> <a href="https://www.perurail.com/">PeruRail Official</a></li>
+</ul>
+<hr />
+<h3 id="4">④ アンボセリ国立公園 サファリロッジ（ケニア）</h3>
+<ul>
+<li><strong>対象日:</strong> 2026年11月28日(土) 〜 11月30日(月) 2泊</li>
+<li><strong>空き状況・受付ステータス:</strong> <strong>【空室あり】</strong></li>
+<li><strong>Ol Tukai Lodge Amboseli</strong>: 公式エンジンおよび主要OTAで空室あり（1泊1室 フルボード約 $320〜$360 USD / 約49,000〜55,000円）。キリマンジャロの眺望が最も良い最高立地。</li>
+<li><strong>Amboseli Serena Safari Lodge</strong>: 空室あり（1泊1室 フルボード約 $300〜$340 USD）。</li>
+<li><strong>手配推奨アクション:</strong></li>
+<li>サファリは「専用4x4ランドクルーザー＋専属サードライバー/ガイド＋国立公園入場料（1日$100）」が必須となるため、ロッジ単体ではなく<strong>ケニア現地サファリ会社（DoDo WORLD KENYA、道祖神等）に「ナイロビ発着 2泊3日 専用車＋Ol Tukai Lodge 2泊」の一括パッケージで見積・手配</strong>するのが安全かつ割安。</li>
+</ul>
+<hr />
+<h3 id="5-giraffe-centre">⑤ ジラフ・センター（Giraffe Centre / ナイロビ）</h3>
+<ul>
+<li><strong>対象日:</strong> 2026年11月30日(月) または 12月1日(火)</li>
+<li><strong>空き状況・受付ステータス:</strong> <strong>【予約不要または直前購入可能】</strong></li>
+<li>営業時間: 09:00 〜 17:00（無休）</li>
+<li>定員枠の上限が厳しくないため、当日現地窓口（キャッシュレス決済）または公式HPで直前購入可能。</li>
+<li><strong>入場料:</strong> 非居住者大人 <strong>1,500 KES</strong>（約 $11〜$12 USD / 約1,800円）</li>
+<li><strong>公式サイト:</strong> <a href="https://giraffecentre.org/">Giraffe Centre</a></li>
+</ul>
+<hr />
+<h2 id="2-phase-2-910">2. 【Phase 2: まもなく発売開始（9月中旬〜10月上旬）】</h2>
+<h3 id="1-sagrada-familia">① サグラダ・ファミリア（Sagrada Família / バルセロナ）</h3>
+<ul>
+<li><strong>対象日:</strong> 2026年11月13日(金)</li>
+<li><strong>発売時期:</strong> <strong>【訪問日の約60日前（2ヶ月前）】</strong></li>
+<li><strong>発売開始日:</strong> <strong>2026年9月14日前後</strong></li>
+<li><strong>券種と価格:</strong></li>
+<li><strong>Sagrada Família with Towers（生誕の塔または受難の塔＋公式アプリガイド）: €36.00</strong>（約5,800円）</li>
+<li>通常入場券（塔なし）: €26.00（約4,200円）</li>
+<li><strong>ポイント:</strong></li>
+<li>午前中の「生誕の塔（Tower on the Nativity facade）」は最も人気が高く、発売開始後数日で売り切れるため、9月中旬に即購入推奨。</li>
+<li><strong>公式サイト:</strong> <a href="https://sagradafamilia.org/en/tickets">Sagrada Família Tickets</a></li>
+</ul>
+<hr />
+<h3 id="2-vatican-museums">② バチカン美術館＆システィーナ礼拝堂（Vatican Museums / ローマ）</h3>
+<ul>
+<li><strong>対象日:</strong> 2026年11月17日(火) 午前（08:30〜09:30入場枠推奨）</li>
+<li><strong>発売時期:</strong> <strong>【訪問日のちょうど60日前のローマ時間 午前0:00】</strong></li>
+<li><strong>発売開始日時:</strong> <strong>2026年9月18日(金) 午前0:00（ローマ時間 CET）</strong></li>
+<li>※日本時間: <strong>9月18日(金) 午前7:00</strong> ／ バンコク時間: <strong>午前5:00</strong></li>
+<li><strong>券種と価格:</strong></li>
+<li>一般入場券: €20.00 + オンライン予約料 €5.00 = <strong>€25.00</strong>（約4,000円）</li>
+<li>ガイドツアー付（英語など）: 約 €40.00</li>
+<li><strong>ポイント:</strong></li>
+<li>発売開始と同時に旅行代理店やボットが枠を抑えに来るため、公式チケットは発売当日の早朝（バンコク時間5時）に確保するのが鉄則。</li>
+<li><strong>公式サイト:</strong> <a href="https://tickets.museivaticani.va/">Vatican Museums Official Ticketing</a></li>
+</ul>
+<hr />
+<h3 id="3-vs-uefa">③ スペイン代表 vs イングランド代表（UEFAネーションズリーグ / マドリード）</h3>
+<ul>
+<li><strong>試合日:</strong> 2026年11月15日(日) 20:45 CET（エスタディオ・メトロポリターノ）</li>
+<li><strong>発売時期:</strong> <strong>【試合日の約40日前】</strong></li>
+<li><strong>発売見込:</strong> <strong>2026年10月6日前後</strong></li>
+<li><strong>購入方法:</strong></li>
+<li>スペインサッカー連盟公式ポータル（<code>tickets.rfef.es</code>）</li>
+<li>公式アプリ「RFEF Tickets」（チケット受取に必須）</li>
+<li><strong>価格帯目安:</strong> €80 〜 €250（席種による）</li>
+<li><strong>公式サイト:</strong> <a href="https://tickets.rfef.es/">RFEF Tickets</a></li>
+</ul>
+<hr />
+<h2 id="3-phase-3-30">3. 【Phase 3: 直前発売（30日前〜直前）】</h2>
+<h3 id="1-rome">① コロッセオ・フォロ・ロマーノ・パラティーノの丘（Rome）</h3>
+<ul>
+<li><strong>対象日:</strong> 2026年11月17日(火) 午後（14:00〜15:30枠）</li>
+<li><strong>発売時期:</strong> <strong>【訪問日のちょうど30日前の同時間スロット】</strong></li>
+<li><strong>発売開始日時:</strong> <strong>2026年10月18日(日) 各枠の入場時刻（ローマ時間）</strong></li>
+<li>（例: 14:00枠はローマ時間 10/18 14:00 ＝ 日本時間 21:00 / バンコク時間 19:00に解禁）</li>
+<li><strong>新システム・券種と価格:</strong></li>
+<li>2024年より新公式チケッティングシステム（<code>ticketing.colosseo.it</code>）へ移行。氏名登録必須（名義変更不可）。</li>
+<li><strong>24h Colosseum, Roman Forum, Palatine（標準券）: €18.00</strong>（予約料込 / 約2,900円）</li>
+<li>Full Experience（アリーナ席または地下探訪付）: €24.00（秒速で完売するため、一般枠 €18 が手堅い）</li>
+<li><strong>公式サイト:</strong> <a href="https://ticketing.colosseo.it/en/">Colosseo Official Ticketing</a></li>
+</ul>
+<hr />
+<h3 id="2-vs-uefa">② ガラタサライ vs アストン・ヴィラ（UEFAチャンピオンズリーグ / イスタンブール）</h3>
+<ul>
+<li><strong>試合日:</strong> 2026年11月24日(火) 20:45 TRT（RAMS Park）</li>
+<li><strong>発売時期:</strong> <strong>【試合直前の金曜日 14:00 TRT】</strong></li>
+<li><strong>発売開始日時:</strong> <strong>2026年11月20日(金) 14:00 TRT（アテネ時間 13:00 / 日本時間 20:00）</strong></li>
+<li><strong>必須事前準備（9月中）:</strong></li>
+<li>トルコの法律により、全観客にファンカード「Passo Taraftar Card（Passolig）」の登録が義務付けられています。</li>
+<li>Passo公式サイト（<code>passotaraftar.com.tr</code>）にて、パスポート番号を用いて「Galatasaray ロゴ入りカード」を申請・作成しておく必要があります。これがないと発売開始時に購入画面に進めません。</li>
+<li><strong>公式サイト:</strong> <a href="https://www.passo.com.tr/">Passo.com.tr</a></li>
+</ul>
+<hr />
+<h3 id="3">③ マチュピチュ遺跡 入場チケット（ペルー文化庁）</h3>
+<ul>
+<li><strong>対象日:</strong> 2026年11月2日(月) 午前（Circuit 2 推奨）</li>
+<li><strong>発売ステータス:</strong> <strong>【新ポータル <code>tuboleto.cultura.pe</code> にてロット毎に放出】</strong></li>
+<li>2024年6月からの新サーキット制度（サーキット1〜3）が適用。</li>
+<li>最も王道の「マチュピチュ全景写真」が撮れるのは <strong>Circuit 2（Classic Circuit / Ruta 2-A または 2-B）</strong>。</li>
+<li>価格: 大人 <strong>152 PEN</strong>（ペルー・ソル / 約6,000円）</li>
+<li><strong>公式サイト:</strong> <a href="https://tuboleto.cultura.pe/">TuBoleto Cultura Peru</a></li>
+</ul>
+<hr />
+<h2 id="4_1">4. 手配優先順位・次の一手チェックリスト</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">優先度</th>
+<th style="text-align: left;">対象項目</th>
+<th style="text-align: center;">推奨アクション日</th>
+<th style="text-align: left;">アクション内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">🔴 <strong>P1</strong></td>
+<td style="text-align: left;"><strong>Sheldrick 象の孤児院</strong></td>
+<td style="text-align: center;"><strong>今すぐ</strong></td>
+<td style="text-align: left;"><code>rc@sheldrickwildlifetrust.org</code> へ11/30または12/1の予約申請メールを送信</td>
+</tr>
+<tr>
+<td style="text-align: center;">🔴 <strong>P1</strong></td>
+<td style="text-align: left;"><strong>カッパドキア気球</strong></td>
+<td style="text-align: center;"><strong>今すぐ〜9月中</strong></td>
+<td style="text-align: left;">Voyager Balloons 公式（Pelikan）で11/22 Comfort Flight（€360）を予約確定</td>
+</tr>
+<tr>
+<td style="text-align: center;">🟡 <strong>P2</strong></td>
+<td style="text-align: left;"><strong>サグラダ・ファミリア</strong></td>
+<td style="text-align: center;"><strong>9月14日前後</strong></td>
+<td style="text-align: left;">60日前開放日に公式HPで「生誕の塔付き午前枠」を購入</td>
+</tr>
+<tr>
+<td style="text-align: center;">🔴 <strong>P1</strong></td>
+<td style="text-align: left;"><strong>バチカン美術館</strong></td>
+<td style="text-align: center;"><strong>9月18日 0:00 CET</strong></td>
+<td style="text-align: left;">60日前開放時刻（バンコク5:00/日本7:00）に公式HPで朝枠を購入</td>
+</tr>
+<tr>
+<td style="text-align: center;">🟡 <strong>P2</strong></td>
+<td style="text-align: left;"><strong>Passoカード申請</strong></td>
+<td style="text-align: center;"><strong>9月中（9/30迄）</strong></td>
+<td style="text-align: left;">ガラタサライ戦に備え Passo アプリ／Webでパスポート登録・カード発行</td>
+</tr>
+<tr>
+<td style="text-align: center;">🟡 <strong>P2</strong></td>
+<td style="text-align: left;"><strong>アンボセリサファリ見積</strong></td>
+<td style="text-align: center;"><strong>9月中</strong></td>
+<td style="text-align: left;">現地ツアー会社へ「11/28〜11/30 ナイロビ発着 4x4専有＋Ol Tukai」見積照会</td>
+</tr>
+<tr>
+<td style="text-align: center;">🟢 <strong>P3</strong></td>
+<td style="text-align: left;"><strong>スペイン代表戦</strong></td>
+<td style="text-align: center;"><strong>10月6日前後</strong></td>
+<td style="text-align: left;">RFEF Tickets 発売開始に合わせて購入</td>
+</tr>
+<tr>
+<td style="text-align: center;">🟢 <strong>P3</strong></td>
+<td style="text-align: left;"><strong>コロッセオ</strong></td>
+<td style="text-align: center;"><strong>10月18日</strong></td>
+<td style="text-align: left;">30日前の同時間枠開放に合わせて公式HPで購入</td>
+</tr>
+<tr>
+<td style="text-align: center;">🔴 <strong>P1</strong></td>
+<td style="text-align: left;"><strong>ガラタサライ戦</strong></td>
+<td style="text-align: center;"><strong>11月20日 14:00 TRT</strong></td>
+<td style="text-align: left;">アテネ滞在中に Passo アプリからチケット争奪戦に参加</td>
+</tr>
+</tbody>
+</table>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

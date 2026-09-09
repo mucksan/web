@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>手配_宿泊 — 全36泊の方針・単価・削減余地 - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🐘 サファリ・象孤児院</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="観戦チケット_販売方法と時期.html">🎫 観戦チケット 販売方法と時期</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_宿泊.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="_-36">手配_宿泊 — 全36泊の方針・単価・削減余地</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>版数</strong></td>
+<td style="text-align: left;">第1版</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>作成日</strong></td>
+<td style="text-align: left;">2026年9月6日</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>対象</strong></td>
+<td style="text-align: left;">TODO.md <strong>E群（E1〜E19）</strong>／全36泊（＋機中泊3・実家2泊は宿泊費0円）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>正本との関係</strong></td>
+<td style="text-align: left;">金額は <a href="html/cost_management.html"><code>html/cost_management.html</code></a> が正本。本書は<strong>方針と根拠</strong>を持つ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>結論</strong></td>
+<td style="text-align: left;">✅ <strong>ホステルもAirbnbも使わずに ¥225,860 削減できる。</strong>見積単価が11月（欧州・トルコ・エジプトの閑散期）の相場に対して高すぎたのが主因</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h2 id="_1">🔴 本書の大原則</h2>
+<ol>
+<li><strong>「泊数」→「単価」→「業態（ホテル/ホステル/Airbnb）」の順に検討する。</strong><br />
+   いきなり業態を変えるのは効率が悪く、リスクだけ増える。</li>
+<li><strong>安全と体験が価格の理由になっている宿は削らない。</strong>該当は3件（§3.2）。</li>
+<li><strong>早朝発・深夜着の日は、価格より「フロント24時間」と「空港アクセス」を優先する。</strong></li>
+</ol>
+</blockquote>
+<hr />
+<h2 id="0-202696">0. 反映済みの変更（2026/9/6）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">変更</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: right;">差額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🆕 <strong>シンガポール2泊を追加</strong></td>
+<td style="text-align: left;"><strong>明細に行が存在しなかった。</strong>2027/3/1-2、3/3 は SIN 10:45発</td>
+<td style="text-align: right;"><strong>+¥46,500</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✏️ 単価の適正化（14都市）</td>
+<td style="text-align: left;">11月の実勢相場へ引き下げ。グレードは下げていない</td>
+<td style="text-align: right;"><strong>−¥225,860</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🛡️ 3件を減額対象外に明示</td>
+<td style="text-align: left;">リマ空港直結／ナイロビ デイユース／ナイロビ空港近郊</td>
+<td style="text-align: right;">±0</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>宿泊費 合計</strong></td>
+<td style="text-align: left;"><strong>¥775,190 → ¥595,830</strong></td>
+<td style="text-align: right;"><strong>−¥179,360</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>全体総額</strong></td>
+<td style="text-align: left;">¥3,377,192 → <strong>¥3,197,832</strong></td>
+<td style="text-align: right;">−¥179,360</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h3 id="_2">⚠️ 泊数の齟齬は前回コミットで既に是正済みだった</h3>
+<p>マチュピチュ村1泊→2泊、サンパウロ1泊→2泊、リスボン2泊→1泊、リマ11/04の削除は<br />
+<strong>コミット <code>2be84cf</code> / <code>e57337b</code> で <code>html/cost_management.html</code> に反映済み</strong>。<br />
+残っていた欠落は<strong>シンガポール2泊だけ</strong>だった。</p>
+<p>🔴 <strong>ただし生成元の <code>tools/create_cost_management.py</code> はその2コミット分が未反映のまま取り残されており、<br />
+実行すると修正済みHTMLを巻き戻す状態だった。</strong><br />
+→ HTML を正本とし、スクリプトは<strong>検査とミラーのみ</strong>を行う形に改めた（同ファイル冒頭のコメント参照）。</p>
+</blockquote>
+<hr />
+<h2 id="1">1. 削減の三段構え</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">段階</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: right;">削減</th>
+<th style="text-align: left;">リスク・手間</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>① 単価の適正化</strong></td>
+<td style="text-align: left;">同じ「ホテル」のまま11月相場へ</td>
+<td style="text-align: right;"><strong>−¥225,860</strong></td>
+<td style="text-align: left;"><strong>なし。</strong>グレードも安全性も不変</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>② ローマをアパート化</strong></td>
+<td style="text-align: left;">3連泊＋洗濯機</td>
+<td style="text-align: right;">追加 −¥15,000程度</td>
+<td style="text-align: left;">鍵の受け渡し。11/19 は07:15発</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>③ ホステル個室 5泊</strong></td>
+<td style="text-align: left;">リスボン・アテネ・イスタンブール</td>
+<td style="text-align: right;">追加 −¥35,000程度</td>
+<td style="text-align: left;">荷物・睡眠の質</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>①だけを実行することを推奨する。</strong><br />
+①で宿泊費の 27% が落ち、安全性も体験の質も一切下げていない。<br />
+②③は合計でさらに ¥50,000 程度（全体の1.5%）で、手間とリスクの割に合いが良くない。</p>
+<hr />
+<h2 id="2">2. 単価を下げられた理由</h2>
+<p><strong>11月は、この旅程が通る都市のほとんどで年間最閑散期にあたる。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">地域</th>
+<th style="text-align: left;">11月の位置づけ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">リスボン・バルセロナ・マドリード・ローマ・アテネ</td>
+<td style="text-align: left;"><strong>年間最安期。</strong>夏の半額前後まで落ちる</td>
+</tr>
+<tr>
+<td style="text-align: left;">イスタンブール・カッパドキア</td>
+<td style="text-align: left;">閑散期入り。<strong>洞窟ホテルの下落幅が特に大きい</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">カイロ・ギザ</td>
+<td style="text-align: left;">ベストシーズン入口だが、ギザは眺望を売りにする中小ホテルの激戦区</td>
+</tr>
+<tr>
+<td style="text-align: left;">フォズ・ド・イグアス</td>
+<td style="text-align: left;">雨季入り前の端境期</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>マドリード（11/15）</strong></td>
+<td style="text-align: left;">🔴 <strong>スペイン代表戦で市内需要が跳ねる。ここだけ下げ幅を抑えた</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-e1e19">3. 都市別の方針（E1〜E19）</h2>
+<h3 id="31-14">3.1 単価を下げた14件</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">場所</th>
+<th style="text-align: left;">泊</th>
+<th style="text-align: right;">旧</th>
+<th style="text-align: right;">新</th>
+<th style="text-align: left;">方針</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">E1</td>
+<td style="text-align: left;">サンフランシスコ</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">$250</td>
+<td style="text-align: right;"><strong>$175</strong></td>
+<td style="text-align: left;">🔴 <strong>ユニオンスクエアは Tenderloin 隣接。</strong>ノブヒル／ジャパンタウン、または翌10:45発を優先してミルブレー（BART直結）</td>
+</tr>
+<tr>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">メキシコシティ</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">$120/泊</td>
+<td style="text-align: right;"><strong>$95/泊</strong></td>
+<td style="text-align: left;"><strong>Roma Norte / Condesa</strong> のブティック。レフォルマ大通りより安く、治安も歩きやすさも上</td>
+</tr>
+<tr>
+<td style="text-align: left;">E4</td>
+<td style="text-align: left;">マチュピチュ村</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">$180/泊</td>
+<td style="text-align: right;"><strong>$130/泊</strong></td>
+<td style="text-align: left;">村の中級で十分。<strong>標高2,040mで泊まること自体</strong>が目的（高山病回避）</td>
+</tr>
+<tr>
+<td style="text-align: left;">E5</td>
+<td style="text-align: left;">クスコ</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">$140/泊</td>
+<td style="text-align: right;"><strong>$100/泊</strong></td>
+<td style="text-align: left;">アルマス広場周辺。標高3,400m</td>
+</tr>
+<tr>
+<td style="text-align: left;">E6</td>
+<td style="text-align: left;">フォズ・ド・イグアス</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">$180/泊</td>
+<td style="text-align: right;"><strong>$85/泊</strong></td>
+<td style="text-align: left;">🔴 <strong>$180/泊 は国立公園内リゾートの値段。</strong>両国側に通う今回の使い方には市街の4つ星が実用的</td>
+</tr>
+<tr>
+<td style="text-align: left;">E7</td>
+<td style="text-align: left;">サンパウロ</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">$130/泊</td>
+<td style="text-align: right;"><strong>$90/泊</strong></td>
+<td style="text-align: left;">パウリスタ通り周辺</td>
+</tr>
+<tr>
+<td style="text-align: left;">E8</td>
+<td style="text-align: left;">リスボン</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">€160</td>
+<td style="text-align: right;"><strong>€110</strong></td>
+<td style="text-align: left;">🔴 <strong>12:10着・翌04:40ホテル発。滞在19時間・睡眠5時間。</strong>高い宿を取る意味が薄い</td>
+</tr>
+<tr>
+<td style="text-align: left;">E9</td>
+<td style="text-align: left;">バルセロナ</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">€180/泊</td>
+<td style="text-align: right;"><strong>€130/泊</strong></td>
+<td style="text-align: left;">アシャンプラ地区</td>
+</tr>
+<tr>
+<td style="text-align: left;">E10</td>
+<td style="text-align: left;">マドリード</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">€160/泊</td>
+<td style="text-align: right;"><strong>€140/泊</strong></td>
+<td style="text-align: left;">⚠️ <strong>代表戦当日で需要増。下げ幅を抑え、かつ早期に確保する</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">E11</td>
+<td style="text-align: left;">ローマ</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">€160/泊</td>
+<td style="text-align: right;"><strong>€110/泊</strong></td>
+<td style="text-align: left;">モンティ／トラステヴェレ。<strong>3連泊なのでアパートも有力</strong>（§4.2）</td>
+</tr>
+<tr>
+<td style="text-align: left;">E12</td>
+<td style="text-align: left;">アテネ</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">€130/泊</td>
+<td style="text-align: right;"><strong>€90/泊</strong></td>
+<td style="text-align: left;">プラカ地区</td>
+</tr>
+<tr>
+<td style="text-align: left;">E13</td>
+<td style="text-align: left;">カッパドキア</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">€190/泊</td>
+<td style="text-align: right;"><strong>€120/泊</strong></td>
+<td style="text-align: left;">✅ <strong>洞窟ホテルは維持したまま</strong>閑散期の相場へ</td>
+</tr>
+<tr>
+<td style="text-align: left;">E14</td>
+<td style="text-align: left;">イスタンブール</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">€150/泊</td>
+<td style="text-align: right;"><strong>€110/泊</strong></td>
+<td style="text-align: left;">スルタンアフメト旧市街</td>
+</tr>
+<tr>
+<td style="text-align: left;">E15</td>
+<td style="text-align: left;">カイロ・ギザ</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">$150/泊</td>
+<td style="text-align: right;"><strong>$95/泊</strong></td>
+<td style="text-align: left;">✅ <strong>ピラミッドビューは維持。</strong>ギザは眺望物件の激戦区</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-3">3.2 🛡️ 減額対象外の3件</h3>
+<p><strong>安全と体験そのものが価格の理由になっている。ここを削るのは、1万円のために数万円のリスクを買う行為。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">場所</th>
+<th style="text-align: right;">額</th>
+<th style="text-align: left;">削れない理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">E3</td>
+<td style="text-align: left;"><strong>リマ空港直結</strong>（Costa del Sol Wyndham 等）</td>
+<td style="text-align: right;">$160</td>
+<td style="text-align: left;">🔴 <strong>22:45着・ホテル23:45。「ターミナル直結」という一点に払う費用。</strong>カヤオ地区の安宿は代替にならない</td>
+</tr>
+<tr>
+<td style="text-align: left;">E16</td>
+<td style="text-align: left;"><strong>ナイロビ空港ホテル デイユース</strong></td>
+<td style="text-align: right;">$90</td>
+<td style="text-align: left;">🔴 <strong>03:30着。</strong>仮眠なしで陸路4h→サンセットサファリは成立しない。<strong>「アーリーチェックイン」ではなく「デイユース」で予約する</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">E18</td>
+<td style="text-align: left;">ナイロビ空港近郊</td>
+<td style="text-align: right;">$130</td>
+<td style="text-align: left;">サファリ帰還後（13:30着）の休息。翌12/1 は孤児象→15:00空港</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33">3.3 その他</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">場所</th>
+<th style="text-align: left;">泊</th>
+<th style="text-align: left;">扱い</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">東京（実家）</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">✅ 宿泊費0円</td>
+</tr>
+<tr>
+<td style="text-align: left;">E17</td>
+<td style="text-align: left;">アンボセリ 園内ロッジ</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">サファリパッケージに全食事込。<strong>アクティビティ側（F3）で計上</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">E19</td>
+<td style="text-align: left;">🆕 <strong>シンガポール</strong></td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"><strong>$150/泊。</strong>マリーナベイ／ブギス。3/3 は SIN 10:45発</td>
+</tr>
+<tr>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">機中泊 ×3</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">11/10 TP88／11/27 MS849／12/1 ET608</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-airbnb">4. 業態の評価：ホステル・Airbnb</h2>
+<h3 id="41">4.1 ユースホステル</h3>
+<p>🔴 <strong>ドミトリーは、この旅程には合わない。</strong>理由は「安宿だから」ではなく、旅程の形が合わないため。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">理由</th>
+<th style="text-align: left;">具体</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>早朝発が多い</strong></td>
+<td style="text-align: left;">11/12 リスボン <strong>04:40発</strong>／11/19 ローマ <strong>07:15発</strong>／11/21 アテネ <strong>08:30発</strong>／11/22 カッパドキア気球は早朝集合</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>睡眠の質が最大のリスク要因</strong></td>
+<td style="text-align: left;">41日・高密度・ビジネスクラス移動。体調を崩すと取り返しがつかない</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>貴重品</strong></td>
+<td style="text-align: left;">パスポート、eチケット（PNR <strong>EANRV5</strong>・再発行が面倒）、カメラ</td>
+</tr>
+</tbody>
+</table>
+<p>✅ <strong>一方で「ホステルの個室（専用バス付き）」は別物で、有力な選択肢。</strong></p>
+<p>一人旅の最大の敵は<strong>シングルユース料金</strong>——ダブルの部屋を一人で借りて2人分近く払う構造で、<br />
+<strong>ここをまともに突けるのがホステルの個室</strong>。実態は立地の良い格安ブティックホテルで、<br />
+フロントは24時間、荷物預かりもある。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">効く都市</th>
+<th style="text-align: left;">€50〜80/泊。ホテルより中心に近いことも多い</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>リスボン</strong></td>
+<td style="text-align: left;">世界屈指のホステル水準。<strong>滞在19時間の11/11 に最も向く</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>アテネ・イスタンブール</strong></td>
+<td style="text-align: left;">個室の水準が高く、旧市街の立地が取れる</td>
+</tr>
+<tr>
+<td style="text-align: left;">△ マドリード・バルセロナ・クスコ・メキシコシティ</td>
+<td style="text-align: left;">選べば良い個室がある</td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ <strong>不可</strong></td>
+<td style="text-align: left;">ナイロビ／カイロ／リマ／サンパウロ／SFO／イグアス／マチュピチュ村</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-airbnb">4.2 Airbnb</h3>
+<p>🔴 <strong>3連泊以上でしか効かない。</strong>清掃料が固定でかかるため、1〜2泊では逆に高くつく。<br />
+<strong>この旅程で3連泊は、ローマとイグアスの2箇所だけ。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">判定</th>
+<th style="text-align: left;">対象</th>
+<th style="text-align: left;">理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>有力</strong></td>
+<td style="text-align: left;"><strong>ローマ 11/16-18</strong></td>
+<td style="text-align: left;">歴史地区のアパートが €100前後/泊。<strong>洗濯機がある</strong>（41日の旅では金額以上の価値）。⚠️ 11/19 は07:15発なのでキーボックス返却が可能な物件に限る</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>避ける</strong></td>
+<td style="text-align: left;"><strong>バルセロナ</strong></td>
+<td style="text-align: left;">市が観光短期賃貸ライセンスを<strong>2028年までに全廃する方針</strong>で進行中。無許可物件の摘発も強化されており、合法物件の減少・価格上昇・直前キャンセルのリスクが上がる方向</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ 条件付き</td>
+<td style="text-align: left;">リスボン</td>
+<td style="text-align: left;"><strong>AL登録番号のある物件に限る</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ 不可</td>
+<td style="text-align: left;">メキシコシティ／サンパウロ／ナイロビ／カイロ／リマ</td>
+<td style="text-align: left;">フロント24時間のホテルを優先。特に深夜着</td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ 不可</td>
+<td style="text-align: left;">04:40発・07:15発の日</td>
+<td style="text-align: left;">鍵返却で詰む</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ <strong>そもそも一人旅ではAirbnbの優位が小さい。</strong>1ユニット料金なので、人数で割れる家族旅行と違い、<br />
+ホテルのシングルに勝ちにくい。</p>
+<hr />
+<h2 id="5">5. 予約戦術</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">手</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>1</strong></td>
+<td style="text-align: left;"><strong>返金可レートで押さえ、2〜3週間前に再検索して差し替える</strong></td>
+<td style="text-align: left;">11月の欧州は直前に落ちる。<strong>非返金レートは10〜20%安いが、ウォッチ中の B-3（11/12 LIS→BCN）と A-4（11/21 ATH→IST）が動くと宿もズレる</strong>ため、そこが確定するまでは返金可で</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2</strong></td>
+<td style="text-align: left;"><strong>欧州12泊を1チェーンに寄せる</strong></td>
+<td style="text-align: left;">リスボン〜イスタンブール。ペルー・ケニア・カッパドキアはチェーン網が薄く全泊を寄せるのは非現実的。朝食・レイトチェックアウトを取りに行く</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3</strong></td>
+<td style="text-align: left;"><strong>Booking.com Genius レベル3</strong></td>
+<td style="text-align: left;">過去2年で15泊。今回の旅で確実に到達するので、<strong>序盤（南米）で条件を満たすと後半（欧州・中東）が効く</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>4</strong></td>
+<td style="text-align: left;">決済は ANAカードゴールド</td>
+<td style="text-align: left;">発券と同じカードに寄せる。付帯保険の適用条件も併せて確認（要件定義書 I群）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5</strong></td>
+<td style="text-align: left;">シンガポールは Agoda を併用</td>
+<td style="text-align: left;">バンコク在住のため、アジア圏はAgodaのレートが強い傾向</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">🔴 予約の優先順位</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">優先</th>
+<th style="text-align: left;">対象</th>
+<th style="text-align: left;">理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>最優先</strong></td>
+<td style="text-align: left;"><strong>マドリード（E10）</strong></td>
+<td style="text-align: left;">11/15 代表戦。<strong>市内需要が跳ねるので早い者勝ち</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>最優先</strong></td>
+<td style="text-align: left;"><strong>リマ空港直結（E3）</strong></td>
+<td style="text-align: left;">直結ホテルは実質1択で部屋数が限られる</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>最優先</strong></td>
+<td style="text-align: left;"><strong>ナイロビ デイユース（E16）</strong></td>
+<td style="text-align: left;">「デイユース」枠は要個別交渉（<code>手配_サファリ.md</code> §参照）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🟡 高</td>
+<td style="text-align: left;"><strong>カッパドキア（E13）</strong></td>
+<td style="text-align: left;">🔴 <strong>11/23 の延泊可否も同時に確認</strong>（気球欠航時の保険）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🟡 高</td>
+<td style="text-align: left;">マチュピチュ村（E4）</td>
+<td style="text-align: left;">村の宿は総数が少ない</td>
+</tr>
+<tr>
+<td style="text-align: left;">⬜ 通常</td>
+<td style="text-align: left;">欧州各都市</td>
+<td style="text-align: left;">11月は在庫に余裕がある</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6">6. タスク</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">🔴 マドリード（11/14-15）を最優先で確保。返金可レート</td>
+<td style="text-align: left;">9月中</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">🔴 リマ空港直結ホテル（10/31）を確保</td>
+<td style="text-align: left;">9月中</td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">🔴 ナイロビ空港ホテルへ<strong>デイユース</strong>（04:30〜08:30）で照会</td>
+<td style="text-align: left;">9月中</td>
+</tr>
+<tr>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">🟡 カッパドキア洞窟ホテル＋<strong>11/23 延泊可否</strong>を確認</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">🟡 マチュピチュ村（11/1-2）・クスコ（11/3-4）を確保</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">🟡 ローマ3泊：アパート／ホテルを比較して決定</td>
+<td style="text-align: left;">10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">⬜ 欧州各都市を返金可レートで仮押さえ</td>
+<td style="text-align: left;">10月中</td>
+</tr>
+<tr>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">⬜ シンガポール2泊（2027/3/1-2）</td>
+<td style="text-align: left;">12月以降で可</td>
+</tr>
+<tr>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">⬜ <strong>出発2〜3週間前に全件を再検索して差し替え</strong></td>
+<td style="text-align: left;">10月上旬〜</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7">7. 関連ファイル</h2>
+<ul>
+<li><a href="html/cost_management.html"><code>html/cost_management.html</code></a> — 金額の正本</li>
+<li><a href="TODO.md"><code>TODO.md</code></a> — E群（E1〜E19）</li>
+<li><a href="東回り_要件定義書.md"><code>東回り_要件定義書.md</code></a> — §4 全体日程表</li>
+<li><a href="手配_サファリ.md"><code>手配_サファリ.md</code></a> — ナイロビ空港ホテル（E16・E18）</li>
+<li><a href="手配_マチュピチュ.md"><code>手配_マチュピチュ.md</code></a> — マチュピチュ村・クスコ（E4・E5）</li>
+<li><a href="手配_気球ツアー.md"><code>手配_気球ツアー.md</code></a> — カッパドキア洞窟ホテル（E13）</li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>
