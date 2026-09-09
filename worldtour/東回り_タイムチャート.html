@@ -577,71 +577,92 @@
      ============================================================ */
   /* 1. ✅ 予約・発券済み（Booked / Confirmed） */
   .block-item.status-booked {
-    border: 2px solid #10b981 !important; /* エメラルドグリーン太枠 */
-    box-shadow: 0 0 8px rgba(16, 185, 129, 0.45), inset 0 0 4px rgba(255, 255, 255, 0.2) !important;
+    border: 2.5px solid #10b981 !important; /* エメラルドグリーン太枠 */
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.6), inset 0 0 5px rgba(16, 185, 129, 0.3) !important;
     z-index: 4;
   }
   .block-item.status-booked:hover {
     border-color: #34d399 !important;
-    box-shadow: 0 0 14px rgba(52, 211, 153, 0.7) !important;
-    z-index: 12;
+    box-shadow: 0 0 16px rgba(52, 211, 153, 0.85) !important;
+    transform: translateY(-2px) scaleY(1.08);
+    z-index: 15;
   }
   .badge-status-booked {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
     background: #059669;
     color: #ffffff;
-    font-size: 8.5px;
+    font-size: 9px;
     font-weight: 800;
-    padding: 0 3px;
-    border-radius: 3px;
-    margin-right: 3px;
-    line-height: 12px;
+    padding: 1px 5px;
+    border-radius: 4px;
+    margin-right: 4px;
+    line-height: 14px;
     vertical-align: middle;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.4);
+    letter-spacing: 0.3px;
   }
 
   /* 2. ⏳ 未確定・要手配（Unbooked / Pending） */
   .block-item.status-unbooked {
-    border: 2px dashed #f59e0b !important; /* オレンジ破線枠 */
-    box-shadow: 0 0 6px rgba(245, 158, 11, 0.35) !important;
+    border: 2.5px dashed #f59e0b !important; /* オレンジ破線太枠 */
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.45) !important;
     background-image: repeating-linear-gradient(
       -45deg,
-      rgba(245, 158, 11, 0.15),
-      rgba(245, 158, 11, 0.15) 6px,
-      transparent 6px,
-      transparent 12px
+      rgba(245, 158, 11, 0.25),
+      rgba(245, 158, 11, 0.25) 8px,
+      transparent 8px,
+      transparent 16px
     ) !important;
     z-index: 3;
   }
   .block-item.status-unbooked:hover {
     border-color: #fbbf24 !important;
-    box-shadow: 0 0 12px rgba(251, 191, 36, 0.6) !important;
-    z-index: 11;
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.75) !important;
+    transform: translateY(-2px) scaleY(1.08);
+    z-index: 14;
   }
   .badge-status-unbooked {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
     background: #d97706;
     color: #ffffff;
-    font-size: 8.5px;
+    font-size: 9px;
     font-weight: 800;
-    padding: 0 3px;
-    border-radius: 3px;
-    margin-right: 3px;
-    line-height: 12px;
+    padding: 1px 5px;
+    border-radius: 4px;
+    margin-right: 4px;
+    line-height: 14px;
     vertical-align: middle;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.4);
+    letter-spacing: 0.3px;
   }
 
   /* 3. ⚪ 通常行動（General） */
   .block-item.status-general {
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    opacity: 0.9;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    opacity: 0.92;
   }
 
-  /* ホテル列の未予約・予約済 */
+  /* ホテル列タグ */
+  .hotel-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px 8px;
+    border-radius: 5px;
+    max-width: 100%;
+    font-size: 11px;
+    font-weight: 600;
+    gap: 4px;
+  }
   .hotel-tag.hotel-unbooked {
     border: 1.5px dashed #f59e0b !important;
-    background: rgba(245, 158, 11, 0.12) !important;
+    background: rgba(245, 158, 11, 0.15) !important;
     color: #fef08a !important;
   }
   .hotel-tag.hotel-booked {
@@ -650,13 +671,115 @@
     color: #a7f3d0 !important;
   }
   .hotel-tag.hotel-general {
-    border: 1px solid rgba(148, 163, 184, 0.2);
+    border: 1px solid rgba(148, 163, 184, 0.2) !important;
+    background: rgba(148, 163, 184, 0.08) !important;
+    color: #cbd5e1 !important;
+  }
+
+  .hotel-pill-badge {
+    font-size: 9px;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 3px;
+    line-height: 13px;
+    display: inline-block;
+  }
+  .pill-unbooked {
+    background: #d97706;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .pill-booked {
+    background: #059669;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  /* Status Toolbar */
+  .status-toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  }
+  .status-toolbar-label {
+    font-size: 13px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+    margin-right: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-status-filter {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 7px 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-status-filter:hover {
+    color: #fff;
+    transform: translateY(-1px);
+  }
+  .btn-status-filter.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    box-shadow: 0 2px 8px rgba(56, 189, 248, 0.5);
+  }
+  .btn-status-filter.filter-booked {
+    border-color: #10b981;
+    color: #34d399;
+  }
+  .btn-status-filter.filter-booked:hover,
+  .btn-status-filter.filter-booked.active {
+    background: #059669;
+    color: #ffffff;
+    border-color: #10b981;
+    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.5);
+  }
+  .btn-status-filter.filter-unbooked {
+    border-color: #f59e0b;
+    color: #fbbf24;
+  }
+  .btn-status-filter.filter-unbooked:hover,
+  .btn-status-filter.filter-unbooked.active {
+    background: #d97706;
+    color: #ffffff;
+    border-color: #f59e0b;
+    box-shadow: 0 2px 10px rgba(245, 158, 11, 0.5);
+  }
+  .btn-status-filter.filter-hotel {
+    border-color: #818cf8;
+    color: #c7d2fe;
+  }
+  .btn-status-filter.filter-hotel:hover,
+  .btn-status-filter.filter-hotel.active {
+    background: #4f46e5;
+    color: #ffffff;
+    border-color: #818cf8;
+    box-shadow: 0 2px 10px rgba(99, 102, 241, 0.5);
   }
 
   /* フィルター時の強調・減衰 */
   .block-item.dimmed-status,
   .hotel-tag.dimmed-status {
-    opacity: 0.15 !important;
+    opacity: 0.12 !important;
     filter: grayscale(85%) !important;
     pointer-events: auto;
   }
@@ -1067,7 +1190,16 @@
     </div>
   </header>
 
-  <!-- Filter Buttons -->
+  <!-- Status Toolbar (Dedicated Quick Filter) -->
+  <div class="status-toolbar">
+    <span class="status-toolbar-label">🎯 手配ステータス別ワンクリック絞り込み：</span>
+    <button class="btn-status-filter active" onclick="highlightBookingStatus('all')">👁️ すべて表示</button>
+    <button class="btn-status-filter filter-booked" onclick="highlightBookingStatus('booked')">✅ 確定・予約済のみスポットライト (26件)</button>
+    <button class="btn-status-filter filter-unbooked" onclick="highlightBookingStatus('unbooked')">⏳ 未確定・要手配のみスポットライト (33件)</button>
+    <button class="btn-status-filter filter-hotel" onclick="highlightBookingStatus('hotel')">🏨 宿泊手配のみスポットライト (36泊未手配)</button>
+  </div>
+
+  <!-- Regional & Type Filter Buttons -->
   <div class="filter-bar">
     <div class="tabs-group">
       <button class="tab-btn active" onclick="filterRegion('all')">全日程（41日）</button>
@@ -1075,14 +1207,6 @@
       <button class="tab-btn" onclick="filterRegion('europe')">🏰 ヨーロッパ編</button>
       <button class="tab-btn" onclick="filterRegion('mideast-africa')">🐪 トルコ・エジプト・ケニア編</button>
       <button class="tab-btn" onclick="filterRegion('asia')">🌏 アジア・帰省編</button>
-    </div>
-
-    <!-- Status Filter Buttons -->
-    <div class="tabs-group">
-      <button class="tab-btn btn-status-filter active" onclick="highlightBookingStatus('all')">すべての手配を表示</button>
-      <button class="tab-btn btn-status-filter" style="border-color: #10b981; color: #34d399;" onclick="highlightBookingStatus('booked')">🟢 ✅ 予約済みのみ強調 (26件)</button>
-      <button class="tab-btn btn-status-filter" style="border-color: #f59e0b; color: #fbbf24;" onclick="highlightBookingStatus('unbooked')">🟠 ⏳ 未確定のみ強調 (33件)</button>
-      <button class="tab-btn btn-status-filter" style="border-color: #94a3b8; color: #cbd5e1;" onclick="highlightBookingStatus('hotel')">🏨 宿泊手配のみ強調 (36泊未手配)</button>
     </div>
 
     <div class="tabs-group">
@@ -1099,9 +1223,12 @@
         <tr>
           <th class="col-date">日付</th>
           <th class="col-country">滞在国・都市</th>
-          <th class="col-hotel">宿泊地</th>
+          <th class="col-hotel">宿泊地（手配状況）</th>
           <th class="col-timeline">
-            <!-- 24-hour ruler ticks -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <span>現地24時間ビジュアルタイムライン (00:00 - 24:00)</span>
+              <span style="font-size: 10px; font-weight: 500; text-transform: none; color: var(--accent);">※背景: 00-06時/18-24時=夜間帯、06-18時=日中帯</span>
+            </div>
             <div class="time-ruler">
               <div class="ruler-tick" style="left: 0.0%;">00:00</div>
               <div class="ruler-tick" style="left: 8.333%;">02:00</div>
@@ -1136,7 +1263,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(1)" title="クリックでDay 1の詳細を表示（🏠 自宅・帰宅（予約不要））" data-hotel-status="general">
-            <span class="hotel-tag hotel-general" title="東京（実家）（🏠 自宅・帰宅（予約不要））">🏨 東京（実家）</span>
+            <span class="hotel-tag hotel-general" title="東京（実家）（🏠 自宅・帰宅（予約不要））"><span>🏨 東京（実家）</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -1164,7 +1291,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 43.750%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 43.750%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 1)">
@@ -1188,7 +1315,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 43.750%; width: 16.333%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 43.750%; width: 16.333%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 1)">
@@ -1212,13 +1339,13 @@
                    data-doc-link="手配_RTW外フライト.html#c1"
                    data-doc-label="手配_RTW外フライト.html（C1）"
                    data-doc-md="手配_RTW外フライト.md"
-                   style="left: 60.083%; width: 23.583%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 60.083%; width: 23.583%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 1)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>TG 660 (BKK→HND)</span>
                   <span class="block-time">(14:25)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -1236,7 +1363,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 83.667%; width: 8.000%; background: linear-gradient(135deg, #0284c7, #0369a1); border-color: #075985; color: #ffffff;"
+                   style="left: 83.667%; width: 8.000%; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 1)">
@@ -1260,7 +1387,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 1)">
@@ -1295,7 +1422,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(2)" title="クリックでDay 2の詳細を表示（🏠 自宅・帰宅（予約不要））" data-hotel-status="general">
-            <span class="hotel-tag hotel-general" title="東京（実家）（🏠 自宅・帰宅（予約不要））">🏨 東京（実家）</span>
+            <span class="hotel-tag hotel-general" title="東京（実家）（🏠 自宅・帰宅（予約不要））"><span>🏨 東京（実家）</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -1323,7 +1450,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 33.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 33.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 2)">
@@ -1347,7 +1474,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 33.333%; width: 41.667%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 33.333%; width: 41.667%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 2)">
@@ -1371,7 +1498,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 75.000%; width: 25.000%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 75.000%; width: 25.000%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 2)">
@@ -1406,7 +1533,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(3)" title="クリックでDay 3の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="サンフランシスコ①（⏳ 未予約（10月上旬手配推奨））">🏨 サンフランシスコ①<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="サンフランシスコ①（⏳ 未予約（10月上旬手配推奨））"><span>🏨 サンフランシスコ①</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -1434,7 +1561,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 45.833%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 45.833%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 3)">
@@ -1458,7 +1585,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 45.833%; width: 25.000%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 45.833%; width: 25.000%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 3)">
@@ -1482,13 +1609,13 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 70.833%; width: 16.667%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 70.833%; width: 16.667%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 3)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>NH 8 (NRT→SFO)</span>
                   <span class="block-time">(17:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -1506,7 +1633,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 87.500%; width: 6.250%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 87.500%; width: 6.250%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 3)">
@@ -1530,7 +1657,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 93.750%; width: 6.250%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 93.750%; width: 6.250%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 3)">
@@ -1565,7 +1692,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(4)" title="クリックでDay 4の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="メキシコシティ①（⏳ 未予約（10月上旬手配推奨））">🏨 メキシコシティ①<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="メキシコシティ①（⏳ 未予約（10月上旬手配推奨））"><span>🏨 メキシコシティ①</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -1593,7 +1720,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 31.250%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 31.250%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 4)">
@@ -1617,7 +1744,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 31.250%; width: 13.542%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 31.250%; width: 13.542%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 4)">
@@ -1641,13 +1768,13 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 44.792%; width: 22.208%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 44.792%; width: 22.208%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 4)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>UA 1271 (SFO→MEX)</span>
                   <span class="block-time">(10:45)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -1665,7 +1792,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 67.000%; width: 10.083%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 67.000%; width: 10.083%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 4)">
@@ -1689,7 +1816,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 77.083%; width: 14.583%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 77.083%; width: 14.583%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 4)">
@@ -1713,7 +1840,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 4)">
@@ -1748,7 +1875,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(5)" title="クリックでDay 5の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="メキシコシティ②（⏳ 未予約（10月上旬手配推奨））">🏨 メキシコシティ②<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="メキシコシティ②（⏳ 未予約（10月上旬手配推奨））"><span>🏨 メキシコシティ②</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -1776,7 +1903,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 31.250%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 31.250%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 5)">
@@ -1800,13 +1927,13 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 31.250%; width: 27.083%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 31.250%; width: 27.083%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 5)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★テオティワカン遺跡</span>
                   <span class="block-time">(07:30)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -1824,13 +1951,13 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 58.333%; width: 18.750%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 58.333%; width: 18.750%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 5)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★国立人類学博物館</span>
                   <span class="block-time">(14:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -1848,7 +1975,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 77.083%; width: 14.583%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 77.083%; width: 14.583%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 5)">
@@ -1872,7 +1999,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 5)">
@@ -1907,7 +2034,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(6)" title="クリックでDay 6の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="リマ空港直結ホテル（Costa del Sol）（⏳ 未予約（10月上旬手配推奨））">🏨 リマ空港直結ホテル（Costa del Sol）<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="リマ空港直結ホテル（Costa del Sol）（⏳ 未予約（10月上旬手配推奨））"><span>🏨 リマ空港直結ホテル（Costa del Sol）</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -1935,7 +2062,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 33.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 33.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 6)">
@@ -1959,7 +2086,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 33.333%; width: 10.417%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 33.333%; width: 10.417%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 6)">
@@ -1983,7 +2110,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 43.750%; width: 11.125%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 43.750%; width: 11.125%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 6)">
@@ -2007,13 +2134,13 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 54.875%; width: 19.708%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 54.875%; width: 19.708%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 6)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>CM 121 (MEX→PTY)</span>
                   <span class="block-time">(13:10)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -2031,7 +2158,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 74.583%; width: 5.208%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 74.583%; width: 5.208%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 6)">
@@ -2055,13 +2182,13 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 79.792%; width: 15.000%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 79.792%; width: 15.000%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 6)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>CM 489 (PTY→LIM)</span>
                   <span class="block-time">(19:08)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -2079,7 +2206,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 94.792%; width: 3.125%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 94.792%; width: 3.125%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 6)">
@@ -2103,7 +2230,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 97.917%; width: 2.083%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 97.917%; width: 2.083%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 6)">
@@ -2138,7 +2265,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(7)" title="クリックでDay 7の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="マチュピチュ村①（⏳ 未予約（10月上旬手配推奨））">🏨 マチュピチュ村①<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="マチュピチュ村①（⏳ 未予約（10月上旬手配推奨））"><span>🏨 マチュピチュ村①</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -2166,7 +2293,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 25.000%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 25.000%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 7)">
@@ -2190,7 +2317,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 25.000%; width: 6.958%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 25.000%; width: 6.958%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 7)">
@@ -2214,7 +2341,7 @@
                    data-doc-link="手配_RTW外フライト.html#c2"
                    data-doc-label="手配_RTW外フライト.html（C2）"
                    data-doc-md="手配_RTW外フライト.md"
-                   style="left: 31.958%; width: 5.875%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 31.958%; width: 5.875%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 7)">
@@ -2238,7 +2365,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 37.833%; width: 1.750%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 37.833%; width: 1.750%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 7)">
@@ -2262,7 +2389,7 @@
                    data-doc-link="手配_マチュピチュ.html"
                    data-doc-label="手配_マチュピチュ.html"
                    data-doc-md="手配_マチュピチュ.md"
-                   style="left: 39.583%; width: 6.250%; background: linear-gradient(135deg, #0284c7, #0369a1); border-color: #075985; color: #ffffff;"
+                   style="left: 39.583%; width: 6.250%; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 7)">
@@ -2286,7 +2413,7 @@
                    data-doc-link="手配_鉄道.html#luggage"
                    data-doc-label="手配_鉄道.html（§5 荷物預かり）"
                    data-doc-md="手配_鉄道.md"
-                   style="left: 45.833%; width: 10.208%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 45.833%; width: 10.208%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 7)">
@@ -2310,7 +2437,7 @@
                    data-doc-link="手配_鉄道.html#d1"
                    data-doc-label="手配_鉄道.html（§3 D1）"
                    data-doc-md="手配_鉄道.md"
-                   style="left: 56.042%; width: 5.750%; background: linear-gradient(135deg, #0284c7, #0369a1); border-color: #075985; color: #ffffff;"
+                   style="left: 56.042%; width: 5.750%; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 7)">
@@ -2334,7 +2461,7 @@
                    data-doc-link="手配_マチュピチュ.html"
                    data-doc-label="手配_マチュピチュ.html"
                    data-doc-md="手配_マチュピチュ.md"
-                   style="left: 61.792%; width: 15.292%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 61.792%; width: 15.292%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 7)">
@@ -2358,7 +2485,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 77.083%; width: 12.500%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 77.083%; width: 12.500%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 7)">
@@ -2382,7 +2509,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 89.583%; width: 10.417%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 89.583%; width: 10.417%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 7)">
@@ -2417,7 +2544,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(8)" title="クリックでDay 8の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="マチュピチュ村②（⏳ 未予約（10月上旬手配推奨））">🏨 マチュピチュ村②<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="マチュピチュ村②（⏳ 未予約（10月上旬手配推奨））"><span>🏨 マチュピチュ村②</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -2445,7 +2572,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 25.000%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 25.000%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 8)">
@@ -2469,13 +2596,13 @@
                    data-doc-link="手配_マチュピチュ.html#huayna"
                    data-doc-label="手配_マチュピチュ.html（§0 結論・入場券）"
                    data-doc-md="手配_マチュピチュ.md"
-                   style="left: 25.000%; width: 41.667%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 25.000%; width: 41.667%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 8)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>★マチュピチュ遺跡 終日観光</span>
                   <span class="block-time">(06:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -2493,7 +2620,7 @@
                    data-doc-link="手配_マチュピチュ.html#schedule"
                    data-doc-label="手配_マチュピチュ.html（§1 タイムチャート）"
                    data-doc-md="手配_マチュピチュ.md"
-                   style="left: 66.667%; width: 12.500%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 66.667%; width: 12.500%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 8)">
@@ -2517,7 +2644,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 79.167%; width: 20.833%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 79.167%; width: 20.833%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 8)">
@@ -2552,7 +2679,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(9)" title="クリックでDay 9の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="クスコ①（⏳ 未予約（10月上旬手配推奨））">🏨 クスコ①<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="クスコ①（⏳ 未予約（10月上旬手配推奨））"><span>🏨 クスコ①</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -2580,7 +2707,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 33.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 33.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 9)">
@@ -2604,7 +2731,7 @@
                    data-doc-link="手配_マチュピチュ.html"
                    data-doc-label="手配_マチュピチュ.html"
                    data-doc-md="手配_マチュピチュ.md"
-                   style="left: 33.333%; width: 17.500%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 33.333%; width: 17.500%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 9)">
@@ -2628,7 +2755,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 50.833%; width: 2.375%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 50.833%; width: 2.375%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 9)">
@@ -2652,7 +2779,7 @@
                    data-doc-link="手配_鉄道.html#d2"
                    data-doc-label="手配_鉄道.html（§4 D2）"
                    data-doc-md="手配_鉄道.md"
-                   style="left: 53.208%; width: 6.458%; background: linear-gradient(135deg, #0284c7, #0369a1); border-color: #075985; color: #ffffff;"
+                   style="left: 53.208%; width: 6.458%; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 9)">
@@ -2676,7 +2803,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 59.667%; width: 1.792%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 59.667%; width: 1.792%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 9)">
@@ -2700,13 +2827,13 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 61.458%; width: 7.292%; background: linear-gradient(135deg, #0284c7, #0369a1); border-color: #075985; color: #ffffff;"
+                   style="left: 61.458%; width: 7.292%; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 9)">
                 <span class="block-text">
                   <span>🚗</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>専用車でクスコへ</span>
                   <span class="block-time">(14:45)</span>
                   
@@ -2724,7 +2851,7 @@
                    data-doc-link="手配_マチュピチュ.html"
                    data-doc-label="手配_マチュピチュ.html"
                    data-doc-md="手配_マチュピチュ.md"
-                   style="left: 68.750%; width: 14.583%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 68.750%; width: 14.583%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 9)">
@@ -2748,7 +2875,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 83.333%; width: 8.333%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 83.333%; width: 8.333%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 9)">
@@ -2772,7 +2899,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 9)">
@@ -2807,7 +2934,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(10)" title="クリックでDay 10の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="クスコ②（⏳ 未予約（10月上旬手配推奨））">🏨 クスコ②<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="クスコ②（⏳ 未予約（10月上旬手配推奨））"><span>🏨 クスコ②</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -2835,7 +2962,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 33.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 33.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 10)">
@@ -2859,7 +2986,7 @@
                    data-doc-link="手配_マチュピチュ.html#schedule"
                    data-doc-label="手配_マチュピチュ.html（§1 タイムチャート）"
                    data-doc-md="手配_マチュピチュ.md"
-                   style="left: 33.333%; width: 37.500%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 33.333%; width: 37.500%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 10)">
@@ -2883,7 +3010,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 70.833%; width: 20.833%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 70.833%; width: 20.833%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 10)">
@@ -2907,7 +3034,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 10)">
@@ -2942,7 +3069,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(11)" title="クリックでDay 11の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="機中／深夜イグアス着（⏳ 未予約（10月上旬手配推奨））">🏨 機中／深夜イグアス着<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="機中／深夜イグアス着（⏳ 未予約（10月上旬手配推奨））"><span>🏨 機中／深夜イグアス着</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -2970,7 +3097,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 14.583%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 14.583%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 11)">
@@ -2994,7 +3121,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 14.583%; width: 6.250%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 14.583%; width: 6.250%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 11)">
@@ -3018,7 +3145,7 @@
                    data-doc-link="手配_RTW外フライト.html#c3"
                    data-doc-label="手配_RTW外フライト.html（C3）"
                    data-doc-md="手配_RTW外フライト.md"
-                   style="left: 20.833%; width: 6.583%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 20.833%; width: 6.583%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 11)">
@@ -3042,7 +3169,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 27.417%; width: 11.125%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 27.417%; width: 11.125%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 11)">
@@ -3066,13 +3193,13 @@
                    data-doc-link="手配_RTW外フライト.html#c3"
                    data-doc-label="手配_RTW外フライト.html（C3）"
                    data-doc-md="手配_RTW外フライト.md"
-                   style="left: 38.542%; width: 21.542%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 38.542%; width: 21.542%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 11)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>LA 8005 (LIM→GRU)</span>
                   <span class="block-time">(09:15)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -3090,7 +3217,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 60.083%; width: 34.000%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 60.083%; width: 34.000%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 11)">
@@ -3114,7 +3241,7 @@
                    data-doc-link="手配_RTW外フライト.html#c3"
                    data-doc-label="手配_RTW外フライト.html（C3）"
                    data-doc-md="手配_RTW外フライト.md"
-                   style="left: 94.083%; width: 5.917%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 94.083%; width: 5.917%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 11)">
@@ -3149,7 +3276,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(12)" title="クリックでDay 12の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="イグアス①（⏳ 未予約（10月上旬手配推奨））">🏨 イグアス①<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="イグアス①（⏳ 未予約（10月上旬手配推奨））"><span>🏨 イグアス①</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -3177,7 +3304,7 @@
                    data-doc-link="手配_RTW外フライト.html#c3"
                    data-doc-label="手配_RTW外フライト.html（C3）"
                    data-doc-md="手配_RTW外フライト.md"
-                   style="left: 0.000%; width: 1.375%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 0.000%; width: 1.375%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 12)">
@@ -3201,7 +3328,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 1.375%; width: 2.792%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 1.375%; width: 2.792%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 12)">
@@ -3225,7 +3352,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 4.167%; width: 31.250%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 4.167%; width: 31.250%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 12)">
@@ -3249,13 +3376,13 @@
                    data-doc-link="手配_イグアス.html#argentina"
                    data-doc-label="手配_イグアス.html（§2 悪魔の喉笛・ボート）"
                    data-doc-md="手配_イグアス.md"
-                   style="left: 35.417%; width: 37.500%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 35.417%; width: 37.500%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 12)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★イグアス【アルゼンチン側】</span>
                   <span class="block-time">(08:30)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -3273,7 +3400,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 72.917%; width: 18.750%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 72.917%; width: 18.750%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 12)">
@@ -3297,7 +3424,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 12)">
@@ -3332,7 +3459,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(13)" title="クリックでDay 13の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="イグアス②（⏳ 未予約（10月上旬手配推奨））">🏨 イグアス②<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="イグアス②（⏳ 未予約（10月上旬手配推奨））"><span>🏨 イグアス②</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -3360,7 +3487,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 33.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 33.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 13)">
@@ -3384,13 +3511,13 @@
                    data-doc-link="手配_イグアス.html#brazil"
                    data-doc-label="手配_イグアス.html（§3 ブラジル側・ヘリ遊覧）"
                    data-doc-md="手配_イグアス.md"
-                   style="left: 33.333%; width: 37.500%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 33.333%; width: 37.500%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 13)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★ブラジル側パノラマ＆ヘリ</span>
                   <span class="block-time">(08:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -3408,7 +3535,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 70.833%; width: 20.833%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 70.833%; width: 20.833%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 13)">
@@ -3432,7 +3559,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 13)">
@@ -3467,7 +3594,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(14)" title="クリックでDay 14の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="サンパウロ①（⏳ 未予約（10月上旬手配推奨））">🏨 サンパウロ①<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="サンパウロ①（⏳ 未予約（10月上旬手配推奨））"><span>🏨 サンパウロ①</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -3495,7 +3622,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 14)">
@@ -3519,7 +3646,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 35.417%; width: 9.042%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 35.417%; width: 9.042%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 14)">
@@ -3543,13 +3670,13 @@
                    data-doc-link="手配_RTW外フライト.html#c4"
                    data-doc-label="手配_RTW外フライト.html（C4）"
                    data-doc-md="手配_RTW外フライト.md"
-                   style="left: 44.458%; width: 7.292%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 44.458%; width: 7.292%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 14)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>LA 3201 (IGU→GRU)</span>
                   <span class="block-time">(10:40)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -3567,7 +3694,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 51.750%; width: 10.750%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 51.750%; width: 10.750%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 14)">
@@ -3591,7 +3718,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 62.500%; width: 25.000%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 62.500%; width: 25.000%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 14)">
@@ -3615,7 +3742,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 87.500%; width: 12.500%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 87.500%; width: 12.500%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 14)">
@@ -3650,7 +3777,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(15)" title="クリックでDay 15の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="サンパウロ②（⏳ 未予約（10月上旬手配推奨））">🏨 サンパウロ②<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="サンパウロ②（⏳ 未予約（10月上旬手配推奨））"><span>🏨 サンパウロ②</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -3678,7 +3805,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 15)">
@@ -3702,7 +3829,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 35.417%; width: 39.583%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 35.417%; width: 39.583%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 15)">
@@ -3726,7 +3853,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 75.000%; width: 16.667%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 75.000%; width: 16.667%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 15)">
@@ -3750,7 +3877,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 15)">
@@ -3785,7 +3912,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(16)" title="クリックでDay 16の詳細を表示（✅ 機中泊（航空券発券済み・確定））" data-hotel-status="booked">
-            <span class="hotel-tag hotel-booked" title="機中泊（✅ 機中泊（航空券発券済み・確定））">🏨 機中泊<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(✅ 確定)</span></span>
+            <span class="hotel-tag hotel-booked" title="機中泊（✅ 機中泊（航空券発券済み・確定））"><span>🏨 機中泊</span><span class="hotel-pill-badge pill-booked">✅ 確定</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -3813,7 +3940,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 16)">
@@ -3837,7 +3964,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 35.417%; width: 39.583%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 35.417%; width: 39.583%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 16)">
@@ -3861,7 +3988,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 75.000%; width: 8.333%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 75.000%; width: 8.333%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 16)">
@@ -3885,7 +4012,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 83.333%; width: 13.542%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 83.333%; width: 13.542%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 16)">
@@ -3909,13 +4036,13 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 96.875%; width: 3.125%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 96.875%; width: 3.125%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 16)">
                 <span class="block-text">
                   <span>✈️</span>
-                  
+                  <span class="badge-status-booked">✅</span>
                   
                   
                   
@@ -3944,7 +4071,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(17)" title="クリックでDay 17の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="リスボン①（⏳ 未予約（10月上旬手配推奨））">🏨 リスボン①<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="リスボン①（⏳ 未予約（10月上旬手配推奨））"><span>🏨 リスボン①</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -3972,13 +4099,13 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 0.000%; width: 50.708%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 0.000%; width: 50.708%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 17)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>TP 88 機中 (大西洋横断)</span>
                   <span class="block-time">(00:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -3996,7 +4123,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 50.708%; width: 7.625%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 50.708%; width: 7.625%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 17)">
@@ -4020,7 +4147,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 58.333%; width: 16.667%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 58.333%; width: 16.667%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 17)">
@@ -4044,7 +4171,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 75.000%; width: 14.583%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 75.000%; width: 14.583%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 17)">
@@ -4068,7 +4195,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 89.583%; width: 10.417%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 89.583%; width: 10.417%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 17)">
@@ -4103,7 +4230,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(18)" title="クリックでDay 18の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="バルセロナ①（⏳ 未予約（10月上旬手配推奨））">🏨 バルセロナ①<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="バルセロナ①（⏳ 未予約（10月上旬手配推奨））"><span>🏨 バルセロナ①</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -4131,7 +4258,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 19.458%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 19.458%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 18)">
@@ -4155,7 +4282,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 19.458%; width: 10.417%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 19.458%; width: 10.417%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 18)">
@@ -4179,13 +4306,13 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 29.875%; width: 12.125%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 29.875%; width: 12.125%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 18)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>TP 1030 (LIS→BCN)</span>
                   <span class="block-time">(07:10)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -4203,7 +4330,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 42.000%; width: 10.083%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 42.000%; width: 10.083%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 18)">
@@ -4227,7 +4354,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 52.083%; width: 22.917%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 52.083%; width: 22.917%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 18)">
@@ -4251,7 +4378,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 75.000%; width: 16.667%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 75.000%; width: 16.667%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 18)">
@@ -4275,7 +4402,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 18)">
@@ -4310,7 +4437,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(19)" title="クリックでDay 19の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="バルセロナ②（⏳ 未予約（10月上旬手配推奨））">🏨 バルセロナ②<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="バルセロナ②（⏳ 未予約（10月上旬手配推奨））"><span>🏨 バルセロナ②</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -4338,7 +4465,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 33.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 33.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 19)">
@@ -4362,13 +4489,13 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 33.333%; width: 18.750%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 33.333%; width: 18.750%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 19)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★サグラダ・ファミリア</span>
                   <span class="block-time">(08:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -4386,7 +4513,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 52.083%; width: 20.833%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 52.083%; width: 20.833%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 19)">
@@ -4410,7 +4537,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 72.917%; width: 18.750%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 72.917%; width: 18.750%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 19)">
@@ -4434,7 +4561,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 19)">
@@ -4469,7 +4596,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(20)" title="クリックでDay 20の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="マドリード①（⏳ 未予約（10月上旬手配推奨））">🏨 マドリード①<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="マドリード①（⏳ 未予約（10月上旬手配推奨））"><span>🏨 マドリード①</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -4497,7 +4624,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 20)">
@@ -4521,7 +4648,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 35.417%; width: 16.667%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 35.417%; width: 16.667%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 20)">
@@ -4545,7 +4672,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 52.083%; width: 4.167%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 52.083%; width: 4.167%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 20)">
@@ -4569,13 +4696,13 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 56.250%; width: 10.417%; background: linear-gradient(135deg, #0284c7, #0369a1); border-color: #075985; color: #ffffff;"
+                   style="left: 56.250%; width: 10.417%; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 20)">
                 <span class="block-text">
                   <span>🚄</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>AVE高速鉄道 (BCN→MAD)</span>
                   <span class="block-time">(13:30)</span>
                   
@@ -4593,7 +4720,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 66.667%; width: 20.833%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 66.667%; width: 20.833%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 20)">
@@ -4617,7 +4744,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 87.500%; width: 12.500%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 87.500%; width: 12.500%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 20)">
@@ -4652,7 +4779,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(21)" title="クリックでDay 21の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="マドリード②（⏳ 未予約（10月上旬手配推奨））">🏨 マドリード②<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="マドリード②（⏳ 未予約（10月上旬手配推奨））"><span>🏨 マドリード②</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -4680,7 +4807,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 21)">
@@ -4704,13 +4831,13 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 35.417%; width: 22.917%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 35.417%; width: 22.917%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 21)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★プラド美術館＆公園</span>
                   <span class="block-time">(08:30)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -4728,7 +4855,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 58.333%; width: 18.750%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 58.333%; width: 18.750%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 21)">
@@ -4752,7 +4879,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 77.083%; width: 9.375%; background: linear-gradient(135deg, #0284c7, #0369a1); border-color: #075985; color: #ffffff;"
+                   style="left: 77.083%; width: 9.375%; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 21)">
@@ -4776,13 +4903,13 @@
                    data-doc-link="東回り_サッカー観戦候補.html#spain"
                    data-doc-label="東回り_サッカー観戦候補.html（§1 観戦候補）"
                    data-doc-md="東回り_サッカー観戦候補.md"
-                   style="left: 86.458%; width: 9.375%; background: linear-gradient(135deg, #e11d48, #be123c); border-color: #9f1239; color: #ffffff;"
+                   style="left: 86.458%; width: 9.375%; background: linear-gradient(135deg, #e11d48, #be123c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 21)">
                 <span class="block-text">
                   <span>⚽</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>🔴 スペイン vs イングランド</span>
                   <span class="block-time">(20:45)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -4800,7 +4927,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 95.833%; width: 4.167%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 95.833%; width: 4.167%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 21)">
@@ -4835,7 +4962,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(22)" title="クリックでDay 22の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="ローマ①（⏳ 未予約（10月上旬手配推奨））">🏨 ローマ①<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="ローマ①（⏳ 未予約（10月上旬手配推奨））"><span>🏨 ローマ①</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -4863,7 +4990,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 22)">
@@ -4887,7 +5014,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 35.417%; width: 4.167%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 35.417%; width: 4.167%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 22)">
@@ -4911,13 +5038,13 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 39.583%; width: 12.500%; background: linear-gradient(135deg, #0284c7, #0369a1); border-color: #075985; color: #ffffff;"
+                   style="left: 39.583%; width: 12.500%; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 22)">
                 <span class="block-text">
                   <span>🚄</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>AVE (MAD→BCN)</span>
                   <span class="block-time">(09:30)</span>
                   
@@ -4935,7 +5062,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 52.083%; width: 8.333%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 52.083%; width: 8.333%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 22)">
@@ -4959,7 +5086,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 60.417%; width: 9.708%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 60.417%; width: 9.708%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 22)">
@@ -4983,13 +5110,13 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 70.125%; width: 7.292%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 70.125%; width: 7.292%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 22)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>AZ 79 (BCN→FCO)</span>
                   <span class="block-time">(16:49)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -5007,7 +5134,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 77.417%; width: 8.000%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 77.417%; width: 8.000%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 22)">
@@ -5031,7 +5158,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 85.417%; width: 14.583%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 85.417%; width: 14.583%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 22)">
@@ -5066,7 +5193,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(23)" title="クリックでDay 23の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="ローマ②（⏳ 未予約（10月上旬手配推奨））">🏨 ローマ②<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="ローマ②（⏳ 未予約（10月上旬手配推奨））"><span>🏨 ローマ②</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -5094,7 +5221,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 31.250%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 31.250%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 23)">
@@ -5118,7 +5245,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 31.250%; width: 22.917%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 31.250%; width: 22.917%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 23)">
@@ -5142,13 +5269,13 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 54.167%; width: 20.833%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 54.167%; width: 20.833%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 23)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★ヴァチカン市国</span>
                   <span class="block-time">(13:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -5166,7 +5293,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 75.000%; width: 16.667%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 75.000%; width: 16.667%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 23)">
@@ -5190,7 +5317,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 23)">
@@ -5225,7 +5352,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(24)" title="クリックでDay 24の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="ローマ③（⏳ 未予約（10月上旬手配推奨））">🏨 ローマ③<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="ローマ③（⏳ 未予約（10月上旬手配推奨））"><span>🏨 ローマ③</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -5253,7 +5380,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 29.167%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 29.167%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 24)">
@@ -5277,13 +5404,13 @@
                    data-doc-link="手配_ワイナリー.html#tuscany"
                    data-doc-label="手配_ワイナリー.html（§2 ワイナリーツアー）"
                    data-doc-md="手配_ワイナリー.md"
-                   style="left: 29.167%; width: 50.000%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 29.167%; width: 50.000%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 24)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★トスカーナ ワイナリー</span>
                   <span class="block-time">(07:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -5301,7 +5428,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 79.167%; width: 12.500%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 79.167%; width: 12.500%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 24)">
@@ -5325,7 +5452,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 24)">
@@ -5360,7 +5487,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(25)" title="クリックでDay 25の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="アテネ①（⏳ 未予約（10月上旬手配推奨））">🏨 アテネ①<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="アテネ①（⏳ 未予約（10月上旬手配推奨））"><span>🏨 アテネ①</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -5388,7 +5515,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 30.208%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 30.208%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 25)">
@@ -5412,7 +5539,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 30.208%; width: 3.125%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 30.208%; width: 3.125%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 25)">
@@ -5436,7 +5563,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 33.333%; width: 10.750%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 33.333%; width: 10.750%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 25)">
@@ -5460,13 +5587,13 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 44.083%; width: 12.500%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 44.083%; width: 12.500%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 25)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>A3 651 (FCO→ATH)</span>
                   <span class="block-time">(10:34)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -5484,7 +5611,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 56.583%; width: 8.000%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 56.583%; width: 8.000%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 25)">
@@ -5508,7 +5635,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 64.583%; width: 25.000%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 64.583%; width: 25.000%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 25)">
@@ -5532,7 +5659,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 89.583%; width: 10.417%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 89.583%; width: 10.417%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 25)">
@@ -5567,7 +5694,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(26)" title="クリックでDay 26の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="アテネ②（⏳ 未予約（10月上旬手配推奨））">🏨 アテネ②<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="アテネ②（⏳ 未予約（10月上旬手配推奨））"><span>🏨 アテネ②</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -5595,7 +5722,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 33.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 33.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 26)">
@@ -5619,13 +5746,13 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 33.333%; width: 20.833%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 33.333%; width: 20.833%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 26)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★パルテノン神殿・アゴラ</span>
                   <span class="block-time">(08:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -5643,13 +5770,13 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 54.167%; width: 20.833%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 54.167%; width: 20.833%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 26)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★新アクロポリス博物館</span>
                   <span class="block-time">(13:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -5667,7 +5794,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 75.000%; width: 16.667%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 75.000%; width: 16.667%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 26)">
@@ -5691,7 +5818,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 26)">
@@ -5726,7 +5853,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(27)" title="クリックでDay 27の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="カッパドキア洞窟ホテル①（⏳ 未予約（10月上旬手配推奨））">🏨 カッパドキア洞窟ホテル①<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="カッパドキア洞窟ホテル①（⏳ 未予約（10月上旬手配推奨））"><span>🏨 カッパドキア洞窟ホテル①</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -5754,7 +5881,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 27)">
@@ -5778,7 +5905,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 35.417%; width: 4.167%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 35.417%; width: 4.167%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 27)">
@@ -5802,7 +5929,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 39.583%; width: 9.708%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 39.583%; width: 9.708%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 27)">
@@ -5826,13 +5953,13 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 49.292%; width: 11.125%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 49.292%; width: 11.125%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 27)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>TK 1840 (ATH→IST)</span>
                   <span class="block-time">(11:49)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -5850,7 +5977,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 60.417%; width: 21.542%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 60.417%; width: 21.542%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 27)">
@@ -5874,7 +6001,7 @@
                    data-doc-link="手配_RTW外フライト.html#c5"
                    data-doc-label="手配_RTW外フライト.html（C5）"
                    data-doc-md="手配_RTW外フライト.md"
-                   style="left: 81.958%; width: 5.542%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 81.958%; width: 5.542%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 27)">
@@ -5898,7 +6025,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 87.500%; width: 4.167%; background: linear-gradient(135deg, #0284c7, #0369a1); border-color: #075985; color: #ffffff;"
+                   style="left: 87.500%; width: 4.167%; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 27)">
@@ -5922,7 +6049,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 27)">
@@ -5957,7 +6084,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(28)" title="クリックでDay 28の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="カッパドキア洞窟ホテル②（⏳ 未予約（10月上旬手配推奨））">🏨 カッパドキア洞窟ホテル②<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="カッパドキア洞窟ホテル②（⏳ 未予約（10月上旬手配推奨））"><span>🏨 カッパドキア洞窟ホテル②</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -5985,7 +6112,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 20.833%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 20.833%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 28)">
@@ -6009,13 +6136,13 @@
                    data-doc-link="手配_気球ツアー.html#balloon"
                    data-doc-label="手配_気球ツアー.html（§2 欠航対策・手配）"
                    data-doc-md="手配_気球ツアー.md"
-                   style="left: 20.833%; width: 14.583%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 20.833%; width: 14.583%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 28)">
                 <span class="block-text">
                   <span>🎈</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★早朝カッパドキア熱気球</span>
                   <span class="block-time">(05:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -6033,7 +6160,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 35.417%; width: 6.250%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 35.417%; width: 6.250%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 28)">
@@ -6057,13 +6184,13 @@
                    data-doc-link="手配_気球ツアー.html#goreme"
                    data-doc-label="手配_気球ツアー.html（§3 ギョレメ・地下都市）"
                    data-doc-md="手配_気球ツアー.md"
-                   style="left: 41.667%; width: 29.167%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 41.667%; width: 29.167%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 28)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★ギョレメ野外博物館</span>
                   <span class="block-time">(10:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -6081,7 +6208,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 70.833%; width: 20.833%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 70.833%; width: 20.833%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 28)">
@@ -6105,7 +6232,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 28)">
@@ -6140,7 +6267,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(29)" title="クリックでDay 29の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="イスタンブール①（⏳ 未予約（10月上旬手配推奨））">🏨 イスタンブール①<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="イスタンブール①（⏳ 未予約（10月上旬手配推奨））"><span>🏨 イスタンブール①</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -6168,7 +6295,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 29.167%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 29.167%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 29)">
@@ -6192,7 +6319,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 29.167%; width: 10.417%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 29.167%; width: 10.417%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 29)">
@@ -6216,7 +6343,7 @@
                    data-doc-link="手配_RTW外フライト.html#c6"
                    data-doc-label="手配_RTW外フライト.html（C6）"
                    data-doc-md="手配_RTW外フライト.md"
-                   style="left: 39.583%; width: 6.583%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 39.583%; width: 6.583%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 29)">
@@ -6240,7 +6367,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 46.167%; width: 10.083%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 46.167%; width: 10.083%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 29)">
@@ -6264,7 +6391,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 56.250%; width: 20.833%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 56.250%; width: 20.833%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 29)">
@@ -6288,7 +6415,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 77.083%; width: 14.583%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 77.083%; width: 14.583%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 29)">
@@ -6312,7 +6439,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 29)">
@@ -6347,7 +6474,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(30)" title="クリックでDay 30の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="イスタンブール②（⏳ 未予約（10月上旬手配推奨））">🏨 イスタンブール②<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="イスタンブール②（⏳ 未予約（10月上旬手配推奨））"><span>🏨 イスタンブール②</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -6375,7 +6502,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 30)">
@@ -6399,7 +6526,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 35.417%; width: 18.750%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 35.417%; width: 18.750%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 30)">
@@ -6423,13 +6550,13 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 54.167%; width: 12.500%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 54.167%; width: 12.500%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 30)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★ボスポラス海峡クルーズ</span>
                   <span class="block-time">(13:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -6447,7 +6574,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 66.667%; width: 6.250%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 66.667%; width: 6.250%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 30)">
@@ -6471,7 +6598,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 72.917%; width: 5.208%; background: linear-gradient(135deg, #0284c7, #0369a1); border-color: #075985; color: #ffffff;"
+                   style="left: 72.917%; width: 5.208%; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 30)">
@@ -6495,13 +6622,13 @@
                    data-doc-link="東回り_サッカー観戦候補.html#galatasaray"
                    data-doc-label="東回り_サッカー観戦候補.html（§3 ガラタサライ戦）"
                    data-doc-md="東回り_サッカー観戦候補.md"
-                   style="left: 78.125%; width: 9.375%; background: linear-gradient(135deg, #e11d48, #be123c); border-color: #9f1239; color: #ffffff;"
+                   style="left: 78.125%; width: 9.375%; background: linear-gradient(135deg, #e11d48, #be123c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 30)">
                 <span class="block-text">
                   <span>⚽</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>🔴 ガラタサライ vs アストン・ヴィラ</span>
                   <span class="block-time">(18:45)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -6519,7 +6646,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 87.500%; width: 12.500%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 87.500%; width: 12.500%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 30)">
@@ -6554,7 +6681,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(31)" title="クリックでDay 31の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="カイロ①（⏳ 未予約（10月上旬手配推奨））">🏨 カイロ①<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="カイロ①（⏳ 未予約（10月上旬手配推奨））"><span>🏨 カイロ①</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -6582,7 +6709,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 39.583%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 39.583%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 31)">
@@ -6606,7 +6733,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 39.583%; width: 6.250%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 39.583%; width: 6.250%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 31)">
@@ -6630,7 +6757,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 45.833%; width: 12.500%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 45.833%; width: 12.500%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 31)">
@@ -6654,7 +6781,7 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 58.333%; width: 5.208%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 58.333%; width: 5.208%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 31)">
@@ -6678,7 +6805,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 63.542%; width: 9.375%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 63.542%; width: 9.375%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 31)">
@@ -6702,7 +6829,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 72.917%; width: 14.583%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 72.917%; width: 14.583%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 31)">
@@ -6726,7 +6853,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 87.500%; width: 12.500%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 87.500%; width: 12.500%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 31)">
@@ -6761,7 +6888,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(32)" title="クリックでDay 32の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="カイロ②（⏳ 未予約（10月上旬手配推奨））">🏨 カイロ②<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="カイロ②（⏳ 未予約（10月上旬手配推奨））"><span>🏨 カイロ②</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -6789,7 +6916,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 33.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 33.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 32)">
@@ -6813,13 +6940,13 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 33.333%; width: 25.000%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 33.333%; width: 25.000%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 32)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★ギザ三大ピラミッド</span>
                   <span class="block-time">(08:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -6837,13 +6964,13 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 58.333%; width: 16.667%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 58.333%; width: 16.667%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 32)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>サッカラ階段ピラミッド</span>
                   <span class="block-time">(14:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -6861,7 +6988,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 75.000%; width: 16.667%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 75.000%; width: 16.667%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 32)">
@@ -6885,7 +7012,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 32)">
@@ -6920,7 +7047,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(33)" title="クリックでDay 33の詳細を表示（✅ 機中泊（航空券発券済み・確定））" data-hotel-status="booked">
-            <span class="hotel-tag hotel-booked" title="MS849機中泊（21:35発）（✅ 機中泊（航空券発券済み・確定））">🏨 MS849機中泊（21:35発）<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(✅ 確定)</span></span>
+            <span class="hotel-tag hotel-booked" title="MS849機中泊（21:35発）（✅ 機中泊（航空券発券済み・確定））"><span>🏨 MS849機中泊（21:35発）</span><span class="hotel-pill-badge pill-booked">✅ 確定</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -6948,7 +7075,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 33)">
@@ -6972,13 +7099,13 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 35.417%; width: 29.167%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 35.417%; width: 29.167%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 33)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★大エジプト博物館 (GEM)</span>
                   <span class="block-time">(08:30)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -6996,7 +7123,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 64.583%; width: 10.417%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 64.583%; width: 10.417%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 33)">
@@ -7020,7 +7147,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 75.000%; width: 14.917%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 75.000%; width: 14.917%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 33)">
@@ -7044,13 +7171,13 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 89.917%; width: 10.083%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 89.917%; width: 10.083%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 33)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>MS 849 (CAI→NBO)</span>
                   <span class="block-time">(21:34)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -7079,7 +7206,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(34)" title="クリックでDay 34の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="アンボセリサファリロッジ①（⏳ 未予約（10月上旬手配推奨））">🏨 アンボセリサファリロッジ①<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="アンボセリサファリロッジ①（⏳ 未予約（10月上旬手配推奨））"><span>🏨 アンボセリサファリロッジ①</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -7107,13 +7234,13 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 0.000%; width: 14.583%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 0.000%; width: 14.583%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 34)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>MS 849 機中 (03:30着)</span>
                   <span class="block-time">(00:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -7131,7 +7258,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 14.583%; width: 4.167%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 14.583%; width: 4.167%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 34)">
@@ -7155,7 +7282,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 18.750%; width: 16.667%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 18.750%; width: 16.667%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 34)">
@@ -7179,7 +7306,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 35.417%; width: 2.083%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 35.417%; width: 2.083%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 34)">
@@ -7203,13 +7330,13 @@
                    data-doc-link="手配_サファリ.html#amboseli"
                    data-doc-label="手配_サファリ.html（§1 行程・§4 サファリ）"
                    data-doc-md="手配_サファリ.md"
-                   style="left: 37.500%; width: 16.667%; background: linear-gradient(135deg, #0284c7, #0369a1); border-color: #075985; color: #ffffff;"
+                   style="left: 37.500%; width: 16.667%; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 34)">
                 <span class="block-text">
                   <span>🚗</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>4x4でアンボセリへ</span>
                   <span class="block-time">(09:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -7227,7 +7354,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 54.167%; width: 10.417%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 54.167%; width: 10.417%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 34)">
@@ -7251,7 +7378,7 @@
                    data-doc-link="手配_サファリ.html#amboseli"
                    data-doc-label="手配_サファリ.html（§1 行程・§4 サファリ）"
                    data-doc-md="手配_サファリ.md"
-                   style="left: 64.583%; width: 12.500%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 64.583%; width: 12.500%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 34)">
@@ -7275,7 +7402,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 77.083%; width: 14.583%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 77.083%; width: 14.583%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 34)">
@@ -7299,7 +7426,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 34)">
@@ -7334,7 +7461,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(35)" title="クリックでDay 35の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="アンボセリサファリロッジ②（⏳ 未予約（10月上旬手配推奨））">🏨 アンボセリサファリロッジ②<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="アンボセリサファリロッジ②（⏳ 未予約（10月上旬手配推奨））"><span>🏨 アンボセリサファリロッジ②</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -7362,7 +7489,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 25.000%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 25.000%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 35)">
@@ -7386,13 +7513,13 @@
                    data-doc-link="手配_サファリ.html#amboseli"
                    data-doc-label="手配_サファリ.html（§1 行程・§4 サファリ）"
                    data-doc-md="手配_サファリ.md"
-                   style="left: 25.000%; width: 50.000%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 25.000%; width: 50.000%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 35)">
                 <span class="block-text">
                   <span>🦁</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★アンボセリ 終日サファリ</span>
                   <span class="block-time">(06:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -7410,7 +7537,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 75.000%; width: 16.667%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 75.000%; width: 16.667%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 35)">
@@ -7434,7 +7561,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 35)">
@@ -7469,7 +7596,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(36)" title="クリックでDay 36の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="ナイロビ空港敷地内ホテル（⏳ 未予約（10月上旬手配推奨））">🏨 ナイロビ空港敷地内ホテル<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="ナイロビ空港敷地内ホテル（⏳ 未予約（10月上旬手配推奨））"><span>🏨 ナイロビ空港敷地内ホテル</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -7497,7 +7624,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 25.000%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 25.000%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 36)">
@@ -7521,7 +7648,7 @@
                    data-doc-link="手配_サファリ.html#amboseli"
                    data-doc-label="手配_サファリ.html（§1 行程・§4 サファリ）"
                    data-doc-md="手配_サファリ.md"
-                   style="left: 25.000%; width: 10.417%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 25.000%; width: 10.417%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 36)">
@@ -7545,13 +7672,13 @@
                    data-doc-link="手配_サファリ.html#amboseli"
                    data-doc-label="手配_サファリ.html（§1 行程・§4 サファリ）"
                    data-doc-md="手配_サファリ.md"
-                   style="left: 35.417%; width: 20.833%; background: linear-gradient(135deg, #0284c7, #0369a1); border-color: #075985; color: #ffffff;"
+                   style="left: 35.417%; width: 20.833%; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 36)">
                 <span class="block-text">
                   <span>🚗</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>4x4でナイロビへ移動</span>
                   <span class="block-time">(08:30)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -7569,13 +7696,13 @@
                    data-doc-link="手配_サファリ.html#giraffe"
                    data-doc-label="手配_サファリ.html（§3 ジラフ・センター）"
                    data-doc-md="手配_サファリ.md"
-                   style="left: 56.250%; width: 8.333%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 56.250%; width: 8.333%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 36)">
                 <span class="block-text">
                   <span>🦒</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★ジラフ・センター</span>
                   <span class="block-time">(13:30)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -7593,7 +7720,7 @@
                    data-doc-link="手配_ナイロビ観光検討.html"
                    data-doc-label="手配_ナイロビ観光検討.html（工芸村）"
                    data-doc-md="手配_ナイロビ観光検討.md"
-                   style="left: 64.583%; width: 6.250%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 64.583%; width: 6.250%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 36)">
@@ -7617,13 +7744,13 @@
                    data-doc-link="手配_ナイロビ観光検討.html"
                    data-doc-label="手配_ナイロビ観光検討.html（カーニボア）"
                    data-doc-md="手配_ナイロビ観光検討.md"
-                   style="left: 70.833%; width: 10.417%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 70.833%; width: 10.417%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 36)">
                 <span class="block-text">
                   <span>🍖</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★カーニボア・レストラン</span>
                   <span class="block-time">(17:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -7641,7 +7768,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 81.250%; width: 18.750%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 81.250%; width: 18.750%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 36)">
@@ -7676,7 +7803,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(37)" title="クリックでDay 37の詳細を表示（✅ 機中泊（航空券発券済み・確定））" data-hotel-status="booked">
-            <span class="hotel-tag hotel-booked" title="機中泊（✅ 機中泊（航空券発券済み・確定））">🏨 機中泊<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(✅ 確定)</span></span>
+            <span class="hotel-tag hotel-booked" title="機中泊（✅ 機中泊（航空券発券済み・確定））"><span>🏨 機中泊</span><span class="hotel-pill-badge pill-booked">✅ 確定</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -7704,7 +7831,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 27.083%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 27.083%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 37)">
@@ -7728,13 +7855,13 @@
                    data-doc-link="手配_ナイロビ観光検討.html"
                    data-doc-label="手配_ナイロビ観光検討.html（ナイロビNP）"
                    data-doc-md="手配_ナイロビ観光検討.md"
-                   style="left: 27.083%; width: 16.667%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 27.083%; width: 16.667%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 37)">
                 <span class="block-text">
                   <span>🦏</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★ナイロビ国立公園サファリ</span>
                   <span class="block-time">(06:30)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -7752,7 +7879,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 43.750%; width: 16.667%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 43.750%; width: 16.667%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 37)">
@@ -7776,7 +7903,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 60.417%; width: 12.500%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 60.417%; width: 12.500%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 37)">
@@ -7800,13 +7927,13 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 72.917%; width: 8.333%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 72.917%; width: 8.333%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 37)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>ET 319 (NBO→ADD)</span>
                   <span class="block-time">(17:30)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -7824,7 +7951,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 81.250%; width: 18.417%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 81.250%; width: 18.417%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 37)">
@@ -7848,7 +7975,7 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 99.667%; width: 0.333%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 99.667%; width: 0.333%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 37)">
@@ -7883,7 +8010,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(38)" title="クリックでDay 38の詳細を表示（🏠 自宅・帰宅（予約不要））" data-hotel-status="general">
-            <span class="hotel-tag hotel-general" title="バンコク自宅（🏠 自宅・帰宅（予約不要））">🏨 バンコク自宅</span>
+            <span class="hotel-tag hotel-general" title="バンコク自宅（🏠 自宅・帰宅（予約不要））"><span>🏨 バンコク自宅</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -7911,13 +8038,13 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 0.000%; width: 52.083%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 0.000%; width: 52.083%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 38)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>ET 608 機中 → 12:30 BKK着</span>
                   <span class="block-time">(00:00)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -7935,7 +8062,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 52.083%; width: 6.250%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 52.083%; width: 6.250%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 38)">
@@ -7959,7 +8086,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 58.333%; width: 41.667%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 58.333%; width: 41.667%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 38)">
@@ -7994,7 +8121,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(39)" title="クリックでDay 39の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="シンガポール①（⏳ 未予約（10月上旬手配推奨））">🏨 シンガポール①<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="シンガポール①（⏳ 未予約（10月上旬手配推奨））"><span>🏨 シンガポール①</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -8022,7 +8149,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 27.083%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 27.083%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 39)">
@@ -8046,7 +8173,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 27.083%; width: 13.208%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 27.083%; width: 13.208%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 39)">
@@ -8070,13 +8197,13 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 40.292%; width: 14.583%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 40.292%; width: 14.583%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 39)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>SQ 705 (BKK→SIN)</span>
                   <span class="block-time">(09:40)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -8094,7 +8221,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 54.875%; width: 9.708%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 54.875%; width: 9.708%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 39)">
@@ -8118,7 +8245,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 64.583%; width: 27.083%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 64.583%; width: 27.083%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 39)">
@@ -8142,7 +8269,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 39)">
@@ -8177,7 +8304,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(40)" title="クリックでDay 40の詳細を表示（⏳ 未予約（10月上旬手配推奨））" data-hotel-status="unbooked">
-            <span class="hotel-tag hotel-unbooked" title="シンガポール②（⏳ 未予約（10月上旬手配推奨））">🏨 シンガポール②<span style="font-size:9.5px; margin-left:4px; opacity:0.85;">(⏳ 未予約)</span></span>
+            <span class="hotel-tag hotel-unbooked" title="シンガポール②（⏳ 未予約（10月上旬手配推奨））"><span>🏨 シンガポール②</span><span class="hotel-pill-badge pill-unbooked">⏳ 要予約</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -8205,7 +8332,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 35.417%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 40)">
@@ -8229,13 +8356,13 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 35.417%; width: 39.583%; background: linear-gradient(135deg, #ea580c, #c2410c); border-color: #9a3412; color: #ffffff;"
+                   style="left: 35.417%; width: 39.583%; background: linear-gradient(135deg, #ea580c, #c2410c); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 40)">
                 <span class="block-text">
                   <span>🎯</span>
-                  <span class="badge-status-unbooked">⏳</span>
+                  <span class="badge-status-unbooked">⏳ 要手配</span>
                   <span>★ガーデンズ・バイ・ザ・ベイ</span>
                   <span class="block-time">(08:30)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -8253,7 +8380,7 @@
                    data-doc-link="東回り_要件定義書.html"
                    data-doc-label="東回り_要件定義書.html"
                    data-doc-md="東回り_要件定義書.md"
-                   style="left: 75.000%; width: 16.667%; background: linear-gradient(135deg, #059669, #047857); border-color: #065f46; color: #ffffff;"
+                   style="left: 75.000%; width: 16.667%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 40)">
@@ -8277,7 +8404,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 91.667%; width: 8.333%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 40)">
@@ -8312,7 +8439,7 @@
           </td>
 
           <td class="cell-hotel clickable-cell" onclick="showModal(41)" title="クリックでDay 41の詳細を表示（🏠 自宅・帰宅（予約不要））" data-hotel-status="general">
-            <span class="hotel-tag hotel-general" title="東京（実家/自宅）（🏠 自宅・帰宅（予約不要））">🏨 東京（実家/自宅）</span>
+            <span class="hotel-tag hotel-general" title="東京（実家/自宅）（🏠 自宅・帰宅（予約不要））"><span>🏨 東京（実家/自宅）</span></span>
           </td>
 
           <td class="cell-timeline">
@@ -8340,7 +8467,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 0.000%; width: 31.250%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 0.000%; width: 31.250%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 41)">
@@ -8364,7 +8491,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 31.250%; width: 13.542%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 31.250%; width: 13.542%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 41)">
@@ -8388,13 +8515,13 @@
                    data-doc-link="東回り_発券用資料.html#flights"
                    data-doc-label="東回り_発券用資料.html（§1 確定全区間）"
                    data-doc-md="東回り_発券用資料.md"
-                   style="left: 44.792%; width: 31.958%; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #1e40af; color: #ffffff;"
+                   style="left: 44.792%; width: 31.958%; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 41)">
                 <span class="block-text">
                   <span>✈️</span>
-                  <span class="badge-status-booked">✅</span>
+                  <span class="badge-status-booked">✅ 確定</span>
                   <span>NH 842 (SIN→HND)</span>
                   <span class="block-time">(10:45)</span>
                   <span class="link-badge" title="詳細ページを開く">↗</span>
@@ -8412,7 +8539,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 76.750%; width: 10.750%; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-color: #5b21b6; color: #ffffff;"
+                   style="left: 76.750%; width: 10.750%; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ffffff;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 41)">
@@ -8436,7 +8563,7 @@
                    data-doc-link=""
                    data-doc-label=""
                    data-doc-md=""
-                   style="left: 87.500%; width: 12.500%; background: linear-gradient(135deg, #334155, #1e293b); border-color: #0f172a; color: #cbd5e1;"
+                   style="left: 87.500%; width: 12.500%; background: linear-gradient(135deg, #334155, #1e293b); color: #cbd5e1;"
                    onmouseenter="showTooltip(event, this)"
                    onmouseleave="hideTooltip()"
                    onclick="handleBlockClick(event, this, 41)">
@@ -8617,22 +8744,51 @@ function highlightBookingStatus(status) {
     return;
   }
 
-  blocks.forEach(b => {
-    const bStatus = b.getAttribute('data-booking-status');
-    if (bStatus === status) {
-      b.classList.remove('dimmed-status');
-      b.classList.add('highlight-status');
-      b.style.opacity = '1';
-    } else {
-      b.classList.add('dimmed-status');
-      b.classList.remove('highlight-status');
-      b.style.opacity = '0.15';
-    }
-  });
+  if (status === 'booked') {
+    blocks.forEach(b => {
+      const bStatus = b.getAttribute('data-booking-status');
+      if (bStatus === 'booked') {
+        b.classList.remove('dimmed-status');
+        b.classList.add('highlight-status');
+        b.style.opacity = '1';
+      } else {
+        b.classList.add('dimmed-status');
+        b.classList.remove('highlight-status');
+        b.style.opacity = '0.12';
+      }
+    });
+    hotelTags.forEach(h => {
+      if (h.classList.contains('hotel-booked')) {
+        h.classList.remove('dimmed-status');
+      } else {
+        h.classList.add('dimmed-status');
+      }
+    });
+    return;
+  }
 
-  hotelTags.forEach(h => {
-    h.classList.add('dimmed-status');
-  });
+  if (status === 'unbooked') {
+    blocks.forEach(b => {
+      const bStatus = b.getAttribute('data-booking-status');
+      if (bStatus === 'unbooked') {
+        b.classList.remove('dimmed-status');
+        b.classList.add('highlight-status');
+        b.style.opacity = '1';
+      } else {
+        b.classList.add('dimmed-status');
+        b.classList.remove('highlight-status');
+        b.style.opacity = '0.12';
+      }
+    });
+    hotelTags.forEach(h => {
+      if (h.classList.contains('hotel-unbooked')) {
+        h.classList.remove('dimmed-status');
+      } else {
+        h.classList.add('dimmed-status');
+      }
+    });
+    return;
+  }
 }
 
 function highlightType(type) {
