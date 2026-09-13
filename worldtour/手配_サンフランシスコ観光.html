@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>手配_サンフランシスコ観光 — プランA（王道ハイライト完全制覇）行動計画書 - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🦁 マサイマラ・フライインサファリ</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="観戦チケット_販売方法と時期.html">🎫 観戦チケット 販売方法と時期</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_サンフランシスコ観光.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="_-a">手配_サンフランシスコ観光 — プランA（王道ハイライト完全制覇）行動計画書</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>対象日程</strong></td>
+<td style="text-align: left;"><strong>2026年10月28日(水) 10:20着 〜 10月29日(木) 10:45発（1泊2日・実質観光時間 約8.5時間）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>採用プラン</strong></td>
+<td style="text-align: left;">🏆 <strong>プランA：王道ハイライト完全制覇コース</strong>（ケーブルカー＋ロンバート坂＋クラムチャウダー＋ゴールデンゲート夕景＋ベイブリッジ夜景ディナー）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>拠点ホテル</strong></td>
+<td style="text-align: left;">✅ <strong>グラント プラザ ホテル（Grant Plaza Hotel）</strong>（予約済: Vトリップ <code>54HB8NPPTX2G</code>・465 Grant Ave）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>フライト</strong></td>
+<td style="text-align: left;">① <strong>NH 8</strong>（成田 17:00 ➔ SFO 10:20着・ビジネスクラス THE Room 5A）<br>② <strong>UA 1271</strong>（SFO 10:45 ➔ MEX 16:05着・エコノミー）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>作成日</strong></td>
+<td style="text-align: left;">2026年9月13日</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1">1. 全体スケジュール・タイムライン</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[&quot;10:20 SFO到着&lt;br&gt;(NH 8 便・THE Room)&quot;] --&gt; B[&quot;10:20-11:45&lt;br&gt;入国審査・税関・荷物ピックアップ&quot;]
+    B --&gt; C[&quot;11:45-12:30&lt;br&gt;BART移動 (SFO ➔ Montgomery駅)&quot;]
+    C --&gt; D[&quot;12:30-13:00&lt;br&gt;グラント プラザ ホテルに荷物預け&quot;]
+    D --&gt; E[&quot;13:00-14:15&lt;br&gt;【ランチ】チャイナタウン飲茶&lt;br&gt;(Hang Ah / Good Mong Kok)&quot;]
+    E --&gt; F[&quot;14:30-15:15&lt;br&gt;【名物】ケーブルカー乗車&lt;br&gt;(Powell-Hyde Line)&quot;]
+    F --&gt; G[&quot;15:15-15:45&lt;br&gt;【絶景】ロンバート坂&lt;br&gt;(世界一曲がりくねった坂道)&quot;]
+    G --&gt; H[&quot;15:45-17:15&lt;br&gt;【港町】ピア39 (アシカ見学) ＆&lt;br&gt;Boudin Bakery クラムチャウダー&quot;]
+    H --&gt; I[&quot;17:15-18:30&lt;br&gt;【夕景】ゴールデンゲートブリッジ&lt;br&gt;(Crissy Field / 日没鑑賞・Uber)&quot;]
+    I --&gt; J[&quot;18:45-21:00&lt;br&gt;【ディナー＆夜景】エンバカデロ&lt;br&gt;(Hog Island Oyster / ベイブリッジ光のアート)&quot;]
+    J --&gt; K[&quot;21:30&lt;br&gt;ホテル帰着・就寝&quot;]
+    K --&gt; L[&quot;翌朝 07:45&lt;br&gt;ホテル前より Uberで SFOへ直行&quot;]
+    L --&gt; M[&quot;08:15-08:45&lt;br&gt;SFO着・搭乗手続 ➔ 10:45発 MEXへ&quot;]
+</code></pre>
+<hr />
+<h2 id="2">2. 詳細行動マニュアル（分単位）</h2>
+<h3 id="110201300">【フェーズ1：入国〜市内拠点イン】（10:20〜13:00）</h3>
+<ul>
+<li><strong>10:20 SFO着（ターミナルG）</strong>:</li>
+<li>ANA ビジネスクラス（THE Room）のため最優先降機。フルフラットで熟睡後のため体力は万全。</li>
+<li><strong>入国審査ハック</strong>: 事前に米国公式 <strong>MPC（Mobile Passport Control）アプリ</strong> をスマホに設定・到着時に自撮り送信しておくと、専用レーンで長蛇の列をスキップ可能。</li>
+<li><strong>11:45〜12:30 BART移動</strong>:</li>
+<li>SFO国際線ターミナル直結のBART駅から <strong>Yellow Line（Antioch行き）</strong> または <strong>Red Line（Richmond行き）</strong> に乗車。</li>
+<li>チケット: iPhoneウォレットに <strong>Clipperカード</strong> を追加、または改札でApple Pay/クレジットカードのタッチ決済（運賃 約$10.50）。</li>
+<li><strong>モンゴメリー駅（Montgomery St Station）</strong> で下車（乗車約30分）。</li>
+<li><strong>12:30〜13:00 ホテルへ荷物預託</strong>:</li>
+<li>モンゴメリー駅からBush Stを西へ約650m（徒歩約8分・平坦〜緩やかな坂）。金融街側の安全なルート。</li>
+<li><strong>グラント プラザ ホテル（465 Grant Ave）</strong> に到着。</li>
+<li>フロント（24時間対応）でチェックイン手続き、または荷物（スーツケース）を預けて身軽になる（チェックイン開始は14:30〜）。</li>
+</ul>
+<hr />
+<h3 id="213001415">【フェーズ2：チャイナタウン飲茶ランチ】（13:00〜14:15）</h3>
+<p>ホテルはチャイナタウンの象徴「Dragon's Gate」を入ってすぐの絶好のロケーション。</p>
+<ul>
+<li><strong>おすすめ名店</strong>:</li>
+<li><strong>Hang Ah Tea Room（香雅茶室）</strong>: 1 Pagoda Pl（ホテルから徒歩4分）。1920年創業・<strong>全米最古の飲茶茶楼</strong>。路地裏の隠れ家で、伝統的な小籠包、海老蒸し餃子（ハーガオ）、焼売が絶品。</li>
+<li><strong>Good Mong Kok Bakery（好旺角点心）</strong>: 1039 Stockton St（ホテルから徒歩8分）。地元客が行列を作るテイクアウト専門点心。出来立ての肉まんや点心、エッグタルトを買い、近くの公園や歩きながら楽しむ。</li>
+<li><strong>フォトスポット</strong>:</li>
+<li><strong>Dragon's Gate（ドラゴン・ゲート）</strong>: Grant Ave &amp; Bush St の角。巨大な中華門で記念撮影。</li>
+</ul>
+<hr />
+<h3 id="3-14301545">【フェーズ3：名物ケーブルカー ＆ ロンバート坂】（14:30〜15:45）</h3>
+<p>サンフランシスコの代名詞であるケーブルカーに乗車！</p>
+<ul>
+<li><strong>ルート</strong>: <strong>Powell-Hyde Line（パウエル・ハイド線）</strong></li>
+<li>最も人気が高く、起伏が激しく、最後にサンフランシスコ湾とアルカトラズ島を見下ろす絶景路線。</li>
+<li><strong>乗車方法</strong>:</li>
+<li>パウエル駅起点（Powell &amp; Market）は行列が長いため、<strong>途中停留所（Powell &amp; Sutter、または California St からの乗換）</strong> から乗るか、起点で乗車（片道$8・車掌に現金またはMuni Mobileアプリ）。</li>
+<li>ステップ（ステップボード）に掴まって外側に立つ「ステップ乗り」が爽快！</li>
+<li><strong>15:15〜15:45 ロンバート・ストリート（Lombard St）途中下車</strong>:</li>
+<li>Hyde St &amp; Lombard St で下車。</li>
+<li><strong>世界一曲がりくねった坂道</strong>: 5mごとに急カーブする8つのヘアピン坂。左右に色鮮やかな花壇（紫陽花やブーゲンビリア）が咲き誇り、坂の上からは遠くサンフランシスコ湾とコイトタワーを一望する超有名スポット。坂道を歩いて下りながら撮影。</li>
+</ul>
+<hr />
+<h3 id="4-3915451715">【フェーズ4：フィッシャーマンズワーフ ＆ ピア39】（15:45〜17:15）</h3>
+<p>ロンバート坂を下り、Leavenworth St または Columbus Ave を北へ歩いて海沿いへ（徒歩約10分）。</p>
+<ul>
+<li><strong>ピア39（Pier 39）</strong>:</li>
+<li>二層式の木造ウッドデッキが広がる観光フェスティバルマーケット。</li>
+<li><strong>名物・野生アシカ（Sea Lions）の群れ</strong>: K-Dockに数百頭のカリフォルニアアシカが重なり合って昼寝や咆哮をしている（無料見学）。</li>
+<li>ピアの先端からは、正面に<strong>アルカトラズ島（監獄島）</strong>、左手に<strong>ゴールデンゲートブリッジ</strong>がパノラマで広がる。</li>
+<li><strong>名物グルメ：Boudin Bakery（ブーダン・ベーカリー）</strong>:</li>
+<li>ピア39内、または本店のフラッグシップ（160 Jefferson St）。</li>
+<li><strong>Clam Chowder in a Sourdough Bread Bowl（サワードウ・ブレッドボウル・クラムチャウダー）</strong>: 1849年のゴールドラッシュ期から受け継がれる天然酵母の酸味ある丸パンをくり抜き、濃厚で具だくさんのクラムチャウダーを注いだサンフランシスコ発祥の味（約$14〜16）。</li>
+</ul>
+<hr />
+<h3 id="517151830">【フェーズ5：ゴールデンゲートブリッジの夕景鑑賞】（17:15〜18:30）</h3>
+<ul>
+<li><strong>移動</strong>: ピア39から <strong>Uber / Lyft</strong> を配車（所要約15分・約$15）。</li>
+<li><strong>目的地</strong>: <strong>Crissy Field（クリッシー・フィールド）</strong> または <strong>Fort Point（フォート・ポイント）</strong></li>
+<li>かつて飛行場だった広大な海岸緑地。真紅のゴールデンゲートブリッジが海に向かってそびえ立つ全景を最も美しく眺められるベストスポット。</li>
+<li><strong>日没の絶景（10月下旬の日没は18:15頃）</strong>:</li>
+<li>太平洋に沈む夕日と、夕焼けに染まるゴールデンゲートブリッジの雄姿。</li>
+<li>⚠️ <strong>防寒必須</strong>: 海風が非常に強く、体感温度が10℃前後に下がります。ウインドブレーカーやライトダウンを羽織ってください。</li>
+</ul>
+<hr />
+<h3 id="6-18452100">【フェーズ6：エンバカデロ海沿いディナー ＆ ベイブリッジ夜景】（18:45〜21:00）</h3>
+<ul>
+<li><strong>移動</strong>: クリッシー・フィールドから <strong>Uber</strong> で海沿いのフェリービルディング方面へ（所要約20分・約$20）。</li>
+<li><strong>目的地</strong>: <strong>The Ferry Building / Embarcadero（エンバカデロ）</strong></li>
+<li><strong>おすすめディナー名店</strong>:</li>
+<li>🦪 <strong>Hog Island Oyster Co.（ホグ・アイランド・オイスター）</strong>:<ul>
+<li>フェリービルディング内・湾に面したテラス。北カリフォルニア・トマレス湾で採れた極上の生牡蠣（オイスタープレート）、スチームクラム、ナパバレーの白ワイン。</li>
+</ul>
+</li>
+<li>🍷 <strong>Waterbar（ウォーターバー）</strong>:<ul>
+<li>399 The Embarcadero。ライトアップされたベイブリッジの真下に位置する最高峰のシーフードレストラン。</li>
+<li><strong>「The Bay Lights（ベイ・ライツ）」</strong>: ベイブリッジのケーブルに仕込まれた2万5000個の白色LEDが波のように瞬く光のアートを目の前に眺めながら優雅なディナー。</li>
+</ul>
+</li>
+<li><strong>21:00〜21:30 ホテルへ帰着</strong>:</li>
+<li>エンバカデロからグラント プラザ ホテルまでは約1.5km。Uberで約5〜8分（約$10〜12）で安全に戻り、就寝。</li>
+</ul>
+<hr />
+<h3 id="7sfo1029-07000845">【フェーズ7：翌朝・SFO空港への出発】（10/29(木) 07:00〜08:45）</h3>
+<ul>
+<li><strong>07:00〜07:45 起床・チェックアウト</strong>:</li>
+<li>ホテルロビーで無料モーニングコーヒーを受け取り、サクッとチェックアウト。</li>
+<li><strong>07:45 ホテル前で Uber 配車</strong>:</li>
+<li>ホテル目の前の Grant Ave / Bush St にUberを呼ぶ。</li>
+<li>朝の通勤時間帯ですが、南下（SFO方面）は高速道路（US-101 S）の渋滞が少なく、所要 <strong>約25〜30分</strong> で空港へ直行。</li>
+<li>運賃目安: 約$35〜$45（約5,400〜7,000円）。</li>
+<li><strong>08:15〜08:30 SFO 国際線ターミナルG 到着</strong>:</li>
+<li>ユナイテッド航空（UA 1271便・10:45発 MEX行き）のチェックインカウンターへ。</li>
+<li>出発2時間前（08:45）に余裕を持って到着し、保安検査・ラウンジへ。</li>
+</ul>
+<hr />
+<h2 id="3-1">3. 費用・予算概算（1名分）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: right;">金額（USD / JPY）</th>
+<th style="text-align: left;">備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>宿泊費</strong></td>
+<td style="text-align: left;">グラント プラザ ホテル（1泊・ダブル）</td>
+<td style="text-align: right;"><strong>¥13,298</strong></td>
+<td style="text-align: left;">✅ Vトリップ予約済（Olive還元後実質約¥12,168）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>BART</strong></td>
+<td style="text-align: left;">SFO空港 ➔ モンゴメリー駅（片道）</td>
+<td style="text-align: right;">$10.50（約¥1,630）</td>
+<td style="text-align: left;">Clipper / タッチ決済</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ケーブルカー</strong></td>
+<td style="text-align: left;">Powell-Hyde線（片道）</td>
+<td style="text-align: right;">$8.00（約¥1,240）</td>
+<td style="text-align: left;">乗車券</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Uber移動①</strong></td>
+<td style="text-align: left;">ピア39 ➔ クリッシー・フィールド</td>
+<td style="text-align: right;">約$15.00（約¥2,325）</td>
+<td style="text-align: left;">橋への移動</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Uber移動②</strong></td>
+<td style="text-align: left;">クリッシー・フィールド ➔ フェリービルディング</td>
+<td style="text-align: right;">約$20.00（約¥3,100）</td>
+<td style="text-align: left;">ディナーへの移動</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Uber移動③</strong></td>
+<td style="text-align: left;">フェリービルディング ➔ ホテル</td>
+<td style="text-align: right;">約$10.00（約¥1,550）</td>
+<td style="text-align: left;">夜間帰着</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Uber移動④</strong></td>
+<td style="text-align: left;">ホテル ➔ SFO空港（翌朝）</td>
+<td style="text-align: right;">約$40.00（約¥6,200）</td>
+<td style="text-align: left;">スーツケース直行</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>飲食費</strong></td>
+<td style="text-align: left;">飲茶ランチ ＋ クラムチャウダー ＋ シーフードディナー</td>
+<td style="text-align: right;">約$80〜100（約¥12,400〜15,500）</td>
+<td style="text-align: left;">現地決済</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>合計</strong></td>
+<td style="text-align: left;">宿泊＋交通＋飲食</td>
+<td style="text-align: right;"><strong>約¥51,700〜54,800</strong></td>
+<td style="text-align: left;">※Courtyard SFの宿泊費1泊分（約6万円）よりも安い！</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4">4. 治安・安全管理ルール（厳守事項）</h2>
+<ol>
+<li>🚫 <strong>テンダーロイン（Tenderloin）地区の絶対不進入</strong>:</li>
+<li><strong>境界線</strong>: Market St（南）、Geary St（北）、Taylor St（東）、Van Ness Ave（西）。</li>
+<li>パウエル駅の西側（Eddy St, Ellis St, Turk St, Golden Gate Ave）は麻薬中毒者や路上生活者が密集する最悪の治安エリアです。</li>
+<li><strong>安全ルート</strong>: パウエル駅やユニオンスクエアからは、必ず<strong>東側（Grant Ave, Stockton St, Montgomery St）</strong>を通ってホテルへ移動してください。グラント プラザ ホテル（Grant Ave &amp; Bush St）は安全なエリア内に位置しています。</li>
+<li>🚗 <strong>夜間（17時以降）の移動はすべてUber</strong>:</li>
+<li>ゴールデンゲートブリッジ、フェリービルディング、ホテルへの夜間移動は、数ドルの節約のために徒歩や公共バスを使わず、ドア・ツー・ドアのUberを利用してください。</li>
+<li>🧥 <strong>防寒対策</strong>:</li>
+<li>サンフランシスコ湾沿いは年中冷涼です。10月下旬は特に夕方以降10℃近くまで冷え込むため、<strong>風を通さないジャケット（ウインドブレーカー）または薄手ダウン</strong>を日中の街歩きバッグに入れておいてください。</li>
+<li>🛏️ <strong>ホテルの注意点</strong>:</li>
+<li>グラント プラザ ホテルは築100年超の歴史的建物で壁が薄いため、快眠のために<strong>耳栓</strong>を持参することをおすすめします。</li>
+</ol>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

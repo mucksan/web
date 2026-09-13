@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>手配_ローマ — 11/16 夜〜11/19 のモデルルート - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🦁 マサイマラ・フライインサファリ</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="観戦チケット_販売方法と時期.html">🎫 観戦チケット 販売方法と時期</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_ローマ.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="_-1116-1119">手配_ローマ — 11/16 夜〜11/19 のモデルルート</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>版数</strong></td>
+<td style="text-align: left;">第1版</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>作成日</strong></td>
+<td style="text-align: left;">2026年9月11日</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>対象</strong></td>
+<td style="text-align: left;"><strong>2026/11/16（月）夜 着 〜 11/19（木）07:15 発</strong>（ローマ3連泊）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>関連</strong></td>
+<td style="text-align: left;"><a href="手配_事前予約観光.md"><code>手配_事前予約観光.md</code></a>（G3・G4）／<a href="手配_ワイナリー.md"><code>手配_ワイナリー.md</code></a>（11/18）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>結論</strong></td>
+<td style="text-align: left;">✅ <strong>ヴァチカン博物館 08:00 を予約完了</strong>（2026/9/11・€25・予約 <code>2L2NFLMF19XTF1YOB</code>）<br>✅ <strong>11/18 トスカーナツアーを予約完了</strong>（2026/9/12・City Wonders・¥14,110・予約 <code>XTK978855</code>）<br>🎬 <strong>トレヴィ・スペイン広場は 11/16 の夜。</strong>屋外で閉場時刻がないので夜が最適<br>🔴 <strong>コロッセオは 13:30 の枠を取る。</strong>真実の口（17:00閉・行列60分）を後ろに置くための一点<br>✅ <strong>11/17 の夕方以降は予備。</strong>遅れの吸収と<strong>荷造り</strong>に使う</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="0">0. 🔴 まず：ヴァチカン博物館の予約は「正しいが、足りない」</h2>
+<p><strong>「ヴァチカン」は1つの施設ではない。3つに分かれていて、扱いが全部違う。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">施設</th>
+<th style="text-align: left;">予約</th>
+<th style="text-align: left;">料金</th>
+<th style="text-align: left;">11月の時間</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>ヴァチカン博物館</strong>（システィーナ礼拝堂を含む）</td>
+<td style="text-align: left;">🔴 <strong>時間指定の事前予約が必須。当日券なし</strong></td>
+<td style="text-align: left;"><strong>20€＋手数料5€</strong></td>
+<td style="text-align: left;">月〜土 08:00〜20:00（最終入場18:00）／<strong>日曜休館</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>サン・ピエトロ大聖堂</strong></td>
+<td style="text-align: left;"><strong>予約不要</strong></td>
+<td style="text-align: left;">🔵 <strong>無料</strong></td>
+<td style="text-align: left;">🔴 <strong>冬季 07:00〜17:00</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>クーポラ（ドーム）</strong></td>
+<td style="text-align: left;">予約不要・当日窓口</td>
+<td style="text-align: left;"><strong>階段 10€ ／ エレベーター 15€</strong></td>
+<td style="text-align: left;"><strong>07:30〜</strong>（大聖堂より早く閉まる）</td>
+</tr>
+</tbody>
+</table>
+<p>✅ <strong>2026/9/11、予約完了。</strong><code>Biglietto Intero</code> €20.00 ＋ <code>Diritti di Prevendita</code>（予約手数料）€5.00 ＝ <strong>€25.00</strong>。<br />
+<strong>予約コード <code>2L2NFLMF19XTF1YOB</code>（バーコード <code>C92BN6N64L2ILMN400H3NZ72</code>）。</strong><br />
+🔴 <strong>入場は <code>CORRIDOIO1 / PASSAGEWAY1</code>。</strong>博物館外の係員に提示 → 1階のトルニケットで検証、の2段階。<br />
+⚠️ <strong>オンライン購入分は係員による検証が必須。</strong>検証されないとトルニケットを通れない。<br />
+⚠️ <strong>ただし大聖堂とクーポラは含まれていない。</strong>当日に別途動く必要がある（下記）。</p>
+<blockquote>
+<p><strong>システィーナ礼拝堂は「博物館」の中にある。</strong><br />
+<strong>ミケランジェロの天井画を見たいなら、この予約で合っている。</strong><br />
+<strong>サン・ピエトロ大聖堂のピエタとベルニーニの天蓋は、無料の大聖堂のほう。</strong></p>
+</blockquote>
+<hr />
+<h2 id="1">1. 🔴 冬季の閉場時刻が全体を規定する</h2>
+<p><strong>11月は夏と比べて2時間以上早く閉まる。ここが設計の起点。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">施設</th>
+<th style="text-align: left;">開場</th>
+<th style="text-align: left;">🔴 <strong>最終入場</strong></th>
+<th style="text-align: left;">閉場</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">ヴァチカン博物館</td>
+<td style="text-align: left;">08:00</td>
+<td style="text-align: left;">18:00</td>
+<td style="text-align: left;">20:00</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>コロッセオ</strong></td>
+<td style="text-align: left;">08:30</td>
+<td style="text-align: left;">🔴 <strong>15:30</strong></td>
+<td style="text-align: left;">🔴 <strong>16:30</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>フォロ・ロマーノ／パラティーノ</strong></td>
+<td style="text-align: left;">09:00</td>
+<td style="text-align: left;">🔴 <strong>15:30</strong></td>
+<td style="text-align: left;">🔴 <strong>16:30</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>サン・ピエトロ大聖堂</strong></td>
+<td style="text-align: left;">07:00</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">🔴 <strong>17:00</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔴 <strong>コロッセオは 15:30 に締まる。</strong><br />
+<strong>「午前ヴァチカン → 午後コロッセオ」は、昼を1時間で切り上げないと間に合わない。</strong></p>
+</blockquote>
+<h3 id="_1">🔴 現行案は物理的に入らない</h3>
+<p><strong><a href="手配_ワイナリー.md"><code>手配_ワイナリー.md</code></a> §1 の 11/17 は「コロッセオ、フォロ・ロマーノ、真実の口、ヴァチカン市国」。</strong><br />
+<strong>所要を積むとこうなる。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">要素</th>
+<th style="text-align: right;">所要の目安</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">ヴァチカン博物館＋システィーナ</td>
+<td style="text-align: right;"><strong>3〜4時間</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">サン・ピエトロ大聖堂</td>
+<td style="text-align: right;"><strong>1時間</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">クーポラ</td>
+<td style="text-align: right;"><strong>1時間</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">コロッセオ＋フォロ・ロマーノ＋パラティーノ</td>
+<td style="text-align: right;"><strong>3〜4時間</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">真実の口</td>
+<td style="text-align: right;">30分</td>
+</tr>
+<tr>
+<td style="text-align: left;">移動・昼食</td>
+<td style="text-align: right;"><strong>2時間</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>合計</strong></td>
+<td style="text-align: right;">🔴 <strong>10.5〜13時間</strong></td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>使えるのは 08:00〜16:30 の 8.5時間。</strong>2〜4時間あふれる。<strong>何かを落とすしかない。</strong></p>
+<hr />
+<h2 id="2">2. モデルルート</h2>
+<h3 id="1116">11/16（月）— 🎬 <strong>到着の夜にトレヴィとスペイン広場</strong>（本人指定）</h3>
+<blockquote>
+<p>✅ <strong>両方とも屋外で無料・閉場時刻がない。</strong>夜に回すのが最も合理的。<br />
+✅ <strong>初日に済ませておけば、11/17 が押しても失われない。</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: left;">行程</th>
+<th style="text-align: left;">補足</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>18:35</strong></td>
+<td style="text-align: left;"><strong>FCO 着</strong>（AZ79・BCN 16:50発）</td>
+<td style="text-align: left;">✅ <strong>シェンゲン域内なので入国審査なし</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">18:45〜19:15</td>
+<td style="text-align: left;">受託手荷物の受取</td>
+<td style="text-align: left;">2個受託。<strong>30分みる</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>19:30</strong></td>
+<td style="text-align: left;"><strong>レオナルド・エクスプレス</strong>（FCO → テルミニ）</td>
+<td style="text-align: left;"><strong>32分・約14€・15〜30分間隔</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>20:05</strong></td>
+<td style="text-align: left;">テルミニ着</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>20:30</strong></td>
+<td style="text-align: left;"><strong>ホテル チェックイン</strong>（荷物を置くだけ）</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">21:00〜22:00</td>
+<td style="text-align: left;"><strong>夕食</strong></td>
+<td style="text-align: left;">🔴 <strong>先に食べる。</strong>ローマの厨房は22:30〜23:00 に閉まる店が多い</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎬 <strong>22:10〜22:40</strong></td>
+<td style="text-align: left;">🎬 <strong>トレヴィの泉</strong>（ライトアップ）</td>
+<td style="text-align: left;"><strong>昼より圧倒的に空く。</strong>⚠️ <strong>泉の前は入場が規制されている場合がある。当日の運用を見る</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🎬 <strong>22:50〜23:20</strong></td>
+<td style="text-align: left;">🎬 <strong>スペイン広場＋バルカッチャの噴水 → ヴィア・マルグッタ51</strong></td>
+<td style="text-align: left;"><strong>ジェラートの場面／ジョーのアパート</strong><br><strong>トレヴィから徒歩10分</strong>。⚠️ <strong>階段に座るのは禁止</strong>（罰金対象）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>23:45</strong></td>
+<td style="text-align: left;">ホテル帰着</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">24:00</td>
+<td style="text-align: left;">就寝</td>
+<td style="text-align: left;">⚠️ <strong>睡眠6時間45分。</strong>翌 06:45 起床</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_2">⚠️ 押したときの削り方</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">状況</th>
+<th style="text-align: left;">対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>AZ79 が遅れた</strong></td>
+<td style="text-align: left;"><strong>ヴィア・マルグッタ51 を削る</strong>（スペイン広場から徒歩5分の寄り道）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>1時間以上遅れた</strong></td>
+<td style="text-align: left;">🔴 <strong>トレヴィの泉だけにする。</strong>スペイン広場は 11/17 の予備時間に回す</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>疲労が強い</strong></td>
+<td style="text-align: left;"><strong>まっすぐホテルへ。</strong>両方とも 11/17 の夜に回せる（それが予備日の役目）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="1117">11/17（火）— 🔴 <strong>ローマの休日ルート</strong>（確定方針）</h3>
+<blockquote>
+<p>✅ <strong>ヴァチカン博物館 08:00 は予約済み。</strong><br />
+✅ <strong>フォロ・ロマーノ／パラティーノは捨てる</strong>（本人判断）。<br />
+🔴 <strong>トレヴィとスペイン広場は 11/16 の夜に移した</strong>（本人指定）。<strong>この日の夕方以降は予備。</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: left;">行程</th>
+<th style="text-align: left;">補足</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">06:45</td>
+<td style="text-align: left;">起床・朝食</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>07:30</strong></td>
+<td style="text-align: left;">ホテル発 → メトロA線 <strong>Ottaviano-San Pietro</strong></td>
+<td style="text-align: left;">駅から入口まで徒歩10分</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>08:00</strong></td>
+<td style="text-align: left;">✅ <strong>ヴァチカン博物館</strong>（予約済 <code>2L2NFLMF19XTF1YOB</code>・時間厳守）</td>
+<td style="text-align: left;">開館直後が最も空く<br>🔴 <strong><code>CORRIDOIO1</code> の係員に提示 → 検証 → トルニケット</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">08:00〜11:00</td>
+<td style="text-align: left;">博物館 → ラファエロの間 → <strong>システィーナ礼拝堂</strong></td>
+<td style="text-align: left;"><strong>3時間。</strong>巡路は一方通行</td>
+</tr>
+<tr>
+<td style="text-align: left;">11:15〜12:05</td>
+<td style="text-align: left;"><strong>サン・ピエトロ大聖堂</strong>（無料・冬季17:00まで）</td>
+<td style="text-align: left;">ピエタ、ベルニーニの天蓋</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎬 <strong>12:10〜12:40</strong></td>
+<td style="text-align: left;">🎬 <strong>サンタンジェロ城＋サンタンジェロ橋</strong>（外観）</td>
+<td style="text-align: left;"><strong>船上ダンスパーティと乱闘の場面。</strong>大聖堂から徒歩10分</td>
+</tr>
+<tr>
+<td style="text-align: left;">12:40〜13:10</td>
+<td style="text-align: left;"><strong>軽い昼食</strong>（ボルゴ・ピオ通り）</td>
+<td style="text-align: left;">🔴 <strong>30分で切り上げる</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">13:10〜13:30</td>
+<td style="text-align: left;">移動 → <strong>コロッセオ</strong>（バス40/64 または メトロ）</td>
+<td style="text-align: left;"><strong>約30分</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🎬 🔴 <strong>13:30</strong></td>
+<td style="text-align: left;">🎬 🔴 <strong>コロッセオ 入場</strong>（時間指定・<strong>10/18 に13:30の枠を取る</strong>）</td>
+<td style="text-align: left;"><strong>ヴェスパの場面。</strong>🔴 <strong>最終入場15:30</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">13:30〜15:00</td>
+<td style="text-align: left;">コロッセオ本体（<strong>フォロ・ロマーノは入らない</strong>）</td>
+<td style="text-align: left;"><strong>1時間30分</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🎬 15:00〜15:20</td>
+<td style="text-align: left;">🎬 <strong>徒歩でチルコ・マッシモ経由 → 真実の口へ</strong></td>
+<td style="text-align: left;">途中が<strong>ヴェスパで走った景色</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🎬 🔴 <strong>15:20〜16:20</strong></td>
+<td style="text-align: left;">🎬 🔴 <strong>真実の口</strong>（サンタ・マリア・イン・コスメディン教会）</td>
+<td style="text-align: left;">🔴 <strong>冬季 09:30〜17:00。門は10分前に閉まる</strong><br>🔴 <strong>11月でも行列が最大1時間。</strong>写真は約2€の寄付</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎬 16:30〜17:00</td>
+<td style="text-align: left;">🎬 <strong>ヴェネツィア広場 → フォーリ・インペリアーリ通り</strong></td>
+<td style="text-align: left;"><strong>ヴェスパ暴走の舞台。</strong>歩くだけなので時間制約なし</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">⚠️ <strong>16:47 日没</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>17:00〜19:00</strong></td>
+<td style="text-align: left;">✅ <strong>予備時間</strong>（本人指定）</td>
+<td style="text-align: left;"><strong>下の使い道から選ぶ。</strong>何も起きなければ休む</td>
+</tr>
+<tr>
+<td style="text-align: left;">19:30</td>
+<td style="text-align: left;">夕食</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>21:00〜22:00</strong></td>
+<td style="text-align: left;">🔴 <strong>荷造りをここで済ませる</strong></td>
+<td style="text-align: left;">🔴 <strong>11/18 はトスカーナで帰着 19:30〜21:00。</strong><br><strong>試飲後に3連泊分をまとめるのは現実的でない</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="17001900">✅ 予備時間（17:00〜19:00）の使い道</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">優先</th>
+<th style="text-align: left;">使い道</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>1</strong></td>
+<td style="text-align: left;"><strong>遅れの吸収。</strong>真実の口の行列とコロッセオは読めない。<strong>まずここに充てる</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2</strong></td>
+<td style="text-align: left;"><strong>前夜に回せなかったトレヴィ／スペイン広場</strong>（11/16 が押した場合）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3</strong></td>
+<td style="text-align: left;"><strong>パンテオン → ナヴォーナ広場</strong>（徒歩圏。⚠️ パンテオンは約5€・<strong>19:00 閉館</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔵 <strong>4</strong></td>
+<td style="text-align: left;"><strong>クーポラは入らない。</strong>大聖堂より早く閉まるので夕方は不可</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_3">🔴 この組み方の要点</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>1</strong></td>
+<td style="text-align: left;"><strong>コロッセオは 13:30 の枠を取る。</strong>15:30 が最終入場なので、真実の口を後ろに置くには13:30しかない</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>2</strong></td>
+<td style="text-align: left;"><strong>真実の口に60分を確保した。</strong>11月でも行列が1時間になる実例がある。<strong>17:00 に閉まるので後ろがない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>3</strong></td>
+<td style="text-align: left;"><strong>フォロ・ロマーノを捨てたことで、この並びが成立した。</strong>入れると真実の口が閉まる</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔵 <strong>4</strong></td>
+<td style="text-align: left;"><strong>日没16:47。</strong>トレヴィとスペイン広場を夜に回すのは、混雑・気温を別にすれば<strong>むしろ画になる</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2b">2b. 🎬 『ローマの休日』ロケ地の押さえ方</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ロケ地</th>
+<th style="text-align: left;">場面</th>
+<th style="text-align: left;">本行程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>真実の口</strong></td>
+<td style="text-align: left;">手を入れて悲鳴をあげる</td>
+<td style="text-align: left;"><strong>11/17 15:20</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>スペイン広場／バルカッチャの噴水</strong></td>
+<td style="text-align: left;">ジェラートを食べる</td>
+<td style="text-align: left;">🎬 <strong>11/16 22:50</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>トレヴィの泉</strong></td>
+<td style="text-align: left;">髪を切る前に通りかかる</td>
+<td style="text-align: left;">🎬 <strong>11/16 22:10</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>コロッセオ</strong></td>
+<td style="text-align: left;">ヴェスパで巡る</td>
+<td style="text-align: left;"><strong>11/17 13:30</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>ヴェネツィア広場／フォーリ・インペリアーリ通り</strong></td>
+<td style="text-align: left;">ヴェスパ暴走</td>
+<td style="text-align: left;"><strong>11/17 16:30</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>サンタンジェロ城・サンタンジェロ橋</strong></td>
+<td style="text-align: left;">船上パーティと乱闘</td>
+<td style="text-align: left;"><strong>11/17 12:10</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>ヴィア・マルグッタ 51</strong></td>
+<td style="text-align: left;">ジョーのアパート</td>
+<td style="text-align: left;">🎬 <strong>11/16 23:10</strong>（スペイン広場から徒歩5分）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>コロンナ宮殿</strong>（Palazzo Colonna）</td>
+<td style="text-align: left;"><strong>ラストの記者会見</strong></td>
+<td style="text-align: left;">🔴 <strong>不可。土曜午前のみの開館</strong>で、11/17（火）も11/18（水）も閉まっている</td>
+</tr>
+</tbody>
+</table>
+<p>🔵 <strong>コロンナ宮殿以外はすべて 11/17 の1日に収まる。</strong><br />
+🔴 <strong>記者会見の広間だけは、この旅程では入れない。</strong>外観を見るか、諦める。</p>
+<hr />
+<h3 id="1118">11/18（水）— ✅ <strong>トスカーナ日帰り（予約完了）</strong></h3>
+<blockquote>
+<p>✅ <strong>2026/9/12、City Wonders のツアーを予約完了。</strong><br />
+<strong>予約番号 <code>XTK978855</code>／バウチャー <code>TOURCMS|12505|312921</code>。</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: left;">行程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>06:00〜06:30</strong></td>
+<td style="text-align: left;">起床・朝食</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>07:10</strong></td>
+<td style="text-align: left;"><strong>ポポロ広場</strong>（Piazza del Popolo）<strong>集合</strong>（出発20分前）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>07:30</strong></td>
+<td style="text-align: left;"><strong>出発</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><strong>ガイド付きツアー：</strong>モンテプルチャーノ → ピアッツァ・グランデ＆ドゥオモ広場 → プルチネッラの塔 → <strong>エトルリアの井戸</strong>（Pozzo Etrusco） → <strong>サン・ビアージョ教会</strong> → トスカーナ（周遊） → <strong>ピエンツァ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">12:30頃〜</td>
+<td style="text-align: left;"><strong>本格的なトスカーナワイナリーでのグルメランチ＋ワイン専門家によるテイスティング</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">⚠️ <strong>16:47 日没。</strong>ここから先は車窓が暗い</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>19:30</strong></td>
+<td style="text-align: left;"><strong>ポポロ広場 帰着</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">21:30</td>
+<td style="text-align: left;">夕食は軽く／就寝</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_4">確定した内容（バウチャーで判明）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>予約者</strong></td>
+<td style="text-align: left;">TAKAMUKU TAKESHI（1名）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>集合・解散</strong></td>
+<td style="text-align: left;"><strong>どちらもポポロ広場</strong>（中央のオベリスク付近）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>集合時刻厳守</strong></td>
+<td style="text-align: left;"><strong>出発20分前までに到着。</strong>遅刻・ノーショーは返金なし</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>含まれるもの</strong></td>
+<td style="text-align: left;">英語対応ガイド・施設内ガイドツアー・集合場所からの往復無料送迎・無料ヘッドフォン・<strong>本格的なワイナリーでのグルメランチ＋ワイン専門家のテイスティング</strong>・車内Wi-Fi</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>含まれないもの</strong></td>
+<td style="text-align: left;">個人的費用・チップ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>年齢制限</strong></td>
+<td style="text-align: left;"><strong>ワインの試飲は18歳以上のみ</strong>。0〜1歳は無料、0〜14歳は有料の大人の同伴が必要</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>キャンセル無料期限</strong></td>
+<td style="text-align: left;"><strong>2026年11月17日 07:30（トスカーナ時間＝日本時間と同じ CET/CEST）まで。</strong>それ以降は返金なし</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>現地連絡先</strong></td>
+<td style="text-align: left;">City Wonders Ltd／+39-06-8336-0561</td>
+</tr>
+</tbody>
+</table>
+<p>✅ <strong>水曜にヴァチカンを当てない設計は正しい。</strong>水曜午前は<strong>教皇一般謁見</strong>でサン・ピエトロ広場が混む。<br />
+✅ <strong>荷造りは 11/17 の夜に終わらせてある。</strong>この日は帰って寝るだけでよい。<br />
+🔴 <strong>ワインテイスティングに参加できるのは18歳以上。</strong>単独参加なので影響なし。</p>
+<h4 id="2_1">実際の行程（バウチャーで確定・§2の比較で触れた候補どおり）</h4>
+<p><strong>City Wonders 商品が採用された。</strong>モンタルチーノ（Brunello）と糸杉の写真停車は<strong>やはり含まれない。</strong><br />
+✅ <strong>昼食は「本格的なワイナリーでのグルメランチ」と明記。</strong>空腹対策は不要になった。</p>
+<hr />
+<h3 id="1119">11/19（木）— 出発</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: left;">行程</th>
+<th style="text-align: left;">補足</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">06:15</td>
+<td style="text-align: left;">起床・チェックアウト準備</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>07:15</strong></td>
+<td style="text-align: left;"><strong>ホテル発</strong> → テルミニ駅</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>07:35頃</strong></td>
+<td style="text-align: left;"><strong>レオナルド・エクスプレス</strong> → FCO</td>
+<td style="text-align: left;"><strong>32分</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>08:10</strong></td>
+<td style="text-align: left;"><strong>FCO 着</strong></td>
+<td style="text-align: left;">✅ <strong>出発の2時間25分前。余裕がある</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>10:35</strong></td>
+<td style="text-align: left;"><strong>A3651 FCO → ATH</strong>（エーゲ航空・Dクラス）</td>
+<td style="text-align: left;">13:35 アテネ着</td>
+</tr>
+</tbody>
+</table>
+<p>🔵 <strong>A3651 は座席事前指定不可。</strong>オンラインチェックインで窓側を狙う。</p>
+<hr />
+<h2 id="3-1118">3. 🍷 11/18 の決定経緯（記録）</h2>
+<h3 id="city-wonders">✅ 予約完了：City Wonders「トスカーナワイナリーツアー」</h3>
+<p><strong>2026/9/12、予約番号 <code>XTK978855</code> で確定。</strong>「世界的に有名なワイナリーに行きたい」が出発点。<br />
+<strong>手配の実務・当日の中身は §2 の 11/18 を参照。</strong></p>
+<h3 id="_5">検討の経緯</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">段階</th>
+<th style="text-align: left;">候補</th>
+<th style="text-align: left;">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>1</strong></td>
+<td style="text-align: left;">行き先の方針</td>
+<td style="text-align: left;">✅ <strong>トスカーナで決定</strong>（オルヴィエート・フラスカーティ・市内エノテカは不採用）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2</strong></td>
+<td style="text-align: left;">Klook 204943（¥20,525・食事なし）</td>
+<td style="text-align: left;">❌ <strong>見送り。</strong>12時間ノーミールが弱点</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>3</strong></td>
+<td style="text-align: left;"><strong>Klook（City Wonders）¥14,110・ランチ付き</strong></td>
+<td style="text-align: left;">✅ <strong>予約完了</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">参考：行き先の方針検討時に見送った案</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">案</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">拘束</th>
+<th style="text-align: left;">ワイン</th>
+<th style="text-align: left;">見送りの理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>A</strong></td>
+<td style="text-align: left;">🍷 <strong>トスカーナ</strong>（モンテプルチャーノ＋ピエンツァ）</td>
+<td style="text-align: left;">12h</td>
+<td style="text-align: left;">✅ <strong>Vino Nobile</strong>（赤）</td>
+<td style="text-align: left;">✅ <strong>採用</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>B</strong></td>
+<td style="text-align: left;">オルヴィエート（ウンブリア）</td>
+<td style="text-align: left;">6〜7h</td>
+<td style="text-align: left;">Orvieto Classico（白）</td>
+<td style="text-align: left;"><strong>知名度と格でトスカーナに劣る</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>C</strong></td>
+<td style="text-align: left;">フラスカーティ（カステッリ・ロマーニ）</td>
+<td style="text-align: left;">4〜5h</td>
+<td style="text-align: left;">Frascati（白）</td>
+<td style="text-align: left;">同上。最も軽いが物足りない</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>D</strong></td>
+<td style="text-align: left;">ローマ市内のエノテカ</td>
+<td style="text-align: left;">2h</td>
+<td style="text-align: left;">何でも</td>
+<td style="text-align: left;">「ワイナリーに行った」にならない</td>
+</tr>
+</tbody>
+</table>
+<p>🔵 <strong>拘束時間の重さは、荷造りを 11/17 の夜へ前倒しすることで吸収した。</strong><br />
+✅ <strong>昼食なしという204943の弱点は、City Wonders 商品（ランチ付き）で解消された。</strong></p>
+<hr />
+<h2 id="4-e11">4. ホテル（E11）の立地条件</h2>
+<p><strong>E11 はまだ未予約。この行程なら立地の要件が決まる。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">条件</th>
+<th style="text-align: left;">理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>1</strong></td>
+<td style="text-align: left;"><strong>テルミニ駅から徒歩圏、またはメトロ1本</strong></td>
+<td style="text-align: left;">🔴 <strong>11/19 07:15 発。</strong>レオナルド・エクスプレスはテルミニ始発</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>2</strong></td>
+<td style="text-align: left;"><strong>メトロ A線・B線のどちらかに乗れる</strong></td>
+<td style="text-align: left;">11/17 に A線（ヴァチカン）と B線（コロッセオ）の両方を使う</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>3</strong></td>
+<td style="text-align: left;"><strong>洗濯機がある</strong></td>
+<td style="text-align: left;"><a href="TODO.md"><code>TODO.md</code></a> K5。<strong>38日を15kgで回す中間点</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>4</strong></td>
+<td style="text-align: left;">11/18 のツアー集合場所へ行きやすい</td>
+<td style="text-align: left;">多くがテルミニ周辺かバルベリーニ集合</td>
+</tr>
+</tbody>
+</table>
+<p>🔵 <strong>推奨エリア：モンティ地区（Monti）またはテルミニ西側。</strong><br />
+<strong>テルミニとコロッセオの中間で、条件1〜4をすべて満たしやすい。</strong></p>
+<hr />
+<h2 id="5">5. 関連ファイル</h2>
+<ul>
+<li><a href="手配_事前予約観光.md"><code>手配_事前予約観光.md</code></a> — <strong>G3 ヴァチカン（予約手順・在庫）／G4 コロッセオ（10/18 解禁）</strong></li>
+<li><a href="手配_ワイナリー.md"><code>手配_ワイナリー.md</code></a> — <strong>11/18 トスカーナ</strong>（商品選定・帰着時刻）</li>
+<li><a href="TODO.md"><code>TODO.md</code></a> — <strong>E11 ホテル／F11 トスカーナ方針／G3・G4</strong></li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>手配_事前予約観光 — G1〜G8 の解禁日と予約方法 - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🦁 マサイマラ・フライインサファリ</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="観戦チケット_販売方法と時期.html">🎫 観戦チケット 販売方法と時期</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_事前予約観光.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="_-g1g8">手配_事前予約観光 — G1〜G8 の解禁日と予約方法</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>版数</strong></td>
+<td style="text-align: left;">第1版</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>作成日</strong></td>
+<td style="text-align: left;">2026年9月11日</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>対象</strong></td>
+<td style="text-align: left;"><a href="TODO.md"><code>TODO.md</code></a> <strong>G群（8件）</strong>：事前予約が要る観光</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>調査方法</strong></td>
+<td style="text-align: left;">🔵 <strong>各施設の公式予約サイトを実際に開いて、カレンダーの受付範囲を確認した</strong>（Vatican・Sagrada Família は実地確認）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>結論</strong></td>
+<td style="text-align: left;">🔴 <strong>G3 ヴァチカンは「すでに予約できる」。</strong>旧期限「10月下旬」は遅すぎた<br>🔴 <strong>G1 サグラダは 9/14 解禁見込み。</strong>現時点ではカレンダーが9月までしか開いていない<br>✅ <strong>G8 は予約不要と確定。</strong>調査タスクとして閉じてよい</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h2 id="_1">🔴 解禁日カレンダー（やる順）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">何をするか</th>
+<th style="text-align: left;">対象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>いますぐ</strong></td>
+<td style="text-align: left;"><strong>ヴァチカン博物館を予約</strong>（<strong>11/17 は既に選択可能</strong>）</td>
+<td style="text-align: left;">G3</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>9/14（月）以降</strong></td>
+<td style="text-align: left;"><strong>サグラダ・ファミリア（塔つき）を予約</strong>（11/13 の60日前）</td>
+<td style="text-align: left;">G1</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>9/21（月）以降</strong></td>
+<td style="text-align: left;"><strong>アクロポリスを予約</strong>（11/20 の60日前）</td>
+<td style="text-align: left;">G5</td>
+</tr>
+<tr>
+<td style="text-align: left;">🟡 <strong>9月中〜10月上旬</strong></td>
+<td style="text-align: left;"><strong>カンプノウを予約</strong>（すでに販売中）</td>
+<td style="text-align: left;">G2</td>
+</tr>
+<tr>
+<td style="text-align: left;">🟡 <strong>10月上旬</strong></td>
+<td style="text-align: left;"><strong>大エジプト博物館を予約</strong>（3〜4週前推奨・<strong>完全事前予約制</strong>）</td>
+<td style="text-align: left;">G7</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>10/18（日）13:45 バンコク</strong></td>
+<td style="text-align: left;">🔴 <strong>コロッセオを予約</strong>（<strong>30日前・ローマ 08:45 解禁</strong>）</td>
+<td style="text-align: left;">G4</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>不要</strong></td>
+<td style="text-align: left;"><strong>プラド／テオティワカン／人類学博物館は予約不要</strong>と確定</td>
+<td style="text-align: left;">G8</td>
+</tr>
+<tr>
+<td style="text-align: left;">⬜ <strong>現地または直前</strong></td>
+<td style="text-align: left;"><strong>ギザのピラミッド</strong>（クフ王内部は当日枠が現実的）</td>
+<td style="text-align: left;">G6</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<hr />
+<h2 id="0">0. 一覧</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">施設</th>
+<th style="text-align: left;">訪問日</th>
+<th style="text-align: center;">曜日</th>
+<th style="text-align: left;">解禁</th>
+<th style="text-align: left;">予約先</th>
+<th style="text-align: left;">状態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>G1</strong></td>
+<td style="text-align: left;">サグラダ・ファミリア（塔）</td>
+<td style="text-align: left;">11/13</td>
+<td style="text-align: center;">金</td>
+<td style="text-align: left;">🔴 <strong>9/14〜</strong>（60日前）</td>
+<td style="text-align: left;"><code>tickets.sagradafamilia.org</code></td>
+<td style="text-align: left;">⏳ <strong>まだ開いていない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>G2</strong></td>
+<td style="text-align: left;">カンプノウ</td>
+<td style="text-align: left;">11/14</td>
+<td style="text-align: center;">土</td>
+<td style="text-align: left;">✅ <strong>販売中</strong></td>
+<td style="text-align: left;"><code>fcbarcelona.com</code></td>
+<td style="text-align: left;">⬜ 未予約</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>G3</strong></td>
+<td style="text-align: left;">ヴァチカン博物館</td>
+<td style="text-align: left;">11/17</td>
+<td style="text-align: center;">火</td>
+<td style="text-align: left;">🔴 <strong>すでに可能</strong></td>
+<td style="text-align: left;"><code>tickets.museivaticani.va</code></td>
+<td style="text-align: left;">🔴 <strong>即予約</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>G4</strong></td>
+<td style="text-align: left;">コロッセオ</td>
+<td style="text-align: left;">11/17</td>
+<td style="text-align: center;">火</td>
+<td style="text-align: left;">🔴 <strong>10/18 08:45 ローマ</strong></td>
+<td style="text-align: left;"><code>ticketing.colosseo.it</code></td>
+<td style="text-align: left;">⏳ 30日前</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>G5</strong></td>
+<td style="text-align: left;">アクロポリス</td>
+<td style="text-align: left;">11/20</td>
+<td style="text-align: center;">金</td>
+<td style="text-align: left;">🔴 <strong>9/21〜</strong>（60日前）</td>
+<td style="text-align: left;"><code>hhticket.gr</code></td>
+<td style="text-align: left;">⏳ まだ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>G6</strong></td>
+<td style="text-align: left;">ギザ三大ピラミッド</td>
+<td style="text-align: left;">11/26</td>
+<td style="text-align: center;">木</td>
+<td style="text-align: left;">⚠️ 現地／当日</td>
+<td style="text-align: left;">現地窓口・自動券売機</td>
+<td style="text-align: left;">⬜</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>G7</strong></td>
+<td style="text-align: left;">大エジプト博物館</td>
+<td style="text-align: left;">11/27</td>
+<td style="text-align: center;">金</td>
+<td style="text-align: left;">✅ <strong>販売中</strong>（完全予約制）</td>
+<td style="text-align: left;"><code>visit-gem.com</code></td>
+<td style="text-align: left;">🟡 10月上旬</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>G8</strong></td>
+<td style="text-align: left;">プラド／テオティワカン／人類学博物館</td>
+<td style="text-align: left;">11/15・10/30</td>
+<td style="text-align: center;">日・金</td>
+<td style="text-align: left;">✅ <strong>予約不要</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">✅ <strong>決着</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="g1-1113">G1. サグラダ・ファミリア（11/13 金）</h2>
+<h3 id="_2">状況：🔴 <strong>まだ買えない</strong></h3>
+<p>🔵 <strong>2026/9/11 に公式ショップ（<code>tickets.sagradafamilia.org</code>）を開いて確認した。</strong><br />
+<strong>カレンダーは 2026年9月 までしか表示されず、次の月へ進むボタンが無効化されている。</strong><br />
+→ <strong>11月はまだ販売枠が開いていない。</strong></p>
+<h3 id="_3">解禁の見込み</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>解禁ルール</strong></td>
+<td style="text-align: left;"><strong>公式は60日前に枠を開ける</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>11/13 の60日前</strong></td>
+<td style="text-align: left;">🔴 <strong>2026年9月14日（月）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>注意</strong></td>
+<td style="text-align: left;"><strong>「表示されない＝売切」ではなく「まだ開いていない」。</strong>9/14 以降に再訪する</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>塔つきの人気枠（午前・週末）は解禁から数日で消える。</strong><br />
+<strong>11/13 は金曜だが、塔は枠が少ないので解禁直後に取る。</strong></p>
+<h3 id="2026">券種と価格（2026年・公式）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">券種</th>
+<th style="text-align: right;">価格</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Sagrada Família</td>
+<td style="text-align: right;"><strong>26€</strong></td>
+<td style="text-align: left;">聖堂＋博物館（<strong>塔・地下聖堂は含まない</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sagrada Família with Guided Tour</td>
+<td style="text-align: right;"><strong>30€</strong></td>
+<td style="text-align: left;">＋公式ガイド</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>Sagrada Família with tower</strong></td>
+<td style="text-align: right;">✅ <strong>36€</strong></td>
+<td style="text-align: left;">＋<strong>塔1つ</strong>（本命）</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sagrada Família with guided tour and tower</td>
+<td style="text-align: right;"><strong>40€</strong></td>
+<td style="text-align: left;">＋ガイド＋塔</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">⚠️ 塔の実務</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>1</strong></td>
+<td style="text-align: left;"><strong>塔は「生誕のファサード」か「受難のファサード」を選ぶ。</strong>前者は市街東側、後者は市中心部の眺め</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>2</strong></td>
+<td style="text-align: left;"><strong>エレベーターで上がり、階段で下りる。</strong>歩行制限のある人は利用できない</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3</strong></td>
+<td style="text-align: left;"><strong>所要の目安は約1時間30分</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>4</strong></td>
+<td style="text-align: left;"><strong>時間枠厳守。</strong>指定時刻に来ないと入れない</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5</strong></td>
+<td style="text-align: left;"><strong>音声ガイドは公式アプリのダウンロード制。</strong>イヤホン持参・充電しておく</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>6</strong></td>
+<td style="text-align: left;"><strong>9:00〜10:00 は「静粛時間」。</strong>イヤホン必須で私語を控える</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">行程との整合</h3>
+<p>✅ <strong>11/13 はバルセロナ泊②の中日で移動がない。</strong>時間帯は自由に選べる。<br />
+⚠️ <strong>翌 11/14 は午前にカンプノウ（G2）→ 午後 AVE でマドリードへ。</strong>11/13 に余裕を寄せてよい。</p>
+<hr />
+<h2 id="g2-barca-immersive-tour1114">G2. カンプノウ／Barça Immersive Tour（11/14 土）</h2>
+<h3 id="_6">状況：✅ <strong>すでに販売中</strong></h3>
+<p>⚠️ <strong>スタジアムは改修工事中で、従来の「Camp Nou Experience」は形を変えている。</strong><br />
+現在は <strong>クラブ公式の Spotify Camp Nou ツアー＋博物館</strong>として運営されている。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>予約先</strong></td>
+<td style="text-align: left;">🔴 <strong><code>fcbarcelona.com</code>（クラブ公式）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>参考価格</strong></td>
+<td style="text-align: left;"><strong>約 69€</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>開始時刻（参考）</strong></td>
+<td style="text-align: left;"><strong>09:30 ／ 12:15 ／ 14:30 ／ 17:00</strong>（カタルーニャ語・スペイン語・英語）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>内容</strong></td>
+<td style="text-align: left;">博物館（音声ガイド付）＋ Spotify Camp Nou Live の没入型ルーム＋ 工事中スタジアムの展望ポイント</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1114-0930">🔴 11/14 は「09:30 の回」を取る</h3>
+<p><strong>同日午後に AVE でマドリードへ移動する。</strong><br />
+→ <strong>09:30 の回なら 11:00 台に終わり、午後の移動に余裕が出る。</strong></p>
+<p>✅ <strong>11/14 は代表ウィークのためバルサのホーム戦がない。</strong>試合日の見学制限を受けない。<br />
+⚠️ <strong>ただし工事の進捗でコース・所要時間が変わり得る。</strong>予約時に当日の内容を確認する。</p>
+<hr />
+<h2 id="g3-1117">G3. ヴァチカン博物館（11/17 火）— 🔴 <strong>いま予約できる</strong></h2>
+<h3 id="11">状況：🔴 <strong>11月の予約が既に開いている</strong></h3>
+<p>🔵 <strong>2026/9/11 に公式予約サイト（<code>tickets.museivaticani.va</code>）のカレンダーを実際に開いて確認した。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">確認結果</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>11/17（火）</strong></td>
+<td style="text-align: left;"><strong>選択可能</strong>（無効化されていない）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11月の休館日</strong></td>
+<td style="text-align: left;"><strong>1・8・15・22 日（いずれも日曜）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔵 <strong>11/29（日）</strong></td>
+<td style="text-align: left;"><strong>選択可能。</strong>月末最終日曜は開館する</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>旧 TODO の「10月下旬」は遅すぎる。</strong><br />
+<strong>枠は1〜2か月前に埋まるとされる。いますぐ取る。</strong></p>
+<h3 id="2026911-1117">🔵 2026/9/11 実測：11/17 の在庫と価格</h3>
+<p><strong>公式サイトで 11/17・1名 まで進め、実際の枠を確認した。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>商品</strong></td>
+<td style="text-align: left;"><strong>Musei Vaticani - Biglietti d'ingresso</strong>（1〜6名）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>料金</strong></td>
+<td style="text-align: left;"><strong>Biglietto Intero €20.00</strong> ／ Ridotto €10.00<br><strong>＋ Diritti di Prevendita（予約手数料）€5.00 × 人数</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>1名の合計</strong></td>
+<td style="text-align: left;">✅ <strong>€25.00</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>返金</strong></td>
+<td style="text-align: left;">🔴 <strong><code>I biglietti acquistati non sono rimborsabili.</code>＝購入後の返金は一切なし</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1117">午前の枠（11/17 時点の状況）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">時刻</th>
+<th style="text-align: left;">状況</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>08:00</strong></td>
+<td style="text-align: left;"><strong>空きあり</strong>（🔵 <strong>本命</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>08:30</strong></td>
+<td style="text-align: left;">空きあり</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>09:00</strong></td>
+<td style="text-align: left;">空きあり</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>09:30</strong></td>
+<td style="text-align: left;">🔴 <strong><code>IN ESAURIMENTO</code>（残りわずか）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>10:00</strong></td>
+<td style="text-align: left;">🔴 <strong><code>IN ESAURIMENTO</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>10:30</strong></td>
+<td style="text-align: left;">🔴 <strong><code>IN ESAURIMENTO</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>11:00 / 11:30 / 12:00 / 12:30 / 13:00 / 13:30 / 14:00</strong></td>
+<td style="text-align: left;">空きあり</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>9月の時点で既に 09:30〜10:30 が「残りわずか」になっている。</strong><br />
+<strong>2か月先でこの状態なので、先延ばしにする余地はない。</strong></p>
+<h4 id="0800">🔵 08:00 を推す理由</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>1</strong></td>
+<td style="text-align: left;"><strong>開館直後の1時間が最も空く</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>2</strong></td>
+<td style="text-align: left;"><strong>同じ 11/17 に G4 コロッセオを入れる。</strong>午前にヴァチカンを終わらせないと午後が回らない</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3</strong></td>
+<td style="text-align: left;"><strong>11/17 は火曜で、曜日としても空きやすい</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">🔴 購入の残り手順（決済は本人が行う）</h3>
+<p><strong>公式サイトで次まで進めてある。</strong></p>
+<ol>
+<li><code>tickets.museivaticani.va</code> → <strong>Biglietti Musei Vaticani</strong> の「Prenota ora」</li>
+<li><strong>カレンダーで 2026年11月17日</strong> を選ぶ</li>
+<li><strong>Visitatori に人数</strong>を入れて <strong>CONFERMA</strong></li>
+<li><strong><code>Musei Vaticani - Biglietti d'ingresso</code> の PRENOTA</strong></li>
+<li><strong>Biglietto Intero の人数を選ぶ</strong></li>
+<li>🔴 <strong>MATTINA タブで 08:00 を選ぶ</strong></li>
+<li><strong>PROCEDI</strong> → 個人情報 → 決済（<strong>Visa／Mastercard／JCB</strong>）</li>
+</ol>
+<p>⚠️ <strong>氏名はパスポート表記（<code>TAKAMUKU TAKESHI</code>）で入力する。</strong><br />
+🔴 <strong>返金不可なので、決済前に日付が 17 novembre 2026 であることを必ず見る。</strong></p>
+<h3 id="_8">予約の要点</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>当日券は無い</strong></td>
+<td style="text-align: left;"><strong>オンライン予約が必須。</strong>窓口に並んでも買えない</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>価格</strong></td>
+<td style="text-align: left;">現地 20€ ／ <strong>事前予約は 25€</strong>（<strong>5€ の予約手数料込み</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>開館</strong></td>
+<td style="text-align: left;"><strong>月〜土 08:00〜20:00</strong>（最終入場 18:00）。<strong>日曜休館</strong>（月末最終日曜を除く）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔵 <strong>狙い目</strong></td>
+<td style="text-align: left;"><strong>08:00 の最初の枠。</strong>火〜木は比較的空く。<strong>11/17 は火曜で条件が良い</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>決済</strong></td>
+<td style="text-align: left;">Visa／Mastercard／<strong>JCB</strong> が使える</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1118">🔴 11/18（水）は教皇一般謁見の日</h3>
+<p><strong>11/18 は水曜日。</strong>一般謁見が行われるとサンピエトロ広場周辺が混雑する。<br />
+→ <strong>TODO G3 の「11/18 の一般謁見有無の確認」は、曜日の面では条件が揃っている。</strong><br />
+<strong>開催有無は直前に公式（<code>vatican.va</code>）で確認する。</strong></p>
+<hr />
+<h2 id="g4-1117-1018">G4. コロッセオ（11/17 火）— 🔴 <strong>解禁は 10/18</strong></h2>
+<h3 id="30">状況：⏳ <strong>30日前まで買えない</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>予約先</strong></td>
+<td style="text-align: left;">🔴 <strong><code>ticketing.colosseo.it</code></strong>（Parco Archeologico del Colosseo 公式）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>解禁</strong></td>
+<td style="text-align: left;">🔴 <strong>訪問日の30日前・ローマ時間 08:45</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>11/17 の場合</strong></td>
+<td style="text-align: left;">🔴 <strong>2026年10月18日（日）08:45 ローマ（CEST）＝ バンコク 13:45</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>取る枠</strong></td>
+<td style="text-align: left;">🔴 <strong>13:30。</strong>真実の口（17:00閉・行列60分）を後ろに置くための一点 → <a href="手配_ローマ.md"><code>手配_ローマ.md</code></a> §2</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>フォロ・ロマーノ</strong></td>
+<td style="text-align: left;">✅ <strong>入らない方針で確定</strong>（2026/9/11 本人判断）。入れると真実の口が閉まる</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>参考価格</strong></td>
+<td style="text-align: left;"><strong>18€〜</strong>（フォロ・ロマーノ／パラティーノ込みの通し券）</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>売れ方</strong></td>
+<td style="text-align: left;"><strong>時間指定制で、枠は解禁後すぐに消える。</strong>人気枠は分単位</td>
+</tr>
+</tbody>
+</table>
+<p>✅ <strong>10/18 はまだバンコク滞在中</strong>（出発は 10/26）。<strong>13:45 に入れる。</strong></p>
+<h3 id="_9">⚠️ 同日にヴァチカンと重ねている</h3>
+<p><strong>11/17 は G3 ヴァチカン＋G4 コロッセオの2本立て。</strong><br />
+🔵 <strong>ヴァチカンを 08:00 の枠で取れば、午後にコロッセオを入れられる。</strong><br />
+→ <strong>G3 を先に確定させてから、G4 の時間帯を決める。</strong></p>
+<p>⚠️ <strong>アリーナ床・地下階の特別見学を入れるなら、枠がさらに少ない。</strong>やるなら 10/18 に同時に取る。</p>
+<hr />
+<h2 id="g5-1120-921">G5. アクロポリス（11/20 金）— 🔴 <strong>解禁は 9/21</strong></h2>
+<h3 id="60">状況：⏳ <strong>60日前から</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>予約先</strong></td>
+<td style="text-align: left;">🔴 <strong><code>hhticket.gr</code></strong>（ギリシャ文化省の公式電子チケット）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>解禁</strong></td>
+<td style="text-align: left;"><strong>訪問日の60日前</strong> → 🔴 <strong>2026年9月21日（月）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>価格</strong></td>
+<td style="text-align: left;"><strong>30€</strong>（<strong>冬季も同額</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>冬季時間</strong></td>
+<td style="text-align: left;">🔴 <strong>11/1〜3/31 は 08:00〜17:00</strong>（夏より大幅に短い）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>入場方式</strong></td>
+<td style="text-align: left;"><strong>時間枠指定制（通年）。</strong>枠の15分前までに南斜面口か正門へ</td>
+</tr>
+</tbody>
+</table>
+<h3 id="todo">✅ TODO の「コンボ券の有利不利」に決着</h3>
+<p>🔴 <strong>2026年に、公式サイト（<code>hhticket.gr</code>）の 30€ コンボ券は廃止された。</strong><br />
+→ <strong>古代アゴラや国立考古学博物館を回るなら、それぞれ個別に買う。</strong><br />
+⚠️ <strong>民間の「Athens Pass」（60〜70€）はあるが、公式ではない。</strong></p>
+<h3 id="17">⚠️ 冬季17時閉場が効く</h3>
+<p><strong>11/20 は 08:30 ホテル発ではなく、アテネ滞在の中日。</strong><br />
+🔴 <strong>同日に「アクロポリス＋新アクロポリス博物館＋国立考古学博物館＋古代アゴラ」を全部入れると、17:00 閉場で破綻する。</strong><br />
+→ <strong>アクロポリスを午前の早い枠で取り、博物館を午後に回す。</strong></p>
+<hr />
+<h2 id="g6-1126">G6. ギザ三大ピラミッド（11/26 木）</h2>
+<h3 id="_10">状況：⚠️ <strong>事前予約の確実性が低い</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>入場料（参考）</strong></td>
+<td style="text-align: left;"><strong>EGP 700</strong>（約 $15）／ 学生 EGP 350</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>買い方</strong></td>
+<td style="text-align: left;"><strong>2025年に運営が民間委託され、ゲートの自動券売機とオンラインが導入された</strong><br>⚠️ <strong>ただし独立系旅行者は現地購入が主流という情報もあり、オンラインの確実性は読み切れない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>クフ王内部</strong></td>
+<td style="text-align: left;">🔴 <strong>1セッション300人の定員制。</strong>上の間の券は下の間より先に売り切れる</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔵 <strong>対策</strong></td>
+<td style="text-align: left;"><strong>開門直後に入る</strong>、または<strong>内部券を手配するツアーを使う</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔵 <strong>2025年の変更</strong></td>
+<td style="text-align: left;"><strong>場内は車両乗入れ禁止となり、無料シャトルバスが導入された</strong></td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>TODO の「内部見学は別料金・枚数制限あり。予約可否を確認する」への答え：</strong><br />
+<strong>枚数制限は 1セッション300人で確定。オンライン予約の可否は現地の運用に依存するため、開門直後に行くのが最も確実。</strong></p>
+<hr />
+<h2 id="g7-gem1127">G7. 大エジプト博物館（GEM・11/27 金）— 🔴 <strong>完全事前予約制</strong></h2>
+<h3 id="_11">状況：🔴 <strong>当日券が廃止されている</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>予約先</strong></td>
+<td style="text-align: left;">🔴 <strong><code>visit-gem.com</code>（公式）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>2025/12/1 から</strong></td>
+<td style="text-align: left;">🔴 <strong>オンライン事前予約が必須。現地での当日購入は不可</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>入場枠</strong></td>
+<td style="text-align: left;"><strong>2時間刻み：09:00 ／ 11:00 ／ 13:00 ／ 15:00 ／ 17:00 ／ 19:00</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>価格（外国人）</strong></td>
+<td style="text-align: left;"><strong>EGP 1,450〜1,590</strong>（約 $28〜30）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>開館</strong></td>
+<td style="text-align: left;"><strong>施設 08:30〜19:00</strong>（水・土は22:00まで）／<strong>展示室 09:00〜18:00</strong>（同2日は21:00まで）</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>推奨</strong></td>
+<td style="text-align: left;"><strong>繁忙期は3〜4週間前に予約。</strong>売り切れる</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1127-0900">🔴 11/27 は「09:00 の枠」を取る</h3>
+<p><strong>この日は CAI 21:35 発に乗るため、16:00 にホテルで荷物回収 → 17:00 空港。</strong><br />
+🔴 <strong>実質の見学は 15:00 で切り上げる制約がある。</strong><br />
+→ 🔴 <strong>09:00 の枠を取れば、午前から昼過ぎまで最大限使える。</strong><br />
+⚠️ <strong>11:00 の枠だと 15:00 までが4時間を切り、GEM の規模では足りない。</strong></p>
+<p>✅ <strong>GEM はギザ台地にあり、ピラミッドから約2.4km。</strong>G6（11/26）と同じエリアなので、移動の勝手は分かっている。</p>
+<hr />
+<h2 id="g8">G8. プラド／テオティワカン／人類学博物館 — ✅ <strong>予約不要で決着</strong></h2>
+<p><strong>TODO G8 は「予約要否の確認」タスクだった。答えは3つとも「不要」。</strong></p>
+<h3 id="1115">プラド美術館（11/15 日）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>開館</strong></td>
+<td style="text-align: left;"><strong>日曜・祝日 10:00〜19:00</strong>（月〜土は 20:00 まで）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>料金</strong></td>
+<td style="text-align: left;"><strong>15€</strong>（減額 7.50€）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>無料時間</strong></td>
+<td style="text-align: left;"><strong>日曜・祝日 17:00〜19:00</strong>（常設展のみ）／月〜土は 18:00〜20:00</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>予約</strong></td>
+<td style="text-align: left;"><strong>不要</strong></td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>ただし 11/15 はスペイン戦の当日（20:45 キックオフ）。</strong><br />
+⚠️ <strong>無料枠の 17:00〜19:00 を狙うと、メトロポリターノへの移動と重なって危ない。</strong><br />
+→ 🔵 <strong>15€ を払って午前〜午後前半に入るほうが安全。</strong></p>
+<h3 id="1030">テオティワカン（10/30 金）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>開館</strong></td>
+<td style="text-align: left;"><strong>8:00〜17:00・年中無休</strong>（🔴 <strong>最終入場 16:00</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>料金</strong></td>
+<td style="text-align: left;"><strong>MXN 210</strong>（外国人）／ MXN 105（メキシコ人・居住者）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>買い方</strong></td>
+<td style="text-align: left;"><strong>現地窓口、または <code>boletos.inah.gob.mx</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>予約</strong></td>
+<td style="text-align: left;"><strong>不要</strong>（オンライン購入も可）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1030_1">💀 10/30（金）の行程改訂：午前 テオティワカン ➔ 午後〜夜 死者の日ソカロ（メガ・オフレンダ＆ライトアップ）</h3>
+<p>当初は「午前テオティワカン ➔ 午後国立人類学博物館」を想定していたが、メキシコ滞在が<strong>死者の日（Día de Muertos）</strong>の祝祭期間中であるため、行程を見直した：<br />
+* <strong>午前（08:30〜12:00）</strong>: 朝の涼しく澄んだ時間帯に「テオティワカン遺跡（太陽・月のピラミッド・死者の大通り）」を見学（往復Uber/専用車）。予約不要・現地購入可。<br />
+* <strong>午後〜夜（13:30〜21:00）</strong>: 歴史地区ソカロへ直行。広場中央の巨大祭壇「メガ・オフレンダ」、街角での「カトリーナ・メイク（ガイコツのフェイスペイント）」体験、パペル・ピカード飾りの路地散策、そして<strong>夕暮れ〜夜の幻想的なキャンドル＆ライトアップ</strong>を鑑賞（『リメンバー・ミー』の世界観そのもの）。<br />
+* ⚠️ <strong>国立人類学博物館の扱い</strong>: ソカロの死者の日体験に全集中するため今回はスキップ（開館時間や移動の制約を解消）。</p>
+<hr />
+<h2 id="_12">関連ファイル</h2>
+<ul>
+<li><a href="TODO.md"><code>TODO.md</code></a> — <strong>G群</strong>（タスクと期限）</li>
+<li><a href="手配_観戦チケット.md"><code>手配_観戦チケット.md</code></a> — 11/15 スペイン戦（G8 プラドと同日）</li>
+<li><a href="東回り_要件定義書.md"><code>東回り_要件定義書.md</code></a> — 全日程表</li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

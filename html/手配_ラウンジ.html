@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>手配_ラウンジ — Priority Pass でどこまで埋まるか - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🦁 マサイマラ・フライインサファリ</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="観戦チケット_販売方法と時期.html">🎫 観戦チケット 販売方法と時期</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_ラウンジ.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="_-priority-pass">手配_ラウンジ — Priority Pass でどこまで埋まるか</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>版数</strong></td>
+<td style="text-align: left;">第1版</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>作成日</strong></td>
+<td style="text-align: left;">2026年9月9日</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>保有</strong></td>
+<td style="text-align: left;">✅ <strong>三菱UFJカード・プラチナ・アメリカン・エキスプレス・カード付帯の Priority Pass</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>関連</strong></td>
+<td style="text-align: left;">🔵 <strong>同じカードに海外旅行傷害保険が自動付帯（治療300万／救援500万）</strong> → <a href="手配_保険.md"><code>手配_保険.md</code></a> §1.5</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>方針</strong></td>
+<td style="text-align: left;">✅ <strong>RTW区間はビジネスクラスの同伴ラウンジ／RTW外（C1〜C6）は Priority Pass で対応</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>結論</strong></td>
+<td style="text-align: left;">✅ <strong>方針は妥当。最重要の GRU 6時間10分待ちは完全にカバーできる。</strong>🔴 <strong>ただし穴が3つ</strong>（§2）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1">1. 空港別のカバー状況</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">空港</th>
+<th style="text-align: left;">日付・用途</th>
+<th style="text-align: left;">区分</th>
+<th style="text-align: left;">Priority Pass</th>
+<th style="text-align: left;">判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>BKK</strong></td>
+<td style="text-align: left;">10/26 C1 TG660</td>
+<td style="text-align: left;">国際線</td>
+<td style="text-align: left;">Miracle Lounge 等 複数</td>
+<td style="text-align: left;">✅ <strong>使える</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>SFO</strong></td>
+<td style="text-align: left;">10/29 <strong>UA1271</strong></td>
+<td style="text-align: left;">国際線</td>
+<td style="text-align: left;"><strong>Golden Gate Lounge</strong>（International Terminal A）<br>※Air France/KLM ラウンジは PP を同ラウンジへ誘導</td>
+<td style="text-align: left;">🔴 <strong>コンコース限定。要確認</strong>（§2-③）</td>
+</tr>
+<tr>
+<td style="text-align: left;">MEX</td>
+<td style="text-align: left;">10/31 CM121（RTW）</td>
+<td style="text-align: left;">国際線</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">✅ <strong>ビジネスで対応</strong>（予約クラス D）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>LIM</strong></td>
+<td style="text-align: left;">11/1 C2 LA2013 <strong>07:40</strong></td>
+<td style="text-align: left;"><strong>国内線</strong></td>
+<td style="text-align: left;">Hanaq は<strong>国際線側のみ</strong></td>
+<td style="text-align: left;">❌ <strong>使えない見込み</strong><br>（滞在1h程度なので影響小）</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>CUZ</strong></td>
+<td style="text-align: left;">11/5 C3 LA2167 <strong>05:00発</strong></td>
+<td style="text-align: left;">国内線</td>
+<td style="text-align: left;">✅ <strong>Hanaq VIP Lounge</strong>（30〜40席・PP対象）</td>
+<td style="text-align: left;">⚠️ <strong>開館時刻を要確認</strong>（§2-②）</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>LIM</strong></td>
+<td style="text-align: left;">11/5 C3 乗継 <strong>2h40m</strong></td>
+<td style="text-align: left;">国際線側</td>
+<td style="text-align: left;">✅ <strong>Hanaq VIP Lounge（24時間）</strong></td>
+<td style="text-align: left;">✅ <strong>使える</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>GRU</strong></td>
+<td style="text-align: left;">11/5 C3 乗継 <strong>6h10m</strong></td>
+<td style="text-align: left;">T3着→<strong>T2発（国内線）</strong></td>
+<td style="text-align: left;">✅ <strong>T2 に24時間営業が複数</strong><br>W Premium Lounge - The West ／ The Lounge Sao Paulo ／ <strong>Advantage VIP Lounge（24/7・時間制限なし）</strong> ／ SKYFIT ／ Urban Cowork<br>T3（国際線）にも複数</td>
+<td style="text-align: left;">✅ <strong>完全にカバー</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">11/10〜11/19 RTW（TP/AZ/A3）</td>
+<td style="text-align: left;">国際線</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">✅ ビジネスで対応</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>IST</strong></td>
+<td style="text-align: left;">11/21 C5 TK2008 <strong>19:40</strong></td>
+<td style="text-align: left;">🔴 <strong>国内線</strong></td>
+<td style="text-align: left;">🔴 <strong>IGA Lounge は国際線専用</strong></td>
+<td style="text-align: left;">🔴 <strong>使えない可能性が高い</strong>（§2-①）</td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ <strong>NAV</strong></td>
+<td style="text-align: left;">11/23 C6 TK2001 09:30</td>
+<td style="text-align: left;">国内線</td>
+<td style="text-align: left;">該当なし（小規模空港）</td>
+<td style="text-align: left;">❌ <strong>なし</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">11/25〜12/2 RTW（MS/ET）</td>
+<td style="text-align: left;">国際線</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">✅ ビジネスで対応<br>（12/1 ADD 乗継4h25m は <strong>Cloud Nine Lounge</strong>）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rtw">✅ RTW区間は原則ビジネスでカバーされる</h3>
+<p>RTW 16クーポンのうち <strong>飛行15区間、予約クラスは ANA系＝Z／他社＝D</strong>。<br />
+🔴 <strong>例外は UA1271（10/29 SFO→MEX）のみで、予約クラス <code>B</code>＝エコノミー。</strong><br />
+→ <strong>S-1 のウォッチ対象</strong>（TODO A6・期限 10/28）。<strong>S-1 が成立すれば United Club が使えて §2-③ の穴も消える。</strong></p>
+<hr />
+<h2 id="2-3">2. 🔴 3つの穴</h2>
+<h3 id="1-ist1121">① IST（11/21）— 最も痛い</h3>
+<p><strong>IST→NAV は国内線。Priority Pass の IGA Lounge は国際線専用。</strong><br />
+TK1840 が 14:30 着で TK2008 が 19:40 発なので、<strong>5時間10分がラウンジなしになる恐れ。</strong></p>
+<p><strong>確認すべき代替:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>1</strong></td>
+<td style="text-align: left;">🔴 <strong>Turkish Airlines の到着ラウンジ（Arrival Lounge）。</strong>TK1840 をビジネス（D）で降りるので、対象になるか確認する価値がある</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2</strong></td>
+<td style="text-align: left;"><strong>iGA Domestic Lounge</strong>（140席・国内線出発フロア）が Priority Pass 対象か確認</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3</strong></td>
+<td style="text-align: left;">IGA Pass の当日券（walk-in・2026年時点で €100前後）。<strong>高いので最後の手段</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-cuz115-0500">② CUZ（11/5 05:00発）</h3>
+<p>Hanaq VIP Lounge は PP 対象だが、<strong>05:00 発だと開館前の可能性がある。</strong><br />
+Priority Pass は出発3時間前から入場可という運用だが、<strong>ラウンジ自体が開いていなければ意味がない。</strong><br />
+→ <strong>開館時刻を Priority Pass アプリまたはラウンジに確認する。</strong></p>
+<h3 id="3-sfo1029">③ SFO（10/29）</h3>
+<p>PP のラウンジは <strong>International Terminal A のコンコース限定。</strong><br />
+<strong>UA1271 の出発コンコースと一致するか要確認</strong>（SFO の International Terminal は A と G で保安検査が分かれており、片方から他方へは行けない）。</p>
+<p>✅ <strong>ただし S-1（UA1271 のビジネス化）が成立すれば United Club が使えるので、この穴は S-1 次第。</strong><br />
+なお 10/28 は NH8 で 10:20 SFO 着（到着のみ）。ラウンジが要るのは 10/29 の出発（10:45）で、<strong>滞在は1時間程度</strong>なので優先度は低い。</p>
+<hr />
+<h2 id="3">3. ⚠️ 最大滞在時間の制限に注意</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ラウンジ</th>
+<th style="text-align: left;">上限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">GRU T1 <strong>W Lounge</strong></td>
+<td style="text-align: left;"><strong>3時間</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">IST <strong>IGA Lounge</strong>（PP利用時）</td>
+<td style="text-align: left;"><strong>3時間</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">GRU T2 <strong>Advantage VIP Lounge</strong></td>
+<td style="text-align: left;">✅ <strong>24/7・時間制限なし</strong>との記載</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>GRU の6時間10分は、3時間上限のラウンジ1軒では足りない。</strong><br />
+→ <strong>時間制限のない店（Advantage VIP 等）を選ぶか、2軒をはしごする。</strong><br />
+<strong>T2 には24時間営業が複数あるので、現地で選択肢はある。</strong></p>
+<hr />
+<h2 id="4">4. タスク</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">期限</th>
+<th style="text-align: center;">優先</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>1</strong></td>
+<td style="text-align: left;"><strong>IST（11/21）：TK の到着ラウンジが使えるか／iGA Domestic Lounge が PP 対象か確認</strong></td>
+<td style="text-align: left;">10月中旬</td>
+<td style="text-align: center;">🔴</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2</strong></td>
+<td style="text-align: left;"><strong>CUZ（11/5 05:00発）：Hanaq VIP Lounge の開館時刻を確認</strong></td>
+<td style="text-align: left;">10月中旬</td>
+<td style="text-align: center;">🟡</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3</strong></td>
+<td style="text-align: left;"><strong>SFO（10/29）：UA1271 の出発コンコースを確認</strong>（S-1 の結果次第で不要になる）</td>
+<td style="text-align: left;">10/28</td>
+<td style="text-align: center;">🟡</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>4</strong></td>
+<td style="text-align: left;"><strong>GRU T2 の時間制限なしラウンジを事前に特定</strong>（6h10m 対策）</td>
+<td style="text-align: left;">10月中旬</td>
+<td style="text-align: center;">🟡</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5</strong></td>
+<td style="text-align: left;">Priority Pass アプリを入れ、<strong>同伴者条件と年間利用回数の上限</strong>を確認</td>
+<td style="text-align: left;">10月上旬</td>
+<td style="text-align: center;">🟡</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>6</strong></td>
+<td style="text-align: left;">12/1 ADD 乗継（4h25m）の <strong>Cloud Nine Lounge</strong> 利用条件を確認（RTW ビジネス）</td>
+<td style="text-align: left;">11月</td>
+<td style="text-align: center;">⬜</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-latam">5. 副産物：LATAM のアップグレード入札の評価が下がった</h2>
+<p><strong>Priority Pass があると、LATAM Premium Economy の特典のうち「LATAM VIPラウンジ（国際線）」が無価値になる。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">特典</th>
+<th style="text-align: left;">PP保有時の価値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>中央席ブロック</strong></td>
+<td style="text-align: left;">✅ <strong>これだけが実質的</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">ピッチ +2〜4インチ（32〜34インチ）</td>
+<td style="text-align: left;">⚠️ 小さい</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>LATAM VIPラウンジ（国際線のみ）</strong></td>
+<td style="text-align: left;">❌ <strong>Priority Pass で代替（LIM の Hanaq）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">優先搭乗・優先手荷物</td>
+<td style="text-align: left;">⚠️ 小さい（LIM 2h40m／GRU 6h10m で急ぐ必要がない）</td>
+</tr>
+</tbody>
+</table>
+<p>→ 詳細と入札実績は <a href="手配_RTW外フライト.md"><code>手配_RTW外フライト.md</code></a> §C3-2。</p>
+<hr />
+<h2 id="6">6. 関連ファイル</h2>
+<ul>
+<li><a href="手配_RTW外フライト.md"><code>手配_RTW外フライト.md</code></a> — C群の各区間・アップグレード入札</li>
+<li><a href="東回り_発券用資料.md"><code>東回り_発券用資料.md</code></a> — RTW 各区間の予約クラス</li>
+<li><a href="TODO.md"><code>TODO.md</code></a> — A6（S-1 ウォッチ）／I2（カード準備）</li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

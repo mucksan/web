@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>手配_予防接種 — 渡航国別推奨ワクチン一覧と接種計画 - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🦁 マサイマラ・フライインサファリ</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="観戦チケット_販売方法と時期.html">🎫 観戦チケット 販売方法と時期</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_予防接種.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="_">手配_予防接種 — 渡航国別推奨ワクチン一覧と接種計画</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">項目</td>
+<td style="text-align: left;">内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">:---</td>
+<td style="text-align: left;">:---</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>版数</strong></td>
+<td style="text-align: left;"><strong>第9版</strong>（狂犬病③・マラリア薬・Twinrix②を10/22に統合・受診は全4回）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>改訂日</strong></td>
+<td style="text-align: left;">2026年9月12日（土）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>対象旅程</strong></td>
+<td style="text-align: left;">2026/10/28（水）〜12/2（水）（北米・中南米・欧州・中東・アフリカ 11カ国）＋ 2027/3 シンガポール</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>旅行者</strong></td>
+<td style="text-align: left;">1974年生まれ（52歳）／バンコク在住（<strong>BTSトンロー駅徒歩5分／サミティベート病院へシャトルバス5分</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>日本滞在予定</strong></td>
+<td style="text-align: left;"><strong>2026/9/28（月）〜10/9（金）日本滞在</strong>（9/28月移動 ➡ 10/9金バンコク戻り ➡ <strong>10/26月東京移動 ➡ 10/28水成田発</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>確定方針</strong></td>
+<td style="text-align: left;"><strong>スケジュール最優先（会社補助に縛られず自費先行OK）</strong>。スネークファームは元々破格（総額約3万円台）のため、9/12から直ちにスタート！</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>直近の接種歴</strong></td>
+<td style="text-align: left;">2026/7/24 シングリックス1回目接種済み（日本） → <strong>2回目は10/1（木）に日本同クリニックで接種</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>起点</strong></td>
+<td style="text-align: left;">TODO.md <strong>H群</strong>（H1 米国ESTA・H3 予防接種手配・H4 イエローカード要否確認済）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<blockquote>
+<h2 id="2026912-93twinrix21022">🔴 2026/9/12 第9版：狂犬病③・マラリア薬・Twinrix②を10/22に統合</h2>
+<p><strong>経緯：</strong>第8版では、狂犬病③をDay31から10/22（Day40）まで遅らせるのは「ACIPの言う数週間単位の遅延で危険」と判断し、<br />
+Twinrix②だけを10/22に切り出す5回案にしていた。</p>
+<p>🔴 <strong>この判断は誤りだった。</strong>引用したACICの注意書き（「数日の遅れは問題ないが、数週間の遅延は予測できない影響」）は、<br />
+<strong>暴露後接種（PEP）のセクションの記述で、暴露前接種（PrEP）には書かれていない。</strong><br />
+<strong>PrEPは噛まれる前の接種で、ウイルスの潜伏期間と競争する必要がない。</strong><br />
+WHOの一般原則は「遅れても打ち直さず、そこから再開すればよい」であり、<strong>Day 21〜28は目安であって上限ではない。</strong></p>
+<p>→ <strong>本人指摘のとおり、最低間隔（狂犬病はDay 0から7日以上、Twinrixは28日以上）さえ満たせば、それ以降は特に問題ない。</strong></p>
+<h3 id="4">✅ 確定した最終スケジュール（4回）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ 9/12（実施済）</td>
+<td style="text-align: left;">黄熱・狂犬病①（Day 0）・抗体検査（採血）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 9/24（木）</td>
+<td style="text-align: left;">狂犬病②（Day 12）＋腸チフス＋Tdap＋<strong>Twinrix①</strong>（新規）</td>
+</tr>
+<tr>
+<td style="text-align: left;">10/1（木・日本）</td>
+<td style="text-align: left;">シングリックス②</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>10/22（木）</strong></td>
+<td style="text-align: left;"><strong>狂犬病③（Day 40）＋マラリア予防薬処方＋Twinrix②（Day 28）</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="10223">🔵 10/22に3つまとめることの唯一の論点</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔵 <strong>1</strong></td>
+<td style="text-align: left;"><strong>接種完了から出発（10/28）まで6日。</strong>10/13案なら15日あった。<br>副反応が出た場合の余裕は減るが、Twinrix・狂犬病とも副反応は軽微（§5参照）で、危険な組み合わせではない</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>2</strong></td>
+<td style="text-align: left;"><strong>受診が1回減り、4回で完結する。</strong>登録料等（約100〜120 THB）も1回分浮く</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>3</strong></td>
+<td style="text-align: left;"><strong>マラリア予防薬（Malarone）は服用開始が11月末のケニア入国前で足りる。</strong>処方のタイミングとしては10/22でも余裕がある</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<hr />
+<h2 id="1">1. 結論サマリー（確定スケジュール・ワクチン配置）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">区分</th>
+<th style="text-align: left;">ワクチン／予防薬</th>
+<th style="text-align: center;">推奨度</th>
+<th style="text-align: center;">回数</th>
+<th style="text-align: center;">費用負担</th>
+<th style="text-align: center;">確定接種日・場所</th>
+<th style="text-align: left;">理由と配置の医学的根拠</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>完了</strong></td>
+<td style="text-align: left;"><strong>黄熱ワクチン</strong><br>（Yellow Fever / Stamaril）</td>
+<td style="text-align: center;">★★★★★</td>
+<td style="text-align: center;">1回</td>
+<td style="text-align: center;">✅ 実費฿1,550</td>
+<td style="text-align: center;">✅ <strong>2026/9/12 接種済</strong><br>🇹🇭 スネークファーム</td>
+<td style="text-align: left;"><strong>ケニア入国・タイ帰着に必須。</strong>9/22（10日後）に完全有効化。遅発性微熱リスクも9月前半に消化完了</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>確定（2回接種）</strong></td>
+<td style="text-align: left;"><strong>Twinrix</strong><br>（A型肝炎＋B型肝炎 混合）</td>
+<td style="text-align: center;">★★★★★</td>
+<td style="text-align: center;"><strong>計2回</strong></td>
+<td style="text-align: center;">🏢 会社精算可<br>（各約1,250 THB）</td>
+<td style="text-align: center;">① <strong>9/24（木）</strong>（新規）<br>② <strong>10/22（木）</strong>（Day 28）</td>
+<td style="text-align: left;">🔴 <strong>9/12は抗体検査に変わったが、結果を待たず9/24に①を打つ方針に確定。</strong>②は9/24から28日後の10/22。<strong>この日に狂犬病③・マラリア処方も統合。</strong>詳細は冒頭の第9版コールアウト</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>強く推奨（追加決定）</strong></td>
+<td style="text-align: left;"><strong>狂犬病</strong><br>（Rabies / Verorab等）</td>
+<td style="text-align: center;">★★★★★</td>
+<td style="text-align: center;"><strong>計3回</strong></td>
+<td style="text-align: center;">👤/🏢 併用<br>（各約350 THB）</td>
+<td style="text-align: center;">① ✅ <strong>9/12（土）接種済</strong>（Day 0）<br>② <strong>9/24（木）</strong>（Day 12）<br>③ <strong>10/22（木）</strong>（Day 40・<strong>Twinrix②と同日に統合</strong>）<br>🇹🇭 スネークファーム</td>
+<td style="text-align: left;">出発前に3回法を完全コンプリート！9/28の日本移動前に2回目を終え、10/22に完了。万が一の動物咬傷時に免疫グロブリン不要に。<strong>Day 40は WHO の目安（Day 21〜28）より遅いが、PrEPは暴露後接種と違い緊急性がなく問題ない</strong>（詳細は冒頭の第9版コールアウト）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>強く推奨（重症化リスク大）</strong></td>
+<td style="text-align: left;"><strong>Tdap（成人用3種混合）</strong><br>破傷風・ジフテリア・百日咳</td>
+<td style="text-align: center;">★★★★★</td>
+<td style="text-align: center;">1回</td>
+<td style="text-align: center;">🏢 会社負担可<br>（約750 THB）</td>
+<td style="text-align: center;"><strong>9/24（木）</strong><br>🇹🇭 スネークファーム</td>
+<td style="text-align: left;">マチュピチュ・サファリでの怪我対策。<strong>同日にTwinrix①・狂犬病②・腸チフスも接種するため計4本。</strong>腕を分けて接種し、Tdapは必ず非利き腕へ。1回で10年間有効</td>
+</tr>
+<tr>
+<td style="text-align: left;">🟡 <strong>推奨（水・食事対策）</strong></td>
+<td style="text-align: left;"><strong>腸チフス</strong><br>（Typhoid / Typhim Vi）</td>
+<td style="text-align: center;">★★★★☆</td>
+<td style="text-align: center;">1回</td>
+<td style="text-align: center;">👤 自費<br>（約500 THB）</td>
+<td style="text-align: center;"><strong>9/24（木）</strong><br>🇹🇭 スネークファーム</td>
+<td style="text-align: left;">不活化で1回接種で3年有効。9/12の腕の負担を分散させるため9/24に接種。10/28出発に余裕で効果発現</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>必須級（予防内服薬）</strong></td>
+<td style="text-align: left;"><strong>マラリア予防薬</strong><br>（Malarone等・内服）</td>
+<td style="text-align: center;">★★★★★</td>
+<td style="text-align: center;">毎日</td>
+<td style="text-align: center;">👤 自費<br>（約1,700 THB）</td>
+<td style="text-align: center;"><strong>10/22（木）処方</strong><br>🇹🇭 スネークファーム</td>
+<td style="text-align: left;">マサイマラサファリ（11月末）滞在用（10〜12日分）。最終接種日に同時に処方受領。10/22でも服用開始まで十分余裕がある</td>
+</tr>
+<tr>
+<td style="text-align: left;">💉 <strong>完了予定（日本）</strong></td>
+<td style="text-align: left;"><strong>シングリックス（帯状疱疹）2回目</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td style="text-align: center;">2回目</td>
+<td style="text-align: center;">👤 自費<br>（約2.2万円）</td>
+<td style="text-align: center;"><strong>10/1（木）</strong><br>🇯🇵 <strong>日本の同一医院</strong></td>
+<td style="text-align: left;">7/24から約68日（2ヶ月強）でベスト間隔。1回目高熱のため<strong>翌日10/2（金）は完全静養日</strong>とし、解熱剤を処方してもらう</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-vs">2. 医療機関の選択肢：サミティベート病院 vs スネークファーム</h2>
+<p>ご自宅が <strong>BTSトンロー駅徒歩5分</strong> であり、<strong>サミティベート病院（スクンビット・ソイ49）へシャトルバス5分</strong> という超至近の立地を踏まえた比較です。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">🏥 <strong>サミティベート病院</strong>（スクンビット・ソイ49）</th>
+<th style="text-align: left;">🏆 <strong>スネークファーム</strong>（タイ赤十字社・Rama IV）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>自宅からの距離</strong></td>
+<td style="text-align: left;">🔴 <strong>シャトルバスで5分（超至近・日常圏内）</strong></td>
+<td style="text-align: left;">BTSトンロー ➡ サラデーン（約20分）＋徒歩数分</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>会社負担（基本4種）</strong></td>
+<td style="text-align: left;">🏢 <strong>会社が実額全額精算OKなら、自己負担ゼロで最高！</strong></td>
+<td style="text-align: left;">🏢 会社負担（実額精算）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>自費項目（腸チフス等）</strong></td>
+<td style="text-align: left;">腸チフス約 1,500〜2,200 THB／黄熱約 3,500〜4,500 THB</td>
+<td style="text-align: left;">腸チフス約 450〜570 THB／黄熱約 1,200〜1,550 THB</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>予約と言語</strong></td>
+<td style="text-align: left;"><strong>完全予約制・完全日本語通訳常駐</strong></td>
+<td style="text-align: left;"><strong>予約不要（直接ウォークイン）・英語対応</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>推奨の使い分け</strong></td>
+<td style="text-align: left;"><strong>「会社がサミティベの金額でも全額精算してくれる」なら、近くて快適なサミティベが第一候補！</strong></td>
+<td style="text-align: left;"><strong>「自費分を最小限に抑えたい」「予約なしでサクッと打ちたい」ならスネークファームが本命！</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3">3. 妻の会社補助規程の整理と「先行接種（早めに受けるか）」の検証</h2>
+<h3 id="21">2.1 会社補助規程の整理</h3>
+<ul>
+<li><strong>会社負担対象</strong>:</li>
+<li><strong>基本の4種類</strong>: <strong>A型肝炎、B型肝炎、破傷風、狂犬病</strong> ➡ <strong>帯同家族（配偶者）も対象！</strong><ul>
+<li>Twinrix（A型＋B型混合）＝ <strong>会社負担対象</strong></li>
+<li>Tdap（破傷風を含む成人用混合）＝ <strong>会社負担対象</strong></li>
+<li>狂犬病（Rabies）＝ <strong>会社負担対象</strong></li>
+</ul>
+</li>
+<li><strong>ビザ関連</strong>: <strong>VISA取得上、義務付けられている予防接種</strong><ul>
+<li>黄熱ワクチン（ケニア入国・タイ帰着にイエローカード義務）＝ <strong>会社申請の余地あり！</strong></li>
+</ul>
+</li>
+<li><strong>自己負担（会社対象外）</strong>:</li>
+<li>腸チフス（約500 THB ≒ 約2,150円）</li>
+<li>マラリア予防薬（約1,500〜2,000 THB ≒ 約6,500〜8,600円）</li>
+<li>シングリックス（日本で自費）</li>
+<li><strong>劇的な費用効果</strong>:</li>
+<li>高額な <strong>Twinrix（2回分）＋狂犬病（3回分）＋Tdap</strong> がすべて会社負担になるため、<strong>総額約5,000〜6,000 THB（約2.2万〜2.6万円）が会社持ち</strong>になります！</li>
+<li>ユーザーの実質自己負担は、<strong>腸チフス＋マラリア薬（＋もし黄熱が否認された場合の黄熱代）のわずか約2,000〜3,500 THB（約8,500〜15,000円）</strong>で済みます。</li>
+</ul>
+<hr />
+<h3 id="32-912">3.2 確定方針：スケジュール最優先・副反応分散で9/12から先行スタート</h3>
+<blockquote>
+<p>⚠️ <strong>2026/9/12 実施後の注記：</strong>以下の「1. Twinrix接種間隔の完全確保」は<strong>前提から崩れた。</strong><br />
+9/12にTwinrix①が打たれず抗体検査に変わったため、<strong>Twinrix①は9/24に、②は9/24から28日後の10/22に確定した</strong>（詳細は文書冒頭の第8版コールアウト）。<br />
+2〜4の理由（副反応分散・イエローカード早期化・会社精算の併用）は影響を受けていない。</p>
+</blockquote>
+<ul>
+<li><strong>確定判断</strong>:</li>
+<li>スネークファームは公的機関のため元々破格（自費でも1本あたり約350〜1,400 THB）であり、会社補助に縛られず<strong>スケジュール最優先で明日9/12（土）より直ちにスタート</strong>します。</li>
+<li>これにより以下の決定的なメリットが得られます：<ol>
+<li>~~Twinrix接種間隔（最低28日）の完全確保: 9/12に1回目を打つことで、10/13の2回目まで「31日間」を確保~~ → 🔴 <strong>実際には9/12は抗体検査になり、Twinrix①は9/24・②は10/22で確定</strong>（上記注記）。</li>
+<li><strong>副反応と身体的負担の分散</strong>: 1度に5本打つ過大な負担（両腕の重みや横向きに寝られない苦痛）を避け、各回3本ずつバランスよく分散。黄熱の遅発性微熱（3〜7日後）も9月中旬に消化完了できる。</li>
+<li><strong>イエローカードの早期有効化</strong>: 9/12接種により9/22に発効完了し、ケニア入国・タイ帰着に万全の備えができる。</li>
+<li><strong>一部会社精算の併用</strong>: 9/24以降の受診分（狂犬病②、Tdap、狂犬病③、Twinrix②）は扶養加入後となるため、領収書と証明書を発行してもらえば会社精算の対象とできる。</li>
+</ol>
+</li>
+</ul>
+<hr />
+<h2 id="4-twinrixab">4. Twinrix（A+B型肝炎）と狂犬病の医学的根拠</h2>
+<h3 id="41-twinrix1-91">4.1 Twinrixは「1回」ではダメなのか？ なぜ9月中に1回目を打つべきか？</h3>
+<blockquote>
+<p>⚠️ <strong>2026/9/12 実施後の注記：</strong>この節は「Twinrix①を9/12に打つ」計画時点の医学的根拠であり、<br />
+<strong>実際には9/12にTwinrix①は打たれず、抗体検査（既存免疫の有無の確認）に変わった。</strong><br />
+抗体検査で<strong>既存免疫が確認されれば、この節の接種回数の議論自体が不要になる。</strong><br />
+免疫がない場合は、ここに書かれた「1回目→4週間後→2回目」の設計を、<strong>打てるタイミングを医師と探し直すことになる。</strong><br />
+* <strong>抗体獲得率（セロコンバージョンレート）の現実</strong>:<br />
+  * <strong>1回接種後（約1ヶ月時点）</strong>: A型肝炎抗体は約90〜95%つくが、<strong>B型肝炎抗体はわずか約30〜50%しかつかない</strong>。<br />
+  * <strong>2回接種後（1ヶ月後＝2回目接種後）</strong>: A型肝炎は<strong>96〜100%</strong>、B型肝炎は<strong>80〜90%</strong>に達する。<br />
+  * <strong>3回接種後（6ヶ月後）</strong>: 長期免疫（20年〜生涯）が完成する。<br />
+* <strong>なぜ9月中（扶養後）に1回目を打つべきか</strong>:<br />
+  * 1回目と2回目の最短接種間隔は<strong>「4週間（約1ヶ月）」</strong>。<br />
+  * 出発日は<strong>10/26（月）東京移動 ➡ 10/28（水）成田発</strong>。<br />
+  * もし10/10（土）のバンコク戻り後に1回目を打つと、出発まで約2週間しかなく<strong>出発前に2回目を打つことが物理的に不可能</strong>になる。<br />
+  * <strong>9/19（土）または 9/20（日）に1回目を打てば、10/17（土）〜10/24（土）（出発直前・約4週間後）にちょうど2回目を打てる！</strong><br />
+  * これにより、<strong>出発時点でA型100%・B型80〜90%の万全な防御力</strong>を備えて旅立つことができる。</p>
+</blockquote>
+<h3 id="42-rabies">4.2 狂犬病（Rabies）を追加する理由とスケジュール</h3>
+<ul>
+<li><strong>タイ在住生活のメリット</strong>: バンコク市内のソイ（小道）や寺院、地方リゾートには野良犬・野良猫・サルが多く、日常的にリスクがある。</li>
+<li><strong>世界一周でのメリット</strong>: ケニア（サファリ・農村）、エジプト（野良犬・猫多数）、ペルー（アンデス高地の放し飼い犬）、トルコ（街中の犬猫）など、動物接触リスクが連続する。発症後の致死率はほぼ100%。</li>
+<li><strong>事前接種（暴露前接種）の決定的な効果</strong>:</li>
+<li>事前接種なしで咬まれた場合：<strong>24時間以内に高額かつ世界的に品薄な「ヒト狂犬病免疫グロブリン（RIG）」の投与＋5回のワクチン接種</strong>が必要。途上国の僻地（マサイマラやマチュピチュ）ではRIGの入手が絶望的。</li>
+<li>事前接種（3回）済みの場合：<strong>RIGは一切不要！</strong> 単純なワクチン2回追加（Day 0, Day 3）のみで完全に命が助かる。</li>
+<li><strong>WHO推奨スケジュール（筋肉内接種）</strong>:</li>
+<li><strong>Day 0（1回目）</strong> ➡ <strong>Day 7（2回目）</strong> ➡ <strong>Day 21〜28（3回目）</strong></li>
+<li>今回の日程なら：<ul>
+<li>1回目：<strong>9/19（土）または 9/20（日）</strong></li>
+<li>2回目：<strong>9/26（土）または 9/27（日）</strong>（日本移動の直前！Day 7ピッタリ）</li>
+<li>3回目：<strong>10/17（土）〜10/24（土）</strong>（日本から戻った後、Twinrix 2回目と同時！）</li>
+</ul>
+</li>
+<li><strong>9/28（月）〜10/9（金）の日本滞在を挟みつつ、世界一周出発前に3回接種が完璧にコンプリート可能。</strong></li>
+</ul>
+<h3 id="43-928109">4.3 日本でのシングリックス（9/28〜10/9）との接種間隔ルール</h3>
+<ul>
+<li><strong>生ワクチン（黄熱）</strong>: 日本の現行ルールおよびCDC/WHO基準では、生ワクチン接種後に別の不活化ワクチン（シングリックス）を打つ場合、<strong>接種間隔の制限なし（いつでも接種可能）</strong>。</li>
+<li><strong>不活化ワクチン（Twinrix, Tdap, 狂犬病, 腸チフス）</strong>: 他の不活化ワクチン（シングリックス）との間隔制限は一切なし。</li>
+<li>したがって、<strong>9月下旬にバンコクで黄熱・狂犬病等を打った数日後〜1週間後に日本でシングリックスを打っても医学的安全性・免疫原性に全く問題ありません</strong>。</li>
+</ul>
+<hr />
+<h2 id="5">5. 各ワクチンの副反応の徹底比較と対策（シングリックス発熱経験を踏まえて）</h2>
+<p>ユーザーは<strong>「7/24のシングリックス1回目当日夜に高熱が出た」</strong>という明確な副反応歴があります。<br />
+これは<strong>「免疫応答（サイトカイン産生）が非常にしっかり働く体質」</strong>であることを意味します。</p>
+<h3 id="51">5.1 ワクチン別 副反応の強さ・症状・発症時期の比較</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ワクチン</th>
+<th style="text-align: center;">種類</th>
+<th style="text-align: center;">発熱の強さ・確率</th>
+<th style="text-align: left;">主な副反応症状</th>
+<th style="text-align: center;">発症のタイミング</th>
+<th style="text-align: left;">シングリックスとの比較</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">💉 <strong>シングリックス</strong><br>（帯状疱疹）</td>
+<td style="text-align: center;">不活化<br>（強アジュバント）</td>
+<td style="text-align: center;">🔴 <strong>極めて強い</strong><br>（38℃超が約20〜40%）</td>
+<td style="text-align: left;"><strong>高熱、悪寒、激しい頭痛、強い倦怠感、局所の強い痛み・腫れ</strong></td>
+<td style="text-align: center;"><strong>当日夜〜翌日</strong><br>（12〜48時間以内）</td>
+<td style="text-align: left;">【基準】<strong>全ワクチン中トップクラスに副反応が重い</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">💉 <strong>黄熱ワクチン</strong><br>（Stamaril）</td>
+<td style="text-align: center;"><strong>生ワクチン</strong><br>（弱毒生ウイルス）</td>
+<td style="text-align: center;">🟡 <strong>中程度</strong><br>（微熱〜38℃が約10〜30%）</td>
+<td style="text-align: left;"><strong>微熱、倦怠感、頭痛、軽い筋肉痛</strong>（局所の痛みは軽微）</td>
+<td style="text-align: center;">⚠️ <strong>接種後3〜7日目</strong><br>（4〜6日目がピーク）</td>
+<td style="text-align: left;">シングリックスより発熱は軽いが、<strong>当日ではなく数日後に出てくる点に注意</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">💉 <strong>Tdap</strong><br>（破傷風・成人用3種）</td>
+<td style="text-align: center;">不活化</td>
+<td style="text-align: center;">🟢 <strong>微熱程度</strong><br>（約10%）</td>
+<td style="text-align: left;">⚠️ <strong>局所反応（注射部位の強い痛み・筋肉痛・重だるさ・コリ）が2〜3日続く</strong></td>
+<td style="text-align: center;"><strong>当日〜翌日</strong></td>
+<td style="text-align: left;">熱は出にくいが、<strong>「腕の筋肉痛・重み」はシングリックス並みに強く出やすい</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">💉 <strong>Twinrix</strong><br>（A型＋B型 混合）</td>
+<td style="text-align: center;">不活化</td>
+<td style="text-align: center;">🟢 <strong>ほとんど出ない</strong><br>（約5〜10%）</td>
+<td style="text-align: left;">局所の軽度の痛み・赤み、軽い倦怠感、微熱</td>
+<td style="text-align: center;"><strong>当日〜翌日</strong></td>
+<td style="text-align: left;"><strong>インフルエンザワクチン並みにマイルド</strong>。シングリックスのような高熱は極めて稀</td>
+</tr>
+<tr>
+<td style="text-align: left;">💉 <strong>狂犬病</strong><br>（Verorab / Speeda）</td>
+<td style="text-align: center;">不活化</td>
+<td style="text-align: center;">🟢 <strong>ほぼ出ない</strong><br>（約5%未満）</td>
+<td style="text-align: left;">注射部位の軽い痛み、ごく軽い頭痛・微熱</td>
+<td style="text-align: center;"><strong>当日〜翌日</strong></td>
+<td style="text-align: left;"><strong>非常に安全・マイルド</strong>。日常生活への支障はほぼ皆無</td>
+</tr>
+<tr>
+<td style="text-align: left;">💉 <strong>腸チフス</strong><br>（Typhim Vi）</td>
+<td style="text-align: center;">不活化</td>
+<td style="text-align: center;">🟢 <strong>ほぼ出ない</strong><br>（約5%未満）</td>
+<td style="text-align: left;">注射部位の軽い痛み</td>
+<td style="text-align: center;"><strong>当日〜翌日</strong></td>
+<td style="text-align: left;">極めてマイルド</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="52">5.2 各ワクチンの臨床的特徴と注意点</h3>
+<ol>
+<li><strong>シングリックス 2回目（日本で接種）</strong>:</li>
+<li><strong>医学的予測</strong>: 1回目で高熱が出た方は、<strong>2回目でも同様（または少し強め）に高熱・悪寒・強い倦怠感が出る確率が極めて高い（約60〜80%）</strong>です。</li>
+<li><strong>対策</strong>:<ul>
+<li>接種翌日は仕事を入れず、<strong>「1日中ベッドで休める日」</strong>にしておくことが必須です。</li>
+<li>接種時、医師に事情を話して<strong>「カロナール（アセトアミノフェン）」または「ロキソニン」を処方</strong>してもらい、熱や寒気が出始めたら我慢せず即座に内服してください。</li>
+</ul>
+</li>
+<li><strong>黄熱ワクチン（生ワクチン）</strong>:</li>
+<li><strong>医学的予測</strong>: ウイルスが体内で微量に増殖して免疫を作るため、<strong>「打った当日・翌日は何ともないが、3日目〜7日目頃に微熱（37.5℃前後）や頭痛が出る」</strong>という遅発性の特徴があります。</li>
+<li><strong>シングリックスとの違い</strong>: シングリックスのような「当日夜の悪寒・ガタガタ震える高熱」とは全く異なり、「数日後に風邪の引き始めのようなだるさ」を感じる程度で済む人がほとんどです。</li>
+<li><strong>Tdap（破傷風混合）</strong>:</li>
+<li><strong>医学的予測</strong>: 熱はほとんど出ませんが、破傷風トキソイドの特性上、<strong>「打った側の腕が2〜3日間ズキズキ筋肉痛のように重くなる」</strong>ことがあります。</li>
+<li><strong>対策</strong>: 必ず<strong>「利き腕ではない側の腕（左利きなら右腕、右利きなら左腕）」</strong>に打ってもらってください。</li>
+<li><strong>Twinrix・狂犬病・腸チフス</strong>:</li>
+<li>いずれも世界的に何億回と打たれている安全性の高い不活化ワクチンで、シングリックスのような激烈な全身副反応が起きる心配はほぼありません。</li>
+</ol>
+<hr />
+<h3 id="53">5.3 「シングリックスで高熱が出た体質」を踏まえた超実践的アドバイス</h3>
+<ul>
+<li>💡 <strong>アドバイス①：9/12先行接種による副反応・局所負担の分散（確定方針）</strong></li>
+<li>もし9月下旬に全種類を一気に打つと、熱が倍増するわけではありませんが、<strong>両腕に2〜3本ずつ打つため「両腕が痛くて横向きに寝られない」という物理的苦痛</strong>が生じます。</li>
+<li><strong>明日9/12（土）から先行接種をスタート</strong>することで、<ol>
+<li>黄熱の遅発性微熱（3〜7日後）を9月中旬に完全に消化できる。</li>
+<li>各回3本ずつに分散され、体への負担が劇的に軽減されます。</li>
+</ol>
+</li>
+<li>💡 <strong>アドバイス②：左右の腕の打ち分け指定</strong></li>
+<li>Tdap（腕が重くなる）は<strong>「非利き腕」</strong>に単独で打ってもらう。</li>
+<li>Twinrixと狂犬病は、少し間隔をあけて同じ腕または反対側の腕に打つ。</li>
+<li>💡 <strong>アドバイス③：解熱鎮痛剤の常備</strong></li>
+<li>バンコクの薬局でも「TYLENOL（パラセタモール / アセトアミノフェン 500mg）」はセブンイレブンや薬局で数十バーツでどこでも買えます。手元に常備しておけば安心です。</li>
+</ul>
+<hr />
+<h2 id="6">6. 渡航国別 推奨ワクチン一覧表</h2>
+<p>WHO（世界保健機関）、CDC（米国疾病予防管理センター）、厚生労働省検疫所（FORTH）の基準に基づく国別リスクです。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">国・地域</th>
+<th style="text-align: left;">滞在日程</th>
+<th style="text-align: center;">衛生水準</th>
+<th style="text-align: center;">黄熱</th>
+<th style="text-align: center;">A型・B型 (Twinrix)</th>
+<th style="text-align: center;">狂犬病 (Rabies)</th>
+<th style="text-align: center;">破傷風 (Tdap)</th>
+<th style="text-align: center;">腸チフス</th>
+<th style="text-align: center;">マラリア予防薬</th>
+<th style="text-align: left;">備考・注意点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🇺🇸 <strong>アメリカ</strong>（SFO）</td>
+<td style="text-align: left;">10/28〜29</td>
+<td style="text-align: center;">先進国</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">推奨</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: left;">標準的予防接種のみ</td>
+</tr>
+<tr>
+<td style="text-align: left;">🇲🇽 <strong>メキシコ</strong>（MEX）</td>
+<td style="text-align: left;">10/29〜31</td>
+<td style="text-align: center;">中進国</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">🟡 考慮</td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">🟡 考慮</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: left;">屋台・生水・氷に注意</td>
+</tr>
+<tr>
+<td style="text-align: left;">🇵🇪 <strong>ペルー</strong>（LIM, CUZ）</td>
+<td style="text-align: left;">10/31〜11/5</td>
+<td style="text-align: center;">途上国</td>
+<td style="text-align: center;">⚠️ 注1</td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">🟡 考慮</td>
+<td style="text-align: center;">不要（高地）</td>
+<td style="text-align: left;">マチュピチュ・クスコの野良犬・怪我対策</td>
+</tr>
+<tr>
+<td style="text-align: left;">🇧🇷 <strong>ブラジル</strong>（GRU, IGU）</td>
+<td style="text-align: left;">11/5〜10</td>
+<td style="text-align: center;">中進国</td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">🟡 考慮</td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">🟡 考慮</td>
+<td style="text-align: center;">不要（都市）</td>
+<td style="text-align: left;">イグアス・サンパウロは黄熱流行地帯</td>
+</tr>
+<tr>
+<td style="text-align: left;">🇵🇹 <strong>ポルトガル</strong>（LIS）</td>
+<td style="text-align: left;">11/10〜12</td>
+<td style="text-align: center;">先進国</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">推奨</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: left;">西欧標準</td>
+</tr>
+<tr>
+<td style="text-align: left;">🇪🇸 <strong>スペイン</strong>（BCN, MAD）</td>
+<td style="text-align: left;">11/12〜16</td>
+<td style="text-align: center;">先進国</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">推奨</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: left;">西欧標準</td>
+</tr>
+<tr>
+<td style="text-align: left;">🇮🇹 <strong>イタリア</strong>（FCO）</td>
+<td style="text-align: left;">11/16〜19</td>
+<td style="text-align: center;">先進国</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">推奨</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: left;">西欧標準</td>
+</tr>
+<tr>
+<td style="text-align: left;">🇬🇷 <strong>ギリシャ</strong>（ATH）</td>
+<td style="text-align: left;">11/19〜21</td>
+<td style="text-align: center;">先進国</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">推奨</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: left;">西欧標準</td>
+</tr>
+<tr>
+<td style="text-align: left;">🇹🇷 <strong>トルコ</strong>（NAV, IST）</td>
+<td style="text-align: left;">11/21〜25</td>
+<td style="text-align: center;">中進国</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">考慮</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: left;">イスタンブール・カッパドキアの街中動物</td>
+</tr>
+<tr>
+<td style="text-align: left;">🇪🇬 <strong>エジプト</strong>（CAI）</td>
+<td style="text-align: left;">11/25〜27</td>
+<td style="text-align: center;">途上国</td>
+<td style="text-align: center;">⚠️ 注2</td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">🟡 <strong>推奨</strong></td>
+<td style="text-align: center;">不要（カイロ）</td>
+<td style="text-align: left;">飲食衛生リスク高。野良犬猫多数</td>
+</tr>
+<tr>
+<td style="text-align: left;">🇰🇪 <strong>ケニア</strong>（NBO, マサイマラ）</td>
+<td style="text-align: left;">11/27〜12/1</td>
+<td style="text-align: center;">途上国</td>
+<td style="text-align: center;">🔴 <strong>必須</strong></td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">🟡 <strong>推奨</strong></td>
+<td style="text-align: center;">🔴 <strong>必須級</strong></td>
+<td style="text-align: left;"><strong>黄熱証明書必須。サファリはマラリア予防必須</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🇪🇹 <strong>エチオピア</strong>（ADD）</td>
+<td style="text-align: left;">12/01</td>
+<td style="text-align: center;">途上国</td>
+<td style="text-align: center;">⚠️ 注3</td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">考慮</td>
+<td style="text-align: center;">🔴 <strong>推奨</strong></td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">不要（空港内）</td>
+<td style="text-align: left;">空港トランジットのみ</td>
+</tr>
+<tr>
+<td style="text-align: left;">🇹🇭 <strong>タイ</strong>（BKK・居住地）</td>
+<td style="text-align: left;">12/01着〜日常</td>
+<td style="text-align: center;">居住地</td>
+<td style="text-align: center;">🔴 <strong>検疫</strong></td>
+<td style="text-align: center;">🔴 <strong>在住推奨</strong></td>
+<td style="text-align: center;">🔴 <strong>在住推奨</strong></td>
+<td style="text-align: center;">🔴 <strong>在住推奨</strong></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;"><strong>ケニア等からの入国時にイエローカード提示義務あり。タイ日常生活でも犬猿リスクあり</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>注1（ペルー）</strong>: クスコやマチュピチュ等の高地は黄熱リスク外だが、他国への移動・入国時にペルー滞在歴が問われる場合がある。</li>
+<li><strong>注2（エジプト）</strong>: 黄熱流行国からの入国時にイエローカードを要求される場合がある。</li>
+<li><strong>注3（エチオピア）</strong>: 空港トランジットが12時間以内であれば提示不要だが、遅延等で入国する場合に必要。</li>
+</ul>
+<hr />
+<hr />
+<h2 id="7-4-vs-vs-vs">7. 費用詳細：4大機関の徹底比較（スネークファーム vs マヒドン vs サミティベ vs 日本）</h2>
+<p>（1 THB ≒ 4.3円換算）</p>
+<h3 id="71-4">7.1 ワクチン・予防薬 単価比較表（4機関）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ワクチン／項目</th>
+<th style="text-align: right;">🏆 <strong>スネークファーム</strong><br>（タイ赤十字社・自宅至近）</th>
+<th style="text-align: right;">🏥 <strong>マヒドン大学</strong><br>（Thai Travel Clinic公式）</th>
+<th style="text-align: right;">🏥 <strong>サミティベート病院</strong><br>（私立大手・スクンビット）</th>
+<th style="text-align: right;">🇯🇵 <strong>日本（自由診療）</strong><br>（渡航外来クリニック）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">① <strong>黄熱ワクチン</strong>（Stamaril）<br>※イエローカード発行代含む</td>
+<td style="text-align: right;"><strong>約 1,200 〜 1,550 THB</strong><br>（約5,200〜6,700円）</td>
+<td style="text-align: right;"><strong>1,376 THB</strong><br>（約5,900円）</td>
+<td style="text-align: right;"><strong>約 3,500 〜 4,500 THB</strong><br>（約15,000〜19,400円）</td>
+<td style="text-align: right;">約 18,000 〜 22,000 円</td>
+</tr>
+<tr>
+<td style="text-align: left;">② <strong>Twinrix</strong>（A型＋B型 混合）<br>※1回あたり（出発前2回必要）</td>
+<td style="text-align: right;"><strong>約 1,150 〜 1,400 THB</strong><br>（約4,900〜6,000円）</td>
+<td style="text-align: right;"><strong>1,065 THB</strong><br>（約4,600円）</td>
+<td style="text-align: right;"><strong>約 3,000 〜 3,800 THB</strong><br>（約12,900〜16,300円）</td>
+<td style="text-align: right;">約 15,000 〜 18,000 円<br>（未承認・輸入）</td>
+</tr>
+<tr>
+<td style="text-align: left;">③ <strong>狂犬病</strong>（Verorab / Speeda）<br>※1回あたり（出発前3回必要）</td>
+<td style="text-align: right;"><strong>約 327 〜 360 THB</strong><br>（約1,400〜1,550円）</td>
+<td style="text-align: right;"><strong>364 THB</strong><br>（約1,560円）</td>
+<td style="text-align: right;"><strong>約 1,200 〜 1,800 THB</strong><br>（約5,200〜7,700円）</td>
+<td style="text-align: right;">約 12,000 〜 16,000 円</td>
+</tr>
+<tr>
+<td style="text-align: left;">④ <strong>Tdap</strong>（破傷風・成人用3種）<br>※1回接種（10年有効）</td>
+<td style="text-align: right;"><strong>約 650 〜 850 THB</strong><br>（約2,800〜3,600円）</td>
+<td style="text-align: right;"><strong>664 THB</strong><br>（約2,850円）</td>
+<td style="text-align: right;"><strong>約 1,800 〜 2,500 THB</strong><br>（約7,700〜10,800円）</td>
+<td style="text-align: right;">約 8,000 〜 12,000 円</td>
+</tr>
+<tr>
+<td style="text-align: left;">⑤ <strong>腸チフス</strong>（Typhim Vi）<br>※1回接種（3年有効）</td>
+<td style="text-align: right;"><strong>約 450 〜 570 THB</strong><br>（約1,900〜2,450円）</td>
+<td style="text-align: right;"><strong>585 THB</strong><br>（約2,500円）</td>
+<td style="text-align: right;"><strong>約 1,500 〜 2,200 THB</strong><br>（約6,500〜9,500円）</td>
+<td style="text-align: right;">約 9,000 〜 13,000 円</td>
+</tr>
+<tr>
+<td style="text-align: left;">⑥ <strong>マラリア予防薬</strong>（内服薬）<br>※Malarone 約10〜12日分</td>
+<td style="text-align: right;"><strong>約 1,500 〜 2,000 THB</strong><br>（約6,500〜8,600円）</td>
+<td style="text-align: right;"><strong>約 1,600 〜 1,800 THB</strong><br>（約6,900〜7,700円）</td>
+<td style="text-align: right;"><strong>約 2,500 〜 3,500 THB</strong><br>（約10,800〜15,000円）</td>
+<td style="text-align: right;">約 8,000 〜 12,000 円</td>
+</tr>
+<tr>
+<td style="text-align: left;">⑦ <strong>初再診料・病院手数料</strong><br>※1回の来院あたり</td>
+<td style="text-align: right;"><strong>約 100 〜 200 THB</strong><br>（約430〜860円）</td>
+<td style="text-align: right;"><strong>約 340 THB</strong><br>（約1,450円）</td>
+<td style="text-align: right;"><strong>約 1,000 〜 1,500 THB</strong><br>（約4,300〜6,500円）</td>
+<td style="text-align: right;">約 3,000 〜 5,000 円</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="72">7.2 💰 全接種パッケージ 総額比較（自費ベース・薬代含む）</h3>
+<p><strong>【接種内容】: 黄熱(1回) ＋ Twinrix(2回) ＋ 狂犬病(3回) ＋ Tdap(1回) ＋ 腸チフス(1回) ＋ マラリア予防薬 ＋ 診察・証明書代</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">施設</th>
+<th style="text-align: center;">総額（THB）</th>
+<th style="text-align: center;">日本円換算</th>
+<th style="text-align: center;">コスト指数</th>
+<th style="text-align: left;">特徴・受診利便性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🏆 <strong>スネークファーム</strong><br>（タイ赤十字社・Queen Saovabha）</td>
+<td style="text-align: center;"><strong>約 7,300 〜 8,900 THB</strong></td>
+<td style="text-align: center;">🔴 <strong>約 31,000 〜 38,000 円</strong></td>
+<td style="text-align: center;"><strong>最安</strong><br>（基準: 1.0）</td>
+<td style="text-align: left;"><strong>予約不要（当日直接来院）</strong><br>※<strong>現金（タイバーツ）支払いのみ</strong><br>英語対応可能・イエローカード即日交付</td>
+</tr>
+<tr>
+<td style="text-align: left;">🏥 <strong>マヒドン大学</strong><br>（Thai Travel Clinic）</td>
+<td style="text-align: center;"><strong>約 7,700 〜 8,500 THB</strong></td>
+<td style="text-align: center;"><strong>約 33,000 〜 36,500 円</strong></td>
+<td style="text-align: center;"><strong>最安級</strong><br>（約1.0倍）</td>
+<td style="text-align: left;"><strong>Web予約可能（日時指定で待ち時間極小）</strong><br>熱帯医学専門・クレジットカード利用可</td>
+</tr>
+<tr>
+<td style="text-align: left;">🏥 <strong>サミティベート病院</strong><br>（私立大病院）</td>
+<td style="text-align: center;"><strong>約 20,500 〜 27,500 THB</strong></td>
+<td style="text-align: center;"><strong>約 88,000 〜 118,000 円</strong></td>
+<td style="text-align: center;"><strong>高級</strong><br>（約2.8〜3.1倍）</td>
+<td style="text-align: left;"><strong>自宅からシャトル5分・日本語完全対応</strong><br>クレジットカード・海外保険キャッシュレス可</td>
+</tr>
+<tr>
+<td style="text-align: left;">🇯🇵 <strong>日本（自由診療）</strong><br>（渡航外来トラベルクリニック）</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">❌ <strong>約 100,000 〜 135,000 円</strong></td>
+<td style="text-align: center;"><strong>最高値</strong><br>（約3.5〜4.0倍）</td>
+<td style="text-align: left;">全額自己負担・Twinrixや腸チフスは未承認輸入薬扱い</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="73-4">7.3 4大機関の受診環境・特徴の比較</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">🏆 スネークファーム</th>
+<th style="text-align: left;">🏥 マヒドン大学</th>
+<th style="text-align: left;">🏥 サミティベート病院</th>
+<th style="text-align: left;">🇯🇵 日本のクリニック</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>運営母体</strong></td>
+<td style="text-align: left;">公的（タイ赤十字社）</td>
+<td style="text-align: left;">国立大学（熱帯医学部）</td>
+<td style="text-align: left;">私立総合病院（BDMS）</td>
+<td style="text-align: left;">民間クリニック／検疫所</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>場所</strong></td>
+<td style="text-align: left;">Rama IV通り（サムヤーン／サラデーン）</td>
+<td style="text-align: left;">パヤタイ（BTSアヌサワリー）</td>
+<td style="text-align: left;">スクンビット・ソイ49</td>
+<td style="text-align: left;">日本各都市</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ユーザー自宅からの距離</strong></td>
+<td style="text-align: left;">BTSで約20分＋徒歩</td>
+<td style="text-align: left;">車・BTSで20〜30分</td>
+<td style="text-align: left;">🔴 <strong>シャトルバス5分（超至近）</strong></td>
+<td style="text-align: left;">一時帰国時のみ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>予約システム</strong></td>
+<td style="text-align: left;"><strong>予約不要（直接ウォークイン）</strong></td>
+<td style="text-align: left;"><strong>Web事前予約制（枠指定）</strong></td>
+<td style="text-align: left;"><strong>完全予約制</strong></td>
+<td style="text-align: left;">要予約（黄熱は予約激戦）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>待ち時間</strong></td>
+<td style="text-align: left;">午前早めなら30分〜1時間</td>
+<td style="text-align: left;">予約時間通りで約30〜45分</td>
+<td style="text-align: left;">約1時間〜1.5時間</td>
+<td style="text-align: left;">約1時間</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>対応言語</strong></td>
+<td style="text-align: left;">英語・タイ語</td>
+<td style="text-align: left;">英語・タイ語（極めて流暢）</td>
+<td style="text-align: left;"><strong>日本語通訳常駐</strong></td>
+<td style="text-align: left;">日本語</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>支払方法</strong></td>
+<td style="text-align: left;">⚠️ <strong>現金（THB）のみ</strong></td>
+<td style="text-align: left;">クレジットカード・QR・現金</td>
+<td style="text-align: left;">クレジットカード・各種保険</td>
+<td style="text-align: left;">クレジットカード・現金</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>総合評価</strong></td>
+<td style="text-align: left;"><strong>コスパ最強（自費なら本命）</strong></td>
+<td style="text-align: left;">スケジュール管理に最適</td>
+<td style="text-align: left;"><strong>利便性最強（会社全額なら本命）</strong></td>
+<td style="text-align: left;">割高すぎるため回避推奨</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="74">7.4 🏢 妻の会社補助適用後の実質自己負担シミュレーション（スネークファーム受診時）</h3>
+<p>奥様の会社の予防接種補助規程（基本4種: A型・B型・破傷風・狂犬病 会社負担）をスネークファームで適用した場合の最終試算です。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">区分</th>
+<th style="text-align: left;">対象項目</th>
+<th style="text-align: center;">費用（THB）</th>
+<th style="text-align: center;">日本円換算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🏢 <strong>会社負担額</strong>（確実分）</td>
+<td style="text-align: left;"><strong>Twinrix 2回 ＋ 狂犬病 3回 ＋ Tdap 1回 ＋ 診察料</strong></td>
+<td style="text-align: center;"><strong>約 4,500 〜 5,300 THB</strong></td>
+<td style="text-align: center;">🔴 <strong>約 19,000 〜 23,000 円</strong><br>（会社負担で実質無料！）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🏢 <strong>会社申請枠</strong>（ビザ義務）</td>
+<td style="text-align: left;"><strong>黄熱ワクチン ＋ イエローカード発行代</strong></td>
+<td style="text-align: center;"><strong>約 1,300 〜 1,600 THB</strong></td>
+<td style="text-align: center;"><strong>約 5,600 〜 6,900 円</strong><br>（承認されれば会社持ち）</td>
+</tr>
+<tr>
+<td style="text-align: left;">👤 <strong>自己負担額</strong>（黄熱が会社承認時）</td>
+<td style="text-align: left;"><strong>腸チフス 1回 ＋ マラリア予防薬処方</strong></td>
+<td style="text-align: center;"><strong>約 2,000 〜 2,600 THB</strong></td>
+<td style="text-align: center;">🔵 <strong>約 8,500 〜 11,000 円</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">👤 <strong>自己負担額</strong>（黄熱が否認／先行接種時）</td>
+<td style="text-align: left;">腸チフス ＋ マラリア薬 ＋ 黄熱</td>
+<td style="text-align: center;"><strong>約 3,300 〜 4,200 THB</strong></td>
+<td style="text-align: center;">🔵 <strong>約 14,000 〜 18,000 円</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>結論</strong>: 日本で自費で打つと<strong>約10万〜13万円</strong>かかるところ、会社補助の組み合わせにより、<strong>実際の手出しはわずか約8,500〜1.5万円程度</strong>で世界一周およびタイ生活に必要な全防御が完全に揃います。</li>
+</ul>
+<hr />
+<h2 id="8">8. スネークファーム受診ガイド（至近・おすすめ）</h2>
+<ul>
+<li><strong>名称</strong>: Queen Saovabha Memorial Institute（タイ赤十字社・サオワパー女王記念研究所）</li>
+<li><strong>場所</strong>: Rama IV通り沿い（MRTサムヤーン駅 / BTSサラデーン駅近く）</li>
+<li><strong>受診システム</strong>:</li>
+<li><strong>予約不要（当日直接来院）</strong></li>
+<li>受付時間:<ul>
+<li><strong>月〜金</strong>: 8:30〜16:30（※午前の受付は11:30まで、午後は13:00〜16:00）</li>
+<li><strong>土曜</strong>: 8:30〜12:00（受付11:00まで）</li>
+<li><strong>日祝</strong>: 休診</li>
+</ul>
+</li>
+<li><strong>当日の持ち物</strong>:</li>
+<li><strong>パスポート原本（必須）</strong>（イエローカードにパスポート番号が印字されます）</li>
+<li><strong>現金（タイバーツ・必須）</strong>（クレジットカードは原則使えないため、各回ごとに現金を持参）</li>
+<li><strong>日本の予防接種記録</strong>（シングリックス等の接種履歴がわかるもの）</li>
+<li><strong>接種記録カード（Yellow Card / Vaccination Book）</strong>（第2回以降の来院時に持参）</li>
+<li><strong>受診手順</strong>:</li>
+<li>敷地内のクリニック棟（Building 1 / Registration）で受付用紙に記入し、番号札を取る。</li>
+<li>窓口で登録料を支払い、体温・血圧測定。</li>
+<li>医師の問診室で希望するワクチンを伝える（紙に英語で書いて見せると確実）。</li>
+<li>薬局窓口でワクチン代を支払い、ワクチンを受け取る。</li>
+<li>注射室で看護師が接種。</li>
+<li><strong>イエローカード（国際予防接種証明書）を受け取って完了</strong>（初回のみ30分待機観察）。</li>
+</ul>
+<hr />
+<h2 id="9">9. 会社精算・保険適用の手順</h2>
+<ul>
+<li><strong>会社への精算手順</strong>:</li>
+<li>窓口で自費（現金）を支払い、<strong>「Official Receipt（公式領収書・内訳明細付き）」</strong>を発行してもらう。</li>
+<li>医師の問診時に、会社提出用の<strong>「Medical Certificate / Certificate of Vaccination（接種証明書）」</strong>を発行してもらう（各ワクチン名：Hepatitis A, Hepatitis B, Tetanus, Rabies, Yellow Fever が明記されていることを確認）。</li>
+<li>9/19以降の扶養加入日以降の日付の書類を、奥様の会社の経費精算システムまたは人事・総務へ提出して精算します。</li>
+</ul>
+<hr />
+<h2 id="10-9129241011013">10. 確定スケジュール・タイムライン（9/12・9/24・10/1日本・10/13 最適化確定版）</h2>
+<p>🔴 <strong>2026/9/12 実施後に確定した最終版。</strong>Twinrix①は9/24に確定し、②・狂犬病③・マラリア処方は10/22にまとめた。<strong>受診は全4回。</strong></p>
+<h3 id="4_1">📅 全体タイムライン（4回で完全コンプリート）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日程・曜日</th>
+<th style="text-align: left;">受診場所</th>
+<th style="text-align: left;">接種内容・処方</th>
+<th style="text-align: center;">本数</th>
+<th style="text-align: center;">費用目安</th>
+<th style="text-align: left;">目的・医学的根拠</th>
+<th style="text-align: center;">カレンダー登録</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>9/12（土）</strong><br>09:24 実施済</td>
+<td style="text-align: left;">🏆 <strong>スネークファーム</strong><br>（実績）</td>
+<td style="text-align: left;">✅ <strong>黄熱ワクチン</strong>（生）<br>✅ <strong>狂犬病 1回目</strong>（Day 0）<br>🔴 <strong>Twinrixは未接種→抗体検査（採血）に変更</strong></td>
+<td style="text-align: center;">2本＋採血</td>
+<td style="text-align: center;">✅ <strong>実費฿3,370</strong><br>（領収書あり）</td>
+<td style="text-align: left;">✅ <strong>黄熱カード即日受領（9/22有効化）。</strong>🔴 <strong>Twinrixは既存免疫の有無を見てから判断する方針に変更。</strong>結果待ちで10/13が白紙</td>
+<td style="text-align: center;"><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%E3%80%90%E4%BA%88%E9%98%B2%E6%8E%A5%E7%A8%AE%E2%91%A0%E3%80%91%E9%BB%84%E7%86%B1%E3%83%BBTwinrix%E2%91%A0%E3%83%BB%E7%8B%82%E7%8A%AC%E7%97%85%E2%91%A0%EF%BC%88%E3%82%B9%E3%83%8D%E3%83%BC%E3%82%AF%E3%83%95%E3%82%A1%E3%83%BC%E3%83%A0%EF%BC%89&amp;dates=20260912T020000Z%2F20260912T040000Z&amp;location=Queen+Saovabha+Memorial+Institute%2C+Bangkok&amp;details=%E3%80%90%E5%8F%97%E8%A8%BA%E5%85%88%E3%80%91%E3%82%B9%E3%83%8D%E3%83%BC%E3%82%AF%E3%83%95%E3%82%A1%E3%83%BC%E3%83%A0%EF%BC%88%E3%82%BF%E3%82%A4%E8%B5%A4%E5%8D%81%E5%AD%97%E7%A4%BE%EF%BC%89%0A%E3%80%90%E5%8F%97%E4%BB%98%E3%80%91%E5%9C%9F%E6%9B%9C+8%3A30-12%3A00%EF%BC%88%E5%8F%97%E4%BB%9811%3A00%E3%81%BE%E3%81%A7%E3%83%BB%E4%BA%88%E7%B4%84%E4%B8%8D%E8%A6%81%E3%83%BB%E7%9B%B4%E6%8E%A5%E6%9D%A5%E9%99%A2%EF%BC%89%0A%E3%80%90%E6%8E%A5%E7%A8%AE%E3%80%91%E9%BB%84%E7%86%B1%E3%80%81Twinrix%E2%91%A0%E3%80%81%E7%8B%82%E7%8A%AC%E7%97%85%E2%91%A0%28Day+0%29%0A%0A%E3%80%90%E6%8C%81%E3%81%A1%E7%89%A9+%2F+Things+to+Bring%E3%80%91%0A1.+Passport+%28Original%29+-+Required+for+Yellow+Card%0A2.+Cash+THB+%28approx.+3%2C500+THB+-+Cash+only%29%0A3.+Vaccination+records+from+Japan%0A%0A%E3%80%90%E5%8C%BB%E5%B8%AB%E3%81%B8%E3%81%AE%E3%82%AA%E3%83%BC%E3%83%80%E3%83%BC+%2F+Doctor%27s+Order+%28English%29%E3%80%91%0A%22Hello+doctor%2C+I+will+embark+on+a+world+tour+from+late+October+%28Kenya%2C+Peru%2C+Brazil%2C+Egypt%2C+etc.%29+and+reside+in+Bangkok.+Today%2C+I+would+like+to+receive%3A%0A1.+Yellow+Fever+vaccine+%28Stamaril%29+-+please+issue+the+Yellow+Card.%0A2.+Twinrix+%281st+dose%29+-+Combined+Hep+A+%26+B+vaccine.%0A3.+Rabies+vaccine+%28PrEP+-+1st+dose%29.%22">Googleカレンダーに追加</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>9/24（木）</strong><br>09:00〜11:00</td>
+<td style="text-align: left;">🏆 <strong>スネークファーム</strong><br>（平日・直接来院）</td>
+<td style="text-align: left;">💉 <strong>狂犬病 2回目</strong>（Day 12）<br>💉 <strong>腸チフス</strong><br>💉 <strong>Tdap</strong>（破傷風・成人用3種）<br>🔴 <strong>Twinrix 1回目</strong>（A+B・新規確定）</td>
+<td style="text-align: center;">4本</td>
+<td style="text-align: center;">扶養後<br>約<strong>3,050 THB</strong><br>（精算可）</td>
+<td style="text-align: left;">9/28日本移動前に狂犬病2回目完了。Tdapは必ず非利き腕へ。腸チフスは1回で完了。🔴 <strong>Twinrix①はここで開始。②は10/22（28日後）</strong></td>
+<td style="text-align: center;"><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%E3%80%90%E4%BA%88%E9%98%B2%E6%8E%A5%E7%A8%AE%E2%91%A1%E3%80%91%E7%8B%82%E7%8A%AC%E7%97%85%E2%91%A1%E3%83%BB%E8%85%B8%E3%83%81%E3%83%95%E3%82%B9%E3%83%BBTdap%E3%83%BBTwinrix%E2%91%A0%EF%BC%88%E3%82%B9%E3%83%8D%E3%83%BC%E3%82%AF%E3%83%95%E3%82%A1%E3%83%BC%E3%83%A0%EF%BC%89&amp;dates=20260924T020000Z%2F20260924T040000Z&amp;location=Queen%20Saovabha%20Memorial%20Institute%2C%20Bangkok&amp;details=%E3%80%90%E5%8F%97%E4%BB%98%E5%85%88%E3%80%91%E3%82%B9%E3%83%8D%E3%83%BC%E3%82%AF%E3%83%95%E3%82%A1%E3%83%BC%E3%83%A0%EF%BC%88%E3%82%BF%E3%82%A4%E8%B5%A4%E5%8D%81%E5%AD%97%E7%A4%BE%EF%BC%89%0A%E3%80%90%E5%8F%97%E4%BB%98%E3%80%91%E5%B9%B3%E6%97%A5%208%3A30-16%3A30%EF%BC%88%E5%8D%88%E5%89%8D%E3%81%AE%E5%8F%97%E4%BB%98%E3%81%AF11%3A30%E3%81%BE%E3%81%A7%EF%BC%89%0A%E3%80%90%E6%8E%A5%E7%A8%AE%E3%80%91%E7%8B%82%E7%8A%AC%E7%97%85%E2%91%A1%28Day%2012%29%E3%80%81%E8%85%B8%E3%83%81%E3%83%95%E3%82%B9%E3%80%81Tdap%28%E7%A0%B4%E5%82%B7%E9%A2%A8%29%E3%80%81Twinrix%E2%91%A0%28A%2BB%E5%9E%8B%E8%82%9D%E7%82%8E%E3%83%BB%E6%96%B0%E8%A6%8F%29%0A%0A%E3%80%90%E6%8C%81%E3%81%A1%E7%89%A9%20%2F%20Things%20to%20Bring%E3%80%91%0A1.%20Passport%20%28Original%29%0A2.%20Yellow%20Card%20%2F%20Vaccination%20Record%20Book%0A3.%20Cash%20THB%20%28approx.%203%2C000-3%2C300%20THB%29%0A%0A%E3%80%90%E5%8C%BB%E5%B8%AB%E3%81%B8%E3%81%AE%E3%82%AA%E3%83%BC%E3%83%80%E3%83%BC%20%2F%20Doctor%27s%20Order%20%28English%29%E3%80%91%0A%22Hello%20doctor%2C%20this%20is%20my%202nd%20visit%20following%20Sep%2012.%20Today%2C%20I%20would%20like%20to%20receive%3A%0A1.%20Rabies%20vaccine%20%28PrEP%20-%202nd%20dose%29.%0A2.%20Typhoid%20vaccine%20%28Typhim%20Vi%29.%0A3.%20Tdap%20vaccine%20%28Adult%20booster%20-%20non-dominant%20arm%20please%29.%0A4.%20Twinrix%20%281st%20dose%29%20-%20Combined%20Hepatitis%20A%20%26%20B%20vaccine.%20I%20will%20take%20the%202nd%20dose%20around%20Oct%2022%20%2828%20days%20later%29.%0A%2AImportant%2A%3A%20Could%20you%20please%20issue%20an%20Official%20Receipt%20and%20Medical%20Certificate%20for%20company%20expense%20reimbursement%3F%22">Googleカレンダーに追加</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>10/1（木）</strong><br>10:00〜11:00</td>
+<td style="text-align: left;">🇯🇵 <strong>日本の同一医院</strong><br>（7/24受診クリニック）</td>
+<td style="text-align: left;">💉 <strong>シングリックス 2回目</strong><br>（帯状疱疹）</td>
+<td style="text-align: center;">1本</td>
+<td style="text-align: center;">自費<br>約22,000円</td>
+<td style="text-align: left;">7/24から約68日で最適タイミング。<strong>翌日10/2（金）は静養日とし、解熱剤（カロナール）を処方してもらう</strong></td>
+<td style="text-align: center;"><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%E3%80%90%E4%BA%88%E9%98%B2%E6%8E%A5%E7%A8%AE%E2%91%A2%E3%80%91%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AA%E3%83%83%E3%82%AF%E3%82%B92%E5%9B%9E%E7%9B%AE%EF%BC%88%E6%97%A5%E6%9C%AC%E3%83%BB%E3%82%AF%E3%83%AA%E3%83%8B%E3%83%83%E3%82%AF%EF%BC%89&amp;dates=20261001T010000Z%2F20261001T020000Z&amp;location=%E6%97%A5%E6%9C%AC%EF%BC%887%2F24%E5%8F%97%E8%A8%BA%E3%82%AF%E3%83%AA%E3%83%8B%E3%83%83%E3%82%AF%EF%BC%89&amp;details=%E3%80%90%E5%8F%97%E8%A8%BA%E5%85%88%E3%80%917%2F24%E5%8F%97%E8%A8%BA%E3%81%AE%E3%82%AF%E3%83%AA%E3%83%8B%E3%83%83%E3%82%AF%0A%E3%80%90%E6%8E%A5%E7%A8%AE%E3%80%91%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AA%E3%83%83%E3%82%AF%E3%82%B9%EF%BC%88%E5%B8%AF%E7%8A%B6%E7%96%B1%E7%96%B9%EF%BC%892%E5%9B%9E%E7%9B%AE%0A%0A%E3%80%90%E6%8C%81%E3%81%A1%E7%89%A9%E3%80%91%0A1.+%E8%A8%BA%E5%AF%9F%E5%88%B8%E3%83%BB%E4%BF%9D%E9%99%BA%E8%A8%BC%0A2.+%E3%81%8A%E8%96%AC%E6%89%8B%E5%B8%B3%E3%83%BB%E5%89%8D%E5%9B%9E%E3%81%AE%E6%8E%A5%E7%A8%AE%E6%B8%88%E8%A8%BC%0A3.+%E8%87%AA%E8%B2%BB%E8%A8%BA%E7%99%82%E4%BB%A3%EF%BC%88%E7%B4%8422%2C000%E5%86%86%EF%BC%89%0A%0A%E3%80%90%E5%8C%BB%E5%B8%AB%E3%81%B8%E3%81%AE%E7%94%B3%E5%91%8A%E3%83%BB%E3%82%AA%E3%83%BC%E3%83%80%E3%83%BC%E3%80%91%0A%E3%80%8C7%2F24%E3%81%AB1%E5%9B%9E%E7%9B%AE%E3%82%92%E6%8E%A5%E7%A8%AE%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%E6%9C%AC%E6%97%A52%E5%9B%9E%E7%9B%AE%E3%82%92%E3%81%8A%E9%A1%98%E3%81%84%E3%81%97%E3%81%BE%E3%81%99%E3%80%82%0A%E3%80%90%E9%87%8D%E8%A6%81%E3%80%911%E5%9B%9E%E7%9B%AE%E5%BD%93%E6%97%A5%E5%A4%9C%E3%81%AB38%E2%84%83%E4%BB%A5%E4%B8%8A%E3%81%AE%E9%AB%98%E7%86%B1%E3%81%A8%E6%82%AA%E5%AF%92%E3%81%8C%E5%87%BA%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%E3%82%AB%E3%83%AD%E3%83%8A%E3%83%BC%E3%83%AB%E7%AD%89%E3%81%AE%E8%A7%A3%E7%86%B1%E9%8E%AE%E7%97%9B%E5%89%A4%E3%82%92%E5%87%A6%E6%96%B9%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%E3%80%8D%0A%0A%E3%80%90%E6%B3%A8%E6%84%8F%E3%80%91%E7%BF%8C%E6%97%A510%2F2%28%E9%87%91%29%E3%81%AF%E5%AE%8C%E5%85%A8%E9%9D%99%E9%A4%8A%E6%97%A5%EF%BC%81">Googleカレンダーに追加</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>10/22（木）</strong><br>09:00〜11:00</td>
+<td style="text-align: left;">🏆 <strong>スネークファーム</strong><br>（平日・直接来院）</td>
+<td style="text-align: left;">💉 <strong>狂犬病 3回目</strong>（Day 40・コンプリート）<br>💊 <strong>マラリア予防薬</strong>（処方）<br>🔴 <strong>Twinrix 2回目</strong>（Day 28）</td>
+<td style="text-align: center;">2本＋薬</td>
+<td style="text-align: center;">扶養後<br>約<strong>3,420 THB</strong></td>
+<td style="text-align: left;">🔴 <strong>これで全予防接種が完了。</strong>狂犬病③は WHO の目安（Day 21〜28）より遅いが、PrEPは緊急性がないため問題ない</td>
+<td style="text-align: center;"><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%E3%80%90%E4%BA%88%E9%98%B2%E6%8E%A5%E7%A8%AE%E2%91%A3%E3%80%91%E7%8B%82%E7%8A%AC%E7%97%85%E2%91%A2%E3%83%BB%E3%83%9E%E3%83%A9%E3%83%AA%E3%82%A2%E4%BA%88%E9%98%B2%E8%96%AC%E5%87%A6%E6%96%B9%E3%83%BBTwinrix%E2%91%A1%EF%BC%88%E6%9C%80%E7%B5%82%E5%9B%9E%EF%BC%89&amp;dates=20261022T020000Z%2F20261022T040000Z&amp;location=Queen%20Saovabha%20Memorial%20Institute%2C%20Bangkok&amp;details=%E3%80%90%E5%8F%97%E4%BB%98%E3%80%91%E5%B9%B3%E6%97%A5%208%3A30-16%3A30%EF%BC%88%E5%8D%88%E5%89%8D%E3%81%AE%E5%8F%97%E4%BB%98%E3%81%AF11%3A30%E3%81%BE%E3%81%A7%EF%BC%89%0A%E3%80%90%E6%8E%A5%E7%A8%AE%E3%83%BB%E5%87%A6%E6%96%B9%E3%80%91%E7%8B%82%E7%8A%AC%E7%97%85%E2%91%A2%28Day%2040%E3%83%BB%E3%82%B3%E3%83%B3%E3%83%97%E3%83%AA%E3%83%BC%E3%83%88%29%E3%80%81%E3%83%9E%E3%83%A9%E3%83%AA%E3%82%A2%E4%BA%88%E9%98%B2%E8%96%AC%28Malarone%29%E5%87%A6%E6%96%B9%E3%80%81Twinrix%E2%91%A1%289%2F24%E3%81%AE%E2%91%A0%E3%81%8B%E3%82%8928%E6%97%A5%E5%BE%8C%29%0A%0A%E3%80%90%E5%8C%BB%E5%B8%AB%E3%81%B8%E3%81%AE%E3%82%AA%E3%83%BC%E3%83%80%E3%83%BC%E3%80%91%0A%22Hello%20doctor%2C%20this%20is%20my%20visit%20following%20Sep%2012%20and%20Sep%2024.%20Today%20I%20would%20like%20to%20receive%3A%201.%20Rabies%20vaccine%20%28PrEP%20-%203rd%20dose%29%2C%20completing%20the%203-dose%20pre-exposure%20series.%202.%20Malaria%20prophylaxis%20prescription%20%28Malarone%29%20for%20a%204-day%20safari%20in%20Maasai%20Mara%2C%20Kenya.%20Please%20prescribe%20approx.%2010%20to%2012%20tablets.%203.%20Twinrix%20%282nd%20dose%29%2C%2028%20days%20since%20my%201st%20dose%20on%20Sep%2024%2C%20completing%20the%20primary%20course%20before%20my%20trip%20starting%20Oct%2028.%20Important%3A%20Please%20provide%20an%20Official%20Receipt%20and%20updated%20Certificate%20of%20Vaccination%20for%20company%20reimbursement.%22">Googleカレンダーに追加</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="101">10.1 各回の詳細アクションマニュアル</h3>
+<h4 id="1-2026912">【第1回】✅ 2026年9月12日（土）スネークファーム（タイ赤十字社）— 実施済み</h4>
+<ul>
+<li><strong>受診時刻</strong>: 09:24</li>
+<li><strong>領収書番号</strong>: 00-000211-0058156／患者番号 HN 6900051677</li>
+<li><strong>実際に受けた内容</strong>:</li>
+<li>✅ <strong>黄熱ワクチン（Stamaril）</strong> ฿1,550 ➡ イエローカード即日交付（9/22に有効化完了！）</li>
+<li>✅ <strong>狂犬病 1回目（Day 0・TRCS SPEEDA・IM）</strong> ฿350</li>
+<li>🔴 <strong>Twinrix 1回目は接種されず。</strong>代わりに<strong>採血（฿50）＋医学的診断検査（抗体検査・฿1,100）</strong></li>
+<li><strong>その他の費目</strong>: 時間外診療฿100・新患登録฿20・国際予防接種証明書発行฿200</li>
+<li><strong>合計</strong> ฿3,370（現金払い）</li>
+<li>⚠️ <strong>計画との相違点：</strong>「Twinrix 1回目を打って10/13に2回目」という当初の設計は成立しなかった。<br />
+<strong>医師の判断で、既存免疫の有無を確認する抗体検査が先に行われた。</strong><br />
+  → <strong>詳細と今後の対応は文書冒頭の第7版コールアウトを参照。</strong></li>
+<li><strong>留意点</strong>:</li>
+<li>実際の接種は2本（黄熱・狂犬病①）＋採血1回。</li>
+<li>黄熱の遅発性微熱（3〜7日後）が9月中旬に出る可能性があるため、無理のない生活を心がける。</li>
+<li>🔴 <strong>次回受診前に抗体検査の結果を確認すること。</strong>結果次第で9/24・10/13の内容が変わる。</li>
+</ul>
+<h4 id="2-2026924-twinrix1">【第2回】🔴 2026年9月24日（木）スネークファーム（タイ赤十字社）— <strong>Twinrix①を追加</strong></h4>
+<ul>
+<li><strong>受付時間</strong>: 平日 8:30〜16:30（※午前の受付は11:30まで）</li>
+<li><strong>接種内容</strong>:</li>
+<li>💉 <strong>狂犬病 2回目（Day 12）</strong> ➡ 9/28（月）の日本移動前に確実に完了！</li>
+<li>💉 <strong>腸チフス（Typhim Vi）</strong> ➡ 1回で3年間有効</li>
+<li>💉 <strong>Tdap（成人用3種混合）</strong> ➡ 破傷風ブースター10年有効</li>
+<li>🔴 <strong>Twinrix 1回目（A型＋B型肝炎）</strong> ➡ <strong>抗体検査の結果を待たずに接種する方針で確定</strong>（2026/9/12 本人判断）。<strong>②は10/22（28日後）</strong></li>
+<li><strong>合計4本。</strong>両腕に振り分けて接種する（例：右腕2本・左腕2本）。</li>
+<li><strong>持参物</strong>:</li>
+<li><strong>パスポート原本</strong></li>
+<li><strong>前回交付されたYellow Card（接種記録手帳）</strong></li>
+<li><strong>現金タイバーツ（約3,000〜3,300 THB）</strong></li>
+<li><strong>🗣️ 医師へのオーダー（英語メモ・そのまま提示可能）</strong>:<blockquote>
+<p><em>"Hello doctor, this is my second visit following September 12. Today, I would like to receive:</em><br />
+<em>1. </em><em>Rabies vaccine (PrEP - 2nd dose)</em><em> - following Day 0 on Sep 12.</em><br />
+<em>2. </em><em>Typhoid vaccine (Typhim Vi)</em><em>.</em><br />
+<em>3. </em><em>Tdap vaccine (Boostrix / Adacel)</em><em> - Adult Tetanus, Diphtheria, Pertussis booster.</em><br />
+<em>(Note: Please administer Tdap in my non-dominant arm).</em><br />
+<em>4. </em><em>Twinrix (1st dose)</em><em> - Combined Hepatitis A &amp; B vaccine. I understand the antibody test result from Sep 12 is pending, but I would like to proceed with the 1st dose today regardless. I plan to take the 2nd dose around Oct 22 (28 days later).</em><br />
+<strong><em>Important</em></strong>: <em>Could you please issue an </em><em>Official Receipt</em><em> with itemized vaccine names, and a </em><em>Medical Certificate / Certificate of Vaccination</em><em> for company expense reimbursement?"</em></p>
+</blockquote>
+</li>
+<li><strong>留意点</strong>:</li>
+<li>Tdapは腕が2〜3日重くなるため、<strong>必ず「非利き腕」に単独で打ってもらう</strong>。</li>
+<li>9/19の扶養加入後のため、会社精算用の<strong>「Official Receipt（領収書）」</strong>と<strong>「接種証明書」</strong>を発行してもらう。<strong>Twinrix①もこの日付なら精算対象になる。</strong></li>
+<li>🔴 <strong>9/12の抗体検査の結果が届いていれば、念のため医師に一声かける。</strong>免疫ありと分かっていてもTwinrix自体の副反応は軽微なので、接種自体は変えない。</li>
+</ul>
+<h4 id="32026101">【第3回】2026年10月1日（木）日本クリニック</h4>
+<ul>
+<li><strong>場所</strong>: 7/24に1回目を接種した日本のクリニック</li>
+<li><strong>接種内容</strong>: 💉 <strong>シングリックス（帯状疱疹）2回目</strong>（自費）</li>
+<li><strong>持参物</strong>:</li>
+<li><strong>診察券・保険証（または身分証）</strong></li>
+<li><strong>お薬手帳・前回のシングリックス接種済証</strong></li>
+<li><strong>自費診療代（約22,000円）</strong></li>
+<li><strong>🗣️ 医師へのオーダー・申告内容（日本語）</strong>:<blockquote>
+<p><em>「7月24日にシングリックス1回目を接種した者です。本日2回目の接種をお願いします。</em><br />
+<strong><em>【重要】1回目の接種当日夜に38℃以上の高熱と強い悪寒が出ました。</em></strong> <em>2回目でも発熱する可能性が高いため、</em><em>カロナール（アセトアミノフェン）またはロキソニン等の解熱鎮痛剤を処方</em><em>していただけますでしょうか。また、熱が出始めたタイミングで予防的に服用してよいかご指示をお願いします。」</em></p>
+</blockquote>
+</li>
+<li><strong>重要対策</strong>:</li>
+<li>1回目に当日夜高熱が出たため、<strong>翌日10/2（金）は予定を入れず完全静養日</strong>とする。</li>
+</ul>
+<h4 id="4-20261022">【第4回】🔴 2026年10月22日（木）スネークファーム（タイ赤十字社）— <strong>全予防接種の完了回</strong></h4>
+<ul>
+<li><strong>受付時間</strong>: 平日 8:30〜16:30（※午前の受付は11:30まで）</li>
+<li><strong>接種・処方内容</strong>:</li>
+<li>💉 <strong>狂犬病 3回目（Day 40）</strong> ➡ 事前接種完全コンプリート！</li>
+<li>💊 <strong>マラリア予防薬（Malarone）処方</strong> ➡ ケニアサファリ用（10〜12日分）</li>
+<li>🔴 <strong>Twinrix 2回目（A型＋B型肝炎）</strong> ➡ 9/24の①から28日後で最低間隔をクリア</li>
+<li>⚠️ <strong>第8版からの変更：</strong>狂犬病③を10/13から10/22へ移動し、3つを1回にまとめた（本人指示・2026/9/12）。<br />
+<strong>理由：</strong>「数週間の遅延は予測できない影響」という注意書きは<strong>暴露後接種（PEP）限定</strong>の記述で、<br />
+<strong>暴露前接種（PrEP）には当てはまらないと判明。</strong>WHOは「遅れても打ち直さず、そこから再開すればよい」という立場。<br />
+<strong>Day 21〜28は目安であって上限ではない。</strong>（詳細は文書冒頭の第9版コールアウト）</li>
+<li><strong>持参物</strong>:</li>
+<li><strong>パスポート原本</strong></li>
+<li><strong>Yellow Card（接種記録手帳）</strong></li>
+<li><strong>現金タイバーツ（約3,350〜3,600 THB）</strong></li>
+<li><strong>🗣️ 医師へのオーダー（英語メモ・そのまま提示可能）</strong>:<blockquote>
+<p><em>"Hello doctor, this is my visit following Sep 12 and Sep 24. Today, I would like to receive:</em><br />
+<em>1. </em><em>Rabies vaccine (PrEP - 3rd dose)</em><em> - completing the 3-dose pre-exposure series.</em><br />
+<em>2. </em><em>Malaria prophylaxis prescription (Malarone - Atovaquone/Proguanil)</em><em> - for a 4-day safari in Maasai Mara, Kenya (late November). Please prescribe approx. 10 to 12 tablets.</em><br />
+<em>3. </em><em>Twinrix (2nd dose)</em><em> - Combined Hepatitis A &amp; B vaccine, 28 days since my 1st dose on Sep 24, completing the primary course before my trip starting Oct 28.</em><br />
+<strong><em>Important</em></strong>: <em>Please provide an </em><em>Official Receipt</em><em> and updated </em><em>Certificate of Vaccination</em><em> for company reimbursement."</em></p>
+</blockquote>
+</li>
+<li><strong>結果</strong>:</li>
+<li>✅ <strong>これで世界一周に必要なすべてのワクチン・証明書・予防薬が10/22時点で100%完成。</strong></li>
+<li>🔵 <strong>10/26の東京移動まで4日、10/28の成田出発まで6日の余裕がある。</strong>3本＋薬と多めなので、念のため接種当日は予定を詰め込まない。</li>
+</ul>
+<hr />
+<h2 id="11-google-calendar">11. Google Calendar / カレンダー一括登録ガイド</h2>
+<p>予防接種の全スケジュールをカレンダーに簡単に取り込めるよう、2つの方法を用意しています。</p>
+<h3 id="1_1">方法1：ワンクリック登録（ブラウザですぐ追加）</h3>
+<p>上の表の「Googleカレンダーに追加」リンクをクリックするだけで、Googleカレンダーのイベント作成画面が開き、日時・場所・持ち物・注意点が入力済みの状態で即座に保存できます。</p>
+<ul>
+<li>✅ <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%E3%80%90%E5%AE%9F%E6%96%BD%E6%B8%88%E3%80%91%E4%BA%88%E9%98%B2%E6%8E%A5%E7%A8%AE%E2%91%A0%20%E9%BB%84%E7%86%B1%E3%83%BB%E7%8B%82%E7%8A%AC%E7%97%85%E2%91%A0%E3%83%BB%E8%82%9D%E7%82%8E%E6%8A%97%E4%BD%93%E6%A4%9C%E6%9F%BB&amp;dates=20260912T020000Z%2F20260912T040000Z&amp;location=Queen%20Saovabha%20Memorial%20Institute%2C%20Bangkok&amp;details=%E5%AE%9F%E6%96%BD%E6%B8%88%E3%81%BF%E3%83%BB2026%2F9%2F12%2009%3A24%E3%80%82%E9%A0%98%E5%8F%8E%E6%9B%B8%E7%95%AA%E5%8F%B7%2000-000211-0058156%E3%80%82%0A%E9%BB%84%E7%86%B1%E3%83%AF%E3%82%AF%E3%83%81%E3%83%B3%E3%83%BB%E7%8B%82%E7%8A%AC%E7%97%851%E5%9B%9E%E7%9B%AE%28Day%200%29%E3%82%92%E6%8E%A5%E7%A8%AE%E3%80%82Twinrix1%E5%9B%9E%E7%9B%AE%E3%81%AF%E6%9C%AA%E6%8E%A5%E7%A8%AE%E3%81%A7%E3%80%81%E4%BB%A3%E3%82%8F%E3%82%8A%E3%81%AB%E6%8A%97%E4%BD%93%E6%A4%9C%E6%9F%BB%28%E6%8E%A1%E8%A1%80%29%E3%82%92%E5%AE%9F%E6%96%BD%E3%80%82%0A%E7%B5%90%E6%9E%9C%E3%82%92%E5%BE%85%E3%81%9F%E3%81%9A%E3%80%81Twinrix1%E5%9B%9E%E7%9B%AE%E3%81%AF9%2F24%E3%81%AB%E6%89%93%E3%81%A4%E6%96%B9%E9%87%9D%E3%81%A7%E7%A2%BA%E5%AE%9A%28%E8%A9%B3%E7%B4%B0%E3%81%AF%E6%89%8B%E9%85%8D_%E4%BA%88%E9%98%B2%E6%8E%A5%E7%A8%AE.md%20%E7%AC%AC8%E7%89%88%29%E3%80%82">9/12（土・実施済）黄熱・狂犬病①・肝炎抗体検査</a></li>
+<li>📅 <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%E3%80%90%E4%BA%88%E9%98%B2%E6%8E%A5%E7%A8%AE%E2%91%A1%E3%80%91%E7%8B%82%E7%8A%AC%E7%97%85%E2%91%A1%E3%83%BB%E8%85%B8%E3%83%81%E3%83%95%E3%82%B9%E3%83%BBTdap%E3%83%BBTwinrix%E2%91%A0&amp;dates=20260924T020000Z%2F20260924T040000Z&amp;location=Queen%20Saovabha%20Memorial%20Institute%2C%20Bangkok&amp;details=%E3%80%90%E5%8F%97%E4%BB%98%E3%80%91%E5%B9%B3%E6%97%A5%208%3A30-16%3A30%EF%BC%88%E5%8D%88%E5%89%8D%E3%81%AE%E5%8F%97%E4%BB%98%E3%81%AF11%3A30%E3%81%BE%E3%81%A7%EF%BC%89%0A%E3%80%90%E6%8E%A5%E7%A8%AE%E3%80%91%E7%8B%82%E7%8A%AC%E7%97%85%E2%91%A1%28Day%2012%29%E3%80%81%E8%85%B8%E3%83%81%E3%83%95%E3%82%B9%E3%80%81Tdap%28%E9%9D%9E%E5%88%A9%E3%81%8D%E8%85%95%E3%81%B8%29%E3%80%81Twinrix%E2%91%A0%28A%2BB%E5%9E%8B%E8%82%9D%E7%82%8E%E3%83%BB%E6%96%B0%E8%A6%8F%29%0A%0A%E3%80%90%E5%8C%BB%E5%B8%AB%E3%81%B8%E3%81%AE%E3%82%AA%E3%83%BC%E3%83%80%E3%83%BC%E3%80%91%0A%22Hello%20doctor%2C%20this%20is%20my%202nd%20visit%20following%20Sep%2012.%20Today%20I%20would%20like%20to%20receive%3A%201.%20Rabies%20%282nd%20dose%29.%202.%20Typhoid%20vaccine.%203.%20Tdap%20%28non-dominant%20arm%29.%204.%20Twinrix%20%281st%20dose%29%20-%20I%20will%20take%20the%202nd%20dose%20around%20Oct%2022.%20Important%3A%20Please%20issue%20an%20Official%20Receipt%20and%20Medical%20Certificate%20for%20company%20reimbursement.%22">9/24（木）狂犬病②・腸チフス・Tdap・Twinrix①</a></li>
+<li>📅 <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%E3%80%90%E4%BA%88%E9%98%B2%E6%8E%A5%E7%A8%AE%E2%91%A2%E3%80%91%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AA%E3%83%83%E3%82%AF%E3%82%B92%E5%9B%9E%E7%9B%AE%EF%BC%88%E6%97%A5%E6%9C%AC%E3%83%BB%E3%82%AF%E3%83%AA%E3%83%8B%E3%83%83%E3%82%AF%EF%BC%89&amp;dates=20261001T010000Z%2F20261001T020000Z&amp;location=%E6%97%A5%E6%9C%AC%EF%BC%887%2F24%E5%8F%97%E8%A8%BA%E3%82%AF%E3%83%AA%E3%83%8B%E3%83%83%E3%82%AF%EF%BC%89&amp;details=7%2F24%E3%81%AB1%E5%9B%9E%E7%9B%AE%E3%82%92%E6%8E%A5%E7%A8%AE%E3%81%97%E3%81%9F%E3%82%AF%E3%83%AA%E3%83%8B%E3%83%83%E3%82%AF%E3%81%A72%E5%9B%9E%E7%9B%AE%E3%82%92%E6%8E%A5%E7%A8%AE%E3%80%821%E5%9B%9E%E7%9B%AE%E5%BD%93%E6%97%A5%E5%A4%9C%E3%81%AB38%E2%84%83%E4%BB%A5%E4%B8%8A%E3%81%AE%E9%AB%98%E7%86%B1%E3%80%82%E8%A7%A3%E7%86%B1%E9%8E%AE%E7%97%9B%E5%89%A4%EF%BC%88%E3%82%AB%E3%83%AD%E3%83%8A%E3%83%BC%E3%83%AB%E7%AD%89%EF%BC%89%E3%82%92%E5%87%A6%E6%96%B9%E3%81%97%E3%81%A6%E3%82%82%E3%82%89%E3%81%86%E3%80%82%0A%E7%BF%8C%E6%97%A510%2F2%EF%BC%88%E9%87%91%EF%BC%89%E3%81%AF%E5%AE%8C%E5%85%A8%E9%9D%99%E9%A4%8A%E6%97%A5%E3%80%82">10/1（木）シングリックス2回目（日本）</a></li>
+<li>🔴 📅 <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%E3%80%90%E4%BA%88%E9%98%B2%E6%8E%A5%E7%A8%AE%E2%91%A3%E3%80%91%E7%8B%82%E7%8A%AC%E7%97%85%E2%91%A2%E3%83%BB%E3%83%9E%E3%83%A9%E3%83%AA%E3%82%A2%E4%BA%88%E9%98%B2%E8%96%AC%E5%87%A6%E6%96%B9%E3%83%BBTwinrix%E2%91%A1%EF%BC%88%E6%9C%80%E7%B5%82%E5%9B%9E%EF%BC%89&amp;dates=20261022T020000Z%2F20261022T040000Z&amp;location=Queen%20Saovabha%20Memorial%20Institute%2C%20Bangkok&amp;details=%E7%8B%82%E7%8A%AC%E7%97%853%E5%9B%9E%E7%9B%AE%28Day%2040%E3%83%BB%E3%82%B3%E3%83%B3%E3%83%97%E3%83%AA%E3%83%BC%E3%83%88%29%E3%80%81%E3%83%9E%E3%83%A9%E3%83%AA%E3%82%A2%E4%BA%88%E9%98%B2%E8%96%AC%28Malarone%29%E5%87%A6%E6%96%B9%E3%80%81Twinrix2%E5%9B%9E%E7%9B%AE%289%2F24%E3%81%AE1%E5%9B%9E%E7%9B%AE%E3%81%8B%E3%82%8928%E6%97%A5%E5%BE%8C%29%E3%80%82%E3%81%93%E3%82%8C%E3%81%A7%E5%85%A8%E4%BA%88%E9%98%B2%E6%8E%A5%E7%A8%AE%E3%81%8C%E5%AE%8C%E4%BA%86%E3%80%82">10/22（木）狂犬病③・マラリア薬処方・Twinrix②（最終回）</a></li>
+</ul>
+<h3 id="2icalendarics">方法2：iCalendarファイル（.ics）で一括インポート</h3>
+<p>プロジェクト内に <a href="file:///C:/dev/claude/worldtour/予防接種スケジュール_2026.ics">予防接種スケジュール_2026.ics</a> を作成しました。<br />
+1. Googleカレンダーの画面右上「⚙️ 設定」をクリック<br />
+2. 左メニュー「インポート/エクスポート」を選択<br />
+3. この <code>.ics</code> ファイルを選択して「インポート」をクリックすると、上記4件の予定が一括でカレンダーに反映されます。<br />
+（※iPhoneやMac、Windowsのカレンダーアプリであれば、ファイルをダブルクリックするだけで一括登録されます）</p>
+<hr />
+<h2 id="9_1">9. 関連ファイル</h2>
+<ul>
+<li><a href="TODO.md"><code>TODO.md</code></a> — H群（H1 米国ESTA・H2 ケニアeTA・H3 予防接種手配・H4 イエローカード要否確認済）</li>
+<li><a href="手配_サファリ.md"><code>手配_サファリ.md</code></a> — ケニア・マサイマラサファリ（黄熱・マラリア対策の根拠）</li>
+<li><a href="手配_保険.md"><code>手配_保険.md</code></a> — 海外旅行傷害保険の棚卸しと補償額積算</li>
+<li><a href="手配_マチュピチュ.md"><code>手配_マチュピチュ.md</code></a> — ペルー高地観光（怪我・破傷風リスクの根拠）</li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

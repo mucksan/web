@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>手配_保険 — カード付帯の棚卸しと、埋まらない穴 - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🦁 マサイマラ・フライインサファリ</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="観戦チケット_販売方法と時期.html">🎫 観戦チケット 販売方法と時期</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_保険.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="_">手配_保険 — カード付帯の棚卸しと、埋まらない穴</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>版数</strong></td>
+<td style="text-align: left;"><strong>第3版</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>作成日</strong></td>
+<td style="text-align: left;">2026年9月9日（第2版：9月10日／<strong>第3版：2026年9月10日夜</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>対象</strong></td>
+<td style="text-align: left;">2026/10/26〜12/2 の本体行程（38日）＋ 2027/3/1〜3/3 シンガポール</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>起点</strong></td>
+<td style="text-align: left;">TODO.md <strong>I0・I1</strong>（本書が正本。TODO 側は要約とリンクに留める）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>結論</strong></td>
+<td style="text-align: left;">🔴 <strong>Olive は今回の旅行では完全に対象外（0円）で確定。</strong><br>①二階建てではなく排他選択制 ②「補償期間（11/1〜）中に開始された旅行」が条件のため10/28出発には一切効かない（§1.3）<br>✅ <strong>2026/9/10、選べる無料保険をスマホ安心プランへ戻した</strong>（§1.3-(3)）<br>✅ <strong>Olive抜きでもカード5枚で治療約1,000万・救援1,300〜1,500万を確保できる見込み</strong>（§4.1）<br>🔴 <strong>残る最大の論点は「海外に永住される方は対象としない」の一文</strong>（§5）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h2 id="2026910-3olive">🔴 2026/9/10 第3版：Olive は「出発日基準で完全無効」と判明</h2>
+<p><strong>ユーザーの指摘（「10月出発なのに11月開始では遅いのでは？」）を受け、三井住友カードの約款を再精査して2つの重大事実が確定した。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">判明した事実</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>1</strong></td>
+<td style="text-align: left;"><strong>「二階建て」は存在しない。</strong> Olive プラチナプリファードの旅行保険は「選べる無料保険」のラインナップの一つ（旅行安心プラン）そのものであり、<strong>他のプラン（スマホ等）を選ぶと旅行保険は完全に消滅する（排他選択制）</strong>。</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>2</strong></td>
+<td style="text-align: left;"><strong>「補償期間中に開始された旅行」の原則に阻まれる。</strong> 公式規約上の責任期間は「補償期間（11/1〜）中に日本の住居を出発した旅行」に限定される。<strong>10/28 出発の今回の世界一周旅行は全日程（11月以降も含め）で一切対象外</strong>となる。</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>3</strong></td>
+<td style="text-align: left;">⚠️ <strong>ただし「他の補償にあてれば得」とはならなかった。</strong> 振替先を調べたところ、<strong>どのプランに変えても本体行程への上乗せはほぼゼロ</strong>（スマホ安心プランは<strong>30日待機</strong>で11/30まで無効、携行品・個人賠償は三菱UFJが既にカバー）。<br>✅ <strong>判断基準を「2026/11〜2027/10 の1年間」に置き直し、9/10 にスマホ安心プランへ戻した</strong>（§1.3-(3)）。</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔵 <strong>4</strong></td>
+<td style="text-align: left;"><strong>Olive抜きでも補償は立つ。</strong> 三菱UFJプラチナ（自動付帯 300/300/500）を主軸に、JCB・ANA・楽天の合算で治療約1,000万・救援1,100〜1,300万円規模を維持できる（§4.1）。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_1">🔴 いま効いている確認事項</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">期限</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>10月上旬</strong></td>
+<td style="text-align: left;">🔴 <strong>「海外に永住される方は対象としない」に該当しないことを確認する</strong>（§5・§6 タスク1）<br><strong>住民票がバンコク。</strong>ただし横浜に自宅があり、日本発着の往復行程で帰国予定もある</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>完了（9/10）</strong></td>
+<td style="text-align: left;">✅ <strong>Olive の選べる無料保険をスマホ安心プランへ戻した</strong>（§1.3-(3)）。<strong>旅行安心プランは本旅行に 0円 だったため</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🟡 <strong>10月上旬</strong></td>
+<td style="text-align: left;"><strong>ANA・JAL の実額を約款で読んで積算し直す</strong>（§4.1）。</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<hr />
+<h2 id="1-11">1. カード棚卸し（11枚）</h2>
+<h3 id="11-5">1.1 効くカード（<strong>5枚</strong>）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">カード</th>
+<th style="text-align: left;">ランク</th>
+<th style="text-align: left;">付帯</th>
+<th style="text-align: right;">傷害治療</th>
+<th style="text-align: right;">疾病治療</th>
+<th style="text-align: right;">救援者費用</th>
+<th style="text-align: right;">死亡・後遺障害</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔵 <strong>三菱UFJカード・プラチナ・アメックス</strong></td>
+<td style="text-align: left;">プラチナ</td>
+<td style="text-align: left;">🔵 <strong>自動付帯</strong>（治療・救援は決済不要）<br>利用付帯は<strong>死亡・後遺障害の上乗せのみ</strong></td>
+<td style="text-align: right;"><strong>300万</strong></td>
+<td style="text-align: right;"><strong>300万</strong></td>
+<td style="text-align: right;">🔴 <strong>500万</strong></td>
+<td style="text-align: right;">最高1億<br>（自動5,000万＋利用5,000万）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔵 <strong>アワーズゴールドカード</strong>（JCB発行・日本IBMグループ向け）</td>
+<td style="text-align: left;">ゴールド<br>✅ <strong>個人用</strong></td>
+<td style="text-align: left;">✅ <strong>利用付帯</strong>（2023/4/1〜・§1.4）<br>✅ <strong>出国後の決済でも可</strong></td>
+<td style="text-align: right;">⚠️ <strong>要確認</strong><br>（JCBゴールドは300万）</td>
+<td style="text-align: right;">⚠️ <strong>要確認</strong><br>（同300万）</td>
+<td style="text-align: right;">⚠️ <strong>要確認</strong><br>（同400万）</td>
+<td style="text-align: right;">最高1億</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔵 <strong>楽天カード</strong></td>
+<td style="text-align: left;">一般</td>
+<td style="text-align: left;"><strong>利用付帯</strong></td>
+<td style="text-align: right;"><strong>200万</strong></td>
+<td style="text-align: right;"><strong>200万</strong></td>
+<td style="text-align: right;"><strong>200万</strong></td>
+<td style="text-align: right;">最高2,000万</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ANAカードゴールド</strong>（VISA 9210）</td>
+<td style="text-align: left;">ゴールド</td>
+<td style="text-align: left;"><strong>自動付帯</strong>（死亡等の一部を除く）<br>✅ <strong>RTW ¥1,211,160 を決済＝利用付帯も成立</strong></td>
+<td style="text-align: right;">⚠️ 150〜200万<br><strong>要確認</strong></td>
+<td style="text-align: right;">⚠️ 同左</td>
+<td style="text-align: right;">⚠️ <strong>要確認</strong></td>
+<td style="text-align: right;">⚠️ 要確認</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>JALカードゴールド</strong></td>
+<td style="text-align: left;">ゴールド</td>
+<td style="text-align: left;">自動付帯部分＋利用付帯部分の<strong>二階建て</strong></td>
+<td style="text-align: right;">⚠️ <strong>要確認</strong></td>
+<td style="text-align: right;">⚠️ 要確認</td>
+<td style="text-align: right;">⚠️ 要確認</td>
+<td style="text-align: right;">⚠️ 要確認</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-6">1.2 効かないカード（6枚）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">カード</th>
+<th style="text-align: left;">理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>Olive プラチナプリファード</strong></td>
+<td style="text-align: left;">🔴 <strong>今回の旅行では完全に対象外（0円）。</strong><br>①「選べる無料保険」の排他制（旅行安心プラン選択時のみ付帯）<br>②<strong>責任期間「補償期間中に開始された旅行」の原則</strong>により、11/1補償開始に対して10/28出発の旅行は全日程で無効（§1.3）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>dカード</strong>（一般）</td>
+<td style="text-align: left;">🔴 <strong>海外旅行保険は29歳以下限定。</strong>1974年生まれのため<strong>対象外</strong>（dカード<strong>GOLD</strong>なら年齢制限なし）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PayPayカード</strong>（一般）</td>
+<td style="text-align: left;">🔴 <strong>付帯なし。</strong>海外旅行保険が付くのは <strong>PayPayカード ゴールド</strong>のみ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>エディオンカード</strong></td>
+<td style="text-align: left;">❌ 付帯なしの見込み（一般ランクの流通系提携カード）⚠️ 要確認</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ファミマカード</strong></td>
+<td style="text-align: left;">❌ 同上 ⚠️ 要確認</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ヨドバシカード</strong></td>
+<td style="text-align: left;">❌ 同上（ショッピング保険はある）⚠️ 要確認</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-olive-0">1.3 🔴 Olive は今回の旅行では「完全に対象外（0円）」で確定</h3>
+<h4 id="1">(1) 🔴 「二階建て」は存在しない（排他選択制）</h4>
+<p>Oliveフレキシブルペイ プラチナプリファードにおける海外旅行傷害保険は、三井住友カードの<strong>「選べる無料保険」のラインナップの一つである「旅行安心プラン」そのもの</strong>です。<br />
+* 「カード本体に標準で旅行保険があり、選べる無料保険で上乗せできる」という二階建て構造ではありません。<br />
+* <strong>スマホ安心プランなど他のプランを選択している間は、カード付帯の海外旅行傷害保険は完全にゼロ（付帯なし）</strong> になります。</p>
+<h4 id="2">(2) 🔴 決定打：責任期間は「補償期間中に開始された旅行」に限られる</h4>
+<p>三井住友カードの公式規約において、責任期間（保険が有効な期間）は以下のように厳格に定義されています。</p>
+<blockquote>
+<p><strong>【責任期間の定義】</strong>（出典：三井住友カード公式「【選べる無料保険】旅行安心プラン（海外旅行傷害保険）」<br><code>https://www.smbc-card.com/mem/service/li/hoken_kaigairyokou.jsp</code>・2026/9/10 確認）<br />
+<strong>補償期間は、補償選択締切（毎月20日）後翌月1日午前0時から1年間</strong><br />
+🔴 <strong>責任期間は、補償期間かつ会員資格が有効な期間中に開始された旅行期間中とします。ただし、日本出国日から3ヵ月後の午後12時までを限度とします。</strong></p>
+</blockquote>
+<p>✅ <strong>同ページで、プラン間の関係も明記されている（＝二階建てでない根拠）。</strong></p>
+<blockquote>
+<p><strong>初期設定の旅行安心プラン（旅行傷害保険）をお好きなプランに変更できます</strong><br />
+🔴 <strong>別の補償プランに変更した場合は、適用されません。プランを変更しなかった場合は、これまでどおり旅行安心プランが適用されます</strong></p>
+</blockquote>
+<ul>
+<li><strong>今回の旅行の開始日（出発日）</strong>: <strong>2026年10月28日</strong>（日本の住居を出発／成田発）</li>
+<li><strong>Olive 旅行安心プランの補償開始</strong>: <strong>2026年11月1日 午前0時</strong></li>
+</ul>
+<p>旅行が出発した「10月28日」時点で補償期間（11/1〜）に入っていないため、この旅行は<strong>「補償期間外に開始された旅行」</strong>となります。<br />
+したがって、<strong>11月1日以降であっても、今回の世界一周旅行全体に対してOliveの保険は一切適用されません（期中からの途中加入・途中適用は不可）</strong>。</p>
+<h4 id="3">(3) ⚠️ ただし「他の補償にあてる」も、今回の旅行には効かない</h4>
+<p>🔴 <strong>振替先を調べたところ、どのプランに変えても本体行程（10/28〜12/2）への上乗せはほぼゼロだった。</strong><br />
+<strong>「旅行安心プランが無駄だから他へ回せば得」という単純な話にはならない。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">振替先の候補</th>
+<th style="text-align: left;">プラチナプリファードの補償額</th>
+<th style="text-align: left;">🔴 <strong>本体行程への効き方</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>スマホ安心プラン</strong>（動産総合保険）</td>
+<td style="text-align: left;">物損修理 <strong>5万円</strong>／自然故障 <strong>5万円</strong></td>
+<td style="text-align: left;">🔴 <strong>ほぼ効かない。</strong><br>①<strong>補償期間開始日から30日以内の損害は対象外</strong>＝<strong>11/30 まで待機</strong>。旅行は12/2 に終わる<br>②<strong>補償期間開始日に購入から2年以内のスマホ</strong>に限られる</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>持ち物安心プラン</strong>（携行品損害保険）</td>
+<td style="text-align: left;">携行品損害 <strong>5万円</strong>（免責3,000円）<br>受託物賠償 10万円</td>
+<td style="text-align: left;">⚠️ <strong>上積みが小さい。</strong><br><strong>三菱UFJの自動付帯が携行品を1旅行50万円でカバー済み</strong>（§1.5）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>日常生活安心プラン</strong>（個人賠償責任）</td>
+<td style="text-align: left;">個人賠償 <strong>100万円</strong></td>
+<td style="text-align: left;">⚠️ <strong>上積みが小さい。</strong><br><strong>三菱UFJの賠償責任1億円が旅行期間中は効く</strong>（§1.5）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>旅行安心プラン</strong>（現状）</td>
+<td style="text-align: left;">300万／300万／救援500万</td>
+<td style="text-align: left;">❌ <strong>0円</strong>（§1.3-(2)）</td>
+</tr>
+</tbody>
+</table>
+<h5 id="2026910">✅ 2026/9/10 <strong>実施済み：スマホ安心プランへ戻した</strong></h5>
+<p><strong>本人判断：「この旅行以外の他の補償にあてる」。</strong>🔴 <strong>手続き完了。</strong><br />
+✅ <strong>今回の旅行に関して失うものはゼロ。</strong>旅行安心プランのままでも本体行程は 0円 だから（§1.3-(2)）。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>失わないもの</strong></td>
+<td style="text-align: left;"><strong>本体行程（10/28〜12/2）の補償。</strong>もともと Olive は 0円 なので、戻しても減らない</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>唯一失うもの</strong></td>
+<td style="text-align: left;"><strong>2026/11/1〜2027/10/31 に「日本の住居を出発して」始める別の旅行</strong>の 300万/300万/500万</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>失わないもの（念のため）</strong></td>
+<td style="text-align: left;"><strong>2027/3 シンガポール区間はバンコク発で日本出国がないため、旅行安心プランでも元から対象外</strong>（§4.2 の穴2）<br>→ <strong>これを理由に残す必要はない</strong></td>
+</tr>
+</tbody>
+</table>
+<h5 id="_2">⚠️ スマホ安心プランで効かせるための前提</h5>
+<p><strong>選択したのはスマホ安心プラン（動産総合保険・物損修理5万円／自然故障5万円）。</strong><br />
+<strong>次の2点が満たされていないと保険金が出ないので、頭に入れておく。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">前提</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>1</strong></td>
+<td style="text-align: left;"><strong>補償期間開始日（2026/11/1）において、スマートフォンが購入から2年以内であること。</strong><br><strong>2年を超えていると補償の対象にならない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>2</strong></td>
+<td style="text-align: left;"><strong>補償期間開始日からその日を含めて30日以内に発生した損害は対象外。</strong><br>→ 文字どおり読むと <strong>11/30 まで待機</strong>となり、<strong>本体行程（〜12/2）のほぼ全期間が空く</strong><br>⚠️ <strong>今回は同一プランの継続なので、待機期間が再度かかるかは不明。</strong>気になるなら Vpass か三井住友カードに確認する</td>
+</tr>
+</tbody>
+</table>
+<p>🔵 <strong>いずれにせよ本体行程の医療・救援は三菱UFJプラチナの自動付帯（300万/300万/500万）が担う</strong>ので、<br />
+<strong>この2点が崩れても旅行の安全側の設計は変わらない。</strong></p>
+<h5 id="202611202710-1">参考：判断基準は「今回の旅行」ではなく「2026/11〜2027/10 の1年間」</h5>
+<p><strong>どれを選んでも本体行程は動かない。</strong>選択は<strong>旅行が終わったあとの1年をどう使うか</strong>で決めるべき。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">もし…</th>
+<th style="text-align: left;">選ぶべきプラン</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>2027/10/31 までに、もう一度「日本発」の旅行を始める予定がある</strong></td>
+<td style="text-align: left;"><strong>旅行安心プランのまま。</strong>300万/300万/500万は他の6プランと桁が3つ違う</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>その予定がない（← 今回の判断）</strong></td>
+<td style="text-align: left;">✅ <strong>スマホ安心プランを選択</strong>（2026/9/10 実施）<br>参考：日常生活安心プラン（個人賠償100万円）も候補だった</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ <strong>2027/3/1〜3/3 のシンガポール区間は、旅行安心プランでも救えない。</strong><br />
+<strong>バンコク発で日本出国がないため、「日本の住居を出発した旅行」に当たらない</strong>（§4.2 の穴2）。<br />
+→ <strong>「シンガポール区間のために旅行安心プランを残す」という理由づけは成り立たない。</strong></p>
+<h5 id="_3">変更の期限</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>ルール</strong></td>
+<td style="text-align: left;"><strong>当月20日までに変更すると翌月1日午前0時から補償期間が開始。</strong><strong>補償期間開始の前月20日までは変更をキャンセルできる</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>期限</strong></td>
+<td style="text-align: left;"><strong>2026/10/20 だったが、9/10 に手続き済み。</strong><br>🔴 <strong>補償期間開始後は満了までプラン変更ができない</strong>＝<strong>2027/8 頃まで固定される</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>その後</strong></td>
+<td style="text-align: left;"><strong>補償期間開始後は補償期間満了までプラン変更ができない</strong>＝<strong>2027/8 頃まで固定される</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-olive">(4) Olive 決済そのものの位置づけは変わらない</h4>
+<p><strong>9/8 の C2 航空券・PeruRail の決済は、保険の利用付帯としては無意味になった。</strong><br />
+✅ <strong>ただしポイント面では最善のまま。</strong>プラチナプリファードの還元率は他のどのカードより高く、<br />
+<strong>§3.1 のとおり宿泊費・諸経費・アクティビティ（計 ¥1,786,290）は保険に効かない費目</strong>なので、<br />
+<strong>Olive と ANA に寄せる方針は保険と一切衝突しない。</strong></p>
+<h3 id="14-jcb">1.4 ✅ アワーズゴールドカード（JCB）— 原文で確定</h3>
+<p><strong>正式名称：アワーズゴールドカード</strong>（日本IBMグループ／BELS Family Club 向け・<strong>発行は株式会社JCB</strong>）<br />
+✅ <strong>「個人用ゴールドカードを『生涯年会費無料』でご提供」</strong>と資料に明記。<strong>法人カードではない。</strong></p>
+<blockquote>
+<p>⚠️ <strong>旧記載の2点は誤りだったので訂正した。</strong><br />
+① 「法人カードなので業務上の旅行に限定される恐れ」→ <strong>個人用カードなので該当しない</strong><br />
+② 「地理的限定の記載が見当たらない」→ 🔴 <strong>原文には「日本国内のご住居」が明記されている</strong>（下記）</p>
+</blockquote>
+<h4 id="jcb-ours">適用条件（JCB 公式リリース原文・<code>参考/ours/</code> に保存）</h4>
+<p><strong>適用されるのは次の3パターン。いずれか1つを満たせばよい。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>1</strong></td>
+<td style="text-align: left;"><strong>日本出国前</strong>に、航空機・電車・船舶・<strong>タクシー</strong>・バスといった<strong>公共交通乗用具</strong>の利用代金を当該カードで支払った</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2</strong></td>
+<td style="text-align: left;"><strong>日本出国前</strong>に、<strong>宿泊を伴う募集型企画旅行</strong>の旅行代金を支払った</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔵 <strong>3</strong></td>
+<td style="text-align: left;">🔵 <strong>日本出国後</strong>に、当該旅行中に利用する公共交通乗用具の利用代金を<strong>はじめて</strong>当該カードで支払った</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">注記</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>※1 公共交通乗用具</strong></td>
+<td style="text-align: left;"><strong>タクシーを含む。</strong>海外においては<strong>「これに準じる乗用具」</strong>（当該旅行のために乗用するものに限る）</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>※3 金額</strong></td>
+<td style="text-align: left;"><strong>定めなし。全額または一部の支払いでも適用</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>※2 募集型企画旅行</strong></td>
+<td style="text-align: left;">旅行会社が日程・交通・宿泊・代金を決めて<strong>参加者を募集する形態</strong>。<strong>個別手配のホテル・ツアーは該当しない</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_4">🔵 発見：出国後の決済でも有効化できる</h4>
+<blockquote>
+<p><strong>日本国内で前述のカードでの支払いがなくても、日本出国後、海外で被保険者が当該旅行中に利用する「公共交通乗用具」の料金をこのカードでお支払いになった場合、その料金を初めてこのカードでお支払いになった時から旅行期間終了までの間保険が適用されます。</strong></p>
+</blockquote>
+<p>✅ <strong>10/28 の成田までの電車を逃しても、旅行中に現地の交通費を JCB で払えば有効化できる。</strong><br />
+⚠️ <strong>ただし「初めて支払った時から」</strong>なので、<strong>それ以前の期間は補償されない。早いほど良い。</strong></p>
+<h4 id="_5">🔴 旅行期間の定義に「日本国内のご住居」がある</h4>
+<blockquote>
+<p><strong>海外旅行を目的に日本国内のご住居を出発されたときからご住居にお戻りになるまでの間</strong>で、かつ、日本を出国する前日の午前0時から日本に入国した翌日の午後12時までの間を「旅行期間」とし、<strong>日本を出国した日から90日後の午後12時まで</strong>を限度とします。</p>
+</blockquote>
+<p>🔴 <strong>住民票をバンコクに移している点が、ここで正面から論点になる。</strong><br />
+横浜に自宅がある事実で「住居」を主張できるかどうか（§5）。</p>
+<p>⚠️ <strong>この文言は業界標準とみられる。</strong>ANA・JAL・Olive・楽天も同じ構造の可能性が高い。</p>
+<h4 id="_6">補償期間</h4>
+<p><strong>日本出国日から90日</strong> → <strong>10/28 出国なら 2027/1/26 まで。</strong><br />
+✅ 本体行程（〜12/2）はカバー ／ ❌ <strong>2027/3 のシンガポール区間は範囲外</strong>（§4.2 の穴2）</p>
+<h4 id="_7">⚠️ 残る確認事項</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">⚠️ <strong>1</strong></td>
+<td style="text-align: left;"><strong>補償額（傷害治療／疾病治療／救援者費用）の実額。</strong>資料は「<strong>ビジネス会員用保険案内</strong>を参照」としている。<br>§1.1 の 300万/300万/400万 は <strong>JCBゴールド（オリジナルシリーズ）の数字</strong>で、提携ゴールドでは異なる可能性</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>2</strong></td>
+<td style="text-align: left;">改定告知に「※一部、対象とならないカードがあります」の記載。<br>✅ ただしアワーズ側の資料に「2023年4月1日出発以降 利用付帯に変更」と明記されているので<strong>対象カードとみてよい</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="15-ufj">1.5 🔵 三菱UFJカード・プラチナ・アメリカン・エキスプレス・カード — <strong>自動付帯で確定</strong></h3>
+<p><strong>年会費 22,000円・Priority Pass 付帯</strong>（<a href="手配_ラウンジ.md"><code>手配_ラウンジ.md</code></a> の PP はこのカードのもの）。<br />
+<strong>引受は東京海上日動火災保険</strong>（2023年版の小冊子では損保ジャパン／あいおいだった。<strong>入れ替わっている</strong>）。<br />
+📄 <strong>公式の保険小冊子を <a href="参考/mufg/"><code>参考/mufg/</code></a> に保存した</strong>（<code>カード付帯保険のご案内_三菱UFJカード・プラチナ・アメリカン・エキスプレス・カード用.pdf</code>・全14ページ）。</p>
+<h4 id="_8">🔴 ここが重要：治療・救援は「自動付帯」</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">補償内容</th>
+<th style="text-align: right;">保険金額</th>
+<th style="text-align: left;">付帯方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">傷害による死亡・後遺障害</td>
+<td style="text-align: right;">最高5,000万円<br>🔵 <strong>利用付帯で最高1億円</strong></td>
+<td style="text-align: left;">自動＋利用</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>傷害による治療費用</strong></td>
+<td style="text-align: right;"><strong>300万円</strong></td>
+<td style="text-align: left;">🔵 <strong>自動付帯</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>疾病による治療費用</strong></td>
+<td style="text-align: right;"><strong>300万円</strong></td>
+<td style="text-align: left;">🔵 <strong>自動付帯</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>救援者費用</strong></td>
+<td style="text-align: right;"><strong>500万円</strong></td>
+<td style="text-align: left;">🔵 <strong>自動付帯</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">賠償責任</td>
+<td style="text-align: right;">1億円</td>
+<td style="text-align: left;">自動付帯</td>
+</tr>
+<tr>
+<td style="text-align: left;">携行品損害（免責3,000円）</td>
+<td style="text-align: right;">1旅行50万円／年間100万円</td>
+<td style="text-align: left;">自動付帯</td>
+</tr>
+</tbody>
+</table>
+<p>🔵 <strong>利用条件がかかるのは「傷害による死亡・後遺障害」の 5,000万円→1億円 の部分だけ。</strong><br />
+<strong>治療費用と救援者費用は、このカードで何も決済しなくても出る。</strong><br />
+→ 🔴 <strong>有効化の割り当て（§3.2）にこのカードを入れる必要がない。</strong>何もしなくても 300万/300万/500万 が積み上がる。</p>
+<p>⚠️ <strong>旧版の記載は誤りだった。</strong>§1.2 で「未確認」として効かないカード側に置いていたが、<br />
+<strong>実際には Olive と同額（300/300/500）を、しかも決済条件なしで出す。</strong></p>
+<h4 id="2023">⚠️ 2023年版の小冊子とは金額が違う</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: right;">2023年9月版（旧）</th>
+<th style="text-align: right;">✅ <strong>現行版</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">傷害治療</td>
+<td style="text-align: right;">200万円</td>
+<td style="text-align: right;">✅ <strong>300万円</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">疾病治療</td>
+<td style="text-align: right;">200万円</td>
+<td style="text-align: right;">✅ <strong>300万円</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">救援者費用</td>
+<td style="text-align: right;">200万円</td>
+<td style="text-align: right;">✅ <strong>500万円</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">賠償責任</td>
+<td style="text-align: right;">3,000万円</td>
+<td style="text-align: right;">✅ <strong>1億円</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>途中で増額されている。</strong>古い版の PDF が検索に出てくるので注意する。</p>
+<h4 id="_9">補償期間</h4>
+<blockquote>
+<p><strong>1回の旅行につき日本国を出国した日の翌日から数えて90日間。</strong></p>
+</blockquote>
+<p><strong>10/28 出国 → 2027/1/26 まで。</strong><br />
+✅ 本体行程（〜12/2）はカバー ／ ❌ <strong>2027/3 のシンガポール区間は範囲外</strong>（§4.2 の穴2）。</p>
+<h4 id="42-3">🔵 免責の確認（§4.2-3 に効く）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">論点</th>
+<th style="text-align: left;">小冊子の記載</th>
+<th style="text-align: left;">判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔵 <strong>熱気球</strong>（11/22 カッパドキア）</td>
+<td style="text-align: left;">「危険な運動」の例示は<strong>アイゼン・ピッケル等の登山用具を使用する山岳登はん、スカイダイビング、ハンググライダー搭乗</strong>。<strong>熱気球の記載はない</strong><br>Q&amp;A では「スキューバダイビングは約款上の危険なスポーツに該当しない」と明言</td>
+<td style="text-align: left;">🔵 <strong>対象になる見込み</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔵 <strong>高山病</strong>（クスコ3,400m）</td>
+<td style="text-align: left;">疾病の免責は「<strong>アイゼン・ピッケル等の登山用具を使用する山岳登はん中の高山病</strong>」<br>→ <strong>登山用具を使わないクスコ滞在・マチュピチュ観光は該当しない</strong></td>
+<td style="text-align: left;">🔵 <strong>対象になる見込み</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>ワイナピチュ</strong>（11/2）</td>
+<td style="text-align: left;">上記のとおり<strong>登山用具を使う山岳登はんではない</strong>ので免責には当たらない見込み</td>
+<td style="text-align: left;">🔵 <strong>同上</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_10">🔵 おまけ：海外渡航便遅延</h4>
+<p><strong>乗継遅延・出航遅延で 宿泊施設の客室料 定額3万円／交通費等 定額1万円／食事代 定額5,000円、受託手荷物遅延 定額3万円。</strong><br />
+✅ <strong>海外旅行傷害保険の補償期間内であれば適用される。</strong>RTW は他社運航が13区間あるので、頭の隅に置いておく。</p>
+<hr />
+<h2 id="2_1">2. 合算のルール</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">補償項目</th>
+<th style="text-align: left;">複数カードの扱い</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>傷害死亡・後遺障害</strong></td>
+<td style="text-align: left;">🔴 <strong>合算されない。最高額の1枚のみ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>傷害治療費用</strong></td>
+<td style="text-align: left;"><strong>合算される</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>疾病治療費用</strong></td>
+<td style="text-align: left;"><strong>合算される</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>救援者費用</strong></td>
+<td style="text-align: left;"><strong>合算される</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ 賠償責任</td>
+<td style="text-align: left;">合算される</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ 携行品損害</td>
+<td style="text-align: left;">合算されるが1旅行あたりの上限・免責（3,000円）あり</td>
+</tr>
+</tbody>
+</table>
+<p>🔵 <strong>三菱UFJの小冊子（Q11）で、このルールが原文で確認できた。</strong></p>
+<blockquote>
+<p><strong>傷害死亡・後遺障害保険金については、他のクレジットカード付帯保険から同時に保険金が支払われる場合、保有するクレジットカードのそれぞれの保険金額のうち、最も高い保険金額を限度として保険金をお支払いします。その他の保険金については、本カードとの合算金額を保険金額とします。（ただし、実際の損害額を上限とします。）</strong></p>
+</blockquote>
+<p>✅ <strong>任意保険を上乗せした場合も同じ扱い</strong>（Q12）。掛け捨てを1本足す設計（§6 タスク5）は有効に働く。</p>
+<h3 id="21">2.1 🔴 分散すべきは「金額」ではなく「カードの有効化」</h3>
+<p><strong>利用付帯の条件は「金額の多寡を問わない」ことがほとんど。</strong>空港までの電車代でも成立し得る。</p>
+<blockquote>
+<p><strong>旅行代金を按分する必要はない。</strong><br />
+<strong>利用付帯のカードごとに、条件を満たす決済を1回ずつ行えばよい。</strong></p>
+</blockquote>
+<p>⚠️ <strong>効くのは「いくら払ったか」ではなく「何を買ったか」。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">効く</th>
+<th style="text-align: left;">効かない見込み</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ 航空機・鉄道・バス・タクシー・船舶の<strong>運賃</strong></td>
+<td style="text-align: left;">❌ <strong>宿泊費</strong>（今後 ¥595,830）</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ 募集型企画旅行（パッケージツアー）の代金</td>
+<td style="text-align: left;">❌ 入場料・食事代</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>宿泊費は金額が大きいのに利用付帯としては役に立たない可能性が高い。分散先に選ばない。</strong></p>
+<h3 id="22-olive">2.2 ⚠️ Olive のクレジット／デビットの切り分け</h3>
+<p>Olive フレキシブルペイは1枚でモードを切り替えられ、<strong>番号が別</strong>になる。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">番号</th>
+<th style="text-align: left;">モード</th>
+<th style="text-align: right;">決済額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>8617</strong></td>
+<td style="text-align: left;"><strong>クレジット</strong></td>
+<td style="text-align: right;">¥75,911</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>385</strong></td>
+<td style="text-align: left;"><strong>デビット</strong></td>
+<td style="text-align: right;">¥15,741（C6のみ）</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>カード付帯保険は通常クレジット機能に付くため、デビット決済分が利用付帯の対象になるかは別問題。</strong><br />
+✅ <strong>ただし要になる「公共交通乗用具の運賃」2件（C2・PeruRail）はクレジット番号で決済済み</strong>なので、成立の可能性は保たれている。</p>
+<hr />
+<h2 id="3_1">3. 有効化の割り当てと、ポイントの寄せ先</h2>
+<h3 id="31">3.1 🔵 大前提：残る決済の大半は保険に効かない＝ポイント最適化に回せる</h3>
+<p><strong>§2.1 のとおり、利用付帯に効くのは「公共交通乗用具の運賃」または「募集型企画旅行の代金」だけ。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">未払いの費目</th>
+<th style="text-align: right;">残額</th>
+<th style="text-align: left;">保険への貢献</th>
+<th style="text-align: left;">ポイント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔵 <strong>宿泊費</strong></td>
+<td style="text-align: right;"><strong>¥595,830</strong></td>
+<td style="text-align: left;">❌ <strong>効かない見込み</strong></td>
+<td style="text-align: left;">✅ <strong>ANA／Olive に自由に寄せられる</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔵 諸経費（保険・ビザ・通信・食費・予備費）</td>
+<td style="text-align: right;">¥693,675</td>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;">✅ 同上</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔵 アクティビティ（サファリ ¥209,250 等）</td>
+<td style="text-align: right;">¥496,785</td>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;">✅ 同上</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>小計</strong></td>
+<td style="text-align: right;"><strong>¥1,786,290</strong></td>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;">✅ <strong>全部ポイント最適化に回してよい</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✈️ 航空券残（<strong>C1 のみ</strong>）</td>
+<td style="text-align: right;">¥53,165</td>
+<td style="text-align: left;">✅ <strong>効く</strong></td>
+<td style="text-align: left;">⚠️ <strong>有効化の控え</strong>（§3.4）</td>
+</tr>
+</tbody>
+</table>
+<p>✅ <strong>残る約179万円のうち、約178万円は保険に効かない。</strong><br />
+→ <strong>ポイントは ANA／Olive に固める方針が、保険と一切衝突しない。</strong></p>
+<h3 id="32">3.2 割り当て</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">カード</th>
+<th style="text-align: left;">決済に充てるもの</th>
+<th style="text-align: left;">目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>ANAカードゴールド</strong>（9210）</td>
+<td style="text-align: left;">RTW ¥1,211,160（済）<br>🔵 <strong>宿泊費・諸経費・アクティビティ</strong></td>
+<td style="text-align: left;"><strong>ポイント集約</strong>＋利用付帯（<strong>成立済</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>Olive PP</strong>（8617）</td>
+<td style="text-align: left;">C2 航空券・PeruRail（済）<br>🔵 <strong>宿泊費の一部</strong></td>
+<td style="text-align: left;"><strong>ポイント集約</strong>＋利用付帯（<strong>成立見込</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>JCB OURS ゴールド</strong></td>
+<td style="text-align: left;"><strong>10/28 実家→成田の鉄道</strong>（NEX・スカイライナー等）</td>
+<td style="text-align: left;">🔴 <strong>利用付帯の有効化のみ</strong>（数千円）</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>楽天カード</strong></td>
+<td style="text-align: left;"><strong>10/28 同日の別の交通手段</strong>（§3.4 の控えも参照）</td>
+<td style="text-align: left;">🔴 <strong>同上</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>JALカードゴールド</strong></td>
+<td style="text-align: left;">もう一つ別の公共交通乗用具</td>
+<td style="text-align: left;">🔴 <strong>同上</strong>（利用付帯部分がまだ立っていない）</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>三菱UFJ プラチナ・アメックス</strong></td>
+<td style="text-align: left;">🔵 <strong>不要</strong></td>
+<td style="text-align: left;">🔵 <strong>治療・救援は自動付帯。</strong>何も決済しなくても 300万/300万/500万が効く（§1.5）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h3 id="_11">🔵 ポイントとの矛盾は実質ない</h3>
+<p>「有効化のために楽天/JCB で払うとポイントがそちらに付く」という懸念はもっともだが、<strong>金額が小さい。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: right;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">成田エクスプレス（東京→成田）</td>
+<td style="text-align: right;">約3,000〜4,000円</td>
+</tr>
+<tr>
+<td style="text-align: left;">失うポイント</td>
+<td style="text-align: right;"><strong>数十円相当</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">得られる補償</td>
+<td style="text-align: right;">🔴 <strong>楽天 治療200万＋救援200万／JCB 治療300万＋救援400万</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>数十円 vs 1,100万円。</strong>この2〜3枚の少額決済は<strong>例外として割り切る。</strong></p>
+</blockquote>
+<h3 id="33">3.3 ⚠️ 「成田までの交通費」で有効化する際の注意</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">注意点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">⚠️ <strong>1</strong></td>
+<td style="text-align: left;">🔴 <strong>タクシーより鉄道のほうが確実。</strong>多くの約款は「公共交通乗用具」にタクシーを含めるが、<strong>除外するカードもある</strong><br>→ <strong>鉄道の乗車券・特急券</strong>（NEX・スカイライナー）を主軸にする</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>2</strong></td>
+<td style="text-align: left;">🔴 <strong>「自宅／住居から出発空港まで」という限定がないか。</strong><br><strong>本人の住居はバンコク（住民票も移している）</strong>ので、「実家→成田」が該当しない恐れがある<br>⚠️ <strong>旧・代替案だった C4 は Olive で決済済み。</strong>→ 控えは §3.4</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>3</strong></td>
+<td style="text-align: left;"><strong>「旅行代金の一部でよいか、全額が必要か」。</strong>多くは一部で足りるが、<strong>全額を要求するカードもある</strong></td>
+</tr>
+</tbody>
+</table>
+<p>✅ <strong>JCB は (1) タクシー可・(3) 一部でも可 が原文で確認できた</strong>（§1.4）。<br />
+🔵 <strong>さらに「出国後の決済でも有効化できる」</strong>ため、10/28 を逃しても取り返せる。<br />
+🔴 <strong>ただし (2) は解決していない。</strong>原文に <strong>「海外旅行を目的に日本国内のご住居を出発されたとき」</strong> と明記されており、<br />
+<strong>住民票がバンコクである点が正面から論点になる。</strong>⚠️ <strong>この文言は業界標準とみられ、楽天・JAL・ANA・Olive も同じ構造の可能性が高い。</strong><br />
+→ <strong>§5 が全カード共通の最大論点。</strong></p>
+<h3 id="34">3.4 🛟 控え：「成田までの交通費」が使えなかった場合の決済機会</h3>
+<p><strong>方針は「楽天・JAL・JCB は少額決済のみ」。</strong><br />
+✅ <strong>JCB は解決済み</strong>（§1.4）。<strong>10/28 の電車代で成立する。</strong><br />
+🔴 <strong>未確認は 楽天・JAL。</strong>「自宅／住居から」の限定があった場合に備えて控えを用意しておく。<br />
+⚠️ <strong>旧・代替案だった C4 は 2026/9/9 に Olive で決済済みのため使えない。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">控え</th>
+<th style="text-align: right;">額</th>
+<th style="text-align: left;">出国前に買えるか</th>
+<th style="text-align: left;">公共交通乗用具か</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🛟 <strong>D5 AVE バルセロナ→マドリード</strong>（11/14）</td>
+<td style="text-align: right;">約€130 / ¥21,320</td>
+<td style="text-align: left;">✅ <strong>Renfe で事前購入可</strong></td>
+<td style="text-align: left;">✅ <strong>鉄道の運賃＝明確</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🛟 <strong>D6 AVE マドリード→バルセロナ</strong>（11/16）</td>
+<td style="text-align: right;">同上</td>
+<td style="text-align: left;">✅ 同上</td>
+<td style="text-align: left;">✅ 同上</td>
+</tr>
+<tr>
+<td style="text-align: left;">🛟 <strong>C1 BKK→東京</strong>（10/26・未購入）</td>
+<td style="text-align: right;">$343 / ¥53,165</td>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;">✅ 航空券</td>
+</tr>
+</tbody>
+</table>
+<p>✅ <strong>D5・D6 を別々のカードで払えば、2枚を有効化できる。</strong><br />
+⚠️ ただし <strong>1枚あたり¥21,320 のポイントが ANA／Olive から外れる。</strong><br />
+→ <strong>まず §3.3 の約款確認を先にやり、必要になってから使う。</strong></p>
+<blockquote>
+<h3 id="c1">⚠️ C1 をマイルで取ると、有効化に使えない</h3>
+<p><a href="手配_マイル.md"><code>手配_マイル.md</code></a> では <strong>C1（BKK→東京）を特典航空券で取る</strong>ことを推奨している。<br />
+<strong>特典航空券は運賃の決済が発生しない</strong>ため、利用付帯の条件を満たさない可能性がある<br />
+（税金・燃油分だけの決済では認められないことがある）。<br />
+✅ <strong>ただし 10/28 の成田までの交通費と C4 で代替できるので、大きな問題にはならない。</strong></p>
+</blockquote>
+<hr />
+<h2 id="4">4. 合算後の見込みと、残る穴</h2>
+<h3 id="41">4.1 見込み（判明分＋推定）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">カード</th>
+<th style="text-align: right;">傷害治療</th>
+<th style="text-align: right;">疾病治療</th>
+<th style="text-align: right;">救援者費用</th>
+<th style="text-align: left;">状態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>三菱UFJ プラチナ・アメックス</strong></td>
+<td style="text-align: right;"><strong>300万</strong></td>
+<td style="text-align: right;"><strong>300万</strong></td>
+<td style="text-align: right;"><strong>500万</strong></td>
+<td style="text-align: left;">🔵 <strong>自動付帯。何もしなくても効く（最強の土台）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ <strong>Olive プラチナプリファード</strong></td>
+<td style="text-align: right;"><strong>0円</strong></td>
+<td style="text-align: right;"><strong>0円</strong></td>
+<td style="text-align: right;"><strong>0円</strong></td>
+<td style="text-align: left;">🔴 <strong>対象外（10/28出発のため規約上無効・§1.3）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>JCB OURS ゴールド</strong></td>
+<td style="text-align: right;">300万</td>
+<td style="text-align: right;">300万</td>
+<td style="text-align: right;">400万</td>
+<td style="text-align: left;">⚠️ <strong>実額未確認</strong>（§1.4）／🔴 <strong>有効化が必要</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>楽天カード</strong></td>
+<td style="text-align: right;">200万</td>
+<td style="text-align: right;">200万</td>
+<td style="text-align: right;">200万</td>
+<td style="text-align: left;">🔴 <strong>有効化が必要</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">ANA＋JAL（⚠️ <strong>未確認・推定</strong>）</td>
+<td style="text-align: right;">200〜300万</td>
+<td style="text-align: right;">200〜300万</td>
+<td style="text-align: right;">200〜400万</td>
+<td style="text-align: left;">⚠️ <strong>約款未読</strong>（ANAはRTW決済で利用付帯成立済）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>合算の見込み</strong></td>
+<td style="text-align: right;"><strong>1,000〜1,100万円</strong></td>
+<td style="text-align: right;"><strong>1,000〜1,100万円</strong></td>
+<td style="text-align: right;"><strong>1,300〜1,500万円</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>Oliveが抜けても、カード5枚の合算で治療約1,000万円・救援1,300〜1,500万円に届く見込み。</strong><br />
+<strong>医療搬送（マサイマラで1,000万円超）のラインは依然としてカバーできる計算。</strong></p>
+<p>✅ <strong>確実な土台は「三菱UFJ 300/300/500」（自動付帯）。</strong><br />
+ただし Olive（300/300/500）が抜けたため、<strong>JCB・楽天・JAL の利用付帯有効化（§3.2）の重要度が上がった。</strong><br />
+10/28 の成田までの鉄道移動などで確実に条件を満たしていくことが求められる。</p>
+<p>⚠️ <strong>未確認は ANA・JAL の2枚。</strong>（§6 タスク2）</p>
+<p>🔴 <strong>ただし、この積算はすべて §5 の「海外に永住される方は対象としない」が崩れないことが前提。</strong><br />
+<strong>そこが崩れると全カードまとめて無効になる。</strong></p>
+<h3 id="42">4.2 🔴 残る穴</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">穴</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>1</strong></td>
+<td style="text-align: left;"><strong>医療搬送（メディカル・エバキュエーション）</strong></td>
+<td style="text-align: left;"><strong>マサイマラ（11/28〜30）で重症 → ナイロビ／欧州への搬送は1,000万円超になり得る。</strong><br>同じ構造：<strong>クスコ3,400mの高山病重症化</strong>、<strong>ワイナピチュでの滑落</strong>（11/2）<br>→ Olive抜きでも合算で1,300万円超に届く見込みだが、<strong>ANA/JAL実額確認後に確定判断する</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>2</strong></td>
+<td style="text-align: left;"><strong>2027/3/1〜3/3 のシンガポール区間</strong></td>
+<td style="text-align: left;"><strong>二重に対象外の恐れ</strong><br>① <strong>補償期間</strong>：三菱UFJ・JCB等は「出国日から90日」＝ <strong>2027/1/26 前後まで</strong>で切れる<br>② <strong>起点</strong>：シンガポール区間は<strong>バンコク発で日本出国がない</strong>ため、「日本出国」起点の条件を満たさない<br>→ <strong>別途手当てが必要</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔵 <strong>3</strong></td>
+<td style="text-align: left;"><strong>熱気球・ヘリコプター遊覧が免責でないか</strong></td>
+<td style="text-align: left;">カッパドキア熱気球（11/22）／イグアス ヘリ遊覧（11/7）<br>✅ <strong>三菱UFJの小冊子では、危険な運動の例示は「登山用具を使う山岳登はん・スカイダイビング・ハンググライダー搭乗」で、熱気球は入っていない</strong>（§1.5）<br>🔵 <strong>同様に高山病も「登山用具を使う山岳登はん中」に限定</strong>されており、クスコ滞在は該当しない<br>⚠️ <strong>JCB でも同じ箇所を読む</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<hr />
+<h2 id="5-2">5. 🔴 タイ在住問題 — 第2版で<strong>重くなった</strong></h2>
+<p><strong>旧第1版は「8月にバンコクで JAL カードを使えた実績があるのでリスクは下がった」と書いていた。</strong><br />
+🔴 <strong>その実績の記憶自体が揺れており、さらに三菱UFJの約款でより直接的な除外文言が見つかったため、評価を引き上げる。</strong></p>
+<h3 id="51-ufj">5.1 🔴 三菱UFJの約款に「海外に永住される方は対象としない」と明記されている</h3>
+<blockquote>
+<p><strong>補償期間とは……</strong>海外旅行傷害保険が有効である「旅行期間」をいい、1回の旅行につき日本国を出国した日の翌日から数えて90日間です。<br />
+また、<strong>「旅行期間」とは海外旅行の目的をもって住居を出発してから住居に帰着するまでの間</strong>で、かつ日本出国の前日の午前0時から日本入国の翌日の午後12時までをいいます。<br />
+🔴 <strong>帰国予定のない方や海外に永住される方は、本保険の対象としませんので、あらかじめご了承ください。</strong></p>
+</blockquote>
+<p>（<a href="参考/mufg/"><code>参考/mufg/</code></a> の小冊子 P.3・「重要」枠）</p>
+<p>🔴 <strong>JCB の「日本国内のご住居」より踏み込んだ書き方で、住民票をバンコクに移している点を正面から突く。</strong></p>
+<h3 id="52">5.2 それでも「永住者」ではないと主張できる材料</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">材料</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>1</strong></td>
+<td style="text-align: left;"><strong>横浜に自宅がある</strong>（賃借ではなく自宅）。「住居」を日本に置いていると主張できる</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>2</strong></td>
+<td style="text-align: left;">🔴 <strong>今回の行程は 10/26 に日本へ入り、10/28 成田から出国し、12/2 に日本へ戻る往復。</strong><br><strong>「帰国予定のない方」には明らかに当たらない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>3</strong></td>
+<td style="text-align: left;">「海外に永住される方」は<strong>永住権・永住ビザを持つ者</strong>を指す運用が一般的。<strong>タイの居住は永住権ではない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>4</strong></td>
+<td style="text-align: left;">旧第1版の「2026年8月にバンコクで JAL カードの保険を実際に使えた」実績<br>🔴 <strong>ただしこの記憶は電話相手の点で揺れている。論拠としては弱いので、</strong>主たる根拠にしない</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53">5.3 🔴 だから、これを先に確認する</h3>
+<p><strong>確認先は三菱UFJではなく、まず一番使う見込みの高いカードでよい。</strong><br />
+🔴 <strong>聞き方は「住民票がタイにあるが、日本の自宅から出国して日本へ帰国する旅行である。対象になるか」。</strong><br />
+⚠️ <strong>「タイ在住です」とだけ言うと、条件反射で「対象外」と返ってくる恐れがある。行程の形（日本発・日本着）を先に言う。</strong></p>
+<h3 id="54">5.4 補償期間の起算は問題ない</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>起算</strong></td>
+<td style="text-align: left;"><strong>10/28 成田出国</strong>。三菱UFJ・JCB とも「出国日の翌日から90日」＝ <strong>2027/1/26 前後まで</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>本体行程</strong></td>
+<td style="text-align: left;"><strong>〜12/2 なので余裕で収まる</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>2027/3 シンガポール</strong></td>
+<td style="text-align: left;"><strong>期間外。しかもバンコク発で日本出国がない</strong>（§4.2 の穴2）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. タスク</h2>
+<h3 id="4_1">✅ 決着した4件</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;"><strong>Olive の旅行保険の可否</strong></td>
+<td style="text-align: left;">🔴 <strong>今回の世界一周旅行は完全に対象外（0円）で確定。</strong><br>排他制に加え「補償期間中に開始された旅行」の規約に阻まれ、10/28出発には一切効かない（§1.3）</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;"><strong>Olive の選べる無料保険の方針</strong></td>
+<td style="text-align: left;">✅ <strong>2026/9/10、スマホ安心プランへ戻した。</strong><br>今回の旅行に使えない以上「旅行安心プラン」にする意味がないため（§1.3-(3)）</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;"><strong>三菱UFJプラチナの補償内容</strong></td>
+<td style="text-align: left;">✅ <strong>300万/300万/500万・すべて自動付帯</strong>（§1.5）。<strong>決済不要で効く</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;">JCB が自動付帯か利用付帯か</td>
+<td style="text-align: left;">✅ <strong>利用付帯で確定</strong>（2023/4/1〜・一部決済でOK・<strong>出国後の決済でも可</strong>）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_12">🔴 残っているタスク</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">期限</th>
+<th style="text-align: center;">優先</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>1</strong></td>
+<td style="text-align: left;">🔴 <strong>「海外に永住される方は対象としない」に該当しないことを確認する</strong>（§5）<br><strong>聞き方：「住民票はタイだが、横浜の自宅から出国し日本へ帰国する往復行程」。</strong><br>🔴 <strong>ここが崩れると全カードまとめて無効</strong>なので、これが最優先</td>
+<td style="text-align: left;">🔴 <strong>10月上旬</strong></td>
+<td style="text-align: center;">🔴</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>1b</strong></td>
+<td style="text-align: left;">~~Olive の選べる無料保険を再設定~~ → ✅ <strong>2026/9/10 スマホ安心プランへ戻した</strong>（§1.3-(3)）</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>2</strong></td>
+<td style="text-align: left;"><strong>ANA・JAL の実額を約款で読んで積算し直す</strong>（§4.1）<br><strong>未確認はこの2枚。</strong>傷害治療／疾病治療／救援者費用の3項目</td>
+<td style="text-align: left;">10月上旬</td>
+<td style="text-align: center;">🟡</td>
+</tr>
+<tr>
+<td style="text-align: left;">⚠️ <strong>2b</strong></td>
+<td style="text-align: left;"><strong>アワーズゴールドカードの補償額を「ビジネス会員用保険案内」で確認</strong><br>§4.1 の 300/300/400 は <strong>JCBゴールド（オリジナルシリーズ）の数字</strong>で、提携ゴールドでは異なる可能性</td>
+<td style="text-align: left;">10月上旬</td>
+<td style="text-align: center;">🟡</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>3</strong></td>
+<td style="text-align: left;">🔴 <strong>未有効化のカードに利用付帯を成立させる</strong>（§3.2）<br><strong>JCB＝10/28 成田までの鉄道 ／ 楽天＝別の交通手段 ／ JAL＝もう一つ</strong><br>🔴 <strong>Olive が抜けたため、この3枚の有効化は「上積み」ではなく重要戦力に格上げ</strong></td>
+<td style="text-align: left;">10/28</td>
+<td style="text-align: center;">🔴</td>
+</tr>
+<tr>
+<td style="text-align: left;">🟡 <strong>3b</strong></td>
+<td style="text-align: left;"><strong>楽天・JAL の約款で3点を確認</strong>（§3.3）<br><strong>(a)</strong> タクシーが「公共交通乗用具」に含まれるか<br><strong>(b)</strong> <strong>「自宅／住居から出発空港まで」の限定がないか</strong><br><strong>(c)</strong> 旅行代金の<strong>一部</strong>でよいか</td>
+<td style="text-align: left;">10月上旬</td>
+<td style="text-align: center;">🟡</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3c</strong></td>
+<td style="text-align: left;">🔵 <strong>宿泊費・諸経費・アクティビティ（計 ¥1,786,290）は ANA／Olive に寄せる</strong><br><strong>保険に効かない費目なので、ポイント最適化に自由に使える</strong>（§3.1）</td>
+<td style="text-align: left;">随時</td>
+<td style="text-align: center;">🟡</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>4</strong></td>
+<td style="text-align: left;"><strong>JCB の約款でも「熱気球」「高山病」の免責を読む</strong>（§4.2-3）<br>✅ <strong>三菱UFJでは両方セーフと確認済み</strong>（§1.5）</td>
+<td style="text-align: left;">10月中旬</td>
+<td style="text-align: center;">🟡</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>5</strong></td>
+<td style="text-align: left;"><strong>合算で医療搬送に足りない分を、掛け捨て1本で埋める</strong>（§4.2-1）<br>🔵 <strong>タスク2の結果次第では不要になる可能性が出てきた。</strong>まず積算を終える<br>🔴 <strong>候補から日本の一般的なネット完結型海外旅行保険（東京海上「off!」・損保ジャパン「off!」等）を除外する。</strong><br>公式FAQ・商品説明で「日本国内に居住し、日本の住居から出発して同じ住居へ帰着すること」が前提と確認（2026/9/12）。<br><strong>本旅行は12/2にバンコクへ直接帰着（日本へ戻らない）ため、この種の商品は約款上そもそも成立しない。</strong><br>→ <strong>候補はタイ現地エクスパット保険（AIG/Allianz/AXA Thailand）、グローバルノマド保険（SafetyWing/IMG）、または日本の損保に非居住者・海外帰着である旨を告知した上での引受承諾（書面）のいずれかに絞る</strong></td>
+<td style="text-align: left;">🔴 <strong>10月中旬</strong></td>
+<td style="text-align: center;">🔴</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>6</strong></td>
+<td style="text-align: left;"><strong>2027/3 シンガポール区間の手当てを別途検討</strong>（§4.2-2）<br>期間外かつバンコク発のため別途手当てが必要</td>
+<td style="text-align: left;">12月以降</td>
+<td style="text-align: center;">🟡</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>7</strong></td>
+<td style="text-align: left;">エディオン／ファミマ／ヨドバシに海外旅行保険がないことを念のため確認</td>
+<td style="text-align: left;">10月中旬</td>
+<td style="text-align: center;">⬜</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7">7. 関連ファイル</h2>
+<ul>
+<li><a href="TODO.md"><code>TODO.md</code></a> — <strong>I群</strong>（本書が正本。TODO 側は要約）</li>
+<li><a href="予算管理.md"><code>予算管理.md</code></a> — <strong>§3 決済カード別</strong>（どのカードでいくら払ったか）</li>
+<li><a href="手配_マイル.md"><code>手配_マイル.md</code></a> — <strong>C1 をマイルで取ると利用付帯に使えない</strong>トレードオフ</li>
+<li><a href="手配_ラウンジ.md"><code>手配_ラウンジ.md</code></a> — 三菱UFJプラチナ（<strong>同じカードの Priority Pass</strong>）</li>
+<li><a href="参考/mufg/"><code>参考/mufg/</code></a> — 🔵 <strong>三菱UFJプラチナの保険小冊子（原本・全14ページ）</strong></li>
+<li><a href="参考/ours/"><code>参考/ours/</code></a> — JCB アワーズゴールドカードの資料</li>
+<li><a href="手配_サファリ.md"><code>手配_サファリ.md</code></a> — マサイマラ（医療搬送リスクの根拠）</li>
+<li><a href="手配_気球ツアー.md"><code>手配_気球ツアー.md</code></a> ／ <a href="手配_イグアス.md"><code>手配_イグアス.md</code></a> — 免責の確認対象</li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

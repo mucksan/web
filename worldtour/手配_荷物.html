@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>手配_荷物 — 何をどれだけ持っていくか - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🦁 マサイマラ・フライインサファリ</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="観戦チケット_販売方法と時期.html">🎫 観戦チケット 販売方法と時期</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_荷物.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="_">手配_荷物 — 何をどれだけ持っていくか</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>版数</strong></td>
+<td style="text-align: left;">第1版</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>作成日</strong></td>
+<td style="text-align: left;">2026年9月9日</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>対象</strong></td>
+<td style="text-align: left;">10/26 バンコク発 〜 12/2 バンコク着の <strong>38日間</strong><br>※2027/3/1-3 のシンガポールは 12/2 に自宅へ戻ったあとの<strong>別パッキング</strong>。本書の対象外</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>結論</strong></td>
+<td style="text-align: left;">✅ <strong>中型スーツケース（受託・15kg以下）＋ 30〜35Lデイパック（機内持込）の2個体制</strong><br>🔴 <strong>RTW券が「2個・合計30kg」なので、合計23kgに収めて7kgを土産枠に残す</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h2 id="3">🔴 本書の要点は3つ</h2>
+<ol>
+<li>🔴 <strong>RTW券は「2個・合計30kg」。ビジネスクラスだが潤沢ではない。</strong><br />
+   区間ごとの <code>2PC</code>／<code>3PC</code>／<code>40K</code> という券面表記ではなく、<strong>この30kgが全区間の運用上限</strong>（§8）。</li>
+<li><strong>さらに TK が受託20kg（C5・C6）、PeruRail が持込8kg・三辺115cm（D1・D2）で刻んでくる。</strong><br />
+   → <strong>スーツケース15kg以下／デイパック8kg以下＝合計23kg</strong>を設計目標にする。</li>
+<li>🔴 <strong>重量のピークは 11/21〜11/23（カッパドキア往復）。土産はそれ以降に買う。</strong><br />
+   C6 を過ぎれば TK の20kg制限は終わるが、<strong>RTW の30kgは最後まで効く。</strong>余裕は7kgだけ。</li>
+</ol>
+</blockquote>
+<hr />
+<h2 id="1">1. 制約の全体像</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">区間</th>
+<th style="text-align: left;">受託</th>
+<th style="text-align: left;">機内持込</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">10/26</td>
+<td style="text-align: left;"><strong>C1</strong> BKK→東京（TG660）</td>
+<td style="text-align: left;">✅ 30kg 込み（TG）</td>
+<td style="text-align: left;">7kg</td>
+</tr>
+<tr>
+<td style="text-align: left;">10/28〜10/31</td>
+<td style="text-align: left;">RTW ①〜④（NH/UA/CM）</td>
+<td style="text-align: left;">🔴 <strong>2個・合計30kg</strong>（全区間共通）</td>
+<td style="text-align: left;">潤沢</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/1</strong></td>
+<td style="text-align: left;">✅ <strong>C2</strong> LIM→CUZ（LATAM・購入済）</td>
+<td style="text-align: left;">✅ <strong>23kg×1</strong>（三辺158cm以内）</td>
+<td style="text-align: left;">✅ <strong>12kg</strong>（55×35×25cm）＋ 手回り品1個</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/1・11/3</strong></td>
+<td style="text-align: left;">🔴 <strong>D1・D2</strong> PeruRail</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">🔴 <strong>8kg・三辺115cm</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/5</strong></td>
+<td style="text-align: left;"><strong>C3</strong> CUZ→LIM→GRU→IGU（LATAM）</td>
+<td style="text-align: left;">⚠️ 運賃階層で要購入</td>
+<td style="text-align: left;">⚠️ 同左</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/8</strong></td>
+<td style="text-align: left;"><strong>C4</strong> IGU→GRU（LATAM）</td>
+<td style="text-align: left;">⚠️ 同左</td>
+<td style="text-align: left;">⚠️ 同左</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/10〜11/19</td>
+<td style="text-align: left;">RTW ⑤〜⑨（TP/AZ/A3）</td>
+<td style="text-align: left;">🔴 <strong>2個・合計30kg</strong></td>
+<td style="text-align: left;">潤沢</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/21</strong></td>
+<td style="text-align: left;">✅ <strong>C5</strong> IST→NAV（TK・購入済）</td>
+<td style="text-align: left;">✅ <strong>PrimeFly 25kg</strong></td>
+<td style="text-align: left;">8kg（55×40×23cm）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/23</strong></td>
+<td style="text-align: left;">✅ <strong>C6</strong> NAV→IST（TK・購入済）</td>
+<td style="text-align: left;">✅ <strong>PrimeFly 25kg</strong></td>
+<td style="text-align: left;">8kg</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/25〜12/2</td>
+<td style="text-align: left;">RTW ⑩〜⑮（MS/ET）</td>
+<td style="text-align: left;">🔴 <strong>2個・合計30kg</strong></td>
+<td style="text-align: left;">潤沢</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/28〜11/30</td>
+<td style="text-align: left;">マサイマラ・フライイン（WIL⇄Mara小型機）</td>
+<td style="text-align: left;">15kg（受託＋持込計）</td>
+<td style="text-align: left;">🔴 <strong>23kg大スーツケースは11/28朝にEmara Ole-Sereniへ事前預託</strong>し、小型機へは15kg手荷物（リュック）で搭乗</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3_1">🔴 拘束条件は3つ</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">値</th>
+<th style="text-align: left;">効く場所</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">① <strong>全体の総量</strong></td>
+<td style="text-align: left;">🔴 <strong>2個・合計30kg</strong>（RTW全15区間）</td>
+<td style="text-align: left;"><strong>旅程の大半</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">② <strong>受託の天井</strong></td>
+<td style="text-align: left;">✅ <strong>25kg</strong>（TK <strong>PrimeFly</strong>・C5 購入済で確定）</td>
+<td style="text-align: left;">C5・C6（11/21・11/23）</td>
+</tr>
+<tr>
+<td style="text-align: left;">③ <strong>持込の床</strong></td>
+<td style="text-align: left;"><strong>8kg・三辺115cm</strong></td>
+<td style="text-align: left;">D1・D2（PeruRail）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>この3つを満たせば、他の全区間は自動的に通る。</strong></p>
+<blockquote>
+<h3 id="1-23kg-rtw">🔴 ① が効く：スーツケースを23kgまで詰めると RTW でオーバーする</h3>
+<p><strong>RTW券の許容量は「2個・合計30kg以内」</strong>（ANA通話メモ 2026/9/6・発券用資料 §0.0.2 で決着済み）。<br />
+<strong>区間ごとの <code>2PC</code>／<code>3PC</code>／<code>40K</code> という券面表記ではなく、この30kgが運用上の上限。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">組み合わせ</th>
+<th style="text-align: right;">合計</th>
+<th style="text-align: left;">判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">スーツケース <strong>23kg</strong>（C2で買える上限）＋ デイパック 8kg</td>
+<td style="text-align: right;"><strong>31kg</strong></td>
+<td style="text-align: left;">🔴 <strong>RTW でオーバー</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">スーツケース <strong>20kg</strong>（TK ExtraFly の上限）＋ デイパック 8kg</td>
+<td style="text-align: right;">28kg</td>
+<td style="text-align: left;">⚠️ ギリギリ。土産の余地なし</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>スーツケース 15kg ＋ デイパック 8kg</strong></td>
+<td style="text-align: right;"><strong>23kg</strong></td>
+<td style="text-align: left;">✅ <strong>7kg の余裕</strong>＝土産枠</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>さらに「2個」なので、3個目（土産の紙袋など）を足せない。</strong><br />
+買ったものは必ずこの2個の中に収める必要がある。<br />
+→ <strong>15kg 目標は、3つの制約すべてに余裕を持たせる唯一の設計。</strong></p>
+</blockquote>
+<hr />
+<h2 id="2-1">2. なぜ「機内持込のみ」でも「リュック1個」でもないか</h2>
+<h3 id="_1">❌ 機内持込のみ（キャリーオン運用）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">理由</th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>経済合理性が逆転している</strong></td>
+<td style="text-align: left;"><strong>C2 の実売運賃では、受託23kg（¥17,930）より機内持込12kg（¥18,180）のほうが高い。</strong>南米のLATAM系は持込を希少財として値付けしており、日本や欧州の常識が通用しない</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>最安運賃は持込すら付かない</strong></td>
+<td style="text-align: left;">C2 の ¥11,260 は<strong>持込・受託とも「なし」</strong>。パーソナルアイテムのみ</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>RTW側では預け賃がゼロ</strong></td>
+<td style="text-align: left;">15区間がビジネスで受託2個込み。<strong>旅程の大半で追加の預け賃は発生しない。</strong>自己手配6区間に全体を合わせるのは本末転倒</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>38日分が物理的に入らない</strong></td>
+<td style="text-align: left;">気温レンジが下記の通り極端</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">場面</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>最も寒い</strong></td>
+<td style="text-align: left;">🔴 <strong>11/22 早朝 カッパドキア熱気球</strong>（氷点下近く）／🔴 <strong>11/29 早朝 マサイマラ サファリ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">最も暑い</td>
+<td style="text-align: left;">11/6-7 イグアス（30℃超・亜熱帯）</td>
+</tr>
+<tr>
+<td style="text-align: left;">夜の屋外</td>
+<td style="text-align: left;">11/15 マドリード 20:45キックオフ／11/24 イスタンブール 18:45</td>
+</tr>
+<tr>
+<td style="text-align: left;">ドレスコード</td>
+<td style="text-align: left;">11/4 リマ Central/Maido／11/18 トスカーナのワイナリーランチ</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1_1">❌ リュック1個（バックパッカー運用）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">理由</th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>背負って歩く場面が実質ない</strong></td>
+<td style="text-align: left;">全区間が空港⇄ホテルの車移動。ペルーの送迎（D3・D4）も手配前提</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>施錠できない</strong></td>
+<td style="text-align: left;">メキシコシティ・リマ・サンパウロ・ナイロビ・カイロを通る</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>38日分の出し入れが苦しい</strong></td>
+<td style="text-align: left;">上開きのスーツケースのほうが圧倒的に楽</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">✅ 採用：スーツケース（受託）＋ デイパック（機内持込）</h3>
+<p><strong>デイパックは選択肢ではなく必須。</strong>11/1 にオリャンタイタンボ駅でスーツケースを預け、<br />
+<strong>マチュピチュ村2泊をデイパック1個で賄う</strong>必要がある（<code>手配_鉄道.md</code> §5）。</p>
+<hr />
+<h2 id="3_2">3. スーツケースの仕様</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">仕様</th>
+<th style="text-align: left;">理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>サイズ</strong></td>
+<td style="text-align: left;"><strong>63〜66cm（60〜70L）</strong></td>
+<td style="text-align: left;">🔴 <strong>75cm級は買わない。</strong>容量があると必ず埋めて20kgを超える</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>空重量</strong></td>
+<td style="text-align: left;"><strong>3.0kg 以下の軽量モデル</strong></td>
+<td style="text-align: left;">空重量4kgと2.5kgでは、中身に使える余裕が1.5kg違う</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>出発時重量</strong></td>
+<td style="text-align: left;"><strong>15kg 以下</strong></td>
+<td style="text-align: left;">TK の20kgに対し5kg、<strong>RTW の「2個・合計30kg」に対し7kg</strong>の伸びしろを残す（土産・冬物で必ず増える）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>施錠</strong></td>
+<td style="text-align: left;">TSAロック</td>
+<td style="text-align: left;">治安面</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>車輪</strong></td>
+<td style="text-align: left;">4輪</td>
+<td style="text-align: left;">空港の移動距離が長い（GRU 6時間乗継など）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔴 <strong>この旅程の制約は「容量」ではなく「重量」。</strong><br />
+大きいスーツケースを買うと、重量制限に引っかかるだけで一つも得をしない。</p>
+</blockquote>
+<hr />
+<h2 id="4">4. デイパックの仕様</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">仕様</th>
+<th style="text-align: left;">理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>容量</strong></td>
+<td style="text-align: left;"><strong>30〜35L</strong></td>
+<td style="text-align: left;">🔴 40Lだと三辺115cmを超える恐れ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>寸法</strong></td>
+<td style="text-align: left;"><strong>三辺合計115cm以内</strong>（例 50×32×22cm ＝ 104cm）</td>
+<td style="text-align: left;"><strong>PeruRail の持込制限</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>重量</strong></td>
+<td style="text-align: left;"><strong>8kg 以下</strong></td>
+<td style="text-align: left;">同上</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2">中身（マチュピチュ村2泊を含む）</h3>
+<ul>
+<li>🔴 <strong>パスポート原本</strong>（11/2 の入場に必須。券が氏名・パスポート紐付け）</li>
+<li>🔴 <strong>RTW eチケット控え</strong>（PNR EANRV5）／マチュピチュ入場券の印刷2枚</li>
+<li>PC・カメラ・充電器</li>
+<li>常備薬・高山病対策</li>
+<li><strong>マチュピチュ村2泊分の衣類</strong></li>
+<li>雨具（11月のマチュピチュは雨季入り）</li>
+</ul>
+<hr />
+<h2 id="5">5. 重量配分の目標</h2>
+<h3 id="150kg">スーツケース 15.0kg</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">内訳</th>
+<th style="text-align: right;">目安</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">本体（軽量63〜66cm）</td>
+<td style="text-align: right;">3.0kg</td>
+</tr>
+<tr>
+<td style="text-align: left;">衣類（5〜6日分・§6参照）</td>
+<td style="text-align: right;">5.0kg</td>
+</tr>
+<tr>
+<td style="text-align: left;">防寒（インナーダウン＋シェル＋ニット帽・手袋）</td>
+<td style="text-align: right;">1.5kg</td>
+</tr>
+<tr>
+<td style="text-align: left;">靴 予備1足</td>
+<td style="text-align: right;">1.0kg</td>
+</tr>
+<tr>
+<td style="text-align: left;">洗面・日用品・薬</td>
+<td style="text-align: right;">1.5kg</td>
+</tr>
+<tr>
+<td style="text-align: left;">充電器・変換プラグ・ケーブル類</td>
+<td style="text-align: right;">1.0kg</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>予備・土産枠</strong></td>
+<td style="text-align: right;"><strong>2.0kg</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>合計</strong></td>
+<td style="text-align: right;"><strong>15.0kg</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="80kg">デイパック 8.0kg</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">内訳</th>
+<th style="text-align: right;">目安</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">本体（30〜35L）</td>
+<td style="text-align: right;">0.8kg</td>
+</tr>
+<tr>
+<td style="text-align: left;">PC＋充電器</td>
+<td style="text-align: right;">1.8kg</td>
+</tr>
+<tr>
+<td style="text-align: left;">カメラ</td>
+<td style="text-align: right;">1.2kg</td>
+</tr>
+<tr>
+<td style="text-align: left;">書類（パスポート・eチケット・入場券）</td>
+<td style="text-align: right;">0.3kg</td>
+</tr>
+<tr>
+<td style="text-align: left;">薬</td>
+<td style="text-align: right;">0.4kg</td>
+</tr>
+<tr>
+<td style="text-align: left;">マチュピチュ村2泊分の衣類</td>
+<td style="text-align: right;">1.5kg</td>
+</tr>
+<tr>
+<td style="text-align: left;">雨具・水・行動食</td>
+<td style="text-align: right;">1.0kg</td>
+</tr>
+<tr>
+<td style="text-align: left;">予備</td>
+<td style="text-align: right;">1.0kg</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>合計</strong></td>
+<td style="text-align: right;"><strong>8.0kg</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="c1tg66080kg">🔴 唯一の矛盾：C1（TG660）だけデイパックの上限が8.0kgに届かない</h3>
+<p>🔵 <strong>2026/9/12 調査で判明。</strong>タイ国際航空エコノミーの機内持込は<strong>「1個・7.0kg」</strong>が上限で、<br />
+デイパックの設計値8.0kgを<strong>1.0kg超過する。</strong>RTW側は各社とも余裕があるため、この矛盾は<strong>C1区間だけ</strong>に効く。</p>
+<p>✅ <strong>ただし解決策は単純。</strong>タイ国際航空は機内持込とは別に<strong>「身の回り品」を1個（ノートPCバッグ等）追加で認めている。</strong><br />
+→ <strong>BKKのチェックイン・搭乗ゲート通過前に、PC（1.8kg）またはカメラ（1.2kg）をデイパックから出し、<br />
+身の回り品として手に持つか小型スリングバッグへ移す。</strong>これでデイパック本体は6.2〜7.0kgに収まり、規定を満たす。<br />
+搭乗後、機内で元のパッキングに戻せばよい。</p>
+<p>⚠️ <strong>RTW区間（①〜⑮）は各社とも「潤沢」でこの制約はない。</strong>C1（10/26）のときだけ思い出せばよい。</p>
+<hr />
+<h2 id="6-3815kg3">6. 38日を15kgに収める3つの設計</h2>
+<h3 id="1_2">✅ ① ローマの洗濯機が中間点にある</h3>
+<p><strong>11/16-18 のローマは、10/26〜12/2 の38日間のちょうど中間（22〜24日目）。</strong></p>
+<p>ここで洗濯できるなら、衣類は「20日分」ではなく <strong>「5〜6日分 ＋ 洗濯2回」</strong> で設計できる。<br />
+<strong>これが15kgを現実的にする最大の要因。</strong></p>
+<p>🔴 <code>手配_宿泊.md</code> §4.2 でローマ3連泊にアパート（洗濯機付）を推した理由の一つがこれ。<br />
+<strong>アパートを選ぶ判断は、宿代の話であると同時に荷物の話でもある。</strong></p>
+<blockquote>
+<p>⚠️ ホテルを選ぶ場合は、<strong>洗濯機付き</strong>か<strong>ランドリーサービス</strong>があることを条件に入れる。<br />
+代替候補：11/12-13 バルセロナ、11/23-24 イスタンブール（どちらも2連泊）。</p>
+</blockquote>
+<h3 id="2-2">✅ ② 最も寒い2場面は同じ装備で兼用できる</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🔴 <strong>11/22 早朝 カッパドキア熱気球</strong></td>
+<td style="text-align: left;">氷点下近く。屋外で待機時間が長い</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>11/29 早朝 マサイマラ サファリ</strong></td>
+<td style="text-align: left;">標高1,500m〜1,600mの早朝。オープントップの4x4サファリカー</td>
+</tr>
+</tbody>
+</table>
+<p><strong>薄手のインナーダウン（約300g）＋ 防風シェル ＋ ニット帽 ＋ 手袋</strong>のレイヤリングで両方をまかなう。<br />
+🔴 <strong>かさばるコートは持たない。</strong>日中はイグアス30℃、カイロ20℃台で完全に死荷重になる。</p>
+<h3 id="3-1123">🔴 ③ 土産は 11/23 以降に買う</h3>
+<p><strong>重量のピークは 11/21〜11/23（C5・C6 のカッパドキア往復）。</strong><br />
+TK の 15kg／20kg 制限に、南米と欧州で積み上がった荷物でぶつかる。</p>
+<p>✅ <strong>11/23 の C6 を過ぎれば、残るフライトはすべてRTW（MS・ET）と陸路になり、TK の20kg制限は終わる。</strong><br />
+🔴 <strong>ただし RTW の「2個・合計30kg」は最後まで効く。使える枠は 30 − 23 = 7kg だけ。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">買ってよい</th>
+<th style="text-align: left;">イスタンブール（11/24）以降、カイロ、ナイロビ。<strong>ただし7kgまで</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>買うのを我慢する</strong></td>
+<td style="text-align: left;">🔴 <strong>南米・欧州・カッパドキア（11/5〜11/22）</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>できないこと</strong></td>
+<td style="text-align: left;"><strong>3個目の荷物を足す</strong>（RTWは「2個」まで）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7">7. 区間別の荷物オペレーション</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">やること</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">10/26</td>
+<td style="text-align: left;"><strong>C1（TG660）</strong>。受託30kg込みなので追加購入不要</td>
+</tr>
+<tr>
+<td style="text-align: left;">10/28</td>
+<td style="text-align: left;">RTW開始（NH8）。🔴 <strong>以後すべてのRTW区間で「2個・合計30kg」が効く</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/1</strong></td>
+<td style="text-align: left;">🔴 <strong>C2 は LATAM 公式 Premium Economy（受託23kg＋持込16kg）で購入済みのこと</strong><br>09:05 CUZ着 → <strong>受託手荷物を受け取る（〜09:30）</strong> → 送迎 → <strong>オリャンタイタンボ 11:15頃</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/1</strong></td>
+<td style="text-align: left;">🔴 <strong>オリャンタイタンボ駅の荷物預かり（04:15〜21:00）にスーツケースを預ける</strong><br>→ <strong>デイパックだけで 13:27 の列車へ</strong>（PeruRail 8kg・115cm）</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/1〜2</td>
+<td style="text-align: left;">マチュピチュ村2泊。デイパックのみ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/3</strong></td>
+<td style="text-align: left;"><strong>14:19 オリャンタイタンボ着 → スーツケース回収</strong> → D4 でクスコへ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/5</strong></td>
+<td style="text-align: left;">🔴 <strong>C3。券が3枚に分かれているため、クスコ空港のチェックインで「GRUまで通し預け」を依頼する</strong><br>依頼文は <a href="手配_RTW外フライト.md"><code>手配_RTW外フライト.md</code></a> §C3-2。<strong>断られたらリマで受け取り→国際線で再チェックイン</strong>（乗継2h40m）</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/8</td>
+<td style="text-align: left;"><strong>C4</strong>。LATAM の運賃階層で受託23kgを買う（§9 タスク2）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/21</strong></td>
+<td style="text-align: left;">🔴 <strong>C5（TK2008）。ExtraFly 以上で購入。ここで重量がピークに達する</strong><br><strong>出発前にスーツケースを計量すること</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>11/23</strong></td>
+<td style="text-align: left;">🔴 <strong>C6（TK2001）。ExtraFly／PrimeFly（変更可能運賃）</strong><br>✅ <strong>これを過ぎれば重量制約は終わり。以後は土産を買ってよい</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">11/28〜30</td>
+<td style="text-align: left;">🔴 <strong>マサイマラ・フライイン</strong>。11/28朝に23kg大スーツケースを Emara Ole-Sereni へ預け、15kgリュックで小型機へ。11/30夕方にEmaraチェックイン時に回収</td>
+</tr>
+<tr>
+<td style="text-align: left;">12/2</td>
+<td style="text-align: left;">バンコク帰宅。<strong>ここで完全にリセット。2027/3 のシンガポールは別パッキング</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-rtw">8. ✅ RTW の受託手荷物（決着済み）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>許容量</strong></td>
+<td style="text-align: left;">✅ <strong>2個・合計30kg以内</strong>（全区間共通）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>出所</strong></td>
+<td style="text-align: left;">ANA 通話メモ（2026/9/6）「荷物は全部共通で2つで合計30kg以内」<br>→ <a href="東回り_発券用資料.md"><code>東回り_発券用資料.md</code></a> §0.0.2 ／ TODO.md <strong>A9</strong> で決着</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>券面表記との関係</strong></td>
+<td style="text-align: left;">券面は区間により <code>2PC</code> ／ <code>3PC</code>（ET） ／ <code>40K</code>（SQ） と割れているが、<br><strong>運用上は「2個・合計30kg」を前提とする</strong></td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>これは「潤沢」ではない。</strong>ビジネスクラスの一般的な 2個×32kg＝64kg とは大きく違う。<br />
+<strong>§1 の拘束条件①として、旅程の大半で効き続ける。</strong></p>
+<hr />
+<h2 id="9">9. タスク</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">期限</th>
+<th style="text-align: center;">優先</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ —</td>
+<td style="text-align: left;">~~RTW券の手荷物許容量を確認~~ → ✅ <strong>2個・合計30kg</strong>（TODO A9・発券用資料 §0.0.2）</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>1</strong></td>
+<td style="text-align: left;">~~C2 を LATAM 公式の Premium Economy で購入~~ → ✅ <strong>2026/9/8 完了</strong>（PNR <code>MAYCQV</code>・座席2A・$130.60）<br>⚠️ <strong>券面の機内持込は 12kg</strong>（購入画面の16kg表記と相違）。<strong>設計は8kgなので影響なし</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>2</strong></td>
+<td style="text-align: left;"><strong>C3・C4 も「受託23kg込み」で見積を取り直す。</strong>🔴 <strong>C3 の LIM→GRU は7時間10分。Premium Economy の差額を必ず確認</strong></td>
+<td style="text-align: left;">9月中</td>
+<td style="text-align: center;">🔴</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>3a</strong></td>
+<td style="text-align: left;">~~C5 を ExtraFly 以上で購入~~ → ✅ <strong>2026/9/9 PrimeFly で購入済（PNR SUMX3C・受託25kg）</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>3b</strong></td>
+<td style="text-align: left;">~~C6 も PrimeFly で購入~~ → ✅ <strong>2026/9/9 購入済（PNR VKCWJC・受託25kg）</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>4</strong></td>
+<td style="text-align: left;">スーツケース（63〜66cm・<strong>空重量3kg以下</strong>）とデイパック（30〜35L）を調達</td>
+<td style="text-align: left;">10月上旬</td>
+<td style="text-align: center;">🟡</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5</strong></td>
+<td style="text-align: left;">ローマ（E11）を<strong>洗濯機付き</strong>の宿で確保（<a href="手配_宿泊.md"><code>手配_宿泊.md</code></a> E11）</td>
+<td style="text-align: left;">10月上旬</td>
+<td style="text-align: center;">🟡</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>6</strong></td>
+<td style="text-align: left;">🔴 <strong>出発前に自宅で計量する。</strong>スーツケース15kg・デイパック8kg・<strong>合計23kg以下</strong></td>
+<td style="text-align: left;">10/25</td>
+<td style="text-align: center;">🔴</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>7</strong></td>
+<td style="text-align: left;"><strong>11/20 アテネで再計量</strong>（C5 の前・重量ピーク直前のチェックポイント）</td>
+<td style="text-align: left;">現地</td>
+<td style="text-align: center;">🟡</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>8</strong></td>
+<td style="text-align: left;">携帯用の吊り下げ秤（約100g）を持つ</td>
+<td style="text-align: left;">10月上旬</td>
+<td style="text-align: center;">⬜</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10">10. 関連ファイル</h2>
+<ul>
+<li><a href="手配_RTW外フライト.md"><code>手配_RTW外フライト.md</code></a> — <strong>C1〜C6 の運賃階層と必要な荷物オプション</strong></li>
+<li><a href="手配_鉄道.md"><code>手配_鉄道.md</code></a> — <strong>§5 PeruRail 8kg制限と駅の荷物預かり</strong></li>
+<li><a href="手配_宿泊.md"><code>手配_宿泊.md</code></a> — E11 ローマ（洗濯機）</li>
+<li><a href="東回り_要件定義書.md"><code>東回り_要件定義書.md</code></a> — §0.3 RTW券の手荷物（未確定）</li>
+<li><a href="TODO.md"><code>TODO.md</code></a> — C群・D群・E群</li>
+<li><a href="tickets/個別空路/C2-1101LIM-CUZ/"><code>tickets/個別空路/C2-1101LIM-CUZ/</code></a> — <strong>C2 の運賃階層スクリーンショット（根拠）</strong></li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

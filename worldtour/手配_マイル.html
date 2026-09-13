@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>手配_マイル — 積算先の方針と保有マイルの使い道 - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🦁 マサイマラ・フライインサファリ</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="観戦チケット_販売方法と時期.html">🎫 観戦チケット 販売方法と時期</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_マイル.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="_">手配_マイル — 積算先の方針と保有マイルの使い道</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>版数</strong></td>
+<td style="text-align: left;">第1版</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>作成日</strong></td>
+<td style="text-align: left;">2026年9月9日</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>保有</strong></td>
+<td style="text-align: left;"><strong>ANAマイレージクラブ</strong>（会員番号 <strong>3259644836</strong>・多数）／<strong>JALマイレージバンク</strong>（多数）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>方針</strong></td>
+<td style="text-align: left;">🔴 <strong>RTW 15区間はすべて ANAマイレージクラブへ寄せる。分散させない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>起点</strong></td>
+<td style="text-align: left;">TODO.md <strong>A11</strong>（✅ <strong>2026/9/10 完了扱い</strong>。残る照会は M2・M3 として TODO 側で管理）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h2 id="_1">🔴 大原則：マイルは「合算」できない。「積算先を選ぶ」だけ</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">❌ <strong>プログラム間の移動</strong></td>
+<td style="text-align: left;"><strong>一度どこかのプログラムに入れたマイルは、他社プログラムへ移せない。</strong><br>Miles&amp;Smiles に入れたマイルを ANA に合算することは<strong>できない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>積算先の選択</strong></td>
+<td style="text-align: left;"><strong>搭乗する便ごとに、どのプログラムに入れるかを選べる。</strong><br>Turkish Airlines はスターアライアンスなので、<strong>TK の便を ANA に積むことは可能</strong></td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>「TKでつけたマイル」ではなく「TKの便のマイルを、TKに入れるかANAに入れるか」</strong>が正しい理解。<br />
+<strong>選ぶタイミングは搭乗時</strong>（チェックイン時に会員番号を提示）。<br />
+忘れた場合の<strong>事後登録は ANA で搭乗後6か月以内</strong>だが、<strong>他社運航便は搭乗券の控えが必要</strong>。<br />
+→ 🔴 <strong>搭乗券は全部保管する</strong>（TODO <strong>I6</strong> と一体）。</p>
+</blockquote>
+<hr />
+<h2 id="1-rtw-15-ana">1. RTW 15区間 — ✅ <strong>全社スターアライアンス。全部 ANA に積める</strong></h2>
+<p>券面の制限が <code>VLD STAR ALLIANCE ONLY</code> なので、当然ながら全区間が対象。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">搭乗日</th>
+<th style="text-align: left;">区間</th>
+<th style="text-align: left;">便</th>
+<th style="text-align: center;">クラス</th>
+<th style="text-align: left;">運航会社</th>
+<th style="text-align: left;">ANA積算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">①</td>
+<td style="text-align: left;">10/28</td>
+<td style="text-align: left;">NRT → SFO</td>
+<td style="text-align: left;">NH 8</td>
+<td style="text-align: center;"><strong>Z</strong></td>
+<td style="text-align: left;">ANA</td>
+<td style="text-align: left;">✅ 自社</td>
+</tr>
+<tr>
+<td style="text-align: center;">②</td>
+<td style="text-align: left;">10/29</td>
+<td style="text-align: left;">SFO → MEX</td>
+<td style="text-align: left;">UA 1271</td>
+<td style="text-align: center;">🔴 <strong>B</strong>（エコノミー）</td>
+<td style="text-align: left;">ユナイテッド</td>
+<td style="text-align: left;">⚠️ <strong>積算率が低い見込み</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">③</td>
+<td style="text-align: left;">10/31</td>
+<td style="text-align: left;">MEX → PTY</td>
+<td style="text-align: left;">CM 121</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: left;">コパ航空</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">④</td>
+<td style="text-align: left;">10/31</td>
+<td style="text-align: left;">PTY → LIM</td>
+<td style="text-align: left;">CM 489</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: left;">コパ航空</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑤</td>
+<td style="text-align: left;">11/10</td>
+<td style="text-align: left;">GRU → LIS</td>
+<td style="text-align: left;">TP 88</td>
+<td style="text-align: center;">Z</td>
+<td style="text-align: left;">TAPポルトガル</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑥</td>
+<td style="text-align: left;">11/12</td>
+<td style="text-align: left;">LIS → BCN</td>
+<td style="text-align: left;">TP 1030</td>
+<td style="text-align: center;">Z</td>
+<td style="text-align: left;"><strong>ポルトゥガリア（TAP Express）</strong></td>
+<td style="text-align: left;">⚠️ <strong>TAP扱いになるか要確認</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">⑦</td>
+<td style="text-align: left;">11/16</td>
+<td style="text-align: left;">BCN → FCO</td>
+<td style="text-align: left;">AZ 79</td>
+<td style="text-align: center;">Z</td>
+<td style="text-align: left;"><strong>ITAエアウェイズ</strong></td>
+<td style="text-align: left;">✅ <strong>下記参照</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">⑧</td>
+<td style="text-align: left;">11/19</td>
+<td style="text-align: left;">FCO → ATH</td>
+<td style="text-align: left;">A3 651</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: left;">エーゲ航空</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑨</td>
+<td style="text-align: left;">11/21</td>
+<td style="text-align: left;">ATH → IST</td>
+<td style="text-align: left;">TK 1840</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: left;">ターキッシュ</td>
+<td style="text-align: left;">✅ 🔴 <strong>Miles&amp;Smilesに入れず ANA へ</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">⑩</td>
+<td style="text-align: left;">11/25</td>
+<td style="text-align: left;">IST → CAI</td>
+<td style="text-align: left;">MS 738</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: left;">エジプト航空</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑪</td>
+<td style="text-align: left;">11/27</td>
+<td style="text-align: left;">CAI → NBO</td>
+<td style="text-align: left;">MS 849</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: left;">エジプト航空</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑫</td>
+<td style="text-align: left;">12/01</td>
+<td style="text-align: left;">NBO → ADD</td>
+<td style="text-align: left;">ET 319</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: left;">エチオピア航空</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑬</td>
+<td style="text-align: left;">12/01</td>
+<td style="text-align: left;">ADD → BKK</td>
+<td style="text-align: left;">ET 608</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: left;">エチオピア航空</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑭</td>
+<td style="text-align: left;">2027/3/1</td>
+<td style="text-align: left;">BKK → SIN</td>
+<td style="text-align: left;">SQ 705</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: left;">シンガポール航空</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑮</td>
+<td style="text-align: left;">2027/3/3</td>
+<td style="text-align: left;">SIN → HND</td>
+<td style="text-align: left;">NH 842</td>
+<td style="text-align: center;"><strong>Z</strong></td>
+<td style="text-align: left;">ANA</td>
+<td style="text-align: left;">✅ 自社</td>
+</tr>
+</tbody>
+</table>
+<h3 id="az79ita-airways">✅ AZ79（ITA Airways）は問題ない</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">ITA の SkyTeam 離脱</td>
+<td style="text-align: left;">2025年2月3日（完全離脱は2025年4月末）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ITA の スターアライアンス加盟</strong></td>
+<td style="text-align: left;">✅ <strong>2026年4月1日</strong>（26番目のメンバー）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ANAマイレージクラブの積算対象</strong></td>
+<td style="text-align: left;">✅ <strong>2026年4月1日以降の出発分</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AZ79 の搭乗日</strong></td>
+<td style="text-align: left;"><strong>2026年11月16日</strong> → ✅ <strong>対象内</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">🔴 積算額の見込み（要確認）</h3>
+<p><strong>総飛行マイル 31,308／15区間のうち14区間がビジネス（Z・D）。</strong><br />
+積算率は運航会社と予約クラスごとに違うが、<strong>ビジネスは通常100〜150%</strong>。<br />
+仮に100%なら <strong>3万マイル超</strong>になる。</p>
+<p>🔴 <strong>これは「BKK⇄東京の往復特典航空券」（往復3万マイル前後）に届く規模。</strong><br />
+→ <strong>RTW の積算だけで、C1 のポジショニング便と2027年3月の帰路をまかなえる可能性がある</strong>（§3）。</p>
+<p>⚠️ <strong>ただしスターアライアンス世界一周運賃は積算が制限される場合がある。ANA への照会が必須</strong>（§4 タスク2）。</p>
+<hr />
+<h2 id="2-rtwc1c6">2. RTW外（C1〜C6）の積算先</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">区間</th>
+<th style="text-align: left;">運航</th>
+<th style="text-align: left;">アライアンス</th>
+<th style="text-align: left;">積算先</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>C1</strong></td>
+<td style="text-align: left;">BKK → 東京（10/26）</td>
+<td style="text-align: left;"><strong>TG660 を予定</strong></td>
+<td style="text-align: left;">✅ スターアライアンス</td>
+<td style="text-align: left;">✅ <strong>ANA</strong><br>※JL便を選ぶ場合は <strong>JAL のみ</strong>（oneworld）</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>C3</strong></td>
+<td style="text-align: left;">CUZ→LIM→GRU→IGU</td>
+<td style="text-align: left;"><strong>LATAM</strong></td>
+<td style="text-align: left;">🔴 <strong>アライアンス外</strong></td>
+<td style="text-align: left;">❌ <strong>どこにも積めない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>C4</strong></td>
+<td style="text-align: left;">IGU → GRU</td>
+<td style="text-align: left;">LATAM／GOL</td>
+<td style="text-align: left;">🔴 <strong>アライアンス外</strong></td>
+<td style="text-align: left;">❌ <strong>どこにも積めない</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>C5</strong></td>
+<td style="text-align: left;">IST → NAV（11/21・購入済）</td>
+<td style="text-align: left;">TK（国内線）</td>
+<td style="text-align: left;">✅ スターアライアンス</td>
+<td style="text-align: left;">✅ <strong>ANA を登録済み</strong>（PNR SUMX3C）。積算されるか実績で分かる</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>C6</strong></td>
+<td style="text-align: left;">NAV → IST（11/23・購入済）</td>
+<td style="text-align: left;">TK（国内線）</td>
+<td style="text-align: left;">✅ スターアライアンス</td>
+<td style="text-align: left;">✅ <strong>ANA を登録済み</strong>（PNR VKCWJC）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="latam-2020-oneworld">🔴 LATAM は2020年に oneworld を脱退している</h3>
+<p><strong>現在どのアライアンスにも属していない。</strong><br />
+→ <strong>JAL・ANA いずれのマイルも積算できず、特典航空券にも使えない。</strong><br />
+C3（$263.68）・C4 は<strong>マイル的には完全に無価値</strong>と割り切る。</p>
+<h3 id="21-c5-ana-milessmiles">2.1 ✅ C5 は ANA を登録した（Miles&amp;Smiles には入れない）</h3>
+<p><strong>C5（PNR <code>SUMX3C</code>）の予約画面で、マイレージプログラムに「All Nippon Airways - ANA Mileage Club／3259644836」を登録済み。</strong></p>
+<p><strong>TK が案内していた Miles&amp;Smiles 側の数字（参考）:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Miles&amp;Smiles 入会ボーナス</td>
+<td style="text-align: left;">1,000マイル（初回フライト時）</td>
+</tr>
+<tr>
+<td style="text-align: left;">PrimeFly（C5）</td>
+<td style="text-align: left;"><strong>600マイル ＋ 250ボーナス ＋ ステータス600</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>仮に Miles&amp;Smiles に寄せた場合の合計</strong></td>
+<td style="text-align: left;">約2,000マイル前後</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>しかしこれは Miles&amp;Smiles での数字で、ANA には移せない。</strong><br />
+<strong>Miles&amp;Smiles の特典航空券はトルコ国内線片道でも数千〜1万マイル規模</strong>なので、<br />
+<strong>2,000マイル前後では何とも交換できない＝死蔵マイルになる。</strong></p>
+<p><strong>したがって ANA を選んだのが正しい。</strong></p>
+<p>⚠️ <strong>ただしトルコ国内線の割引運賃は提携プログラムへの積算率が0%または極小のことが多い。</strong><br />
+<strong>ANA に実際に積算されるかは搭乗後に確認する</strong>（§4 タスク6）。<br />
+0%だったとしても、Miles&amp;Smiles に入れていても使えなかったので<strong>損はしていない。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Miles&amp;Smiles 加入</strong></td>
+<td style="text-align: left;"><strong>不要。</strong>入会ボーナス1,000マイルは魅力的に見えるが、<strong>使えないマイル</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>C5 の積算先</strong></td>
+<td style="text-align: left;"><strong>ANA を登録済み</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>C6 も登録済み</strong></td>
+<td style="text-align: left;">発券直後は「なし」だったが、<strong>予約管理画面から ANA（3259644836）を登録済み</strong>（PNR <code>VKCWJC</code>）<br>⚠️ <strong>TK の発券直後はマイレージ欄が空になることがある。</strong>今後の他社予約でも発券後に確認すること</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>ただし ⑨ TK1840（ATH→IST・ビジネス D・RTW区間）は別。</strong><br />
+<strong>これは Miles&amp;Smiles に入れず、必ず ANA へ。</strong>分散させると RTW の積算が崩れる。</p>
+<hr />
+<h2 id="3-c1bkk">3. 保有マイルの使い道 — <strong>C1（BKK→東京）が唯一の出口</strong></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">区間</th>
+<th style="text-align: left;">マイル利用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>C1</strong></td>
+<td style="text-align: left;">BKK → 東京（10/26）</td>
+<td style="text-align: left;">✅ <strong>使える。最も価値が高い</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">C2〜C4</td>
+<td style="text-align: left;">LATAM</td>
+<td style="text-align: left;">❌ <strong>不可</strong>（アライアンス外）</td>
+</tr>
+<tr>
+<td style="text-align: left;">C5・C6</td>
+<td style="text-align: left;">TK国内線</td>
+<td style="text-align: left;">⚠️ 理屈上は可だが、単独の国内区間は ANA の提携特典では発券できないのが通常。<strong>しかも1区間 $77〜105 で使う価値が低い</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="c1">C1 の攻め方</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">JAL</th>
+<th style="text-align: left;">ANA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>片道発券</strong></td>
+<td style="text-align: left;">✅ <strong>可能</strong>（往復の半分のマイル）</td>
+<td style="text-align: left;">❌ <strong>往復必須</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">使える便</td>
+<td style="text-align: left;">JL32・JL34（HND）／JL708（NRT）</td>
+<td style="text-align: left;">NH806・NH848・NH850・NH878<br>＋ <strong>TG660 も可</strong>（タイ航空＝スターアライアンス）</td>
+</tr>
+<tr>
+<td style="text-align: left;">向いた使い方</td>
+<td style="text-align: left;"><strong>C1 だけ先に押さえる</strong></td>
+<td style="text-align: left;"><strong>C1 ＋ 2027年3月の帰路をまとめて往復で</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>現金なら TG660 が $343（¥53,165）</strong>、JAL/ANA の自社便は $589〜800。<br />
+<strong>エコノミー片道の特典が仮に17,500マイル前後なら、TG660 比で1マイル≒3円。</strong>良い部類の使い方。</p>
+<p>⚠️ <strong>必要マイル数はチャート改定が入るので、予約時に公式で確認。</strong></p>
+<blockquote>
+<h3 id="202733">⚠️ 2027/3/3 以降の帰路が未計上（ユーザー判断で資料化は見送り）</h3>
+<p>RTW は 2027/3/3 羽田着で終了し、<strong>その後の東京→バンコクは別手配</strong>になる。<br />
+<strong>C1 とこの帰路がちょうど往復になる</strong>ので、ANA の往復必須という制約に噛み合う。<br />
+※本人が「よく利用する路線なので情報追加は不要」と判断済み。<strong>コスト管理表にも計上していない。</strong></p>
+</blockquote>
+<hr />
+<h2 id="4-todo-a11-a11-2026910">4. タスク（TODO A11 の分解・A11 自体は 2026/9/10 に完了扱い）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">期限</th>
+<th style="text-align: center;">優先</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✅ <strong>1</strong></td>
+<td style="text-align: left;">~~RTW の予約（PNR <code>EANRV5</code>）に ANAマイレージクラブ番号が登録されているか確認~~ → ✅ <strong>2026/9/10 確認済み</strong><br><strong>ANAアプリにログインした状態で全予約が表示される</strong>＝会員番号は紐づいている</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 <strong>2</strong></td>
+<td style="text-align: left;">🔴 <strong>ANA に「このスターアライアンス世界一周運賃の積算率」を照会</strong><br>RTW運賃は積算が制限される場合がある。<strong>制限の有無で3万マイルが動く</strong></td>
+<td style="text-align: left;">🔴 <strong>9月中</strong></td>
+<td style="text-align: center;">🔴</td>
+</tr>
+<tr>
+<td style="text-align: left;">🧳 <strong>3</strong></td>
+<td style="text-align: left;"><strong>搭乗券の控えを全区間で保管</strong>（他社運航便の事後登録に必要・ANAは搭乗後6か月以内）<br>⚠️ <strong>旅行中の作業なので ToDo としては管理しない。</strong>本項を運用メモとして残す</td>
+<td style="text-align: left;">旅行中</td>
+<td style="text-align: center;">🧳</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>4</strong></td>
+<td style="text-align: left;">各区間のオンラインチェックイン時（<strong>A15</strong>）に会員番号が入っているか確認</td>
+<td style="text-align: left;">10/20〜</td>
+<td style="text-align: center;">🟡</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5</strong></td>
+<td style="text-align: left;">⑥ TP1030（<strong>ポルトゥガリア／TAP Express</strong> 運航）が ANA 積算対象か確認</td>
+<td style="text-align: left;">10月中旬</td>
+<td style="text-align: center;">⬜</td>
+</tr>
+<tr>
+<td style="text-align: left;">✅ <strong>6a</strong></td>
+<td style="text-align: left;">~~C6 にマイレージプログラムを登録~~ → ✅ <strong>ANA（3259644836）を登録済み</strong><br>⚠️ <strong>教訓：TK は発券直後にマイレージ欄が「なし」になることがある。</strong>発券後に必ず確認する</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>6b</strong></td>
+<td style="text-align: left;">✅ C5 は登録済み。<strong>搭乗後に ANA へ実際に積算されたか確認</strong><br>⚠️ TK の案内は PrimeFly で <strong>600マイル＋250ボーナス＋ステータス600</strong>（Miles&amp;Smiles での数字）。<strong>ANA だと別の率</strong></td>
+<td style="text-align: left;">12月</td>
+<td style="text-align: center;">⬜</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>7</strong></td>
+<td style="text-align: left;"><strong>C1 の特典枠を確認</strong>（JAL 片道 or ANA 往復）。10/26 は7週間後で枠は早い者勝ち</td>
+<td style="text-align: left;">🔴 <strong>9月中</strong></td>
+<td style="text-align: center;">🔴</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5">5. 関連ファイル</h2>
+<ul>
+<li><a href="東回り_発券用資料.md"><code>東回り_発券用資料.md</code></a> — RTW 全15区間の便名・予約クラス・運航会社</li>
+<li><a href="手配_RTW外フライト.md"><code>手配_RTW外フライト.md</code></a> — C1〜C6</li>
+<li><a href="TODO.md"><code>TODO.md</code></a> — A11（本書で分解）／A15（オンラインチェックイン）／I6（控えの保管）</li>
+<li><a href="手配_ラウンジ.md"><code>手配_ラウンジ.md</code></a> — 同じ「アライアンス」の話がラウンジ側にも効く</li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

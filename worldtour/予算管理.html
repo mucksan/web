@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>予算管理 — 全体の金額サマリー - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🦁 マサイマラ・フライインサファリ</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="観戦チケット_販売方法と時期.html">🎫 観戦チケット 販売方法と時期</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../予算管理.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="_1">予算管理 — 全体の金額サマリー</h1>
+<blockquote>
+<p>🔴 <strong>本書は生成物。直接編集しないこと。</strong><br />
+金額の正本は <a href="html/cost_management.html"><code>html/cost_management.html</code></a> で、<br />
+<code>python tools/create_cost_management.py</code> を実行すると本書が上書き再生成される。<br />
+<strong>金額を直す場合は HTML 側の <code>data-est</code> / <code>data-actual</code> / <code>data-card</code> を直す。</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">生成日</th>
+<th style="text-align: left;">2026-09-13</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">明細件数</td>
+<td style="text-align: left;">57 行</td>
+</tr>
+<tr>
+<td style="text-align: left;">宿泊</td>
+<td style="text-align: left;">40 夜（うち機中泊3・実家2泊は費用0）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1">1. 全体</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: right;">金額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>予想総額</strong></td>
+<td style="text-align: right;"><strong>¥3,332,969</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>確定実績（支払済）</strong></td>
+<td style="text-align: right;"><strong>¥1,637,449</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">未確定残高</td>
+<td style="text-align: right;">¥1,695,520</td>
+</tr>
+<tr>
+<td style="text-align: left;">確定率</td>
+<td style="text-align: right;">49.1%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2">2. カテゴリ別</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">カテゴリ</th>
+<th style="text-align: right;">予想</th>
+<th style="text-align: right;">実績</th>
+<th style="text-align: right;">残</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">✈️ 航空券</td>
+<td style="text-align: right;">¥1,439,846</td>
+<td style="text-align: right;">¥1,377,841</td>
+<td style="text-align: right;">¥62,005</td>
+</tr>
+<tr>
+<td style="text-align: left;">🏨 宿泊費</td>
+<td style="text-align: right;">¥624,711</td>
+<td style="text-align: right;">¥186,353</td>
+<td style="text-align: right;">¥438,358</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎟️ アクティビティ</td>
+<td style="text-align: right;">¥550,457</td>
+<td style="text-align: right;">¥58,090</td>
+<td style="text-align: right;">¥492,367</td>
+</tr>
+<tr>
+<td style="text-align: left;">🛡️ 諸経費・予備費</td>
+<td style="text-align: right;">¥717,955</td>
+<td style="text-align: right;">¥15,165</td>
+<td style="text-align: right;">¥702,790</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>合計</strong></td>
+<td style="text-align: right;"><strong>¥3,332,969</strong></td>
+<td style="text-align: right;"><strong>¥1,637,449</strong></td>
+<td style="text-align: right;"><strong>¥1,695,520</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 🔴 決済カード別</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">カード</th>
+<th style="text-align: right;">決済額</th>
+<th style="text-align: right;">件数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>ANAカードゴールド（VISA・自動付帯＋RTW決済）</strong></td>
+<td style="text-align: right;"><strong>¥1,343,711</strong></td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Olive プラチナプリファード（Visa・三井住友）</strong></td>
+<td style="text-align: right;"><strong>¥278,573</strong></td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr>
+<td style="text-align: left;">&nbsp;&nbsp;└ <strong><em>*8617</em>* Olive プラチナプリファード ＝ </strong>クレジット**番号</td>
+<td style="text-align: right;">¥262,832</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td style="text-align: left;">&nbsp;&nbsp;└ <strong><em>*385</em>* Olive プラチナプリファード ＝ </strong>デビット**番号</td>
+<td style="text-align: right;">¥15,741</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>現金（タイバーツ・現地払い）</strong></td>
+<td style="text-align: right;"><strong>¥15,165</strong></td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>カードは保険の「利用付帯」条件に直結する</strong>（TODO <strong>I0・I1</strong>）。<br />
+<strong>ANAカードゴールド（9210）は RTW を決済したカード</strong>で、保険の主軸（自動付帯＋利用付帯）。</p>
+<p>🔴 <strong>Olive（8617）で旅行代金の一部を決済していることが判明した。</strong><br />
+| 決済内容 | 額 | 性質 |<br />
+|:---|---:|:---|<br />
+| C2 LIM→CUZ（LATAM 航空券） | ¥20,243 | <strong>公共交通乗用具の運賃</strong> |<br />
+| PeruRail 往復 | ¥24,738 | <strong>公共交通乗用具の運賃</strong> |<br />
+| マチュピチュ入場券 | ¥15,142 | 入場料（交通費ではない） |</p>
+<p><strong>Olive の旅行保険は利用付帯</strong>であり、従来は「航空券を ANA で決済したので不成立の見込み」と<br />
+整理していた（TODO I0 の注記）。<strong>上の2件が利用付帯の要件を満たす可能性が出てきた。</strong><br />
+🔴 <strong>約款で確認する価値が大きく上がった → TODO I1-⑤。</strong><br />
+🔴 <strong>併せて I0（9/20 までに「旅行安心プラン」へ切替）の重要度も上がった。</strong><br />
+切り替えないと、成立し得る補償を取り逃す。</p>
+<p>⚠️ <strong>クレジットとデビットの切り分けに注意。</strong>Olive フレキシブルペイは1枚で<br />
+モードを切り替えられ、<strong>番号が別</strong>になる（8617＝クレジット／385＝デビット）。<br />
+<strong>カード付帯保険は通常クレジット機能に付くため、デビット決済分が利用付帯の対象になるかは別問題。</strong><br />
+✅ <strong>ただし C2 航空券・PeruRail は 8617＝クレジット番号で決済しており、<br />
+利用付帯の可能性は保たれている。</strong>デビット扱いは C6（¥15,741）のみ。</p>
+</blockquote>
+<h2 id="4">4. 支払い済みの明細</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">現地通貨</th>
+<th style="text-align: right;">円</th>
+<th style="text-align: left;">カード</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">10/28〜3/3</td>
+<td style="text-align: left;">スターアライアンス世界一周航空券 (全16区間)</td>
+<td style="text-align: left;">¥1,211,160 JPY</td>
+<td style="text-align: right;">¥1,211,160</td>
+<td style="text-align: left;">****9210</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/08</td>
+<td style="text-align: left;">イグアス → サンパウロ (C4)</td>
+<td style="text-align: left;">$477.67 USD</td>
+<td style="text-align: right;">¥74,039</td>
+<td style="text-align: left;">****8617</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/05</td>
+<td style="text-align: left;">クスコ → リマ → イグアス</td>
+<td style="text-align: left;">$263.68 USD</td>
+<td style="text-align: right;">¥40,870</td>
+<td style="text-align: left;">****9210</td>
+</tr>
+<tr>
+<td style="text-align: left;">10/29-30</td>
+<td style="text-align: left;">City Express Plus by Marriott Periférico Sur Tlalpan（2泊）</td>
+<td style="text-align: left;">¥35,918 JPY</td>
+<td style="text-align: right;">¥35,918</td>
+<td style="text-align: left;">****8617</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/30-12/1</td>
+<td style="text-align: left;">Emara Ole-Sereni-Nairobi（パークビュー確約）</td>
+<td style="text-align: left;">¥33,657 JPY</td>
+<td style="text-align: right;">¥33,657</td>
+<td style="text-align: left;">****9210</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/27-28</td>
+<td style="text-align: left;">Four Points by Sheraton Nairobi Airport（早朝仮眠 04:30〜08:00）</td>
+<td style="text-align: left;">$204.00 USD</td>
+<td style="text-align: right;">¥31,620</td>
+<td style="text-align: left;">****9210</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/01-02</td>
+<td style="text-align: left;">タイピカラ ブティック マチュピチュ（2泊）</td>
+<td style="text-align: left;">¥29,367 JPY</td>
+<td style="text-align: right;">¥29,367</td>
+<td style="text-align: left;">****8617</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/01・11/03</td>
+<td style="text-align: left;">PeruRail 往復 (オリャンタイタンボ ⇄ マチュピチュ村)</td>
+<td style="text-align: left;">$159.60 USD</td>
+<td style="text-align: right;">¥24,738</td>
+<td style="text-align: left;">****8617</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/15</td>
+<td style="text-align: left;">マドリード HOTEL PAX ATOCHA 1泊</td>
+<td style="text-align: left;">€136.00 EUR</td>
+<td style="text-align: right;">¥22,304</td>
+<td style="text-align: left;">****9210</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/01</td>
+<td style="text-align: left;">リマ → クスコ (片道)</td>
+<td style="text-align: left;">$130.60 USD</td>
+<td style="text-align: right;">¥20,243</td>
+<td style="text-align: left;">****8617</td>
+</tr>
+<tr>
+<td style="text-align: left;">10/31</td>
+<td style="text-align: left;">Wyndham Costa del Sol Lima Airport（1泊）</td>
+<td style="text-align: left;">¥20,189 JPY</td>
+<td style="text-align: right;">¥20,189</td>
+<td style="text-align: left;">****8617</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/21</td>
+<td style="text-align: left;">イスタンブール → ネヴシェヒル (C5)</td>
+<td style="text-align: left;">TRY 4,964.63</td>
+<td style="text-align: right;">¥15,788</td>
+<td style="text-align: left;">****8617</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/23</td>
+<td style="text-align: left;">ネヴシェヒル → イスタンブール (C6)</td>
+<td style="text-align: left;">TRY 4,950.00</td>
+<td style="text-align: right;">¥15,741</td>
+<td style="text-align: left;">****385</td>
+</tr>
+<tr>
+<td style="text-align: left;">9/12</td>
+<td style="text-align: left;">予防接種① 黄熱＋狂犬病①＋肝炎抗体検査</td>
+<td style="text-align: left;">฿3,370 THB</td>
+<td style="text-align: right;">¥15,165</td>
+<td style="text-align: left;">****THB</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/02</td>
+<td style="text-align: left;">マチュピチュ入場券 2枚 (3-A ワイナピチュ ＋ 1-B 上段テラス)</td>
+<td style="text-align: left;">S/369.32 PEN</td>
+<td style="text-align: right;">¥15,142</td>
+<td style="text-align: left;">****8617</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/18 07:30</td>
+<td style="text-align: left;">トスカーナ日帰りワイナリーツアー（City Wonders / 送迎・試飲ランチ付）</td>
+<td style="text-align: left;">¥14,110 JPY</td>
+<td style="text-align: right;">¥14,110</td>
+<td style="text-align: left;">****8617</td>
+</tr>
+<tr>
+<td style="text-align: left;">10/28</td>
+<td style="text-align: left;">Grant Plaza Hotel（1泊）</td>
+<td style="text-align: left;">¥13,298 JPY</td>
+<td style="text-align: right;">¥13,298</td>
+<td style="text-align: left;">****8617</td>
+</tr>
+<tr>
+<td style="text-align: left;">11/17 08:00</td>
+<td style="text-align: left;">ヴァチカン博物館 ＆ システィーナ礼拝堂（08:00入場枠）</td>
+<td style="text-align: left;">€25.00 EUR</td>
+<td style="text-align: right;">¥4,100</td>
+<td style="text-align: left;">****9210</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;"><strong>¥1,637,449</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 未払いの明細（金額順）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">カテゴリ</th>
+<th style="text-align: left;">日付</th>
+<th style="text-align: left;">項目</th>
+<th style="text-align: right;">見積</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🛡️ 諸経費・予備費</td>
+<td style="text-align: left;">10/26〜12/02</td>
+<td style="text-align: left;">現地飲食費・市内交通・チップ (実質33日分)</td>
+<td style="text-align: right;">¥400,000</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎟️ アクティビティ</td>
+<td style="text-align: left;">11/28-30</td>
+<td style="text-align: left;">マサイマラ 2泊3日 フライインサファリパッケージ（F3・Trav-Interactive t62446）</td>
+<td style="text-align: right;">¥250,170</td>
+</tr>
+<tr>
+<td style="text-align: left;">🛡️ 諸経費・予備費</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">予備費 (為替変動バッファ・不測の緊急出費枠)</td>
+<td style="text-align: right;">¥200,000</td>
+</tr>
+<tr>
+<td style="text-align: left;">🏨 宿泊費</td>
+<td style="text-align: left;">11/12-14</td>
+<td style="text-align: left;">バルセロナ市内ホテル 3泊</td>
+<td style="text-align: right;">¥63,960</td>
+</tr>
+<tr>
+<td style="text-align: left;">🏨 宿泊費</td>
+<td style="text-align: left;">11/16-18</td>
+<td style="text-align: left;">ローマ市内ホテル 3泊</td>
+<td style="text-align: right;">¥54,120</td>
+</tr>
+<tr>
+<td style="text-align: left;">✈️ 航空券</td>
+<td style="text-align: left;">10/26</td>
+<td style="text-align: left;">バンコク → 東京 (ポジショニング・エコノミー)</td>
+<td style="text-align: right;">¥53,165</td>
+</tr>
+<tr>
+<td style="text-align: left;">🏨 宿泊費</td>
+<td style="text-align: left;">2027/03/01-02</td>
+<td style="text-align: left;">シンガポール市内ホテル 2泊</td>
+<td style="text-align: right;">¥46,500</td>
+</tr>
+<tr>
+<td style="text-align: left;">🛡️ 諸経費・予備費</td>
+<td style="text-align: left;">10/26〜12/02</td>
+<td style="text-align: left;">海外旅行保険 (治療・救援・医療搬送の上乗せ分)</td>
+<td style="text-align: right;">¥45,000</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎟️ アクティビティ</td>
+<td style="text-align: left;">11/22 04:00</td>
+<td style="text-align: left;">カッパドキア 早朝 熱気球フライト</td>
+<td style="text-align: right;">¥42,640</td>
+</tr>
+<tr>
+<td style="text-align: left;">🏨 宿泊費</td>
+<td style="text-align: left;">11/05-07</td>
+<td style="text-align: left;">イグアス地区ホテル 3泊</td>
+<td style="text-align: right;">¥39,525</td>
+</tr>
+<tr>
+<td style="text-align: left;">🏨 宿泊費</td>
+<td style="text-align: left;">11/21-22</td>
+<td style="text-align: left;">カッパドキア洞窟ホテル 2泊</td>
+<td style="text-align: right;">¥39,360</td>
+</tr>
+<tr>
+<td style="text-align: left;">🏨 宿泊費</td>
+<td style="text-align: left;">11/23-24</td>
+<td style="text-align: left;">イスタンブール市内ホテル 2泊</td>
+<td style="text-align: right;">¥36,080</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎟️ アクティビティ</td>
+<td style="text-align: left;">11/15 20:45</td>
+<td style="text-align: left;">スペイン vs イングランド (UEFAネーションズリーグ 最終節)</td>
+<td style="text-align: right;">¥32,800</td>
+</tr>
+<tr>
+<td style="text-align: left;">🏨 宿泊費</td>
+<td style="text-align: left;">11/03-04</td>
+<td style="text-align: left;">クスコ市内ホテル 2泊</td>
+<td style="text-align: right;">¥31,000</td>
+</tr>
+<tr>
+<td style="text-align: left;">🏨 宿泊費</td>
+<td style="text-align: left;">11/19-20</td>
+<td style="text-align: left;">アテネ市内ホテル 2泊</td>
+<td style="text-align: right;">¥29,520</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎟️ アクティビティ</td>
+<td style="text-align: left;">11/24 18:45</td>
+<td style="text-align: left;">ガラタサライ vs アストン・ヴィラ (UCLリーグフェーズ 第5節)</td>
+<td style="text-align: right;">¥29,520</td>
+</tr>
+<tr>
+<td style="text-align: left;">🏨 宿泊費</td>
+<td style="text-align: left;">11/25-26</td>
+<td style="text-align: left;">カイロ・ギザ地区ホテル 2泊 (ピラミッドビュー)</td>
+<td style="text-align: right;">¥29,450</td>
+</tr>
+<tr>
+<td style="text-align: left;">🏨 宿泊費</td>
+<td style="text-align: left;">11/08-09</td>
+<td style="text-align: left;">サンパウロ市内ホテル 2泊</td>
+<td style="text-align: right;">¥27,900</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎟️ アクティビティ</td>
+<td style="text-align: left;">11/06-07</td>
+<td style="text-align: left;">マクコ・サファリ (滝壺ボート) ＋ ヘリ遊覧 (Helisul)</td>
+<td style="text-align: right;">¥27,900</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎟️ アクティビティ</td>
+<td style="text-align: left;">11/14・11/16</td>
+<td style="text-align: left;">高速鉄道 AVE (バルセロナ ⇄ マドリード 往復)</td>
+<td style="text-align: right;">¥21,320</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎟️ アクティビティ</td>
+<td style="text-align: left;">11/01・11/03</td>
+<td style="text-align: left;">クスコ空港 ⇄ オリャンタイタンボ 専用送迎 (往復)</td>
+<td style="text-align: right;">¥20,150</td>
+</tr>
+<tr>
+<td style="text-align: left;">🛡️ 諸経費・予備費</td>
+<td style="text-align: left;">9〜10月</td>
+<td style="text-align: left;">渡航認証・ビザ手数料 (ESTA / ケニアeTA / エジプトe-Visa 等)</td>
+<td style="text-align: right;">¥18,600</td>
+</tr>
+<tr>
+<td style="text-align: left;">🏨 宿泊費</td>
+<td style="text-align: left;">11/11</td>
+<td style="text-align: left;">リスボン市内ホテル 1泊</td>
+<td style="text-align: right;">¥18,040</td>
+</tr>
+<tr>
+<td style="text-align: left;">🛡️ 諸経費・予備費</td>
+<td style="text-align: left;">10/22</td>
+<td style="text-align: left;">予防接種④ 狂犬病③＋マラリア予防薬＋Twinrix②（最終回）</td>
+<td style="text-align: right;">¥15,390</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎟️ アクティビティ</td>
+<td style="text-align: left;">12/01 06:00</td>
+<td style="text-align: left;">ナイロビ国立公園 早朝サファリ（入園料・ゲームドライブ）</td>
+<td style="text-align: right;">¥13,950</td>
+</tr>
+<tr>
+<td style="text-align: left;">🛡️ 諸経費・予備費</td>
+<td style="text-align: left;">9/24</td>
+<td style="text-align: left;">予防接種② 狂犬病②＋腸チフス＋Tdap＋Twinrix①</td>
+<td style="text-align: right;">¥13,725</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎟️ アクティビティ</td>
+<td style="text-align: left;">11/06-07</td>
+<td style="text-align: left;">イグアス国立公園 入園料 (ブラジル側＋アルゼンチン側)</td>
+<td style="text-align: right;">¥12,000</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎟️ アクティビティ</td>
+<td style="text-align: left;">11/26-27</td>
+<td style="text-align: left;">ギザ三大ピラミッド ＋ クフ王内部 ＋ 大エジプト博物館 (GEM)</td>
+<td style="text-align: right;">¥11,625</td>
+</tr>
+<tr>
+<td style="text-align: left;">🛡️ 諸経費・予備費</td>
+<td style="text-align: left;">全期間</td>
+<td style="text-align: left;">通信費 (世界周遊 eSIM 20GB)</td>
+<td style="text-align: right;">¥10,075</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎟️ アクティビティ</td>
+<td style="text-align: left;">10/30</td>
+<td style="text-align: left;">テオティワカン遺跡＋死者の日ソカロ（メガ・オフレンダ＆メイク等）</td>
+<td style="text-align: right;">¥9,300</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎟️ アクティビティ</td>
+<td style="text-align: left;">11/13</td>
+<td style="text-align: left;">サグラダ・ファミリア (塔入場付) ＆ グエル公園</td>
+<td style="text-align: right;">¥8,200</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎟️ アクティビティ</td>
+<td style="text-align: left;">11/20</td>
+<td style="text-align: left;">アクロポリス共通入場券 ＆ アクロポリス博物館</td>
+<td style="text-align: right;">¥6,560</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎟️ アクティビティ</td>
+<td style="text-align: left;">11/11</td>
+<td style="text-align: left;">ベレン地区 (ベレンの塔・ジェロニモス修道院)</td>
+<td style="text-align: right;">¥3,280</td>
+</tr>
+<tr>
+<td style="text-align: left;">🎟️ アクティビティ</td>
+<td style="text-align: left;">11/17 13:30</td>
+<td style="text-align: left;">コロッセオ・フォロロマーノ・パラティーノの丘（午後枠）</td>
+<td style="text-align: right;">¥2,952</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>合計</strong></td>
+<td style="text-align: right;"><strong>¥1,695,520</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6">6. 関連ファイル</h2>
+<ul>
+<li><a href="html/cost_management.html"><code>html/cost_management.html</code></a> — <strong>金額の正本</strong></li>
+<li><a href="TODO.md"><code>TODO.md</code></a> — 手配タスク（A〜M群）</li>
+<li><a href="手配_宿泊.md"><code>手配_宿泊.md</code></a> ／ <a href="手配_RTW外フライト.md"><code>手配_RTW外フライト.md</code></a> ／ <a href="手配_鉄道.md"><code>手配_鉄道.md</code></a> — 各費目の根拠</li>
+<li><a href="手配_マイル.md"><code>手配_マイル.md</code></a> — マイルで置き換えられる費目</li>
+</ul>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

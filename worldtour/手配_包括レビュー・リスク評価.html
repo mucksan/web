@@ -1,0 +1,1928 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界一周旅行（東回りRTW 2026-27）包括レビュー・リスク評価報告書 - 世界一周旅行 手配詳細</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --table-header: #1e293b;
+    --table-stripe: rgba(30, 41, 59, 0.5);
+    --code-bg: #1e293b;
+    --alert-bg: rgba(239, 68, 68, 0.12);
+    --alert-border: #ef4444;
+  }
+
+  body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0284c7;
+    --accent-hover: #0369a1;
+    --table-header: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --code-bg: #f1f5f9;
+    --alert-bg: rgba(239, 68, 68, 0.08);
+    --alert-border: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding-bottom: 80px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  body.light-mode .top-nav {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    border: none;
+  }
+
+  .nav-btn.primary:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Document Container */
+  .doc-container {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .doc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    scroll-margin-top: 80px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    scroll-margin-top: 80px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 13.5px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+  }
+
+  th {
+    background: var(--table-header);
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--table-stripe);
+  }
+
+  /* Blockquotes / Alerts */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Red alert callout */
+  blockquote:has(strong:contains("🔴")),
+  blockquote:has(p:contains("🔴")) {
+    border-left-color: #ef4444;
+    background: var(--alert-bg);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Target Anchor Highlight */
+  :target {
+    animation: target-fade 3s ease-out;
+  }
+
+  @keyframes target-fade {
+    0% { background-color: rgba(56, 189, 248, 0.25); border-radius: 6px; }
+    100% { background-color: transparent; }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 32px 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    border: 1px solid var(--border-color);
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="東回り_タイムチャート.html" class="nav-btn primary">
+        <span>⏱️ 24時間タイムチャートへ戻る</span>
+      </a>
+      <a href="東回り_旅のガイド_スライド.html" class="nav-btn">
+        <span>📑 旅のガイドスライド</span>
+      </a>
+      <select class="nav-btn" onchange="if(this.value) location.href=this.value;" style="cursor: pointer; outline: none;">
+        <option value="">📂 他の手配資料を開く...</option>
+        <option value="手配_サファリ.html">🦁 マサイマラ・フライインサファリ</option>
+        <option value="手配_マチュピチュ.html">⛰️ マチュピチュ・クスコ</option>
+        <option value="手配_マチュピチュ_ルート比較.html">🗺️ マチュピチュ ルート比較</option>
+        <option value="手配_イグアス.html">🌊 イグアスの滝</option>
+        <option value="手配_ワイナリー.html">🍷 トスカーナワイナリー</option>
+        <option value="手配_気球ツアー.html">🎈 カッパドキア熱気球</option>
+        <option value="東回り_サッカー観戦候補.html">⚽ サッカー観戦候補</option>
+        <option value="観戦チケット_販売方法と時期.html">🎫 観戦チケット 販売方法と時期</option>
+        <option value="東回り_発券用資料.html">✈️ 発券用資料（全区間）</option>
+        <option value="東回り_空席ウォッチ運用.html">🔭 空席ウォッチ運用（監視ツール）</option>
+        <option value="東回り_要件定義書.html">📋 東回り 要件定義書</option>
+      </select>
+    </div>
+    <div class="nav-right">
+      <a href="../手配_包括レビュー・リスク評価.md" class="nav-btn" target="_blank">
+        <span>📝 Markdown正本を開く</span>
+      </a>
+      <button class="nav-btn" onclick="document.body.classList.toggle('light-mode')">
+        <span>🌓 テーマ切替</span>
+      </button>
+      <button class="nav-btn" onclick="window.print()">
+        <span>🖨️ 印刷</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Content -->
+  <main class="doc-container">
+    <article class="doc-card">
+      <h1 id="rtw-2026-27">世界一周旅行（東回りRTW 2026-27）包括レビュー・リスク評価報告書</h1>
+<h2 id="_1">全旅程フライト・タイムライン整合性、未確定手配、手荷物設計、防疫・保険・コンティンジェンシー包括監査</h2>
+<ul>
+<li><strong>作成日:</strong> 2026年9月12日</li>
+<li><strong>正本ステータス:</strong> 確定正本（Authoritative Master Review）</li>
+<li><strong>対象旅程:</strong> 2026年10月28日日本出発 〜 12月2日帰着（および2027年3月シンガポール・羽田帰着）</li>
+<li><strong>RTW航空券:</strong> スターアライアンス世界一周航空券（発券済・PNR: <code>EANRV5</code>、航空券番号: <code>205-2443136675〜678</code>）</li>
+<li><strong>総飛行距離:</strong> 31,308マイル（34,000マイル枠内）/ 全16クーポン（飛行15区間＋地上1区間）</li>
+</ul>
+<hr />
+<h2 id="_2">目次</h2>
+<ol>
+<li><a href="#1-エグゼクティブサマリー">エグゼクティブサマリー</a></li>
+<li>1.1 全体評価と現状ステータス</li>
+<li>1.2 手配進捗サマリー</li>
+<li>1.3 最優先緊急アクション（P1）</li>
+<li><a href="#2-r1-全旅程フライトタイムライン整合性およびmct検証">R1: 全旅程フライト・タイムライン整合性およびMCT検証</a></li>
+<li>2.1 1対1 完全フライト照合表（RTW 16クーポン ＋ RTW外 C1〜C6 ＋ 陸路）</li>
+<li>2.2 全乗継地点におけるMCT（最低乗継時間）検証</li>
+<li>2.3 ドキュメント間における齟齬・旧記述残存の洗い出しと正誤確定（全11件）</li>
+<li>2.4 物理的タイムラインリスクと具体的対策（5大リスク地点）</li>
+<li><a href="#3-r2-未確定手配未手配タスクの網羅的一覧">R2: 未確定手配・未手配タスクの網羅的一覧</a></li>
+<li>3.1 宿泊施設マスターリスト（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）</li>
+<li>3.2 現地ツアー・アクティビティ精査</li>
+<li>3.3 サッカー観戦チケット手配戦略（スペイン戦・ガラタサライ戦）</li>
+<li><a href="#4-r3-手荷物制限重量規定の整合性と全体荷物設計">R3: 手荷物制限・重量規定の整合性と全体荷物設計</a></li>
+<li>4.1 航空会社・ブッシュ機・鉄道 手荷物制限マトリクス</li>
+<li>4.2 全体パッキング設計と携行・預入運用ルール</li>
+<li>4.3 機内持込・車内持込手荷物の境界値制約と運用回避策（TG660・PeruRail）</li>
+<li><a href="#5-r4-包括的リスク分析コンティンジェンシー計画保険防疫">R4: 包括的リスク分析・コンティンジェンシー計画・保険・防疫</a></li>
+<li>5.1 リスク分析と代替案（コンティンジェンシー）</li>
+<li>5.2 海外旅行保険の厳密評価と非居住者リスク対策</li>
+<li>5.3 予防接種・衛生スケジュール評価</li>
+<li><a href="#6-r5-優先度別実行マトリクスp1--p2--p3">R5: 優先度別実行マトリクス（P1 / P2 / P3）</a></li>
+<li><a href="#7-todomd-反映同期方針">TODO.md 反映・同期方針</a></li>
+</ol>
+<hr />
+<h2 id="1">1. エグゼクティブサマリー</h2>
+<h3 id="11">1.1 全体評価と現状ステータス</h3>
+<p>本世界一周旅行（東回りRTW 2026-27）は、2026年9月6日にANA東京発券センターにてスターアライアンス世界一周航空券（全16クーポン、PNR: <code>EANRV5</code>、総額 ¥1,211,160）の発券が完了し、主骨格となる国際線ビジネスクラス路線が確定した。<br />
+さらに、RTWの地上区間（リマ ⇢ サンパウロ）およびトルコ国内区間を補完するRTW外フライト（C2〜C6）全5便が2026年9月8日〜9日にかけてLATAM航空およびターキッシュエアラインズにて公式直販で購入完了しており、<strong>長距離・中距離の全航空路線は予約破綻なく完全にロックされている</strong>。</p>
+<p>全旅程の接続時間（MCT）を精査した結果、パナマ（PTY 75分）、リスボン（LIS 19時間）、リマ（LIM 160分）、サンパウロ（GRU 370分）、イスタンブール（IST 310分）、アディスアベバ（ADD 265分）の<strong>全乗継地点において各空港および各航空会社の公式MCT基準を余裕をもってクリア（全地点 PASS）</strong>していることが確認された。</p>
+<p>一方、航空券以外の領域においては、<strong>宿泊施設（全19手配対象中、ナイロビ2件【E16 Four Points・E18 Emara Ole-Sereni】が9/13予約完了、残り17件手配進行中：有料ホテル35泊＋成田前泊・東京実家2泊＝全37宿泊）</strong>、<strong>現地ツアー（マサイマラ空路往復ツアー見積依頼済・トスカーナワイナリー予約済・カッパドキア気球直販）</strong>、<strong>観戦チケット（スペイン代表戦の一般発売9/23、ガラタサライ戦のPasso申請9/18）</strong>、<strong>海外旅行保険（Oliveカード保険の0円失効と非居住者条項によるクレカ付帯保険無効化リスク）</strong>、<strong>防疫（9/12開始のワクチン接種スケジュール）</strong>にクリティカルな期日と課題が集中している。</p>
+<h3 id="12">1.2 手配進捗サマリー</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">分野</th>
+<th style="text-align: left;">確定・完了済事項</th>
+<th style="text-align: left;">未手配・進行中事項</th>
+<th style="text-align: left;">リスク・クリティカルパス</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>フライト</strong></td>
+<td style="text-align: left;">✅ RTW全16クーポン発券済（EANRV5）<br>✅ 南米LATAM全便購入済（C2, C3, C4）<br>✅ トルコ国内線購入済（C5, C6）</td>
+<td style="text-align: left;">🟡 C1 ポジショニング便（10/26 BKK→TYO）<br>💺 コパ航空座席属性登録（A13）<br>💺 MS849 カイロ空港座席指定（A14）</td>
+<td style="text-align: left;">S-1（UA1271エコノミー）のビジネスクラス監視（10/28迄）<br>B-3（LIS→BCN）の後ろ倒し監視（11/11迄）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>宿泊施設</strong></td>
+<td style="text-align: left;">✅ <strong>ナイロビ空港ホテル予約完了（E16 Four Points JKIA 93880712）</strong><br>✅ <strong>ナイロビ パークビューホテル予約完了（E18 Emara Ole-Sereni 1385435893739592）</strong><br>✅ リマ空港直結ホテル方針確定（E3）</td>
+<td style="text-align: left;">🔴 残り17宿泊拠点（マドリードE10最優先、リマE3早期ロック）の予約</td>
+<td style="text-align: left;">代表戦によるマドリード市内高騰・満室化<br>深夜00:20着（イグアス）等のレイトIN確約</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ツアー</strong></td>
+<td style="text-align: left;">✅ マチュピチュ入場券 2枚確保（3-A, 1-B）<br>✅ PeruRail 展望列車往復購入済（WEB3204304）<br>✅ ヴァチカン博物館予約完了（11/17 08:00）<br>✅ <strong>トスカーナワイナリー予約完了（11/18 XTK978855）</strong><br>✅ <strong>マサイマラ2泊3日フライインツアー見積依頼済（9/13 Ref 1168751）</strong></td>
+<td style="text-align: left;">🔴 マサイマラ見積回答確認・30%デポジット決済<br>🔴 サグラダ・ファミリア予約（9/14解禁）<br>🔴 アクロポリス予約（9/21解禁）<br>🔴 コロッセオ予約（10/18 13:45解禁）<br>🔴 カッパドキア気球 直販予約（9月中）</td>
+<td style="text-align: left;">マチュピチュ1-B券の氏名誤記（TAKAMUU）現場対応<br>カッパドキア気球欠航率30〜40%（予備日スライド必須）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>チケット</strong></td>
+<td style="text-align: left;">✅ RFEF Tickets アプリ導入完了<br>✅ 発売日確定（ソシオ9/22、一般9/23）<br>✅ <strong>RFEF公式回答受領（購入国一致必須と確定 ➔ 妻のタイ発行カードで決済確定）</strong></td>
+<td style="text-align: left;">🔴 Passo Taraftar カード申請（9/18迄）<br>🔴 スペイン戦 一般販売購入（9/23 17:00）<br>🔴 ガラタサライ戦 一般販売購入（11/20 13:00）</td>
+<td style="text-align: left;">Passoカード未所持によるUCL購入不可リスク（※スペイン戦の決済リスクは妻のタイカードで完全クリア済）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>手荷物</strong></td>
+<td style="text-align: left;">✅ 全体荷物設計（スーツケース15kg＋デイパック8kg＝23kg）確立<br>✅ <strong>サファリ小型機15kg制限に対し23kg荷物をEmara Ole-Sereniへ事前預託する動線確立</strong></td>
+<td style="text-align: left;">🟡 調達（空重量3kg以下スーツケース、30Lデイパック）<br>🟡 クスコ空港〜オリャンタ駅専用車手配（駅預け必須）<br>🟡 出発前厳密計量（10/25）</td>
+<td style="text-align: left;">PeruRail車内持込8kg制限（駅預かり所必須）<br>RTW受託30kg天井（土産枠7kg厳守）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>保険・防疫</strong></td>
+<td style="text-align: left;">✅ Oliveカード保険の0円無効を立証（スマホへ復帰）<br>✅ スネークファーム接種計画策定<br>✅ <strong>予防接種 第1回 接種完了（9/12 黄熱＋狂犬病①）</strong></td>
+<td style="text-align: left;">🔴 単独包括海外旅行保険の契約（無制限/1億円）<br>🔴 予防接種 第2回（9/24 狂犬病②・腸チフス・Tdap・Twinrix判定）<br>🔴 クレジットカード渡航連絡（9/16迄）</td>
+<td style="text-align: left;">バンコク住民票によるクレカ付帯保険全滅（非居住者条項）<br>黄熱病証明書（ケニア・タイ入国に法的必須・9/22有効化）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-p1">1.3 最優先緊急アクション（P1）</h3>
+<p>直ちに（本日〜9月下旬）実行すべきクリティカルタスク：<br />
+1. ✅ <strong>9/12（土）完了:</strong> スネークファームにて予防接種 第1回（黄熱、狂犬病①）接種完了。イエローカード即日受領（9/22有効化）。Twinrixは血液抗体検査結果待ち（9/24判定）。<br />
+2. ✅ <strong>9/12（土）完了:</strong> <code>tickets@rfef.es</code> より公式回答受領（購入国一致必須と確定 ➔ 妻のタイ発行カードで決済確定）。<br />
+3. ✅ <strong>9/12（土）完了:</strong> トスカーナ日帰りワイナリーツアー予約完了（City Wonders・予約 <code>XTK978855</code>）。<br />
+4. ✅ <strong>9/13（日）完了:</strong> ナイロビホテル2軒 予約完了（E16: Four Points JKIA 予約 <code>93880712</code>／E18: Emara Ole-Sereni パークビュー 予約 <code>1385435893739592</code>）。<br />
+5. ✅ <strong>9/13（日）完了:</strong> SafariBookings にて Trav-Interactive（ツアー <code>t62446</code>）へマサイマラ往復フライインツアー（Basecamp Mara 2泊、$1,680）の見積回答受領済・デポジット支払準備（Ref. no. 1168751）。<br />
+6. <strong>9/14（月）:</strong> サグラダ・ファミリア塔登頂チケット予約（60日前解禁・即完売枠）。<br />
+7. <strong>9/16（水）:</strong> クレジットカード各社（Olive、ANAゴールド等）へ中南米・欧州の渡航連絡を入れ不正検知ブロックを解除。<br />
+8. <strong>9/17（木）:</strong> C1 ポジショニング便（10/26 BKK→HND TG660 $343）の確保。<br />
+9. <strong>9/18（金）:</strong> <code>passotaraftar.com.tr</code> にて「GSロゴ入り Passo Taraftar Wallet」申請（トルコ法第6222号義務）。<br />
+10. <strong>9/21（月）:</strong> アクロポリス予約（60日前解禁）およびスペイン戦購入事前準備。<br />
+11. <strong>9/23（水）バンコク 17:00:</strong> スペイン代表 vs イングランド代表 一般販売チケット購入（16:45待機開始）。<br />
+12. <strong>9月中:</strong> マドリード（E10）、リマ空港直結（E3）の宿泊を返金可能レートで確保。マサイマラ見積回答確認後に30%デポジット決済。</p>
+<hr />
+<h2 id="2-r1-mct">2. R1: 全旅程フライト・タイムライン整合性およびMCT検証</h2>
+<h3 id="21-11-rtw-16-rtw-c1c6">2.1 1対1 完全フライト照合表（RTW 16クーポン ＋ RTW外 C1〜C6 ＋ 陸路）</h3>
+<p>発券済みeチケット正本（PNR: <code>EANRV5</code>、航空券番号: <code>205-2443136675〜678</code>）、購入済み各社航空券、および地上交通の1対1照合表を示す。各運航航空会社の個別PNR（UA: <code>FPHLEN</code>、CM: <code>AXY1HV</code>、TK: <code>VZV2V2</code>、ET: <code>QTVTQV</code>）もeチケット正本より抽出・確認済みであり、Webチェックインや座席管理に即時利用可能。<br />
+※全時刻は現地時間。クラス：Z/D=ビジネス、B/Y/E=エコノミー、PE=プレミアムエコノミー。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: center;">券種</th>
+<th style="text-align: center;">搭乗日</th>
+<th style="text-align: left;">便名</th>
+<th style="text-align: left;">出発空港・時刻</th>
+<th style="text-align: left;">到着空港・時刻</th>
+<th style="text-align: center;">機材 / クラス</th>
+<th style="text-align: center;">座席</th>
+<th style="text-align: center;">乗継時間 (次便まで)</th>
+<th style="text-align: center;">空港MCT基準</th>
+<th style="text-align: center;">判定 / 状態</th>
+<th style="text-align: left;">運用上の注意・リスク</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>C1</strong></td>
+<td style="text-align: center;">RTW外</td>
+<td style="text-align: center;">10/26(月)</td>
+<td style="text-align: left;"><strong>TG660</strong> (推奨)</td>
+<td style="text-align: left;">BKK 14:25</td>
+<td style="text-align: left;">HND 22:05</td>
+<td style="text-align: center;">B777 / Y</td>
+<td style="text-align: center;">未定</td>
+<td style="text-align: center;">42h55m (東京滞在)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">🟡 未手配</td>
+<td style="text-align: left;">ポジショニング便。受託30kg込。持込7kg厳格。早期確保</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>①</strong></td>
+<td style="text-align: center;">RTW-1</td>
+<td style="text-align: center;">10/28(水)</td>
+<td style="text-align: left;"><strong>NH8</strong></td>
+<td style="text-align: left;">NRT 17:00 (T1)</td>
+<td style="text-align: left;">SFO 10:20 (T-I)</td>
+<td style="text-align: center;">77W / <strong>Z</strong></td>
+<td style="text-align: center;"><strong>5A</strong></td>
+<td style="text-align: center;">24h25m (SFO 1泊)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>発券済</strong></td>
+<td style="text-align: left;">THE Room確定。ESTA必須。受託2PC</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>②</strong></td>
+<td style="text-align: center;">RTW-2</td>
+<td style="text-align: center;">10/29(木)</td>
+<td style="text-align: left;"><strong>UA1271</strong></td>
+<td style="text-align: left;">SFO 10:45 (T-I)</td>
+<td style="text-align: left;">MEX 16:05 (T1)</td>
+<td style="text-align: center;">7M8 / 🔴 <strong>B(Y)</strong></td>
+<td style="text-align: center;"><strong>36D</strong></td>
+<td style="text-align: center;">45h05m (MEX 2泊)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">🔴 <strong>発券済</strong></td>
+<td style="text-align: left;">唯一のエコノミー。S-1ビジネス空席監視中。<strong>運航社PNR: <code>FPHLEN</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>③</strong></td>
+<td style="text-align: center;">RTW-3</td>
+<td style="text-align: center;">10/31(土)</td>
+<td style="text-align: left;"><strong>CM121</strong></td>
+<td style="text-align: left;">MEX 13:10 (T1)</td>
+<td style="text-align: left;">PTY 17:54 (T1/2)</td>
+<td style="text-align: center;">7M8 / <strong>D</strong></td>
+<td style="text-align: center;">未定</td>
+<td style="text-align: center;"><strong>1h15m (75分)</strong></td>
+<td style="text-align: center;">45分 (PTY I-I)</td>
+<td style="text-align: center;">✅ <strong>PASS</strong></td>
+<td style="text-align: left;">A-1成立便。同社乗継保護あり。受託2PC。<strong>運航社PNR: <code>AXY1HV</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>④</strong></td>
+<td style="text-align: center;">RTW-4</td>
+<td style="text-align: center;">10/31(土)</td>
+<td style="text-align: left;"><strong>CM489</strong></td>
+<td style="text-align: left;">PTY 19:09 (T2)</td>
+<td style="text-align: left;">LIM 22:45</td>
+<td style="text-align: center;">7M8 / <strong>D</strong></td>
+<td style="text-align: center;">未定</td>
+<td style="text-align: center;">8h55m (リマ空港泊)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>発券済</strong></td>
+<td style="text-align: left;">リマ当日着。ターミナル直結ホテル泊。<strong>運航社PNR: <code>AXY1HV</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>—</strong></td>
+<td style="text-align: center;">RTW-5</td>
+<td style="text-align: center;">11/01-10</td>
+<td style="text-align: left;"><strong>SURFACE</strong></td>
+<td style="text-align: left;">LIM ⇢ SAO</td>
+<td style="text-align: left;">(地上区間)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>確定</strong></td>
+<td style="text-align: left;">実移動はC2, D1, D2, C3, C4で遂行</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>C2</strong></td>
+<td style="text-align: center;">RTW外</td>
+<td style="text-align: center;">11/01(日)</td>
+<td style="text-align: left;"><strong>LA2013</strong></td>
+<td style="text-align: left;">LIM 07:40</td>
+<td style="text-align: left;">CUZ 09:05</td>
+<td style="text-align: center;">A320 / <strong>PE</strong></td>
+<td style="text-align: center;"><strong>2A</strong></td>
+<td style="text-align: center;">4h22m (D1列車まで)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>購入済</strong></td>
+<td style="text-align: left;">PNR: <code>MAYCQV</code>。受託23kg+持込12kg。返金可</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>—</strong></td>
+<td style="text-align: center;">陸路</td>
+<td style="text-align: center;">11/01(日)</td>
+<td style="text-align: left;"><strong>D1 列車303</strong></td>
+<td style="text-align: left;">Ollanta 13:27</td>
+<td style="text-align: left;">M.Picchu 14:50</td>
+<td style="text-align: center;">展望列車</td>
+<td style="text-align: center;">A-10</td>
+<td style="text-align: center;">2泊 (マチュピチュ)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>購入済</strong></td>
+<td style="text-align: left;">予約 <code>WEB3204304</code>。荷物は駅預け（持込8.0kg厳格）</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>—</strong></td>
+<td style="text-align: center;">陸路</td>
+<td style="text-align: center;">11/03(火)</td>
+<td style="text-align: left;"><strong>D2 列車602</strong></td>
+<td style="text-align: left;">M.Picchu 12:46</td>
+<td style="text-align: left;">Ollanta 14:19</td>
+<td style="text-align: center;">展望列車</td>
+<td style="text-align: center;">A-33</td>
+<td style="text-align: center;">2泊 (クスコ)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>購入済</strong></td>
+<td style="text-align: left;">Ollantaで荷物回収しクスコへ専用車送迎</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>C3-1</strong></td>
+<td style="text-align: center;">RTW外</td>
+<td style="text-align: center;">11/05(木)</td>
+<td style="text-align: left;"><strong>LA2167</strong></td>
+<td style="text-align: left;">CUZ 05:00</td>
+<td style="text-align: left;">LIM 06:35</td>
+<td style="text-align: center;">A320 / <strong>Y(Full)</strong></td>
+<td style="text-align: center;">13C</td>
+<td style="text-align: center;"><strong>2h40m (160分)</strong></td>
+<td style="text-align: center;">75〜90分 (LIM D-I)</td>
+<td style="text-align: center;">✅ <strong>PASS</strong></td>
+<td style="text-align: left;">PNR: <code>IWYEMJ</code> 3レグ通し。⚠️荷物タグIGU行だが<strong>GRU税関検査・国内線再預入必須</strong>（下記参照）</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>C3-2</strong></td>
+<td style="text-align: center;">RTW外</td>
+<td style="text-align: center;">11/05(木)</td>
+<td style="text-align: left;"><strong>LA8005</strong></td>
+<td style="text-align: left;">LIM 09:15</td>
+<td style="text-align: left;">GRU 16:25 (T3)</td>
+<td style="text-align: center;">A320 / <strong>Y(Full)</strong></td>
+<td style="text-align: center;">13C</td>
+<td style="text-align: center;"><strong>6h10m (370分)</strong></td>
+<td style="text-align: center;">120分 (GRU I-D)</td>
+<td style="text-align: center;">✅ <strong>PASS</strong></td>
+<td style="text-align: left;">Plusgrade入札中。⚠️<strong>GRU(T3)手荷物受取・通関・T2再預入必須</strong>。PPラウンジ利用</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>C3-3</strong></td>
+<td style="text-align: center;">RTW外</td>
+<td style="text-align: center;">11/05(木)</td>
+<td style="text-align: left;"><strong>LA3206</strong></td>
+<td style="text-align: left;">GRU 22:35 (T2)</td>
+<td style="text-align: left;">IGU 00:20(+1)</td>
+<td style="text-align: center;">A321 / <strong>Y(Full)</strong></td>
+<td style="text-align: center;">12C</td>
+<td style="text-align: center;">3泊 (イグアス)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>購入済</strong></td>
+<td style="text-align: left;">⚠️ <strong>未明00:20着。レイトチェックイン必須</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>C4</strong></td>
+<td style="text-align: center;">RTW外</td>
+<td style="text-align: center;">11/08(日)</td>
+<td style="text-align: left;"><strong>LA3201</strong></td>
+<td style="text-align: left;">IGU 10:40</td>
+<td style="text-align: left;">GRU 12:25</td>
+<td style="text-align: center;">A321 / <strong>Y(Full)</strong></td>
+<td style="text-align: center;">12F</td>
+<td style="text-align: center;">2泊 (サンパウロ)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>購入済</strong></td>
+<td style="text-align: left;">PNR: <code>UBHQIG</code>。受託23kg。午後サンパウロ</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>⑤</strong></td>
+<td style="text-align: center;">RTW-6</td>
+<td style="text-align: center;">11/10(火)</td>
+<td style="text-align: left;"><strong>TP88</strong></td>
+<td style="text-align: left;">GRU 23:15 (T3)</td>
+<td style="text-align: left;">LIS 12:10(+1) (T1)</td>
+<td style="text-align: center;">A330neo / <strong>Z</strong></td>
+<td style="text-align: center;"><strong>5K</strong></td>
+<td style="text-align: center;"><strong>19h00m (リスボン泊)</strong></td>
+<td style="text-align: center;">60〜90分 (LIS I-S)</td>
+<td style="text-align: center;">✅ <strong>PASS</strong></td>
+<td style="text-align: left;">大西洋横断夜行便。フルフラット。受託2PC</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>⑥</strong></td>
+<td style="text-align: center;">RTW-7</td>
+<td style="text-align: center;">11/12(木)</td>
+<td style="text-align: left;"><strong>TP1030</strong></td>
+<td style="text-align: left;">LIS 07:10 (T1)</td>
+<td style="text-align: left;">BCN 10:05 (T1)</td>
+<td style="text-align: center;">E195 / <strong>Z</strong></td>
+<td style="text-align: center;"><strong>1D</strong></td>
+<td style="text-align: center;">2泊 (バルセロナ)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">⚠️ <strong>発券済</strong></td>
+<td style="text-align: left;">🔴 <strong>04:40ホテル発。B-3監視中</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>—</strong></td>
+<td style="text-align: center;">陸路</td>
+<td style="text-align: center;">11/14(土)</td>
+<td style="text-align: left;"><strong>D5 AVE</strong></td>
+<td style="text-align: left;">BCN 午後</td>
+<td style="text-align: left;">Madrid 夕方</td>
+<td style="text-align: center;">高速鉄道</td>
+<td style="text-align: center;">未定</td>
+<td style="text-align: center;">2泊 (マドリード)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">🟡 未手配</td>
+<td style="text-align: left;">11/15 スペイン戦観戦（20:45キックオフ）</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>—</strong></td>
+<td style="text-align: center;">陸路</td>
+<td style="text-align: center;">11/16(月)</td>
+<td style="text-align: left;"><strong>D6 AVE</strong></td>
+<td style="text-align: left;">Madrid 09:30</td>
+<td style="text-align: left;">BCN 12:30頃</td>
+<td style="text-align: center;">高速鉄道</td>
+<td style="text-align: center;">未定</td>
+<td style="text-align: center;">4h20m (AZ79まで)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">🟡 未手配</td>
+<td style="text-align: left;">Sants駅→BCN空港(T1)へ直行（約40分）</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>⑦</strong></td>
+<td style="text-align: center;">RTW-8</td>
+<td style="text-align: center;">11/16(月)</td>
+<td style="text-align: left;"><strong>AZ79</strong></td>
+<td style="text-align: left;">BCN 16:50 (T1)</td>
+<td style="text-align: left;">FCO 18:35 (T1)</td>
+<td style="text-align: center;">A320 / <strong>Z</strong></td>
+<td style="text-align: center;">当日空港</td>
+<td style="text-align: center;">3泊 (ローマ)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>発券済</strong></td>
+<td style="text-align: left;">AVE接続バッファ約3時間。受託2PC</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>⑧</strong></td>
+<td style="text-align: center;">RTW-9</td>
+<td style="text-align: center;">11/19(木)</td>
+<td style="text-align: left;"><strong>A3651</strong></td>
+<td style="text-align: left;">FCO 10:35 (T1)</td>
+<td style="text-align: left;">ATH 13:35</td>
+<td style="text-align: center;">A320neo / <strong>D</strong></td>
+<td style="text-align: center;">当日空港</td>
+<td style="text-align: center;">2泊 (アテネ)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>発券済</strong></td>
+<td style="text-align: left;">07:15ホテル発。アテネ午後観光。受託2PC</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>⑨</strong></td>
+<td style="text-align: center;">RTW-10</td>
+<td style="text-align: center;">11/21(土)</td>
+<td style="text-align: left;"><strong>TK1840</strong></td>
+<td style="text-align: left;">ATH 11:50</td>
+<td style="text-align: left;">IST 14:30</td>
+<td style="text-align: center;">A321neo / <strong>D</strong></td>
+<td style="text-align: center;"><strong>2A</strong></td>
+<td style="text-align: center;"><strong>5h10m (310分)</strong></td>
+<td style="text-align: center;">75〜90分 (IST I-D)</td>
+<td style="text-align: center;">✅ <strong>PASS</strong></td>
+<td style="text-align: left;">別切りC5へ乗継。荷物引取・再預け要。2PC。<strong>運航社PNR: <code>VZV2V2</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>C5</strong></td>
+<td style="text-align: center;">RTW外</td>
+<td style="text-align: center;">11/21(土)</td>
+<td style="text-align: left;"><strong>TK2008</strong></td>
+<td style="text-align: left;">IST 19:40</td>
+<td style="text-align: left;">NAV 21:00</td>
+<td style="text-align: center;">B737 / <strong>PrimeFly</strong></td>
+<td style="text-align: center;"><strong>03F</strong></td>
+<td style="text-align: center;">2泊 (カッパドキア)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>購入済</strong></td>
+<td style="text-align: left;">PNR: <code>SUMX3C</code>。受託25kg。⚠️ <strong>宿着22:30</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>C6</strong></td>
+<td style="text-align: center;">RTW外</td>
+<td style="text-align: center;">11/23(月)</td>
+<td style="text-align: left;"><strong>TK2001</strong></td>
+<td style="text-align: left;">NAV 09:30</td>
+<td style="text-align: left;">IST 11:05</td>
+<td style="text-align: center;">B737 / <strong>PrimeFly</strong></td>
+<td style="text-align: center;"><strong>04A</strong></td>
+<td style="text-align: center;">2泊 (イスタンブール)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>購入済</strong></td>
+<td style="text-align: left;">PNR: <code>VKCWJC</code>。受託25kg。気球欠航時変更可</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>⑩</strong></td>
+<td style="text-align: center;">RTW-11</td>
+<td style="text-align: center;">11/25(水)</td>
+<td style="text-align: left;"><strong>MS738</strong></td>
+<td style="text-align: left;">IST 14:00</td>
+<td style="text-align: left;">CAI 15:15 (T3)</td>
+<td style="text-align: center;">A320neo / <strong>D</strong></td>
+<td style="text-align: center;"><strong>11A</strong></td>
+<td style="text-align: center;">2泊 (カイロ)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>発券済</strong></td>
+<td style="text-align: left;">11/24ガラタサライ戦翌日。昼便。受託2PC</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>⑪</strong></td>
+<td style="text-align: center;">RTW-12</td>
+<td style="text-align: center;">11/27(金)</td>
+<td style="text-align: left;"><strong>MS849</strong></td>
+<td style="text-align: left;">CAI 21:35 (T3)</td>
+<td style="text-align: left;">NBO 03:30(+1) (T1C)</td>
+<td style="text-align: center;">737-800 / <strong>D</strong></td>
+<td style="text-align: center;">当日通路</td>
+<td style="text-align: center;">4h30m (Four Points仮眠)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>発券済</strong></td>
+<td style="text-align: left;">🔴 <strong>未明03:30着。Four Pointsで早朝仮眠予約済（93880712）</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>—</strong></td>
+<td style="text-align: center;">空路</td>
+<td style="text-align: center;">11/28(土)</td>
+<td style="text-align: left;"><strong>フライイン</strong></td>
+<td style="text-align: left;">WIL 10:00</td>
+<td style="text-align: left;">マサイマラ 10:45</td>
+<td style="text-align: center;">ブッシュ機</td>
+<td style="text-align: center;">混載</td>
+<td style="text-align: center;">2泊 (Basecamp Mara)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">🔴 見積中</td>
+<td style="text-align: left;">往復45分空路。23kg荷物はEmaraへ事前預託。Ref 1168751</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>—</strong></td>
+<td style="text-align: center;">空路</td>
+<td style="text-align: center;">11/30(月)</td>
+<td style="text-align: left;"><strong>フライイン</strong></td>
+<td style="text-align: left;">マサイマラ 11:15</td>
+<td style="text-align: left;">WIL 12:15</td>
+<td style="text-align: center;">ブッシュ機</td>
+<td style="text-align: center;">混載</td>
+<td style="text-align: center;">1泊 (Emara)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">🔴 見積中</td>
+<td style="text-align: left;">帰路空路。カレン地区観光後 Emara Ole-Sereni 宿泊</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>⑫</strong></td>
+<td style="text-align: center;">RTW-13</td>
+<td style="text-align: center;">12/01(火)</td>
+<td style="text-align: left;"><strong>ET319</strong></td>
+<td style="text-align: left;">NBO 17:30 (T1C)</td>
+<td style="text-align: left;">ADD 19:30 (T2)</td>
+<td style="text-align: center;">77W / <strong>D</strong></td>
+<td style="text-align: center;"><strong>1A</strong></td>
+<td style="text-align: center;"><strong>4h25m (265分)</strong></td>
+<td style="text-align: center;">60〜90分 (ADD I-I)</td>
+<td style="text-align: center;">✅ <strong>PASS</strong></td>
+<td style="text-align: left;">Cloud Nineラウンジ利用。受託3PC。<strong>運航社PNR: <code>QTVTQV</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>⑬</strong></td>
+<td style="text-align: center;">RTW-14</td>
+<td style="text-align: center;">12/01(火)</td>
+<td style="text-align: left;"><strong>ET608</strong></td>
+<td style="text-align: left;">ADD 23:55 (T2)</td>
+<td style="text-align: left;">BKK 12:30(+1)</td>
+<td style="text-align: center;">787-9 / <strong>D</strong></td>
+<td style="text-align: center;"><strong>2C</strong></td>
+<td style="text-align: center;">主要行程完結</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>PASS</strong></td>
+<td style="text-align: left;">エリア2→3横断。12/2 14時帰宅。受託3PC。<strong>運航社PNR: <code>QTVTQV</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>⑭</strong></td>
+<td style="text-align: center;">RTW-15</td>
+<td style="text-align: center;">2027/3/1(月)</td>
+<td style="text-align: left;"><strong>SQ705</strong></td>
+<td style="text-align: left;">BKK 09:40</td>
+<td style="text-align: left;">SIN 13:10</td>
+<td style="text-align: center;">A350-900 / <strong>D</strong></td>
+<td style="text-align: center;"><strong>20A</strong></td>
+<td style="text-align: center;">2泊 (シンガポール)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>発券済</strong></td>
+<td style="text-align: left;">帰省・有効期限延長区間。荷物重量制40kg</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>⑮</strong></td>
+<td style="text-align: center;">RTW-16</td>
+<td style="text-align: center;">2027/3/3(水)</td>
+<td style="text-align: left;"><strong>NH842</strong></td>
+<td style="text-align: left;">SIN 10:45 (T2)</td>
+<td style="text-align: left;">HND 18:25</td>
+<td style="text-align: center;">787-9 / <strong>Z(C)</strong></td>
+<td style="text-align: center;"><strong>2K</strong></td>
+<td style="text-align: center;">世界一周完結</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <strong>発券済</strong></td>
+<td style="text-align: left;">ANAビジネスクラス日中便。羽田着。受託2PC</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-mct">2.2 全乗継地点におけるMCT（最低乗継時間）検証</h3>
+<p>全6箇所のトランスファー地点におけるMCT検証結果は以下の通りであり、全地点で公式基準をクリアしている。</p>
+<ol>
+<li><strong>パナマ・トクメン国際空港（PTY）: CM121 → CM489</strong></li>
+<li>実乗継時間: <strong>75分</strong>（17:54着 → 19:09発）</li>
+<li>公式MCT基準: コパ航空相互の国際線間MCTは <strong>45分</strong></li>
+<li>評価: <strong>PASS（余裕+30分）</strong>。同一PNR・同一ターミナル（T2）の同一会社接続。受託手荷物はリマまでスルー。MEX発が30分以上遅延した場合も、後続のCM便への無償振替保護対象となる。</li>
+<li><strong>リスボン・ポルテラ空港（LIS）: TP88 → TP1030</strong></li>
+<li>実乗継時間: <strong>19時間00分</strong>（11/11 12:10着 → 11/12 07:10発）</li>
+<li>公式MCT基準: 国際線→シェンゲン域内線MCTは <strong>60〜90分</strong></li>
+<li>評価: <strong>PASS（大幅クリア）</strong>。24時間以内のトランスファー規則適合。ただし早朝04:40ホテル発に伴う睡眠管理が必要。</li>
+<li><strong>リマ・ホルヘ・チャベス国際空港（LIM）: LA2167 → LA8005</strong></li>
+<li>実乗継時間: <strong>160分（2時間40分）</strong>（06:35着 → 09:15発）</li>
+<li>公式MCT基準: ペルー国内線→国際線MCTは <strong>75〜90分</strong></li>
+<li>評価: <strong>PASS（余裕+70分）</strong>。LATAM単一PNR（<code>IWYEMJ</code>）通し発券であり、ペルー国内線から国際線へ荷物は自動移送。バゲージタグ自体はフォス・ド・イグアス（IGU）まで発行されるが、ブラジル入国時の連邦税関規定によりGRU（サンパウロ）で手荷物の一旦受取・通関・再預入が必須となる（後述）。</li>
+<li><strong>サンパウロ・グアルーリョス国際空港（GRU）: LA8005 → LA3206</strong></li>
+<li>実乗継時間: <strong>370分（6時間10分）</strong>（16:25着 T3 → 22:35発 T2）</li>
+<li>公式MCT基準: 国際線→国内線MCT（入国審査・税関・荷物通関・T3→T2移動）は <strong>120分</strong></li>
+<li>評価: <strong>PASS（余裕+250分）</strong>。</li>
+<li>⚠️ <strong>ブラジル連邦税関（Receita Federal）規定に基づく必須手順（手荷物スルー不可の警告）</strong>:<ul>
+<li>単一PNR（<code>IWYEMJ</code>）で受託手荷物タグが「IGU」宛てに発券されている場合でも、ブラジル連邦法および税関規則により、<strong>国際線でブラジルに最初に入国する空港（GRU第3ターミナル）において、全旅客がバゲージクレームで受託手荷物をターンテーブルから回収し、税関検査を通過することが法律上義務付けられている</strong>。</li>
+<li>したがって、「手荷物はIGUまでスルー」と誤認して手荷物を放置したままT2へ直行することは厳禁。T3到着後、連邦警察の入国審査 ➡ T3荷物受取 ➡ 税関通過 ➡ T3内の国内線乗継荷物預け入れデスク（Transfer Desk）、またはT2のLATAM国内線カウンターにて手荷物を再預け入れ（ドロップ）した上で、T2保安検査を通過する必要がある。</li>
+<li>370分（6時間10分）の潤沢な乗継時間があるため、荷物回収・通関・再預入（所要約45〜60分）を完了させた後、第2ターミナルのPriority Passラウンジ（Advantage VIP Lounge / W Premium等）にて約4時間の滞在・仮眠・シャワーが可能。</li>
+</ul>
+</li>
+<li><strong>イスタンブール新空港（IST）: TK1840 → C5 TK2008</strong></li>
+<li>実乗継時間: <strong>310分（5時間10分）</strong>（14:30着 → 19:40発）</li>
+<li>公式MCT基準: 国際線→国内線MCTは <strong>75〜90分</strong></li>
+<li>評価: <strong>PASS（余裕+220分）</strong>。別切り航空券（RTW ＋ TK国内線 PrimeFly）のため、国際線バゲージクレームで荷物をピックアップし、国内線チェックインカウンターで再預け入れ（出発45分前締切）を行う必要があるが、310分の潤沢なバッファにより極めて安全に接続可能。</li>
+<li><strong>アディスアベバ・ボレ国際空港（ADD）: ET319 → ET608</strong></li>
+<li>実乗継時間: <strong>265分（4時間25分）</strong>（19:30着 T2 → 23:55発 T2）</li>
+<li>公式MCT基準: エチオピア航空ハブT2における国際線相互MCTは <strong>60〜90分</strong></li>
+<li>評価: <strong>PASS（余裕+175分）</strong>。同一ターミナル内の接続であり、エチオピア航空公式ビジネスクラスラウンジ「Cloud Nine Lounge」を利用可能。</li>
+</ol>
+<h3 id="23-11">2.3 ドキュメント間における齟齬・旧記述残存の洗い出しと正誤確定（全11件）</h3>
+<p>プロジェクト内の全資料を横断精査した結果、以下の11件の齟齬・旧版残存が特定された。本レポートをもって正本事実を確定する。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">対象項目</th>
+<th style="text-align: left;">誤った記述・旧版残存の箇所</th>
+<th style="text-align: left;">正本事実・確定内容</th>
+<th style="text-align: left;">発生機序と是正措置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: left;"><strong>イスタンブール泊数</strong></td>
+<td style="text-align: left;"><code>東回り_サッカー観戦候補.md</code> (Line 101):「11/23〜11/25（3泊）の中日にあたる」<br><code>TODO.md</code> (Line 240, 458):「2 or 3泊 食い違い」</td>
+<td style="text-align: left;"><strong>厳格に「2泊」（11/23・11/24）</strong></td>
+<td style="text-align: left;">11/25 は MS738（14:00発）でカイロへ移動するためカイロ泊。滞在3日間を「3泊」と誤記したのが原因。TODO.md E14を「2泊」に更新。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: left;"><strong>カイロ〜ナイロビ便</strong></td>
+<td style="text-align: left;"><code>東回り_要件定義書.md</code> (Line 212) および <code>東回り_発券用資料.md</code> (Line 320): 旧調査便「23:55発 → 06:10(+1)着」の残存</td>
+<td style="text-align: left;"><strong>現行確定便「MS849 21:35発 → 03:30(+1)着」</strong></td>
+<td style="text-align: left;">ANA発券時に実在するダイヤとして21:35発で確定発券された。未明着に対応するためE16空港ホテルデイユース（04:30〜08:30）を配置。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: left;"><strong>イグアス空港の選定</strong></td>
+<td style="text-align: left;"><code>西回り案_アーカイブ/世界一周旅行2026_基本要件定義書.md</code>: アルゼンチン側IGR空港（プエルト・イグアス）の記載</td>
+<td style="text-align: left;"><strong>ブラジル側「IGU空港」（フォス・ド・イグアス）に完全統一</strong></td>
+<td style="text-align: left;">IGR発は搭乗当日の国境越え渋滞リスクがあるため公式に排除され、C3（LA3206 IGU着）およびC4（LA3201 IGU発）で購入完了済み。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: left;"><strong>リマ到着時刻と宿泊</strong></td>
+<td style="text-align: left;"><code>ANA予約0904.txt</code>: CM337 リマ 00:55+1着<br><code>TODO.md</code> (Line 229): E3 リマ注記「01:30頃の深夜IN可が絶対条件」の旧記述残存</td>
+<td style="text-align: left;"><strong>A-1成立により「CM489 10/31 22:45着・チェックイン23:45」に改善</strong></td>
+<td style="text-align: left;">発券時にMEX→PTY→LIMの振替（A-1）が成立し、リマ当日着となった。TODO.md E3の注記を22:45着・23:45 INへ修正。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: left;"><strong>旧西回り南米路線の消滅</strong></td>
+<td style="text-align: left;"><code>西回り案_アーカイブ/</code>: SCL（サンティアゴ）、EZE/AEP（ブエノスアイレス）、LATAM SCL-EZE、Aerolineas Argentinas の記載</td>
+<td style="text-align: left;"><strong>東回り移行によりSCL・EZE路線は完全消滅</strong></td>
+<td style="text-align: left;">東回り化に伴い、南米はリマ・クスコ・イグアス・サンパウロのみに集約された。旧路線への言及はすべてアーカイブ扱いとする。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>6</strong></td>
+<td style="text-align: left;"><strong>手荷物許容量の認識</strong></td>
+<td style="text-align: left;"><code>ANA予約0906.txt</code> (Line 22): 通話メモ「荷物は全部共通で2つで合計30kg以内」</td>
+<td style="text-align: left;"><strong>券面は2PC/3PC/40Kだが、全体荷物設計は「15kg+8kg=23kg」で運用</strong></td>
+<td style="text-align: left;">ANA電話窓口の口頭案内（30kg）に対し、券面は個数制（2PC=32kg×2等）。ただし国内線や鉄道の制約から23kg設計が支配的となる。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>7</strong></td>
+<td style="text-align: left;"><strong>サファリ目的地と移動手段</strong></td>
+<td style="text-align: left;">アンボセリ陸路往復案（4x4で往復11時間の悪路走行、体力消耗大）</td>
+<td style="text-align: left;"><strong>ウィルソン空港発着「マサイマラ往復フライイン（片道45分）」＋Emara事前荷物預託</strong></td>
+<td style="text-align: left;">往復11時間の悪路疲労・治安リスクを排除し体力温存を最優先。23kg荷物は11/28朝にEmara Ole-Sereniへ預託し、15kg荷物で名門Basecamp Maraへ直行（SafariBookings t62446 見積依頼中）。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>8</strong></td>
+<td style="text-align: left;"><strong>マチュピチュ入場券</strong></td>
+<td style="text-align: left;">当初検討: 王道クラシコ（Circuit 2-A / 2-B）単独購入</td>
+<td style="text-align: left;"><strong>同日2枚体制（3-A 07:00 ＋ 1-B 13:00）で確保済</strong></td>
+<td style="text-align: left;">11/2のCircuit 2が完売していたため、ワイナピチュ登山（3-A）とパノラマ写真枠（1-B）を同日購入して完全解決。1-Bの氏名誤記は現場対応。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>9</strong></td>
+<td style="text-align: left;"><strong>観戦試合の確定</strong></td>
+<td style="text-align: left;">指示文記載:「Real Madrid / La Liga」「Galatasaray / Turkish Super Lig」</td>
+<td style="text-align: left;"><strong>「スペイン代表 vs イングランド代表（UNL）」および「ガラタサライ vs アストン・ヴィラ（UCL）」</strong></td>
+<td style="text-align: left;">11月中旬は国際Aマッチウィークのためラ・リーガ中断。トルコ国内戦ではなくUEFAチャンピオンズリーグ第5節が正本対象。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>10</strong></td>
+<td style="text-align: left;"><strong>ワイナリー訪問地</strong></td>
+<td style="text-align: left;">指示文記載:「Mendoza Wineries (winery selection, transport booking)」</td>
+<td style="text-align: left;"><strong>ローマ発トスカーナ日帰りワイナリーツアー（11/18 水）</strong></td>
+<td style="text-align: left;">アルゼンチンのメンドーサ訪問は存在せず、正本（<code>手配_ワイナリー.md</code>）に基づきモンテプルチャーノ・オルチャ渓谷ツアーで確定。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>11</strong></td>
+<td style="text-align: left;"><strong>海外旅行保険の適用性</strong></td>
+<td style="text-align: left;">初期検討: SMBC Oliveカード保険の利用付帯または自動付帯への期待</td>
+<td style="text-align: left;"><strong>Oliveカード保険は0円無効。クレカ保険全滅リスクに対し単独包括保険を契約</strong></td>
+<td style="text-align: left;">Oliveの排他選択制と補償期間開始前出発原則により無効。住民票海外移転による非居住者条項を排除するため単独保険が必須。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="24-5">2.4 物理的タイムラインリスクと具体的対策（5大リスク地点）</h3>
+<p>本旅程においてMCT割れはゼロであるが、<strong>深夜早朝移動・連続稼働・睡眠不足に伴う身体的・物理的リスク</strong>が以下の5地点に集中している。</p>
+<ol>
+<li><strong>リスク地点 ①: 10/31 パナマ（PTY）75分乗継 ＆ リマ（LIM）夜間着</strong></li>
+<li><em>物理リスク</em>: MEX空港の出発遅延が30分を超えると、PTYでの乗継（75分）が逼迫する。乗り遅れた場合、後続のCM337（PTY 21:19発）へ回されリマ着が未明00:55に後退する。翌朝11/1は07:40発の国内線C2（LA2013）が控える。</li>
+<li><em>具体的対策</em>: MEX空港では出発2時間半前（10:40）までに確実にチェックイン。ビジネスクラス前方席からPTY到着時に迅速に降機。コパ航空通し発券のため手荷物はリマまでスルー。リマ到着後はターミナル直結の Wyndham Costa del Sol へ直行し、目標23:45に入室・就寝する。</li>
+<li><strong>リスク地点 ②: 11/05 クスコ超早朝発（05:00）＆ フォス・ド・イグアス深夜着（00:20+1）</strong></li>
+<li><em>物理リスク</em>: C3第1レグ LA2167 が CUZ 05:00発のため、ホテル出発は深夜03:30。CUZ 05:00発から IGU 00:20(+1)着まで、実質約20時間の長大移動。ホテル入室は未明01:15〜01:30となる。</li>
+<li><em>具体的対策</em>: フォス・ド・イグアスの宿泊先（E6）に対し、「LA3206便利用により未明01:30レイトチェックインとなる」旨を事前に書面通知しノーショー解除を確約。サンパウロGRU空港での6時間10分乗継（16:25〜22:35）において、Priority Passラウンジで仮眠・シャワー・温かい食事を確実に確保する。翌11/6のアルゼンチン側観光は無理せず午後のボートツアー後に早めに切り上げる。</li>
+<li><strong>リスク地点 ③: 11/12 リスボン超早朝発（07:10）</strong></li>
+<li><em>物理リスク</em>: 11/10夜のGRU 23:15発 TP88（大西洋横断機中泊）に続き、11/12朝のTP1030が07:10発のためホテル出発は04:40（起床03:50）。2夜連続で睡眠が削られる。</li>
+<li><em>具体的対策</em>: 11/11のリスボン観光はベレン地区等に絞り、21:00前には就寝する。空港至近ホテル（Star inn Lisbon Airport等）を確保。また、前区間TP88のZクラスに空きが出た場合は即座にTP1034（10:50発）への振替（B-3ウォッチ）を実行する。</li>
+<li><strong>リスク地点 ④: 11/21〜22 カッパドキア夜間着（21:00）＆ 気球早朝ピックアップ（04:00）</strong></li>
+<li><em>物理リスク</em>: 11/21 C5（TK2008）がNAV 21:00着、洞窟ホテル着は22:30頃。翌朝11/22の気球ツアー迎えは早朝04:00であり、睡眠時間は実質約4.5時間（旅程中最短）。</li>
+<li><em>具体的対策</em>: 11/21 ATH 11:50発 TK1840 機内および IST空港待機（5時間10分）中に十分な休息を取る。11/22気球終了後（08:30ホテル戻り）、朝食後に午前中の仮眠時間をスケジュールに組み込む。万一11/22が欠航した場合、同日21:30までにC6（TK2001）をTK2007（16:45発）へ無償変更し、11/23早朝の気球再挑戦枠を確保する。</li>
+<li><strong>リスク地点 ⑤: 11/27〜28 カイロ深夜発（21:35）＆ ナイロビ未明着（03:30）</strong></li>
+<li><em>物理リスク</em>: 11/27 MS849 は CAI 21:35発 → NBO 03:30(+1)着（所要4h55m）。機内実質睡眠は2.5〜3時間。そのままサファリへ向かうと悪路走行で体調破綻を招く。</li>
+<li><em>具体的対策</em>: ✅ <strong>Four Points by Sheraton Nairobi Airport（予約済 <code>93880712</code>）を前夜11/27から1泊確保</strong>。04:30〜08:00（3時間半）ベッドで熟睡・熱いシャワー・朝食を完遂。08:00チェックアウト後、送迎車で Emara Ole-Sereni に立ち寄り 23kg スーツケースを預託し、ウィルソン空港（WIL）10:00発の小型機でマサイマラへ片道わずか45分で快適フライインする。</li>
+</ol>
+<hr />
+<h2 id="3-r2">3. R2: 未確定手配・未手配タスクの網羅的一覧</h2>
+<h3 id="31-1719342361">3.1 宿泊施設マスターリスト（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）</h3>
+<blockquote>
+<p>💡 <strong>泊数・宿泊手配の算術内訳の完全整合（ゼロ混乱の明確化）:</strong><br />
+- <strong>有料商業ホテル（E1〜E19全18施設・実質手配対象）</strong>: <strong>計34泊</strong>（主行程32泊＋2027年3月シンガポールE19の2泊）＋ <strong>ナイロビ空港E16の1デイユース</strong>（04:30〜08:30・0泊計上）。<br />
+- <strong>成田出発前の前泊（東京実家滞在）</strong>: <strong>2泊</strong>（10/26-10/28、ポジショニングC1到着後の実家滞在・宿泊手配不要・0円）。<br />
+- <strong>宿泊総数</strong>: 有料ホテル34泊 ＋ 東京実家2泊 ＝ <strong>全36宿泊（＋1デイユース）</strong>。<br />
+- <strong>全旅程カレンダー泊数</strong>: 全36宿泊 ＋ 機中泊3泊（11/10 TP88、11/27 MS849、12/1 ET608）＝ <strong>全39泊</strong>（10/26〜12/2帰着の主行程37泊＋シンガポール2泊）。<br />
+※これにより、有料商業ホテル手配数（34泊分）と宿泊総数（実家2泊を含む36宿泊）の算術的関係を完全に整合させ、手配漏れ・二重計上の疑義を解消する。</p>
+</blockquote>
+<p>全19件の宿泊手配対象について、チェックイン/アウト制約、立地選定基準、予約期限、推奨ホテルを以下に網羅する。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">宿泊都市・拠点</th>
+<th style="text-align: left;">滞在日程</th>
+<th style="text-align: center;">泊数</th>
+<th style="text-align: left;">チェックイン / アウト制約</th>
+<th style="text-align: left;">立地要件・選定基準</th>
+<th style="text-align: center;">予約期限</th>
+<th style="text-align: left;">推奨ホテル候補</th>
+<th style="text-align: left;">予算目安</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>E1</strong></td>
+<td style="text-align: left;"><strong>サンフランシスコ</strong></td>
+<td style="text-align: left;">10/28-29</td>
+<td style="text-align: center;">1泊</td>
+<td style="text-align: left;">IN: 10/28 14:30以降（NH8 10:20着・荷物預け12:30）<br>OUT: 10/29 07:45（UA1271 10:45発）</td>
+<td style="text-align: left;">チャイナタウン入口（Dragon's Gate至近）。テンダーロイン完全回避。プランA観光（ケーブルカー・ピア39・ゴールデンゲート夕景・夜景ディナー）の拠点。翌朝07:45 UberでSFO直行。</td>
+<td style="text-align: center;">✅ <strong>完了</strong></td>
+<td style="text-align: left;">✅ <strong>グラント プラザ ホテル 予約完了</strong>（Vトリップ <code>54HB8NPPTX2G</code>・ダブル・キャンセル無料）</td>
+<td style="text-align: left;"><strong>¥13,298</strong>（実質約¥12,168）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E2</strong></td>
+<td style="text-align: left;"><strong>メキシコシティ</strong></td>
+<td style="text-align: left;">10/29-31</td>
+<td style="text-align: center;">2泊</td>
+<td style="text-align: left;">IN: 10/29 17:30頃（UA1271 16:05着）<br>OUT: 10/31 10:30（CM121 13:10発）</td>
+<td style="text-align: left;">南部ティラルパン（ペリフェリコ沿い）。死者の日の聖地コヨアカン至近。死者の日の市内暴騰を回避。</td>
+<td style="text-align: center;">✅ <strong>完了</strong></td>
+<td style="text-align: left;">✅ <strong>City Express Plus by Marriott Tlalpan 予約完了</strong>（Vトリップ <code>2H38S4SZBXD</code>・クイーン・キャンセル無料）</td>
+<td style="text-align: left;"><strong>¥35,918</strong>（2泊計）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E3</strong></td>
+<td style="text-align: left;"><strong>リマ空港直結</strong></td>
+<td style="text-align: left;">10/31-11/1</td>
+<td style="text-align: center;">1泊</td>
+<td style="text-align: left;">IN: 10/31 <strong>23:45頃</strong>（CM489 22:45着）<br>OUT: 11/1 06:00（LA2013 07:40発）</td>
+<td style="text-align: left;">🔴 <strong>ターミナル直結必須。</strong> 深夜着・早朝発のためカヤオ市街地ホテルは不可。治安完全安全。</td>
+<td style="text-align: center;">✅ <strong>完了</strong></td>
+<td style="text-align: left;">✅ <strong>Wyndham Costa del Sol 予約完了</strong>（Vトリップ <code>PNKK9ZR29XVB</code>・ダブル2台・キャンセル無料）</td>
+<td style="text-align: left;"><strong>¥20,189</strong>（実質約¥18,473）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E4</strong></td>
+<td style="text-align: left;"><strong>マチュピチュ村</strong><br>（アグアス・カリエンテス）</td>
+<td style="text-align: left;">11/1-3</td>
+<td style="text-align: center;">2泊</td>
+<td style="text-align: left;">IN: 11/1 15:00頃（列車303 14:50着）<br>OUT: 11/3 10:00（列車602 12:46発）</td>
+<td style="text-align: left;">標高2,040m（高山病回避の要）。駅および遺跡行きシャトルバス乗り場から約340m。無料駅送迎（要事前連絡）・早朝朝食ボックス対応可。</td>
+<td style="text-align: center;">✅ <strong>完了</strong></td>
+<td style="text-align: left;">✅ <strong>タイピカラ ブティック 予約完了</strong>（Vトリップ <code>GVCTX8Z7M9T4</code>・シングル・朝食付・キャンセル無料）</td>
+<td style="text-align: left;"><strong>¥29,367</strong>（実質約¥26,871）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E5</strong></td>
+<td style="text-align: left;"><strong>クスコ</strong></td>
+<td style="text-align: left;">11/3-5</td>
+<td style="text-align: center;">2泊</td>
+<td style="text-align: left;">IN: 11/3 16:00頃（駅送迎後）<br>OUT: 11/5 🔴 <strong>03:30</strong>（LA2167 05:00発）</td>
+<td style="text-align: left;">標高3,400m。アルマス広場周辺。🔴 <strong>早朝03:30チェックアウト・タクシー手配可能な24時間フロント必須</strong>。</td>
+<td style="text-align: center;">10月上旬</td>
+<td style="text-align: left;"><strong>Costa del Sol Wyndham Cusco</strong>, <strong>Novotel Cusco</strong></td>
+<td style="text-align: left;">$100/泊</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E6</strong></td>
+<td style="text-align: left;"><strong>フォス・ド・イグアス</strong><br>（ブラジル側）</td>
+<td style="text-align: left;">11/5-8</td>
+<td style="text-align: center;">3泊</td>
+<td style="text-align: left;">IN: 11/6 🔴 <strong>01:15頃</strong>（LA3206 00:20着）<br>OUT: 11/8 08:30（LA3201 10:40発）</td>
+<td style="text-align: left;">🔴 <strong>深夜01:15着対応の24時間フロント</strong>。市街中心部4つ星。アルゼンチン側日帰り・ブラジル側アクセスの拠点。</td>
+<td style="text-align: center;">10/10</td>
+<td style="text-align: left;"><strong>Bourbon Foz do Iguaçu Hotel</strong>, <strong>Viale Tower Hotel</strong></td>
+<td style="text-align: left;">$85/泊</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E7</strong></td>
+<td style="text-align: left;"><strong>サンパウロ</strong></td>
+<td style="text-align: left;">11/8-10</td>
+<td style="text-align: center;">2泊</td>
+<td style="text-align: left;">IN: 11/8 14:00頃（LA3201 12:25着）<br>OUT: 11/10 朝（荷物預かり 20:00迄）</td>
+<td style="text-align: left;">治安安定の <strong>パウリスタ通り周辺（Jardins地区）</strong>。11/10は夜行便（TP88 23:15発）のため終日荷物預かり必須。</td>
+<td style="text-align: center;">10/10</td>
+<td style="text-align: left;"><strong>Meliá Paulista</strong>, <strong>Blue Tree Premium Paulista</strong></td>
+<td style="text-align: left;">$90/泊</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E8</strong></td>
+<td style="text-align: left;"><strong>リスボン</strong></td>
+<td style="text-align: left;">11/11-12</td>
+<td style="text-align: center;">1泊</td>
+<td style="text-align: left;">IN: 11/11 13:30頃（TP88 12:10着）<br>OUT: 11/12 🔴 <strong>04:40</strong>（TP1030 07:10発）</td>
+<td style="text-align: left;">🔴 <strong>滞在19時間・睡眠5時間。</strong> 空港直結・近郊、または空港へタクシー10分の地下鉄沿線。</td>
+<td style="text-align: center;">10/10</td>
+<td style="text-align: left;"><strong>Star inn Lisbon Airport</strong>, <strong>Meliá Lisboa Aeroporto</strong></td>
+<td style="text-align: left;">€110</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E9</strong></td>
+<td style="text-align: left;"><strong>バルセロナ</strong></td>
+<td style="text-align: left;">11/12-14</td>
+<td style="text-align: center;">2泊</td>
+<td style="text-align: left;">IN: 11/12 11:30頃（TP1030 10:05着）<br>OUT: 11/14 13:00（午後AVE移動）</td>
+<td style="text-align: left;"><strong>アシャンプラ地区（Eixample）</strong>。サグラダ・ファミリア徒歩圏で治安良好。Airbnb厳禁（民泊規制）。</td>
+<td style="text-align: center;">10/10</td>
+<td style="text-align: left;"><strong>Room Mate Carla</strong>, <strong>H10 Casa Mimosa</strong></td>
+<td style="text-align: left;">€130/泊</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E10</strong></td>
+<td style="text-align: left;"><strong>マドリード</strong></td>
+<td style="text-align: left;">11/14-16</td>
+<td style="text-align: center;">2泊</td>
+<td style="text-align: left;">IN: 11/14 16:30頃（AVE到着後）<br>OUT: 11/16 08:30（AVE 09:30発）</td>
+<td style="text-align: left;">🔴 <strong>11/15 代表戦のため市内需要暴騰・最優先</strong>。アトーチャ駅周辺（AVE利便）またはメトロ7号線沿線。</td>
+<td style="text-align: center;">🔴 <strong>9月中</strong><br>（最優先）</td>
+<td style="text-align: left;"><strong>Catalonia Atocha</strong>, <strong>Only YOU Hotel Atocha</strong>, NH Madrid Nacional</td>
+<td style="text-align: left;">€140/泊</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E11</strong></td>
+<td style="text-align: left;"><strong>ローマ</strong></td>
+<td style="text-align: left;">11/16-19</td>
+<td style="text-align: center;">3泊</td>
+<td style="text-align: left;">IN: 11/16 20:30頃（AZ79 18:35着）<br>OUT: 11/19 🔴 <strong>07:15</strong>（A3651 10:35発）</td>
+<td style="text-align: left;">テルミニ駅西側またはモンティ地区。🔴 <strong>洗濯機付き（38日の中間点で洗濯必須）</strong>。早朝07:15発対応。</td>
+<td style="text-align: center;">10月上旬</td>
+<td style="text-align: left;">モンティ地区優良アパートメント（洗濯機付）またはブティックホテル</td>
+<td style="text-align: left;">€110/泊</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E12</strong></td>
+<td style="text-align: left;"><strong>アテネ</strong></td>
+<td style="text-align: left;">11/19-21</td>
+<td style="text-align: center;">2泊</td>
+<td style="text-align: left;">IN: 11/19 15:00頃（A3651 13:35着）<br>OUT: 11/21 08:30（TK1840 11:50発）</td>
+<td style="text-align: left;"><strong>プラカ地区（Plaka）</strong> またはシンタグマ広場。アクロポリス徒歩圏、空港直通メトロ3号線沿線。</td>
+<td style="text-align: center;">10/10</td>
+<td style="text-align: left;"><strong>Plaka Hotel</strong>, <strong>Electra Hotel Athens</strong></td>
+<td style="text-align: left;">€90/泊</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E13</strong></td>
+<td style="text-align: left;"><strong>カッパドキア</strong><br>（ギョレメ）</td>
+<td style="text-align: left;">11/21-23</td>
+<td style="text-align: center;">2泊</td>
+<td style="text-align: left;">IN: 11/21 21:30頃（TK2008 21:00着）<br>OUT: 11/23 07:30（※気球欠航時は延泊）</td>
+<td style="text-align: left;">ギョレメ村の<strong>伝統的洞窟ホテル</strong>。気球送迎対応。🔴 <strong>11/22気球欠航時に備え「11/23延泊の可否」を事前確認</strong>。</td>
+<td style="text-align: center;">10月上旬</td>
+<td style="text-align: left;"><strong>Sultan Cave Suites</strong>, <strong>Mithra Cave Hotel</strong>, Artemis Cave Suites</td>
+<td style="text-align: left;">€120/泊</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E14</strong></td>
+<td style="text-align: left;"><strong>イスタンブール</strong></td>
+<td style="text-align: left;">11/23-25</td>
+<td style="text-align: center;">2泊</td>
+<td style="text-align: left;">IN: 11/23 12:30頃（TK2001 11:05着）<br>OUT: 11/25 09:30（MS738 14:00発）</td>
+<td style="text-align: left;">スルタンアフメト旧市街、かつメトロM2線（11/24ガラタサライ戦RAMS Park直通）アクセス良好エリア。</td>
+<td style="text-align: center;">10/10</td>
+<td style="text-align: left;"><strong>White House Hotel Istanbul</strong>, <strong>Sirkeci Mansion</strong></td>
+<td style="text-align: left;">€110/泊</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E15</strong></td>
+<td style="text-align: left;"><strong>カイロ・ギザ</strong></td>
+<td style="text-align: left;">11/25-27</td>
+<td style="text-align: center;">2泊</td>
+<td style="text-align: left;">IN: 11/25 17:00頃（MS738 15:15着）<br>OUT: 11/27 朝（荷物預かり 16:00迄）</td>
+<td style="text-align: left;"><strong>ギザ地区・ピラミッドビュー確約</strong>。屋上テラス付。11/27は深夜便（21:35発）のため16:00迄荷物預かり必須。</td>
+<td style="text-align: center;">10/10</td>
+<td style="text-align: left;"><strong>Great Pyramid Inn</strong>, <strong>Giza Pyramids View Inn</strong></td>
+<td style="text-align: left;">$95/泊</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E16</strong></td>
+<td style="text-align: left;">✅ <strong>ナイロビ空港ホテル</strong><br>（早朝仮眠 1泊）</td>
+<td style="text-align: left;">11/27-28</td>
+<td style="text-align: center;">1泊<br>04:30-08:00</td>
+<td style="text-align: left;">IN: 11/28 🔴 <strong>04:30</strong>（MS849 03:30着）<br>OUT: 11/28 <strong>08:00</strong>（08:00送迎発）</td>
+<td style="text-align: left;">✅ <strong>マリオット公式予約完了</strong>（予約番号: <code>93880712</code>、$204）。11/26 23:59迄キャンセル無料。04:30〜08:00仮眠・朝食確約。</td>
+<td style="text-align: center;">✅ <strong>済</strong></td>
+<td style="text-align: left;"><strong>Four Points by Sheraton Nairobi Airport</strong></td>
+<td style="text-align: left;">$204（約3.1万円）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E17</strong></td>
+<td style="text-align: left;"><strong>マサイマラ国立保護区</strong><br>名門エコテント</td>
+<td style="text-align: left;">11/28-30</td>
+<td style="text-align: center;">2泊</td>
+<td style="text-align: left;">IN: 11/28 11:30頃（小型機着後）<br>OUT: 11/30 10:30頃（朝サファリ後）</td>
+<td style="text-align: left;"><strong>Basecamp Masai Mara</strong>（タレク川沿い・オバマ滞在歴）。サファリツアー（F3 / $1,614）に含む。フルボード。</td>
+<td style="text-align: center;">🔴 見積中<br>(Ref 1168751)</td>
+<td style="text-align: left;"><strong>Basecamp Masai Mara</strong>（Trav-Interactive 手配）</td>
+<td style="text-align: left;">ツアーに含む</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E18</strong></td>
+<td style="text-align: left;">✅ <strong>ナイロビ パークビュー</strong></td>
+<td style="text-align: left;">11/30-12/1</td>
+<td style="text-align: center;">1泊</td>
+<td style="text-align: left;">IN: 11/30 17:00頃（カレン観光後）<br>OUT: 12/1 10:00〜12:00（15:00迄滞在）</td>
+<td style="text-align: left;">✅ <strong>Trip.com 予約完了</strong>（予約番号: <code>1385435893739592</code>、33,657円）。🔴 <strong>パークビュー確約</strong>。11/28朝の荷物預託＋12:00レイトCO申請済。11/29 12:00迄キャンセル無料。</td>
+<td style="text-align: center;">✅ <strong>済</strong></td>
+<td style="text-align: left;"><strong>Emara Ole-Sereni-Nairobi</strong></td>
+<td style="text-align: left;">33,657円</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E19</strong></td>
+<td style="text-align: left;"><strong>シンガポール</strong></td>
+<td style="text-align: left;">2027/3/1-3</td>
+<td style="text-align: center;">2泊</td>
+<td style="text-align: left;">IN: 3/1 14:30頃（SQ705 13:10着）<br>OUT: 3/3 08:00（NH842 10:45発）</td>
+<td style="text-align: left;">マリーナベイ、ブギス、またはシティホール周辺。MRT駅至近。空港アクセス良好。</td>
+<td style="text-align: center;">12月以降</td>
+<td style="text-align: left;">Bugis / City Hall / Marina Bay エリアの4つ星ホテル</td>
+<td style="text-align: left;">$150/泊</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>合計</strong></td>
+<td style="text-align: left;"><strong>全17拠点／19手配対象</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;"><strong>35泊</strong></td>
+<td style="text-align: left;"><strong>有料ホテル35泊 ＋ 成田前泊・東京実家2泊 ＝ 全37宿泊（E16・E18予約済）</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><strong>約¥615,000</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="32">3.2 現地ツアー・アクティビティ精査</h3>
+<ol>
+<li><strong>ケニア・サファリ（マサイマラ 2泊3日 フライインサファリ＆手荷物動線確立）</strong></li>
+<li><em>移動形態</em>: 往復11時間の悪路疲労と治安リスクを排除し、ウィルソン空港（WIL）発着の<strong>小型機フライイン往復（片道わずか45分）</strong>を採用。</li>
+<li><em>手荷物動線</em>: 小型機の15kg制限に対し、世界一周用23kgスーツケースは11/28朝に <strong>Emara Ole-Sereni</strong>（予約済 <code>1385435893739592</code>）へ立ち寄り事前預託。マサイマラへは15kg手荷物（リュック）で身軽に搭乗。</li>
+<li><em>行程</em>: 11/28 08:00 Four Points発 → Emara立寄 → WIL 10:00発 ✈️ 10:45 マサイマラ着。Basecamp Masai Mara チェックイン・昼食・サンセットサファリ。11/29 終日ゲームドライブ。11/30 朝サファリ後 11:15発 ✈️ 12:15 WIL着 → カレン地区観光（ジラフ・センター、エレファント孤児院里親枠17:00）→ 夕方 Emara Ole-Sereni チェックイン・大荷物回収。</li>
+<li><em>手配窓口</em>: SafariBookings 評価4.8社 <strong>Trav-Interactive Tours and Travels</strong>（ツアー ID: <code>t62446</code>）へ見積依頼送信（Ref. no. 1168751）、回答受領済。総額$1,680（Basecamp Mara 2泊フルボード・入園料・ゲームドライブ・全送迎込）。近日中に50%デポジット決済。</li>
+<li><strong>イグアスの滝（両国側観光・ヘリ・ボート）</strong></li>
+<li><em>拠点</em>: ブラジル側フォス・ド・イグアス（IGU）3連泊。</li>
+<li><em>11/6 アルゼンチン側</em>: 朝イチ（08:30）にエコトレインで「悪魔の喉笛」、午後に「Gran Aventura」（滝壺ボート＋ジャングル4WD、Viator送迎付パッケージ推奨）。</li>
+<li><em>11/7 ブラジル側</em>: <strong>入場券は公式（<code>cataratasdoiguacu.com.br</code>）にて事前時間指定購入が必須（当日窓口不可）</strong>。隣接の Helisul ヘリ遊覧（10分 R$685）は前日夜の天候判断で確保。</li>
+<li><strong>マチュピチュ（入場券・鉄道・ガイド・送迎）</strong></li>
+<li><em>入場券</em>: ✅ <strong>2026/9/5 公式にて同日2枚確保済</strong>（Circuit 3-A ワイナピチュ登山 07:00 ＋ Circuit 1-B パノラマ上段テラス 13:00、予約コード: <code>021126C6D8BA4C</code> / <code>021126A3B95B3C</code>）。1-Bの氏名誤記（TAKAMUU）は文化省回答書面とパスポート原本を携行して現場説明（J3）。</li>
+<li><em>鉄道</em>: ✅ <strong>2026/9/8 PeruRail 公式にて往復確定済</strong>（予約: <code>WEB3204304</code>、往復$159.60）。車内持込手荷物8kg制限のため、オリャンタイタンボ駅荷物預かり所を利用。</li>
+<li><em>残手配</em>: クスコ空港 ⇔ オリャンタイタンボ駅 専用送迎（VELTRA a/184253 貸切推奨）。</li>
+<li><strong>カッパドキア熱気球ツアー</strong></li>
+<li><em>運航会社</em>: 天候欠航時の全額返金および「翌朝無料振替」が明記された <strong>Voyager Balloons 直販（Comfort Flight €360）</strong> を推奨。</li>
+<li><em>コンティンジェンシー</em>: 11/22早朝欠航時は、C6（TK2001 PrimeFly）を11/22 21:30までに午後便（TK2007 16:45発）へ無償スライドし、洞窟ホテル延泊で11/23早朝に再挑戦。</li>
+<li><strong>トスカーナ日帰りワイナリーツアー（11/18 水）</strong></li>
+<li><em>訪問先</em>: モンテプルチャーノ（歴史的地下セラーで Vino Nobile 試飲）およびピエンツァ（オルチャ渓谷展望・ペコリーノチーズ）。</li>
+<li><em>推奨商品</em>: <strong>Klook 204943</strong>（ポポロ広場 07:30発 → <strong>19:30解散の最速便</strong>、¥20,525）または Viator d511-21340P3。翌朝07:15ホテル発のため、荷造りは11/17夜に完了させる。</li>
+<li><strong>ローマ／ヴァチカン</strong></li>
+<li><em>ヴァチカン博物館</em>: ✅ <strong>2026/9/11 公式にて予約完了済</strong>（11/17 火 08:00 入場枠 €25、システィーナ礼拝堂含む）。</li>
+<li><em>コロッセオ</em>: <strong>2026年10月18日（日）ローマ 08:45 ＝ バンコク 13:45 解禁</strong>。真実の口（17:00閉・行列60分）に間に合わせるため、<strong>13:30 入場枠（€18）</strong>を解禁直後に即時確保。</li>
+<li><strong>ナイロビ市内観光・国立公園</strong></li>
+<li><em>11/30 午後</em>: ジラフ・センター（キリン給餌）＋カーニボア炭火BBQディナー。</li>
+<li><em>12/1 午前</em>: カレン地区の渋滞リスクを避け、空港至近の<strong>ナイロビ国立公園（サイ追跡サファリ 06:30〜10:30）</strong>を実施。ホテルでパッキング後、15:00に空港へ向かいフライト（ET319 17:30発）遅延リスクを完全ゼロ化。</li>
+</ol>
+<h3 id="33">3.3 サッカー観戦チケット手配戦略（スペイン戦・ガラタサライ戦）</h3>
+<ol>
+<li><strong>スペイン代表 vs イングランド代表（UEFAネーションズリーグ最終節）</strong></li>
+<li><em>日時・会場</em>: <strong>2026年11月15日（日）20:45 CET</strong>、エスタディオ・メトロポリターノ（マドリード、約7万人収容）。</li>
+<li><em>公式発売スケジュール</em>:<ul>
+<li>ソシオ先行: 9/22（火）マドリード 12:00（バンコク 17:00）アトレティコ会員限定枠</li>
+<li>一般販売: 🔴 <strong>2026年9月23日（水）マドリード 12:00 ＝ バンコク 17:00（16:45 待機開始）</strong></li>
+</ul>
+</li>
+<li><em>販売仕様</em>: RFEF公式（<code>tickets.rfef.es</code>）。ゾーン（希望: <strong>LATERAL ESTE 東サイドスタンド、約€100</strong>）のみ選択、席番は自動割当。</li>
+<li><em>受取・入場</em>: RFEF Tickets アプリ。試合48時間前（11/13）配信、試合4時間前（11/15 16:45）にQRコード有効化。紙印刷・スクショ不可。</li>
+<li>✅ <em>決済Territorio制限の完全解決（2026/9/12 確定）</em>: RFEF公式回答にて「購入国（タイ）と同じ国で発行されたカードが必須」と正式確定。<strong>妻のタイ発行クレジットカードを借りて決済することに決定</strong>し、「タイ滞在＋タイカード」で完全一致させることで決済ブロックリスクを100%排除。DNI欄には日本旅券番号をそのまま入力。</li>
+<li><strong>ガラタサライ vs アストン・ヴィラ（UEFAチャンピオンズリーグ第5節）</strong></li>
+<li><em>日時・会場</em>: <strong>2026年11月24日（火）18:45 CET（トルコ 20:45 TRT）</strong>、RAMS Park（イスタンブール、5.2万人収容）。</li>
+<li><em>トルコ法第6222号義務</em>: 外国人を含む全観客に電子ファンIDカード「Passo Taraftar（Passolig）」の所持が義務付けられており、カード未所持者は購入・入場ともに不可。</li>
+<li><em>カード申請</em>: 🔴 <strong>2026年9月18日（金）までに <code>passotaraftar.com.tr</code> にて申請</strong>。「Galatasaray ロゴ入り Passo Taraftar Wallet（プリペイド）」を選択し、旅券番号・顔写真を登録。</li>
+<li><em>チケット一般発売</em>: 過去のUCL実績より <strong>2026年11月20日（金）アテネ時間 13:00（トルコ 14:00）</strong>。Passoアプリより購入。名義（<code>TAKAMUKU TAKESHI</code>）完全一致、1人1枚制限。</li>
+</ol>
+<hr />
+<h2 id="4-r3">4. R3: 手荷物制限・重量規定の整合性と全体荷物設計</h2>
+<h3 id="41">4.1 航空会社・ブッシュ機・鉄道 手荷物制限マトリクス</h3>
+<p>全区間の手荷物制限を整理したマトリクスを以下に示す。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">運行主体 / 路線</th>
+<th style="text-align: left;">利用便 / クラス</th>
+<th style="text-align: left;">受託手荷物制限（Checked）</th>
+<th style="text-align: left;">機内持込制限（Carry-on）</th>
+<th style="text-align: left;">備考・特殊制約</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>タイ国際航空 (C1)</strong></td>
+<td style="text-align: left;">TG660 (Economy)</td>
+<td style="text-align: left;"><strong>受託 30kg</strong></td>
+<td style="text-align: left;">🔴 <strong>持込 7.0kg × 1個（厳格）</strong> ＋ 身の回り品1個（1.5kg）</td>
+<td style="text-align: left;">機内持込7.0kg上限。8.0kgデイパックは計量超過リスクあり（分散携行必須）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Star Alliance RTW</strong></td>
+<td style="text-align: left;">全15区間（ビジネスクラス）</td>
+<td style="text-align: left;">券面: 2PC〜3PC / 40K<br>🔴 <strong>ANA口頭規定: 2個・計30kg</strong></td>
+<td style="text-align: left;">各社 1〜2個（8〜10kg/個） ＋ 身の回り品</td>
+<td style="text-align: left;">各社ビジネスクラス規定は32kg×2だが、全体の運用基準は30kg以内</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>LATAM ペルー国内</strong></td>
+<td style="text-align: left;">C2: LA2013 (PE Full)</td>
+<td style="text-align: left;"><strong>受託 23kg × 1個</strong>（3辺158cm）</td>
+<td style="text-align: left;"><strong>持込 12kg × 1個</strong> ＋ 身の回り品</td>
+<td style="text-align: left;">Premium Economy Full 運賃</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>LATAM 南米国際・ブラジル</strong></td>
+<td style="text-align: left;">C3/C4: LA2167/8005/3206/3201 (Economy Full)</td>
+<td style="text-align: left;"><strong>受託 23kg × 1個</strong>（3辺158cm）</td>
+<td style="text-align: left;"><strong>持込 12kg × 1個</strong> ＋ 身の回り品</td>
+<td style="text-align: left;">Economy Full 運賃。Basicは0kgのため要注意</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ターキッシュ国内線</strong></td>
+<td style="text-align: left;">C5/C6: TK2008/2001 (PrimeFly)</td>
+<td style="text-align: left;"><strong>受託 25kg × 1個</strong></td>
+<td style="text-align: left;"><strong>持込 8kg × 1個</strong>（55×40×23cm）</td>
+<td style="text-align: left;">PrimeFly運賃。EcoFly（15kg）から大幅緩和</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>サファリ軽飛行機</strong></td>
+<td style="text-align: left;">(旧案: WIL⇄ASV)</td>
+<td style="text-align: left;">🔴 <strong>合計15kg厳格（ソフトバッグ限定）</strong></td>
+<td style="text-align: left;">(受託・持込合算で15kg)</td>
+<td style="text-align: left;">🔴 <strong>本行程では完全廃止・4x4専用車陸路化により制約解除</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ペルーレイル</strong></td>
+<td style="text-align: left;">D1/D2: Vistadome 303 / 602</td>
+<td style="text-align: left;">❌ <strong>大型スーツケース車内持込禁止</strong></td>
+<td style="text-align: left;">🔴 <strong>持込 8.0kg / 3辺115cm厳格</strong></td>
+<td style="text-align: left;">大型荷物はオリャンタイタンボ駅預かり所（04:15〜21:00）に預入</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>スペイン高速鉄道 AVE</strong></td>
+<td style="text-align: left;">D5/D6: Renfe AVE</td>
+<td style="text-align: left;">合計 25kg 以内（最大3個）</td>
+<td style="text-align: left;">荷物棚・車両端大型荷物スペース</td>
+<td style="text-align: left;">スーツケース積載問題なし</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42">4.2 全体パッキング設計と携行・預入運用ルール</h3>
+<ol>
+<li><strong>パッキング重量アーキテクチャ（出発時 23.0kg 設計）</strong></li>
+<li><strong>中型スーツケース（60〜70L、受託預け入れ用）</strong>:<ul>
+<li>空重量: <strong>≤ 3.0kg</strong>（軽量ファスナー式ハードケース）</li>
+<li>中身重量: <strong>約 12.0kg</strong></li>
+<li><strong>預け入れ計量値: ≤ 15.0kg</strong></li>
+</ul>
+</li>
+<li><strong>デイパック（30〜35L、機内持ち込み用）</strong>:<ul>
+<li>PC・カメラ・貴重品・防寒着・1泊分着替え・薬類</li>
+<li><strong>持込計量値: ≤ 8.0kg</strong>（3辺115cm以内）</li>
+</ul>
+</li>
+<li><strong>出発時合計重量</strong>: <strong>15.0kg ＋ 8.0kg ＝ 23.0kg</strong></li>
+<li><strong>土産・増量バッファ</strong>: RTW天井（30.0kg）に対し <strong>7.0kg の余裕</strong> を保持。</li>
+<li><strong>預け入れ・携行の具体的運用ルール</strong></li>
+<li><em>マチュピチュ excursion（11/1〜11/3）</em>:<ul>
+<li>11/1 11:15 オリャンタイタンボ駅の公式手荷物預かり所にて、15kgスーツケースを預入。</li>
+<li>8kgデイパック（2泊分の着替え・洗面用具・高山病薬）のみで Vistadome 列車に乗車（PeruRail持込規定クリア）。</li>
+<li>11/3 14:19 復路列車下車後、駅預かり所でスーツケースを回収し専用車へ積載。</li>
+</ul>
+</li>
+<li><em>サンパウロGRU乗継での受託手荷物税関再預け入れ（11/5 C3 LA8005→LA3206）</em>:<ul>
+<li>バゲージタグが最終目的地IGU宛てに発券されていても、<strong>ブラジル連邦税関（Receita Federal）規定により、ブラジル最初の入国地（GRU T3）での手荷物受取・税関通関が法律上必須</strong>。</li>
+<li>T3ターンテーブルでスーツケースを回収し、税関通過後、国内線乗継手荷物デスクまたはT2カウンターで再預け入れしてからT2搭乗口へ向かうこと（手荷物スルー不可）。</li>
+</ul>
+</li>
+<li><em>ケニア・サファリ excursion（11/28〜11/30）</em>:<ul>
+<li>4x4専用車のためスーツケース積載可能であるが、ロッジでの取り回しを考慮し、不要な荷物はナイロビ空港ホテル（Four Points）に一時預け入れ可能。</li>
+</ul>
+</li>
+<li><em>お土産購入ルール</em>:<ul>
+<li>トルコ国内線C6（25kg制限）を通過する前の土産購入は厳禁。</li>
+<li>お土産の購入は <strong>11/23 イスタンブール到着以降（エジプト・ケニア含む）</strong> に限定し、最大7.0kg枠内で納める。</li>
+</ul>
+</li>
+<li><em>洗濯戦略</em>:<ul>
+<li>旅の中間点である <strong>ローマ（11/16〜19 E11）を洗濯機付き宿泊施設で確保</strong> することで、衣類を5〜6日分に圧縮し15kgスーツケースを維持。</li>
+</ul>
+</li>
+</ol>
+<h3 id="43-tg660perurail">4.3 機内持込・車内持込手荷物の境界値制約と運用回避策（TG660・PeruRail）</h3>
+<p>全体荷物設計（スーツケース15.0kg ＋ デイパック8.0kg ＝ 23.0kg）はRTW各社（ビジネスクラス・受託30kg）およびLATAM（受託23kg・持込12kg）では余裕をもって成立するが、<strong>以下の2区間において機内・車内持込手荷物の境界値リスクが存在するため、厳格な運用回避策を実行する</strong>。</p>
+<ol>
+<li><strong>タイ国際航空 TG660（C1 エコノミー）機内持込 7.0kg 厳格上限の回避運用</strong>:</li>
+<li><em>制約</em>: タイ国際航空エコノミークラスの機内持込手荷物規定は <strong>「1人1個・最大7.0kg（56×45×25cm以内）」</strong> と厳格に定められている（身の回り品1個・最大1.5kgまで別携行可）。</li>
+<li><em>リスク</em>: デイパック（基本設計 8.0kg）をそのまま単一バッグとしてカウンターまたは搭乗ゲートで計量された場合、<strong>1.0kgの重量超過</strong>となり、受託手荷物への強制預け入れやトラブルを招く。</li>
+<li>
+<p><em>具体的運用回避策</em>:</p>
+<ul>
+<li>スワンナプーム空港（BKK）でのチェックインカウンターおよび搭乗ゲート通過前、<strong>デイパックからノートPC（約1.3kg）またはカメラ（約1.0kg）を取り出し、別携行の小型スリングバッグ（身の回り品枠）またはジャケットの大型ポケットへ移す</strong>。</li>
+<li>これにより、計量器に乗せるデイパック本体重量を <strong>6.7〜7.0kg以下</strong> に厳密に抑え、公式規定（7.0kg）を確実にクリアする。搭乗後に機内で元のパッキングに戻す。</li>
+</ul>
+</li>
+<li>
+<p><strong>ペルーレイル Vistadome（D1/D2）車内持込 8.0kg 制限の厳守</strong>:</p>
+</li>
+<li><em>制約</em>: ペルーレイルの車内持込規定は <strong>「1人1個・最大8.0kg（3辺合計115cm以内）」</strong> であり、大型スーツケースの車内持ち込みは全面禁止されている。</li>
+<li><em>リスク</em>: 15kgスーツケースをオリャンタイタンボ駅預かり所に預け入れた後、デイパック（8.0kg）単体で乗車するが、許容上限（8.0kg）ジャストのため、500mlのペットボトル飲料水（0.5kg）や軽食を無意識にバッグへ入れると <strong>即座に8.5kgとなり規定オーバー</strong> となる。</li>
+<li><em>具体的運用回避策</em>:<ul>
+<li>オリャンタイタンボ駅での計量・改札通過時は、<strong>飲料水ボトルやガイドブックを手持ち（計量外）にするか、マチュピチュ村到着後に現地購入する</strong>。</li>
+<li>デイパック単体の計量重量を常に <strong>7.5〜7.8kg以下</strong> にコントロールし、駅改札での抜き打ち計量に完全対応する。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="5-r4">5. R4: 包括的リスク分析・コンティンジェンシー計画・保険・防疫</h2>
+<h3 id="51">5.1 リスク分析と代替案（コンティンジェンシー）</h3>
+<ol>
+<li><strong>カッパドキア気球欠航リスク（11月欠航率 30〜40%）</strong></li>
+<li><em>機序</em>: トルコ民間航空局（SHGM）が毎朝風速（&gt;7ノット）および雲底高度に基づき飛行可否を集中判定。</li>
+<li><em>代替プロトコル</em>:<ul>
+<li>本命: 11/22 早朝フライト（Voyager Balloons）。</li>
+<li>11/22 早朝に欠航が確定した場合、同日 <strong>21:30（出発12時間前）までに</strong> 予約済み国内線 C6（NAV 09:30発 TK2001・PrimeFly運賃）を <strong>夕方便 TK2007（NAV 16:45発 → IST 18:20着）へ手数料無料で変更</strong>。</li>
+<li>洞窟ホテル（E13）を1泊延泊し、気球ツアーを 11/23 早朝へ無料スライド。</li>
+<li>11/23 夕方にイスタンブールへ到着するため、翌11/24夜のガラタサライ観戦には一切支障をきたさない。</li>
+</ul>
+</li>
+<li><strong>高山病（AMS: Acute Mountain Sickness）予防と標高順応</strong></li>
+<li><em>標高プロファイル</em>: リマ（海抜0m）→ クスコ空港（3,399m）→ オリャンタイタンボ（2,792m）→ マチュピチュ村（2,040m）→ 遺跡（2,430m）→ ワイナピチュ山頂（2,720m）→ クスコ市街（3,400m）。</li>
+<li><em>標高順応設計</em>: 11/1にクスコ空港着後、高地に留まらず<strong>直ちに標高2,040mのマチュピチュ村へ下り2連泊</strong>（11/1・11/2）。48時間の順応を経てから標高3,400mのクスコ市街（11/3・11/4）へ上がる医学的に理想的な高度勾配を採用。</li>
+<li><em>ダイアモックス（アセタゾラミド）服用プロトコル</em>:<ul>
+<li>予防用量: 125mg を1日2回経口投与。</li>
+<li>開始時期: 高地進入の24時間前（<strong>10月31日朝 リマ滞在中</strong>）より開始し、クスコ滞在中の11月3〜4日まで継続。</li>
+<li>水分補給: 毎日3〜4リットルの水分摂取、アルコールおよび睡眠薬の回避。クスコのホテルでは酸素濃縮器の利用可能性を確認。</li>
+</ul>
+</li>
+<li><strong>フライト遅延・欠航時のRTW無償振替規定</strong></li>
+<li><em>Star Alliance運賃規則（STAR RTW 123）</em>:<ul>
+<li>自発的便変更: 同一区間・同一会社であれば搭乗24時間前まで手数料無料。</li>
+<li>自発的経路変更（リルーティング）: 1回につき $125 USD ＋ マイル数・税金再計算（16クーポン枠内）。</li>
+<li>不可抗力・航空会社都合（イレギュラー運航）: IATA決議735dに基づき、加盟各社は最終目的地まで自社または他社スターアライアンス便のビジネスクラスへ無償振替保護を行う義務を負う。</li>
+</ul>
+</li>
+</ol>
+<h3 id="52">5.2 海外旅行保険の厳密評価と非居住者リスク対策</h3>
+<ol>
+<li><strong>SMBC Oliveカード保険の「0円無効」の完全立証</strong></li>
+<li><em>事実 1（排他選択制）</em>: Oliveフレキシブルペイ プラチナプリファードの保険は、7つの無料プランから1つを選択する方式であり、二階建て付帯ではない。日常でスマホ安心プラン等を選択している場合、旅行保険は <strong>0円（完全無効）</strong> である。</li>
+<li><em>事実 2（「補償期間中に開始された旅行」の原則）</em>:<br />
+     &gt; 三井住友カード公式規約:「責任期間は、補償期間かつ会員資格が有効な期間中に開始された旅行期間中とします」<ul>
+<li>旅行安心プランへの変更申請は翌月1日（11月1日）から有効となる。本世界一周旅行は <strong>10月28日日本出発</strong> であるため、旅行開始日（10/28）が補償期間外となり、<strong>全38日間の全旅程においてOliveの保険金支払いは規約上100%拒絶される（0円）</strong>。</li>
+<li>したがって、Oliveを旅行保険に充てる判断は完全に破綻しており、9/10にスマホ安心プランへ戻した措置は完全に妥当である。</li>
+</ul>
+</li>
+<li><strong>海外非居住者・住民票移転に伴うクレジットカード付帯保険全滅リスク</strong></li>
+<li><em>約款の罠</em>:<br />
+     &gt; 三菱UFJプラチナ・アメックス規約 P.3:「帰国予定のない方や海外に永住される方は、本保険の対象としませんので、あらかじめご了承ください」<br />
+     &gt; JCB・楽天カード規約:「海外旅行を目的に日本国内のご住居を出発されたときからご住居にお戻りになるまでの間...」</li>
+<li><em>リスク</em>: 旅行者は住民票をタイ・バンコクへ移転している（非居住者）。数万円の通院請求では機械的に処理される場合もあるが、アンボセリやアンデス山脈での<strong>数百万円〜数千万円規模の緊急医療搬送（Medical Evacuation）や大手術が発生した場合、保険会社は厳密な居住実態調査（パスポート出入国記録、航空券全クーポン、納税証明、住民票除票）を実施し、保険金支払いを全額拒絶する極めて重大なリスク</strong>が存在する。</li>
+<li><strong>日本の一般ネット通販型保険（東京海上「off!」、損保ジャパン「off!」等）の致命的引受欠陥</strong></li>
+<li>⚠️ <strong>重大警告（引受約款違反による保険金不払いリスク）</strong>:<ul>
+<li>日本の大手損保が提供するオンライン加入型海外旅行保険（東京海上日動「off!」、損保ジャパン「新・海外旅行保険off!」等）の普通保険約款および引受基準には、以下の絶対条件が法律上規定されている：</li>
+<li><strong>被保険者が日本国内に居住（住民登録・日本の公的健康保険加入）していること</strong></li>
+<li><strong>本邦（日本国内の居住地）を出発し、旅行終了後に本邦（日本国内の居住地）へ帰着すること（日本発着義務）</strong></li>
+<li>本旅行者は<strong>タイ・バンコクに居住権（Resident Card / 労働許可証 / 長期滞在権）を保有する非居住者</strong>であり、さらに本世界一周旅程の最終帰着便（ET608）は <strong>12月2日にバンコク（BKK）へ直接帰着し、日本へ帰国しない</strong>。</li>
+<li>したがって、日本のネット通販型保険にウェブから加入した場合、<strong>旅行開始から終了まで約款違反状態となり、いざ重大事故・医療搬送が発生した際に保険会社から「非居住者かつ海外帰着」を理由に保険金支払いを全額拒絶（契約無効・不払い）される致命的リスク</strong>を負うことになる。</li>
+</ul>
+</li>
+<li><strong>適格な単独包括海外旅行保険の必須要件と適格商品（3つの正攻法）</strong></li>
+<li><em>必須補償要件</em>:<ul>
+<li>傷害・疾病治療・救援者費用: <strong>無制限（または最低5,000万〜1億円）</strong></li>
+<li>緊急医療搬送（エアアンビュランス、SOS International等提携）直結</li>
+<li>既往症・持病の急激な悪化に対する応急治療救援費用（300万円程度）</li>
+<li>航空機遅延（2万〜5万円）・手荷物遅延/紛失（5万〜10万円）</li>
+</ul>
+</li>
+<li><em>適格な保険引受スキーム（以下のいずれかで10/5迄に契約完了・P1）</em>:<ol>
+<li><strong>タイ現地発行のエクスパット向け海外旅行保険（最推奨・居住地適合）</strong>:<ul>
+<li>タイ在住者を対象とし、タイ出国から世界周遊を経てタイ帰着を正規補償する現地ポリシー。</li>
+<li><strong>AIG Thailand（Travel Guard）</strong>、<strong>Allianz Travel Thailand</strong>、<strong>AXA Thailand（Smart Traveller Plus）</strong>。英語証券発行、キャッシュレス医療ネットワーク対応。</li>
+</ul>
+</li>
+<li><strong>グローバル・エクスパット／デジタルノマド保険（全世界居住者対応）</strong>:<ul>
+<li>国籍・居住地を問わず、本国以外の全世界旅行をカバーする国際医療救援保険。</li>
+<li><strong>SafetyWing（Nomad Insurance）</strong>、<strong>IMG Global（Patriot Travel Medical Insurance）</strong>、<strong>Allianz Global Assistance Expat</strong>。</li>
+</ul>
+</li>
+<li><strong>日本の損保（AIG損保等）による「非居住者・海外直接帰着引受特則」の個別書面承諾</strong>:<ul>
+<li>日本の代理店経由で、AIG損保等の引受査定部門へ「被保険者はタイ在住者であり、日本一時帰国を経て出国し、旅行終了地はバンコクである」旨を事前告知し、<strong>書面による引受承諾特則（引受承諾書／裏書）を取り付けた正規ポリシー</strong>を締結する（ネット通販画面での無告知加入は絶対不可）。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="53">5.3 予防接種・衛生スケジュール評価</h3>
+<ol>
+<li><strong>黄熱病（Yellow Fever）予防接種とイエローカードの法的効力</strong></li>
+<li><em>法的要件</em>: ケニア入国およびケニアからタイへ帰着・入国する際、国際保健規則（IHR）に基づくイエローカード（国際予防接種証明書）の提示が義務付けられている（Health Control通過必須）。</li>
+<li><em>法的有効性</em>: 接種日の <strong>10日後</strong> から生涯有効となる。</li>
+<li><em>計画</em>: <strong>本日 2026年9月12日（土）</strong> スネークファームにて接種完了 → <strong>9月22日に法的発効</strong>（10/28出発の36日前であり完全適合）。</li>
+<li><strong>全4回・網羅的接種スケジュール（9/12〜10/13完了）</strong></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">回数</th>
+<th style="text-align: left;">接種日</th>
+<th style="text-align: left;">接種場所</th>
+<th style="text-align: left;">接種ワクチン・項目</th>
+<th style="text-align: left;">獲得免疫・重要医学的意義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>第1回</strong></td>
+<td style="text-align: left;"><strong>9/12(土)</strong><br>本日午前</td>
+<td style="text-align: left;">バンコク<br>スネークファーム</td>
+<td style="text-align: left;"><strong>黄熱（生）</strong><br><strong>Twinrix ①</strong>（A+B型肝炎）<br><strong>狂犬病 ①</strong>（Day 0）</td>
+<td style="text-align: left;">イエローカード即日受領（9/22発効）。<br>Twinrix第2回（10/13）までの必須インターバル4週間（28日）を確保。自費約3,200 THB。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>第2回</strong></td>
+<td style="text-align: left;"><strong>9/24(木)</strong><br>平日午前</td>
+<td style="text-align: left;">バンコク<br>スネークファーム</td>
+<td style="text-align: left;"><strong>狂犬病 ②</strong>（Day 12）<br><strong>腸チフス</strong>（Typhim Vi）<br><strong>Tdap</strong>（破傷風・非利き腕）</td>
+<td style="text-align: left;">狂犬病PrEP第2回。アンデス・ケニアでの外傷・感染リスク遮断。会社精算用書類受領。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>第3回</strong></td>
+<td style="text-align: left;"><strong>10/1(木)</strong></td>
+<td style="text-align: left;">東京滞在先<br>クリニック</td>
+<td style="text-align: left;"><strong>シングリックス ②</strong><br>（帯状疱疹 2回目）</td>
+<td style="text-align: left;">7/24第1回から68日後（推奨2〜6か月内）。<br>🔴 <strong>副反応（発熱等）に備え翌10/2は完全静養日</strong>。解熱鎮痛剤処方。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>第4回</strong></td>
+<td style="text-align: left;"><strong>10/13(火)</strong><br>平日午前</td>
+<td style="text-align: left;">バンコク<br>スネークファーム</td>
+<td style="text-align: left;"><strong>Twinrix ②</strong>（Day 31）<br><strong>狂犬病 ③</strong>（Day 31 コンプリート）<br><strong>マラリア予防薬処方</strong></td>
+<td style="text-align: left;">A型肝炎抗体96〜100%完成。狂犬病PrEP完了（RIG不要化）。<br>マサイマラ用マラロン12錠処方。<strong>全防疫100%完了！</strong></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><strong>マラリア予防薬（マラロン: アトバコン・プログアニル配合錠）服用プロトコル</strong></li>
+<li><em>対象地域</em>: ケニア・マサイマラサファリ（11/28〜12/1）。イグアスはリスク無視可能水準（DEET 30%防虫剤で対応）。</li>
+<li><em>服用スケジュール</em>: 1日1回1錠、食後に服用。<ul>
+<li>サファリ進入前日: <strong>11月27日（1錠目）</strong></li>
+<li>サファリ滞在中: <strong>11月28日〜30日（2〜4錠目）</strong></li>
+<li>流行地退出後: <strong>12月1日〜7日（7日間連続服用・5〜11錠目）</strong></li>
+<li>予備1錠を含め <strong>計12錠</strong> を10/13に処方受領。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="6-r5-p1-p2-p3">6. R5: 優先度別実行マトリクス（P1 / P2 / P3）</h2>
+<h3 id="p1-9">🔴 P1: 最優先・緊急アクション（即時〜9月下旬）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">優先度</th>
+<th style="text-align: left;">対象項目</th>
+<th style="text-align: center;">期限</th>
+<th style="text-align: left;">アクション内容と重要ポイント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>P1-01</strong></td>
+<td style="text-align: left;"><strong>予防接種 第1回</strong></td>
+<td style="text-align: center;"><strong>9/12(土)</strong> 本日</td>
+<td style="text-align: left;">スネークファームにて黄熱（生）＋ Twinrix① ＋ 狂犬病①を接種。イエローカード即日受領。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P1-02</strong></td>
+<td style="text-align: left;"><strong>サグラダ・ファミリア予約</strong></td>
+<td style="text-align: center;"><strong>9/14(月)</strong></td>
+<td style="text-align: left;">60日前解禁。公式（<code>tickets.sagradafamilia.org</code>）で「生誕の塔付午前枠（€36）」を即時購入。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P1-03</strong></td>
+<td style="text-align: left;"><strong>パスポート残存確認</strong></td>
+<td style="text-align: center;"><strong>9/15(火)</strong></td>
+<td style="text-align: left;">2027年9月以降の有効期間および査証欄余白ページ数を確認（I5）。</td>
+</tr>
+<tr>
+<td style="text-align: center;">✅ <strong>P1-04</strong></td>
+<td style="text-align: left;"><strong>RFEF 照会・回答受領</strong></td>
+<td style="text-align: center;">✅ <strong>9/12(土) 完了</strong></td>
+<td style="text-align: left;"><code>tickets@rfef.es</code> より「購入国とカード発行国の一致必須」と回答受領。<strong>妻のタイ発行カードで決済確定</strong>。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P1-05</strong></td>
+<td style="text-align: left;"><strong>クレジットカード渡航連絡</strong></td>
+<td style="text-align: center;"><strong>9/16(水)</strong></td>
+<td style="text-align: left;">Olive（8617）およびANAゴールド（9210）等へペルー・ブラジル・欧州の渡航連絡を入れ不正ブロック防止。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P1-06</strong></td>
+<td style="text-align: left;"><strong>ポジショニング便確保</strong></td>
+<td style="text-align: center;"><strong>9/17(木)</strong></td>
+<td style="text-align: left;">C1（10/26 BKK→東京 TG660 $343、またはマイル特典枠）を確保。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P1-07</strong></td>
+<td style="text-align: left;"><strong>Passo Taraftar カード申請</strong></td>
+<td style="text-align: center;"><strong>9/18(金)</strong></td>
+<td style="text-align: left;"><code>passotaraftar.com.tr</code> にて「GSロゴ入り Passo Wallet」を申請。ガラタサライ戦購入の絶対前提。</td>
+</tr>
+<tr>
+<td style="text-align: center;">🔴 <strong>P1-08</strong></td>
+<td style="text-align: left;"><strong>マサイマラ フライイン回答確認</strong></td>
+<td style="text-align: center;"><strong>回答受領済</strong><br>(9/13送信・回答済)</td>
+<td style="text-align: left;">SafariBookings にて Trav-Interactive（Ref 1168751）の見積回答確認済。50%デポジット決済手配中。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P1-09</strong></td>
+<td style="text-align: left;"><strong>Copa航空 座席属性登録</strong></td>
+<td style="text-align: center;"><strong>9/20(日)</strong></td>
+<td style="text-align: left;">CM121・CM489 の座席属性（窓側/通路側）を登録（A13）。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P1-10</strong></td>
+<td style="text-align: left;"><strong>アクロポリス予約</strong></td>
+<td style="text-align: center;"><strong>9/21(月)</strong></td>
+<td style="text-align: left;">60日前解禁。公式（<code>hhticket.gr</code>）で 11/20 午前枠（30€）を購入。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P1-11</strong></td>
+<td style="text-align: left;"><strong>スペイン戦 購入準備完了</strong></td>
+<td style="text-align: center;"><strong>9/21(月)</strong></td>
+<td style="text-align: left;">旅券番号、<strong>妻のタイ発行カード（3Dセキュア有効化確認）</strong>、希望ゾーン（LATERAL ESTE）の最終確定。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P1-12</strong></td>
+<td style="text-align: left;"><strong>ソシオ先行 画面偵察</strong></td>
+<td style="text-align: center;"><strong>9/22(火) 17:00</strong><br>(バンコク)</td>
+<td style="text-align: left;">RFEF ポータルにてソシオ先行開始時の画面遷移、入力項目、ゾーン在庫状況をリアルタイム偵察。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P1-13</strong></td>
+<td style="text-align: left;"><strong>スペイン戦 チケット購入</strong></td>
+<td style="text-align: center;">🔴 <strong>9/23(水) 17:00</strong><br>(バンコク)</td>
+<td style="text-align: left;"><strong>16:45 待機開始。17:00 一般販売開始直後にアクセスし LATERAL ESTE（約€100）を即時決済。</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P1-14</strong></td>
+<td style="text-align: left;"><strong>予防接種 第2回</strong></td>
+<td style="text-align: center;"><strong>9/24(木)</strong></td>
+<td style="text-align: left;">スネークファームにて狂犬病② ＋ 腸チフス ＋ Tdap を接種。会社精算用書類受領。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P1-15</strong></td>
+<td style="text-align: left;"><strong>マドリードホテル（E10）確保</strong></td>
+<td style="text-align: center;"><strong>9月中</strong></td>
+<td style="text-align: left;">代表戦当日で市内ホテルが高騰・満室化するため、返金可能レートで最優先確保。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P1-16</strong></td>
+<td style="text-align: left;"><strong>リマ空港直結ホテル（E3）確保</strong></td>
+<td style="text-align: center;"><strong>9月中</strong></td>
+<td style="text-align: left;">Wyndham Costa del Sol（10/31泊）を確保。部屋数限定のため早期ロック。</td>
+</tr>
+<tr>
+<td style="text-align: center;">✅ <strong>P1-17</strong></td>
+<td style="text-align: left;"><strong>ナイロビホテル2軒 予約完了</strong></td>
+<td style="text-align: center;">✅ <strong>9/13 完了</strong></td>
+<td style="text-align: left;">Four Points JKIA 予約済（<code>93880712</code>）／Emara Ole-Sereni パークビュー予約済（<code>1385435893739592</code>）。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P1-18</strong></td>
+<td style="text-align: left;"><strong>カッパドキア気球（F10）確保</strong></td>
+<td style="text-align: center;"><strong>9月中</strong></td>
+<td style="text-align: left;">Voyager Balloons 公式にて 11/22 Comfort Flight（€360）を予約確定。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P1-19</strong></td>
+<td style="text-align: left;"><strong>ANA マイル積算率照会</strong></td>
+<td style="text-align: center;"><strong>9/30(水)</strong></td>
+<td style="text-align: left;">世界一周運賃（RTW）の各予約クラス積算率をANA窓口へ照会（M2）。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="p2-10">🟡 P2: 重要・近接アクション（10月上旬〜中旬）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">優先度</th>
+<th style="text-align: left;">対象項目</th>
+<th style="text-align: center;">期限</th>
+<th style="text-align: left;">アクション内容と重要ポイント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>P2-01</strong></td>
+<td style="text-align: left;"><strong>予防接種 第3回</strong></td>
+<td style="text-align: center;"><strong>10/1(木)</strong></td>
+<td style="text-align: left;">日本滞在クリニックにてシングリックス②（帯状疱疹）接種。翌10/2は完全静養。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P2-02</strong></td>
+<td style="text-align: left;"><strong>米国 ESTA 申請</strong></td>
+<td style="text-align: center;"><strong>10/5(月)</strong></td>
+<td style="text-align: left;">SFO 経由便（NH8→UA1271）搭乗のため公式 ESTA 申請を完了（H1）。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P2-03</strong></td>
+<td style="text-align: left;"><strong>適格単独包括保険 契約</strong></td>
+<td style="text-align: center;"><strong>10/5(月)</strong></td>
+<td style="text-align: left;">クレカ非居住者条項および日本のネット保険罠を排除し、タイ現地エクスパット保険（AIG/Allianz/AXA Thailand）またはグローバル保険、AIG損保特則にて治療救援無制限/1億円を契約（I1）。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P2-04</strong></td>
+<td style="text-align: left;"><strong>Basecamp Masai Mara 確定</strong></td>
+<td style="text-align: center;"><strong>9月下旬〜10月</strong></td>
+<td style="text-align: left;">サファリ契約に伴い Basecamp Masai Mara 2泊フルボードを確定ロック。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P2-05</strong></td>
+<td style="text-align: left;"><strong>宿泊施設17件の予約完了</strong></td>
+<td style="text-align: center;"><strong>10/10(土)</strong></td>
+<td style="text-align: left;">E1〜E19 の全宿泊を返金可能レート（Booking.com / 各自公式）で一括確保。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P2-06</strong></td>
+<td style="text-align: left;"><strong>陸路送迎・鉄道手配</strong></td>
+<td style="text-align: center;"><strong>10/10(土)</strong></td>
+<td style="text-align: left;">クスコ空港〜オリャンタ駅専用車（VELTRA a/184253）、AVE（バルセロナ〜マドリード往復）を確保。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P2-07</strong></td>
+<td style="text-align: left;"><strong>事前予約観光の確保</strong></td>
+<td style="text-align: center;"><strong>10/10(土)</strong></td>
+<td style="text-align: left;">カンプノウ（11/14 09:30枠）、大エジプト博物館（11/27 09:00枠 <code>visit-gem.com</code>）を予約。</td>
+</tr>
+<tr>
+<td style="text-align: center;">✅ <strong>P2-08</strong></td>
+<td style="text-align: left;"><strong>トスカーナワイナリー予約完了</strong></td>
+<td style="text-align: center;">✅ <strong>9/12 完了</strong></td>
+<td style="text-align: left;">City Wonders モンテプルチャーノ・オルチャ渓谷ツアー（予約 <code>XTK978855</code>）。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P2-09</strong></td>
+<td style="text-align: left;"><strong>イグアス入場券・ツアー予約</strong></td>
+<td style="text-align: center;"><strong>10/10(土)</strong></td>
+<td style="text-align: left;">ブラジル側入場券（時間指定）、Viator フォス発 Gran Aventura パッケージを確保。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P2-10</strong></td>
+<td style="text-align: left;"><strong>予防接種 第4回・最終完了</strong></td>
+<td style="text-align: center;"><strong>10/13(火)</strong></td>
+<td style="text-align: left;">スネークファームにて Twinrix② ＋ 狂犬病③ ＋ マラリア薬処方。全防疫完了！</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P2-11</strong></td>
+<td style="text-align: left;"><strong>コロッセオ予約</strong></td>
+<td style="text-align: center;">🔴 <strong>10/18(日) 13:45</strong><br>(バンコク)</td>
+<td style="text-align: left;"><strong>30日前解禁。<code>ticketing.colosseo.it</code> にて 11/17 13:30 枠（€18）を即時確保。</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P2-12</strong></td>
+<td style="text-align: left;"><strong>Passo カード受取確認・アプリ確認</strong></td>
+<td style="text-align: center;"><strong>10/20(火)</strong></td>
+<td style="text-align: left;">Passo アプリへのログイン、支払いカード登録、事前有効化を確認（B1b）。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P2-13</strong></td>
+<td style="text-align: left;"><strong>ケニア eTA 申請</strong></td>
+<td style="text-align: center;"><strong>10/20(火)</strong></td>
+<td style="text-align: left;">ケニア公式ポータルにて電子渡航認証（eTA）を申請（H2）。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P2-14</strong></td>
+<td style="text-align: left;"><strong>荷物計量・パッキング検証</strong></td>
+<td style="text-align: center;"><strong>10/25(日)</strong></td>
+<td style="text-align: left;">自宅にてスーツケース15kg・デイパック8kg・合計23kg以下を厳密計量（K6）。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P2-15</strong></td>
+<td style="text-align: left;"><strong>利用付帯カードの有効化</strong></td>
+<td style="text-align: center;"><strong>10/28(水)</strong></td>
+<td style="text-align: left;">成田空港までの交通機関を JCB / 楽天 / JAL カードで決済し利用付帯保険を発動（I1d）。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="p3-11">🟢 P3: 通常・現地実行アクション（11月以降）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">優先度</th>
+<th style="text-align: left;">対象項目</th>
+<th style="text-align: center;">期限</th>
+<th style="text-align: left;">アクション内容と重要ポイント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>P3-01</strong></td>
+<td style="text-align: left;"><strong>マチュピチュ ゲート説明資料携行</strong></td>
+<td style="text-align: center;"><strong>11/1(日)</strong></td>
+<td style="text-align: left;">氏名誤記（TAKAMUU）対応のため、文化省回答メール印刷物、3-A券、パスポート原本を携行（J3）。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P3-02</strong></td>
+<td style="text-align: left;"><strong>イグアス ヘリ天候判断</strong></td>
+<td style="text-align: center;"><strong>11/6(金)夜</strong></td>
+<td style="text-align: left;">翌朝の晴天率を確認し Helisul（09:15枠 R$685）を確定。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P3-03</strong></td>
+<td style="text-align: left;"><strong>スペイン戦 チケット着券確認</strong></td>
+<td style="text-align: center;"><strong>11/13(金)</strong></td>
+<td style="text-align: left;">キックオフ48時間前に RFEF Tickets アプリへ配信確認（バルセロナ滞在中）。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P3-04</strong></td>
+<td style="text-align: left;"><strong>スペイン戦 チケット有効化</strong></td>
+<td style="text-align: center;"><strong>11/15(日) 16:45</strong></td>
+<td style="text-align: left;">キックオフ4時間前にアプリ内で QR コードを生成・有効化。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P3-05</strong></td>
+<td style="text-align: left;"><strong>ローマでの荷造り前倒し</strong></td>
+<td style="text-align: center;"><strong>11/17(火)夜</strong></td>
+<td style="text-align: left;">翌日のトスカーナ試飲後の疲労を考慮し、ローマ3連泊分の荷造りを完了。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P3-06</strong></td>
+<td style="text-align: left;"><strong>ガラタサライ戦 優先動向確認</strong></td>
+<td style="text-align: center;"><strong>11/19(木) 13:00</strong><br>(アテネ)</td>
+<td style="text-align: left;">優先販売の売れ行き動向を確認し、翌日の一般販売に備えログイン確認（B4a）。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P3-07</strong></td>
+<td style="text-align: left;"><strong>ガラタサライ戦 チケット購入</strong></td>
+<td style="text-align: center;">🔴 <strong>11/20(金) 13:00</strong><br>(アテネ)</td>
+<td style="text-align: left;"><strong>アテネ時間 13:00（トルコ 14:00）Passo アプリより一般販売チケットを購入（B4b）。</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P3-08</strong></td>
+<td style="text-align: left;"><strong>気球欠航時のフライト・ホテル振替</strong></td>
+<td style="text-align: center;"><strong>11/22(日) 21:30迄</strong></td>
+<td style="text-align: left;">11/22早朝に気球欠航となった場合、TK2001 を TK2007 へ変更し、E13洞窟ホテル延泊を確保。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P3-09</strong></td>
+<td style="text-align: left;"><strong>ガラタサライ戦 当日入場</strong></td>
+<td style="text-align: center;"><strong>11/24(火) 18:45</strong></td>
+<td style="text-align: left;">パスポート原本と Passo カードを携行し RAMS Park へ入場。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>P3-10</strong></td>
+<td style="text-align: left;"><strong>シンガポールホテル（E19）確保</strong></td>
+<td style="text-align: center;"><strong>12月中〜1月</strong></td>
+<td style="text-align: left;">2027/3/1-2 のシンガポール2泊を Agoda 等で確保。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-todomd">7. TODO.md 反映・同期方針</h2>
+<p>本調査報告書における全ファクトに基づき、<code>C:\dev\claude\worldtour\TODO.md</code> を以下の通り改定・同期する：</p>
+<ol>
+<li><strong>フライト予約ステータスの更新</strong>:</li>
+<li>RTW 16クーポン（PNR: <code>EANRV5</code>、205-2443136675〜678、総額 ¥1,211,160）の発券完了事実を正本として固定。</li>
+<li>RTW外フライト C2（LA2013 PE）、C3（LA2167/8005/3206 3レグ通し）、C4（LA3201）、C5（TK2008 PrimeFly）、C6（TK2001 PrimeFly）の全購入実績（PNR、航空券番号、金額）を完全反映。</li>
+<li><strong>齟齬・旧版残存記述の是正</strong>:</li>
+<li>イスタンブール泊数: E14 を「2 or 3泊」から「<strong>2泊（11/23・11/24）</strong>」に確定。</li>
+<li>リマ到着時刻: E3 注記の「01:30頃の深夜IN可」を「<strong>22:45着・23:45チェックイン</strong>」に是正。</li>
+<li>カイロ〜ナイロビ便: MS849 を「<strong>21:35発 → 03:30着</strong>」として明記。</li>
+<li>サファリ移動・宿泊: 悪路往復11時間を完全排除し、「<strong>マサイマラ往復フライイン（WIL発着小型機・Basecamp Mara 2泊フルボード）</strong>」に更新。23kg荷物は11/28朝にEmara Ole-Sereniへ事前預託。</li>
+<li><strong>宿泊施設パラメータの体系化</strong>:</li>
+<li>E1〜E19 の全19件について、チェックイン/アウト制約、立地基準、目標予算、推奨ホテル、予約期限を明記。</li>
+<li><strong>観戦チケット発売日の更新</strong>:</li>
+<li>スペイン戦: 一般販売日 <strong>9/23 バンコク 17:00（16:45待機）</strong>、ソシオ先行 9/22、RFEF照会メール 9/16 を反映。</li>
+<li>ガラタサライ戦: Passo Taraftar カード申請期限 <strong>9/18</strong>、一般販売日 <strong>11/20 アテネ 13:00</strong> を反映。</li>
+<li><strong>保険・防疫タスクの更新</strong>:</li>
+<li>Oliveカード保険0円失効と非居住者条項によるクレカ付帯保険全滅リスクを明記し、単独包括海外旅行保険の契約タスクを追加。</li>
+<li>スネークファーム接種スケジュール（9/12、9/24、10/1、10/13）の全4回体制を反映。</li>
+<li><strong>期限別優先度マトリクスの同期</strong>:</li>
+<li>P1 / P2 / P3 の期日を一覧表形式で TODO.md 冒頭に同期。</li>
+</ol>
+<hr />
+<p>以上</p>
+    </article>
+  </main>
+
+  <script>
+    // Smooth scroll offset for sticky header
+    window.addEventListener('hashchange', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+</body>
+</html>
