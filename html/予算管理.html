@@ -315,12 +315,17 @@
 金額の正本は <a href="html/cost_management.html"><code>html/cost_management.html</code></a> で、<br />
 <code>python tools/create_cost_management.py</code> を実行すると本書が上書き再生成される。<br />
 <strong>金額を直す場合は HTML 側の <code>data-est</code> / <code>data-actual</code> / <code>data-card</code> を直す。</strong></p>
+<p>🔴 <strong>【ルール】<code>data-est</code>（当初予想額）は、予約確定後も絶対に実績額へ書き換えない。</strong><br />
+予約・支払いが確定したら <code>data-actual</code> にのみ実額を入れ、<code>data-est</code> は最初に見積もった金額のまま固定する。<br />
+理由：<code>data-est</code> を実績で上書きすると、予想と実績の差（削減できた／超過した金額）が見えなくなり、<br />
+「頑張って安く抑えた効果」が可視化できなくなる。過去に一部の行（マドリードHOTEL PAX ATOCHA等）で<br />
+予約と同時に est を実額に合わせてしまっていたため、2026/9/15 に判明分をすべて復元済み。今後は同じ操作をしないこと。</p>
 </blockquote>
 <table>
 <thead>
 <tr>
 <th style="text-align: left;">生成日</th>
-<th style="text-align: left;">2026-09-13</th>
+<th style="text-align: left;">2026-09-15</th>
 </tr>
 </thead>
 <tbody>
@@ -346,7 +351,7 @@
 <tbody>
 <tr>
 <td style="text-align: left;"><strong>予想総額</strong></td>
-<td style="text-align: right;"><strong>¥3,332,969</strong></td>
+<td style="text-align: right;"><strong>¥3,312,978</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>確定実績（支払済）</strong></td>
@@ -354,11 +359,11 @@
 </tr>
 <tr>
 <td style="text-align: left;">未確定残高</td>
-<td style="text-align: right;">¥1,695,520</td>
+<td style="text-align: right;">¥1,675,529</td>
 </tr>
 <tr>
 <td style="text-align: left;">確定率</td>
-<td style="text-align: right;">49.1%</td>
+<td style="text-align: right;">49.4%</td>
 </tr>
 </tbody>
 </table>
@@ -375,21 +380,21 @@
 <tbody>
 <tr>
 <td style="text-align: left;">✈️ 航空券</td>
-<td style="text-align: right;">¥1,439,846</td>
+<td style="text-align: right;">¥1,424,798</td>
 <td style="text-align: right;">¥1,377,841</td>
-<td style="text-align: right;">¥62,005</td>
+<td style="text-align: right;">¥46,957</td>
 </tr>
 <tr>
 <td style="text-align: left;">🏨 宿泊費</td>
-<td style="text-align: right;">¥624,711</td>
+<td style="text-align: right;">¥594,190</td>
 <td style="text-align: right;">¥186,353</td>
-<td style="text-align: right;">¥438,358</td>
+<td style="text-align: right;">¥407,837</td>
 </tr>
 <tr>
 <td style="text-align: left;">🎟️ アクティビティ</td>
-<td style="text-align: right;">¥550,457</td>
+<td style="text-align: right;">¥576,035</td>
 <td style="text-align: right;">¥58,090</td>
-<td style="text-align: right;">¥492,367</td>
+<td style="text-align: right;">¥517,945</td>
 </tr>
 <tr>
 <td style="text-align: left;">🛡️ 諸経費・予備費</td>
@@ -399,9 +404,9 @@
 </tr>
 <tr>
 <td style="text-align: left;"><strong>合計</strong></td>
-<td style="text-align: right;"><strong>¥3,332,969</strong></td>
+<td style="text-align: right;"><strong>¥3,312,978</strong></td>
 <td style="text-align: right;"><strong>¥1,637,449</strong></td>
-<td style="text-align: right;"><strong>¥1,695,520</strong></td>
+<td style="text-align: right;"><strong>¥1,675,529</strong></td>
 </tr>
 </tbody>
 </table>
@@ -828,7 +833,7 @@
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"><strong>合計</strong></td>
-<td style="text-align: right;"><strong>¥1,695,520</strong></td>
+<td style="text-align: right;"><strong>¥1,675,529</strong></td>
 </tr>
 </tbody>
 </table>
