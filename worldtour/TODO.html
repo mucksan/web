@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TODO Interactive View</title>
+    <title>TODO List (Consolidated View)</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- DataTables CSS -->
@@ -14,1861 +14,1868 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: #f8f9fa;
         }
-        .container {
+        .container-fluid {
             background-color: #ffffff;
-            padding: 30px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            max-width: 1400px;
-            margin: auto;
-        }
-        h1, h2, h3 {
-            margin-top: 1.5rem;
-            color: #2c3e50;
         }
         .table { font-size: 0.95rem; }
-        .dataTables_wrapper .row { margin-bottom: 0.5rem; }
+        .pri-1 { background-color: #fff1f0 !important; }
+        .pri-2 { background-color: #fffbe6 !important; }
+        .pri-5 { background-color: #f6ffed !important; color: #888; text-decoration: line-through; }
+        .pri-5 b { color: #888; }
+        td p { margin-bottom: 0; }
+        /* DataTables wrapper layout adjustments */
+        .dataTables_wrapper .row { margin-bottom: 1rem; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>世界一周RTW 2026-27 TODO 一覧</h1>
-<p><strong>作成日:</strong> 2026年9月5日
-<strong>対象:</strong> 東回りRTW（✅ <strong>発券済み・PNR: EANRV5</strong>）とその周辺手配のすべて
-<strong>正本:</strong> <a href="東回り_要件定義書.md"><code>東回り_要件定義書.md</code></a>（第7版）／<a href="東回り_発券用資料.md"><code>東回り_発券用資料.md</code></a>
-<strong>同期先:</strong> Todoist プロジェクト <strong>「世界一周RTW 2026-27」</strong>（セクション A〜M は本書と同一）</p>
-<blockquote>
-<p>⚠️ <strong>本書と Todoist は二重管理です。</strong> 状態の正は <strong>Todoist</strong> に置き、
-本書は「全体を1枚で見渡す」ためのスナップショットとして扱ってください。
-完了・期限変更が溜まったら Todoist 側から本書を更新します。</p>
-</blockquote>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">記号</th>
-<th style="text-align: left;">意味</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">🔴</td>
-<td style="text-align: left;">最優先（Todoist P1）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🟡</td>
-<td style="text-align: left;">重要（P2）</td>
-</tr>
-<tr>
-<td style="text-align: left;">⬜</td>
-<td style="text-align: left;">通常（P3/P4）</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">完了</td>
-</tr>
-<tr>
-<td style="text-align: left;">⚠️</td>
-<td style="text-align: left;">資料に記載がなく、9/5 の洗い出しで追加した項目</td>
-</tr>
-</tbody>
-</table>
-<p><strong>総数 120 件</strong>（A:15 / B:12 / C:8 / D:6 / E:19 / F:13 / G:8 / H:6 / I:11 / J:4 / K:8 / L:6 / M:4）</p>
-<hr />
-<h2>🚨 いま効いている期限（P1 / P2 / P3 優先度別）</h2>
-<blockquote>
-<p>📘 <strong>全フライト照合・17宿泊施設・手荷物設計・保険・防疫の包括的監査結果は <a href="手配_包括レビュー・リスク評価.md"><code>手配_包括レビュー・リスク評価.md</code></a> を参照。</strong></p>
-</blockquote>
-<h3>✅ 直近の完了実績</h3>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">完了日</th>
-<th style="text-align: left;">内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/6</strong></td>
-<td style="text-align: left;">✅ <strong>RTW 発券完了</strong>（PNR: <code>EANRV5</code>・総額 ¥1,211,160）。ET319・ET608 のキャンセルも同一便で復旧</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/8</strong></td>
-<td style="text-align: left;">✅ <strong>C2（LIM→CUZ）購入完了</strong>（LATAM PE Full・PNR: <code>MAYCQV</code>・座席2A・$130.60）</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/8</strong></td>
-<td style="text-align: left;">✅ <strong>C3（CUZ→LIM→GRU→IGU 3レグ通し）購入完了</strong>（LATAM Economy Full・PNR: <code>IWYEMJ</code>・$263.68）</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/8</strong></td>
-<td style="text-align: left;">✅ <strong>D1・D2（PeruRail 展望列車往復）購入完了</strong>（予約: <code>WEB3204304</code>・$159.60）</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/9</strong></td>
-<td style="text-align: left;">✅ <strong>C4（IGU→GRU）購入完了</strong>（LATAM Economy Full・PNR: <code>UBHQIG</code>・$477.67）</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/9</strong></td>
-<td style="text-align: left;">✅ <strong>C5（IST→NAV）購入完了</strong>（TK PrimeFly・PNR: <code>SUMX3C</code>・TRY 4,964.63）</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/9</strong></td>
-<td style="text-align: left;">✅ <strong>C6（NAV→IST）購入完了</strong>（TK PrimeFly・PNR: <code>VKCWJC</code>・TRY 4,950.00）</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/10</strong></td>
-<td style="text-align: left;">✅ <strong>RTW に ANAマイレージクラブ番号が登録済みと確認</strong>（A11a／M1）。ANAアプリで全予約表示</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/10</strong></td>
-<td style="text-align: left;">✅ <strong>Olive の選べる無料保険をスマホ安心プランへ戻した</strong>（I0）<br>🔴 <strong>Olive は今回の旅行では完全に対象外（0円）と確定。</strong>排他選択制＋「補償期間中に開始された旅行」原則により 10/28 出発は規約上無効</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/11</strong></td>
-<td style="text-align: left;">✅ <strong>RFEF Tickets アプリを導入しアカウント作成</strong>（B2）。発売日確定（ソシオ9/22、一般9/23）</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/11</strong></td>
-<td style="text-align: left;">✅ <strong>ヴァチカン博物館（11/17 08:00枠・€25）予約完了</strong>（G3）。システィーナ礼拝堂含む</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/12</strong></td>
-<td style="text-align: left;">✅ <strong>予防接種 第1回 接種完了</strong>（H3・スネークファーム）。<strong>黄熱病ワクチン（イエローカード即日受領・9/22有効化）＋ 狂犬病①（Day 0）受診完了</strong>。Twinrix①は未接種で抗体検査に変更→✅ <strong>9/24にTwinrix①を打つ方針で確定</strong>（結果待たず）</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/12</strong></td>
-<td style="text-align: left;">✅ <strong><code>tickets@rfef.es</code> より公式回答受領・B2完了</strong>（B2）。<strong>「購入国と同じ国で発行されたカードが必須」と確定 ➔ 妻のタイ発行クレジットカードで決済確定！最大リスクを完全クリア</strong></td>
-</tr>
-</tbody>
-</table>
-<h3>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</h3>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">期限</th>
-<th style="text-align: left;">内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/14（月）</strong></td>
-<td style="text-align: left;">✅ <strong>サグラダ・ファミリア 塔登頂を予約</strong>（完了）<br>予約番号: 106809589 / 11/13(金) 9:00入場, 9:15生誕の塔</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/15（火）</strong></td>
-<td style="text-align: left;">✅ <strong>パスポートの残存有効期間と査証欄の空きを確認</strong>（I5・完了）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/9/16（水）</strong></td>
-<td style="text-align: left;">🔴 <strong>クレジットカードの渡航連絡</strong>（I2）<br><strong>ホテル17件（10/10 期限）を予約する前に済ませる。</strong>8617 はブラジル決済で実際に止まった</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/9/17（木）</strong></td>
-<td style="text-align: left;">🔴 <strong>C1 BKK→東京（10/26）を確保</strong>（C1／M3・TG660 $343 または特典枠）</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/15（火）</strong></td>
-<td style="text-align: left;">✅ <strong>Passo Taraftar カード申請完了 → 同日 18:42 SMS で承認</strong>（B1・GALATASARAY・Digital Prepaid Card）。<br>決済は日本発行カード（ANA・Olive・dカード・ファミマ）が軒並み3DS/カード非対応エラーで失敗し、<strong>Wiseカードで決済成功</strong>（₺1,200）。<br>✅ <strong>申請番号（ref no）738721 が承認</strong>・<strong>デジタルウォレットカード発行済（下4桁 7195）</strong>。<br>🔴 <strong>物理カードは送付されない。入場は「スタジアム窓口でパスポートを提示し Tek Girişlik Pass Card を受領」する方式</strong>（従来想定のアプリQR直接入場は誤り）。<br>✅ カード現物なしでも Passo Mobil でチケット購入可。</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/16（水）</strong></td>
-<td style="text-align: left;">✅ <strong>Passo Taraftar カードを Web で現物確認</strong>（B1a・<code>passotaraftar.com.tr</code> ➔ Card Transactions）。<br>✅ <strong>名義 TAKESHI TAKAMUKU／<code>Passo Taraftar Dijital Cüzdan Kart – GALATASARAY A.Ş.</code>／<code>5262 63** **** 7195</code>／残高 0,00 TL</strong>。<br>🔴 <strong>チケット購入用の会員登録は <code>passo.com.tr</code> 側で別途必要（B1b）</strong>、<strong>E-Ticket 有効期限は N Kolay Mobile で確認（B1c）</strong>、<strong>決済手段の確定（B1d）</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>早めに</strong></td>
-<td style="text-align: left;">🔴 <strong>サファリ デポジット50%（$807）送金</strong>（F3・Trav-Interactive／Ref. no. 1168751／請求書 <code>Trav/2026/00383900917</code>）<br>マサイマラ空路フライイン（$1,614・Basecamp 2泊フルボード）。✅ <strong>請求書に明確な期限日の記載はないが、入金するまで予約は確定しない</strong>（座席数限定のため早期送金推奨）。Diamond Trust Bank宛て銀行送金</td>
-</tr>
-<tr>
-<td style="text-align: left;">🟡 <strong>2026/9/20（日）</strong></td>
-<td style="text-align: left;"><strong>Copa 2便（CM121・CM489）の座席属性を登録</strong>（A13・通路側希望）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/9/21（月）</strong></td>
-<td style="text-align: left;">🔴 <strong>アクロポリスを予約</strong>（G5・<strong>60日前解禁</strong>・<code>hhticket.gr</code>・11/20 午前枠 30€）<br>🔴 <strong>スペイン戦 購入事前準備完了</strong>（B3a・旅券番号、<strong>GCP東京クラウドPC＋日本発行カード（手元3Dセキュア確認）</strong>、コピペ用テキスト配置、希望ゾーン LATERAL ESTE 決定）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🟡 <strong>2026/9/22（火）</strong><br><strong>バンコク 17:00</strong><br>（クラウドPC 19:00）</td>
-<td style="text-align: left;"><strong>アトレティコ・マドリードのソシオ先行偵察</strong>（B3b・<code>cupo limitado</code>）。クラウドPCからアクセスし画面遷移・入力欄HTML構造解析 ➔ <strong>ワンクリック自動入力（ブックマークレット）を完成・ブラウザ登録</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/9/23（水）</strong><br><strong>バンコク 17:00</strong><br>（クラウドPC 19:00）</td>
-<td style="text-align: left;">🔴 <strong>スペイン vs イングランドを購入（一般販売）</strong>（B3c・RFEF公式）<br>🔵 <strong>16:45 待機開始（クラウドPC 18:45）。17:00 販売開始直後にアクセスし LATERAL ESTE（約€100）を選択 ➔ ブックマークレットで0.1秒入力 ➔ 即時決済</strong><br>🔴 <strong>直近ホーム2試合とも即完売。6.8万人満員必至。開始直後に確保</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/9/24（木）</strong></td>
-<td style="text-align: left;">🔴 <strong>予防接種 第2回（スネークファーム・平日 8:30〜16:30 直接来院）</strong>（H3）<br><strong>狂犬病②（Day 12）＋ 腸チフス ＋ Tdap（破傷風・非利き腕へ）＋ Twinrix①（新規確定）</strong><br>🔴 <strong>合計4本。</strong>②は9/24から28日後の10/22に受診（狂犬病③・マラリア処方も同日に統合）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🟡 <strong>2026/9/20〜9/25頃</strong></td>
-<td style="text-align: left;"><strong>メキシコシティ City Express Plus のマリオットアプリ紐付け再試行</strong>（E2・ホテル側確認コード <code>1051276955</code>。OTA・卸売連携タイムラグ解消後に公式アプリの「予約を追加」で再検索）</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/13 済</strong></td>
-<td style="text-align: left;">✅ <strong>リマ空港直結ホテル（E3）確保完了</strong>（Wyndham Costa del Sol 予約 <code>PNKK9ZR29XVB</code>・¥20,189・Vトリップ・ターミナル直結）</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/13 済</strong></td>
-<td style="text-align: left;">✅ <strong>サンフランシスコホテル（E1）確保完了</strong>（グラント プラザ ホテル 予約 <code>54HB8NPPTX2G</code>・¥13,298・Vトリップ・チャイナタウン入口）</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/13 済</strong></td>
-<td style="text-align: left;">✅ <strong>マドリードホテル（E10）確保完了</strong>（HOTEL PAX ATOCHA 予約 <code>P9053588</code>・136€・アトーチャ駅徒歩10分）</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/13 済</strong></td>
-<td style="text-align: left;">✅ <strong>メキシコシティ（E2）確保完了</strong>（City Express Plus Tlalpan 予約 <code>2H38S4SZBXD</code>・¥35,918・Vトリップ）</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>2026/9/13 済</strong></td>
-<td style="text-align: left;">✅ <strong>ナイロビホテル2軒 予約完了</strong>（E16: Four Points JKIA 予約 <code>93880712</code>／E18: Emara Ole-Sereni パークビュー 予約 <code>1385435893739592</code>）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>9月中</strong></td>
-<td style="text-align: left;">🔴 <strong>カッパドキア熱気球ツアー（F10）確保</strong>（Voyager Balloons 公式直販・翌日振替可能プラン €360）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/9/30（水）</strong></td>
-<td style="text-align: left;">🔴 <strong>ANA に世界一周運賃の積算率を照会</strong>（M2）</td>
-</tr>
-</tbody>
-</table>
-<h3>🟡 P2：重要・近接タスク（10月上旬〜中旬）</h3>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">期限</th>
-<th style="text-align: left;">内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/10/1（木）</strong></td>
-<td style="text-align: left;">🔴 <strong>予防接種 第3回（日本滞在・7/24受診クリニック）</strong><br><strong>シングリックス（帯状疱疹）2回目を接種</strong>（自費）。<strong>翌日10/2（金）は完全静養日</strong>としカロナール処方</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/10/5（月）</strong></td>
-<td style="text-align: left;">🔴 <strong>米国 ESTA 申請</strong>（H1・SFO経由便搭乗のため必須）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/10/5（月）</strong></td>
-<td style="text-align: left;">🔴 <strong>単独包括海外旅行保険の契約</strong>（I1・最大論点）<br>クレジットカード付帯保険の「海外非居住者除外条項」による全滅リスクを排除し、治療・救援無制限または1億円の単独保険を確保</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/10/5（月）</strong></td>
-<td style="text-align: left;">🔴 <strong>マサイマラ Basecamp Mara 確定</strong>（E17・サファリツアー F3 契約に伴い確定ロック）</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>2026/10/10（土）</strong></td>
-<td style="text-align: left;"><strong>宿泊施設17件（E群）の予約完了</strong>（返金可能レートで一括確保・※E1, E2, E3, E4, E10, E16, E18は9/13予約完了済）<br><strong>クスコ〜オリャンタ送迎（D3・駅預け必須）</strong>、<strong>AVE（D5/D6）</strong>、<strong>イグアス入場券・ボート（F5/F7）</strong>（※トスカーナF11は9/12予約完了済）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/10/22（木）</strong></td>
-<td style="text-align: left;">🔴 <strong>予防接種 第4回・最終完了（スネークファーム・平日 8:30〜16:30 直接来院）</strong>（H3）<br><strong>狂犬病③（Day 40・コンプリート）＋ マラリア薬処方（マラロン10〜12錠）＋ Twinrix②（9/24の①から28日後）</strong><br>⚠️ <strong>狂犬病③は10/13から統合。</strong>「数週間の遅延は危険」という注意書きは暴露後接種（PEP）限定でPrEPには非該当と判明したため（本人指摘）<br>世界一周に必要な全ワクチン・証明書・予防薬がこれで100%仕上がり！10/26の東京移動まで4日の余裕</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/10/18（日）</strong><br><strong>バンコク 13:45</strong></td>
-<td style="text-align: left;">🔴 <strong>コロッセオを予約</strong>（G4・<strong>30日前・ローマ 08:45 解禁</strong>・<code>ticketing.colosseo.it</code>）<br>🔴 <strong>13:30 の枠を取る。</strong>真実の口（17:00閉・行列60分）に間に合わせるため必須</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>2026/10/20（火）</strong></td>
-<td style="text-align: left;">控え類のクラウド保管（I6）、マチュピチュ券の印刷（I4）、<strong><code>passo.com.tr</code> でチケット購入用の会員登録（B1b・カード管理サイトとは別アカウント）</strong>、<strong>N Kolay Mobile で E-Ticket 有効期限を確認（B1c）</strong>（✅ 9/16 カード現物確認済＝下4桁7195・残高0TL・<strong>物理カードは届かないので到着待ち不要</strong>）、ケニア eTA 申請（H2）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/10/25（日）</strong></td>
-<td style="text-align: left;">🔴 <strong>荷物を計量する。</strong>スーツケース15kg・デイパック8kg・<strong>合計23kg以下</strong>（K6）<br>RTW券は<strong>2個・合計30kg</strong>が上限（A9）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/10/28（水）</strong></td>
-<td style="text-align: left;">🔴 <strong>未有効化カード（JCB・楽天・JAL）に利用付帯を立てる</strong>（I1d・成田までの交通費）<br>🔭 <strong>S-1（UA1271 のビジネス化）の変更期限</strong></td>
-</tr>
-</tbody>
-</table>
-<h3>🟢 P3：通常・現地運用タスク（11月以降）</h3>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">期限</th>
-<th style="text-align: left;">内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/11/1（日）</strong></td>
-<td style="text-align: left;">🔴 <strong>マチュピチュ：当日ゲート説明用の携行物を揃える</strong>（J3・文化省回答書面、両券、パスポート）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🟡 <strong>2026/11/6（金）夜</strong></td>
-<td style="text-align: left;"><strong>イグアス ヘリ遊覧 天候判断</strong>（F8・翌朝の晴天率を確認し Helisul 09:15枠 R$685 確定）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔭 <strong>2026/11/11（水）</strong></td>
-<td style="text-align: left;">🔭 <strong>B-3（TP88 の在庫待ち）の変更期限</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">🟡 <strong>2026/11/13（金）</strong></td>
-<td style="text-align: left;"><strong>スペイン戦 チケット着券確認</strong>（B3d・キックオフ48h前配信・バルセロナ滞在中・eSIM通信確認）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/11/15（日）16:45</strong></td>
-<td style="text-align: left;">🔴 <strong>スペイン戦 チケット有効化</strong>（B3e・キックオフ4時間前・QR生成）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🟡 <strong>2026/11/19（木）13:00</strong><br>（アテネ時間）</td>
-<td style="text-align: left;"><strong>ガラタサライ戦 優先販売動向確認＆前日準備完了</strong>（B4a・<code>passo.com.tr</code> ログイン・決済手段・E-Ticket有効期限の確認）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/11/20（金）13:00</strong><br>（アテネ時間）</td>
-<td style="text-align: left;">🔴 <strong>ガラタサライ戦のチケット購入</strong>（B4b・Passoアプリより購入。1人1枚・名義一致必須）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/11/22（日）21:30</strong></td>
-<td style="text-align: left;">🔴 <strong>気球が欠航した場合、C6（TK2001）を TK2007 へ振り替える最終期限</strong>（出発12時間前）<br><strong>併せて E13（カッパドキア 11/23 延泊）も同日中に確保する</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/11/24（火）19:15（現地）</strong></td>
-<td style="text-align: left;">🔴 <strong>ガラタサライ戦 入場</strong>（B4c）<br>🔴 <strong>RAMS Park の窓口でパスポート原本を提示し「Tek Girişlik Pass Card」を受領してから入場</strong>（物理カードなし）。<strong>キックオフ 20:45 TRT（＝18:45 CET）の 90 分前に現地到着</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>2026/11/27（金）</strong></td>
-<td style="text-align: left;">🔴 <strong>カイロ空港で MS849 の座席を通路側でリクエスト</strong>（A14）</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2>A. RTW発券（✅ 発券完了・残 6件）</h2>
-<blockquote>
-<p>✅ <strong>2026年9月6日、東京発券・日本円建てで全16クーポンの発券が完了した。</strong>
-<strong>PNR: <code>EANRV5</code></strong>（旧 DM4H3V は失効）／航空券番号 205-2443136675〜678／<strong>総額 ¥1,211,160</strong>
-eチケット原本は <a href="tickets/RTW/"><code>tickets/RTW/</code></a>、通話メモは <code>ANA予約0906(東回り＆日本発券）.txt</code></p>
-</blockquote>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">#</th>
-<th style="text-align: left;">内容</th>
-<th style="text-align: left;">期限</th>
-<th style="text-align: center;">優先</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">✅ A1</td>
-<td style="text-align: left;">~~RTW を発券する~~ → <strong>2026/9/6 発券完了（PNR: EANRV5）</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ A2</td>
-<td style="text-align: left;">~~予約クラス確認~~ → <strong>券面で確定。ANA系=Z／他社=D。UA1271 のみ B</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ A3</td>
-<td style="text-align: left;">~~発券国・決済通貨~~ → <strong>東京発券・JPY建て。約¥2.7〜3.4万の節約</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ A4</td>
-<td style="text-align: left;">~~ET319・ET608 のキャンセル対応~~ → <strong>同一便で再確保成功</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ A5</td>
-<td style="text-align: left;">~~A-1（10/31 MEX→LIM の振替）~~ → <strong>CM121→CM489 で成立。リマ着 22:45</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔭 <strong>A6</strong></td>
-<td style="text-align: left;"><strong>S-1：UA1271（10/29 SFO→MEX）のビジネス空席を監視</strong></td>
-<td style="text-align: left;"><strong>10/28</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔭 <strong>A7</strong></td>
-<td style="text-align: left;"><strong>B-3：TP88（11/10 GRU→LIS）の在庫を監視し、11/12 を TP1034 へ</strong></td>
-<td style="text-align: left;"><strong>11/11</strong></td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔭 <strong>A8</strong></td>
-<td style="text-align: left;"><strong>A-4：11/21 ATH→IST を TK1844（10:10発）へできないか監視</strong></td>
-<td style="text-align: left;"><strong>11/20</strong>（実質10月中）</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ A9</td>
-<td style="text-align: left;">~~手荷物の重量上限を確認~~ → <strong>確認済み。2個・合計30kg以内を前提に荷造りする</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ A10</td>
-<td style="text-align: left;">~~NH8 の座席タイプ確認~~ → <strong>全席 THE Room で確定</strong>（ANA回答＋シートマップで裏取り）</td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>A11</strong></td>
-<td style="text-align: left;">~~RTW のマイル積算まわり~~ → ✅ <strong>2026/9/10 完了扱い</strong><br>✅ <strong>A11a：ANAアプリにログインした状態で全予約が見えることを確認済み</strong>（＝マイレージ番号は登録済み）<br><strong>A11b：積算率の照会は M2 に一本化</strong>（本項からは外した）<br><strong>A11c：搭乗券の控えの保管は旅行中の作業</strong>。ToDo では管理せず、<a href="手配_マイル.md"><code>手配_マイル.md</code></a> §4 の運用メモに残す<br><strong>A11d：海外旅行保険（→I群）・eチケット控えの保存（→I6）</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">💺 <strong>A13</strong></td>
-<td style="text-align: left;"><strong>Copa 2便（CM121・CM489）の座席属性を登録</strong>（現在どちらも未選択）</td>
-<td style="text-align: left;">9/20</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">💺 <strong>A14</strong></td>
-<td style="text-align: left;"><strong>11/27 カイロ空港：MS849 の座席を通路側（C/H）でリクエスト</strong></td>
-<td style="text-align: left;"><strong>11/27</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">💺 <strong>A15</strong></td>
-<td style="text-align: left;">各区間のオンラインチェックイン（24時間前）で座席を再確認</td>
-<td style="text-align: left;">10/20</td>
-<td style="text-align: center;">⬜</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ A12</td>
-<td style="text-align: left;">~~旧仮予約（D6LJA2 等）の失効確認・破棄~~ → <strong>ANAアプリで確認済み</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-</tbody>
-</table>
-<h3>💺 座席指定（2026/9/6 時点・詳細は発券用資料 §10）</h3>
-<blockquote>
-<p><strong>基準：長距離はトイレへのアクセス（人をまたがない）優先、それ以外は景色（窓側）優先。</strong>
-🔵 <strong>1-2-1 配置なら両立する</strong>（NH8・TP88・SQ705・NH842）。2-2／2-2-2／3-3 でだけ選択が要る。</p>
-</blockquote>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: center;">#</th>
-<th style="text-align: left;">便</th>
-<th style="text-align: left;">座席</th>
-<th style="text-align: left;">属性</th>
-<th style="text-align: center;"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">①</td>
-<td style="text-align: left;">NH8 NRT→SFO</td>
-<td style="text-align: left;"><strong>5A</strong></td>
-<td style="text-align: left;">窓側＋通路直結（THE Room 1-2-1）</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: center;">②</td>
-<td style="text-align: left;">UA1271 SFO→MEX</td>
-<td style="text-align: left;"><strong>36D</strong></td>
-<td style="text-align: left;">通路側（32F から変更。3-3 で窓側は2人またぐため）</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: center;">⑤</td>
-<td style="text-align: left;">TP88 GRU→LIS</td>
-<td style="text-align: left;"><strong>5K</strong></td>
-<td style="text-align: left;">窓側＋通路直結（1-2-1）</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: center;">⑥</td>
-<td style="text-align: left;">TP1030 LIS→BCN</td>
-<td style="text-align: left;"><strong>1D</strong></td>
-<td style="text-align: left;">窓側（右）・最前列</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: center;">⑨</td>
-<td style="text-align: left;">TK1840 ATH→IST</td>
-<td style="text-align: left;"><strong>2A</strong></td>
-<td style="text-align: left;">窓側（左）</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: center;">⑩</td>
-<td style="text-align: left;">MS738 IST→CAI</td>
-<td style="text-align: left;"><strong>11A</strong></td>
-<td style="text-align: left;">窓側（左）</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: center;">⑫</td>
-<td style="text-align: left;">ET319 NBO→ADD</td>
-<td style="text-align: left;"><strong>1A</strong></td>
-<td style="text-align: left;">窓側（左）・最前列</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: center;">⑬</td>
-<td style="text-align: left;">ET608 ADD→BKK</td>
-<td style="text-align: left;"><strong>2C</strong></td>
-<td style="text-align: left;">通路側（2-2-2 で両立不可のため通路を選択）</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: center;">⑭</td>
-<td style="text-align: left;">SQ705 BKK→SIN</td>
-<td style="text-align: left;"><strong>20A</strong></td>
-<td style="text-align: left;">窓側＋通路直結（1-2-1）</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: center;">⑮</td>
-<td style="text-align: left;">NH842 SIN→HND</td>
-<td style="text-align: left;"><strong>2K</strong></td>
-<td style="text-align: left;">窓側寄り＋通路直結（1-2-1）</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: center;">③④</td>
-<td style="text-align: left;">CM121・CM489</td>
-<td style="text-align: left;">🔴 <strong>属性未選択</strong></td>
-<td style="text-align: left;">→ <strong>A13</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: center;">⑦⑧</td>
-<td style="text-align: left;">AZ79・A3651</td>
-<td style="text-align: left;">⚠️ 事前指定不可</td>
-<td style="text-align: left;">当日空港</td>
-<td style="text-align: center;">⚠️</td>
-</tr>
-<tr>
-<td style="text-align: center;">⑪</td>
-<td style="text-align: left;">MS849 CAI→NBO</td>
-<td style="text-align: left;">🔴 <strong>未指定</strong></td>
-<td style="text-align: left;">→ <strong>A14</strong>（深夜4h55m・通路側必須）</td>
-<td style="text-align: center;">🔴</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>🔴 <strong>13区間に「他社運航便のため座席が連絡なく変更される場合がある」の警告。</strong>
-自社運航で安定しているのは NH8 と NH842 だけ。<strong>24時間前に必ず再確認する（A15）。</strong></p>
-</blockquote>
-<h3>🔭 発券後に残ったウォッチ 3件</h3>
-<blockquote>
-<p><strong>発券は済んだので「予約が消える」心配はもうない。</strong>
-3件とも <strong>「取れたら儲けもの」</strong>で、取れなくても行程は成立する。
-<strong>同一区間の便変更は手数料なし・搭乗24時間前まで可能。</strong></p>
-</blockquote>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">ID</th>
-<th style="text-align: left;">現状</th>
-<th style="text-align: left;">狙う便</th>
-<th style="text-align: left;">効果</th>
-<th style="text-align: left;">期限</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">🔴 <strong>S-1</strong></td>
-<td style="text-align: left;">② UA1271 が <strong>クラス <code>B</code>＝エコノミー</strong>（全16区間で唯一）</td>
-<td style="text-align: left;">UA1271 のビジネス（<strong>D または Z</strong>）</td>
-<td style="text-align: left;">4h20m をエコノミーで飛ばずに済む</td>
-<td style="text-align: left;"><strong>10/28</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">⚠️ <strong>B-3</strong></td>
-<td style="text-align: left;">⑥ TP1030 07:10発（<strong>04:40 ホテル発・起床03:50</strong>）</td>
-<td style="text-align: left;">TP1034 10:50発（<strong>起床07:20</strong>）</td>
-<td style="text-align: left;">直前が機中泊で2晩連続削られるのを緩和</td>
-<td style="text-align: left;"><strong>11/11</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">⚠️ <strong>A-4</strong></td>
-<td style="text-align: left;">⑨ TK1840 11:50発 → IST 14:30着</td>
-<td style="text-align: left;">TK1844 10:10発 → IST 12:50着</td>
-<td style="text-align: left;"><strong>カッパドキアの夜（実質4.5時間・行程中最短）が延びる</strong></td>
-<td style="text-align: left;"><strong>11/20</strong></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>🔴 <strong>B-3 で見るのは TP1034 ではなく <code>TP88</code>。</strong>
-窓口回答は「TP1034 に空きはあるが、<strong>TP88 とセットで予約しているため変更できない。TP88 に空きができたら変更可能</strong>」だった。
-<strong>TP88 が開いた日が、B-3 を動かせる唯一のタイミング。</strong></p>
-<p>🔴 <strong>S-1 では <code>bc=D</code> も必ず見る。</strong>
-9/4 の ITA Matrix 調査は <code>bc=Z</code> しか見ていなかったが、<strong>券面で他社スターアライアンスは <code>D</code> と判明した。</strong></p>
-</blockquote>
-<h2>B. 観戦チケット（12件／✅完了2件）</h2>
-<blockquote>
-<p>🔵 <strong>買い方・価格・ゾーン・当日の手順は <a href="手配_観戦チケット.md"><code>手配_観戦チケット.md</code></a> が正本。</strong>
-調査の経緯と根拠は <a href="観戦チケット_販売方法と時期.md"><code>観戦チケット_販売方法と時期.md</code></a>。</p>
-</blockquote>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">#</th>
-<th style="text-align: left;">内容</th>
-<th style="text-align: left;">期限</th>
-<th style="text-align: center;">優先</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">✅ <strong>B1</strong></td>
-<td style="text-align: left;">✅ ~~Passo Taraftar カード申請~~ → <strong>2026/9/15 完了・同日 18:42 SMS で承認</strong>（GALATASARAY・Digital Prepaid Card・₺1,200）。<br>✅ <strong>ref no 738721 承認済／デジタルウォレットカード 下4桁 7195 発行済</strong><br>🔴 <strong>日本発行カード（ANA9210・Olive8617・dカード・ファミマ）は全滅（3DS issuerエラー／カード番号非対応エラー）。Wiseカードのみ決済成功。</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>B1a</strong></td>
-<td style="text-align: left;">✅ ~~カード発行の現物確認~~ → <strong>2026/9/16 完了</strong>（<code>passotaraftar.com.tr</code> ➔ Card Transactions にログイン）<br>✅ <strong>名義 TAKESHI TAKAMUKU／<code>Passo Taraftar Dijital Cüzdan Kart – GALATASARAY A.Ş.</code>／カード番号 <code>5262 63** **** 7195</code>／残高 0,00 TL</strong> を確認<br>ログインは <strong>旅券番号＋電話番号（+81 9086523343）＋SMSワンタイムコード</strong>。⚠️ <strong>入力パネルは約3分でタイムアウトし初期化される</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>B1b</strong></td>
-<td style="text-align: left;">🔴 <strong><code>passo.com.tr</code>（またはPasso Mobileアプリ）でチケット購入用の会員登録</strong><br>⚠️ <strong>カード管理サイトとは別アカウント。</strong>カード画面の案内：<em>You can create your membership from www.passo.com.tr or Passo Mobile application</em><br>🔴 <strong>名義は <code>TAKAMUKU TAKESHI</code> で完全一致させる</strong>（不一致だと購入も入場も不可）<br>🔴 <strong>物理カードは送付されない。入場はアプリQRではなく「スタジアム窓口でパスポート提示 ➔ Tek Girişlik Pass Card 受領」</strong></td>
-<td style="text-align: left;">10月中</td>
-<td style="text-align: center;">⬜</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>B1c</strong></td>
-<td style="text-align: left;">🔴 <strong>E-Ticket の有効期限を確認</strong>（<strong>N Kolay Mobile</strong> アプリ。サイトが「口座・カード詳細はアプリで確認」と案内）<br>⚠️ <strong>9/16 時点で Web の「Extend E-ticket」タブは <code>Card not found.</code> と表示。</strong>新規発行で延長対象なしの可能性が高いが、<strong>デジタルウォレットが当該メニュー対象外</strong>の可能性も残る<br>🔴 <strong>期限切れだと 11/24 に入場できない。</strong>必要なら延長手続き</td>
-<td style="text-align: left;">10月中</td>
-<td style="text-align: center;">⬜</td>
-</tr>
-<tr>
-<td style="text-align: left;">⚠️ <strong>B1d</strong></td>
-<td style="text-align: left;">⚠️ <strong>チケット代金の決済手段を確定する。</strong>カード残高は <strong>0 TL</strong>（₺1,200 は発行手数料でチャージではない）<br>🔴 <strong><code>passo.com.tr</code> の海外発行カード決済を第一手、弾かれた場合に備え Wise を待機</strong>（9/15 に日本発行カード4枚が全滅した教訓）<br>⚠️ <strong>Passo Taraftar カードへのチャージが購入要件かは未確認</strong></td>
-<td style="text-align: left;">🔴 <strong>11/19 まで</strong></td>
-<td style="text-align: center;">⬜</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>B2</strong></td>
-<td style="text-align: left;">✅ ~~RFEF Tickets アプリ導入・アカウント作成~~ → <strong>2026/9/11 完了</strong><br>✅ ~~tickets@rfef.es へ照会~~ → <strong>2026/9/12 公式回答受領・完了！</strong>（購入国一致必須と確定 ➔ <strong>GCP東京クラウドPC＋日本発行カードで完全整合・解決方針確定</strong>）</td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">B3a</td>
-<td style="text-align: left;">🔴 <strong>スペイン戦 購入事前準備完了</strong>（旅券番号 TAKAMUKU TAKESHI・<strong>GCP東京クラウドPC＋日本発行カード準備（3Dセキュア確認）</strong>・コピペ用テキスト配置・希望ゾーン本命 LATERAL ESTE／予算確定）</td>
-<td style="text-align: left;">🔴 <strong>9/21</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">B3b</td>
-<td style="text-align: left;"><strong>アトレティコ・マドリードのソシオ先行偵察</strong>（<code>cupo limitado</code>・バンコク 17:00 / クラウドPC 19:00。クラウドPCからアクセスし画面の流れ・入力欄HTML構造解析 ➔ <strong>実戦用ワンクリック自動入力（ブックマークレット）完成・ブラウザ登録</strong>）</td>
-<td style="text-align: left;">🟡 <strong>9/22 17:00</strong></td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>B3c</strong></td>
-<td style="text-align: left;">🔴 <strong>スペイン vs イングランド</strong>（11/15 20:45・メトロポリターノ）購入<br>✅ <strong>一般販売：9/23 バンコク 17:00（日本/クラウドPC 19:00・マドリード 12:00）。16:45（クラウドPC 18:45）待機開始</strong><br>🔴 <strong>直近2試合とも即完売。開始直後にクラウドPCから入る</strong>。席番は自動割当（ゾーン選択 ➔ ブックマークレットで0.1秒入力 ➔ 即決済）</td>
-<td style="text-align: left;">🔴 <strong>9/23 17:00</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">B3d</td>
-<td style="text-align: left;"><strong>スペイン戦 チケット着券確認</strong>（試合48時間前配信・バルセロナ滞在中・eSIM通信環境確認）</td>
-<td style="text-align: left;">🟡 <strong>11/13 以降</strong></td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">B3e</td>
-<td style="text-align: left;">🔴 <strong>スペイン戦 チケット有効化</strong>（キックオフ4時間前・16:45 からアプリでQR生成。スクショ・印刷不可）</td>
-<td style="text-align: left;">🔴 <strong>11/15 16:45</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">B4a</td>
-<td style="text-align: left;"><strong>ガラタサライ戦 優先販売動向確認＆前日準備完了</strong>（14:00 トルコ時間＝アテネ 13:00。売切動向・<code>passo.com.tr</code> のログイン・<strong>決済手段（B1d）とE-Ticket有効期限（B1c）の最終確認</strong>）</td>
-<td style="text-align: left;">🟡 <strong>11/19 13:00</strong></td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>B4b</strong></td>
-<td style="text-align: left;">🔴 <strong>ガラタサライ vs アストン・ヴィラ</strong>（11/24 18:45・RAMS Park）購入<br>🔴 <strong>一般販売：11/20 アテネ 13:00（トルコ 14:00 予測）。1人1枚・Passo アカウント名義一致必須</strong></td>
-<td style="text-align: left;">🔴 <strong>11/20 13:00</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>B4c</strong></td>
-<td style="text-align: left;">🔴 <strong>ガラタサライ戦 当日入場</strong>（法律第6222号による本人確認）<br>🔴 <strong>物理カードなし ➔ RAMS Park の窓口でパスポート原本を提示し「Tek Girişlik Pass Card」を受領してから入場。キックオフ（現地 20:45 TRT）の 90 分前＝現地 19:15 に到着</strong></td>
-<td style="text-align: left;">🔴 <strong>11/24</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ B5</td>
-<td style="text-align: left;">~~ポルトガル vs デンマークの会場確認~~ → <strong>エスタディオ・ダ・ルス（リスボン）。11/12 に発つため観戦不可</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<h3>🔴 B1 が全ての前提</h3>
-<p>トルコ法律第6222号により外国人・観光客も全員 Passo Taraftar カードが必須で、
-<strong>カードがないと購入も入場もできない。</strong>外国人は <strong>Passo Taraftar Wallet（プリペイド）一択</strong>。
-⚠️ <strong>申請先は <code>passotaraftar.com.tr</code></strong>（<code>passo.com.tr</code> はチケット販売側）。
-⚠️ <strong>GSロゴ入りのカードでないとガラタサライ戦を買えない。</strong>発行に数日かかる。
-✅ <strong>2026/9/15 完了。決済は日本発行カード全滅・Wiseカードで成功。</strong>（教訓：トルコの決済ゲートウェイは海外発行カードとの相性問題が起きうる → 他のトルコ現地決済でも同様の詰まりに備え、Wiseを予備手段として常に用意しておく）
-✅ <strong>同日 18:42 に SMS で承認通知（ref no 738721）を受信し、デジタルウォレットカード（下4桁 7195）が発行された。</strong>
-🔴 <strong>SMS 原文で「物理カードは送付しない／入場にはスタジアム窓口でのパスポート提示が必要」と明示。</strong>
-➔ <strong>入場はアプリQRではなく、窓口で「Tek Girişlik Pass Card（単回入場パスカード）」を受け取る方式。</strong>
-✅ <strong>カード現物がなくても Passo Mobil でチケットは購入できる</strong>ため、11/20 の購入戦には影響なし。
-ℹ️ <strong>確認メールは届かない（Gmail 全検索で0件）。通知はすべて SMS</strong>。証跡は <a href="tickets/トルコPasso%20Taraftar/IMG_4124.PNG"><code>tickets/トルコPasso Taraftar/IMG_4124.PNG</code></a>。</p>
-<h3>🔴 B4 は「1回のアクセスで決まる」</h3>
-<p>過去3試合（ボドー/グリムト・ユヴェントス・リヴァプール）の実績は<strong>完全に規則的</strong>で、
-<strong>一般販売はいずれも「試合直前の金曜 14:00 トルコ時間」</strong>。前日の木曜14:00 に会員優先販売がある。
-→ <strong>11/24（火）の試合なら 11/20（金）14:00 トルコ時間＝アテネ時間 13:00。</strong>
-✅ 当日はアテネ滞在の中日で移動がない。<strong>前日までにログイン・支払い方法・カード有効化を済ませる。</strong>
-🔴 <strong>リスク：木曜の優先販売で売り切れる可能性がある</strong>（人気カードでは実際に起きている）。</p>
-<h3>🔴 B3 の発売日が確定した（2026/9/11・アプリの公式告知）</h3>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">段階</th>
-<th style="text-align: left;">日付</th>
-<th style="text-align: left;">対象</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">① 先行</td>
-<td style="text-align: left;"><strong>9/22（火）</strong></td>
-<td style="text-align: left;"><strong>アトレティコ・マドリードのソシオ限定</strong>（<code>cupo limitado</code>＝枠に限りあり）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 ② 一般</td>
-<td style="text-align: left;">🔴 <strong>9/23（水）</strong></td>
-<td style="text-align: left;">誰でも</td>
-</tr>
-</tbody>
-</table>
-<p>🔴 <strong>予測（10/6 前後）より2週間早い。</strong>実績の「試合の約40日前」から外れた（今回は単独開催）。
-✅ <strong>9/22〜23 はバンコク滞在中で支障なし。</strong>
-🔴 <strong>先行が枠限定なので、一般販売の時点で良席は減っている前提で、開始直後に入る。</strong></p>
-<p><strong>🔴 売り切れる前提で組む:</strong> 直近のホーム戦2試合（9/29 セビージャ・10/3 オビエド）は<strong>どちらも <code>ENTRADAS AGOTADAS</code></strong>。
-<strong>11/15 は目玉カードでメトロポリターノ6.8万。競争はより厳しい。</strong>
-<strong>🔵 時刻:</strong> 直近2試合は<strong>先行・一般とも 12:00 マドリード開始</strong>と明記。→ <strong>9/23 はバンコク 17:00 とみて 16:45 待機。</strong>
-<strong>⚠️ 選べるのはゾーンと価格帯だけ</strong>（席番は購入後に自動割当。同じメール・同じゾーンなら隣同士）。
-<strong>⚠️ 券が届くのは試合の48時間前</strong>＝11/13 以降、バルセロナ滞在中。<strong>通信環境が要る（→ I3）。</strong></p>
-<p><strong>告知で判明した新ルール:</strong>
-- <strong>記名は「nombre, apellidos y DNI」。</strong>🔴 <strong>旅券番号が通るか要確認</strong>（B2）
-- <strong>全員1人1枚</strong>（乳幼児含む）／<strong>デジタルのみ・印刷不可</strong>
-- ⚠️ <strong>クローク（<code>consigna</code>）なし。</strong>大きな荷物は持ち込めない（✅ マドリード2泊の中日なので実害なし）
-- ⚠️ <strong>イングランドのアウェイ席は English FA 配分。</strong>英国の応援グッズは指定エリア外では不可</p>
-</blockquote>
-<hr />
-<h2>C. RTW外フライト（6件）</h2>
-<blockquote>
-<p>🔴 <strong>表示運賃は「荷物なし」の額。必ず受託23kg＋機内持込込みで比較すること。</strong>
-C2 の実例：基本運賃 ¥11,260 → <strong>荷物込みの実額 ¥22,500</strong>（<a href="手配_RTW外フライト.md"><code>手配_RTW外フライト.md</code></a> §0）
-荷物の全体設計は <a href="手配_荷物.md"><code>手配_荷物.md</code></a>。</p>
-</blockquote>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">#</th>
-<th style="text-align: left;">区間</th>
-<th style="text-align: left;">✏️ 推奨便・制約</th>
-<th style="text-align: right;">荷物込み実額</th>
-<th style="text-align: left;">期限</th>
-<th style="text-align: center;">優先</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">C1</td>
-<td style="text-align: left;">BKK → 東京（10/26）</td>
-<td style="text-align: left;"><strong>TG660 14:25→HND 22:05</strong>。✅ 受託30kg込み</td>
-<td style="text-align: right;">$343</td>
-<td style="text-align: left;">9月中</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>C2</strong></td>
-<td style="text-align: left;">~~LIM → CUZ（11/1）~~ → ✅ <strong>2026/9/8 購入済。PNR <code>MAYCQV</code>／券番 5442300501133</strong><br><strong>LA2013 07:40→09:05・Premium Economy Full・座席 2A・$130.60</strong><br>受託23kg／持込12kg。<strong>出発前なら100%返金・変更無料</strong></td>
-<td style="text-align: left;">✅ <strong>$130.60</strong></td>
-<td style="text-align: right;">—</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>C3</strong></td>
-<td style="text-align: left;">~~CUZ → LIM → GRU → IGU（11/5）~~ → ✅ <strong>2026/9/8 購入済。3レグ通し1枚／PNR <code>IWYEMJ</code></strong><br>LA2167 05:00→06:35（13C）／LA8005 09:15→16:25（13C）／LA3206 22:35→00:20+1（12C）<br>全 Economy Full・受託23kg・出発前100%返金。<strong>乗継 LIM 2h40m／GRU 6h10m</strong><br>✅ <strong>1枚化により約$283 節約＋LIM乗継が保護された</strong>（当初「1枚化しない」判断を撤回）</td>
-<td style="text-align: left;">✅ <strong>$263.68</strong></td>
-<td style="text-align: right;">—</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>C3b</strong></td>
-<td style="text-align: left;">~~旧2枚をキャンセルして返金を受ける~~ → ✅ <strong>2026/9/9 完了。$385.33 満額返金済</strong><br><code>FWIGFO</code> $137.97 ／ <code>GQORJO</code> $247.36（券・空港税とも全額）<br>🔴 <strong>根拠は「Withdrawal Law（撤回法）」</strong>＝購入直後の無条件解除。<strong>Full運賃の100%返金より強い権利だが、使えるのは購入から短期間のみ</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: right;">✅</td>
-<td style="text-align: left;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>C3c</strong></td>
-<td style="text-align: left;">~~Plusgrade 入札~~ → ✅ <strong>2026/9/9 入札済。</strong>① $11 ／ <strong>② $105</strong> ／ ③ $12（最大 $128）<br>落札通知は<strong>出発12〜2時間前</strong>。<strong>出発12時間前まで変更・取消可</strong>。落札まで課金なし<br>⚠️ 3レグとも <strong>A320/A321 でPEは独立キャビンではない</strong>（中央席ブロック＋ピッチ+2〜4インチ）</td>
-<td style="text-align: left;">—</td>
-<td style="text-align: right;">✅</td>
-<td style="text-align: left;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>C4</strong></td>
-<td style="text-align: left;">~~IGU → GRU（11/8）~~ → ✅ <strong>2026/9/9 購入済。PNR <code>UBHQIG</code></strong><br>LA3201 10:40→12:25・<strong>Economy Full</strong>・座席12F・受託23kg・出発前100%返金<br>⚠️ <strong>見積$374 → 実額$477.67（+¥16,069）。</strong>Full運賃の上乗せが想定より大きかった</td>
-<td style="text-align: left;">⚠️ <strong>$477.67</strong></td>
-<td style="text-align: right;">—</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>C5</strong></td>
-<td style="text-align: left;">~~IST → NAV（11/21）~~ → ✅ <strong>2026/9/9 購入済。PNR <code>SUMX3C</code></strong><br>TK2008 19:40→21:00・<strong>Economy PrimeFly(E)</strong>・座席03F(無料)・<strong>受託25kg</strong><br><strong>TRY 4,964.63 ≒ ¥15,788</strong>（Olive 8617）。変更は<strong>出発12時間前まで可</strong>。<strong>ANA番号 登録済</strong></td>
-<td style="text-align: left;">✅ <strong>¥15,788</strong></td>
-<td style="text-align: right;">—</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>C6</strong></td>
-<td style="text-align: left;">~~NAV → IST（11/23）~~ → ✅ <strong>2026/9/9 購入済。PNR <code>VKCWJC</code></strong><br>TK2001 09:30→11:05・<strong>Economy PrimeFly(E)</strong>・座席04A(無料)・<strong>受託25kg</strong>・<strong>TRY 4,950 ≒ ¥15,741</strong><br>✅ <strong>C5 と別予約なので、C5 に乗り遅れても C6 は生き残る</strong></td>
-<td style="text-align: left;">✅ <strong>¥15,741</strong></td>
-<td style="text-align: right;">—</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>C6b</strong></td>
-<td style="text-align: left;">~~決済カード（Visa 下3桁 385）を特定する~~ → ✅ <strong>Olive プラチナプリファードの「デビット機能用」番号</strong><br><strong>8617（クレジット）と同一カード。</strong>⚠️ <strong>ただし利用付帯がデビットモードでも成立するかは別論点 → I1-⑤</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: right;">✅</td>
-<td style="text-align: left;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<h2>D. 鉄道・陸路送迎（6件）</h2>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">#</th>
-<th style="text-align: left;">内容</th>
-<th style="text-align: left;">期限</th>
-<th style="text-align: center;">優先</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">✅ <strong>D1</strong></td>
-<td style="text-align: left;">~~オリャンタイタンボ → マチュピチュ村（11/1）~~ → ✅ <strong>2026/9/8 購入済（予約 <code>WEB3204304</code>）</strong><br><strong>V. Observatory 303 13:27→14:50・A号車10番・🔴 駅集合 12:57</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>D2</strong></td>
-<td style="text-align: left;">~~マチュピチュ村 → オリャンタイタンボ（11/3）~~ → ✅ <strong>同上・往復 $159.60</strong><br><strong>Vistadome 602 12:46→14:19・A号車33番・🔴 駅集合 12:16</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">D3</td>
-<td style="text-align: left;">クスコ空港 → オリャンタイタンボ駅 専用送迎（VELTRA a/184253・日本語）<br>🔴 <strong>「駅の荷物預かりに立ち寄る」ことを条件に含める</strong>（手荷物8kg制限・<a href="手配_鉄道.md"><code>手配_鉄道.md</code></a> §5）</td>
-<td style="text-align: left;">10月上旬</td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">D4</td>
-<td style="text-align: left;">オリャンタイタンボ駅 → クスコ 送迎（11/3）🔴 <strong>14:19着・荷物回収後</strong>に出発</td>
-<td style="text-align: left;">10月上旬</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">D5</td>
-<td style="text-align: left;">AVE バルセロナ → マドリード（11/14 午後）</td>
-<td style="text-align: left;">10月上旬</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">D6</td>
-<td style="text-align: left;">AVE マドリード → バルセロナ（11/16 <strong>09:30頃発</strong>・BCN 16:50 AZ79 に接続）</td>
-<td style="text-align: left;">10月上旬</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-</tbody>
-</table>
-<h2>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</h2>
-<blockquote>
-<p>📘 <strong>全19件の立地要件・チェックイン制約・推奨ホテル・予算詳細は <a href="手配_包括レビュー・リスク評価.md"><code>手配_包括レビュー・リスク評価.md</code></a> §3.1 を参照。</strong>
-💡 <strong>泊数内訳の算術整合（ゼロ混乱の明確化）:</strong> 有料商業ホテル35泊（本行程33泊＋シンガポールE19の2泊）＋ 成田出発前の東京実家2泊（10/26-28・0円）＝ 全37宿泊（機中泊3泊を含め全40滞在スロット）。E1（SFO）、E2（MEX）、E3（リマ直結）、E4（マチュピチュ村）、E10（MAD）、E16（Four Points早朝仮眠）、E18（Emara Ole-Sereni）は2026/9/13予約完了済（計7件・10泊確保済）。
-🔴 <strong>直近最優先（9月中確保）：E12（アテネ・Moxy Vトリップ推奨）</strong></p>
-</blockquote>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">#</th>
-<th style="text-align: left;">場所</th>
-<th style="text-align: center;">泊数</th>
-<th style="text-align: left;">日付</th>
-<th style="text-align: left;">チェックイン / アウト要件・推奨ホテル</th>
-<th style="text-align: center;">優先</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">✅ <strong>E1</strong></td>
-<td style="text-align: left;">✅ <strong>サンフランシスコ（Grant Plaza Hotel）</strong></td>
-<td style="text-align: center;">1</td>
-<td style="text-align: left;">10/28-29</td>
-<td style="text-align: left;">✅ <strong>2026/9/13 予約完了</strong>（Vトリップ <code>54HB8NPPTX2G</code> / ホテル <code>9110219055576</code>・¥13,298・Visa 8617）。チャイナタウン入口（Dragon's Gate至近・Tenderloin回避）。IN 14:30〜 / OUT 12:00前。翌朝07:45 UberでSFO直行</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>E2</strong></td>
-<td style="text-align: left;">✅ <strong>メキシコシティ（City Express Plus Periférico Sur Tlalpan）</strong></td>
-<td style="text-align: center;">2</td>
-<td style="text-align: left;">10/29-31</td>
-<td style="text-align: left;">✅ <strong>2026/9/13 予約完了</strong>（Vトリップ <code>2H38S4SZBXD</code> / ホテル <code>1051276955</code>・¥35,918・Visa 8617）。マリオット系列・クイーン・無料キャンセル可。OUT 13:00前。<br>⚠️ <strong>マリオット公式アプリ紐付け（ホテル確認コード <code>1051276955</code>）はシステム連携待ちのため9/20〜9/25頃に再試行</strong></td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>E3</strong></td>
-<td style="text-align: left;">✅ <strong>リマ空港直結（Wyndham Costa del Sol）</strong></td>
-<td style="text-align: center;">1</td>
-<td style="text-align: left;">10/31-11/1</td>
-<td style="text-align: left;">✅ <strong>2026/9/13 予約完了</strong>（Vトリップ <code>PNKK9ZR29XVB</code> / ホテル <code>BK-JW38OFDH</code>・¥20,189・Visa 8617）。ターミナル直結・22:45着対応・ダブルベッド2台・キャンセル無料</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>E4</strong></td>
-<td style="text-align: left;">✅ <strong>マチュピチュ村（Hotel Taypikala Boutique）</strong></td>
-<td style="text-align: center;">2</td>
-<td style="text-align: left;">11/1-3</td>
-<td style="text-align: left;">✅ <strong>2026/9/13 予約完了</strong>（Vトリップ <code>GVCTX8Z7M9T4</code> / ホテル <code>doo8g0yy</code>・¥29,367・Visa 8617）。標高2,040m（高山病回避の要）。シングル・朝食付・無料キャンセル可。✅ 9/14ホテル回答受領：<strong>駅無料送迎確約</strong>（11/1 14:50着・V303）。<strong>朝食ボックスは11/1到着時にフロントで直接依頼</strong>（事前メール手配は不可）。<strong>荷物預かり・駅配送サービスも確約</strong>（詳細現地確認）</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">E5</td>
-<td style="text-align: left;">クスコ</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: left;">11/3-5</td>
-<td style="text-align: left;">標高3,400m。🔴 <strong>11/5 早朝03:30チェックアウト・タクシー手配可能な24hフロント必須</strong>。名門Palacio del InkaはVトリップで実質¥88,920（公式比25%安）</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">E6</td>
-<td style="text-align: left;">フォス・ド・イグアス</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: left;">11/5-8</td>
-<td style="text-align: left;">🔴 <strong>11/6 未明00:20着・01:15チェックイン確約必須。</strong> 市街地4つ星（Bourbon / Viale Tower）</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">E7</td>
-<td style="text-align: left;">サンパウロ</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: left;">11/8-10</td>
-<td style="text-align: left;">パウリスタ通り周辺（Jardins地区）。11/10 は夜行便（TP88 23:15発）のため20:00迄荷物預かり必須</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">E8</td>
-<td style="text-align: left;">リスボン</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: left;">11/11-12</td>
-<td style="text-align: left;">🔴 翌日 <strong>04:40 ホテル発</strong>（TP1030 07:10発）。空港至近（Star inn Lisbon Airport / Meliá）</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">E9</td>
-<td style="text-align: left;">バルセロナ</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: left;">11/12-15</td>
-<td style="text-align: left;">✅ <strong>発券済み航空券で確認・3泊に確定</strong>（TP1030 12NOV到着10:05→AZ79 16NOV発16:50の間に、マドリード1泊（11/15-16）を挟む構成。バルセロナは11/12・13・14の3泊）。アシャンプラ地区（Well and Come等）</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>E10</strong></td>
-<td style="text-align: left;">✅ <strong>マドリード（HOTEL PAX ATOCHA）</strong></td>
-<td style="text-align: center;">1</td>
-<td style="text-align: left;">11/15-16</td>
-<td style="text-align: left;">✅ <strong>2026/9/13 予約完了</strong>（公式直販 <code>P9053588</code>・136.00€ ≒ ¥22,304）。アトーチャ駅徒歩10分・新築・24hフロント・11/14 15:00迄無料キャンセル可</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>E11</strong></td>
-<td style="text-align: left;">✅ <strong>ローマ（Airbnb）</strong></td>
-<td style="text-align: center;">3</td>
-<td style="text-align: left;">11/16-19</td>
-<td style="text-align: left;">✅ <strong>2026/9/14 予約完了（Airbnb <code>HM8FNF8MR3</code>・¥48,779）</strong>。洗濯機付き個室。11/19 07:15発対応。</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>E12</strong></td>
-<td style="text-align: left;">✅ <strong>アテネ</strong></td>
-<td style="text-align: center;">2</td>
-<td style="text-align: left;">11/19-21</td>
-<td style="text-align: left;">✅ <strong>2026/9/14 予約完了（Moxy Athens City <code>GLFJFVZ9R9ZW</code>・¥33,457）</strong>。オモニア広場至近・地下鉄直結。Vトリップで確保。</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">E13</td>
-<td style="text-align: left;">カッパドキア 洞窟ホテル</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: left;">11/21-23</td>
-<td style="text-align: left;">ギョレメ村の伝統的洞窟宿。🔴 <strong>11/22気球欠航時の「11/23延泊可否」を事前確認</strong></td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">E14</td>
-<td style="text-align: left;"><strong>イスタンブール</strong></td>
-<td style="text-align: center;"><strong>2</strong></td>
-<td style="text-align: left;">11/23-25</td>
-<td style="text-align: left;">✅ <strong>厳格に「2泊」で確定</strong>（11/25 は 14:00発 MS738 でカイロ移動のため食い違い解消）</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">E15</td>
-<td style="text-align: left;">カイロ・ギザ</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: left;">11/25-27</td>
-<td style="text-align: left;">ギザ地区・ピラミッドビュー確約宿。11/27 は深夜便（MS849 21:35発）のため16:00迄荷物預かり必須</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>E16</strong></td>
-<td style="text-align: left;">✅ <strong>ナイロビ空港ホテル（Four Points JKIA）</strong></td>
-<td style="text-align: center;">1泊（早朝仮眠）</td>
-<td style="text-align: left;">11/27-28</td>
-<td style="text-align: left;">✅ <strong>2026/9/13 予約完了</strong>（マリオット公式・予約 <code>93880712</code>・$204）。11/28 03:30着→04:30〜08:00仮眠・シャワー・朝食。11/26 23:59までキャンセル無料</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">E17</td>
-<td style="text-align: left;">マサイマラ エコテント（Basecamp Masai Mara）</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: left;">11/28-30</td>
-<td style="text-align: left;"><strong>名門エコテント2泊フルボード</strong>（タレク川沿い・オバマ元大統領滞在歴）。サファリツアー（F3・$1,614）に含む</td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>E18</strong></td>
-<td style="text-align: left;">✅ <strong>ナイロビ パークビュー（Emara Ole-Sereni-Nairobi）</strong></td>
-<td style="text-align: center;">1</td>
-<td style="text-align: left;">11/30-12/1</td>
-<td style="text-align: left;">✅ <strong>2026/9/13 予約完了</strong>（Trip.com・予約 <code>1385435893739592</code>・33,657円）。🔴 <strong>パークビュー確約</strong>。11/28朝の荷物預託＋12:00レイトCO申請済。11/29 12:00迄キャンセル無料</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">E19</td>
-<td style="text-align: left;">シンガポール</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: left;">2027/3/1-3</td>
-<td style="text-align: left;">3/1 13:10着、3/3 10:45発。MRT駅至近（Four Points Riverview、Village Hotel Bugis等）</td>
-<td style="text-align: center;">⬜</td>
-</tr>
-</tbody>
-</table>
-<h2>F. 現地ツアー・アクティビティ（13件）</h2>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">#</th>
-<th style="text-align: left;">内容</th>
-<th style="text-align: left;">期限</th>
-<th style="text-align: center;">優先</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">F1</td>
-<td style="text-align: left;">🔴 <strong>ナイロビ国立公園 早朝サファリ（12/1・06:00〜09:00・ホテルから車で10分・サイ狙い）の現地ツアー手配</strong></td>
-<td style="text-align: left;">9月下旬</td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">F2</td>
-<td style="text-align: left;"><strong>11/30午後：Emara Ole-Sereniへ早期チェックイン・屋上温水プール＆スカイラウンジで休養（ジラフ・孤児院は見送り）</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>F3</strong></td>
-<td style="text-align: left;">✅ <strong>マサイマラ 2泊3日フライインサファリ</strong>（SafariBookings <code>t62446</code>／催行: Trav-Interactive／Basecamp Masai Mara 2泊フルボード／空路往復・入園料・ゲームドライブ・全送迎込 総額$1,614）<br>✅ <strong>2026/9/13 見積回答受領済（Ref. 1168751）。50%デポジット支払準備。</strong>23kg荷物は11/28朝にEmaraへ預託</td>
-<td style="text-align: left;">支払準備</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">F4</td>
-<td style="text-align: left;">🔴 <strong>マサイマラ行きの小型機搭乗時、大型スーツケースを航空会社が預かってくれるかTrav-Interactiveへ確認する</strong>（道祖神情報より）</td>
-<td style="text-align: left;">送金後</td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">F5</td>
-<td style="text-align: left;">Gran Aventura（11/6・滝壺ボート＋4WD・フォス発送迎込／Viator d970-21715P38）</td>
-<td style="text-align: left;">10月上旬</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">F6</td>
-<td style="text-align: left;">イグアス アルゼンチン側 公園入場券（11/6・<code>iguazuargentina.com</code>・悪魔の喉笛は朝イチ）</td>
-<td style="text-align: left;">10月上旬</td>
-<td style="text-align: center;">⬜</td>
-</tr>
-<tr>
-<td style="text-align: left;">F7</td>
-<td style="text-align: left;"><strong>イグアス ブラジル側 公園入場券（11/7・完全時間指定・当日窓口不可）</strong></td>
-<td style="text-align: left;">10月上旬</td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">F8</td>
-<td style="text-align: left;">Helisul ヘリ遊覧（11/7 09:15枠・R$685・前日夜に天候判断）</td>
-<td style="text-align: left;">前日夜</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">F9</td>
-<td style="text-align: left;">Parque das Aves 鳥類園（11/7・ヘリ隣接・当日可）</td>
-<td style="text-align: left;">当日可</td>
-<td style="text-align: center;">⬜</td>
-</tr>
-<tr>
-<td style="text-align: left;">F10</td>
-<td style="text-align: left;"><strong>カッパドキア 熱気球（11/22 早朝）</strong> ／ Voyager Balloons 直販推奨（天候欠航時翌日振替明記 €360）</td>
-<td style="text-align: left;">🔴 <strong>9月中</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>F11</strong></td>
-<td style="text-align: left;">✅ ~~トスカーナ日帰りワイナリー~~ → ✅ <strong>2026/9/12 予約完了</strong>（City Wonders・¥14,110・予約 <code>XTK978855</code>）<br>07:30 ポポロ広場発 → モンテプルチャーノ（広場・塔・井戸・サンビアージョ教会）→ ランチ＋テイスティング → ピエンツァ → 19:30 帰着<br>キャンセル無料は <strong>11/17 07:30 まで</strong> → <a href="手配_ローマ.md"><code>手配_ローマ.md</code></a> §2・§3</td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">F12</td>
-<td style="text-align: left;">マチュピチュ 公認ガイド（11/2・遺跡ゲート前またはVELTRA）</td>
-<td style="text-align: left;">10月上旬</td>
-<td style="text-align: center;">⬜</td>
-</tr>
-<tr>
-<td style="text-align: left;">F13</td>
-<td style="text-align: left;">マチュピチュ 村⇄遺跡 シャトルバス（Consettur・当日現地可）</td>
-<td style="text-align: left;">当日可</td>
-<td style="text-align: center;">⬜</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>F3 の確定仕様（マサイマラ・フライイン空路往復＆手荷物動線）:</strong>
-- ① <strong>日程・フライト:</strong> 11/28(土) 08:00 Four Points発 → Emara立寄（23kg荷物預託）→ ウィルソン空港（WIL）10:00発フライト → 10:45 マサイマラ着。11/30(月) 11:15 マサイマラ発 → 12:15 WIL着。カレン地区観光後、夕方 Emara Ole-Sereni チェックイン。
-- ② <strong>宿泊:</strong> Basecamp Masai Mara（タレク川沿い・名門エコテント2泊フルボード）。
-- ③ <strong>手荷物動線:</strong> 23kg大スーツケースは11/28朝に Emara Ole-Sereni へ預託。小型機にはリュック・ボストン（15kg以内）で搭乗。11/30夕方に回収。
-- ④ <strong>契約進捗:</strong> 2026/9/13 SafariBookings にて Trav-Interactive（ツアー <code>t62446</code>）へ見積依頼送信完了（Ref. no. 1168751・$1,614）。✅ 請求書受領済（<code>Trav/2026/00383900917</code>）。<strong>デポジット50%（$807）送金待ち。</strong>明確な期限日の記載なし、早期送金推奨。→ <a href="手配_サファリ.md"><code>手配_サファリ.md</code></a></p>
-<p><strong>F10 の必須確認3点:</strong> ①「翌日振替可」か（Voyager公式は明記）②グレードは Comfort 以上（16人乗り）
-③欠航時のフライトスライド運用（TK PrimeFly 出発12時間前＝11/22 21:30までにTK2007へ変更）。<strong>カッパドキアの11月欠航率は 30〜40%。</strong></p>
-<p><strong>F11 の確定事項:</strong> ✅ <strong>予約完了</strong>（2026/9/12）。ローマ発トスカーナ日帰り（11/18水・City Wonders・19:30解散）。翌朝07:15発のため深酒・遅着厳禁。</p>
-</blockquote>
-<h2>G. 事前予約が要る観光（8件）</h2>
-<blockquote>
-<p>🔵 <strong>解禁日・価格・予約先は <a href="手配_事前予約観光.md"><code>手配_事前予約観光.md</code></a> が正本。</strong>
-🔵 <strong>2026/9/11、各施設の公式予約サイトを実際に開いて受付範囲を確認した。</strong></p>
-</blockquote>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">#</th>
-<th style="text-align: left;">内容</th>
-<th style="text-align: left;">日付</th>
-<th style="text-align: left;">🔴 解禁／期限</th>
-<th style="text-align: center;">優先</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">✅ <strong>G3</strong></td>
-<td style="text-align: left;">✅ ~~ヴァチカン博物館~~ → ✅ <strong>2026/9/11 予約完了。11/17（火）08:00・€25</strong><br><strong>当日券なし／事前25€（手数料5€込）／08:00 の枠が狙い目</strong><br>⚠️ 11月の休館は 1・8・15・22 日（日曜）。<strong>11/18（水）は一般謁見日</strong></td>
-<td style="text-align: left;">11/17（火）</td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>G1</strong></td>
-<td style="text-align: left;">✅ <strong>サグラダ・ファミリア 塔登頂</strong>（日時指定必須）<br>✅ <strong>9/14 予約完了</strong>（予約番号: 106809589）<br>11/13(金) 9:00入場, 9:15生誕の塔</td>
-<td style="text-align: left;">11/13（金）</td>
-<td style="text-align: left;">✅ <strong>9/14済</strong></td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>G5</strong></td>
-<td style="text-align: left;">🔴 <strong>アクロポリス</strong>（<code>hhticket.gr</code>・時間枠指定）<br><strong>60日前解禁 → 9/21（月）以降。30€</strong><br>🔴 <strong>冬季は 08:00〜17:00 と短い。</strong>✅ <strong>公式コンボ券は2026年に廃止＝個別購入</strong></td>
-<td style="text-align: left;">11/20（金）</td>
-<td style="text-align: left;">🔴 <strong>9/21〜</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>G4</strong></td>
-<td style="text-align: left;">🔴 <strong>コロッセオ・フォロ・ロマーノ</strong>（<code>ticketing.colosseo.it</code>）<br>🔴 <strong>30日前・ローマ 08:45 解禁 → 10/18（日）バンコク 13:45</strong><br><strong>18€〜。時間枠は解禁直後に消える。</strong>特別見学を入れるなら同時に取る</td>
-<td style="text-align: left;">11/17（火）</td>
-<td style="text-align: left;">🔴 <strong>10/18 13:45</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>G7</strong></td>
-<td style="text-align: left;">🔴 <strong>大エジプト博物館（GEM）</strong>（<code>visit-gem.com</code>）<br>🔴 <strong>2025/12/1 から完全事前予約制。当日券なし</strong><br>🔴 <strong>09:00 の枠を取る</strong>（16:00 荷物回収＝15:00 で切り上げる制約）</td>
-<td style="text-align: left;">11/27（金）</td>
-<td style="text-align: left;">🟡 <strong>10月上旬</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">🟡 <strong>G2</strong></td>
-<td style="text-align: left;"><strong>カンプノウ／Barça Immersive Tour</strong>（<code>fcbarcelona.com</code>・約 <strong>69€</strong>）<br>✅ <strong>すでに販売中。</strong>回は 09:30／12:15／14:30／17:00<br>🔴 <strong>午後 AVE 移動のため 09:30 の回。</strong>✅ 代表ウィークでバルサの試合なし</td>
-<td style="text-align: left;">11/14（土）</td>
-<td style="text-align: left;">🟡 <strong>10月上旬</strong></td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>G8</strong></td>
-<td style="text-align: left;">~~プラド・テオティワカン・人類学博物館の予約要否確認~~ → ✅ <strong>予約不要と確定</strong><br><strong>プラド</strong>：日曜 10:00〜19:00・<strong>15€</strong>（無料 17〜19時）🔴 <strong>試合当日なので無料枠は狙わない</strong><br><strong>テオティワカン</strong>：8:00〜17:00・🔴 <strong>最終入場16:00</strong>・MXN210<br>💀 <strong>10/30は午前テオティワカン → 午後〜夜ソカロ（死者の日メガ・オフレンダ＆カトリーナメイク＆ライトアップ）へ改訂（人類学博物館はスキップ）</strong></td>
-<td style="text-align: left;">11/15・10/30</td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-</tbody>
-</table>
-<h2>H. 入国手続・防疫（6件）</h2>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">#</th>
-<th style="text-align: left;">内容</th>
-<th style="text-align: left;">期限</th>
-<th style="text-align: center;">優先</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">H1</td>
-<td style="text-align: left;"><strong>米国 ESTA 申請</strong>（SFO 経由確定により必須）</td>
-<td style="text-align: left;">10月上旬</td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">H2</td>
-<td style="text-align: left;"><strong>ケニア eTA 申請</strong></td>
-<td style="text-align: left;">出発1か月前</td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>H3</strong></td>
-<td style="text-align: left;"><strong>黄熱・Twinrix(2回)・狂犬病(3回)・Tdap・腸チフス接種およびマラリア薬手配</strong><br>🔴 <strong>スネークファーム確定日程（受診4回・9/12より開始）</strong><br>① ✅ <strong>9/12（土）実施済</strong>: 黄熱＋狂犬病①（Day 0）。Twinrix①は抗体検査に変更<br>② <strong>9/24（木）</strong>: 狂犬病②＋腸チフス＋Tdap＋<strong>Twinrix①（結果待たず確定）</strong><br>③ <strong>10/1（木）</strong>: シングリックス②（日本・翌日静養）<br>④ <strong>10/22（木）</strong>: <strong>狂犬病③（Day 40）＋マラリア薬処方＋Twinrix②（全完了）</strong><br>→ 詳細は <a href="手配_予防接種.md"><code>手配_予防接種.md</code></a>（<strong>第9版</strong>）</td>
-<td style="text-align: left;">9/12〜10/22</td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>H4</strong></td>
-<td style="text-align: left;">~~タイ帰着時の黄熱証明書の要否確認（U-6）~~ → ✅ <strong>確認済み。ケニア等の流行地域からのタイ入国時はイエローカード提示が義務（Health Control必須）</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">H5</td>
-<td style="text-align: left;"><strong>全訪問国の電子渡航認証・ビザの要否を洗い出す</strong>（特にエジプト）</td>
-<td style="text-align: left;">10月中旬</td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">H6</td>
-<td style="text-align: left;">欧州 EES 登録（11/11 リスボン入国時・現地対応）</td>
-<td style="text-align: left;">現地</td>
-<td style="text-align: center;">⬜</td>
-</tr>
-</tbody>
-</table>
-<h2>I. お金・保険・通信・携行品（11件）</h2>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">#</th>
-<th style="text-align: left;">内容</th>
-<th style="text-align: left;">期限</th>
-<th style="text-align: center;">優先</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">✅ <strong>I0</strong></td>
-<td style="text-align: left;">~~Olive の「選べる無料保険」を選び直す~~ → ✅ <strong>2026/9/10 スマホ安心プランへ戻した</strong><br>🔴 <strong>旅行安心プラン（11/1開始）は 10/28 出発の本旅行には規約上一切効かなかった（0円）</strong>ため、旅行以外の補償に充当した<br>⚠️ <strong>失ったのは 2027/10/31 までに「日本発」で始める別の旅行の 300/300/500 のみ。</strong>2027/3 シンガポールはバンコク発で元から対象外<br>⚠️ <strong>スマホ安心プランの前提：</strong>補償期間開始日（11/1）にスマホが<strong>購入2年以内</strong>であること／<strong>開始から30日以内の損害は対象外</strong> → <a href="手配_保険.md"><code>手配_保険.md</code></a> §1.3-(3)</td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>I1</strong></td>
-<td style="text-align: left;">🔴 <strong>単独包括海外旅行保険の契約（非居住者・海外帰着リスクの完全排除）</strong><br>🔴 <strong>日本のネット通販型保険（東京海上「off!」、損保ジャパン「off!」等）の致命的引受罠：</strong>「日本国内居住（健康保険加入）」かつ「日本出国〜日本帰着」が法律上の必須要件であり、<strong>バンコク在住（Resident Card所持・非居住者）で12/2にバンコク（ET608）へ直接帰着する旅行者が加入しても、大事故・医療搬送時に約款違反で保険金支払いを全額拒絶される壊滅的リスク（契約無効）</strong>がある（クレカ付帯保険も同様に非居住者除外で全滅）<br>✅ <strong>適格保険の必須条件：以下のいずれかで10/5までに契約完了すること</strong><br>① <strong>タイ現地発行のエクスパット旅行保険</strong>（AIG Thailand Travel Guard / Allianz Travel Thailand / AXA Thailand Smart Traveller Plus）<br>② <strong>グローバル・エクスパット／デジタルノマド保険</strong>（SafetyWing Nomad Insurance / IMG Global Patriot Travel）<br>③ <strong>日本のAIG損保等による事前告知・書面承諾特則</strong>（非居住者・海外直接帰着の引受承諾書／裏書）<br>→ 詳細は <a href="手配_包括レビュー・リスク評価.md"><code>手配_包括レビュー・リスク評価.md</code></a> §5.2</td>
-<td style="text-align: left;">🔴 <strong>10/5</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">❌ <strong>I1c</strong></td>
-<td style="text-align: left;">~~Olive の利用付帯~~ → 🔴 <strong>今回の旅行では完全に対象外（0円）で確定</strong><br>①二階建てではなく排他選択制 ②「補償期間中に開始された旅行」の原則により、11/1補償開始に対して10/28出発の旅行は全日程で無効（§1.3）<br>※ただし9/8のC2・PeruRail決済等のOlive利用は<strong>ポイント還元としては依然最善</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>I1b</strong></td>
-<td style="text-align: left;"><strong>適格単独保険の見積取得・契約（治療救援無制限または5,000万〜1億円・救援者費用・航空機遅延）</strong><br>タイ現地エクスパット保険（AIG Thailand等）またはグローバル保険（SafetyWing/IMG）、AIG損保（非居住者引受承諾特則）を比較・契約</td>
-<td style="text-align: left;">🔴 <strong>10/5</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>I1d</strong></td>
-<td style="text-align: left;">🔴 <strong>日本出国時：未有効化カード（JCB・楽天・JAL）に利用付帯を立てる</strong>（成田までの交通費）<br>※単独保険を主軸としつつ、カード付帯もバックアップとして発動させておく</td>
-<td style="text-align: left;">10/28</td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>I2</strong></td>
-<td style="text-align: left;"><strong>クレジットカードの準備（渡航連絡・限度額引上げ・予備カード）</strong><br>🔴 <strong>格上げ理由：</strong><strong>8617 が LIM→GRU（ブラジル法人 TAM Lineas Aereas）の決済で何度も失敗した。</strong><br>ペルー・ブラジルのマーチャントで連続決済すると不正検知で止まる。<strong>残りの手配前に渡航連絡を入れる</strong></td>
-<td style="text-align: left;">🔴 <strong>9/16</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">I3</td>
-<td style="text-align: left;">eSIM／現地通信の手配（中南米・欧州・ケニア対応ローミングeSIM）</td>
-<td style="text-align: left;">10月中旬</td>
-<td style="text-align: center;">⬜</td>
-</tr>
-<tr>
-<td style="text-align: left;">I4</td>
-<td style="text-align: left;"><strong>マチュピチュ入場券2枚を印刷して携行</strong>（氏名スペル誤記 TAKAMUU の現場説明用保険）</td>
-<td style="text-align: left;">出発前</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>I5</strong></td>
-<td style="text-align: left;">✅ <strong>パスポートの残存有効期間を確認</strong>（2027/9 以降まで有効か／査証欄の空き）</td>
-<td style="text-align: left;">🔴 <strong>9/15</strong></td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">I6</td>
-<td style="text-align: left;">控え類のクラウド保管（eチケット・券・保険証・パスポートコピー）<br>🔴 <strong>搭乗券の控えも全区間保管</strong>（他社便のマイル事後登録に必要 → M群）</td>
-<td style="text-align: left;">出発前</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>I7</strong></td>
-<td style="text-align: left;">✅ <strong>決済カードを費目ごとに記録する運用を開始</strong>（<code>html/cost_management.html</code> の <code>data-card</code>）<br>集計は <a href="予算管理.md"><code>予算管理.md</code></a> §3 に自動生成。<strong>9210=ANAゴールド／8617=Olive</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<h3>🔴 保険の正本結論（<a href="手配_包括レビュー・リスク評価.md"><code>手配_包括レビュー・リスク評価.md</code></a> §5.2 より）</h3>
-<ol>
-<li><strong>Olive プラチナプリファードは 0円（完全対象外）</strong>：</li>
-<li>排他選択制（スマホ安心プラン選択中）＋「補償期間（11/1）より前に開始された旅行（10/28発）は全日程無効」の原則により、規約上1円も出ない。</li>
-<li><strong>クレジットカード付帯保険および日本の一般ネット通販型保険の全滅リスク（非居住者・海外帰着条項）</strong>：</li>
-<li>クレカ付帯保険（三菱UFJ「海外永住者・帰国予定なし除外」、JCB/楽天「日本国内住居発着」）に加え、<strong>日本のネット通販型旅行保険（東京海上「off!」、損保ジャパン「off!」等）も「日本国内居住・日本発着」が法律上の必須要件</strong>である。</li>
-<li>バンコクに在住権（Resident Card）を持ち、最終帰着地がバンコク（12/2 ET608）である本旅程では、高額医療搬送（1,000万〜3,000万円規模）請求時の厳密な居住・旅程調査により、<strong>約款違反として保険金支払いが全額拒絶される致命的リスク</strong>を負う。</li>
-<li><strong>必須対策（適格なエクスパット保険の契約）</strong>：</li>
-<li><strong>タイ現地発行エクスパット旅行保険（AIG Thailand、Allianz Thailand、AXA Thailand）</strong>、<strong>グローバル保険（SafetyWing Nomad Insurance、IMG Global）</strong>、または<strong>日本のAIG損保等による事前書面承諾（非居住者・海外直接帰着引受特則）</strong>にて、<strong>治療・救援費用無制限または最低5,000万〜1億円を担保する正規ポリシーを10/5までに必ず契約すること</strong>。カード付帯はあくまで二次的な予備とする。</li>
-</ol>
-</blockquote>
-<hr />
-<h2>J. 係争中・要判断（4件／✅完了3件）</h2>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">#</th>
-<th style="text-align: left;">内容</th>
-<th style="text-align: left;">期限</th>
-<th style="text-align: center;">優先</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">✅ J1</td>
-<td style="text-align: left;">~~マチュピチュ 1-B券の氏名訂正~~ → <strong>2026/9/6 回答受領。訂正不可で決着</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ J2</td>
-<td style="text-align: left;">~~返答がなければ再送するか判断~~ → <strong>不要（回答が来た）</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">💼 <strong>J3</strong></td>
-<td style="text-align: left;"><strong>当日ゲートで説明するための携行物を用意</strong>（回答メールの印刷・両券・パスポート）</td>
-<td style="text-align: left;"><strong>11/1まで</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ J4</td>
-<td style="text-align: left;">~~同日2枚入場の可否を文化省に確認するか判断~~ → <strong>聞かないと決定（2026/9/6）</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<h3>✅ J1／J2 の決着（2026/9/6）</h3>
-<p>文化省 Canal Tu Boleto の回答：<strong>「券は編集できない。ただし訪問当日、入場ゲートに券とパスポートを
-持参し、管理担当者に事情を説明してほしい」</strong></p>
-<p>⚠️ <strong>入場の確約ではなく、現場スタッフの判断に委ねる形。</strong>
-ただし<strong>文化省からの書面の指示</strong>なので、当日の交渉材料としては有効。
-🔴 <strong>この返信メールを印刷して携行する（J3）。</strong>綴りが正しい 3-A 券も同一人物の傍証になる。
-詳細は <a href="tickets/マチュピチュ/費用明細.md"><code>tickets/マチュピチュ/費用明細.md</code></a> §3.1。</p>
-<h3>✅ J4 の決定（2026/9/6）：<strong>聞かない</strong></h3>
-<p><strong>§3.5 の「同日2枚入場の可否」は文化省に照会しない。</strong>
-「不可」と書面で回答されると藪蛇になるため、<strong>現状のグレーを維持する。</strong></p>
-<p><strong>実務上は通る見込みが立っている：</strong>
-- 公式システムが<strong>同一パスポート・同一日で2枚を発券している</strong>
-- <strong>入場口が別</strong>（Puerta Baja ／ Puerta Principal）＝システムが別の入場として扱っている
-- <strong>時間も重ならない</strong>（6時間ルールで 07:00 入場なら 13:00 まで滞在可）
-- 規則第16条は再入場を禁じるが、<strong>別券での入場に及ぶかは条文から読み取れない＝禁止条項は無い</strong></p>
-<p>⚠️ <strong>したがって当日は「2枚持っている」ことを自分から説明しない。</strong>
-1-B の氏名誤記についてのみ、文化省の回答メールを示して説明する（→ J3）。</p>
-</blockquote>
-<hr />
-<h2>K. 荷物（8件／✅ 完了3件）🔴 拘束条件が3つ重なる</h2>
-<blockquote>
-<p>✅ <strong>結論：中型スーツケース（受託・15kg以下）＋ 30〜35Lデイパック（機内持込・8kg以下）＝合計23kg。</strong>
-詳細は <a href="手配_荷物.md"><code>手配_荷物.md</code></a> および <a href="手配_包括レビュー・リスク評価.md"><code>手配_包括レビュー・リスク評価.md</code></a> §4。</p>
-</blockquote>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">拘束条件</th>
-<th style="text-align: left;">値</th>
-<th style="text-align: left;">効く場所</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">① <strong>全体の総量</strong></td>
-<td style="text-align: left;">🔴 <strong>2個・合計30kg</strong>（RTW全区間・A9で確定）</td>
-<td style="text-align: left;">旅程の大半</td>
-</tr>
-<tr>
-<td style="text-align: left;">② 受託の天井</td>
-<td style="text-align: left;"><strong>25kg</strong>（TK PrimeFly・C5/C6購入済）</td>
-<td style="text-align: left;">C5・C6</td>
-</tr>
-<tr>
-<td style="text-align: left;">③ 持込の床</td>
-<td style="text-align: left;"><strong>8kg・三辺115cm</strong></td>
-<td style="text-align: left;">D1・D2（PeruRail）</td>
-</tr>
-</tbody>
-</table>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">#</th>
-<th style="text-align: left;">内容</th>
-<th style="text-align: left;">期限</th>
-<th style="text-align: center;">優先</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">✅ <strong>K1</strong></td>
-<td style="text-align: left;">~~C2 を LATAM公式の Premium Economy で購入~~ → ✅ <strong>2026/9/8 完了（PNR MAYCQV・座席2A）</strong><br>受託23kg／持込12kg。設計は8kgなので問題なし</td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>K2</strong></td>
-<td style="text-align: left;">~~C3・C4 を受託23kg込みで購入~~ → ✅ <strong>2026/9/8-9 購入完了</strong><br>C3（PNR: <code>IWYEMJ</code>）・C4（PNR: <code>UBHQIG</code>）とも <strong>Economy Full（受託23kg込）</strong>。C3中段LA8005はPlusgrade PE入札済</td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>K3</strong></td>
-<td style="text-align: left;">~~C5・C6 を PrimeFly で購入~~ → ✅ <strong>2026/9/9 購入完了</strong><br>C5（PNR: <code>SUMX3C</code>）・C6（PNR: <code>VKCWJC</code>）とも <strong>PrimeFly（受託25kg・12時間前まで変更無料）</strong></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>K4</strong></td>
-<td style="text-align: left;">スーツケース（63〜66cm・<strong>空重量3kg以下</strong>）・デイパック（20〜25L）を調達</td>
-<td style="text-align: left;">10月上旬</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>K5</strong></td>
-<td style="text-align: left;">🟢 <strong>E11 ローマを洗濯機付きの宿で確保（Airbnb完了）。</strong>38日を15kgに収める最大の要因（中間点で洗濯）</td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">🟢</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>K6</strong></td>
-<td style="text-align: left;"><strong>出発前に自宅で計量。</strong>スーツケース15kg・デイパック8kg・<strong>合計23kg以下</strong></td>
-<td style="text-align: left;">10/25</td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>K7</strong></td>
-<td style="text-align: left;"><strong>11/20 アテネで再計量</strong>（C5 の重量ピーク直前）</td>
-<td style="text-align: left;">現地</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>K8</strong></td>
-<td style="text-align: left;">🔴 <strong>土産は 11/23 の C6 以降に買う。</strong>枠は7kgのみ。<strong>3個目は足せない</strong></td>
-<td style="text-align: left;">現地</td>
-<td style="text-align: center;">🔴</td>
-</tr>
-</tbody>
-</table>
-<h2>L. ラウンジ（6件）✅ Priority Pass で対応</h2>
-<blockquote>
-<p>✅ <strong>方針：RTW区間はビジネスの同伴ラウンジ／RTW外（C1〜C6）は三菱UFJプラチナカード付帯の Priority Pass。</strong>
-✅ <strong>最重要の GRU 6時間10分待ちは完全にカバーできる。</strong>詳細は <a href="手配_ラウンジ.md"><code>手配_ラウンジ.md</code></a>。</p>
-</blockquote>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">#</th>
-<th style="text-align: left;">内容</th>
-<th style="text-align: left;">期限</th>
-<th style="text-align: center;">優先</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">🔴 <strong>L1</strong></td>
-<td style="text-align: left;">🔴 <strong>IST（11/21）の穴を埋める。</strong>IST→NAV は<strong>国内線</strong>で、PP の IGA Lounge は<strong>国際線専用</strong><br>→ ① <strong>TK の到着ラウンジ</strong>（TK1840 をビジネスで降りる）② <strong>iGA Domestic Lounge が PP 対象か</strong> を確認</td>
-<td style="text-align: left;">10月中旬</td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>L2</strong></td>
-<td style="text-align: left;"><strong>CUZ（11/5 05:00発）：Hanaq VIP Lounge の開館時刻を確認</strong>（開館前の恐れ）</td>
-<td style="text-align: left;">10月中旬</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>L3</strong></td>
-<td style="text-align: left;"><strong>GRU T2 の「時間制限なし」ラウンジを事前特定</strong>（6h10m。3時間上限の店では足りない）</td>
-<td style="text-align: left;">10月中旬</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>L4</strong></td>
-<td style="text-align: left;"><strong>SFO（10/29）：UA1271 の出発コンコースを確認</strong><br>PP は International Terminal A 限定。<strong>A6（S-1）が成立すれば United Club で解決</strong></td>
-<td style="text-align: left;">10/28</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>L5</strong></td>
-<td style="text-align: left;">Priority Pass アプリ導入。<strong>同伴者条件と年間利用回数の上限</strong>を確認</td>
-<td style="text-align: left;">10月上旬</td>
-<td style="text-align: center;">🟡</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>L6</strong></td>
-<td style="text-align: left;">12/1 ADD 乗継（4h25m）の <strong>Cloud Nine Lounge</strong> 利用条件を確認</td>
-<td style="text-align: left;">11月</td>
-<td style="text-align: center;">⬜</td>
-</tr>
-</tbody>
-</table>
-<h2>M. マイル（4件）🔴 3万マイル規模が未処理</h2>
-<blockquote>
-<p>🔴 <strong>大原則：マイルはプログラム間で合算できない。便ごとに積算先を1つ選ぶだけ。</strong>
-Miles&amp;Smiles に入れたマイルは <strong>ANA に移せない。</strong>
-✅ <strong>方針：RTW 15区間はすべて ANAマイレージクラブへ寄せる。</strong>詳細は <a href="手配_マイル.md"><code>手配_マイル.md</code></a>。</p>
-</blockquote>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">事実</th>
-<th style="text-align: left;">内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">✅ <strong>RTW 15区間は全社スターアライアンス</strong></td>
-<td style="text-align: left;">券面が <code>VLD STAR ALLIANCE ONLY</code>。<strong>AZ79（ITA）も 2026/4/1 加盟済み</strong>で ANA 積算対象（2026/4/1 以降出発分）</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>積算見込み</strong></td>
-<td style="text-align: left;">総飛行 31,308マイル・14区間がビジネス（Z/D）→ <strong>3万マイル超の可能性</strong>。<strong>BKK⇄東京の往復特典に届く規模</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">❌ <strong>LATAM は積算不可</strong></td>
-<td style="text-align: left;">2020年に oneworld 脱退。<strong>C3（$263.68）・C4 はマイル的に無価値</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">⚠️ <strong>Miles&amp;Smiles の1,000マイル</strong></td>
-<td style="text-align: left;"><strong>ANA に移せず、TKでも交換に届かない＝死蔵。</strong>加入は無料なので可だが、得ではない</td>
-</tr>
-</tbody>
-</table>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">#</th>
-<th style="text-align: left;">内容</th>
-<th style="text-align: left;">期限</th>
-<th style="text-align: center;">優先</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">✅ <strong>M1</strong></td>
-<td style="text-align: left;">~~RTW に ANA番号が登録されているか確認~~ → ✅ <strong>2026/9/10 確認済み</strong>（ANAアプリで全予約が表示される）</td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>M2</strong></td>
-<td style="text-align: left;">🔴 <strong>ANA に世界一周運賃の積算率を照会</strong>（＝A11b）</td>
-<td style="text-align: left;">🔴 <strong>9月中</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;">🔴 <strong>M3</strong></td>
-<td style="text-align: left;"><strong>C1（BKK→東京）の特典枠を確認。</strong>JAL は片道可／ANA は往復必須<br>現金は TG660 $343。<strong>10/26 は7週間後で枠は早い者勝ち</strong></td>
-<td style="text-align: left;">🔴 <strong>9月中</strong></td>
-<td style="text-align: center;">🔴</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>M4</strong></td>
-<td style="text-align: left;">⑥ TP1030（ポルトゥガリア運航）と C5・C6（TK国内線）の ANA 積算可否を確認<br>C5・C6 が0%なら Miles&amp;Smiles に入れる</td>
-<td style="text-align: left;">10月中旬</td>
-<td style="text-align: center;">⬜</td>
-</tr>
-</tbody>
-</table>
-<h2>✅ 完了済み</h2>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">内容</th>
-<th style="text-align: left;">完了日</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">ANA で全16クーポンの予約（PNR: DM4H3V・฿257,820 ≒ ¥1,218,000）</td>
-<td style="text-align: left;">2026/9/4</td>
-</tr>
-<tr>
-<td style="text-align: left;">マチュピチュ入場券 2枚（3-A 07:00 ／ 1-B 13:00・S/369.32 ≒ ¥17,000）</td>
-<td style="text-align: left;">2026/9/5</td>
-</tr>
-<tr>
-<td style="text-align: left;">マチュピチュ 氏名訂正の照会メール送信（tuboleto@cultura.gob.pe）</td>
-<td style="text-align: left;">2026/9/5</td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>RTW 発券完了（東京発券・JPY建て・PNR: EANRV5・¥1,211,160）</strong></td>
-<td style="text-align: left;"><strong>2026/9/6</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>A-1 成立：10/31 MEX→LIM を CM121→CM489 へ。リマ深夜着を解消</strong></td>
-<td style="text-align: left;"><strong>2026/9/6</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>ET319・ET608 のキャンセルから同一便で復旧</strong></td>
-<td style="text-align: left;"><strong>2026/9/6</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>C2（LIM→CUZ）購入完了（LATAM PE Full・PNR: MAYCQV・$130.60）</strong></td>
-<td style="text-align: left;"><strong>2026/9/8</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>C3（CUZ→LIM→GRU→IGU 3レグ通し）購入完了（LATAM Economy Full・PNR: IWYEMJ・$263.68）</strong></td>
-<td style="text-align: left;"><strong>2026/9/8</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>D1・D2（PeruRail 展望列車往復）購入完了（予約番号: WEB3204304・$159.60）</strong></td>
-<td style="text-align: left;"><strong>2026/9/8</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>C4（IGU→GRU）購入完了（LATAM Economy Full・PNR: UBHQIG・$477.67）</strong></td>
-<td style="text-align: left;"><strong>2026/9/9</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>C5（IST→NAV）購入完了（TK PrimeFly・PNR: SUMX3C・TRY 4,964.63）</strong></td>
-<td style="text-align: left;"><strong>2026/9/9</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>C6（NAV→IST）購入完了（TK PrimeFly・PNR: VKCWJC・TRY 4,950.00）</strong></td>
-<td style="text-align: left;"><strong>2026/9/9</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>RTW にANAマイレージクラブ番号が登録済みと確認</strong>（A11a／M1・ANAアプリで全予約を確認）</td>
-<td style="text-align: left;"><strong>2026/9/10</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>Olive の選べる無料保険をスマホ安心プランへ戻した（旅行保険0円無効を立証）</strong></td>
-<td style="text-align: left;"><strong>2026/9/10</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>RFEF Tickets アプリ導入・アカウント作成完了（B2）</strong></td>
-<td style="text-align: left;"><strong>2026/9/11</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>ヴァチカン博物館 予約完了（11/17 08:00枠・€25）</strong>（G3）</td>
-<td style="text-align: left;"><strong>2026/9/11</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>トスカーナ日帰りワイナリー（11/18）方針決定</strong>（F11）</td>
-<td style="text-align: left;"><strong>2026/9/11</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>トスカーナ日帰りワイナリー（11/18）予約完了</strong>（City Wonders・¥14,110・予約 <code>XTK978855</code>）（F11）</td>
-<td style="text-align: left;"><strong>2026/9/12</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">✅ <strong>全旅程フライト・タイムライン・MCT・手荷物包括レビュー完了</strong>（正本レポート完成）</td>
-<td style="text-align: left;"><strong>2026/9/12</strong></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2>🔍 洗い出しで見つかった問題と解決状況</h2>
-<ol>
-<li>✅ <strong>イスタンブールの泊数の食い違い → 「2泊（11/23・11/24）」で確定解決</strong></li>
-<li>11/25 は MS738 14:00 発でカイロへ移動するため、宿泊は 11/23・11/24 の2泊のみ。<code>東回り_サッカー観戦候補.md</code> の「3泊」は「3日間滞在」の誤記。E14 は2泊で確定。</li>
-<li>✅ <strong>リマ深夜着問題 → A-1成立（22:45着・23:45チェックイン）で解消済み</strong></li>
-<li>旧案の00:55着から前倒しされ、E3リマ空港ホテル（Wyndham Costa del Sol）に当日23:45に入室可能となった。</li>
-<li>✅ <strong>ケニアサファリ手荷物・体力問題 → フライイン＋Emara事前預託により完全解決</strong></li>
-<li>23kg大スーツケースは11/28朝に Emara Ole-Sereni へ預託。小型機（15kg制限）には15kgリュックで搭乗し片道45分でマサイマラへ直行。悪路往復11時間を完全排除。</li>
-<li>✅ <strong>海外旅行保険の空白・非居住者リスク → 単独包括保険（10/5迄）で解決方針確定</strong></li>
-<li>Oliveカードの0円失効および非居住者条項によるクレカ付帯保険全滅リスクを特定。治療・救援無制限または1億円の単独保険を契約する。</li>
-<li>✅ <strong>マチュピチュ入場券 → 同日2枚体制（3-A 07:00 ＋ 1-B 13:00）で確保済み</strong></li>
-<li>王道2-A完売に対し、登山券と上段テラス券を同日確保。1-Bの氏名誤記（TAKAMUU）は文化省指示書面とパスポート原本で現場対応。</li>
-</ol>
-<hr />
-<h2>関連ファイル</h2>
-<table class="table table-bordered table-striped table-hover mt-3 mb-4">
-<thead class="table-dark">
-<tr>
-<th style="text-align: left;">ファイル</th>
-<th style="text-align: left;">内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">📘 <a href="手配_包括レビュー・リスク評価.md"><code>手配_包括レビュー・リスク評価.md</code></a></td>
-<td style="text-align: left;"><strong>全旅程フライト照合・17宿泊施設・手荷物設計・保険・防疫の包括的監査正本</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="東回り_要件定義書.md"><code>東回り_要件定義書.md</code></a></td>
-<td style="text-align: left;"><strong>正本（第7版）。</strong> 予約実績・確定/未確定事項・全41日の日程表</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="東回り_発券用資料.md"><code>東回り_発券用資料.md</code></a></td>
-<td style="text-align: left;">発券前最終確認シート。ANA窓口で聞くこと一式＋各区間の代替便候補</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="東回り_空席ウォッチ運用.md"><code>東回り_空席ウォッチ運用.md</code></a></td>
-<td style="text-align: left;">空席の見方・監視ツールの運用手順</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="手配_RTW外フライト.md"><code>手配_RTW外フライト.md</code></a></td>
-<td style="text-align: left;">C1〜C6 の購入記録・運賃種別・手荷物規定・変更払戻条件</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="手配_宿泊.md"><code>手配_宿泊.md</code></a></td>
-<td style="text-align: left;">全17宿泊地（19件）のチェックイン/アウト制約・立地基準・推奨ホテル</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="手配_サファリ.md"><code>手配_サファリ.md</code></a></td>
-<td style="text-align: left;">ケニア（11/28-12/1）。マサイマラ往復フライイン・Basecamp Mara・Emaraパークビュー</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="手配_イグアス.md"><code>手配_イグアス.md</code></a></td>
-<td style="text-align: left;">イグアス（11/5-11/8）。両側の時刻設計・ヘリ・Gran Aventura</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="手配_マチュピチュ.md"><code>手配_マチュピチュ.md</code></a></td>
-<td style="text-align: left;">ペルー（11/1-11/5）。入場券・列車・送迎・高山病プロトコル</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="手配_気球ツアー.md"><code>手配_気球ツアー.md</code></a></td>
-<td style="text-align: left;">カッパドキア（11/21-11/23）。欠航率30-40%への予備日スライド設計</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="手配_ワイナリー.md"><code>手配_ワイナリー.md</code></a></td>
-<td style="text-align: left;">ローマ発トスカーナ日帰り（11/18）モンテプルチャーノ・ピエンツァ</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="手配_ローマ.md"><code>手配_ローマ.md</code></a></td>
-<td style="text-align: left;">ローマ・ヴァチカン（11/16-19）。ヴァチカン予約済・コロッセオ10/18解禁</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="手配_観戦チケット.md"><code>手配_観戦チケット.md</code></a></td>
-<td style="text-align: left;">スペイン戦（9/23一般発売）・ガラタサライ戦（✅ Passo カード 9/15 申請・承認済／11/20 購入）</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="手配_スペイン戦_当日購入マニュアル.md"><code>手配_スペイン戦_当日購入マニュアル.md</code></a></td>
-<td style="text-align: left;"><strong>9/23 スペイン戦 クラウドPC購入手順・コピペ対応表・トラブル対処</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="手配_荷物.md"><code>手配_荷物.md</code></a></td>
-<td style="text-align: left;">全体パッキング設計（15kg+8kg=23kg）・各社制限・駅預かり所運用</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="手配_保険.md"><code>手配_保険.md</code></a></td>
-<td style="text-align: left;">Olive 0円無効・クレカ非居住者条項・単独包括保険の要件</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="手配_予防接種.md"><code>手配_予防接種.md</code></a></td>
-<td style="text-align: left;"><strong>スネークファーム全4回接種スケジュール・黄熱・Twinrix・マラロン</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="東回り_サッカー観戦候補.md"><code>東回り_サッカー観戦候補.md</code></a></td>
-<td style="text-align: left;">観戦2試合の詳細・チケット入手手順</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="tickets/マチュピチュ/費用明細.md"><code>tickets/マチュピチュ/費用明細.md</code></a></td>
-<td style="text-align: left;">入場券の購入記録・券面から判明した当日の制約</td>
-</tr>
-</tbody>
-</table>
-    </div>
+    <div class="container-fluid">
+        <h2 class="mb-4">World Tour 2026 - Master TODO List</h2>
+        <table id="todotable" class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>優先</th>
+                    <th>期限 / 日付</th>
+                    <th>カテゴリ</th>
+                    <th>ID</th>
+                    <th>内容</th>
+                </tr>
+            </thead>
+            <tbody>
 
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>未分類</td>
+                    <td></td>
+                    <td><p><b>記号</b>: :--<br><b>意味</b>: :--</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td></td>
+                    <td>未分類</td>
+                    <td></td>
+                    <td><p><b>記号</b>: 🔴<br><b>意味</b>: 最優先（Todoist P1）</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td></td>
+                    <td>未分類</td>
+                    <td></td>
+                    <td><p><b>記号</b>: 🟡<br><b>意味</b>: 重要（P2）</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>未分類</td>
+                    <td></td>
+                    <td><p><b>記号</b>: ⬜<br><b>意味</b>: 通常（P3/P4）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>未分類</td>
+                    <td></td>
+                    <td><p><b>記号</b>: ✅<br><b>意味</b>: 完了</p></td>
+                </tr>
+                <tr class="pri-3">
+                    <td data-order="3">⚠️ 注意</td>
+                    <td></td>
+                    <td>未分類</td>
+                    <td></td>
+                    <td><p><b>記号</b>: ⚠️<br><b>意味</b>: 資料に記載がなく、9/5 の洗い出しで追加した項目</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 直近の完了実績</td>
+                    <td></td>
+                    <td><p><b>完了日</b>: ✅ <strong>2026/9/6</strong><br><b>内容</b>: ✅ <strong>RTW 発券完了</strong>（PNR: <code>EANRV5</code>・総額 ¥1,211,160）。ET319・ET608 のキャンセルも同一便で復旧</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 直近の完了実績</td>
+                    <td></td>
+                    <td><p><b>完了日</b>: ✅ <strong>2026/9/8</strong><br><b>内容</b>: ✅ <strong>C2（LIM→CUZ）購入完了</strong>（LATAM PE Full・PNR: <code>MAYCQV</code>・座席2A・$130.60）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 直近の完了実績</td>
+                    <td></td>
+                    <td><p><b>完了日</b>: ✅ <strong>2026/9/8</strong><br><b>内容</b>: ✅ <strong>C3（CUZ→LIM→GRU→IGU 3レグ通し）購入完了</strong>（LATAM Economy Full・PNR: <code>IWYEMJ</code>・$263.68）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 直近の完了実績</td>
+                    <td></td>
+                    <td><p><b>完了日</b>: ✅ <strong>2026/9/8</strong><br><b>内容</b>: ✅ <strong>D1・D2（PeruRail 展望列車往復）購入完了</strong>（予約: <code>WEB3204304</code>・$159.60）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 直近の完了実績</td>
+                    <td></td>
+                    <td><p><b>完了日</b>: ✅ <strong>2026/9/9</strong><br><b>内容</b>: ✅ <strong>C4（IGU→GRU）購入完了</strong>（LATAM Economy Full・PNR: <code>UBHQIG</code>・$477.67）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 直近の完了実績</td>
+                    <td></td>
+                    <td><p><b>完了日</b>: ✅ <strong>2026/9/9</strong><br><b>内容</b>: ✅ <strong>C5（IST→NAV）購入完了</strong>（TK PrimeFly・PNR: <code>SUMX3C</code>・TRY 4,964.63）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 直近の完了実績</td>
+                    <td></td>
+                    <td><p><b>完了日</b>: ✅ <strong>2026/9/9</strong><br><b>内容</b>: ✅ <strong>C6（NAV→IST）購入完了</strong>（TK PrimeFly・PNR: <code>VKCWJC</code>・TRY 4,950.00）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 直近の完了実績</td>
+                    <td></td>
+                    <td><p><b>完了日</b>: ✅ <strong>2026/9/10</strong><br><b>内容</b>: ✅ <strong>RTW に ANAマイレージクラブ番号が登録済みと確認</strong>（A11a／M1）。ANAアプリで全予約表示</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td></td>
+                    <td>✅ 直近の完了実績</td>
+                    <td></td>
+                    <td><p><b>完了日</b>: ✅ <strong>2026/9/10</strong><br><b>内容</b>: ✅ <strong>Olive の選べる無料保険をスマホ安心プランへ戻した</strong>（I0）<br>🔴 <strong>Olive は今回の旅行では完全に対象外（0円）と確定。</strong>排他選択制＋「補償期間中に開始された旅行」原則により 10/28 出発は規約上無効</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 直近の完了実績</td>
+                    <td></td>
+                    <td><p><b>完了日</b>: ✅ <strong>2026/9/11</strong><br><b>内容</b>: ✅ <strong>RFEF Tickets アプリを導入しアカウント作成</strong>（B2）。発売日確定（ソシオ9/22、一般9/23）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 直近の完了実績</td>
+                    <td></td>
+                    <td><p><b>完了日</b>: ✅ <strong>2026/9/11</strong><br><b>内容</b>: ✅ <strong>ヴァチカン博物館（11/17 08:00枠・€25）予約完了</strong>（G3）。システィーナ礼拝堂含む</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 直近の完了実績</td>
+                    <td></td>
+                    <td><p><b>完了日</b>: ✅ <strong>2026/9/12</strong><br><b>内容</b>: ✅ <strong>予防接種 第1回 接種完了</strong>（H3・スネークファーム）。<strong>黄熱病ワクチン（イエローカード即日受領・9/22有効化）＋ 狂犬病①（Day 0）受診完了</strong>。Twinrix①は未接種で抗体検査に変更→✅ <strong>9/24にTwinrix①を打つ方針で確定</strong>（結果待たず）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 直近の完了実績</td>
+                    <td></td>
+                    <td><p><b>完了日</b>: ✅ <strong>2026/9/12</strong><br><b>内容</b>: ✅ <strong><code>tickets@rfef.es</code> より公式回答受領・B2完了</strong>（B2）。<strong>「購入国と同じ国で発行されたカードが必須」と確定 ➔ 妻のタイ発行クレジットカードで決済確定！最大リスクを完全クリア</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>✅ **2026/9/14（月）**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>サグラダ・ファミリア 塔登頂を予約</strong>（完了）<br>予約番号: 106809589 / 11/13(金) 9:00入場, 9:15生誕の塔</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>✅ **2026/9/15（火）**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>パスポートの残存有効期間と査証欄の空きを確認</strong>（I5・完了）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/9/16（水）**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>クレジットカードの渡航連絡</strong>（I2）<br><strong>ホテル17件（10/10 期限）を予約する前に済ませる。</strong>8617 はブラジル決済で実際に止まった</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/9/17（木）**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>C1 BKK→東京（10/26）を確保</strong>（C1／M3・TG660 $343 または特典枠）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>✅ **2026/9/15（火）**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>Passo Taraftar カード申請完了 → 同日 18:42 SMS で承認</strong>（B1・GALATASARAY・Digital Prepaid Card）。<br>決済は日本発行カード（ANA・Olive・dカード・ファミマ）が軒並み3DS/カード非対応エラーで失敗し、<strong>Wiseカードで決済成功</strong>（₺1,200）。<br>✅ <strong>申請番号（ref no）738721 が承認</strong>・<strong>デジタルウォレットカード発行済（下4桁 7195）</strong>。<br>🔴 <strong>物理カードは送付されない。入場は「スタジアム窓口でパスポートを提示し Tek Girişlik Pass Card を受領」する方式</strong>（従来想定のアプリQR直接入場は誤り）。<br>✅ カード現物なしでも Passo Mobil でチケット購入可。</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>✅ **2026/9/16（水）**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>Passo Taraftar カードを Web で現物確認</strong>（B1a・<code>passotaraftar.com.tr</code> ➔ Card Transactions）。<br>✅ <strong>名義 TAKESHI TAKAMUKU／<code>Passo Taraftar Dijital Cüzdan Kart – GALATASARAY A.Ş.</code>／<code>5262 63** **** 7195</code>／残高 0,00 TL</strong>。<br>🔴 <strong>チケット購入用の会員登録は <code>passo.com.tr</code> 側で別途必要（B1b）</strong>、<strong>E-Ticket 有効期限は N Kolay Mobile で確認（B1c）</strong>、<strong>決済手段の確定（B1d）</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**早めに**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>サファリ デポジット50%（$807）送金</strong>（F3・Trav-Interactive／Ref. no. 1168751／請求書 <code>Trav/2026/00383900917</code>）<br>マサイマラ空路フライイン（$1,614・Basecamp 2泊フルボード）。✅ <strong>請求書に明確な期限日の記載はないが、入金するまで予約は確定しない</strong>（座席数限定のため早期送金推奨）。Diamond Trust Bank宛て銀行送金</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>🟡 **2026/9/20（日）**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: <strong>Copa 2便（CM121・CM489）の座席属性を登録</strong>（A13・通路側希望）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/9/21（月）**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>アクロポリスを予約</strong>（G5・<strong>60日前解禁</strong>・<code>hhticket.gr</code>・11/20 午前枠 30€）<br>🔴 <strong>スペイン戦 購入事前準備完了</strong>（B3a・旅券番号、<strong>GCP東京クラウドPC＋日本発行カード（手元3Dセキュア確認）</strong>、コピペ用テキスト配置、希望ゾーン LATERAL ESTE 決定）</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>🟡 **2026/9/22（火）**<br>**バンコク 17:00**<br>（クラウドPC 19:00）</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: <strong>アトレティコ・マドリードのソシオ先行偵察</strong>（B3b・<code>cupo limitado</code>）。クラウドPCからアクセスし画面遷移・入力欄HTML構造解析 ➔ <strong>ワンクリック自動入力（ブックマークレット）を完成・ブラウザ登録</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/9/23（水）**<br>**バンコク 17:00**<br>（クラウドPC 19:00）</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>スペイン vs イングランドを購入（一般販売）</strong>（B3c・RFEF公式）<br>🔵 <strong>16:45 待機開始（クラウドPC 18:45）。17:00 販売開始直後にアクセスし LATERAL ESTE（約€100）を選択 ➔ ブックマークレットで0.1秒入力 ➔ 即時決済</strong><br>🔴 <strong>直近ホーム2試合とも即完売。6.8万人満員必至。開始直後に確保</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/9/24（木）**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>予防接種 第2回（スネークファーム・平日 8:30〜16:30 直接来院）</strong>（H3）<br><strong>狂犬病②（Day 12）＋ 腸チフス ＋ Tdap（破傷風・非利き腕へ）＋ Twinrix①（新規確定）</strong><br>🔴 <strong>合計4本。</strong>②は9/24から28日後の10/22に受診（狂犬病③・マラリア処方も同日に統合）</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>🟡 **2026/9/20〜9/25頃**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: <strong>メキシコシティ City Express Plus のマリオットアプリ紐付け再試行</strong>（E2・ホテル側確認コード <code>1051276955</code>。OTA・卸売連携タイムラグ解消後に公式アプリの「予約を追加」で再検索）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>✅ **2026/9/13 済**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>リマ空港直結ホテル（E3）確保完了</strong>（Wyndham Costa del Sol 予約 <code>PNKK9ZR29XVB</code>・¥20,189・Vトリップ・ターミナル直結）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>✅ **2026/9/13 済**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>サンフランシスコホテル（E1）確保完了</strong>（グラント プラザ ホテル 予約 <code>54HB8NPPTX2G</code>・¥13,298・Vトリップ・チャイナタウン入口）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>✅ **2026/9/13 済**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>マドリードホテル（E10）確保完了</strong>（HOTEL PAX ATOCHA 予約 <code>P9053588</code>・136€・アトーチャ駅徒歩10分）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>✅ **2026/9/13 済**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>メキシコシティ（E2）確保完了</strong>（City Express Plus Tlalpan 予約 <code>2H38S4SZBXD</code>・¥35,918・Vトリップ）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>✅ **2026/9/13 済**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>ナイロビホテル2軒 予約完了</strong>（E16: Four Points JKIA 予約 <code>93880712</code>／E18: Emara Ole-Sereni パークビュー 予約 <code>1385435893739592</code>）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**9月中**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>カッパドキア熱気球ツアー（F10）確保</strong>（Voyager Balloons 公式直販・翌日振替可能プラン €360）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/9/30（水）**</td>
+                    <td>🔴 P1：最優先・緊急タスク（本日9/12〜9月下旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>ANA に世界一周運賃の積算率を照会</strong>（M2）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/10/1（木）**</td>
+                    <td>🟡 P2：重要・近接タスク（10月上旬〜中旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>予防接種 第3回（日本滞在・7/24受診クリニック）</strong><br><strong>シングリックス（帯状疱疹）2回目を接種</strong>（自費）。<strong>翌日10/2（金）は完全静養日</strong>としカロナール処方</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/10/5（月）**</td>
+                    <td>🟡 P2：重要・近接タスク（10月上旬〜中旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>米国 ESTA 申請</strong>（H1・SFO経由便搭乗のため必須）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/10/5（月）**</td>
+                    <td>🟡 P2：重要・近接タスク（10月上旬〜中旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>単独包括海外旅行保険の契約</strong>（I1・最大論点）<br>クレジットカード付帯保険の「海外非居住者除外条項」による全滅リスクを排除し、治療・救援無制限または1億円の単独保険を確保</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/10/5（月）**</td>
+                    <td>🟡 P2：重要・近接タスク（10月上旬〜中旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>マサイマラ Basecamp Mara 確定</strong>（E17・サファリツアー F3 契約に伴い確定ロック）</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>**2026/10/10（土）**</td>
+                    <td>🟡 P2：重要・近接タスク（10月上旬〜中旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: <strong>宿泊施設17件（E群）の予約完了</strong>（返金可能レートで一括確保・※E1, E2, E3, E4, E10, E16, E18は9/13予約完了済）<br><strong>クスコ〜オリャンタ送迎（D3・駅預け必須）</strong>、<strong>AVE（D5/D6）</strong>、<strong>イグアス入場券・ボート（F5/F7）</strong>（※トスカーナF11は9/12予約完了済）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/10/22（木）**</td>
+                    <td>🟡 P2：重要・近接タスク（10月上旬〜中旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>予防接種 第4回・最終完了（スネークファーム・平日 8:30〜16:30 直接来院）</strong>（H3）<br><strong>狂犬病③（Day 40・コンプリート）＋ マラリア薬処方（マラロン10〜12錠）＋ Twinrix②（9/24の①から28日後）</strong><br>⚠️ <strong>狂犬病③は10/13から統合。</strong>「数週間の遅延は危険」という注意書きは暴露後接種（PEP）限定でPrEPには非該当と判明したため（本人指摘）<br>世界一周に必要な全ワクチン・証明書・予防薬がこれで100%仕上がり！10/26の東京移動まで4日の余裕</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/10/18（日）**<br>**バンコク 13:45**</td>
+                    <td>🟡 P2：重要・近接タスク（10月上旬〜中旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>コロッセオを予約</strong>（G4・<strong>30日前・ローマ 08:45 解禁</strong>・<code>ticketing.colosseo.it</code>）<br>🔴 <strong>13:30 の枠を取る。</strong>真実の口（17:00閉・行列60分）に間に合わせるため必須</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>**2026/10/20（火）**</td>
+                    <td>🟡 P2：重要・近接タスク（10月上旬〜中旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 控え類のクラウド保管（I6）、マチュピチュ券の印刷（I4）、<strong><code>passo.com.tr</code> でチケット購入用の会員登録（B1b・カード管理サイトとは別アカウント）</strong>、<strong>N Kolay Mobile で E-Ticket 有効期限を確認（B1c）</strong>（✅ 9/16 カード現物確認済＝下4桁7195・残高0TL・<strong>物理カードは届かないので到着待ち不要</strong>）、ケニア eTA 申請（H2）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/10/25（日）**</td>
+                    <td>🟡 P2：重要・近接タスク（10月上旬〜中旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>荷物を計量する。</strong>スーツケース15kg・デイパック8kg・<strong>合計23kg以下</strong>（K6）<br>RTW券は<strong>2個・合計30kg</strong>が上限（A9）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/10/28（水）**</td>
+                    <td>🟡 P2：重要・近接タスク（10月上旬〜中旬）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>未有効化カード（JCB・楽天・JAL）に利用付帯を立てる</strong>（I1d・成田までの交通費）<br>🔭 <strong>S-1（UA1271 のビジネス化）の変更期限</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/11/1（日）**</td>
+                    <td>🟢 P3：通常・現地運用タスク（11月以降）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>マチュピチュ：当日ゲート説明用の携行物を揃える</strong>（J3・文化省回答書面、両券、パスポート）</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>🟡 **2026/11/6（金）夜**</td>
+                    <td>🟢 P3：通常・現地運用タスク（11月以降）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: <strong>イグアス ヘリ遊覧 天候判断</strong>（F8・翌朝の晴天率を確認し Helisul 09:15枠 R$685 確定）</p></td>
+                </tr>
+                <tr class="pri-3">
+                    <td data-order="3">🔭 ウォッチ</td>
+                    <td>🔭 **2026/11/11（水）**</td>
+                    <td>🟢 P3：通常・現地運用タスク（11月以降）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔭 <strong>B-3（TP88 の在庫待ち）の変更期限</strong></p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>🟡 **2026/11/13（金）**</td>
+                    <td>🟢 P3：通常・現地運用タスク（11月以降）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: <strong>スペイン戦 チケット着券確認</strong>（B3d・キックオフ48h前配信・バルセロナ滞在中・eSIM通信確認）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/11/15（日）16:45**</td>
+                    <td>🟢 P3：通常・現地運用タスク（11月以降）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>スペイン戦 チケット有効化</strong>（B3e・キックオフ4時間前・QR生成）</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>🟡 **2026/11/19（木）13:00**<br>（アテネ時間）</td>
+                    <td>🟢 P3：通常・現地運用タスク（11月以降）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: <strong>ガラタサライ戦 優先販売動向確認＆前日準備完了</strong>（B4a・<code>passo.com.tr</code> ログイン・決済手段・E-Ticket有効期限の確認）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/11/20（金）13:00**<br>（アテネ時間）</td>
+                    <td>🟢 P3：通常・現地運用タスク（11月以降）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>ガラタサライ戦のチケット購入</strong>（B4b・Passoアプリより購入。1人1枚・名義一致必須）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/11/22（日）21:30**</td>
+                    <td>🟢 P3：通常・現地運用タスク（11月以降）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>気球が欠航した場合、C6（TK2001）を TK2007 へ振り替える最終期限</strong>（出発12時間前）<br><strong>併せて E13（カッパドキア 11/23 延泊）も同日中に確保する</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/11/24（火）19:15（現地）**</td>
+                    <td>🟢 P3：通常・現地運用タスク（11月以降）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>ガラタサライ戦 入場</strong>（B4c）<br>🔴 <strong>RAMS Park の窓口でパスポート原本を提示し「Tek Girişlik Pass Card」を受領してから入場</strong>（物理カードなし）。<strong>キックオフ 20:45 TRT（＝18:45 CET）の 90 分前に現地到着</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**2026/11/27（金）**</td>
+                    <td>🟢 P3：通常・現地運用タスク（11月以降）</td>
+                    <td></td>
+                    <td><p><b>内容</b>: 🔴 <strong>カイロ空港で MS849 の座席を通路側でリクエスト</strong>（A14）</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>:---</td>
+                    <td>A. RTW発券（✅ 発券完了・残 6件）</td>
+                    <td>:--</td>
+                    <td><p><b>内容</b>: :---</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>A. RTW発券（✅ 発券完了・残 6件）</td>
+                    <td>A1</td>
+                    <td><p><b>内容</b>: ~~RTW を発券する~~ → <strong>2026/9/6 発券完了（PNR: EANRV5）</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>A. RTW発券（✅ 発券完了・残 6件）</td>
+                    <td>A2</td>
+                    <td><p><b>内容</b>: ~~予約クラス確認~~ → <strong>券面で確定。ANA系=Z／他社=D。UA1271 のみ B</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>A. RTW発券（✅ 発券完了・残 6件）</td>
+                    <td>A3</td>
+                    <td><p><b>内容</b>: ~~発券国・決済通貨~~ → <strong>東京発券・JPY建て。約¥2.7〜3.4万の節約</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>A. RTW発券（✅ 発券完了・残 6件）</td>
+                    <td>A4</td>
+                    <td><p><b>内容</b>: ~~ET319・ET608 のキャンセル対応~~ → <strong>同一便で再確保成功</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>A. RTW発券（✅ 発券完了・残 6件）</td>
+                    <td>A5</td>
+                    <td><p><b>内容</b>: ~~A-1（10/31 MEX→LIM の振替）~~ → <strong>CM121→CM489 で成立。リマ着 22:45</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**10/28**</td>
+                    <td>A. RTW発券（✅ 発券完了・残 6件）</td>
+                    <td>🔭 **A6**</td>
+                    <td><p><b>内容</b>: <strong>S-1：UA1271（10/29 SFO→MEX）のビジネス空席を監視</strong></p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>**11/11**</td>
+                    <td>A. RTW発券（✅ 発券完了・残 6件）</td>
+                    <td>🔭 **A7**</td>
+                    <td><p><b>内容</b>: <strong>B-3：TP88（11/10 GRU→LIS）の在庫を監視し、11/12 を TP1034 へ</strong></p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>**11/20**（実質10月中）</td>
+                    <td>A. RTW発券（✅ 発券完了・残 6件）</td>
+                    <td>🔭 **A8**</td>
+                    <td><p><b>内容</b>: <strong>A-4：11/21 ATH→IST を TK1844（10:10発）へできないか監視</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>A. RTW発券（✅ 発券完了・残 6件）</td>
+                    <td>A9</td>
+                    <td><p><b>内容</b>: ~~手荷物の重量上限を確認~~ → <strong>確認済み。2個・合計30kg以内を前提に荷造りする</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>A. RTW発券（✅ 発券完了・残 6件）</td>
+                    <td>A10</td>
+                    <td><p><b>内容</b>: ~~NH8 の座席タイプ確認~~ → <strong>全席 THE Room で確定</strong>（ANA回答＋シートマップで裏取り）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>A. RTW発券（✅ 発券完了・残 6件）</td>
+                    <td>**A11**</td>
+                    <td><p><b>内容</b>: ~~RTW のマイル積算まわり~~ → ✅ <strong>2026/9/10 完了扱い</strong><br>✅ <strong>A11a：ANAアプリにログインした状態で全予約が見えることを確認済み</strong>（＝マイレージ番号は登録済み）<br><strong>A11b：積算率の照会は M2 に一本化</strong>（本項からは外した）<br><strong>A11c：搭乗券の控えの保管は旅行中の作業</strong>。ToDo では管理せず、<a href="手配_マイル.md"><code>手配_マイル.md</code></a> §4 の運用メモに残す<br><strong>A11d：海外旅行保険（→I群）・eチケット控えの保存（→I6）</strong></p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>9/20</td>
+                    <td>A. RTW発券（✅ 発券完了・残 6件）</td>
+                    <td>💺 **A13**</td>
+                    <td><p><b>内容</b>: <strong>Copa 2便（CM121・CM489）の座席属性を登録</strong>（現在どちらも未選択）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**11/27**</td>
+                    <td>A. RTW発券（✅ 発券完了・残 6件）</td>
+                    <td>💺 **A14**</td>
+                    <td><p><b>内容</b>: <strong>11/27 カイロ空港：MS849 の座席を通路側（C/H）でリクエスト</strong></p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>10/20</td>
+                    <td>A. RTW発券（✅ 発券完了・残 6件）</td>
+                    <td>💺 **A15**</td>
+                    <td><p><b>内容</b>: 各区間のオンラインチェックイン（24時間前）で座席を再確認</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>A. RTW発券（✅ 発券完了・残 6件）</td>
+                    <td>A12</td>
+                    <td><p><b>内容</b>: ~~旧仮予約（D6LJA2 等）の失効確認・破棄~~ → <strong>ANAアプリで確認済み</strong></p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>💺 座席指定（2026/9/6 時点・詳細は発券用資料 §10）</td>
+                    <td>:--:</td>
+                    <td><p><b>便</b>: :---<br><b>座席</b>: :---<br><b>属性</b>: :---</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>💺 座席指定（2026/9/6 時点・詳細は発券用資料 §10）</td>
+                    <td>①</td>
+                    <td><p><b>便</b>: NH8 NRT→SFO<br><b>座席</b>: <strong>5A</strong><br><b>属性</b>: 窓側＋通路直結（THE Room 1-2-1）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>💺 座席指定（2026/9/6 時点・詳細は発券用資料 §10）</td>
+                    <td>②</td>
+                    <td><p><b>便</b>: UA1271 SFO→MEX<br><b>座席</b>: <strong>36D</strong><br><b>属性</b>: 通路側（32F から変更。3-3 で窓側は2人またぐため）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>💺 座席指定（2026/9/6 時点・詳細は発券用資料 §10）</td>
+                    <td>⑤</td>
+                    <td><p><b>便</b>: TP88 GRU→LIS<br><b>座席</b>: <strong>5K</strong><br><b>属性</b>: 窓側＋通路直結（1-2-1）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>💺 座席指定（2026/9/6 時点・詳細は発券用資料 §10）</td>
+                    <td>⑥</td>
+                    <td><p><b>便</b>: TP1030 LIS→BCN<br><b>座席</b>: <strong>1D</strong><br><b>属性</b>: 窓側（右）・最前列</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>💺 座席指定（2026/9/6 時点・詳細は発券用資料 §10）</td>
+                    <td>⑨</td>
+                    <td><p><b>便</b>: TK1840 ATH→IST<br><b>座席</b>: <strong>2A</strong><br><b>属性</b>: 窓側（左）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>💺 座席指定（2026/9/6 時点・詳細は発券用資料 §10）</td>
+                    <td>⑩</td>
+                    <td><p><b>便</b>: MS738 IST→CAI<br><b>座席</b>: <strong>11A</strong><br><b>属性</b>: 窓側（左）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>💺 座席指定（2026/9/6 時点・詳細は発券用資料 §10）</td>
+                    <td>⑫</td>
+                    <td><p><b>便</b>: ET319 NBO→ADD<br><b>座席</b>: <strong>1A</strong><br><b>属性</b>: 窓側（左）・最前列</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>💺 座席指定（2026/9/6 時点・詳細は発券用資料 §10）</td>
+                    <td>⑬</td>
+                    <td><p><b>便</b>: ET608 ADD→BKK<br><b>座席</b>: <strong>2C</strong><br><b>属性</b>: 通路側（2-2-2 で両立不可のため通路を選択）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>💺 座席指定（2026/9/6 時点・詳細は発券用資料 §10）</td>
+                    <td>⑭</td>
+                    <td><p><b>便</b>: SQ705 BKK→SIN<br><b>座席</b>: <strong>20A</strong><br><b>属性</b>: 窓側＋通路直結（1-2-1）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>💺 座席指定（2026/9/6 時点・詳細は発券用資料 §10）</td>
+                    <td>⑮</td>
+                    <td><p><b>便</b>: NH842 SIN→HND<br><b>座席</b>: <strong>2K</strong><br><b>属性</b>: 窓側寄り＋通路直結（1-2-1）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td></td>
+                    <td>💺 座席指定（2026/9/6 時点・詳細は発券用資料 §10）</td>
+                    <td>③④</td>
+                    <td><p><b>便</b>: CM121・CM489<br><b>座席</b>: 🔴 <strong>属性未選択</strong><br><b>属性</b>: → <strong>A13</strong></p></td>
+                </tr>
+                <tr class="pri-3">
+                    <td data-order="3">⚠️ 注意</td>
+                    <td></td>
+                    <td>💺 座席指定（2026/9/6 時点・詳細は発券用資料 §10）</td>
+                    <td>⑦⑧</td>
+                    <td><p><b>便</b>: AZ79・A3651<br><b>座席</b>: ⚠️ 事前指定不可<br><b>属性</b>: 当日空港</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td></td>
+                    <td>💺 座席指定（2026/9/6 時点・詳細は発券用資料 §10）</td>
+                    <td>⑪</td>
+                    <td><p><b>便</b>: MS849 CAI→NBO<br><b>座席</b>: 🔴 <strong>未指定</strong><br><b>属性</b>: → <strong>A14</strong>（深夜4h55m・通路側必須）</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>:---</td>
+                    <td>🔭 発券後に残ったウォッチ 3件</td>
+                    <td>:--</td>
+                    <td><p><b>現状</b>: :---<br><b>狙う便</b>: :---<br><b>効果</b>: :---</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**10/28**</td>
+                    <td>🔭 発券後に残ったウォッチ 3件</td>
+                    <td>🔴 **S-1**</td>
+                    <td><p><b>現状</b>: ② UA1271 が <strong>クラス <code>B</code>＝エコノミー</strong>（全16区間で唯一）<br><b>狙う便</b>: UA1271 のビジネス（<strong>D または Z</strong>）<br><b>効果</b>: 4h20m をエコノミーで飛ばずに済む</p></td>
+                </tr>
+                <tr class="pri-3">
+                    <td data-order="3">⚠️ 注意</td>
+                    <td>**11/11**</td>
+                    <td>🔭 発券後に残ったウォッチ 3件</td>
+                    <td>⚠️ **B-3**</td>
+                    <td><p><b>現状</b>: ⑥ TP1030 07:10発（<strong>04:40 ホテル発・起床03:50</strong>）<br><b>狙う便</b>: TP1034 10:50発（<strong>起床07:20</strong>）<br><b>効果</b>: 直前が機中泊で2晩連続削られるのを緩和</p></td>
+                </tr>
+                <tr class="pri-3">
+                    <td data-order="3">⚠️ 注意</td>
+                    <td>**11/20**</td>
+                    <td>🔭 発券後に残ったウォッチ 3件</td>
+                    <td>⚠️ **A-4**</td>
+                    <td><p><b>現状</b>: ⑨ TK1840 11:50発 → IST 14:30着<br><b>狙う便</b>: TK1844 10:10発 → IST 12:50着<br><b>効果</b>: <strong>カッパドキアの夜（実質4.5時間・行程中最短）が延びる</strong></p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>:---</td>
+                    <td>B. 観戦チケット（12件／✅完了2件）</td>
+                    <td>:--</td>
+                    <td><p><b>内容</b>: :---</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>—</td>
+                    <td>B. 観戦チケット（12件／✅完了2件）</td>
+                    <td>**B1**</td>
+                    <td><p><b>内容</b>: ✅ ~~Passo Taraftar カード申請~~ → <strong>2026/9/15 完了・同日 18:42 SMS で承認</strong>（GALATASARAY・Digital Prepaid Card・₺1,200）。<br>✅ <strong>ref no 738721 承認済／デジタルウォレットカード 下4桁 7195 発行済</strong><br>🔴 <strong>日本発行カード（ANA9210・Olive8617・dカード・ファミマ）は全滅（3DS issuerエラー／カード番号非対応エラー）。Wiseカードのみ決済成功。</strong></p></td>
+                </tr>
+                <tr class="pri-3">
+                    <td data-order="3">⚠️ 注意</td>
+                    <td>—</td>
+                    <td>B. 観戦チケット（12件／✅完了2件）</td>
+                    <td>**B1a**</td>
+                    <td><p><b>内容</b>: ✅ ~~カード発行の現物確認~~ → <strong>2026/9/16 完了</strong>（<code>passotaraftar.com.tr</code> ➔ Card Transactions にログイン）<br>✅ <strong>名義 TAKESHI TAKAMUKU／<code>Passo Taraftar Dijital Cüzdan Kart – GALATASARAY A.Ş.</code>／カード番号 <code>5262 63** **** 7195</code>／残高 0,00 TL</strong> を確認<br>ログインは <strong>旅券番号＋電話番号（+81 9086523343）＋SMSワンタイムコード</strong>。⚠️ <strong>入力パネルは約3分でタイムアウトし初期化される</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>10月中</td>
+                    <td>B. 観戦チケット（12件／✅完了2件）</td>
+                    <td>🔴 **B1b**</td>
+                    <td><p><b>内容</b>: 🔴 <strong><code>passo.com.tr</code>（またはPasso Mobileアプリ）でチケット購入用の会員登録</strong><br>⚠️ <strong>カード管理サイトとは別アカウント。</strong>カード画面の案内：<em>You can create your membership from www.passo.com.tr or Passo Mobile application</em><br>🔴 <strong>名義は <code>TAKAMUKU TAKESHI</code> で完全一致させる</strong>（不一致だと購入も入場も不可）<br>🔴 <strong>物理カードは送付されない。入場はアプリQRではなく「スタジアム窓口でパスポート提示 ➔ Tek Girişlik Pass Card 受領」</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>10月中</td>
+                    <td>B. 観戦チケット（12件／✅完了2件）</td>
+                    <td>🔴 **B1c**</td>
+                    <td><p><b>内容</b>: 🔴 <strong>E-Ticket の有効期限を確認</strong>（<strong>N Kolay Mobile</strong> アプリ。サイトが「口座・カード詳細はアプリで確認」と案内）<br>⚠️ <strong>9/16 時点で Web の「Extend E-ticket」タブは <code>Card not found.</code> と表示。</strong>新規発行で延長対象なしの可能性が高いが、<strong>デジタルウォレットが当該メニュー対象外</strong>の可能性も残る<br>🔴 <strong>期限切れだと 11/24 に入場できない。</strong>必要なら延長手続き</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**11/19 まで**</td>
+                    <td>B. 観戦チケット（12件／✅完了2件）</td>
+                    <td>⚠️ **B1d**</td>
+                    <td><p><b>内容</b>: ⚠️ <strong>チケット代金の決済手段を確定する。</strong>カード残高は <strong>0 TL</strong>（₺1,200 は発行手数料でチャージではない）<br>🔴 <strong><code>passo.com.tr</code> の海外発行カード決済を第一手、弾かれた場合に備え Wise を待機</strong>（9/15 に日本発行カード4枚が全滅した教訓）<br>⚠️ <strong>Passo Taraftar カードへのチャージが購入要件かは未確認</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>B. 観戦チケット（12件／✅完了2件）</td>
+                    <td>**B2**</td>
+                    <td><p><b>内容</b>: ✅ ~~RFEF Tickets アプリ導入・アカウント作成~~ → <strong>2026/9/11 完了</strong><br>✅ ~~tickets@rfef.es へ照会~~ → <strong>2026/9/12 公式回答受領・完了！</strong>（購入国一致必須と確定 ➔ <strong>GCP東京クラウドPC＋日本発行カードで完全整合・解決方針確定</strong>）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**9/21**</td>
+                    <td>B. 観戦チケット（12件／✅完了2件）</td>
+                    <td>B3a</td>
+                    <td><p><b>内容</b>: 🔴 <strong>スペイン戦 購入事前準備完了</strong>（旅券番号 TAKAMUKU TAKESHI・<strong>GCP東京クラウドPC＋日本発行カード準備（3Dセキュア確認）</strong>・コピペ用テキスト配置・希望ゾーン本命 LATERAL ESTE／予算確定）</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>🟡 **9/22 17:00**</td>
+                    <td>B. 観戦チケット（12件／✅完了2件）</td>
+                    <td>B3b</td>
+                    <td><p><b>内容</b>: <strong>アトレティコ・マドリードのソシオ先行偵察</strong>（<code>cupo limitado</code>・バンコク 17:00 / クラウドPC 19:00。クラウドPCからアクセスし画面の流れ・入力欄HTML構造解析 ➔ <strong>実戦用ワンクリック自動入力（ブックマークレット）完成・ブラウザ登録</strong>）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**9/23 17:00**</td>
+                    <td>B. 観戦チケット（12件／✅完了2件）</td>
+                    <td>🔴 **B3c**</td>
+                    <td><p><b>内容</b>: 🔴 <strong>スペイン vs イングランド</strong>（11/15 20:45・メトロポリターノ）購入<br>✅ <strong>一般販売：9/23 バンコク 17:00（日本/クラウドPC 19:00・マドリード 12:00）。16:45（クラウドPC 18:45）待機開始</strong><br>🔴 <strong>直近2試合とも即完売。開始直後にクラウドPCから入る</strong>。席番は自動割当（ゾーン選択 ➔ ブックマークレットで0.1秒入力 ➔ 即決済）</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>🟡 **11/13 以降**</td>
+                    <td>B. 観戦チケット（12件／✅完了2件）</td>
+                    <td>B3d</td>
+                    <td><p><b>内容</b>: <strong>スペイン戦 チケット着券確認</strong>（試合48時間前配信・バルセロナ滞在中・eSIM通信環境確認）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**11/15 16:45**</td>
+                    <td>B. 観戦チケット（12件／✅完了2件）</td>
+                    <td>B3e</td>
+                    <td><p><b>内容</b>: 🔴 <strong>スペイン戦 チケット有効化</strong>（キックオフ4時間前・16:45 からアプリでQR生成。スクショ・印刷不可）</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>🟡 **11/19 13:00**</td>
+                    <td>B. 観戦チケット（12件／✅完了2件）</td>
+                    <td>B4a</td>
+                    <td><p><b>内容</b>: <strong>ガラタサライ戦 優先販売動向確認＆前日準備完了</strong>（14:00 トルコ時間＝アテネ 13:00。売切動向・<code>passo.com.tr</code> のログイン・<strong>決済手段（B1d）とE-Ticket有効期限（B1c）の最終確認</strong>）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**11/20 13:00**</td>
+                    <td>B. 観戦チケット（12件／✅完了2件）</td>
+                    <td>🔴 **B4b**</td>
+                    <td><p><b>内容</b>: 🔴 <strong>ガラタサライ vs アストン・ヴィラ</strong>（11/24 18:45・RAMS Park）購入<br>🔴 <strong>一般販売：11/20 アテネ 13:00（トルコ 14:00 予測）。1人1枚・Passo アカウント名義一致必須</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**11/24**</td>
+                    <td>B. 観戦チケット（12件／✅完了2件）</td>
+                    <td>🔴 **B4c**</td>
+                    <td><p><b>内容</b>: 🔴 <strong>ガラタサライ戦 当日入場</strong>（法律第6222号による本人確認）<br>🔴 <strong>物理カードなし ➔ RAMS Park の窓口でパスポート原本を提示し「Tek Girişlik Pass Card」を受領してから入場。キックオフ（現地 20:45 TRT）の 90 分前＝現地 19:15 に到着</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>B. 観戦チケット（12件／✅完了2件）</td>
+                    <td>B5</td>
+                    <td><p><b>内容</b>: ~~ポルトガル vs デンマークの会場確認~~ → <strong>エスタディオ・ダ・ルス（リスボン）。11/12 に発つため観戦不可</strong></p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>:---</td>
+                    <td>C. RTW外フライト（6件）</td>
+                    <td>:--</td>
+                    <td><p><b>区間</b>: :---<br><b>✏️ 推奨便・制約</b>: :---<br><b>荷物込み実額</b>: ---:</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>9月中</td>
+                    <td>C. RTW外フライト（6件）</td>
+                    <td>C1</td>
+                    <td><p><b>区間</b>: BKK → 東京（10/26）<br><b>✏️ 推奨便・制約</b>: <strong>TG660 14:25→HND 22:05</strong>。✅ 受託30kg込み<br><b>荷物込み実額</b>: $343</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>✅</td>
+                    <td>C. RTW外フライト（6件）</td>
+                    <td>**C2**</td>
+                    <td><p><b>区間</b>: ~~LIM → CUZ（11/1）~~ → ✅ <strong>2026/9/8 購入済。PNR <code>MAYCQV</code>／券番 5442300501133</strong><br><strong>LA2013 07:40→09:05・Premium Economy Full・座席 2A・$130.60</strong><br>受託23kg／持込12kg。<strong>出発前なら100%返金・変更無料</strong><br><b>✏️ 推奨便・制約</b>: ✅ <strong>$130.60</strong><br><b>荷物込み実額</b>: —</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>✅</td>
+                    <td>C. RTW外フライト（6件）</td>
+                    <td>**C3**</td>
+                    <td><p><b>区間</b>: ~~CUZ → LIM → GRU → IGU（11/5）~~ → ✅ <strong>2026/9/8 購入済。3レグ通し1枚／PNR <code>IWYEMJ</code></strong><br>LA2167 05:00→06:35（13C）／LA8005 09:15→16:25（13C）／LA3206 22:35→00:20+1（12C）<br>全 Economy Full・受託23kg・出発前100%返金。<strong>乗継 LIM 2h40m／GRU 6h10m</strong><br>✅ <strong>1枚化により約$283 節約＋LIM乗継が保護された</strong>（当初「1枚化しない」判断を撤回）<br><b>✏️ 推奨便・制約</b>: ✅ <strong>$263.68</strong><br><b>荷物込み実額</b>: —</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td></td>
+                    <td>C. RTW外フライト（6件）</td>
+                    <td>**C3b**</td>
+                    <td><p><b>区間</b>: ~~旧2枚をキャンセルして返金を受ける~~ → ✅ <strong>2026/9/9 完了。$385.33 満額返金済</strong><br><code>FWIGFO</code> $137.97 ／ <code>GQORJO</code> $247.36（券・空港税とも全額）<br>🔴 <strong>根拠は「Withdrawal Law（撤回法）」</strong>＝購入直後の無条件解除。<strong>Full運賃の100%返金より強い権利だが、使えるのは購入から短期間のみ</strong><br><b>✏️ 推奨便・制約</b>: —<br><b>荷物込み実額</b>: ✅</p></td>
+                </tr>
+                <tr class="pri-3">
+                    <td data-order="3">⚠️ 注意</td>
+                    <td></td>
+                    <td>C. RTW外フライト（6件）</td>
+                    <td>**C3c**</td>
+                    <td><p><b>区間</b>: ~~Plusgrade 入札~~ → ✅ <strong>2026/9/9 入札済。</strong>① $11 ／ <strong>② $105</strong> ／ ③ $12（最大 $128）<br>落札通知は<strong>出発12〜2時間前</strong>。<strong>出発12時間前まで変更・取消可</strong>。落札まで課金なし<br>⚠️ 3レグとも <strong>A320/A321 でPEは独立キャビンではない</strong>（中央席ブロック＋ピッチ+2〜4インチ）<br><b>✏️ 推奨便・制約</b>: —<br><b>荷物込み実額</b>: ✅</p></td>
+                </tr>
+                <tr class="pri-3">
+                    <td data-order="3">⚠️ 注意</td>
+                    <td>✅</td>
+                    <td>C. RTW外フライト（6件）</td>
+                    <td>**C4**</td>
+                    <td><p><b>区間</b>: ~~IGU → GRU（11/8）~~ → ✅ <strong>2026/9/9 購入済。PNR <code>UBHQIG</code></strong><br>LA3201 10:40→12:25・<strong>Economy Full</strong>・座席12F・受託23kg・出発前100%返金<br>⚠️ <strong>見積$374 → 実額$477.67（+¥16,069）。</strong>Full運賃の上乗せが想定より大きかった<br><b>✏️ 推奨便・制約</b>: ⚠️ <strong>$477.67</strong><br><b>荷物込み実額</b>: —</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>✅</td>
+                    <td>C. RTW外フライト（6件）</td>
+                    <td>**C5**</td>
+                    <td><p><b>区間</b>: ~~IST → NAV（11/21）~~ → ✅ <strong>2026/9/9 購入済。PNR <code>SUMX3C</code></strong><br>TK2008 19:40→21:00・<strong>Economy PrimeFly(E)</strong>・座席03F(無料)・<strong>受託25kg</strong><br><strong>TRY 4,964.63 ≒ ¥15,788</strong>（Olive 8617）。変更は<strong>出発12時間前まで可</strong>。<strong>ANA番号 登録済</strong><br><b>✏️ 推奨便・制約</b>: ✅ <strong>¥15,788</strong><br><b>荷物込み実額</b>: —</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>✅</td>
+                    <td>C. RTW外フライト（6件）</td>
+                    <td>**C6**</td>
+                    <td><p><b>区間</b>: ~~NAV → IST（11/23）~~ → ✅ <strong>2026/9/9 購入済。PNR <code>VKCWJC</code></strong><br>TK2001 09:30→11:05・<strong>Economy PrimeFly(E)</strong>・座席04A(無料)・<strong>受託25kg</strong>・<strong>TRY 4,950 ≒ ¥15,741</strong><br>✅ <strong>C5 と別予約なので、C5 に乗り遅れても C6 は生き残る</strong><br><b>✏️ 推奨便・制約</b>: ✅ <strong>¥15,741</strong><br><b>荷物込み実額</b>: —</p></td>
+                </tr>
+                <tr class="pri-3">
+                    <td data-order="3">⚠️ 注意</td>
+                    <td></td>
+                    <td>C. RTW外フライト（6件）</td>
+                    <td>**C6b**</td>
+                    <td><p><b>区間</b>: ~~決済カード（Visa 下3桁 385）を特定する~~ → ✅ <strong>Olive プラチナプリファードの「デビット機能用」番号</strong><br><strong>8617（クレジット）と同一カード。</strong>⚠️ <strong>ただし利用付帯がデビットモードでも成立するかは別論点 → I1-⑤</strong><br><b>✏️ 推奨便・制約</b>: —<br><b>荷物込み実額</b>: ✅</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>:---</td>
+                    <td>D. 鉄道・陸路送迎（6件）</td>
+                    <td>:--</td>
+                    <td><p><b>内容</b>: :---</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>—</td>
+                    <td>D. 鉄道・陸路送迎（6件）</td>
+                    <td>**D1**</td>
+                    <td><p><b>内容</b>: ~~オリャンタイタンボ → マチュピチュ村（11/1）~~ → ✅ <strong>2026/9/8 購入済（予約 <code>WEB3204304</code>）</strong><br><strong>V. Observatory 303 13:27→14:50・A号車10番・🔴 駅集合 12:57</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>—</td>
+                    <td>D. 鉄道・陸路送迎（6件）</td>
+                    <td>**D2**</td>
+                    <td><p><b>内容</b>: ~~マチュピチュ村 → オリャンタイタンボ（11/3）~~ → ✅ <strong>同上・往復 $159.60</strong><br><strong>Vistadome 602 12:46→14:19・A号車33番・🔴 駅集合 12:16</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>10月上旬</td>
+                    <td>D. 鉄道・陸路送迎（6件）</td>
+                    <td>D3</td>
+                    <td><p><b>内容</b>: クスコ空港 → オリャンタイタンボ駅 専用送迎（VELTRA a/184253・日本語）<br>🔴 <strong>「駅の荷物預かりに立ち寄る」ことを条件に含める</strong>（手荷物8kg制限・<a href="手配_鉄道.md"><code>手配_鉄道.md</code></a> §5）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>10月上旬</td>
+                    <td>D. 鉄道・陸路送迎（6件）</td>
+                    <td>D4</td>
+                    <td><p><b>内容</b>: オリャンタイタンボ駅 → クスコ 送迎（11/3）🔴 <strong>14:19着・荷物回収後</strong>に出発</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>10月上旬</td>
+                    <td>D. 鉄道・陸路送迎（6件）</td>
+                    <td>D5</td>
+                    <td><p><b>内容</b>: AVE バルセロナ → マドリード（11/14 午後）</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>10月上旬</td>
+                    <td>D. 鉄道・陸路送迎（6件）</td>
+                    <td>D6</td>
+                    <td><p><b>内容</b>: AVE マドリード → バルセロナ（11/16 <strong>09:30頃発</strong>・BCN 16:50 AZ79 に接続）</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>:---</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>:--</td>
+                    <td><p><b>場所</b>: :---<br><b>泊数</b>: :--:<br><b>チェックイン / アウト要件・推奨ホテル</b>: :---</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>10/28-29</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>**E1**</td>
+                    <td><p><b>場所</b>: ✅ <strong>サンフランシスコ（Grant Plaza Hotel）</strong><br><b>泊数</b>: 1<br><b>チェックイン / アウト要件・推奨ホテル</b>: ✅ <strong>2026/9/13 予約完了</strong>（Vトリップ <code>54HB8NPPTX2G</code> / ホテル <code>9110219055576</code>・¥13,298・Visa 8617）。チャイナタウン入口（Dragon's Gate至近・Tenderloin回避）。IN 14:30〜 / OUT 12:00前。翌朝07:45 UberでSFO直行</p></td>
+                </tr>
+                <tr class="pri-3">
+                    <td data-order="3">⚠️ 注意</td>
+                    <td>10/29-31</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>**E2**</td>
+                    <td><p><b>場所</b>: ✅ <strong>メキシコシティ（City Express Plus Periférico Sur Tlalpan）</strong><br><b>泊数</b>: 2<br><b>チェックイン / アウト要件・推奨ホテル</b>: ✅ <strong>2026/9/13 予約完了</strong>（Vトリップ <code>2H38S4SZBXD</code> / ホテル <code>1051276955</code>・¥35,918・Visa 8617）。マリオット系列・クイーン・無料キャンセル可。OUT 13:00前。<br>⚠️ <strong>マリオット公式アプリ紐付け（ホテル確認コード <code>1051276955</code>）はシステム連携待ちのため9/20〜9/25頃に再試行</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>10/31-11/1</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>**E3**</td>
+                    <td><p><b>場所</b>: ✅ <strong>リマ空港直結（Wyndham Costa del Sol）</strong><br><b>泊数</b>: 1<br><b>チェックイン / アウト要件・推奨ホテル</b>: ✅ <strong>2026/9/13 予約完了</strong>（Vトリップ <code>PNKK9ZR29XVB</code> / ホテル <code>BK-JW38OFDH</code>・¥20,189・Visa 8617）。ターミナル直結・22:45着対応・ダブルベッド2台・キャンセル無料</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>11/1-3</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>**E4**</td>
+                    <td><p><b>場所</b>: ✅ <strong>マチュピチュ村（Hotel Taypikala Boutique）</strong><br><b>泊数</b>: 2<br><b>チェックイン / アウト要件・推奨ホテル</b>: ✅ <strong>2026/9/13 予約完了</strong>（Vトリップ <code>GVCTX8Z7M9T4</code> / ホテル <code>doo8g0yy</code>・¥29,367・Visa 8617）。標高2,040m（高山病回避の要）。シングル・朝食付・無料キャンセル可。✅ 9/14ホテル回答受領：<strong>駅無料送迎確約</strong>（11/1 14:50着・V303）。<strong>朝食ボックスは11/1到着時にフロントで直接依頼</strong>（事前メール手配は不可）。<strong>荷物預かり・駅配送サービスも確約</strong>（詳細現地確認）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>11/3-5</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>E5</td>
+                    <td><p><b>場所</b>: クスコ<br><b>泊数</b>: 2<br><b>チェックイン / アウト要件・推奨ホテル</b>: 標高3,400m。🔴 <strong>11/5 早朝03:30チェックアウト・タクシー手配可能な24hフロント必須</strong>。名門Palacio del InkaはVトリップで実質¥88,920（公式比25%安）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>11/5-8</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>E6</td>
+                    <td><p><b>場所</b>: フォス・ド・イグアス<br><b>泊数</b>: 3<br><b>チェックイン / アウト要件・推奨ホテル</b>: 🔴 <strong>11/6 未明00:20着・01:15チェックイン確約必須。</strong> 市街地4つ星（Bourbon / Viale Tower）</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>11/8-10</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>E7</td>
+                    <td><p><b>場所</b>: サンパウロ<br><b>泊数</b>: 2<br><b>チェックイン / アウト要件・推奨ホテル</b>: パウリスタ通り周辺（Jardins地区）。11/10 は夜行便（TP88 23:15発）のため20:00迄荷物預かり必須</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>11/11-12</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>E8</td>
+                    <td><p><b>場所</b>: リスボン<br><b>泊数</b>: 1<br><b>チェックイン / アウト要件・推奨ホテル</b>: 🔴 翌日 <strong>04:40 ホテル発</strong>（TP1030 07:10発）。空港至近（Star inn Lisbon Airport / Meliá）</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>11/12-15</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>E9</td>
+                    <td><p><b>場所</b>: バルセロナ<br><b>泊数</b>: 3<br><b>チェックイン / アウト要件・推奨ホテル</b>: ✅ <strong>発券済み航空券で確認・3泊に確定</strong>（TP1030 12NOV到着10:05→AZ79 16NOV発16:50の間に、マドリード1泊（11/15-16）を挟む構成。バルセロナは11/12・13・14の3泊）。アシャンプラ地区（Well and Come等）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>11/15-16</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>**E10**</td>
+                    <td><p><b>場所</b>: ✅ <strong>マドリード（HOTEL PAX ATOCHA）</strong><br><b>泊数</b>: 1<br><b>チェックイン / アウト要件・推奨ホテル</b>: ✅ <strong>2026/9/13 予約完了</strong>（公式直販 <code>P9053588</code>・136.00€ ≒ ¥22,304）。アトーチャ駅徒歩10分・新築・24hフロント・11/14 15:00迄無料キャンセル可</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>11/16-19</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>**E11**</td>
+                    <td><p><b>場所</b>: ✅ <strong>ローマ（Airbnb）</strong><br><b>泊数</b>: 3<br><b>チェックイン / アウト要件・推奨ホテル</b>: ✅ <strong>2026/9/14 予約完了（Airbnb <code>HM8FNF8MR3</code>・¥48,779）</strong>。洗濯機付き個室。11/19 07:15発対応。</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>11/19-21</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>**E12**</td>
+                    <td><p><b>場所</b>: ✅ <strong>アテネ</strong><br><b>泊数</b>: 2<br><b>チェックイン / アウト要件・推奨ホテル</b>: ✅ <strong>2026/9/14 予約完了（Moxy Athens City <code>GLFJFVZ9R9ZW</code>・¥33,457）</strong>。オモニア広場至近・地下鉄直結。Vトリップで確保。</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>11/21-23</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>E13</td>
+                    <td><p><b>場所</b>: カッパドキア 洞窟ホテル<br><b>泊数</b>: 2<br><b>チェックイン / アウト要件・推奨ホテル</b>: ギョレメ村の伝統的洞窟宿。🔴 <strong>11/22気球欠航時の「11/23延泊可否」を事前確認</strong></p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>11/23-25</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>E14</td>
+                    <td><p><b>場所</b>: <strong>イスタンブール</strong><br><b>泊数</b>: <strong>2</strong><br><b>チェックイン / アウト要件・推奨ホテル</b>: ✅ <strong>厳格に「2泊」で確定</strong>（11/25 は 14:00発 MS738 でカイロ移動のため食い違い解消）</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>11/25-27</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>E15</td>
+                    <td><p><b>場所</b>: カイロ・ギザ<br><b>泊数</b>: 2<br><b>チェックイン / アウト要件・推奨ホテル</b>: ギザ地区・ピラミッドビュー確約宿。11/27 は深夜便（MS849 21:35発）のため16:00迄荷物預かり必須</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>11/27-28</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>**E16**</td>
+                    <td><p><b>場所</b>: ✅ <strong>ナイロビ空港ホテル（Four Points JKIA）</strong><br><b>泊数</b>: 1泊（早朝仮眠）<br><b>チェックイン / アウト要件・推奨ホテル</b>: ✅ <strong>2026/9/13 予約完了</strong>（マリオット公式・予約 <code>93880712</code>・$204）。11/28 03:30着→04:30〜08:00仮眠・シャワー・朝食。11/26 23:59までキャンセル無料</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>11/28-30</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>E17</td>
+                    <td><p><b>場所</b>: マサイマラ エコテント（Basecamp Masai Mara）<br><b>泊数</b>: 2<br><b>チェックイン / アウト要件・推奨ホテル</b>: <strong>名門エコテント2泊フルボード</strong>（タレク川沿い・オバマ元大統領滞在歴）。サファリツアー（F3・$1,614）に含む</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>11/30-12/1</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>**E18**</td>
+                    <td><p><b>場所</b>: ✅ <strong>ナイロビ パークビュー（Emara Ole-Sereni-Nairobi）</strong><br><b>泊数</b>: 1<br><b>チェックイン / アウト要件・推奨ホテル</b>: ✅ <strong>2026/9/13 予約完了</strong>（Trip.com・予約 <code>1385435893739592</code>・33,657円）。🔴 <strong>パークビュー確約</strong>。11/28朝の荷物預託＋12:00レイトCO申請済。11/29 12:00迄キャンセル無料</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>2027/3/1-3</td>
+                    <td>E. ホテル（全17宿泊拠点／19手配対象：有料ホテル34泊＋成田前泊・東京実家2泊＝全36宿泊＋ナイロビ1デイユース）🔴 最大の空白</td>
+                    <td>E19</td>
+                    <td><p><b>場所</b>: シンガポール<br><b>泊数</b>: 2<br><b>チェックイン / アウト要件・推奨ホテル</b>: 3/1 13:10着、3/3 10:45発。MRT駅至近（Four Points Riverview、Village Hotel Bugis等）</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>:---</td>
+                    <td>F. 現地ツアー・アクティビティ（13件）</td>
+                    <td>:--</td>
+                    <td><p><b>内容</b>: :---</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>9月下旬</td>
+                    <td>F. 現地ツアー・アクティビティ（13件）</td>
+                    <td>F1</td>
+                    <td><p><b>内容</b>: 🔴 <strong>ナイロビ国立公園 早朝サファリ（12/1・06:00〜09:00・ホテルから車で10分・サイ狙い）の現地ツアー手配</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>F. 現地ツアー・アクティビティ（13件）</td>
+                    <td>F2</td>
+                    <td><p><b>内容</b>: <strong>11/30午後：Emara Ole-Sereniへ早期チェックイン・屋上温水プール＆スカイラウンジで休養（ジラフ・孤児院は見送り）</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>支払準備</td>
+                    <td>F. 現地ツアー・アクティビティ（13件）</td>
+                    <td>**F3**</td>
+                    <td><p><b>内容</b>: ✅ <strong>マサイマラ 2泊3日フライインサファリ</strong>（SafariBookings <code>t62446</code>／催行: Trav-Interactive／Basecamp Masai Mara 2泊フルボード／空路往復・入園料・ゲームドライブ・全送迎込 総額$1,614）<br>✅ <strong>2026/9/13 見積回答受領済（Ref. 1168751）。50%デポジット支払準備。</strong>23kg荷物は11/28朝にEmaraへ預託</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>送金後</td>
+                    <td>F. 現地ツアー・アクティビティ（13件）</td>
+                    <td>F4</td>
+                    <td><p><b>内容</b>: 🔴 <strong>マサイマラ行きの小型機搭乗時、大型スーツケースを航空会社が預かってくれるかTrav-Interactiveへ確認する</strong>（道祖神情報より）</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>10月上旬</td>
+                    <td>F. 現地ツアー・アクティビティ（13件）</td>
+                    <td>F5</td>
+                    <td><p><b>内容</b>: Gran Aventura（11/6・滝壺ボート＋4WD・フォス発送迎込／Viator d970-21715P38）</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>10月上旬</td>
+                    <td>F. 現地ツアー・アクティビティ（13件）</td>
+                    <td>F6</td>
+                    <td><p><b>内容</b>: イグアス アルゼンチン側 公園入場券（11/6・<code>iguazuargentina.com</code>・悪魔の喉笛は朝イチ）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>10月上旬</td>
+                    <td>F. 現地ツアー・アクティビティ（13件）</td>
+                    <td>F7</td>
+                    <td><p><b>内容</b>: <strong>イグアス ブラジル側 公園入場券（11/7・完全時間指定・当日窓口不可）</strong></p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>前日夜</td>
+                    <td>F. 現地ツアー・アクティビティ（13件）</td>
+                    <td>F8</td>
+                    <td><p><b>内容</b>: Helisul ヘリ遊覧（11/7 09:15枠・R$685・前日夜に天候判断）</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>当日可</td>
+                    <td>F. 現地ツアー・アクティビティ（13件）</td>
+                    <td>F9</td>
+                    <td><p><b>内容</b>: Parque das Aves 鳥類園（11/7・ヘリ隣接・当日可）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**9月中**</td>
+                    <td>F. 現地ツアー・アクティビティ（13件）</td>
+                    <td>F10</td>
+                    <td><p><b>内容</b>: <strong>カッパドキア 熱気球（11/22 早朝）</strong> ／ Voyager Balloons 直販推奨（天候欠航時翌日振替明記 €360）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>F. 現地ツアー・アクティビティ（13件）</td>
+                    <td>**F11**</td>
+                    <td><p><b>内容</b>: ✅ ~~トスカーナ日帰りワイナリー~~ → ✅ <strong>2026/9/12 予約完了</strong>（City Wonders・¥14,110・予約 <code>XTK978855</code>）<br>07:30 ポポロ広場発 → モンテプルチャーノ（広場・塔・井戸・サンビアージョ教会）→ ランチ＋テイスティング → ピエンツァ → 19:30 帰着<br>キャンセル無料は <strong>11/17 07:30 まで</strong> → <a href="手配_ローマ.md"><code>手配_ローマ.md</code></a> §2・§3</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>10月上旬</td>
+                    <td>F. 現地ツアー・アクティビティ（13件）</td>
+                    <td>F12</td>
+                    <td><p><b>内容</b>: マチュピチュ 公認ガイド（11/2・遺跡ゲート前またはVELTRA）</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>当日可</td>
+                    <td>F. 現地ツアー・アクティビティ（13件）</td>
+                    <td>F13</td>
+                    <td><p><b>内容</b>: マチュピチュ 村⇄遺跡 シャトルバス（Consettur・当日現地可）</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>:---</td>
+                    <td>G. 事前予約が要る観光（8件）</td>
+                    <td>:--</td>
+                    <td><p><b>内容</b>: :---</p></td>
+                </tr>
+                <tr class="pri-3">
+                    <td data-order="3">⚠️ 注意</td>
+                    <td>11/17（火）</td>
+                    <td>G. 事前予約が要る観光（8件）</td>
+                    <td>**G3**</td>
+                    <td><p><b>内容</b>: ✅ ~~ヴァチカン博物館~~ → ✅ <strong>2026/9/11 予約完了。11/17（火）08:00・€25</strong><br><strong>当日券なし／事前25€（手数料5€込）／08:00 の枠が狙い目</strong><br>⚠️ 11月の休館は 1・8・15・22 日（日曜）。<strong>11/18（水）は一般謁見日</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>11/13（金）</td>
+                    <td>G. 事前予約が要る観光（8件）</td>
+                    <td>**G1**</td>
+                    <td><p><b>内容</b>: ✅ <strong>サグラダ・ファミリア 塔登頂</strong>（日時指定必須）<br>✅ <strong>9/14 予約完了</strong>（予約番号: 106809589）<br>11/13(金) 9:00入場, 9:15生誕の塔</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>11/20（金）</td>
+                    <td>G. 事前予約が要る観光（8件）</td>
+                    <td>🔴 **G5**</td>
+                    <td><p><b>内容</b>: 🔴 <strong>アクロポリス</strong>（<code>hhticket.gr</code>・時間枠指定）<br><strong>60日前解禁 → 9/21（月）以降。30€</strong><br>🔴 <strong>冬季は 08:00〜17:00 と短い。</strong>✅ <strong>公式コンボ券は2026年に廃止＝個別購入</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>11/17（火）</td>
+                    <td>G. 事前予約が要る観光（8件）</td>
+                    <td>🔴 **G4**</td>
+                    <td><p><b>内容</b>: 🔴 <strong>コロッセオ・フォロ・ロマーノ</strong>（<code>ticketing.colosseo.it</code>）<br>🔴 <strong>30日前・ローマ 08:45 解禁 → 10/18（日）バンコク 13:45</strong><br><strong>18€〜。時間枠は解禁直後に消える。</strong>特別見学を入れるなら同時に取る</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>11/27（金）</td>
+                    <td>G. 事前予約が要る観光（8件）</td>
+                    <td>🔴 **G7**</td>
+                    <td><p><b>内容</b>: 🔴 <strong>大エジプト博物館（GEM）</strong>（<code>visit-gem.com</code>）<br>🔴 <strong>2025/12/1 から完全事前予約制。当日券なし</strong><br>🔴 <strong>09:00 の枠を取る</strong>（16:00 荷物回収＝15:00 で切り上げる制約）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>11/14（土）</td>
+                    <td>G. 事前予約が要る観光（8件）</td>
+                    <td>🟡 **G2**</td>
+                    <td><p><b>内容</b>: <strong>カンプノウ／Barça Immersive Tour</strong>（<code>fcbarcelona.com</code>・約 <strong>69€</strong>）<br>✅ <strong>すでに販売中。</strong>回は 09:30／12:15／14:30／17:00<br>🔴 <strong>午後 AVE 移動のため 09:30 の回。</strong>✅ 代表ウィークでバルサの試合なし</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>11/15・10/30</td>
+                    <td>G. 事前予約が要る観光（8件）</td>
+                    <td>**G8**</td>
+                    <td><p><b>内容</b>: ~~プラド・テオティワカン・人類学博物館の予約要否確認~~ → ✅ <strong>予約不要と確定</strong><br><strong>プラド</strong>：日曜 10:00〜19:00・<strong>15€</strong>（無料 17〜19時）🔴 <strong>試合当日なので無料枠は狙わない</strong><br><strong>テオティワカン</strong>：8:00〜17:00・🔴 <strong>最終入場16:00</strong>・MXN210<br>💀 <strong>10/30は午前テオティワカン → 午後〜夜ソカロ（死者の日メガ・オフレンダ＆カトリーナメイク＆ライトアップ）へ改訂（人類学博物館はスキップ）</strong></p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>:---</td>
+                    <td>H. 入国手続・防疫（6件）</td>
+                    <td>:--</td>
+                    <td><p><b>内容</b>: :---</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>10月上旬</td>
+                    <td>H. 入国手続・防疫（6件）</td>
+                    <td>H1</td>
+                    <td><p><b>内容</b>: <strong>米国 ESTA 申請</strong>（SFO 経由確定により必須）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>出発1か月前</td>
+                    <td>H. 入国手続・防疫（6件）</td>
+                    <td>H2</td>
+                    <td><p><b>内容</b>: <strong>ケニア eTA 申請</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>9/12〜10/22</td>
+                    <td>H. 入国手続・防疫（6件）</td>
+                    <td>🔴 **H3**</td>
+                    <td><p><b>内容</b>: <strong>黄熱・Twinrix(2回)・狂犬病(3回)・Tdap・腸チフス接種およびマラリア薬手配</strong><br>🔴 <strong>スネークファーム確定日程（受診4回・9/12より開始）</strong><br>① ✅ <strong>9/12（土）実施済</strong>: 黄熱＋狂犬病①（Day 0）。Twinrix①は抗体検査に変更<br>② <strong>9/24（木）</strong>: 狂犬病②＋腸チフス＋Tdap＋<strong>Twinrix①（結果待たず確定）</strong><br>③ <strong>10/1（木）</strong>: シングリックス②（日本・翌日静養）<br>④ <strong>10/22（木）</strong>: <strong>狂犬病③（Day 40）＋マラリア薬処方＋Twinrix②（全完了）</strong><br>→ 詳細は <a href="手配_予防接種.md"><code>手配_予防接種.md</code></a>（<strong>第9版</strong>）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>H. 入国手続・防疫（6件）</td>
+                    <td>**H4**</td>
+                    <td><p><b>内容</b>: ~~タイ帰着時の黄熱証明書の要否確認（U-6）~~ → ✅ <strong>確認済み。ケニア等の流行地域からのタイ入国時はイエローカード提示が義務（Health Control必須）</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>10月中旬</td>
+                    <td>H. 入国手続・防疫（6件）</td>
+                    <td>H5</td>
+                    <td><p><b>内容</b>: <strong>全訪問国の電子渡航認証・ビザの要否を洗い出す</strong>（特にエジプト）</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>現地</td>
+                    <td>H. 入国手続・防疫（6件）</td>
+                    <td>H6</td>
+                    <td><p><b>内容</b>: 欧州 EES 登録（11/11 リスボン入国時・現地対応）</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>:---</td>
+                    <td>I. お金・保険・通信・携行品（11件）</td>
+                    <td>:--</td>
+                    <td><p><b>内容</b>: :---</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>—</td>
+                    <td>I. お金・保険・通信・携行品（11件）</td>
+                    <td>**I0**</td>
+                    <td><p><b>内容</b>: ~~Olive の「選べる無料保険」を選び直す~~ → ✅ <strong>2026/9/10 スマホ安心プランへ戻した</strong><br>🔴 <strong>旅行安心プラン（11/1開始）は 10/28 出発の本旅行には規約上一切効かなかった（0円）</strong>ため、旅行以外の補償に充当した<br>⚠️ <strong>失ったのは 2027/10/31 までに「日本発」で始める別の旅行の 300/300/500 のみ。</strong>2027/3 シンガポールはバンコク発で元から対象外<br>⚠️ <strong>スマホ安心プランの前提：</strong>補償期間開始日（11/1）にスマホが<strong>購入2年以内</strong>であること／<strong>開始から30日以内の損害は対象外</strong> → <a href="手配_保険.md"><code>手配_保険.md</code></a> §1.3-(3)</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**10/5**</td>
+                    <td>I. お金・保険・通信・携行品（11件）</td>
+                    <td>🔴 **I1**</td>
+                    <td><p><b>内容</b>: 🔴 <strong>単独包括海外旅行保険の契約（非居住者・海外帰着リスクの完全排除）</strong><br>🔴 <strong>日本のネット通販型保険（東京海上「off!」、損保ジャパン「off!」等）の致命的引受罠：</strong>「日本国内居住（健康保険加入）」かつ「日本出国〜日本帰着」が法律上の必須要件であり、<strong>バンコク在住（Resident Card所持・非居住者）で12/2にバンコク（ET608）へ直接帰着する旅行者が加入しても、大事故・医療搬送時に約款違反で保険金支払いを全額拒絶される壊滅的リスク（契約無効）</strong>がある（クレカ付帯保険も同様に非居住者除外で全滅）<br>✅ <strong>適格保険の必須条件：以下のいずれかで10/5までに契約完了すること</strong><br>① <strong>タイ現地発行のエクスパット旅行保険</strong>（AIG Thailand Travel Guard / Allianz Travel Thailand / AXA Thailand Smart Traveller Plus）<br>② <strong>グローバル・エクスパット／デジタルノマド保険</strong>（SafetyWing Nomad Insurance / IMG Global Patriot Travel）<br>③ <strong>日本のAIG損保等による事前告知・書面承諾特則</strong>（非居住者・海外直接帰着の引受承諾書／裏書）<br>→ 詳細は <a href="手配_包括レビュー・リスク評価.md"><code>手配_包括レビュー・リスク評価.md</code></a> §5.2</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>—</td>
+                    <td>I. お金・保険・通信・携行品（11件）</td>
+                    <td>❌ **I1c**</td>
+                    <td><p><b>内容</b>: ~~Olive の利用付帯~~ → 🔴 <strong>今回の旅行では完全に対象外（0円）で確定</strong><br>①二階建てではなく排他選択制 ②「補償期間中に開始された旅行」の原則により、11/1補償開始に対して10/28出発の旅行は全日程で無効（§1.3）<br>※ただし9/8のC2・PeruRail決済等のOlive利用は<strong>ポイント還元としては依然最善</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**10/5**</td>
+                    <td>I. お金・保険・通信・携行品（11件）</td>
+                    <td>🔴 **I1b**</td>
+                    <td><p><b>内容</b>: <strong>適格単独保険の見積取得・契約（治療救援無制限または5,000万〜1億円・救援者費用・航空機遅延）</strong><br>タイ現地エクスパット保険（AIG Thailand等）またはグローバル保険（SafetyWing/IMG）、AIG損保（非居住者引受承諾特則）を比較・契約</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>10/28</td>
+                    <td>I. お金・保険・通信・携行品（11件）</td>
+                    <td>🔴 **I1d**</td>
+                    <td><p><b>内容</b>: 🔴 <strong>日本出国時：未有効化カード（JCB・楽天・JAL）に利用付帯を立てる</strong>（成田までの交通費）<br>※単独保険を主軸としつつ、カード付帯もバックアップとして発動させておく</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**9/16**</td>
+                    <td>I. お金・保険・通信・携行品（11件）</td>
+                    <td>🔴 **I2**</td>
+                    <td><p><b>内容</b>: <strong>クレジットカードの準備（渡航連絡・限度額引上げ・予備カード）</strong><br>🔴 <strong>格上げ理由：</strong><strong>8617 が LIM→GRU（ブラジル法人 TAM Lineas Aereas）の決済で何度も失敗した。</strong><br>ペルー・ブラジルのマーチャントで連続決済すると不正検知で止まる。<strong>残りの手配前に渡航連絡を入れる</strong><br>📞 <strong>連絡先（9/16調査）：9210・8617 とも三井住友カード発行 ➔ 1社で2枚まとめて対応可</strong><br>① <strong>Web：Vpass「<a href="https://www.smbc-card.com/mem/cardinfo/25/cardinfo4010991.jsp">海外渡航前の事前セキュリティ緩和申請</a>」</strong>（結果は3営業日以内にSMS・最長1ヵ月有効）<br>⚠️ <strong>対象は海外の店頭でカードを挿す決済のみ。ネット決済・タッチ決済は対象外</strong>（TAM の失敗はネット決済＝これでは防げない）。Olive はクレジットモードのみ。<strong>10/28〜1ヵ月しか効かないため10月下旬に再申請</strong><br>② <strong>電話（ネット決済の不正検知・限度額一時引き上げを相談）</strong>：海外から <strong>+81-6-7636-9471</strong>／ゴールド（9210）0120-498-012／プラチナプリファード（8617）0120-632-144（いずれも 10〜17時 JST＝バンコク 8〜15時）／AIオペレーター 0120-333-968（24h）。※0120はタイから不通<br>③ 予備：<strong>三菱UFJプラチナ・アメックス</strong> 03-5489-3351（平日 9〜17時 JST）、海外からの番号はカード裏面参照。時間外は My Digital Connect</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>10月中旬</td>
+                    <td>I. お金・保険・通信・携行品（11件）</td>
+                    <td>I3</td>
+                    <td><p><b>内容</b>: eSIM／現地通信の手配（中南米・欧州・ケニア対応ローミングeSIM）</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>出発前</td>
+                    <td>I. お金・保険・通信・携行品（11件）</td>
+                    <td>I4</td>
+                    <td><p><b>内容</b>: <strong>マチュピチュ入場券2枚を印刷して携行</strong>（氏名スペル誤記 TAKAMUU の現場説明用保険）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**9/15**</td>
+                    <td>I. お金・保険・通信・携行品（11件）</td>
+                    <td>**I5**</td>
+                    <td><p><b>内容</b>: ✅ <strong>パスポートの残存有効期間を確認</strong>（2027/9 以降まで有効か／査証欄の空き）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>出発前</td>
+                    <td>I. お金・保険・通信・携行品（11件）</td>
+                    <td>I6</td>
+                    <td><p><b>内容</b>: 控え類のクラウド保管（eチケット・券・保険証・パスポートコピー）<br>🔴 <strong>搭乗券の控えも全区間保管</strong>（他社便のマイル事後登録に必要 → M群）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>I. お金・保険・通信・携行品（11件）</td>
+                    <td>**I7**</td>
+                    <td><p><b>内容</b>: ✅ <strong>決済カードを費目ごとに記録する運用を開始</strong>（<code>html/cost_management.html</code> の <code>data-card</code>）<br>集計は <a href="予算管理.md"><code>予算管理.md</code></a> §3 に自動生成。<strong>9210=ANAゴールド／8617=Olive</strong></p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>:---</td>
+                    <td>J. 係争中・要判断（4件／✅完了3件）</td>
+                    <td>:--</td>
+                    <td><p><b>内容</b>: :---</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>J. 係争中・要判断（4件／✅完了3件）</td>
+                    <td>J1</td>
+                    <td><p><b>内容</b>: ~~マチュピチュ 1-B券の氏名訂正~~ → <strong>2026/9/6 回答受領。訂正不可で決着</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>J. 係争中・要判断（4件／✅完了3件）</td>
+                    <td>J2</td>
+                    <td><p><b>内容</b>: ~~返答がなければ再送するか判断~~ → <strong>不要（回答が来た）</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**11/1まで**</td>
+                    <td>J. 係争中・要判断（4件／✅完了3件）</td>
+                    <td>💼 **J3**</td>
+                    <td><p><b>内容</b>: <strong>当日ゲートで説明するための携行物を用意</strong>（回答メールの印刷・両券・パスポート）</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>J. 係争中・要判断（4件／✅完了3件）</td>
+                    <td>J4</td>
+                    <td><p><b>内容</b>: ~~同日2枚入場の可否を文化省に確認するか判断~~ → <strong>聞かないと決定（2026/9/6）</strong></p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td></td>
+                    <td>K. 荷物（8件／✅ 完了3件）🔴 拘束条件が3つ重なる</td>
+                    <td></td>
+                    <td><p><b>拘束条件</b>: ① <strong>全体の総量</strong><br><b>値</b>: 🔴 <strong>2個・合計30kg</strong>（RTW全区間・A9で確定）<br><b>効く場所</b>: 旅程の大半</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>K. 荷物（8件／✅ 完了3件）🔴 拘束条件が3つ重なる</td>
+                    <td></td>
+                    <td><p><b>拘束条件</b>: ② 受託の天井<br><b>値</b>: <strong>25kg</strong>（TK PrimeFly・C5/C6購入済）<br><b>効く場所</b>: C5・C6</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>K. 荷物（8件／✅ 完了3件）🔴 拘束条件が3つ重なる</td>
+                    <td></td>
+                    <td><p><b>拘束条件</b>: ③ 持込の床<br><b>値</b>: <strong>8kg・三辺115cm</strong><br><b>効く場所</b>: D1・D2（PeruRail）</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>:---</td>
+                    <td>K. 荷物（8件／✅ 完了3件）🔴 拘束条件が3つ重なる</td>
+                    <td>:--</td>
+                    <td><p><b>内容</b>: :---</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>K. 荷物（8件／✅ 完了3件）🔴 拘束条件が3つ重なる</td>
+                    <td>**K1**</td>
+                    <td><p><b>内容</b>: ~~C2 を LATAM公式の Premium Economy で購入~~ → ✅ <strong>2026/9/8 完了（PNR MAYCQV・座席2A）</strong><br>受託23kg／持込12kg。設計は8kgなので問題なし</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>K. 荷物（8件／✅ 完了3件）🔴 拘束条件が3つ重なる</td>
+                    <td>**K2**</td>
+                    <td><p><b>内容</b>: ~~C3・C4 を受託23kg込みで購入~~ → ✅ <strong>2026/9/8-9 購入完了</strong><br>C3（PNR: <code>IWYEMJ</code>）・C4（PNR: <code>UBHQIG</code>）とも <strong>Economy Full（受託23kg込）</strong>。C3中段LA8005はPlusgrade PE入札済</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>K. 荷物（8件／✅ 完了3件）🔴 拘束条件が3つ重なる</td>
+                    <td>**K3**</td>
+                    <td><p><b>内容</b>: ~~C5・C6 を PrimeFly で購入~~ → ✅ <strong>2026/9/9 購入完了</strong><br>C5（PNR: <code>SUMX3C</code>）・C6（PNR: <code>VKCWJC</code>）とも <strong>PrimeFly（受託25kg・12時間前まで変更無料）</strong></p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>10月上旬</td>
+                    <td>K. 荷物（8件／✅ 完了3件）🔴 拘束条件が3つ重なる</td>
+                    <td>**K4**</td>
+                    <td><p><b>内容</b>: スーツケース（63〜66cm・<strong>空重量3kg以下</strong>）・デイパック（20〜25L）を調達</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>—</td>
+                    <td>K. 荷物（8件／✅ 完了3件）🔴 拘束条件が3つ重なる</td>
+                    <td>**K5**</td>
+                    <td><p><b>内容</b>: 🟢 <strong>E11 ローマを洗濯機付きの宿で確保（Airbnb完了）。</strong>38日を15kgに収める最大の要因（中間点で洗濯）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>10/25</td>
+                    <td>K. 荷物（8件／✅ 完了3件）🔴 拘束条件が3つ重なる</td>
+                    <td>🔴 **K6**</td>
+                    <td><p><b>内容</b>: <strong>出発前に自宅で計量。</strong>スーツケース15kg・デイパック8kg・<strong>合計23kg以下</strong></p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>現地</td>
+                    <td>K. 荷物（8件／✅ 完了3件）🔴 拘束条件が3つ重なる</td>
+                    <td>**K7**</td>
+                    <td><p><b>内容</b>: <strong>11/20 アテネで再計量</strong>（C5 の重量ピーク直前）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>現地</td>
+                    <td>K. 荷物（8件／✅ 完了3件）🔴 拘束条件が3つ重なる</td>
+                    <td>**K8**</td>
+                    <td><p><b>内容</b>: 🔴 <strong>土産は 11/23 の C6 以降に買う。</strong>枠は7kgのみ。<strong>3個目は足せない</strong></p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>:---</td>
+                    <td>L. ラウンジ（6件）✅ Priority Pass で対応</td>
+                    <td>:--</td>
+                    <td><p><b>内容</b>: :---</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>10月中旬</td>
+                    <td>L. ラウンジ（6件）✅ Priority Pass で対応</td>
+                    <td>🔴 **L1**</td>
+                    <td><p><b>内容</b>: 🔴 <strong>IST（11/21）の穴を埋める。</strong>IST→NAV は<strong>国内線</strong>で、PP の IGA Lounge は<strong>国際線専用</strong><br>→ ① <strong>TK の到着ラウンジ</strong>（TK1840 をビジネスで降りる）② <strong>iGA Domestic Lounge が PP 対象か</strong> を確認</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>10月中旬</td>
+                    <td>L. ラウンジ（6件）✅ Priority Pass で対応</td>
+                    <td>**L2**</td>
+                    <td><p><b>内容</b>: <strong>CUZ（11/5 05:00発）：Hanaq VIP Lounge の開館時刻を確認</strong>（開館前の恐れ）</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>10月中旬</td>
+                    <td>L. ラウンジ（6件）✅ Priority Pass で対応</td>
+                    <td>**L3**</td>
+                    <td><p><b>内容</b>: <strong>GRU T2 の「時間制限なし」ラウンジを事前特定</strong>（6h10m。3時間上限の店では足りない）</p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>10/28</td>
+                    <td>L. ラウンジ（6件）✅ Priority Pass で対応</td>
+                    <td>**L4**</td>
+                    <td><p><b>内容</b>: <strong>SFO（10/29）：UA1271 の出発コンコースを確認</strong><br>PP は International Terminal A 限定。<strong>A6（S-1）が成立すれば United Club で解決</strong></p></td>
+                </tr>
+                <tr class="pri-2">
+                    <td data-order="2">🟡 重要</td>
+                    <td>10月上旬</td>
+                    <td>L. ラウンジ（6件）✅ Priority Pass で対応</td>
+                    <td>**L5**</td>
+                    <td><p><b>内容</b>: Priority Pass アプリ導入。<strong>同伴者条件と年間利用回数の上限</strong>を確認</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>11月</td>
+                    <td>L. ラウンジ（6件）✅ Priority Pass で対応</td>
+                    <td>**L6**</td>
+                    <td><p><b>内容</b>: 12/1 ADD 乗継（4h25m）の <strong>Cloud Nine Lounge</strong> 利用条件を確認</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>M. マイル（4件）🔴 3万マイル規模が未処理</td>
+                    <td></td>
+                    <td><p><b>事実</b>: ✅ <strong>RTW 15区間は全社スターアライアンス</strong><br><b>内容</b>: 券面が <code>VLD STAR ALLIANCE ONLY</code>。<strong>AZ79（ITA）も 2026/4/1 加盟済み</strong>で ANA 積算対象（2026/4/1 以降出発分）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td></td>
+                    <td>M. マイル（4件）🔴 3万マイル規模が未処理</td>
+                    <td></td>
+                    <td><p><b>事実</b>: 🔴 <strong>積算見込み</strong><br><b>内容</b>: 総飛行 31,308マイル・14区間がビジネス（Z/D）→ <strong>3万マイル超の可能性</strong>。<strong>BKK⇄東京の往復特典に届く規模</strong></p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>M. マイル（4件）🔴 3万マイル規模が未処理</td>
+                    <td></td>
+                    <td><p><b>事実</b>: ❌ <strong>LATAM は積算不可</strong><br><b>内容</b>: 2020年に oneworld 脱退。<strong>C3（$263.68）・C4 はマイル的に無価値</strong></p></td>
+                </tr>
+                <tr class="pri-3">
+                    <td data-order="3">⚠️ 注意</td>
+                    <td></td>
+                    <td>M. マイル（4件）🔴 3万マイル規模が未処理</td>
+                    <td></td>
+                    <td><p><b>事実</b>: ⚠️ <strong>Miles&amp;Smiles の1,000マイル</strong><br><b>内容</b>: <strong>ANA に移せず、TKでも交換に届かない＝死蔵。</strong>加入は無料なので可だが、得ではない</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>:---</td>
+                    <td>M. マイル（4件）🔴 3万マイル規模が未処理</td>
+                    <td>:--</td>
+                    <td><p><b>内容</b>: :---</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td>—</td>
+                    <td>M. マイル（4件）🔴 3万マイル規模が未処理</td>
+                    <td>**M1**</td>
+                    <td><p><b>内容</b>: ~~RTW に ANA番号が登録されているか確認~~ → ✅ <strong>2026/9/10 確認済み</strong>（ANAアプリで全予約が表示される）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**9月中**</td>
+                    <td>M. マイル（4件）🔴 3万マイル規模が未処理</td>
+                    <td>🔴 **M2**</td>
+                    <td><p><b>内容</b>: 🔴 <strong>ANA に世界一周運賃の積算率を照会</strong>（＝A11b）</p></td>
+                </tr>
+                <tr class="pri-1">
+                    <td data-order="1">🔴 最優先</td>
+                    <td>**9月中**</td>
+                    <td>M. マイル（4件）🔴 3万マイル規模が未処理</td>
+                    <td>🔴 **M3**</td>
+                    <td><p><b>内容</b>: <strong>C1（BKK→東京）の特典枠を確認。</strong>JAL は片道可／ANA は往復必須<br>現金は TG660 $343。<strong>10/26 は7週間後で枠は早い者勝ち</strong></p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td>10月中旬</td>
+                    <td>M. マイル（4件）🔴 3万マイル規模が未処理</td>
+                    <td>**M4**</td>
+                    <td><p><b>内容</b>: ⑥ TP1030（ポルトゥガリア運航）と C5・C6（TK国内線）の ANA 積算可否を確認<br>C5・C6 が0%なら Miles&amp;Smiles に入れる</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ANA で全16クーポンの予約（PNR: DM4H3V・฿257,820 ≒ ¥1,218,000）<br><b>完了日</b>: 2026/9/4</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: マチュピチュ入場券 2枚（3-A 07:00 ／ 1-B 13:00・S/369.32 ≒ ¥17,000）<br><b>完了日</b>: 2026/9/5</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: マチュピチュ 氏名訂正の照会メール送信（tuboleto@cultura.gob.pe）<br><b>完了日</b>: 2026/9/5</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>RTW 発券完了（東京発券・JPY建て・PNR: EANRV5・¥1,211,160）</strong><br><b>完了日</b>: <strong>2026/9/6</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>A-1 成立：10/31 MEX→LIM を CM121→CM489 へ。リマ深夜着を解消</strong><br><b>完了日</b>: <strong>2026/9/6</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>ET319・ET608 のキャンセルから同一便で復旧</strong><br><b>完了日</b>: <strong>2026/9/6</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>C2（LIM→CUZ）購入完了（LATAM PE Full・PNR: MAYCQV・$130.60）</strong><br><b>完了日</b>: <strong>2026/9/8</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>C3（CUZ→LIM→GRU→IGU 3レグ通し）購入完了（LATAM Economy Full・PNR: IWYEMJ・$263.68）</strong><br><b>完了日</b>: <strong>2026/9/8</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>D1・D2（PeruRail 展望列車往復）購入完了（予約番号: WEB3204304・$159.60）</strong><br><b>完了日</b>: <strong>2026/9/8</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>C4（IGU→GRU）購入完了（LATAM Economy Full・PNR: UBHQIG・$477.67）</strong><br><b>完了日</b>: <strong>2026/9/9</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>C5（IST→NAV）購入完了（TK PrimeFly・PNR: SUMX3C・TRY 4,964.63）</strong><br><b>完了日</b>: <strong>2026/9/9</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>C6（NAV→IST）購入完了（TK PrimeFly・PNR: VKCWJC・TRY 4,950.00）</strong><br><b>完了日</b>: <strong>2026/9/9</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>RTW にANAマイレージクラブ番号が登録済みと確認</strong>（A11a／M1・ANAアプリで全予約を確認）<br><b>完了日</b>: <strong>2026/9/10</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>Olive の選べる無料保険をスマホ安心プランへ戻した（旅行保険0円無効を立証）</strong><br><b>完了日</b>: <strong>2026/9/10</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>RFEF Tickets アプリ導入・アカウント作成完了（B2）</strong><br><b>完了日</b>: <strong>2026/9/11</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>ヴァチカン博物館 予約完了（11/17 08:00枠・€25）</strong>（G3）<br><b>完了日</b>: <strong>2026/9/11</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>トスカーナ日帰りワイナリー（11/18）方針決定</strong>（F11）<br><b>完了日</b>: <strong>2026/9/11</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>トスカーナ日帰りワイナリー（11/18）予約完了</strong>（City Wonders・¥14,110・予約 <code>XTK978855</code>）（F11）<br><b>完了日</b>: <strong>2026/9/12</strong></p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>✅ 完了済み</td>
+                    <td></td>
+                    <td><p><b>内容</b>: ✅ <strong>全旅程フライト・タイムライン・MCT・手荷物包括レビュー完了</strong>（正本レポート完成）<br><b>完了日</b>: <strong>2026/9/12</strong></p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: 📘 <a href="手配_包括レビュー・リスク評価.md"><code>手配_包括レビュー・リスク評価.md</code></a><br><b>内容</b>: <strong>全旅程フライト照合・17宿泊施設・手荷物設計・保険・防疫の包括的監査正本</strong></p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="東回り_要件定義書.md"><code>東回り_要件定義書.md</code></a><br><b>内容</b>: <strong>正本（第7版）。</strong> 予約実績・確定/未確定事項・全41日の日程表</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="東回り_発券用資料.md"><code>東回り_発券用資料.md</code></a><br><b>内容</b>: 発券前最終確認シート。ANA窓口で聞くこと一式＋各区間の代替便候補</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="東回り_空席ウォッチ運用.md"><code>東回り_空席ウォッチ運用.md</code></a><br><b>内容</b>: 空席の見方・監視ツールの運用手順</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="手配_RTW外フライト.md"><code>手配_RTW外フライト.md</code></a><br><b>内容</b>: C1〜C6 の購入記録・運賃種別・手荷物規定・変更払戻条件</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="手配_宿泊.md"><code>手配_宿泊.md</code></a><br><b>内容</b>: 全17宿泊地（19件）のチェックイン/アウト制約・立地基準・推奨ホテル</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="手配_サファリ.md"><code>手配_サファリ.md</code></a><br><b>内容</b>: ケニア（11/28-12/1）。マサイマラ往復フライイン・Basecamp Mara・Emaraパークビュー</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="手配_イグアス.md"><code>手配_イグアス.md</code></a><br><b>内容</b>: イグアス（11/5-11/8）。両側の時刻設計・ヘリ・Gran Aventura</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="手配_マチュピチュ.md"><code>手配_マチュピチュ.md</code></a><br><b>内容</b>: ペルー（11/1-11/5）。入場券・列車・送迎・高山病プロトコル</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="手配_気球ツアー.md"><code>手配_気球ツアー.md</code></a><br><b>内容</b>: カッパドキア（11/21-11/23）。欠航率30-40%への予備日スライド設計</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="手配_ワイナリー.md"><code>手配_ワイナリー.md</code></a><br><b>内容</b>: ローマ発トスカーナ日帰り（11/18）モンテプルチャーノ・ピエンツァ</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="手配_ローマ.md"><code>手配_ローマ.md</code></a><br><b>内容</b>: ローマ・ヴァチカン（11/16-19）。ヴァチカン予約済・コロッセオ10/18解禁</p></td>
+                </tr>
+                <tr class="pri-5">
+                    <td data-order="5">✅ 完了</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="手配_観戦チケット.md"><code>手配_観戦チケット.md</code></a><br><b>内容</b>: スペイン戦（9/23一般発売）・ガラタサライ戦（✅ Passo カード 9/15 申請・承認済／11/20 購入）</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="手配_スペイン戦_当日購入マニュアル.md"><code>手配_スペイン戦_当日購入マニュアル.md</code></a><br><b>内容</b>: <strong>9/23 スペイン戦 クラウドPC購入手順・コピペ対応表・トラブル対処</strong></p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="手配_荷物.md"><code>手配_荷物.md</code></a><br><b>内容</b>: 全体パッキング設計（15kg+8kg=23kg）・各社制限・駅預かり所運用</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="手配_保険.md"><code>手配_保険.md</code></a><br><b>内容</b>: Olive 0円無効・クレカ非居住者条項・単独包括保険の要件</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="手配_予防接種.md"><code>手配_予防接種.md</code></a><br><b>内容</b>: <strong>スネークファーム全4回接種スケジュール・黄熱・Twinrix・マラロン</strong></p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="東回り_サッカー観戦候補.md"><code>東回り_サッカー観戦候補.md</code></a><br><b>内容</b>: 観戦2試合の詳細・チケット入手手順</p></td>
+                </tr>
+                <tr class="pri-4">
+                    <td data-order="4">⬜ 通常</td>
+                    <td></td>
+                    <td>関連ファイル</td>
+                    <td></td>
+                    <td><p><b>ファイル</b>: <a href="tickets/マチュピチュ/費用明細.md"><code>tickets/マチュピチュ/費用明細.md</code></a><br><b>内容</b>: 入場券の購入記録・券面から判明した当日の制約</p></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
     <!-- jQuery & Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-    
     <script>
         $(document).ready(function() {
-            // Custom highlight function via jQuery filter
-            $('td').filter(function() { return $(this).text().indexOf('🔴') > -1; }).closest('tr').addClass('table-danger');
-            $('td').filter(function() { return $(this).text().indexOf('🟡') > -1; }).closest('tr').addClass('table-warning');
-            $('td').filter(function() { return $(this).text().indexOf('✅') > -1; }).closest('tr').addClass('table-success text-muted');
-
-            // Initialize DataTables on all tables
-            $('table').DataTable({
-                "paging": false,       // Disable pagination
-                "info": false,         // Hide "Showing 1 of N"
-                "order": [],           // Disable initial sort
+            $('#todotable').DataTable({
+                "pageLength": -1,
+                "lengthMenu": [[50, 100, -1], [50, 100, "すべて"]],
+                "order": [[0, "asc"], [1, "asc"]], // Sort by Priority (col 0) then Deadline (col 1)
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/ja.json"
-                }
+                },
+                "columnDefs": [
+                    { "width": "100px", "targets": 0 },
+                    { "width": "120px", "targets": 1 },
+                    { "width": "150px", "targets": 2 },
+                    { "width": "60px", "targets": 3 }
+                ]
             });
         });
     </script>
