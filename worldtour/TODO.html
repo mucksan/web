@@ -33,6 +33,35 @@
 <body>
     <div class="container-fluid">
         <h2 class="mb-4">World Tour 2026 - Master TODO List</h2>
+        
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label class="form-label fw-bold">優先度:</label>
+                <select id="filter-priority" class="form-select">
+                    <option value="">すべて</option>
+                    <option value="🔴">🔴 最優先</option>
+                    <option value="🟡">🟡 重要</option>
+                    <option value="🔭">🔭 ウォッチ</option>
+                    <option value="⚠️">⚠️ 注意</option>
+                    <option value="⬜">⬜ 通常</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-bold">完了ステータス:</label>
+                <select id="filter-status" class="form-select">
+                    <option value="">すべて</option>
+                    <option value="!✅">未完了のみ</option>
+                    <option value="✅">完了済のみ</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-bold">カテゴリ:</label>
+                <select id="filter-category" class="form-select">
+                    <option value="">すべて</option>
+                </select>
+            </div>
+        </div>
+
         <table id="todotable" class="table table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
@@ -1863,7 +1892,7 @@
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#todotable').DataTable({
+            var table = $('#todotable').DataTable({
                 "pageLength": -1,
                 "lengthMenu": [[50, 100, -1], [50, 100, "すべて"]],
                 "order": [[0, "asc"], [1, "asc"]], // Sort by Priority (col 0) then Deadline (col 1)
@@ -1876,6 +1905,38 @@
                     { "width": "150px", "targets": 2 },
                     { "width": "60px", "targets": 3 }
                 ]
+            });
+
+            // Populate category dropdown
+            table.column(2).data().unique().sort().each(function (d, j) {
+                $('#filter-category').append('<option value="'+d+'">'+d+'</option>');
+            });
+
+            // Priority filter
+            $('#filter-priority').on('change', function() {
+                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                table.column(0).search(val ? val : '', true, false).draw();
+            });
+
+            // Category filter
+            $('#filter-category').on('change', function() {
+                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                table.column(2).search(val ? '^'+val+'$' : '', true, false).draw();
+            });
+
+            // Custom Completion Status filter
+            $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+                var statusFilter = $('#filter-status').val();
+                var priorityText = data[0];
+                
+                if (statusFilter === "") return true;
+                if (statusFilter === "✅") return priorityText.indexOf("✅") !== -1;
+                if (statusFilter === "!✅") return priorityText.indexOf("✅") === -1;
+                return true;
+            });
+
+            $('#filter-status').on('change', function() {
+                table.draw();
             });
         });
     </script>
