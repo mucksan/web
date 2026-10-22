@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：AI開発ツールのエージェントシフト</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #003f5c;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #ef5675, #ff764a, #ffa600);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-2">エージェントシフト</h1>
+            <p class="text-lg md:text-2xl font-bold gradient-text">ソフトウェア開発AIの次なる革命</p>
+            <p class="text-white mt-4 max-w-3xl mx-auto">単なるコード補完から、自律的にタスクを遂行する「AIエージェント」へ。開発の未来を形作る主要ツールと、その戦略的活用法を解き明かします。</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <div class="md:col-span-1 bg-white/10 rounded-2xl p-8 text-center shadow-2xl backdrop-blur-sm">
+                    <p class="text-8xl font-black gradient-text">75%</p>
+                    <p class="text-white font-bold mt-2">のソフトウェアエンジニアが</p>
+                    <p class="text-white/80 mt-4">2028年までにAI開発支援ツールを活用するとGartnerは予測しています。この変革の波に乗り遅れることはできません。</p>
+                </div>
+                <div class="md:col-span-2 bg-white rounded-2xl p-8 shadow-xl">
+                    <h2 class="text-2xl font-bold text-center mb-6">「Agent思考」とは？自律的サイクルの4ステップ</h2>
+                    <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-4">
+                        <div class="text-center">
+                            <div class="w-24 h-24 bg-[#003f5c] text-white rounded-full flex items-center justify-center text-4xl font-bold shadow-lg">1</div>
+                            <p class="mt-2 font-bold">認識</p>
+                            <p class="text-sm text-gray-600">環境と文脈を把握</p>
+                        </div>
+                        <div class="text-gray-300 text-2xl font-mono hidden md:block">&rarr;</div>
+                        <div class="text-gray-300 text-2xl font-mono md:hidden">&darr;</div>
+                        <div class="text-center">
+                            <div class="w-24 h-24 bg-[#7a5195] text-white rounded-full flex items-center justify-center text-4xl font-bold shadow-lg">2</div>
+                            <p class="mt-2 font-bold">判断</p>
+                            <p class="text-sm text-gray-600">計画と戦略を立案</p>
+                        </div>
+                        <div class="text-gray-300 text-2xl font-mono hidden md:block">&rarr;</div>
+                        <div class="text-gray-300 text-2xl font-mono md:hidden">&darr;</div>
+                        <div class="text-center">
+                            <div class="w-24 h-24 bg-[#bc5090] text-white rounded-full flex items-center justify-center text-4xl font-bold shadow-lg">3</div>
+                            <p class="mt-2 font-bold">実行</p>
+                            <p class="text-sm text-gray-600">ツールやAPIを操作</p>
+                        </div>
+                        <div class="text-gray-300 text-2xl font-mono hidden md:block">&rarr;</div>
+                        <div class="text-gray-300 text-2xl font-mono md:hidden">&darr;</div>
+                        <div class="text-center">
+                            <div class="w-24 h-24 bg-[#ff764a] text-white rounded-full flex items-center justify-center text-4xl font-bold shadow-lg">4</div>
+                            <p class="mt-2 font-bold">学習</p>
+                            <p class="text-sm text-gray-600">結果から自己改善</p>
+                        </div>
+                    </div>
+                    <p class="text-center mt-6 text-gray-600">このサイクルにより、AIは単なるツールから能動的な問題解決パートナーへと進化します。</p>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-2xl p-8 shadow-xl">
+                <h2 class="text-2xl font-bold text-center mb-2">主要AI開発ツール能力比較</h2>
+                <p class="text-center text-gray-600 mb-6">各ツールの強みはどこにあるのか？レーダーチャートで一目瞭然。</p>
+                <div class="chart-container h-96 md:h-[500px] max-w-3xl">
+                    <canvas id="toolsRadarChart"></canvas>
+                </div>
+                 <p class="text-sm text-center mt-4 text-gray-500">チャートは各ツールの相対的な能力の方向性を示します。スコアが高いほどその分野での能力が高いことを意味します。</p>
+            </section>
+            
+            <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-xl">
+                    <h2 class="text-2xl font-bold text-center mb-2">Devinの衝撃：SWE-Benchスコア</h2>
+                     <p class="text-center text-gray-600 mb-6">完全自律型AIエンジニアDevinは、実際のGitHub Issueを解決する能力で他を圧倒しました。</p>
+                    <div class="chart-container h-72">
+                        <canvas id="devinBenchChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-xl">
+                    <h2 class="text-2xl font-bold text-center mb-2">戦略的トレードオフ：制御か、自律か</h2>
+                    <p class="text-center text-gray-600 mb-6">AIエージェントの導入は、組織の哲学を反映します。</p>
+                    <div class="grid grid-cols-2 gap-4 mt-8">
+                        <div class="text-center border-r pr-4">
+                            <p class="text-5xl mb-4">🕹️</p>
+                            <h3 class="text-xl font-bold text-[#374c80]">操縦可能な制御</h3>
+                            <p class="mt-2 text-gray-600">人間が計画を検証・修正し、AIを誘導。予測可能性と監査可能性を重視。</p>
+                            <p class="font-bold mt-4 text-sm">代表例: GitHub Copilot, AWS Kiro</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-5xl mb-4">⬛</p>
+                            <h3 class="text-xl font-bold text-[#bc5090]">ブラックボックス的自律性</h3>
+                            <p class="mt-2 text-gray-600">タスク実行の責任をAIに委譲。自動化とスピードを最大化。</p>
+                             <p class="font-bold mt-4 text-sm">代表例: Cognition Devin</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-2xl p-8 shadow-xl">
+                <h2 class="text-2xl font-bold text-center mb-6">開発ライフサイクル(SDLC)へのツールマッピング</h2>
+                <div class="relative w-full overflow-x-auto">
+                    <div class="absolute left-0 top-1/2 w-full h-1 bg-gray-200 -translate-y-1/2"></div>
+                    <div class="relative flex justify-between">
+                        <div class="w-1/6 text-center">
+                            <div class="relative z-10 mx-auto w-8 h-8 rounded-full bg-[#003f5c] text-white flex items-center justify-center font-bold ring-4 ring-white">1</div>
+                            <h3 class="mt-2 font-bold">計画・要件</h3>
+                            <p class="text-xs mt-1 p-1 bg-blue-100 text-blue-800 rounded">Kiro</p>
+                            <p class="text-xs mt-1 p-1 bg-blue-100 text-blue-800 rounded">Copilot WS</p>
+                        </div>
+                        <div class="w-1/6 text-center">
+                            <div class="relative z-10 mx-auto w-8 h-8 rounded-full bg-[#374c80] text-white flex items-center justify-center font-bold ring-4 ring-white">2</div>
+                            <h3 class="mt-2 font-bold">設計</h3>
+                            <p class="text-xs mt-1 p-1 bg-indigo-100 text-indigo-800 rounded">Kiro</p>
+                            <p class="text-xs mt-1 p-1 bg-indigo-100 text-indigo-800 rounded">Cursor</p>
+                        </div>
+                        <div class="w-1/6 text-center">
+                            <div class="relative z-10 mx-auto w-8 h-8 rounded-full bg-[#7a5195] text-white flex items-center justify-center font-bold ring-4 ring-white">3</div>
+                            <h3 class="mt-2 font-bold">実装</h3>
+                            <p class="text-xs mt-1 p-1 bg-purple-100 text-purple-800 rounded">Devin</p>
+                            <p class="text-xs mt-1 p-1 bg-purple-100 text-purple-800 rounded">Cursor</p>
+                            <p class="text-xs mt-1 p-1 bg-purple-100 text-purple-800 rounded">Copilot</p>
+                        </div>
+                         <div class="w-1/6 text-center">
+                            <div class="relative z-10 mx-auto w-8 h-8 rounded-full bg-[#bc5090] text-white flex items-center justify-center font-bold ring-4 ring-white">4</div>
+                            <h3 class="mt-2 font-bold">テスト</h3>
+                            <p class="text-xs mt-1 p-1 bg-pink-100 text-pink-800 rounded">Devin</p>
+                            <p class="text-xs mt-1 p-1 bg-pink-100 text-pink-800 rounded">Gemini CLI</p>
+                        </div>
+                        <div class="w-1/6 text-center">
+                            <div class="relative z-10 mx-auto w-8 h-8 rounded-full bg-[#ef5675] text-white flex items-center justify-center font-bold ring-4 ring-white">5</div>
+                            <h3 class="mt-2 font-bold">デバッグ</h3>
+                            <p class="text-xs mt-1 p-1 bg-red-100 text-red-800 rounded">Cursor</p>
+                            <p class="text-xs mt-1 p-1 bg-red-100 text-red-800 rounded">Devin</p>
+                        </div>
+                        <div class="w-1/6 text-center">
+                            <div class="relative z-10 mx-auto w-8 h-8 rounded-full bg-[#ff764a] text-white flex items-center justify-center font-bold ring-4 ring-white">6</div>
+                            <h3 class="mt-2 font-bold">保守・文書化</h3>
+                            <p class="text-xs mt-1 p-1 bg-orange-100 text-orange-800 rounded">Kiro</p>
+                            <p class="text-xs mt-1 p-1 bg-orange-100 text-orange-800 rounded">Cursor</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white/10 rounded-2xl p-8 shadow-2xl backdrop-blur-sm text-white">
+                <h2 class="text-2xl font-bold text-center mb-6">戦略的提言：未来への備え</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <p class="text-5xl mb-4">🛡️</p>
+                        <h3 class="text-xl font-bold">セキュリティとガバナンス</h3>
+                        <p class="mt-2 text-white/80">サンドボックス環境の義務化、厳格なアクセス制御、プロンプトインジェクション対策が不可欠。IPとプライバシー保護ポリシーを策定しましょう。</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-5xl mb-4">🧠</p>
+                        <h3 class="text-xl font-bold">スキルの進化</h3>
+                        <p class="mt-2 text-white/80">開発者は「AIオーケストレーター」へ。プロンプトエンジニアリング、批判的評価能力、システム思考のトレーニングに投資しましょう。</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-5xl mb-4">🚀</p>
+                        <h3 class="text-xl font-bold">段階的導入</h3>
+                        <p class="mt-2 text-white/80">低リスク領域から始め、パイロットチームで効果を測定。社内にCoE（専門組織）を設立し、ベストプラクティスを確立しましょう。</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-12 text-white/50 text-sm">
+            <p>このインフォグラフィックは、提供されたレポート「エージェントシフト：現代のソフトウェア開発におけるAIツールの比較分析」のデータを基に作成されました。</p>
+            <p>最終更新日: 2025年7月31日</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label, maxLength = 16) => {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const defaultTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        };
+
+        const colors = {
+            blue: '#003f5c',
+            purple: '#7a5195',
+            pink: '#bc5090',
+            red: '#ef5675',
+            orange: '#ff764a',
+            yellow: '#ffa600',
+            lightBlue: '#374c80'
+        };
+
+        const radarCtx = document.getElementById('toolsRadarChart').getContext('2d');
+        new Chart(radarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['自律性', '計画・制御性', 'コードベース理解', 'IDE統合', 'CLIパワー', 'エンタープライズ対応'],
+                datasets: [
+                    {
+                        label: 'Devin',
+                        data: [9, 3, 6, 2, 8, 4],
+                        backgroundColor: 'rgba(239, 86, 117, 0.2)',
+                        borderColor: colors.red,
+                        pointBackgroundColor: colors.red,
+                    },
+                    {
+                        label: 'Copilot',
+                        data: [6, 8, 7, 9, 5, 8],
+                        backgroundColor: 'rgba(55, 76, 128, 0.2)',
+                        borderColor: colors.lightBlue,
+                        pointBackgroundColor: colors.lightBlue,
+                    },
+                    {
+                        label: 'Kiro',
+                        data: [7, 9, 6, 8, 3, 9],
+                        backgroundColor: 'rgba(0, 63, 92, 0.2)',
+                        borderColor: colors.blue,
+                        pointBackgroundColor: colors.blue,
+                    },
+                    {
+                        label: 'Cursor',
+                        data: [5, 6, 9, 9, 2, 6],
+                        backgroundColor: 'rgba(255, 166, 0, 0.2)',
+                        borderColor: colors.yellow,
+                        pointBackgroundColor: colors.yellow,
+                    },
+                    {
+                        label: 'Gemini/Claude CLI',
+                        data: [6, 4, 5, 1, 9, 3],
+                        backgroundColor: 'rgba(122, 81, 149, 0.2)',
+                        borderColor: colors.purple,
+                        pointBackgroundColor: colors.purple,
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                        grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                        pointLabels: { font: { size: 14 } },
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                        ticks: {
+                            backdropColor: 'rgba(255, 255, 255, 0.75)',
+                            stepSize: 2
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: defaultTooltipOptions.plugins.tooltip
+                }
+            }
+        });
+
+        const devinCtx = document.getElementById('devinBenchChart').getContext('2d');
+        new Chart(devinCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Devin (13.86%)', '旧モデル平均 (〜4%)', '未解決 (82.14%)'],
+                datasets: [{
+                    data: [13.86, 4.0, 82.14],
+                    backgroundColor: [colors.red, colors.yellow, 'rgba(0, 0, 0, 0.1)'],
+                    borderColor: '#fff',
+                    borderWidth: 4,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    title: {
+                        display: false
+                    },
+                    tooltip: defaultTooltipOptions.plugins.tooltip
+                },
+                cutout: '60%'
+            }
+        });
+    </script>
+</body>
+</html>

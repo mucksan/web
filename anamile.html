@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANAマイル価値最大化 インタラクティブ・シミュレーター</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals (Slate & Sky) -->
+    <!-- Application Structure Plan: レポートの構成に縛られず、ユーザーの思考プロセスに沿ったタスク指向のダッシュボード構造を採用。最初に「黄金律」で結論を提示し、次にインタラクティブな「マイル価値シミュレーター」でユーザーが能動的にデータを探索。その後、「必要マイル数比較」「燃油サーチャージ回避ガイド」「上級戦略」といった具体的な知識を深めるセクションを配置。この流れにより、ユーザーは抽象的な概念から具体的な行動計画へとスムーズに移行できる。情報の階層化とインタラクションにより、複雑な情報を楽しく、効率的に理解させることを目的とする。 -->
+    <!-- Visualization & Content Choices: 
+        - [マイル単価比較] -> [比較] -> [グループ化された棒グラフ] -> [クラスの選択による動的更新] -> 複数の選択肢の価値を直接比較するのに最も効果的。Chart.jsを使用。
+        - [燃油サーチャージ/提携会社] -> [整理・分類] -> [詳細なHTMLテーブル] -> 複雑なデータを一覧で比較検討可能にし、戦略立案を支援。
+        - [必要マイル数] -> [比較] -> [HTMLテーブル] -> 異なるマイル計算体系（距離制 vs ゾーン制）の優劣を明確化。
+        - [旅程構築] -> [整理] -> [アイコンとテキストによるステップ表示] -> [静的表示] -> SVGや画像を使わず、HTMLとTailwindのレイアウト機能だけでプロセスを視覚的に表現。
+        - [主要な数値] -> [通知] -> [詳細なHTMLテーブル] -> ユーザーの選択に対する結果を一覧でフィードバックし、最適な選択を支援する。
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 450px;
+            max-height: 60vh;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .tab-button.active {
+            border-color: #0ea5e9; /* sky-500 */
+            background-color: #f0f9ff; /* sky-50 */
+            color: #0c4a6e; /* sky-900 */
+        }
+        .tab-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .table-responsive-wrapper {
+            overflow-x: auto;
+        }
+        .highlight-row {
+            background-color: #f0f9ff; /* sky-50 */
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold text-slate-800">ANAマイル価値最大化シミュレーター</h1>
+                <span class="text-sky-600 font-semibold">✈️ あなたのマイル、眠っていませんか？</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+        <!-- Section 1: The Golden Rules -->
+        <section id="rules" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-2">マイル価値最大化の「黄金律」</h2>
+            <p class="text-center text-slate-600 mb-8 max-w-3xl mx-auto">複雑なマイルの世界も、基本原則はシンプルです。まず、最も重要な戦略を理解しましょう。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-sky-500">
+                    <h3 class="text-xl font-bold mb-2 text-slate-800">① プレミアムを狙え</h3>
+                    <p class="text-slate-600">マイルの価値は、有償価格が高い長距離路線のビジネスクラス・ファーストクラスで爆発的に高まります。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-sky-500">
+                    <h3 class="text-xl font-bold mb-2 text-slate-800">② 提携航空会社が主役</h3>
+                    <p class="text-slate-600">繁忙期にマイル数が増えるANA便より、通年固定の提携航空会社が断然お得。特に大型連休では必須の戦略です。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-sky-500">
+                    <h3 class="text-xl font-bold mb-2 text-slate-800">③ 燃油サーチャージを回避</h3>
+                    <p class="text-slate-600">数万円の現金支出はマイル価値を大きく損ないます。サーチャージが低い・無料の航空会社を意図的に選びましょう。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Interactive Value Simulator -->
+        <section id="simulator" class="bg-white p-6 md:p-8 rounded-xl shadow-lg mb-12">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2">東京-バンコク マイル価値 徹底比較</h2>
+            <p class="text-slate-600 mb-6">下の搭乗クラスを選ぶと、直行便・経由便すべてのマイル価値が一覧で比較できます。最も価値の高いルートはどれでしょう？</p>
+            
+            <div class="mb-8 bg-slate-50 p-4 rounded-lg max-w-xs mx-auto">
+                <label for="class" class="block text-sm font-medium text-slate-700 mb-1">搭乗クラスを選択</label>
+                <select id="class" class="w-full p-2 border border-slate-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500">
+                    <option value="Y">エコノミー</option>
+                    <option value="C" selected>ビジネス</option>
+                    <option value="F">ファースト</option>
+                </select>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                <div class="table-responsive-wrapper">
+                    <table class="w-full text-sm text-left">
+                        <thead>
+                            <tr class="bg-slate-100">
+                                <th class="p-3 font-semibold text-slate-700 border-b">ルート / 航空会社</th>
+                                <th class="p-3 font-semibold text-slate-700 border-b text-right">必要マイル</th>
+                                <th class="p-3 font-semibold text-slate-700 border-b text-right">現金支払(円)</th>
+                                <th class="p-3 font-semibold text-slate-700 border-b text-right">マイル単価(円)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="comparison-table" class="divide-y divide-slate-200">
+                            <!-- JSで動的に生成 -->
+                        </tbody>
+                    </table>
+                     <p class="text-xs text-slate-500 mt-2">※有償価格は<span id="benchmark-price-info"></span>円で計算。</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="mileageChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Detailed Mileage Comparison -->
+        <section id="mileage-details" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-2">必要マイル数 詳細比較</h2>
+            <p class="text-center text-slate-600 mb-8 max-w-3xl mx-auto">提携航空会社は「総旅程距離」、ANAは「ゾーン」。この違いが価値の差を生みます。</p>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <h3 class="text-xl font-bold text-slate-800 mb-4">提携航空会社 vs ANA 必要マイル数チャート</h3>
+                <div class="table-responsive-wrapper">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100">
+                                <th class="p-3 font-semibold text-sm text-slate-700 border-b">往復総距離</th>
+                                <th class="p-3 font-semibold text-sm text-slate-700 border-b">提携便 Yクラス</th>
+                                <th class="p-3 font-semibold text-sm text-slate-700 border-b">提携便 Cクラス</th>
+                                <th class="p-3 font-semibold text-sm text-slate-700 border-b">ANA便 Y (R)</th>
+                                <th class="p-3 font-semibold text-sm text-slate-700 border-b">ANA便 C (R)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr><td class="p-3">~ 2,000マイル</td><td class="p-3">20,000</td><td class="p-3">40,000</td><td class="p-3 text-slate-400">23,000 (Zone2)</td><td class="p-3 text-slate-400">45,000 (Zone2)</td></tr>
+                            <tr><td class="p-3">2,001 ~ 4,000マイル</td><td class="p-3">25,000</td><td class="p-3">48,000</td><td class="p-3 text-slate-400">35,000 (Zone4)</td><td class="p-3 text-slate-400">85,000 (Zone4)</td></tr>
+                            <tr><td class="p-3">4,001 ~ 7,000マイル</td><td class="p-3">43,000</td><td class="p-3">73,000</td><td class="p-3 text-slate-400">60,000 (Zone6)</td><td class="p-3 text-slate-400">120,000 (Zone6)</td></tr>
+                            <tr><td class="p-3">7,001 ~ 9,000マイル</td><td class="p-3">55,000</td><td class="p-3">90,000</td><td class="p-3 text-slate-400">60,000 (Zone6)</td><td class="p-3 text-slate-400">120,000 (Zone6)</td></tr>
+                            <tr><td class="p-3">9,001 ~ 14,000マイル</td><td class="p-3">65,000</td><td class="p-3">115,000</td><td class="p-3 text-slate-400">60,000 (Zone7)</td><td class="p-3 text-slate-400">120,000 (Zone7)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-xs text-slate-500 mt-2">※ANA便の必要マイル数はゾーン制のため参考値。レギュラーシーズン(R)で記載。</p>
+            </div>
+        </section>
+
+        <!-- Section 4: Fuel Surcharge Guide -->
+        <section id="surcharge" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-2">提携航空会社 徹底比較ガイド</h2>
+            <p class="text-center text-slate-600 mb-8 max-w-3xl mx-auto">現金支出と旅程の可能性は航空会社選びで決まります。各社の特徴を把握しましょう。</p>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg table-responsive-wrapper">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-slate-100">
+                            <th class="p-3 font-semibold text-slate-700 border-b">航空会社</th>
+                            <th class="p-3 font-semibold text-slate-700 border-b">燃油サーチャージ</th>
+                            <th class="p-3 font-semibold text-slate-700 border-b">主要経由地(TYOから)</th>
+                            <th class="p-3 font-semibold text-slate-700 border-b">TYO→経由地(マイル)</th>
+                            <th class="p-3 font-semibold text-slate-700 border-b">経由地→BKK(マイル)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200">
+                        <tr class="bg-green-50"><td colspan="5" class="p-2 font-bold text-green-800">【推奨】サーチャージが低い・無料の会社</td></tr>
+                        <tr><td class="p-3"><strong>エバー航空 (BR)</strong></td><td class="p-3"><span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">低い</span></td><td class="p-3">台北 (TPE)</td><td class="p-3">約 1,350</td><td class="p-3">約 1,550</td></tr>
+                        <tr><td class="p-3"><strong>シンガポール航空 (SQ)</strong></td><td class="p-3"><span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">無料/低い</span></td><td class="p-3">シンガポール (SIN)</td><td class="p-3">約 3,320</td><td class="p-3">約 880</td></tr>
+                        <tr><td class="p-3"><strong>エア・カナダ (AC)</strong></td><td class="p-3"><span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">低い</span></td><td class="p-3">バンクーバー (YVR)</td><td class="p-3">約 4,700</td><td class="p-3">約 7,000</td></tr>
+                        <tr><td class="p-3"><strong>ユナイテッド航空 (UA)</strong></td><td class="p-3"><span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">低い</span></td><td class="p-3">サンフランシスコ (SFO)</td><td class="p-3">約 5,130</td><td class="p-3">約 8,270</td></tr>
+                        <tr class="bg-yellow-50"><td colspan="5" class="p-2 font-bold text-yellow-800">【注意】サーチャージが普通〜高い会社</td></tr>
+                        <tr><td class="p-3"><strong>アシアナ航空 (OZ)</strong></td><td class="p-3"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">普通</span></td><td class="p-3">ソウル (ICN)</td><td class="p-3">約 760</td><td class="p-3">約 2,290</td></tr>
+                        <tr><td class="p-3"><strong>タイ国際航空 (TG)</strong></td><td class="p-3"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">普通</span></td><td class="p-3">バンコク (BKK)</td><td class="p-3">約 2,880</td><td class="p-3">-</td></tr>
+                        <tr class="bg-red-50"><td colspan="5" class="p-2 font-bold text-red-800">【非推奨】サーチャージが高い会社</td></tr>
+                        <tr><td class="p-3"><strong>ルフトハンザドイツ航空 (LH)</strong></td><td class="p-3"><span class="bg-amber-100 text-amber-800 px-2 py-1 rounded-full">高い</span></td><td class="p-3">フランクフルト (FRA)</td><td class="p-3">約 5,800</td><td class="p-3">約 5,600</td></tr>
+                    </tbody>
+                </table>
+                <p class="text-xs text-slate-500 mt-2">※本リストは主要な提携航空会社を抜粋したものです。距離はおおよその片道マイル数です。</p>
+            </div>
+        </section>
+
+        <!-- Section 5: Advanced Techniques -->
+        <section id="advanced">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-2">上級者向け応用戦略</h2>
+            <p class="text-center text-slate-600 mb-8 max-w-3xl mx-auto">マイルの価値をさらに引き出すためのテクニック。これらを使いこなせば、あなたもマイレージ上級者です。</p>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <div class="border-b border-slate-200 mb-4">
+                    <nav class="-mb-px flex space-x-6" aria-label="Tabs">
+                        <button class="tab-button active whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg" data-tab="tab1">旅程構築の妙技</button>
+                        <button class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg text-slate-500 hover:text-slate-700 hover:border-slate-300" data-tab="tab2">予約の鉄則</button>
+                    </nav>
+                </div>
+                <div id="tab1" class="tab-content active">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">ストップオーバーとオープンジョー</h3>
+                    <p class="mb-4 text-slate-600">提携航空会社特典なら、単純な往復以上の旅が可能です。1回のマイルで2都市以上楽しむこともできます。</p>
+                    <div class="bg-slate-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-slate-700">活用例：ストップオーバーでシンガポールとフランクフルトへ</h4>
+                        <p class="text-sm text-slate-500 mb-2">「東京→ヨーロッパ」の必要マイル数（ビジネス115,000マイル）のままで、追加の旅行が実現します。</p>
+                        <div class="flex items-center justify-center flex-wrap gap-2 text-center font-semibold text-slate-700 p-4">
+                            <span>東京</span>
+                            <span class="text-sky-600 font-mono">→</span>
+                            <div class="p-2 bg-sky-100 rounded">シンガポール<br><span class="text-xs font-normal">(3日間滞在)</span></div>
+                            <span class="text-sky-600 font-mono">→</span>
+                            <span>フランクフルト</span>
+                            <span class="text-sky-600 font-mono">→</span>
+                            <span>東京</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab2" class="tab-content">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">人気特典を確保する技術</h3>
+                    <p class="mb-4 text-slate-600">価値の高い特典航空券は競争が激しいです。計画的な準備が成功の鍵となります。</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span class="text-sky-600 font-bold mr-3">1.</span>
+                            <div><h4 class="font-semibold text-slate-700">355日前の攻防</h4><p class="text-slate-600 text-sm">予約は搭乗日の355日前、日本時間午前9時に開始。人気路線は秒単位の勝負です。事前にログインし、情報入力を済ませておきましょう。</p></div>
+                        </li>
+                        <li class="flex items-start"><span class="text-sky-600 font-bold mr-3">2.</span>
+                            <div><h4 class="font-semibold text-slate-700">直前期の空席を狙う</h4><p class="text-slate-600 text-sm">出発の2週間～数日前に、キャンセルや機材変更で空席が出ることがあります。諦めずに空席状況をこまめにチェックしましょう。</p></div>
+                        </li>
+                         <li class="flex items-start"><span class="text-sky-600 font-bold mr-3">3.</span>
+                            <div><h4 class="font-semibold text-slate-700">電話予約の活用</h4><p class="text-slate-600 text-sm">Webで満席でも、電話ならオペレーターが座席を確保できる場合があります。特に複雑な旅程では有効です。</p></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm">
+            <p>このシミュレーターは提供されたレポートに基づき作成されたものです。実際の必要マイル数、税金、サーチャージは発券時にANAの公式サイトでご確認ください。</p>
+            <p>&copy; 2025 Interactive Report Generator. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const bkkFlightData = {
+                benchmark: { Y: 90000, C: 260000, F: 500000 },
+                routes: [
+                    { key: 'BKK_L', name: "ANA 直行便 (L)", miles: { Y: 30000, C: 80000, F: 115000 }, cash: { surcharge: 22000, taxes: 7518 } },
+                    { key: 'BKK_R', name: "ANA 直行便 (R)", miles: { Y: 35000, C: 85000, F: 120000 }, cash: { surcharge: 22000, taxes: 7518 } },
+                    { key: 'BKK_H', name: "ANA 直行便 (H)", miles: { Y: 50000, C: 95000, F: 171000 }, cash: { surcharge: 22000, taxes: 7518 } },
+                    { key: 'BKK_TG', name: "タイ国際航空 直行便", miles: { Y: 35000, C: 60000, F: 105000 }, cash: { surcharge: 12800, taxes: 7518 } },
+                    { key: 'BKK_TPE', name: "エバー航空 (台北経由)", miles: { Y: 43000, C: 73000, F: 120000 }, cash: { surcharge: 10000, taxes: 7518 } },
+                    { key: 'BKK_SIN', name: "シンガポール航空 (シンガポール経由)", miles: { Y: 55000, C: 90000, F: 140000 }, cash: { surcharge: 0, taxes: 7518 } },
+                    { key: 'BKK_ICN', name: "アシアナ航空 (ソウル経由)", miles: { Y: 43000, C: 73000, F: 120000 }, cash: { surcharge: 18000, taxes: 7518 } }
+                ]
+            };
+
+            const classSelect = document.getElementById('class');
+            const benchmarkPriceInfoEl = document.getElementById('benchmark-price-info');
+            const tableBody = document.getElementById('comparison-table');
+            const ctx = document.getElementById('mileageChart').getContext('2d');
+            let mileageChart;
+
+            function calculateValue(benchmark, cash, miles) {
+                if (miles <= 0) return 0;
+                return ((benchmark - cash) / miles);
+            }
+
+            function updateSimulator() {
+                const flightClass = classSelect.value;
+                const benchmarkPrice = bkkFlightData.benchmark[flightClass];
+                
+                tableBody.innerHTML = ''; // Clear table
+                let results = [];
+
+                bkkFlightData.routes.forEach(route => {
+                    const requiredMiles = route.miles[flightClass];
+                    const cashPayment = route.cash.surcharge + route.cash.taxes;
+                    const mileValue = calculateValue(benchmarkPrice, cashPayment, requiredMiles);
+                    
+                    if (requiredMiles > 0) {
+                        results.push({
+                            name: route.name,
+                            miles: requiredMiles,
+                            cash: cashPayment,
+                            value: mileValue
+                        });
+                    }
+                });
+
+                results.sort((a, b) => b.value - a.value);
+                
+                const bestValue = results.length > 0 ? results[0].value : 0;
+
+                results.forEach(res => {
+                    const row = document.createElement('tr');
+                    if (res.value === bestValue && bestValue > 0) {
+                        row.classList.add('highlight-row', 'font-bold', 'text-sky-800');
+                    }
+                    row.innerHTML = `
+                        <td class="p-3">${res.name}</td>
+                        <td class="p-3 text-right">${res.miles.toLocaleString()}</td>
+                        <td class="p-3 text-right">${res.cash.toLocaleString()}</td>
+                        <td class="p-3 text-right">${res.value.toFixed(2)}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+                
+                const classText = classSelect.options[classSelect.selectedIndex].text;
+                benchmarkPriceInfoEl.textContent = `${classText} ${benchmarkPrice.toLocaleString()}`;
+
+                updateChart(results, classText);
+            }
+
+            function updateChart(results, classText) {
+                const labels = results.map(r => r.name.replace(' 直行便', '').replace(' (台北経由)', '/TPE').replace(' (シンガポール経由)', '/SIN').replace(' (ソウル経由)', '/ICN'));
+                const data = results.map(r => r.value);
+                const bestValue = Math.max(...data);
+
+                const backgroundColors = data.map(value => value === bestValue && bestValue > 0 ? 'rgba(14, 165, 233, 0.8)' : 'rgba(100, 116, 139, 0.6)');
+                const borderColors = data.map(value => value === bestValue && bestValue > 0 ? 'rgba(14, 165, 233, 1)' : 'rgba(100, 116, 139, 1)');
+
+                const chartData = {
+                    labels: labels,
+                    datasets: [{
+                        label: 'マイル単価 (円)',
+                        data: data,
+                        backgroundColor: backgroundColors,
+                        borderColor: borderColors,
+                        borderWidth: 1
+                    }]
+                };
+
+                if (mileageChart) {
+                    mileageChart.data = chartData;
+                    mileageChart.options.plugins.title.text = `東京-バンコク マイル単価比較 (${classText})`;
+                    mileageChart.update();
+                } else {
+                    mileageChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: chartData,
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'マイル単価 (円)'
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                },
+                                title: {
+                                    display: true,
+                                    text: `東京-バンコク マイル単価比較 (${classText})`,
+                                    font: { size: 16 },
+                                    padding: { top: 10, bottom: 20 }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            return ` ${context.parsed.y.toFixed(2)} 円`;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+
+            classSelect.addEventListener('change', updateSimulator);
+            updateSimulator(); // Initial load
+
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-tab');
+                    tabs.forEach(t => {
+                        t.classList.remove('active');
+                        t.classList.add('text-slate-500', 'hover:text-slate-700', 'hover:border-slate-300');
+                    });
+                    tab.classList.add('active');
+                    tab.classList.remove('text-slate-500', 'hover:text-slate-700', 'hover:border-slate-300');
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.getElementById(target).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

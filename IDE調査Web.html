@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インタラクティブIDE分析: 2024年Java開発環境レポート</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Zen Garden -->
+    <!-- Application Structure Plan: The application is designed as a narrative dashboard, guiding the user from a high-level overview to specific, actionable recommendations. The structure is thematic: 1. A hero section to set the context. 2. A tabbed "Market Overview" to immediately contrast Global vs. Japan trends. 3. A "Contenders Deep Dive" for direct, side-by-side comparison of the three IDEs. 4. "The Modern Workflow" section to highlight the critical "secondary IDE" concept. 5. An interactive "Decision Framework" that allows users to select their team type and receive a tailored recommendation. This structure was chosen over a linear report format to enhance engagement and allow users to quickly find information relevant to them, transforming passive reading into active exploration. -->
+    <!-- Visualization & Content Choices: 
+        - Global vs. Japan Share: Goal: Compare. Method: Two separate Bar Charts (Chart.js) in a tabbed view. Justification: Bar charts are optimal for comparing distinct values across categories. Tabs allow for a clean comparison without clutter.
+        - Japan Conceptual Share: Goal: Inform/Compare. Method: Donut Chart (Chart.js). Justification: A Donut chart effectively shows parts of a whole, suitable for a conceptual market share view.
+        - IDE Comparison: Goal: Organize/Compare. Method: Three-column layout using structured HTML/CSS with Unicode icons. Justification: Provides a clear, scannable, side-by-side comparison of features and philosophies without requiring complex graphics.
+        - Secondary IDE Usage: Goal: Inform. Method: Large stat text and a Donut Chart (Chart.js). Justification: Highlights a key findingインパクトのある数字で示し、構成をドーナツチャートで補足します。
+        - Decision Framework: Goal: Guide/Interact. Method: Interactive buttons (HTML/CSS) triggering JS content swaps. Justification: Creates a personalized, engaging experience, turning a static table from the report into a practical tool.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F5F5F3; /* Warm Neutral Background */
+            color: #3C3C3B; /* Dark Text */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .nav-button {
+            transition: all 0.3s ease;
+        }
+        .nav-button.active {
+            background-color: #3B82F6; /* Accent Blue */
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+        .decision-button.active {
+            background-color: #4A5568; /* Darker Gray for active state */
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white text-center p-6 md:p-10 shadow-md">
+        <h1 class="text-3xl md:text-4xl font-bold text-[#2C3E50]">インタラクティブIDE分析</h1>
+        <p class="text-md md:text-lg mt-2 text-gray-600">2024年 Java開発環境レポートに基づく戦略的インサイト</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="market-overview" class="mb-12">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-2 text-[#2C3E50]">IDE勢力図：グローバル vs 日本</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-6">Java開発環境のトレンドは、世界と日本で大きく異なります。このセクションでは、2つの異なる市場のデータを比較し、その背景にある力学を探ります。下のボタンで表示を切り替えてください。</p>
+                <div class="flex justify-center mb-6">
+                    <div class="flex space-x-1 bg-gray-200 rounded-lg p-1">
+                        <button id="btn-global" class="nav-button active px-4 py-2 rounded-md text-sm md:text-base">グローバル市場</button>
+                        <button id="btn-japan" class="nav-button px-4 py-2 rounded-md text-sm md:text-base">日本市場</button>
+                    </div>
+                </div>
+
+                <div id="global-view">
+                    <p class="text-center text-gray-500 mb-8">グローバル市場では、開発者全体ではVS Codeが圧倒的人気を誇る一方、Java専門の開発者に絞るとIntelliJ IDEAがトップに立ちます。</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-center mb-2 text-gray-700">全開発者の利用状況</h3>
+                            <p class="text-sm text-center text-gray-500 mb-4">(Stack Overflow 2024)</p>
+                            <div class="chart-container">
+                                <canvas id="allDevsChart"></canvas>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-center mb-2 text-gray-700">Java開発者の利用状況</h3>
+                            <p class="text-sm text-center text-gray-500 mb-4">(JRebel 2024)</p>
+                            <div class="chart-container">
+                                <canvas id="javaDevsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="japan-view" class="hidden">
+                    <p class="text-center text-gray-500 mb-8">日本では、大企業やSIer文化を背景にEclipseが依然として強力な地位を維持。これは無償であること、豊富な日本語リソース、そして長年の採用実績が大きな要因です。</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-center mb-2 text-gray-700">国内エンタープライズ市場 (概念図)</h3>
+                             <div class="chart-container h-[280px] md:h-[350px]">
+                                <canvas id="japanMarketChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-bold text-center mb-4 text-gray-700">Eclipseの牙城を支える要因</h3>
+                            <div class="flex items-start">
+                                <span class="text-blue-500 text-2xl mr-3">✓</span>
+                                <div><h4 class="font-bold">コストと調達</h4><p class="text-sm text-gray-600">無償のため、複雑な予算申請プロセスを回避できる。</p></div>
+                            </div>
+                             <div class="flex items-start">
+                                <span class="text-blue-500 text-2xl mr-3">✓</span>
+                                <div><h4 class="font-bold">レガシーとSIer文化</h4><p class="text-sm text-gray-600">長年の標準環境として蓄積されたノウハウとプロセス。</p></div>
+                            </div>
+                             <div class="flex items-start">
+                                <span class="text-blue-500 text-2xl mr-3">✓</span>
+                                <div><h4 class="font-bold">豊富な日本語リソース</h4><p class="text-sm text-gray-600">書籍、ブログ、Pleiades等の存在が学習コストを低減。</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contenders" class="mb-12">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-2 text-[#2C3E50]">三大IDE直接対決</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">各IDEは異なる哲学と思想に基づいて設計されています。それぞれの強み、弱み、そして最適なユーザー像を比較し、その核心に迫ります。</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- IntelliJ Card -->
+                    <div class="border border-gray-200 bg-gray-50 rounded-lg p-6 text-center flex flex-col hover:shadow-2xl transition-shadow duration-300">
+                        <h3 class="text-2xl font-bold text-blue-600 mb-4">IntelliJ IDEA</h3>
+                        <p class="italic text-gray-600 mb-4">"賢いパートナー"</p>
+                        <div class="text-left space-y-3 flex-grow">
+                            <p><span class="font-bold">✅ 強み:</span> 比類なき生産性、強力なコード分析とリファクタリング。</p>
+                            <p><span class="font-bold">❌ 弱み:</span> 有償版が高価、リソース消費が大きい。</p>
+                            <p><span class="font-bold">👤 最適なユーザー:</span> 生産性を最優先するプロのJava開発者。</p>
+                        </div>
+                    </div>
+                    <!-- Eclipse Card -->
+                    <div class="border border-gray-200 bg-gray-50 rounded-lg p-6 text-center flex flex-col hover:shadow-2xl transition-shadow duration-300">
+                        <h3 class="text-2xl font-bold text-purple-600 mb-4">Eclipse</h3>
+                        <p class="italic text-gray-600 mb-4">"カスタマイズプラットフォーム"</p>
+                        <div class="text-left space-y-3 flex-grow">
+                            <p><span class="font-bold">✅ 強み:</span> 無償、膨大なプラグインによる比類なき拡張性。</p>
+                            <p><span class="font-bold">❌ 弱み:</span> 古風なUI、パフォーマンス問題、複雑な設定。</p>
+                            <p><span class="font-bold">👤 最適なユーザー:</span> 大企業/SIer、コスト重視の組織、学生。</p>
+                        </div>
+                    </div>
+                    <!-- VS Code Card -->
+                    <div class="border border-gray-200 bg-gray-50 rounded-lg p-6 text-center flex flex-col hover:shadow-2xl transition-shadow duration-300">
+                        <h3 class="text-2xl font-bold text-green-600 mb-4">VS Code</h3>
+                        <p class="italic text-gray-600 mb-4">"開発ハブ"</p>
+                        <div class="text-left space-y-3 flex-grow">
+                            <p><span class="font-bold">✅ 強み:</span> 高速・軽量、クラス最高の多言語サポート。</p>
+                            <p><span class="font-bold">❌ 弱み:</span> Java専用機能はIntelliJに及ばない、設定のオーバーヘッド。</p>
+                            <p><span class="font-bold">👤 最適なユーザー:</span> 多言語開発者、Web/クラウドネイティブ開発者。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="decision-framework" class="mb-12">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-2 text-[#2C3E50]">あなたのチームに最適なIDEは？</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">「最高のIDE」は存在しません。最適な選択はプロジェクトの状況によって決まります。あなたのチームの状況に最も近いシナリオを選択して、推奨されるアプローチを確認してください。</p>
+                <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-8">
+                    <button class="decision-button bg-gray-200 text-gray-800 px-4 py-2 rounded-lg shadow transition-all duration-200" data-scenario="sier">大規模SIer / レガシー保守</button>
+                    <button class="decision-button bg-gray-200 text-gray-800 px-4 py-2 rounded-lg shadow transition-all duration-200" data-scenario="cloud">クラウドネイティブ / 新規開発</button>
+                    <button class="decision-button bg-gray-200 text-gray-800 px-4 py-2 rounded-lg shadow transition-all duration-200" data-scenario="startup">スタートアップ / 多言語環境</button>
+                    <button class="decision-button bg-gray-200 text-gray-800 px-4 py-2 rounded-lg shadow transition-all duration-200" data-scenario="learning">個人学習 / 教育</button>
+                </div>
+                <div id="recommendation-box" class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg min-h-[150px] transition-opacity duration-500">
+                    <h3 id="recommendation-title" class="text-xl font-bold text-blue-800">シナリオを選択してください</h3>
+                    <p id="recommendation-text" class="text-gray-700 mt-2">上に表示されているボタンから、あなたのチームの状況に最も近いものをクリックしてください。</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-6 mt-4 bg-white border-t">
+        <p class="text-gray-600 text-sm">データ出典: JRebel 2024 Report, Stack Overflow Developer Survey 2024, PYPL Index</p>
+    </footer>
+
+    <script>
+        const colorPalette = {
+            accent: '#3B82F6',
+            accent2: '#8B5CF6',
+            accent3: '#10B981',
+            text: '#3C3C3B',
+            textLight: '#6B7280',
+            bgLight: '#F5F5F3',
+            bgGrid: '#E5E7EB'
+        };
+
+        const chartDefaultOptions = (isHorizontal = false) => ({
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: isHorizontal ? 'y' : 'x',
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                    titleFont: { size: 14, weight: 'bold' },
+                    bodyFont: { size: 12 },
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            return Array.isArray(label) ? label.join(' ') : label;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: colorPalette.textLight, font: { size: 10 } },
+                    grid: { color: isHorizontal ? colorPalette.bgGrid : 'transparent' }
+                },
+                y: {
+                    ticks: { color: colorPalette.textLight, font: { size: 10 } },
+                    grid: { color: isHorizontal ? 'transparent' : colorPalette.bgGrid }
+                }
+            }
+        });
+
+        function wrapLabel(label, maxLength = 16) {
+            if (typeof label !== 'string' || label.length <= maxLength) return label;
+            const words = label.split(/\s+/);
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) lines.push(currentLine.trim());
+            return lines.length > 1 ? lines : label;
+        }
+        
+        const allDevsData = {
+            labels: [wrapLabel('Visual Studio Code'), 'IntelliJ IDEA', 'Eclipse'],
+            datasets: [{
+                label: '全開発者の利用シェア (%)',
+                data: [73.6, 26.8, 9.4],
+                backgroundColor: [colorPalette.accent3, colorPalette.accent, colorPalette.accent2],
+            }]
+        };
+        const allDevsChart = new Chart(document.getElementById('allDevsChart'), { type: 'bar', data: allDevsData, options: chartDefaultOptions(true) });
+        
+        const javaDevsData = {
+            labels: ['IntelliJ IDEA', 'Eclipse', wrapLabel('Visual Studio Code'), 'その他'],
+            datasets: [{
+                label: 'Java開発者の利用シェア (%)',
+                data: [41, 23, 19, 17],
+                backgroundColor: [colorPalette.accent, colorPalette.accent2, colorPalette.accent3, colorPalette.bgGrid],
+            }]
+        };
+        const javaDevsChart = new Chart(document.getElementById('javaDevsChart'), { type: 'bar', data: javaDevsData, options: chartDefaultOptions(true) });
+
+        const doughnutOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'right', labels: { color: colorPalette.text, padding: 15, font: { size: 12 } }},
+                tooltip: chartDefaultOptions().plugins.tooltip
+            },
+            cutout: '60%'
+        };
+
+        const japanMarketData = {
+            labels: ['Eclipse', 'IntelliJ IDEA', wrapLabel('Visual Studio Code'), 'その他'],
+            datasets: [{
+                data: [55, 25, 15, 5],
+                backgroundColor: [colorPalette.accent2, colorPalette.accent, colorPalette.accent3, colorPalette.bgGrid],
+                borderColor: '#FFFFFF', borderWidth: 3
+            }]
+        };
+        const japanMarketChart = new Chart(document.getElementById('japanMarketChart'), { type: 'doughnut', data: japanMarketData, options: doughnutOptions });
+
+        document.getElementById('btn-global').addEventListener('click', () => {
+            document.getElementById('global-view').classList.remove('hidden');
+            document.getElementById('japan-view').classList.add('hidden');
+            document.getElementById('btn-global').classList.add('active');
+            document.getElementById('btn-japan').classList.remove('active');
+        });
+
+        document.getElementById('btn-japan').addEventListener('click', () => {
+            document.getElementById('global-view').classList.add('hidden');
+            document.getElementById('japan-view').classList.remove('hidden');
+            document.getElementById('btn-global').classList.remove('active');
+            document.getElementById('btn-japan').classList.add('active');
+        });
+        
+        const recommendations = {
+            sier: {
+                title: '推奨: Eclipseを維持し、IntelliJを試験導入',
+                text: '既存の安定したプロセスとノウハウを尊重し、Eclipseを使い続けるのが最も低リスクです。ただし、生産性向上が期待できる新規プロジェクトではIntelliJ IDEAのパイロット導入を検討し、効果を測定すべきです。'
+            },
+            cloud: {
+                title: '推奨: IntelliJ IDEA Ultimateを第一候補に',
+                text: 'Spring Boot、Docker、Kubernetesとの優れた統合機能が開発効率を大幅に向上させます。チームが多言語を扱うポリグロット環境であれば、VS Codeも非常に強力な代替候補となります。'
+            },
+            startup: {
+                title: '推奨: IntelliJ IDEAをデフォルトに (予算制約があればVS Code)',
+                text: '少数精鋭のチームの生産性を最大化することが最も重要です。もし予算が最大の制約であれば、モダンなUI/UXと多言語開発への親和性が高いVS Codeが最適です。'
+            },
+            learning: {
+                title: '推奨: VS Codeから始め、IntelliJ Communityへ移行',
+                text: '導入が容易なVS Codeでプログラミングの基礎を学び、その後、本格的なIDEの威力を体験するためにIntelliJ IDEA Community Editionに触れるのが効果的です。'
+            }
+        };
+
+        const decisionButtons = document.querySelectorAll('.decision-button');
+        const titleEl = document.getElementById('recommendation-title');
+        const textEl = document.getElementById('recommendation-text');
+        const boxEl = document.getElementById('recommendation-box');
+
+        decisionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const scenario = button.dataset.scenario;
+                const content = recommendations[scenario];
+
+                decisionButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                boxEl.style.opacity = '0';
+                setTimeout(() => {
+                    titleEl.textContent = content.title;
+                    textEl.textContent = content.text;
+                    boxEl.style.opacity = '1';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>

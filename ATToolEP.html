@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Chosen Palette: Brilliant Blues -->
+    <!-- Application Structure Plan: The infographic is structured as a strategic briefing for an enterprise CTO. It follows a narrative: 1. The Hook (Framing the core enterprise challenge: Opportunity vs. Risk). 2. The Core Dilemma (Visually contrasting the two main philosophies: Governed Control vs. Autonomous Speed). 3. The Enterprise Readiness Scorecard (A bar chart comparing key tools on enterprise-critical metrics like Governance and Integration). 4. Strategic Portfolio Mapping (Actionable guidance showing which tool combinations fit different enterprise profiles). 5. The AI Guardrails Framework (A clear, memorable summary of essential governance steps). This structure directly addresses the report's enterprise focus and provides a decision-making framework rather than just data. -->
+    <!-- Visualization & Content Choices: 
+        - Core Dilemma: Goal: Compare. Method: Two large, styled HTML/CSS cards. Justification: Clearly visualizes the central strategic choice for enterprises.
+        - Enterprise Readiness Scorecard: Goal: Compare. Method: Chart.js Horizontal Bar Chart. Justification: Superior to a radar chart for directly comparing multiple tools across the same, specific enterprise-focused criteria.
+        - Strategic Portfolio Mapping: Goal: Organize. Method: Structured HTML/CSS grid layout. Justification: Provides clear, actionable recommendations by mapping tool portfolios to specific, relatable enterprise archetypes.
+        - AI Guardrails Framework: Goal: Inform. Method: Four simple HTML/CSS cards with Unicode icons. Justification: Breaks down the complex topic of governance into four digestible, memorable pillars.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：エンタープライズAIエージェント戦略</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F2F2F2;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .gradient-bg {
+            background: linear-gradient(90deg, #0B4F6C, #01BAEF);
+        }
+        .text-accent {
+            color: #01BAEF;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center py-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#0B4F6C] mb-4">AIエージェント戦略</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">エンタープライズ導入の機会とリスクを乗りこなすための羅針盤</p>
+        </header>
+
+        <main class="space-y-16 md:space-y-24">
+
+            <section class="text-center">
+                <p class="text-xl text-gray-700 max-w-4xl mx-auto">
+                    AIエージェントは、開発の生産性を飛躍させる大きな機会ですが、同時に**セキュリティ、ガバナンス、IP保護**という看過できないリスクをもたらします。エンタープライズにおける成功は、この二律背反をいかに戦略的に管理するかにかかっています。
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-3xl font-bold text-center text-[#0B4F6C] mb-12">核心的ジレンマ：統制か、スピードか</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card p-8 border-t-4 border-[#01BAEF]">
+                        <h3 class="text-2xl font-bold mb-4">🕹️ ガバナンスと制御</h3>
+                        <p class="text-gray-600 mb-4">人間がAIの計画を検証・修正し、主導権を握るアプローチ。予測可能性、監査可能性、セキュリティを最優先します。</p>
+                        <div class="mt-auto">
+                            <p class="font-semibold mb-2">代表的なツール群:</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">IBM watsonx</span>
+                                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">AWS Kiro</span>
+                                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">GitHub Copilot Ent.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card p-8 border-t-4 border-gray-400">
+                        <h3 class="text-2xl font-bold mb-4">🚀 自律性とスピード</h3>
+                        <p class="text-gray-600 mb-4">タスク実行の大部分をAIに委譲し、開発速度を最大化するアプローチ。迅速なプロトタイピングやPoCに適しています。</p>
+                        <div class="mt-auto">
+                            <p class="font-semibold mb-2">代表的なツール群:</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Cognition Devin</span>
+                                <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Cursor</span>
+                                <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">CLI Agents</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-3xl font-bold text-center text-[#0B4F6C] mb-12">エンタープライズ対応能力スコアカード</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">各ツールをエンタープライズにとって重要な4つの軸で評価しました。自社の優先事項と照らし合わせて、最適なツールポートフォリオを検討してください。</p>
+                <div class="card p-6 md:p-8">
+                    <div class="chart-container">
+                        <canvas id="enterpriseChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-3xl font-bold text-center text-[#0B4F6C] mb-12">戦略的ポートフォリオマッピング</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">最適解は単一ツールの導入ではありません。組織の特性に合わせたツールポートフォリオを構築することが成功の鍵です。</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card p-6">
+                        <p class="text-3xl text-center mb-4">🏦</p>
+                        <h3 class="text-xl font-bold text-center mb-2">金融・規制対象業種</h3>
+                        <p class="text-gray-600 text-sm mb-4">IP保護とガバナンスが最優先。</p>
+                        <div class="border-t pt-4">
+                            <p class="font-semibold text-sm">中核ツール:</p>
+                            <p class="text-accent font-bold">IBM watsonx</p>
+                            <p class="font-semibold text-sm mt-2">補完ツール:</p>
+                            <p>GitHub Copilot Ent.</p>
+                        </div>
+                    </div>
+                    <div class="card p-6">
+                        <p class="text-3xl text-center mb-4">☁️</p>
+                        <h3 class="text-xl font-bold text-center mb-2">クラウドネイティブ企業</h3>
+                        <p class="text-gray-600 text-sm mb-4">既存のクラウドエコシステムとの連携を重視。</p>
+                         <div class="border-t pt-4">
+                            <p class="font-semibold text-sm">中核ツール:</p>
+                            <p class="text-accent font-bold">AWS Kiro (Amazon Q)</p>
+                            <p class="font-semibold text-sm mt-2">補完ツール:</p>
+                            <p>GitHub Copilot Ent.</p>
+                        </div>
+                    </div>
+                    <div class="card p-6">
+                        <p class="text-3xl text-center mb-4">🔬</p>
+                        <h3 class="text-xl font-bold text-center mb-2">R&D・イノベーション部門</h3>
+                        <p class="text-gray-600 text-sm mb-4">隔離環境下で最先端の生産性を探求。</p>
+                         <div class="border-t pt-4">
+                            <p class="font-semibold text-sm">評価対象ツール:</p>
+                            <p class="text-accent font-bold">Cognition Devin</p>
+                            <p class="font-semibold text-sm mt-2">生産性ツール:</p>
+                            <p>Cursor, CLI Agents</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="gradient-bg text-white rounded-xl p-8 md:p-12">
+                <h2 class="text-3xl font-bold text-center mb-12">必須の「AIガードレール」フレームワーク</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-5xl mb-3">🛡️</div>
+                        <h3 class="text-xl font-bold">IP保護と補償</h3>
+                        <p class="text-white/80 text-sm">IP補償を提供するベンダー（IBM, AWS, Microsoft）を優先し、ライセンス汚染リスクから企業を保護します。</p>
+                    </div>
+                    <div>
+                        <div class="text-5xl mb-3">🗄️</div>
+                        <h3 class="text-xl font-bold">データ分類とアクセス制御</h3>
+                        <p class="text-white/80 text-sm">企業のコードとデータを機密度に応じて分類し、AIがアクセスできる範囲を厳格に制御します。</p>
+                    </div>
+                    <div>
+                        <div class="text-5xl mb-3">📦</div>
+                        <h3 class="text-xl font-bold">サンドボックス環境</h3>
+                        <p class="text-white/80 text-sm">AIエージェントの実行環境をネットワーク的に隔離し、ローカルや本番環境への直接アクセスを防止します。</p>
+                    </div>
+                    <div>
+                        <div class="text-5xl mb-3">📋</div>
+                        <h3 class="text-xl font-bold">監査とモニタリング</h3>
+                        <p class="text-white/80 text-sm">誰が、いつ、どのAIを、どう使ったかを記録。インシデント追跡と継続的なガバナンス改善を可能にします。</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-24 py-8 border-t border-gray-200">
+            <p class="text-gray-500">本インフォグラフィックは「エンタープライズAI開発エージェント戦略レポート」を基に作成されました。</p>
+        </footer>
+    </div>
+
+<script>
+    const enterpriseChartCtx = document.getElementById('enterpriseChart').getContext('2d');
+    const enterpriseChartData = {
+        labels: [
+            'IBM watsonx',
+            'AWS Kiro',
+            'GitHub Copilot Ent.',
+            'Cursor',
+            'Cognition Devin'
+        ],
+        datasets: [{
+            label: 'セキュリティとガバナンス',
+            data: [10, 9, 8, 6, 3],
+            backgroundColor: '#0B4F6C',
+            borderColor: '#0B4F6C',
+            borderWidth: 1,
+            borderRadius: 4
+        }, {
+            label: 'エンタープライズ統合',
+            data: [10, 9, 7, 3, 2],
+            backgroundColor: '#01BAEF',
+            borderColor: '#01BAEF',
+            borderWidth: 1,
+            borderRadius: 4
+        }, {
+            label: 'レガシー近代化支援',
+            data: [9, 5, 4, 6, 2],
+            backgroundColor: '#75C5F0',
+            borderColor: '#75C5F0',
+            borderWidth: 1,
+            borderRadius: 4
+        }]
+    };
+
+    new Chart(enterpriseChartCtx, {
+        type: 'bar',
+        data: enterpriseChartData,
+        options: {
+            indexAxis: 'y',
+            maintainAspectRatio: false,
+            responsive: true,
+            scales: {
+                x: {
+                    stacked: false,
+                    beginAtZero: true,
+                    max: 10,
+                    title: {
+                        display: true,
+                        text: '能力スコア (10段階評価)'
+                    }
+                },
+                y: {
+                    stacked: false,
+                    ticks: {
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+                tooltip: {
+                    enabled: true,
+                    mode: 'index',
+                    intersect: false,
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
