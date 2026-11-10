@@ -75,3 +75,241 @@
     border-radius: 5px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    font-size: clamp(20px, 7vw, 40px);
+    font-weight: bold;
+    color: #776e65;
+    transition: 100ms ease-in-out;
+    user-select: none;
+  }
+  
+  /* タイルの色分け */
+  .tile[data-val="2"] { background: #eee4da; }
+  .tile[data-val="4"] { background: #ede0c8; }
+  .tile[data-val="8"] { background: #f2b179; color: #f9f6f2; }
+  .tile[data-val="16"] { background: #f59563; color: #f9f6f2; }
+  .tile[data-val="32"] { background: #f67c5f; color: #f9f6f2; }
+  .tile[data-val="64"] { background: #f65e3b; color: #f9f6f2; }
+  .tile[data-val="128"] { background: #edcf72; color: #f9f6f2; font-size: clamp(16px, 5.5vw, 32px); box-shadow: 0 0 10px rgba(243,215,116,0.3); }
+  .tile[data-val="256"] { background: #edcc61; color: #f9f6f2; font-size: clamp(16px, 5.5vw, 32px); box-shadow: 0 0 20px rgba(243,215,116,0.4); }
+  .tile[data-val="512"] { background: #edc850; color: #f9f6f2; font-size: clamp(16px, 5.5vw, 32px); box-shadow: 0 0 30px rgba(243,215,116,0.5); }
+  .tile[data-val="1024"], .tile[data-val="2048"] { background: #edc53f; color: #f9f6f2; font-size: clamp(14px, 4.5vw, 26px); box-shadow: 0 0 40px rgba(243,215,116,0.6); }
+  .tile[data-val="4096"] { background: #3c3a32; color: #f9f6f2; font-size: clamp(14px, 4.5vw, 26px); box-shadow: 0 0 50px rgba(60,58,50,0.6); }
+  
+  #message { margin-top: 15px; font-size: 20px; font-weight: bold; height: 24px; }
+  #retry-btn { margin-top: 15px; padding: 12px 24px; font-size: 16px; font-weight: bold; background: #8f7a66; color: white; border: none; border-radius: 5px; cursor: pointer; display: none; -webkit-tap-highlight-color: transparent; }
+  #retry-btn:active { background: #9f8b77; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>4096</h1>
+  <div class="score-container">
+    <div class="score-box">SCORE<br><span id="score">0</span></div>
+    <div class="score-box">BEST<br><span id="best-score">0</span></div>
+  </div>
+</div>
+<p class="instruction">スワイプで同じ数字を合体させよう</p>
+
+<div id="game-board"></div>
+<div id="message"></div>
+<button id="retry-btn" onclick="resetGame()">もう一度プレイ</button>
+
+<script>
+  const board = document.getElementById('game-board');
+  const messageDiv = document.getElementById('message');
+  const retryBtn = document.getElementById('retry-btn');
+  const scoreDisplay = document.getElementById('score');
+  const bestScoreDisplay = document.getElementById('best-score');
+  
+  let grid = Array(4).fill().map(() => Array(4).fill(0));
+  let gameOver = false;
+  let score = 0;
+  // ブラウザのローカルストレージからハイスコアを読み込む（オフラインでも保持）
+  let bestScore = localStorage.getItem('4096-best-score') || 0;
+  bestScoreDisplay.textContent = bestScore;
+
+  function init() {
+    board.innerHTML = '';
+    for (let r = 0; r < 4; r++) {
+      for (let c = 0; c < 4; c++) {
+        let tile = document.createElement('div');
+        tile.className = 'tile';
+        tile.id = `tile-${r}-${c}`;
+        board.appendChild(tile);
+      }
+    }
+    addRandom();
+    addRandom();
+    updateBoard();
+  }
+
+  function resetGame() {
+    grid = Array(4).fill().map(() => Array(4).fill(0));
+    gameOver = false;
+    score = 0;
+    updateScoreDisplay();
+    messageDiv.textContent = '';
+    retryBtn.style.display = 'none';
+    init();
+  }
+
+  function addRandom() {
+    let empty = [];
+    for(let r=0; r<4; r++)
+      for(let c=0; c<4; c++)
+        if(grid[r][c] === 0) empty.push({r,c});
+    
+    if(empty.length > 0) {
+      let {r,c} = empty[Math.floor(Math.random() * empty.length)];
+      grid[r][c] = Math.random() < 0.9 ? 2 : 4;
+    }
+  }
+
+  function updateBoard() {
+    for(let r=0; r<4; r++) {
+      for(let c=0; c<4; c++) {
+        let tile = document.getElementById(`tile-${r}-${c}`);
+        let val = grid[r][c];
+        tile.textContent = val === 0 ? '' : val;
+        tile.setAttribute('data-val', val);
+      }
+    }
+    checkStatus();
+  }
+
+  function updateScoreDisplay() {
+    scoreDisplay.textContent = score;
+    if(score > bestScore) {
+      bestScore = score;
+      localStorage.setItem('4096-best-score', bestScore);
+      bestScoreDisplay.textContent = bestScore;
+    }
+  }
+
+  function slide(row) {
+    let arr = row.filter(val => val);
+    let missing = 4 - arr.length;
+    let zeros = Array(missing).fill(0);
+    return arr.concat(zeros);
+  }
+
+  function combine(row) {
+    for(let i=0; i<3; i++) {
+      if(row[i] !== 0 && row[i] === row[i+1]) {
+        row[i] *= 2;
+        score += row[i]; // スコアを加算
+        row[i+1] = 0;
+      }
+    }
+    return row;
+  }
+
+  function operate(row) {
+    row = slide(row);
+    row = combine(row);
+    row = slide(row);
+    return row;
+  }
+
+  function move(dir) {
+    if(gameOver) return;
+    let oldGrid = JSON.stringify(grid);
+
+    if(dir === 'Left' || dir === 'Right') {
+      for(let r=0; r<4; r++) {
+        let row = grid[r];
+        if(dir === 'Right') row.reverse();
+        row = operate(row);
+        if(dir === 'Right') row.reverse();
+        grid[r] = row;
+      }
+    } else if(dir === 'Up' || dir === 'Down') {
+      for(let c=0; c<4; c++) {
+        let row = [grid[0][c], grid[1][c], grid[2][c], grid[3][c]];
+        if(dir === 'Down') row.reverse();
+        row = operate(row);
+        if(dir === 'Down') row.reverse();
+        for(let r=0; r<4; r++) grid[r][c] = row[r];
+      }
+    }
+
+    if(oldGrid !== JSON.stringify(grid)) {
+      addRandom();
+      updateScoreDisplay(); // 動いた後にスコアを更新
+      updateBoard();
+    }
+  }
+
+  // スワイプ操作
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  board.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: false });
+
+  board.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+  }, { passive: false });
+
+  board.addEventListener('touchend', (e) => {
+    if(gameOver) return;
+    let touchEndX = e.changedTouches[0].clientX;
+    let touchEndY = e.changedTouches[0].clientY;
+    
+    let dx = touchEndX - touchStartX;
+    let dy = touchEndY - touchStartY;
+    
+    if (Math.abs(dx) > 30 || Math.abs(dy) > 30) {
+      if (Math.abs(dx) > Math.abs(dy)) {
+        if (dx > 0) move('Right');
+        else move('Left');
+      } else {
+        if (dy > 0) move('Down');
+        else move('Up');
+      }
+    }
+  });
+
+  // PCキーボード操作
+  document.addEventListener('keydown', (e) => {
+    if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+        e.preventDefault();
+    }
+    if(e.key === 'ArrowLeft') move('Left');
+    if(e.key === 'ArrowRight') move('Right');
+    if(e.key === 'ArrowUp') move('Up');
+    if(e.key === 'ArrowDown') move('Down');
+  });
+
+  function checkStatus() {
+    for(let r=0; r<4; r++) {
+      for(let c=0; c<4; c++) {
+        if(grid[r][c] === 4096) { 
+          messageDiv.textContent = '🎉 4096達成！ 🎉'; 
+          gameOver = true;
+          retryBtn.style.display = 'block';
+          return; 
+        }
+      }
+    }
+
+    for(let r=0; r<4; r++)
+      for(let c=0; c<4; c++)
+        if(grid[r][c] === 0) return;
+
+    for(let r=0; r<4; r++)
+      for(let c=0; c<3; c++)
+        if(grid[r][c] === grid[r][c+1] || grid[c][r] === grid[c+1][r]) return;
+
+    messageDiv.textContent = 'ゲームオーバー...';
+    gameOver = true;
+    retryBtn.style.display = 'block';
+  }
+
+  init();
+</script>
+</body>
+</html>
